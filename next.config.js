@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
   modularizeImports: {
@@ -14,11 +15,20 @@ module.exports = {
       fullUrl: true,
     },
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    return config;
+  rewrites: async () => {
+    return [
+      {
+        source: '/api/:path*',
+        destination:
+          process.env.NODE_ENV === 'development'
+            ? 'http://127.0.0.1:5328/api/:path*'
+            : '/api/',
+      },
+    ]
   },
-};
+  experimental: {
+    proxyTimeout: 120 * 1000,
+  }
+}
+
+module.exports = nextConfig

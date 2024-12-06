@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Box, FormControl, Typography, MenuItem, Slider } from '@mui/material';
+import { Box, FormControl, Typography, Slider } from '@mui/material';
 
 interface CandidateThresholdSlideProps {
     onSelect: (num: number) => void;

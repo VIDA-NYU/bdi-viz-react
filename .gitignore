@@ -43,3 +43,14 @@ next-env.d.ts
 **/.DS_Store
 
 package-lock.json
+
+.idea/
+.vscode/
+.venv*/
+venv*/
+__pycache__/
+dist/
+.coverage*
+htmlcov/
+.tox/
+docs/_build/

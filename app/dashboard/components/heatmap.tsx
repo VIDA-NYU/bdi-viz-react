@@ -23,7 +23,10 @@ interface HeatMapProps {
 const HeatMap: React.FC<HeatMapProps> = (prop) => {
 
     const { data, filters } = prop;
-    const [candidates, setCandidates] = useState<Candidate[]>(data);
+    const [candidates] = useState<Candidate[]>(data);
+    
+    // const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+
 
     const drawHeatMap = () => {
         const margin = { top: 50, right: 0, bottom: 100, left: 50 },
@@ -54,9 +57,8 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
         x.domain(filteredData.map(d => d.targetColumn));
         y.domain(filteredData.map(d => d.sourceColumn));
 
-        const color = d3.scaleLinear()
-            .domain([0, 1])
-            .range(["white", "steelblue"]);
+        const color = d3.scaleSequential(d3.interpolateBlues)
+            .domain([0, 1]);
 
         const tooltip = d3.select("body").append("div")
             .attr("class", "tooltip")
@@ -77,7 +79,7 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
         // });
 
         svg.selectAll()
-            .data(filteredData, function (d) { return d.sourceColumn + ':' + d.targetColumn; })
+            .data(filteredData, function (d: Candidate | undefined) { return d ? d.sourceColumn + ':' + d.targetColumn : ''; })
             .enter()
             .append("rect")
             .attr("x", function (d) { return x(d.targetColumn) ?? 0 })
@@ -102,7 +104,7 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
                 .duration(500)
                 .style("opacity", 0);
             })
-            .on("click", function (event, d) {
+            .on("click", function () {
                 d3.selectAll("rect")
                     .style("stroke-width", 0)
                     .style("fill-opacity", 0.0);

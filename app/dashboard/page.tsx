@@ -5,6 +5,7 @@ import { Container } from "@mui/material";
 
 import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/heatmap";
+import FileUploading from "./components/fileuploading";
 
 
 export default function Page() {
@@ -67,16 +68,23 @@ export default function Page() {
         },
     ]
 
+    const [candidates, setCandidates] = useState<Candidate[]>(mockData);
+
     const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);
     const [candidateType, setCandidateType] = useState<string>('all');
     const [similarSources, setSimilarSources] = useState<number>(5);
     const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
 
+    const fileUploadCallback = (candidates: Candidate[]) => {
+        setCandidates(candidates);
+        setSourceColumn(candidates[0].sourceColumn);
+    }
+
 
     return (
         <div>
             <ControlPanel
-                sourceColumns={['A', 'B', 'C']}
+                sourceColumns={Array.from(new Set(candidates.map(candidate => candidate.sourceColumn)))}
                 onSourceColumnSelect={(column: string) => setSourceColumn(column)}
                 onCandidateTypeSelect={(type: string) => setCandidateType(type)}
                 onSimilarSourcesSelect={(num: number) => setSimilarSources(num)}
@@ -94,10 +102,12 @@ export default function Page() {
                 sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}
             >
             <HeatMap 
-                data={mockData} 
+                data={candidates} 
                 filters={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
             />
             </Container>
+
+            <FileUploading callback={fileUploadCallback} />
         </div>
     )
 }

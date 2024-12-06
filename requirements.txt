@@ -1,0 +1,8 @@
+Flask==3.0.3
+fuzzywuzzy
+sentence_transformers
+transformers
+torch
+mmh3
+pandas
+numpy
