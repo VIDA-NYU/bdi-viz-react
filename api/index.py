@@ -10,6 +10,10 @@ from .matcher.embedding_matcher import EmbeddingMatcher
 from .utils import extract_data_from_request
 import json
 
+# langchain
+from .langchain.pydantic import Joke
+from .langchain.agent import Agent
+
 logger = logging.getLogger(__name__)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
@@ -77,3 +81,11 @@ def get_results():
     with open(output_path, "r") as f:
         results = json.load(f)
     return {"message": "success", "results": results}
+
+
+@app.route("/api/joke", methods=["POST"])
+def joke():
+    user_input = request.json["input"]
+    agent = Agent()
+    response = agent.invoke(user_input, Joke)
+    return response.model_dump()

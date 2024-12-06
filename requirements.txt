@@ -6,3 +6,6 @@ torch
 mmh3
 pandas
 numpy
+langchain-anthropic
+python-dotenv
+pydantic
