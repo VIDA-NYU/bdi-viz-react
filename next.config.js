@@ -28,7 +28,12 @@ const nextConfig = {
   },
   experimental: {
     proxyTimeout: 120 * 1000,
-  }
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: '20mb',
+    },
+  },
 }
 
 module.exports = nextConfig

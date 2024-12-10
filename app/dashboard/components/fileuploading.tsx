@@ -41,6 +41,7 @@ const FileUploading = (prop: FileUploadingProps) => {
                         ...customHeader,
                         timeout: 10000000, // 10 seconds timeout
                     }).then((response) => {
+                        console.log(response);
                         if (response.status === 200) {
                             axios.get("/api/results").then((response) => {
                                 const results = response.data?.results;

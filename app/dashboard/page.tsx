@@ -6,6 +6,7 @@ import { Container } from "@mui/material";
 import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/heatmap";
 import FileUploading from "./components/fileuploading";
+import ChatBox from "./components/langchain/chatbox";
 
 
 export default function Page() {
@@ -106,6 +107,8 @@ export default function Page() {
                 filters={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
             />
             </Container>
+
+            <ChatBox />
 
             <FileUploading callback={fileUploadCallback} />
         </div>
