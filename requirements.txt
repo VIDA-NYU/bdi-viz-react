@@ -7,5 +7,6 @@ mmh3
 pandas
 numpy
 langchain-anthropic
+langchain-community
 python-dotenv
 pydantic

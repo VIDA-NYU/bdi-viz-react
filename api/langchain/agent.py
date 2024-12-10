@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 from dotenv import load_dotenv
 load_dotenv()
 from pydantic import BaseModel
@@ -15,5 +16,9 @@ class Agent:
         return response
 
     
-
+    def bind_tools(self, tools: dict, tool_choice: Optional[str] = None) -> None:
+        if tool_choice is not None:
+            self.llm.bind_tools(tools, tool_choice=tool_choice)
+        else:
+            self.llm.bind_tools(tools)
 
