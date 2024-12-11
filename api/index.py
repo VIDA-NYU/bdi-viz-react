@@ -8,14 +8,15 @@ from flask import request
 
 from .matcher.embedding_matcher import EmbeddingMatcher
 from .utils import extract_data_from_request
-from .matching_task import MatchingTask
+from .matching_task import MATCHING_TASK
 import json
 
 # langchain
-from .langchain.pydantic import Joke
-from .langchain.agent import Agent
+from .langchain.pydantic import AgentResponse
+from .langchain.agent import Agent, AGENT
 
-logger = logging.getLogger(__name__)
+from .tools.candidate_butler import candidate_butler_tools
+
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 DEFAULT_PARAMS = {
@@ -32,14 +33,10 @@ DEFAULT_PARAMS = {
         "use_gpt_reranker": False,
     }
 
-matching_task = MatchingTask()
-
-app = Flask(__name__)
+app = Flask("bdiviz_flask")
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 1024
+app.logger.setLevel(logging.DEBUG)
 
-@app.route("/api/python")
-def hello_world():
-    return "<p>Hello, World!</p>"
 
 @app.route("/api/matching", methods=["POST"])
 def matcher():
@@ -48,11 +45,11 @@ def matcher():
 
     source, _ = extract_data_from_request(request)
 
-    logger.info("Matching task started!")
+    app.logger.info("Matching task started!")
 
-    matching_task.update_dataframe(source_df=source, target_df=target)
+    MATCHING_TASK.update_dataframe(source_df=source, target_df=target)
 
-    ret_json = matching_task.get_candidates()
+    ret_json = MATCHING_TASK.get_candidates()
     
     # output_path = os.path.join(os.path.dirname(__file__), "matching_results.json")
     # with open(output_path, "w") as f:
@@ -66,13 +63,15 @@ def get_results():
     # with open(output_path, "r") as f:
     #     results = json.load(f)
 
-    results = matching_task.to_frontend_json()
+    results = MATCHING_TASK.to_frontend_json()
     return {"message": "success", "results": results}
 
 
-@app.route("/api/joke", methods=["POST"])
-def joke():
-    user_input = request.json["input"]
-    agent = Agent()
-    response = agent.invoke(user_input, Joke)
-    return response.model_dump()
+@app.route("/api/agent", methods=["POST"])
+def ask_agent():
+    data = request.json
+    prompt = data["prompt"]
+    app.logger.info(f"Prompt: {prompt}")
+    response = AGENT.invoke(prompt, candidate_butler_tools, AgentResponse).model_dump()
+    app.logger.info(f"Response: {response}")
+    return response

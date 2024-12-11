@@ -10,8 +10,8 @@ const ChatBox = () => {
     const [message, setMessage] = useState<string>("");
 
     const handleSendMessage = () => {
-        axios.post("/api/joke", {
-            input: message
+        axios.post("/api/agent", {
+            prompt: message
         }).then(res => {
             console.log(res.data);
         });

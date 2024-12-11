@@ -1,3 +1,5 @@
+import os
+import json
 import hashlib
 import logging
 import pandas as pd
@@ -5,7 +7,7 @@ import pandas as pd
 from typing import Dict, Optional
 from .matcher.embedding_matcher import EmbeddingMatcher
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("bdiviz_flask.sub")
 
 DEFAULT_PARAMS = {
     "embedding_model": "sentence-transformers/all-mpnet-base-v2",
@@ -55,7 +57,14 @@ class MatchingTask:
         # Check if the candidates are already cached
         source_hash = int(hashlib.sha256(pd.util.hash_pandas_object(self.source_df, index=True).values).hexdigest(), 16)
         target_hash = int(hashlib.sha256(pd.util.hash_pandas_object(self.target_df, index=True).values).hexdigest(), 16)
-        if cache_candidates and self.cached_candidates["source_hash"] == source_hash and self.cached_candidates["target_hash"] == target_hash:
+
+        # Check if the candidates are already cached
+        cached_json = self.import_cache_from_json()
+        if cached_json and cached_json["source_hash"] == source_hash and cached_json["target_hash"] == target_hash:
+            self.cached_candidates = cached_json
+            return cached_json["candidates"]
+        
+        elif cache_candidates and self.cached_candidates["source_hash"] == source_hash and self.cached_candidates["target_hash"] == target_hash:
             return self.cached_candidates["candidates"]
 
         embedding_candidates = self.embeddingMatcher.get_embedding_similarity_candidates(
@@ -84,6 +93,10 @@ class MatchingTask:
                 "target_hash": target_hash,
                 "candidates": layered_candidates
             }
+
+        # Save it as Json file
+        self.export_cache_to_json(self.cached_candidates)
+
         return layered_candidates
     
     def get_cached_candidates(self) -> Dict[str, list]:
@@ -114,5 +127,16 @@ class MatchingTask:
 
         return ret_json
     
-
+    def export_cache_to_json(self, json_obj: Dict) -> None:
+        output_path = os.path.join(os.path.dirname(__file__), "matching_results.json")
+        with open(output_path, "w") as f:
+            json.dump(json_obj, f, indent=4)
+    
+    def import_cache_from_json(self) -> Optional[Dict]:
+        output_path = os.path.join(os.path.dirname(__file__), "matching_results.json")
+        if os.path.exists(output_path):
+            with open(output_path, "r") as f:
+                return json.load(f)
+    
+MATCHING_TASK = MatchingTask()
     

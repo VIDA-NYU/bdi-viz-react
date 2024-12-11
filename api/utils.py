@@ -4,7 +4,7 @@ import logging
 import pandas as pd
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("bdiviz_flask.sub")
 
 def extract_data_from_request(request):
 

@@ -1,402 +1,334 @@
-[
-    {
-        "sourceColumn": "id",
-        "targetColumn": "sample_type_id",
-        "score": 0.8277085423469543
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "age_at_diagnosis",
-        "score": 0.790545642375946
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "morphology",
-        "score": 0.7772193551063538
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "age_at_index",
-        "score": 0.7747071385383606
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "pmid",
-        "score": 0.7661365270614624
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "amount",
-        "score": 0.755089282989502
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "percent_normal_cells",
-        "score": 0.7544410824775696
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "tumor_code_id",
-        "score": 0.752128005027771
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "percent_follicular_component",
-        "score": 0.7483277320861816
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "growth_rate",
-        "score": 0.7466344833374023
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "nadir_cd4_count",
-        "score": 0.7465226650238037
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "loci_count",
-        "score": 0.7453071475028992
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "rin",
-        "score": 0.7450230717658997
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "loci_abnormal_count",
-        "score": 0.7442071437835693
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "sample_ordinal",
-        "score": 0.7418936491012573
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "days_to_test",
-        "score": 0.7414773106575012
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "percent_rhabdoid_features",
-        "score": 0.7394742965698242
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "average_read_length",
-        "score": 0.7388489842414856
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "percent_stromal_cells",
-        "score": 0.7378516793251038
-    },
-    {
-        "sourceColumn": "id",
-        "targetColumn": "rhabdoid_percent",
-        "score": 0.7371696829795837
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "copy_number_liftover_workflows",
-        "score": 0.4637015759944916
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "read_groups",
-        "score": 0.4572444260120392
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "short_name",
-        "score": 0.45318618416786194
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "namespace",
-        "score": 0.43886908888816833
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "aa_change",
-        "score": 0.4388456344604492
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "plate_well",
-        "score": 0.42762628197669983
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "submitted_genomic_profiles",
-        "score": 0.4194630980491638
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "well_number",
-        "score": 0.41818198561668396
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "copy_number_auxiliary_files",
-        "score": 0.4155975878238678
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "icd_10",
-        "score": 0.4127207100391388
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "analyte_type_id",
-        "score": 0.4101797938346863
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "creator",
-        "score": 0.4064876437187195
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "icd_10_code",
-        "score": 0.40586498379707336
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "platforms",
-        "score": 0.40229418873786926
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "adapter_sequence",
-        "score": 0.40123462677001953
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "structural_variant_calling_workflows",
-        "score": 0.3995664417743683
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "type_of_smoke_exposure",
-        "score": 0.3991378843784332
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "fab_morphology_code",
-        "score": 0.39462998509407043
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "slide_images",
-        "score": 0.39458006620407104
-    },
-    {
-        "sourceColumn": "title",
-        "targetColumn": "bcr_id",
-        "score": 0.39413517713546753
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "exposure_source",
-        "score": 0.5434764623641968
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "instrument_model",
-        "score": 0.5401968955993652
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "treatment_arm",
-        "score": 0.5359877347946167
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "protocol_identifier",
-        "score": 0.5306357145309448
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "target_capture_kit_vendor",
-        "score": 0.5288921594619751
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "base_caller_name",
-        "score": 0.5281606912612915
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "platforms",
-        "score": 0.52096027135849
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "library_preparation_kit_vendor",
-        "score": 0.519015371799469
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "embolic_agent",
-        "score": 0.5180382132530212
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "figo_stage",
-        "score": 0.5180113911628723
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "read_groups",
-        "score": 0.5129145383834839
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "type_of_tobacco_used",
-        "score": 0.5101019144058228
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "analytes",
-        "score": 0.5078888535499573
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "analyte_type_id",
-        "score": 0.5069591403007507
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "ajcc_clinical_n",
-        "score": 0.5066311955451965
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "gene_symbol",
-        "score": 0.5052692890167236
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "data_format",
-        "score": 0.49994564056396484
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "plate_well",
-        "score": 0.49907299876213074
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "well_number",
-        "score": 0.4956752061843872
-    },
-    {
-        "sourceColumn": "manufacturer",
-        "targetColumn": "aa_change",
-        "score": 0.49153682589530945
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "amount",
-        "score": 0.7591825723648071
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "weight",
-        "score": 0.7402908802032471
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "aliquot_quantity",
-        "score": 0.7323457598686218
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "rin",
-        "score": 0.7189589738845825
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "height",
-        "score": 0.7044398188591003
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "test_value",
-        "score": 0.7007307410240173
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "a260_a280_ratio",
-        "score": 0.695519208908081
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "aliquot_volume",
-        "score": 0.6940708756446838
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "average_base_quality",
-        "score": 0.6928548812866211
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "percent_normal_cells",
-        "score": 0.6901610493659973
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "percent_necrosis",
-        "score": 0.689348042011261
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "percent_stromal_cells",
-        "score": 0.68851238489151
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "read_length",
-        "score": 0.6877831816673279
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "sample_type_id",
-        "score": 0.6850693821907043
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "age_at_diagnosis",
-        "score": 0.6834662556648254
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "intermediate_dimension",
-        "score": 0.6818668246269226
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "age_at_index",
-        "score": 0.6812320947647095
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "revision",
-        "score": 0.6786465644836426
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "days_to_sample_procurement",
-        "score": 0.6783892512321472
-    },
-    {
-        "sourceColumn": "price",
-        "targetColumn": "pmid",
-        "score": 0.6768979430198669
+{
+    "source_hash": 87664042592087465475113705573954545146505600752279193318107317629163383566169,
+    "target_hash": 5858499037241242318659579308324937661855492811576498202647020429983297219966,
+    "candidates": {
+        "id": [
+            [
+                "sample_type_id",
+                0.8277086615562439
+            ],
+            [
+                "age_at_diagnosis",
+                0.7905457615852356
+            ],
+            [
+                "morphology",
+                0.7772193551063538
+            ],
+            [
+                "age_at_index",
+                0.7747070789337158
+            ],
+            [
+                "pmid",
+                0.7661364674568176
+            ],
+            [
+                "amount",
+                0.755089521408081
+            ],
+            [
+                "percent_normal_cells",
+                0.7544408440589905
+            ],
+            [
+                "tumor_code_id",
+                0.7521281242370605
+            ],
+            [
+                "percent_follicular_component",
+                0.7483278512954712
+            ],
+            [
+                "growth_rate",
+                0.7466345429420471
+            ],
+            [
+                "nadir_cd4_count",
+                0.7465229034423828
+            ],
+            [
+                "loci_count",
+                0.7453070282936096
+            ],
+            [
+                "rin",
+                0.7450228333473206
+            ],
+            [
+                "loci_abnormal_count",
+                0.7442069053649902
+            ],
+            [
+                "sample_ordinal",
+                0.7418936491012573
+            ],
+            [
+                "days_to_test",
+                0.741477370262146
+            ],
+            [
+                "percent_rhabdoid_features",
+                0.7394742369651794
+            ],
+            [
+                "average_read_length",
+                0.7388487458229065
+            ],
+            [
+                "percent_stromal_cells",
+                0.7378516793251038
+            ],
+            [
+                "rhabdoid_percent",
+                0.7371697425842285
+            ]
+        ],
+        "title": [
+            [
+                "copy_number_liftover_workflows",
+                0.4637015759944916
+            ],
+            [
+                "read_groups",
+                0.4572446644306183
+            ],
+            [
+                "short_name",
+                0.45318639278411865
+            ],
+            [
+                "namespace",
+                0.4388693571090698
+            ],
+            [
+                "aa_change",
+                0.4388459026813507
+            ],
+            [
+                "plate_well",
+                0.42762619256973267
+            ],
+            [
+                "submitted_genomic_profiles",
+                0.4194633662700653
+            ],
+            [
+                "well_number",
+                0.4181819260120392
+            ],
+            [
+                "copy_number_auxiliary_files",
+                0.4155976176261902
+            ],
+            [
+                "icd_10",
+                0.4127209484577179
+            ],
+            [
+                "analyte_type_id",
+                0.4101797342300415
+            ],
+            [
+                "creator",
+                0.4064878821372986
+            ],
+            [
+                "icd_10_code",
+                0.4058650732040405
+            ],
+            [
+                "platforms",
+                0.4022943079471588
+            ],
+            [
+                "adapter_sequence",
+                0.40123459696769714
+            ],
+            [
+                "structural_variant_calling_workflows",
+                0.3995667099952698
+            ],
+            [
+                "type_of_smoke_exposure",
+                0.3991379737854004
+            ],
+            [
+                "fab_morphology_code",
+                0.39463016390800476
+            ],
+            [
+                "slide_images",
+                0.3945799767971039
+            ],
+            [
+                "bcr_id",
+                0.3941350281238556
+            ]
+        ],
+        "manufacturer": [
+            [
+                "exposure_source",
+                0.5434768795967102
+            ],
+            [
+                "instrument_model",
+                0.5401968955993652
+            ],
+            [
+                "treatment_arm",
+                0.5359879732131958
+            ],
+            [
+                "protocol_identifier",
+                0.5306357145309448
+            ],
+            [
+                "target_capture_kit_vendor",
+                0.5288922786712646
+            ],
+            [
+                "base_caller_name",
+                0.5281607508659363
+            ],
+            [
+                "platforms",
+                0.5209602117538452
+            ],
+            [
+                "library_preparation_kit_vendor",
+                0.5190152525901794
+            ],
+            [
+                "embolic_agent",
+                0.518038272857666
+            ],
+            [
+                "figo_stage",
+                0.5180113911628723
+            ],
+            [
+                "read_groups",
+                0.5129145979881287
+            ],
+            [
+                "type_of_tobacco_used",
+                0.5101017951965332
+            ],
+            [
+                "analytes",
+                0.5078887343406677
+            ],
+            [
+                "analyte_type_id",
+                0.5069590210914612
+            ],
+            [
+                "ajcc_clinical_n",
+                0.5066311955451965
+            ],
+            [
+                "gene_symbol",
+                0.5052693486213684
+            ],
+            [
+                "data_format",
+                0.49994564056396484
+            ],
+            [
+                "plate_well",
+                0.4990726411342621
+            ],
+            [
+                "well_number",
+                0.49567490816116333
+            ],
+            [
+                "aa_change",
+                0.491536945104599
+            ]
+        ],
+        "price": [
+            [
+                "amount",
+                0.7591830492019653
+            ],
+            [
+                "weight",
+                0.740291178226471
+            ],
+            [
+                "aliquot_quantity",
+                0.7323458790779114
+            ],
+            [
+                "rin",
+                0.7189591526985168
+            ],
+            [
+                "height",
+                0.7044397592544556
+            ],
+            [
+                "test_value",
+                0.7007309794425964
+            ],
+            [
+                "a260_a280_ratio",
+                0.6955190896987915
+            ],
+            [
+                "aliquot_volume",
+                0.6940711140632629
+            ],
+            [
+                "average_base_quality",
+                0.6928547620773315
+            ],
+            [
+                "percent_normal_cells",
+                0.6901611685752869
+            ],
+            [
+                "percent_necrosis",
+                0.6893483400344849
+            ],
+            [
+                "percent_stromal_cells",
+                0.6885126233100891
+            ],
+            [
+                "read_length",
+                0.6877831220626831
+            ],
+            [
+                "sample_type_id",
+                0.6850693821907043
+            ],
+            [
+                "age_at_diagnosis",
+                0.6834667921066284
+            ],
+            [
+                "intermediate_dimension",
+                0.6818670034408569
+            ],
+            [
+                "age_at_index",
+                0.6812322735786438
+            ],
+            [
+                "revision",
+                0.6786466836929321
+            ],
+            [
+                "days_to_sample_procurement",
+                0.678389310836792
+            ],
+            [
+                "pmid",
+                0.6768981218338013
+            ]
+        ]
     }
-]
+}
