@@ -1,13 +1,12 @@
-from io import StringIO
 import logging
+from io import StringIO
 
 import pandas as pd
 
+logger = logging.getLogger("bdiviz_flask.sub")
 
-logger = logging.getLogger(__name__)
 
 def extract_data_from_request(request):
-
     source_df = None
     target_df = None
 
@@ -15,7 +14,7 @@ def extract_data_from_request(request):
 
     if request.form is None:
         return None
-    
+
     form = request.form
 
     type = form["type"]
@@ -26,6 +25,3 @@ def extract_data_from_request(request):
         logger.critical(f"Source read: {source_df.columns}")
 
     return source_df, target_df
-
-
-
