@@ -59,7 +59,7 @@ interface ToolbarProps {
 
 const drawerWidth = 240;
 
-const ControlPanel: React.FC<ToolbarProps> = (prop) => {
+const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {

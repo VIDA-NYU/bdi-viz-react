@@ -12,6 +12,7 @@ interface Candidate {
 
 interface HeatMapProps {
     data: Candidate[];
+    setSelectedCandidate?: (candidate: Candidate) => void;
     filters?: {
         sourceColumn: string;
         candidateType: string;
@@ -45,7 +46,7 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
 
         const filteredData = filters?.sourceColumn ? data.filter(d => d.sourceColumn === filters.sourceColumn) : data;
 
-        console.log('filteredData: ', filteredData);
+        // console.log('filteredData: ', filteredData);
 
         const numColumnsX = filteredData.length > 0 ? filteredData.map(d => d.targetColumn).filter((v, i, a) => a.indexOf(v) === i).length : 1;
         const numColumnsY = filteredData.length > 0 ? filteredData.map(d => d.sourceColumn).filter((v, i, a) => a.indexOf(v) === i).length : 1;
@@ -89,28 +90,34 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
             .style("fill", function (d) { return color(d.score) })
             .style("stroke", "black")
             .style("stroke-width", 0)
-            .on("mouseover", function (event, d) {
-            d3.select(this).style("stroke-width", 2);
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", .9);
-            tooltip.html("Source: " + d.sourceColumn + "<br/>Target: " + d.targetColumn + "<br/>Score: " + d.score)
-                .style("left", (event.pageX + 5) + "px")
-                .style("top", (event.pageY - 28) + "px");
-            })
-            .on("mouseout", function () {
-            d3.select(this).style("stroke-width", 0);
-            tooltip.transition()
-                .duration(500)
-                .style("opacity", 0);
-            })
-            .on("click", function () {
+            // .on("mouseover", function (event, d) {
+            // d3.select(this).style("stroke-width", 2);
+            // tooltip.transition()
+            //     .duration(200)
+            //     .style("opacity", .9);
+            // tooltip.html("Source: " + d.sourceColumn + "<br/>Target: " + d.targetColumn + "<br/>Score: " + d.score)
+            // })
+            // .on("mousemove", function (event, d) {
+            //     tooltip.style("left", (event.pageX + 5) + "px")
+            //     .style("top", (event.pageY - 28) + "px");
+            // })
+            // .on("mouseout", function () {
+            // d3.select(this).style("stroke-width", 0);
+            // tooltip.transition()
+            //     .duration(500)
+            //     .style("opacity", 0);
+            // })
+            .on("click", function (_, d) {
                 d3.selectAll("rect")
                     .style("stroke-width", 0)
                     .style("fill-opacity", 0.0);
                 d3.select(this)
                     .style("stroke-width", 2)
                     .style("fill-opacity", 1);
+                if (prop.setSelectedCandidate) {
+                    prop.setSelectedCandidate(d);
+                }
+                tooltip.remove();
             });
 
         svg.append("g")
