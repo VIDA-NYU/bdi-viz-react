@@ -8,5 +8,6 @@ pandas
 numpy
 langchain-anthropic
 langchain-community
+langgraph
 python-dotenv
 pydantic

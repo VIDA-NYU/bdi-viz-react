@@ -5,7 +5,12 @@ import axios from "axios";
 
 import { Container, TextField, Button } from "@mui/material";
 
-const ChatBox = () => {
+
+interface ChatBoxProp {
+    callback: (candidates: Candidate[]) => void;
+}
+
+const ChatBox = (prop: ChatBoxProp) => {
     const [messages, setMessages] = useState<string[]>([]);
     const [message, setMessage] = useState<string>("");
 
@@ -14,6 +19,21 @@ const ChatBox = () => {
             prompt: message
         }).then(res => {
             console.log(res.data);
+
+            axios.get("/api/results").then((response) => {
+                const results = response.data?.results;
+                if (results && Array.isArray(results)) {
+                    const candidates = results.map((result: object) => {
+                        try {
+                            return result as Candidate;
+                        } catch (error) {
+                            console.error("Error parsing result to Candidate:", error);
+                            return null;
+                        }
+                    }).filter((candidate: Candidate | null) => candidate !== null);
+                    prop.callback(candidates);
+                }
+            });
         });
     };
 

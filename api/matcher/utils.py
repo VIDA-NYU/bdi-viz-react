@@ -10,7 +10,6 @@ PHI_FRACTION = 0.6180339887  # φ - 1
 np.random.seed(42)
 
 
-
 def is_null_value(value):
     if isinstance(value, str):
         value = value.lower()

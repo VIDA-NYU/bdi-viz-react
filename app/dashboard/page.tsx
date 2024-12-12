@@ -108,7 +108,7 @@ export default function Page() {
             />
             </Container>
 
-            <ChatBox />
+            <ChatBox callback={fileUploadCallback}/>
 
             <FileUploading callback={fileUploadCallback} />
         </div>
