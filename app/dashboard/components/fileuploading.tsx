@@ -6,7 +6,7 @@ import axios from "axios";
 import { Button, Container } from "@mui/material";
 
 interface FileUploadingProps {
-    callback: (candidates: Candidate[]) => void;
+    callback: (candidates: Candidate[], sourceCluster: SourceCluster[]) => void;
 }
 
 const FileUploading = (prop: FileUploadingProps) => {
@@ -46,8 +46,8 @@ const FileUploading = (prop: FileUploadingProps) => {
                             axios.get("/api/results").then((response) => {
                                 const results = response.data?.results;
                                 console.log(results);
-                                if (results && Array.isArray(results)) {
-                                    const candidates = results.map((result: object) => {
+                                if (results.candidates && Array.isArray(results.candidates) && results.sourceClusters && Array.isArray(results.sourceClusters)) {
+                                    const candidates = results.candidates.map((result: object) => {
                                         try {
                                             return result as Candidate;
                                         } catch (error) {
@@ -55,7 +55,16 @@ const FileUploading = (prop: FileUploadingProps) => {
                                             return null;
                                         }
                                     }).filter((candidate: Candidate | null) => candidate !== null);
-                                    prop.callback(candidates);
+
+                                    const sourceClusters = results.sourceClusters.map((result: object) => {
+                                        try {
+                                            return result as SourceCluster;
+                                        } catch (error) {
+                                            console.error("Error parsing result to SourceCluster:", error);
+                                            return null;
+                                        }
+                                    }).filter((sourceCluster: SourceCluster | null) => sourceCluster !== null);
+                                    prop.callback(candidates, sourceClusters);
                                 }
                             });
                         }

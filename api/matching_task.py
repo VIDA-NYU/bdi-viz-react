@@ -2,9 +2,11 @@ import hashlib
 import json
 import logging
 import os
-from typing import Dict, Optional
+from typing import Dict, Optional, List, Tuple
 
+import numpy as np
 import pandas as pd
+from sklearn.neighbors import NearestNeighbors
 
 from .matcher.embedding_matcher import EmbeddingMatcher
 
@@ -41,6 +43,7 @@ class MatchingTask:
             "source_hash": None,
             "target_hash": None,
             "candidates": None,
+            "source_clusters": None,
         }
 
     def update_dataframe(
@@ -88,11 +91,13 @@ class MatchingTask:
         ):
             return self.cached_candidates["candidates"]
 
-        embedding_candidates = (
+        embedding_candidates, source_embeddings, target_embeddings = (
             self.embeddingMatcher.get_embedding_similarity_candidates(
                 source_df=self.source_df, target_df=self.target_df
             )
         )
+
+        source_clusters = self.gen_source_clusters(source_embeddings)
 
         layered_candidates = {}
         for (source_col, target_col), score in embedding_candidates.items():
@@ -115,17 +120,45 @@ class MatchingTask:
                 "source_hash": source_hash,
                 "target_hash": target_hash,
                 "candidates": layered_candidates,
+                "source_clusters": source_clusters,
             }
 
         # Save it as Json file
         self.export_cache_to_json(self.cached_candidates)
 
         return layered_candidates
+    
+    def gen_source_clusters(self, source_embeddings) -> Dict[str, List[str]]:
+        knn = NearestNeighbors(n_neighbors=min(10, len(self.source_df.columns)), metric="cosine")
+        knn.fit(np.array(source_embeddings))
+        clusters_idx = [
+            knn.kneighbors([source_embedding], return_distance=False)[0]
+            for source_embedding in source_embeddings
+        ]
+
+        clusters = {}
+        for i, source_column in enumerate(self.source_df.columns):
+            cluster_idx = clusters_idx[i]
+            cluster = []
+            for idx in cluster_idx:
+                cluster.append(self.source_df.columns[idx])
+            clusters[source_column] = cluster
+        return clusters
+
+
+    # [Cache related functions]
 
     def get_cached_candidates(self) -> Dict[str, list]:
         return (
             self.cached_candidates["candidates"]
             if self.cached_candidates["candidates"] is not None
+            else {}
+        )
+    
+    def get_cached_source_clusters(self) -> Dict[str, List[str]]:
+        return (
+            self.cached_candidates["source_clusters"]
+            if self.cached_candidates["source_clusters"] is not None
             else {}
         )
 
@@ -138,17 +171,32 @@ class MatchingTask:
         self.cached_candidates["candidates"] = cached_candidates_dict
 
     def to_frontend_json(self) -> list:
-        ret_json = []
+        ret_json = {
+            "candidates": [],
+            "sourceClusters": [],
+        }
+
+        # Candidates Object
         candidates = self.get_cached_candidates()
         for source_col, target_infos in candidates.items():
             for target_info in target_infos:
-                ret_json.append(
+                ret_json["candidates"].append(
                     {
                         "sourceColumn": source_col,
                         "targetColumn": target_info[0],
                         "score": target_info[1],
                     }
                 )
+
+        # Source Clusters Object
+        source_clusters = self.get_cached_source_clusters()
+        for source_col, cluster in source_clusters.items():
+            ret_json["sourceClusters"].append(
+                {
+                    "sourceColumn": source_col,
+                    "cluster": cluster,
+                }
+            )
 
         return ret_json
 

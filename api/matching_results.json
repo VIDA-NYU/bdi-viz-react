@@ -330,5 +330,31 @@
                 0.6768981218338013
             ]
         ]
+    },
+    "source_clusters": {
+        "id": [
+            "id",
+            "price",
+            "manufacturer",
+            "title"
+        ],
+        "title": [
+            "title",
+            "manufacturer",
+            "price",
+            "id"
+        ],
+        "manufacturer": [
+            "manufacturer",
+            "title",
+            "price",
+            "id"
+        ],
+        "price": [
+            "price",
+            "id",
+            "manufacturer",
+            "title"
+        ]
     }
 }

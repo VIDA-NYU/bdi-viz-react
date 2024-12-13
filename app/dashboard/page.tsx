@@ -72,6 +72,7 @@ export default function Page() {
     ]
 
     const [candidates, setCandidates] = useState<Candidate[]>(mockData);
+    const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
     const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
     const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);
@@ -79,7 +80,13 @@ export default function Page() {
     const [similarSources, setSimilarSources] = useState<number>(5);
     const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
 
-    const fileUploadCallback = (candidates: Candidate[]) => {
+    const fileUploadCallback = (candidates: Candidate[], sourceClusters: SourceCluster[]) => {
+        setCandidates(candidates);
+        setSourceClusters(sourceClusters);
+        setSourceColumn(candidates[0].sourceColumn);
+    }
+
+    const chatBoxCallback = (candidates: Candidate[]) => {
         setCandidates(candidates);
         setSourceColumn(candidates[0].sourceColumn);
     }
@@ -195,12 +202,13 @@ export default function Page() {
             >
             <HeatMap 
                 data={candidates}
+                sourceClusters={sourceClusters}
                 setSelectedCandidate={setSelectedCandidateCallback}
                 filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
             />
             </Container>
 
-            <ChatBox callback={fileUploadCallback}/>
+            <ChatBox callback={chatBoxCallback}/>
 
             <FileUploading callback={fileUploadCallback} />
         </div>

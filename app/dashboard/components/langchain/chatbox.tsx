@@ -22,7 +22,7 @@ const ChatBox = (prop: ChatBoxProp) => {
 
             axios.get("/api/results").then((response) => {
                 const results = response.data?.results;
-                if (results && Array.isArray(results)) {
+                if (results.candidates && Array.isArray(results.candidates)) {
                     const candidates = results.map((result: object) => {
                         try {
                             return result as Candidate;
