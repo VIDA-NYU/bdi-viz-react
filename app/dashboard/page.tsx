@@ -70,7 +70,7 @@ export default function Page() {
     ]
 
     const [candidates, setCandidates] = useState<Candidate[]>(mockData);
-    const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+    const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
     const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);
     const [candidateType, setCandidateType] = useState<string>('all');
@@ -82,7 +82,7 @@ export default function Page() {
         setSourceColumn(candidates[0].sourceColumn);
     }
     
-    const setSelectedCandidateCallback = (candidate: Candidate) => {
+    const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
         console.log(candidate);
         setSelectedCandidate(candidate);
     }
@@ -102,6 +102,7 @@ export default function Page() {
                 }
             });
             setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
 
             const userOperation: UserOperation = {
                 operation: 'accept',
@@ -128,6 +129,7 @@ export default function Page() {
                 }
             });
             setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
 
             const userOperation: UserOperation = {
                 operation: 'reject',
@@ -150,6 +152,7 @@ export default function Page() {
                 return false;
             });
             setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
 
             const userOperation: UserOperation = {
                 operation: 'discard',
@@ -185,7 +188,7 @@ export default function Page() {
             <HeatMap 
                 data={candidates}
                 setSelectedCandidate={setSelectedCandidateCallback}
-                filters={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
+                filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
             />
             </Container>
 
