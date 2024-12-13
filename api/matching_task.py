@@ -2,7 +2,7 @@ import hashlib
 import json
 import logging
 import os
-from typing import Dict, Optional, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -91,19 +91,19 @@ class MatchingTask:
         ):
             return self.cached_candidates["candidates"]
 
-        embedding_candidates, source_embeddings, target_embeddings = (
-            self.embeddingMatcher.get_embedding_similarity_candidates(
-                source_df=self.source_df, target_df=self.target_df
-            )
+        (
+            embedding_candidates,
+            source_embeddings,
+            target_embeddings,
+        ) = self.embeddingMatcher.get_embedding_similarity_candidates(
+            source_df=self.source_df, target_df=self.target_df
         )
 
         source_clusters = self.gen_source_clusters(source_embeddings)
 
         layered_candidates = {}
         for (source_col, target_col), score in embedding_candidates.items():
-            logger.debug(
-                f"{source_col} matched with {target_col} with score {score}"
-            )
+            logger.debug(f"{source_col} matched with {target_col} with score {score}")
             # ret_json.append(
             #     {
             #         "sourceColumn": source_col,
@@ -127,9 +127,11 @@ class MatchingTask:
         self.export_cache_to_json(self.cached_candidates)
 
         return layered_candidates
-    
+
     def gen_source_clusters(self, source_embeddings) -> Dict[str, List[str]]:
-        knn = NearestNeighbors(n_neighbors=min(10, len(self.source_df.columns)), metric="cosine")
+        knn = NearestNeighbors(
+            n_neighbors=min(10, len(self.source_df.columns)), metric="cosine"
+        )
         knn.fit(np.array(source_embeddings))
         clusters_idx = [
             knn.kneighbors([source_embedding], return_distance=False)[0]
@@ -145,7 +147,6 @@ class MatchingTask:
             clusters[source_column] = cluster
         return clusters
 
-
     # [Cache related functions]
 
     def get_cached_candidates(self) -> Dict[str, list]:
@@ -154,7 +155,7 @@ class MatchingTask:
             if self.cached_candidates["candidates"] is not None
             else {}
         )
-    
+
     def get_cached_source_clusters(self) -> Dict[str, List[str]]:
         return (
             self.cached_candidates["source_clusters"]
