@@ -125,4 +125,4 @@ class EmbeddingMatcher:
                 if similarity >= self.embedding_threshold:
                     candidates[(original_input_col, original_target_col)] = similarity
 
-        return candidates
+        return candidates, embeddings_input, embeddings_target

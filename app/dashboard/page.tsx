@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import { Container } from "@mui/material";
 
+import { toastify } from "@/app/lib/toastify/toastify-helper";
+
 import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/heatmap";
 import FileUploading from "./components/fileuploading";
@@ -70,6 +72,7 @@ export default function Page() {
     ]
 
     const [candidates, setCandidates] = useState<Candidate[]>(mockData);
+    const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
     const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
     const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);
@@ -77,13 +80,19 @@ export default function Page() {
     const [similarSources, setSimilarSources] = useState<number>(5);
     const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
 
-    const fileUploadCallback = (candidates: Candidate[]) => {
+    const fileUploadCallback = (candidates: Candidate[], sourceClusters: SourceCluster[]) => {
+        setCandidates(candidates);
+        setSourceClusters(sourceClusters);
+        setSourceColumn(candidates[0].sourceColumn);
+    }
+
+    const chatBoxCallback = (candidates: Candidate[]) => {
         setCandidates(candidates);
         setSourceColumn(candidates[0].sourceColumn);
     }
     
     const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
-        console.log(candidate);
+        toastify("default", <p><strong>Source: </strong>{candidate?.sourceColumn}, <strong>Target: </strong>{candidate?.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
     }
 
@@ -111,6 +120,7 @@ export default function Page() {
             }
 
             console.log(userOperation);
+            toastify("success", <p>Match accepted: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
         }
     }
 
@@ -138,6 +148,7 @@ export default function Page() {
             }
 
             console.log(userOperation);
+            toastify("success", <p>Match rejected: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
         }
     }
 
@@ -161,6 +172,7 @@ export default function Page() {
             }
 
             console.log(userOperation);
+            toastify("success", <p>Column discarded: <strong>{selectedCandidate.sourceColumn}</strong></p>);
         }
     }
 
@@ -169,7 +181,10 @@ export default function Page() {
         <div>
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(candidate => candidate.sourceColumn)))}
-                onSourceColumnSelect={(column: string) => setSourceColumn(column)}
+                onSourceColumnSelect={(column: string) => {
+                    setSourceColumn(column)
+                    setSelectedCandidate(undefined)
+                }}
                 onCandidateTypeSelect={(type: string) => setCandidateType(type)}
                 onSimilarSourcesSelect={(num: number) => setSimilarSources(num)}
                 onCandidateThresholdSelect={(num: number) => setCandidateThreshold(num)}
@@ -187,12 +202,13 @@ export default function Page() {
             >
             <HeatMap 
                 data={candidates}
+                sourceClusters={sourceClusters}
                 setSelectedCandidate={setSelectedCandidateCallback}
                 filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
             />
             </Container>
 
-            <ChatBox callback={fileUploadCallback}/>
+            <ChatBox callback={chatBoxCallback}/>
 
             <FileUploading callback={fileUploadCallback} />
         </div>

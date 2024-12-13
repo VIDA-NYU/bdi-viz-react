@@ -12,6 +12,7 @@ interface Candidate {
 
 interface HeatMapProps {
     data: Candidate[];
+    sourceClusters?: SourceCluster[];
     setSelectedCandidate?: (candidate: Candidate | undefined) => void;
     filters?: {
         selectedCandidate?: Candidate;
@@ -24,7 +25,7 @@ interface HeatMapProps {
 
 const HeatMap: React.FC<HeatMapProps> = (prop) => {
 
-    const { data, filters } = prop;
+    const { data, sourceClusters, filters } = prop;
     const [candidates] = useState<Candidate[]>(data);
     
     // const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
@@ -44,8 +45,33 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
             .append("g")
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
+        
 
-        const filteredData = filters?.sourceColumn ? data.filter(d => d.sourceColumn === filters.sourceColumn) : data;
+        // [Filter data based on filters]
+        let filteredData = data;
+        // Filter by sourceColumn, sourceClusters, and similarSources
+        if (filters?.sourceColumn) {
+            const sourceCluster: SourceCluster | undefined = sourceClusters?.find(sc => sc.sourceColumn === filters.sourceColumn);
+            let cluster = sourceCluster?.cluster;
+            if (cluster && filters.similarSources) {
+                cluster = cluster.slice(0, filters.similarSources);
+            }
+            if (!cluster) {
+                filteredData = filteredData.filter(d => d.sourceColumn === filters.sourceColumn);
+            } else {
+                filteredData = filteredData.filter(d => cluster?.includes(d.sourceColumn));
+                // Sort filteredData to match the order of the cluster
+                filteredData.sort((a, b) => cluster.indexOf(a.sourceColumn) - cluster.indexOf(b.sourceColumn));
+            }
+        }
+
+        // Filter by threshold
+        if (filters?.candidateThreshold) {
+            filteredData = filteredData.filter(d => d.score >= filters.candidateThreshold);
+        }
+
+
+        // const filteredData = filters?.sourceColumn ? data.filter(d => d.sourceColumn === filters.sourceColumn) : data;
 
         // console.log('filteredData: ', filteredData);
 
