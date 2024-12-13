@@ -70,6 +70,7 @@ export default function Page() {
     ]
 
     const [candidates, setCandidates] = useState<Candidate[]>(mockData);
+    const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
     const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);
     const [candidateType, setCandidateType] = useState<string>('all');
@@ -79,6 +80,88 @@ export default function Page() {
     const fileUploadCallback = (candidates: Candidate[]) => {
         setCandidates(candidates);
         setSourceColumn(candidates[0].sourceColumn);
+    }
+    
+    const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
+        console.log(candidate);
+        setSelectedCandidate(candidate);
+    }
+
+    const acceptMatchCallback = () => {
+        const references: Candidate[] = [];
+        if (selectedCandidate) {
+            const newCandidates = candidates.filter((candidate) => {
+                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
+                    return true;
+                }
+                references.push(candidate);
+                if (candidate.targetColumn === selectedCandidate.targetColumn) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
+
+            const userOperation: UserOperation = {
+                operation: 'accept',
+                candidate: selectedCandidate,
+                references: references
+            }
+
+            console.log(userOperation);
+        }
+    }
+
+    const rejectMatchCallback = () => {
+        const references: Candidate[] = [];
+        if (selectedCandidate) {
+            const newCandidates = candidates.filter((candidate) => {
+                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
+                    return true;
+                }
+                references.push(candidate);
+                if (candidate.targetColumn !== selectedCandidate.targetColumn) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
+
+            const userOperation: UserOperation = {
+                operation: 'reject',
+                candidate: selectedCandidate,
+                references: references
+            }
+
+            console.log(userOperation);
+        }
+    }
+
+    const discardColumnCallback = () => {
+        const references: Candidate[] = [];
+        if (selectedCandidate) {
+            const newCandidates = candidates.filter((candidate) => {
+                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
+                    return true;
+                }
+                references.push(candidate);
+                return false;
+            });
+            setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
+
+            const userOperation: UserOperation = {
+                operation: 'discard',
+                candidate: selectedCandidate,
+                references: references
+            }
+
+            console.log(userOperation);
+        }
     }
 
 
@@ -91,9 +174,9 @@ export default function Page() {
                 onSimilarSourcesSelect={(num: number) => setSimilarSources(num)}
                 onCandidateThresholdSelect={(num: number) => setCandidateThreshold(num)}
 
-                acceptMatch={() => console.log('accept')}
-                rejectMatch={() => console.log('reject')}
-                discardColumn={() => console.log('discard')}
+                acceptMatch={acceptMatchCallback}
+                rejectMatch={rejectMatchCallback}
+                discardColumn={discardColumnCallback}
                 undo={() => console.log('undo')}
                 redo={() => console.log('redo')}
             />
@@ -103,8 +186,9 @@ export default function Page() {
                 sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}
             >
             <HeatMap 
-                data={candidates} 
-                filters={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
+                data={candidates}
+                setSelectedCandidate={setSelectedCandidateCallback}
+                filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
             />
             </Container>
 

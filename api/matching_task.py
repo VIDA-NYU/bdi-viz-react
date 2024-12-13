@@ -96,7 +96,7 @@ class MatchingTask:
 
         layered_candidates = {}
         for (source_col, target_col), score in embedding_candidates.items():
-            logger.critical(
+            logger.debug(
                 f"{source_col} matched with {target_col} with score {score}"
             )
             # ret_json.append(

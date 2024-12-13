@@ -11,7 +11,7 @@ interface ChatBoxProp {
 }
 
 const ChatBox = (prop: ChatBoxProp) => {
-    const [messages, setMessages] = useState<string[]>([]);
+    const [messages] = useState<string[]>([]);
     const [message, setMessage] = useState<string>("");
 
     const handleSendMessage = () => {
