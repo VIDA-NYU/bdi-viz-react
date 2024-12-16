@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 from dotenv import load_dotenv
 
@@ -12,6 +12,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
+from .pydantic import AgentDiagnosis
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -20,6 +21,29 @@ class Agent:
     def __init__(self) -> None:
         self.llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
         self.memory = MemorySaver()
+
+    def diagnose(self, diagnose: Dict[str, Any]) -> AgentDiagnosis:
+        logger.info(f"[Agent] Diagnosing the agent...")
+        # logger.info(f"{diagnose}")
+
+        prompt = f"""
+Please diagnose the following user operation:
+
+Operation: {diagnose["operation"]}
+Candidate: {diagnose["candidate"]}
+References: {diagnose["references"]}
+Unique Values: {diagnose["uniqueValues"]}
+
+"""
+
+        response = self.invoke(
+            prompt=prompt,
+            tools=[],
+            output_structure=AgentDiagnosis,
+        )
+
+        return response
+
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel

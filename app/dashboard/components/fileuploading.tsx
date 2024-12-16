@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
 import { Button, Container } from "@mui/material";
 
@@ -43,29 +44,8 @@ const FileUploading = (prop: FileUploadingProps) => {
                     }).then((response) => {
                         console.log(response);
                         if (response.status === 200) {
-                            axios.get("/api/results").then((response) => {
-                                const results = response.data?.results;
-                                console.log(results);
-                                if (results.candidates && Array.isArray(results.candidates) && results.sourceClusters && Array.isArray(results.sourceClusters)) {
-                                    const candidates = results.candidates.map((result: object) => {
-                                        try {
-                                            return result as Candidate;
-                                        } catch (error) {
-                                            console.error("Error parsing result to Candidate:", error);
-                                            return null;
-                                        }
-                                    }).filter((candidate: Candidate | null) => candidate !== null);
-
-                                    const sourceClusters = results.sourceClusters.map((result: object) => {
-                                        try {
-                                            return result as SourceCluster;
-                                        } catch (error) {
-                                            console.error("Error parsing result to SourceCluster:", error);
-                                            return null;
-                                        }
-                                    }).filter((sourceCluster: SourceCluster | null) => sourceCluster !== null);
-                                    prop.callback(candidates, sourceClusters);
-                                }
+                            getCachedResults({
+                                callback: prop.callback
                             });
                         }
                     })

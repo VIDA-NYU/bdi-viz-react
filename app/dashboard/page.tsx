@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Container } from "@mui/material";
 
@@ -9,6 +9,8 @@ import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/heatmap";
 import FileUploading from "./components/fileuploading";
 import ChatBox from "./components/langchain/chatbox";
+import { userOperationRequest } from "@/app/lib/langchain/agent-helper";
+import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
 
 export default function Page() {
@@ -121,6 +123,7 @@ export default function Page() {
 
             console.log(userOperation);
             toastify("success", <p>Match accepted: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
+            userOperationRequest(userOperation);
         }
     }
 
@@ -177,6 +180,12 @@ export default function Page() {
     }
 
 
+    useEffect(() => {
+        getCachedResults({
+            callback: fileUploadCallback
+        });
+    }, []);
+    
     return (
         <div>
             <ControlPanel

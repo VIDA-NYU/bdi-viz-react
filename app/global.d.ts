@@ -10,6 +10,11 @@ declare interface SourceCluster {
     cluster: string[];
 }
 
+declare interface AgentDiagnosis {
+    reason: string;
+    confidence: number;
+}
+
 declare interface UserOperation {
     operation: string; // accept, reject, discard
     candidate: Candidate; // the candidate to operate on

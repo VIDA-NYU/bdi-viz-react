@@ -67,3 +67,40 @@ def ask_agent():
     response = response.model_dump()
     app.logger.info(f"Response: {response}")
     return response
+
+
+@app.route("/api/agent/diagnose", methods=["POST"])
+def agent_diagnose():
+    data = request.json
+    
+    app.logger.info(data)
+
+    operation = data["operation"]
+    candidate = data["candidate"]
+    references = data["references"]
+
+    source_col = candidate["sourceColumn"]
+    source_unique_values = MATCHING_TASK.get_source_unique_values(source_col)
+    unique_values = {
+        "sourceColumn": source_unique_values,
+        "targetColumns": [{
+            "targetColumn": candidate["targetColumn"],
+            "uniqueValues": MATCHING_TASK.get_target_unique_values(candidate["targetColumn"])
+        }]
+    }
+    for ref in references:
+        unique_values["targetColumns"].append({
+            "targetColumn": ref["targetColumn"],
+            "uniqueValues": MATCHING_TASK.get_target_unique_values(ref["targetColumn"])
+        })
+
+    response = AGENT.diagnose({
+        "operation": operation,
+        "candidate": candidate,
+        "references": references,
+        "uniqueValues": unique_values
+    })
+
+    response = response.model_dump()
+    app.logger.info(f"Response: {response}")
+    return response
