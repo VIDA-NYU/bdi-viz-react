@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
 
@@ -12,6 +12,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
+
 from .pydantic import AgentDiagnosis
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -43,7 +44,6 @@ Unique Values: {diagnose["uniqueValues"]}
         )
 
         return response
-
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel

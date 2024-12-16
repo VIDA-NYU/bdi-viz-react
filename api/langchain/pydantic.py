@@ -25,9 +25,10 @@ class AgentResponse(BaseModel):
         }""",
     )
 
+
 class DiagnoseObject(BaseModel):
-    """Object for single diagnosing the agent based on user operation.
-    """
+    """Object for single diagnosing the agent based on user operation."""
+
     reason: str = Field(description="The reason for the diagnosis")
     confidence: float = Field(description="The confidence of the diagnosis")
 

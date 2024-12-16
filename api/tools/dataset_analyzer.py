@@ -24,9 +24,10 @@ def get_source_column_info(source_column: str) -> Tuple[str, List[str]]:
         return None, None
     if source_column not in source_df.columns:
         return None, None
-    
+
     logger.info(f"[Dataset Analyzer] Get information for {source_column}......")
     return source_column, source_df[source_column].astype(str).unique()
+
 
 @tool
 def get_source_column_candidates_info(source_column: str) -> Dict[str, List[str]]:
@@ -46,9 +47,11 @@ def get_source_column_candidates_info(source_column: str) -> Dict[str, List[str]
 
     if source_column not in candidates_dict:
         return target_info
-    
-    logger.info(f"[Dataset Analyzer] Get candidates information for {source_column}......")
-    
+
+    logger.info(
+        f"[Dataset Analyzer] Get candidates information for {source_column}......"
+    )
+
     for target_column, _ in candidates_dict[source_column]:
         if target_column not in target_df.columns:
             continue
