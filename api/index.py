@@ -40,6 +40,7 @@ def matcher():
     target = pd.read_csv(GDC_DATA_PATH)
 
     source, _ = extract_data_from_request(request)
+    source.to_csv(".source.csv", index=False)
 
     app.logger.info("Matching task started!")
 
@@ -52,6 +53,11 @@ def matcher():
 
 @app.route("/api/results", methods=["GET"])
 def get_results():
+    if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
+        if os.path.exists(".source.csv"):
+            source = pd.read_csv(".source.csv")
+            MATCHING_TASK.update_dataframe(source_df=source, target_df=pd.read_csv(GDC_DATA_PATH))
+        _ = MATCHING_TASK.get_candidates()
     results = MATCHING_TASK.to_frontend_json()
     return {"message": "success", "results": results}
 

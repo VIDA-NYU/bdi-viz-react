@@ -185,7 +185,7 @@ export default function Page() {
             callback: fileUploadCallback
         });
     }, []);
-    
+
     return (
         <div>
             <ControlPanel
