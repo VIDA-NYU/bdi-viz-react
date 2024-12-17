@@ -24,7 +24,8 @@ import CandidateThresholdSlide from "./control-inputs/candidate-threshold-slide"
 import AcceptMatchButton from "./control-inputs/accept-match-button";
 import RejectMatchButton from "./control-inputs/reject-match-button";
 import DiscardColumnButton from "./control-inputs/discard-column-button";
-
+import UndoButton from "./control-inputs/undo-button";
+import RedoButton from "./control-inputs/redo-button";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -86,7 +87,7 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
           <SimilarSourcesSlide onSelect={prop.onSimilarSourcesSelect} />
         </ListItem>
         <ListItem key="candidate-threshold">
-            <CandidateThresholdSlide onSelect={prop.onCandidateThresholdSelect} />
+          <CandidateThresholdSlide onSelect={prop.onCandidateThresholdSelect} />
         </ListItem>
       </List>
     </Box>
@@ -118,38 +119,54 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
                 <MenuIcon style={{ color: "#000" }} />
               </IconButton>
               <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, color: "#000" }}
-                >
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "flex" },
+                  color: "#000",
+                }}
+              >
                 BDI Viz
               </Typography>
-              <Box m={2} sx={{ display: { xs: 'none', sm: 'flex' } }}>
+              <Box m={2} sx={{ display: { xs: "none", sm: "flex" } }}>
                 <Box sx={{ mr: 2 }}>
-                    <SourceColumnSelection
+                  <SourceColumnSelection
                     sourceColumns={prop.sourceColumns}
                     onSelect={prop.onSourceColumnSelect}
-                    />
+                  />
                 </Box>
                 <Box sx={{ mr: 2 }}>
-                    <CandidateTypeSelection onSelect={prop.onCandidateTypeSelect} />
+                  <CandidateTypeSelection
+                    onSelect={prop.onCandidateTypeSelect}
+                  />
                 </Box>
                 <Box sx={{ mr: 2 }}>
-                    <SimilarSourcesSlide onSelect={prop.onSimilarSourcesSelect} />
+                  <SimilarSourcesSlide onSelect={prop.onSimilarSourcesSelect} />
                 </Box>
                 <Box sx={{ mr: 2 }}>
-                    <CandidateThresholdSlide onSelect={prop.onCandidateThresholdSelect} />
+                  <CandidateThresholdSlide
+                    onSelect={prop.onCandidateThresholdSelect}
+                  />
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', mr: 2 }}>
-                    <Box sx={{ mb: 1 }}>
-                        <AcceptMatchButton onClick={prop.acceptMatch} />
-                    </Box>
-                    <Box>
-                        <RejectMatchButton onClick={prop.rejectMatch} />
-                    </Box>
+                <Box sx={{ display: "flex", flexDirection: "column", mr: 2 }}>
+                  <Box sx={{ mb: 1 }}>
+                    <AcceptMatchButton onClick={prop.acceptMatch} />
+                  </Box>
+                  <Box>
+                    <RejectMatchButton onClick={prop.rejectMatch} />
+                  </Box>
                 </Box>
                 <Box sx={{ mr: 2 }}>
-                    <DiscardColumnButton onClick={prop.discardColumn} />
+                  <DiscardColumnButton onClick={prop.discardColumn} />
+                </Box>
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <Box sx={{ mb: 1 }}>
+                    <UndoButton onClick={prop.undo} />
+                  </Box>
+                  <Box>
+                    <RedoButton onClick={prop.redo} />
+                  </Box>
                 </Box>
               </Box>
             </Toolbar>

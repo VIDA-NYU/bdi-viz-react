@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Container } from "@mui/material";
 
@@ -9,6 +9,9 @@ import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/heatmap";
 import FileUploading from "./components/fileuploading";
 import ChatBox from "./components/langchain/chatbox";
+import AgentDiagnosisPopup from "./components/langchain/diagnosis";
+import { userOperationRequest } from "@/app/lib/langchain/agent-helper";
+import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
 
 export default function Page() {
@@ -80,6 +83,11 @@ export default function Page() {
     const [similarSources, setSimilarSources] = useState<number>(5);
     const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
 
+    const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
+    const [openDiagnosisPopup, setOpenDiagnosisPopup] = useState<boolean>(false);
+    const [diagnosis, setDiagnosis] = useState<AgentDiagnosis | undefined>(undefined);
+
+
     const fileUploadCallback = (candidates: Candidate[], sourceClusters: SourceCluster[]) => {
         setCandidates(candidates);
         setSourceClusters(sourceClusters);
@@ -96,7 +104,7 @@ export default function Page() {
         setSelectedCandidate(candidate);
     }
 
-    const acceptMatchCallback = () => {
+    const acceptMatchCallback = async () => {
         const references: Candidate[] = [];
         if (selectedCandidate) {
             const newCandidates = candidates.filter((candidate) => {
@@ -121,6 +129,12 @@ export default function Page() {
 
             console.log(userOperation);
             toastify("success", <p>Match accepted: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
+            setUserOperations([...userOperations, userOperation]);
+            const agentDiagnosis = await userOperationRequest(userOperation);
+            if (agentDiagnosis) {
+                setDiagnosis(agentDiagnosis);
+                setOpenDiagnosisPopup(true);
+            }
         }
     }
 
@@ -149,6 +163,7 @@ export default function Page() {
 
             console.log(userOperation);
             toastify("success", <p>Match rejected: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
+            setUserOperations([...userOperations, userOperation]);
         }
     }
 
@@ -173,9 +188,40 @@ export default function Page() {
 
             console.log(userOperation);
             toastify("success", <p>Column discarded: <strong>{selectedCandidate.sourceColumn}</strong></p>);
+            setUserOperations([...userOperations, userOperation]);
         }
     }
 
+    const undoCallback = () => {
+        console.log('undo');
+        const lastOperation = userOperations.pop();
+        if (lastOperation) {
+            if (lastOperation.operation === 'accept') {
+                let newCandidates = [...candidates, ...lastOperation.references];
+                newCandidates = newCandidates.sort((a, b) => b.score - a.score);
+                setCandidates(newCandidates);
+                setSelectedCandidate(lastOperation.candidate);
+            } else if (lastOperation.operation === 'reject') {
+                let newCandidates = [...candidates, lastOperation.candidate];
+                newCandidates = newCandidates.sort((a, b) => b.score - a.score);
+                setCandidates(newCandidates);
+                setSelectedCandidate(lastOperation.candidate);
+            } else if (lastOperation.operation === 'discard') {
+                let newCandidates = [...candidates, ...lastOperation.references];
+                newCandidates = newCandidates.sort((a, b) => b.score - a.score);
+                setCandidates(newCandidates);
+                setSelectedCandidate(lastOperation.candidate);
+            }
+        }
+        setUserOperations(userOperations);
+    }
+
+
+    useEffect(() => {
+        getCachedResults({
+            callback: fileUploadCallback
+        });
+    }, []);
 
     return (
         <div>
@@ -192,7 +238,7 @@ export default function Page() {
                 acceptMatch={acceptMatchCallback}
                 rejectMatch={rejectMatchCallback}
                 discardColumn={discardColumnCallback}
-                undo={() => console.log('undo')}
+                undo={undoCallback}
                 redo={() => console.log('redo')}
             />
             <Container
@@ -211,6 +257,8 @@ export default function Page() {
             <ChatBox callback={chatBoxCallback}/>
 
             <FileUploading callback={fileUploadCallback} />
+
+            <AgentDiagnosisPopup open={openDiagnosisPopup} setOpen={setOpenDiagnosisPopup} data={diagnosis} />
         </div>
     )
 }

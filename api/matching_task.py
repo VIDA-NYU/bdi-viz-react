@@ -36,7 +36,12 @@ class MatchingTask:
     """
 
     def __init__(self) -> None:
-        self.embeddingMatcher = EmbeddingMatcher(params=DEFAULT_PARAMS)
+        self.embeddingMatcher = EmbeddingMatcher(
+            params={
+                "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+                **DEFAULT_PARAMS,
+            }
+        )
         self.source_df = None
         self.target_df = None
         self.cached_candidates = {
@@ -45,6 +50,11 @@ class MatchingTask:
             "candidates": None,
             "source_clusters": None,
         }
+
+    def update_embedding_model(self, embedding_model: str) -> None:
+        self.embeddingMatcher = EmbeddingMatcher(
+            params={"embedding_model": embedding_model, **DEFAULT_PARAMS}
+        )
 
     def update_dataframe(
         self, source_df: Optional[pd.DataFrame], target_df: Optional[pd.DataFrame]
@@ -149,7 +159,7 @@ class MatchingTask:
 
     # [Cache related functions]
 
-    def get_cached_candidates(self) -> Dict[str, list]:
+    def get_cached_candidates(self) -> Dict[str, List[Tuple[str, float]]]:
         return (
             self.cached_candidates["candidates"]
             if self.cached_candidates["candidates"] is not None
@@ -211,6 +221,33 @@ class MatchingTask:
         if os.path.exists(output_path):
             with open(output_path, "r") as f:
                 return json.load(f)
+
+    # Setter & Getter
+    def get_source_df(self) -> pd.DataFrame:
+        return self.source_df
+
+    def get_target_df(self) -> pd.DataFrame:
+        return self.target_df
+
+    def get_source_unique_values(self, source_col: str) -> List[str]:
+        if self.source_df is None or source_col not in self.source_df.columns:
+            raise ValueError(
+                f"Source column {source_col} not found in the source dataframe."
+            )
+        uniques = self.source_df[source_col].unique().tolist()
+        if len(uniques) > 10:
+            return uniques[:10]
+        return uniques
+
+    def get_target_unique_values(self, target_col: str) -> List[str]:
+        if self.target_df is None or target_col not in self.target_df.columns:
+            raise ValueError(
+                f"Target column {target_col} not found in the target dataframe."
+            )
+        uniques = self.target_df[target_col].unique().tolist()
+        if len(uniques) > 10:
+            return uniques[:10]
+        return uniques
 
 
 MATCHING_TASK = MatchingTask()
