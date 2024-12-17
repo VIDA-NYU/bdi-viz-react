@@ -10,9 +10,15 @@ declare interface SourceCluster {
     cluster: string[];
 }
 
-declare interface AgentDiagnosis {
+declare interface DiagnoseObject {
     reason: string;
     confidence: number;
+}
+
+declare interface AgentDiagnosis {
+    diagnosis: DiagnoseObject[];
+    response: string;
+    status: string;
 }
 
 declare interface UserOperation {

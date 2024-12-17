@@ -56,7 +56,9 @@ def get_results():
     if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
-            MATCHING_TASK.update_dataframe(source_df=source, target_df=pd.read_csv(GDC_DATA_PATH))
+            MATCHING_TASK.update_dataframe(
+                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+            )
         _ = MATCHING_TASK.get_candidates()
     results = MATCHING_TASK.to_frontend_json()
     return {"message": "success", "results": results}

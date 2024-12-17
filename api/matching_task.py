@@ -36,7 +36,12 @@ class MatchingTask:
     """
 
     def __init__(self) -> None:
-        self.embeddingMatcher = EmbeddingMatcher(params=DEFAULT_PARAMS)
+        self.embeddingMatcher = EmbeddingMatcher(
+            params={
+                "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+                **DEFAULT_PARAMS,
+            }
+        )
         self.source_df = None
         self.target_df = None
         self.cached_candidates = {
@@ -45,6 +50,11 @@ class MatchingTask:
             "candidates": None,
             "source_clusters": None,
         }
+
+    def update_embedding_model(self, embedding_model: str) -> None:
+        self.embeddingMatcher = EmbeddingMatcher(
+            params={"embedding_model": embedding_model, **DEFAULT_PARAMS}
+        )
 
     def update_dataframe(
         self, source_df: Optional[pd.DataFrame], target_df: Optional[pd.DataFrame]

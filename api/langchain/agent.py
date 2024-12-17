@@ -45,6 +45,30 @@ Unique Values: {diagnose["uniqueValues"]}
 
         return response
 
+    def make_suggestion(self, diagnosis: Dict[str, float]) -> None:
+        logger.info(f"[Agent] Making suggestion to the agent...")
+        logger.info(f"{diagnosis}")
+
+        prompt = f"""
+The user choose the most applicable diagnosis based on the previous user operation:
+{diagnosis}
+
+Please suggest a corresponding suggestion for it based on the diagnosis and the suggestions and diagnoses in your memory.
+The suggested action to choose from:
+prune_candidates - suggest pruning some candidates base on your expertise from RAG.
+update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
+
+
+"""
+
+        response = self.invoke(
+            prompt=prompt,
+            tools=[],
+            output_structure=AgentDiagnosis,
+        )
+
+        return response
+
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel
     ) -> BaseModel:
