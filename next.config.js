@@ -29,11 +29,18 @@ const nextConfig = {
   experimental: {
     proxyTimeout: 120 * 1000,
   },
-  api: {
-    bodyParser: {
-      sizeLimit: '20mb',
-    },
-  },
+  webpackDevMiddleware: config => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    }
+    return config
+  }
+  // api: {
+  //   bodyParser: {
+  //     sizeLimit: '20mb',
+  //   },
+  // },
 }
 
 module.exports = nextConfig
