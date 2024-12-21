@@ -1,20 +1,24 @@
 'use client';
 import { useEffect, useState } from "react";
 
-import { Container } from "@mui/material";
+import { Container, Toolbar, Box } from "@mui/material";
 
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
-import HeatMap from "./components/heatmap";
+import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
 import ChatBox from "./components/langchain/chatbox";
 import AgentDiagnosisPopup from "./components/langchain/diagnosis";
 import { userOperationRequest } from "@/app/lib/langchain/agent-helper";
 import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
+import SchemaExplanation from "./components/explanation/SchemaExplanation";
+import {useSchemaExplanations} from "./components/explanation/useSchemaExplanations";
+import { Explanation } from "./components/explanation/types";
+import CombinedView from "./components/explanation/CombinedView";
 
 
-export default function Page() {
+export default function Dashboard() {
 
     const mockData: Candidate[] = [
         {
@@ -87,6 +91,9 @@ export default function Page() {
     const [openDiagnosisPopup, setOpenDiagnosisPopup] = useState<boolean>(false);
     const [diagnosis, setDiagnosis] = useState<AgentDiagnosis | undefined>(undefined);
 
+
+
+    console.log('candidates: ', candidates);
 
     const fileUploadCallback = (candidates: Candidate[], sourceClusters: SourceCluster[]) => {
         setCandidates(candidates);
@@ -216,6 +223,52 @@ export default function Page() {
         setUserOperations(userOperations);
     }
 
+    // Add schema explanation hook
+    const {
+        matches,
+        currentExplanations,
+        generateExplanations,
+        acceptMatch,
+        removeMatch
+    } = useSchemaExplanations();
+
+    // Modified setSelectedCandidate callback
+    const handleCandidateSelection = (candidate: Candidate | undefined) => {
+        setSelectedCandidate(candidate);
+        if (candidate) {
+            generateExplanations(candidate.sourceColumn, candidate.targetColumn);
+        }
+    }
+
+    useEffect(() => {
+        if (selectedCandidate){
+            handleCandidateSelection(selectedCandidate);
+        }
+    }, [
+        selectedCandidate
+    ]);
+
+    // Handle accepting a match with explanations
+    const handleAcceptMatch = (selectedExplanations: Explanation[]) => {
+        if (selectedCandidate) {
+            acceptMatch(
+                selectedCandidate.sourceColumn,
+                selectedCandidate.targetColumn,
+                selectedExplanations
+            );
+
+            // Update candidates to remove the matched pair
+            const newCandidates = candidates.filter(c => 
+                !(c.sourceColumn === selectedCandidate.sourceColumn && 
+                  c.targetColumn === selectedCandidate.targetColumn)
+            );
+            setCandidates(newCandidates);
+            setSelectedCandidate(undefined);
+
+            // You can also call your existing acceptMatchCallback here if needed
+            // acceptMatchCallback();
+        }
+    };
 
     useEffect(() => {
         getCachedResults({
@@ -224,7 +277,7 @@ export default function Page() {
     }, []);
 
     return (
-        <div>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: "white" }}>
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(candidate => candidate.sourceColumn)))}
                 onSourceColumnSelect={(column: string) => {
@@ -234,31 +287,49 @@ export default function Page() {
                 onCandidateTypeSelect={(type: string) => setCandidateType(type)}
                 onSimilarSourcesSelect={(num: number) => setSimilarSources(num)}
                 onCandidateThresholdSelect={(num: number) => setCandidateThreshold(num)}
-
                 acceptMatch={acceptMatchCallback}
                 rejectMatch={rejectMatchCallback}
                 discardColumn={discardColumnCallback}
                 undo={undoCallback}
                 redo={() => console.log('redo')}
             />
-            <Container
-                maxWidth="lg"
-                component="main"
-                sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}
-            >
-            <HeatMap 
-                data={candidates}
-                sourceClusters={sourceClusters}
-                setSelectedCandidate={setSelectedCandidateCallback}
-                filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-            />
-            </Container>
+            <Toolbar />
+            <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
+                <Container maxWidth="lg">
+                    <HeatMap 
+                        data={candidates}
+                        sourceClusters={sourceClusters}
+                        setSelectedCandidate={setSelectedCandidateCallback}
+                        filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                    />
+                    <CombinedView
+                            currentExplanations={currentExplanations}
+                            matches={matches}
+                            onAcceptMatch={handleAcceptMatch}
+                            sourceColumn={selectedCandidate?.sourceColumn}
+                            stargetColumn={selectedCandidate?.targetColumn}
+                            allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                            allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
+                        />
+                    {/* <SchemaExplanation
+                            currentExplanations={currentExplanations}
+                            matches={matches}
+                            onAcceptMatch={handleAcceptMatch}
+                            sourceColumn={selectedCandidate?.sourceColumn}
+                            targetColumn={selectedCandidate?.targetColumn}
+                        /> */}
 
-            <ChatBox callback={chatBoxCallback}/>
+                    
+                    <ChatBox callback={chatBoxCallback}/>
+                    <FileUploading callback={fileUploadCallback} />
+                </Container>
+            </Box>
+            {/*  */}
+            {/* <ChatBox callback={chatBoxCallback}/> */}
 
-            <FileUploading callback={fileUploadCallback} />
+            {/* <FileUploading callback={fileUploadCallback} /> */}
 
             <AgentDiagnosisPopup open={openDiagnosisPopup} setOpen={setOpenDiagnosisPopup} data={diagnosis} />
-        </div>
+        </Box>
     )
 }

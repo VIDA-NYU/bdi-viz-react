@@ -10,6 +10,7 @@ const nextConfig = {
       transform: '@mui/lab/{{member}}',
     },
   },
+  transpilePackages: ['lucide-react'],
   logging: {
     fetches: {
       fullUrl: true,

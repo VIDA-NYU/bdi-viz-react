@@ -103,6 +103,7 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
           bgcolor: "transparent",
           backgroundImage: "none",
           mt: "calc(var(--template-frame-height, 0px) + 28px)",
+          top: 0
         }}
         component="nav"
       >

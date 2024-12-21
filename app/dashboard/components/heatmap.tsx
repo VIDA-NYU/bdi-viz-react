@@ -10,6 +10,11 @@ interface Candidate {
     score: number;
 }
 
+interface SourceCluster {
+    sourceColumn: string;
+    cluster: string[];
+}
+
 interface HeatMapProps {
     data: Candidate[];
     sourceClusters?: SourceCluster[];
@@ -24,12 +29,8 @@ interface HeatMapProps {
 }
 
 const HeatMap: React.FC<HeatMapProps> = (prop) => {
-
     const { data, sourceClusters, filters } = prop;
     const [candidates] = useState<Candidate[]>(data);
-    
-    // const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
-
 
     const drawHeatMap = () => {
         const margin = { top: 50, right: 0, bottom: 100, left: 50 },
@@ -45,10 +46,10 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
             .append("g")
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
-        
 
-        // [Filter data based on filters]
+        // Filter data based on filters
         let filteredData = data;
+        
         // Filter by sourceColumn, sourceClusters, and similarSources
         if (filters?.sourceColumn) {
             const sourceCluster: SourceCluster | undefined = sourceClusters?.find(sc => sc.sourceColumn === filters.sourceColumn);
@@ -70,11 +71,8 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
             filteredData = filteredData.filter(d => d.score >= filters.candidateThreshold);
         }
 
-
-        // const filteredData = filters?.sourceColumn ? data.filter(d => d.sourceColumn === filters.sourceColumn) : data;
-
-        // console.log('filteredData: ', filteredData);
-
+        console.log('filteredData: ', filteredData);
+        
         const numColumnsX = filteredData.length > 0 ? filteredData.map(d => d.targetColumn).filter((v, i, a) => a.indexOf(v) === i).length : 1;
         const numColumnsY = filteredData.length > 0 ? filteredData.map(d => d.sourceColumn).filter((v, i, a) => a.indexOf(v) === i).length : 1;
         const cellSize = Math.min(width / (numColumnsX+1), height / numColumnsY);
@@ -85,8 +83,54 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
         x.domain(filteredData.map(d => d.targetColumn));
         y.domain(filteredData.map(d => d.sourceColumn));
 
-        const color = d3.scaleSequential(d3.interpolateBlues)
-            .domain([0, 1]);
+        // Calculate the actual min and max scores from the data
+        const minScore = d3.min(filteredData, d => d.score) || 0;
+        const maxScore = d3.max(filteredData, d => d.score) || 1;
+        
+        // Create a dynamic color scale with padding
+        const color = d3.scaleSequential()
+            .interpolator(d3.interpolateBlues)
+            .domain([minScore * 0.9, maxScore * 1.1]); // Add 10% padding
+
+        // Add color legend
+        const legendWidth = 20;
+        const legendHeight = height;
+        
+        const legendScale = d3.scaleLinear()
+            .domain([minScore, maxScore])
+            .range([legendHeight, 0]);
+
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(${cellSize * numColumnsX + 50}, 0)`);
+
+        const legendGradient = legend.append("defs")
+            .append("linearGradient")
+            .attr("id", "legend-gradient")
+            .attr("x1", "0%")
+            .attr("x2", "0%")
+            .attr("y1", "0%")
+            .attr("y2", "100%");
+
+        legendGradient.selectAll("stop")
+            .data(d3.range(0, 1.1, 0.1))
+            .enter()
+            .append("stop")
+            .attr("offset", d => d * 100 + "%")
+            .attr("stop-color", d => color(d * (maxScore - minScore) + minScore));
+
+        legend.append("rect")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .style("fill", "url(#legend-gradient)");
+
+        const legendAxis = d3.axisRight(legendScale)
+            .ticks(5)
+            .tickFormat(d3.format(".2f"));
+
+        legend.append("g")
+            .attr("transform", `translate(${legendWidth}, 0)`)
+            .call(legendAxis);
 
         const tooltip = d3.select("body").append("div")
             .attr("class", "tooltip")
@@ -112,14 +156,16 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
                 if (!filters?.selectedCandidate) {
                     return 0;
                 } else {
-                    return d.sourceColumn === filters.selectedCandidate.sourceColumn && d.targetColumn === filters.selectedCandidate.targetColumn ? 2 : 0;
+                    return d.sourceColumn === filters.selectedCandidate.sourceColumn && 
+                           d.targetColumn === filters.selectedCandidate.targetColumn ? 2 : 0;
                 }
             })
             .style("fill-opacity", function (d) {
                 if (!filters?.selectedCandidate) {
                     return 1;
                 } else {
-                    return d.sourceColumn === filters.selectedCandidate.sourceColumn && d.targetColumn === filters.selectedCandidate.targetColumn ? 1 : 0;
+                    return d.sourceColumn === filters.selectedCandidate.sourceColumn && 
+                           d.targetColumn === filters.selectedCandidate.targetColumn ? 1 : 0;
                 }
             })
             .on("mouseover", function (event, d) {
@@ -127,16 +173,16 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                tooltip.html("Source: " + d.sourceColumn + "<br/>Target: " + d.targetColumn + "<br/>Score: " + d.score)
-            })
-            .on("mousemove", function (event, d) {
-                tooltip.style("left", (event.pageX + 5) + "px")
+                tooltip.html("Source: " + d.sourceColumn + "<br/>Target: " + d.targetColumn + "<br/>Score: " + d.score.toFixed(3))
+                    .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function () {
                 d3.select(this).style("stroke-width", function (d) {
                     const candidate = d as Candidate;
-                    return filters?.selectedCandidate && candidate.sourceColumn === filters.selectedCandidate.sourceColumn && candidate.targetColumn === filters.selectedCandidate.targetColumn ? 2 : 0;
+                    return filters?.selectedCandidate && 
+                           candidate.sourceColumn === filters.selectedCandidate.sourceColumn && 
+                           candidate.targetColumn === filters.selectedCandidate.targetColumn ? 2 : 0;
                 });
                 tooltip.transition()
                     .duration(500)
@@ -144,7 +190,9 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
             })
             .on("click", function (_, d) {
                 if (prop.setSelectedCandidate) {
-                    if (filters?.selectedCandidate && filters.selectedCandidate.sourceColumn === d.sourceColumn && filters.selectedCandidate.targetColumn === d.targetColumn) {
+                    if (filters?.selectedCandidate && 
+                        filters.selectedCandidate.sourceColumn === d.sourceColumn && 
+                        filters.selectedCandidate.targetColumn === d.targetColumn) {
                         prop.setSelectedCandidate(undefined);
                     } else {
                         prop.setSelectedCandidate(d);
@@ -153,9 +201,13 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
                 tooltip.remove();
             });
 
+        // Add axes
         svg.append("g")
             .attr("transform", "translate(0," + cellSize * numColumnsY + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "rotate(-45)")
+            .style("text-anchor", "end");
 
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -163,7 +215,6 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
 
     useEffect(() => {
         drawHeatMap();
-        console.log('reredering heatmap......');
         window.addEventListener('resize', drawHeatMap);
         return () => window.removeEventListener('resize', drawHeatMap);
     }, [candidates, filters]);
