@@ -1,8 +1,10 @@
 // hooks/useSchemaExplanations.ts
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Explanation, SchemaMatch } from './types';
 
-const useSchemaExplanations = () => {
+const useSchemaExplanations = (
+    selectedCandidate: Candidate | undefined,
+) => {
     const [matches, setMatches] = useState<SchemaMatch[]>([]);
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
     
@@ -37,11 +39,23 @@ const useSchemaExplanations = () => {
         setCurrentExplanations(mockExplanations);
     }, []);
 
+
+    useEffect(() => {
+        if (selectedCandidate){
+            generateExplanations(selectedCandidate.sourceColumn, selectedCandidate.targetColumn);
+        }
+    }, [
+        selectedCandidate
+    ]);
+
     const acceptMatch = useCallback((
-        sourceColumn: string,
-        targetColumn: string,
+        // sourceColumn: string,
+        // targetColumn: string,
         selectedExplanations: Explanation[]
     ) => {
+        if (!selectedCandidate) return;
+        const sourceColumn = selectedCandidate.sourceColumn;
+        const targetColumn = selectedCandidate.targetColumn
         const newMatch: SchemaMatch = {
             sourceColumn,
             targetColumn,
@@ -51,7 +65,7 @@ const useSchemaExplanations = () => {
         
         setMatches(prev => [...prev, newMatch]);
         setCurrentExplanations([]);
-    }, []);
+    }, [selectedCandidate]);
 
     const removeMatch = useCallback((sourceColumn: string, targetColumn: string) => {
         setMatches(prev => 

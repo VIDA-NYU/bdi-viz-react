@@ -38,7 +38,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
         maxScore: 1,
         minScore: 0
     });
-
+    console.log(data, 'dd');
     // Get filtered data
     const filteredData = useMemo(() => {
         let result = [...data];
@@ -65,7 +65,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
         return result;
     }, [data, filters, sourceClusters]);
-
+    console.log(filteredData, filters, 'filteredData');
     // Setup scales
     const { x, y, color, cellWidth, cellHeight, dataRange } = useHeatmapScales({
         data: filteredData,
