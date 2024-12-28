@@ -29,7 +29,7 @@ export default function Dashboard() {
 
     const {
         candidates,
-        setCandidates,
+        sourceClusters,
         selectedCandidate,
         handleFileUpload,
         handleChatUpdate,
@@ -64,7 +64,7 @@ export default function Dashboard() {
 
 
     // const [candidates, setCandidates] = useState<Candidate[]>(mockData);
-    const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
+    // const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
     // const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
     // const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);

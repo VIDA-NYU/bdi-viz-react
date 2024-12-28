@@ -6,7 +6,7 @@ import { userOperationRequest } from "@/app/lib/langchain/agent-helper";
 type DashboardOperationProps = {
     candidates: Candidate[];
     selectedCandidate: Candidate | undefined;
-    onCandidateUpdate: (candidates: Candidate[]) => void;
+    onCandidateUpdate: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     onCandidateSelect: (candidate: Candidate | undefined) => void;
     onDiagnosis?: (diagnosis: any) => void;
 }
@@ -36,10 +36,18 @@ export const {
         const acceptMatch = useCallback(async () => {
             if (!selectedCandidate) return;
 
-            const references = candidates.filter(c => c.sourceColumn === selectedCandidate.sourceColumn);
-            const newCandidates = candidates.filter(c => 
-                !(c.sourceColumn === selectedCandidate.sourceColumn && c.targetColumn === selectedCandidate.targetColumn)
-            );
+            const references: Candidate[] = [];
+            const newCandidates = candidates.filter((candidate) => {
+                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
+                    return true;
+                }
+                if (candidate.targetColumn === selectedCandidate.targetColumn) {
+                    return true;
+                } else {
+                    references.push(candidate);
+                    return false;
+                }
+            });
 
             onCandidateUpdate(newCandidates);
             onCandidateSelect(undefined);
@@ -64,10 +72,18 @@ export const {
         const rejectMatch = useCallback(() => {
             if (!selectedCandidate) return;
 
-            const references = candidates.filter(c => c.sourceColumn === selectedCandidate.sourceColumn);
-            const newCandidates = candidates.filter(c => 
-                !(c.sourceColumn === selectedCandidate.sourceColumn && c.targetColumn === selectedCandidate.targetColumn)
-            );
+            const references: Candidate[] = [];
+            const newCandidates = candidates.filter((candidate) => {
+                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
+                    return true;
+                }
+                references.push(candidate);
+                if (candidate.targetColumn !== selectedCandidate.targetColumn) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
 
             onCandidateUpdate(newCandidates);
             onCandidateSelect(undefined);
@@ -85,8 +101,14 @@ export const {
         const discardColumn = useCallback(() => {
             if (!selectedCandidate) return;
 
-            const references = candidates.filter(c => c.sourceColumn === selectedCandidate.sourceColumn);
-            const newCandidates = candidates.filter(c => c.sourceColumn !== selectedCandidate.sourceColumn);
+            const references: Candidate[] = [];
+            const newCandidates = candidates.filter((candidate) => {
+                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
+                    return true;
+                }
+                references.push(candidate);
+                return false;
+            });
 
             onCandidateUpdate(newCandidates);
             onCandidateSelect(undefined);
@@ -110,15 +132,17 @@ export const {
                 case 'accept':
                 case 'discard':
                     newCandidates = [...candidates, ...lastOperation.references];
+                    newCandidates = newCandidates.sort((a, b) => b.score - a.score);
                     break;
                 case 'reject':
                     newCandidates = [...candidates, lastOperation.candidate];
+                    newCandidates = newCandidates.sort((a, b) => b.score - a.score);
                     break;
                 default:
                     return;
             }
 
-            newCandidates = newCandidates.sort((a, b) => b.score - a.score);
+            // newCandidates = newCandidates.sort((a, b) => b.score - a.score);
             onCandidateUpdate(newCandidates);
             onCandidateSelect(lastOperation.candidate);
             setUserOperations(prev => prev.slice(0, -1));

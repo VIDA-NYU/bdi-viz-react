@@ -15,9 +15,9 @@ const BarCell: React.FC<CellProps> = ({
     onLeave,
     onClick
 }) => {
-    console.log('data', data);
+    // console.log('data', data);
     const barHeight = height * (data.score - config.minScore ) / (config.maxScore - config.minScore);
-    console.log('barHeight', barHeight);
+    // console.log('barHeight', barHeight);
     const barY = y + (height - barHeight);
 
     return (

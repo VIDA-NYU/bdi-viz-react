@@ -32,8 +32,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
     const [config, setConfig] = useState<HeatMapConfig>({
-        cellType: 'bar',
-        colorScheme: 'blues',
+        cellType: 'rect', // 'rect' | 'bar'
+        colorScheme: 'blues', // 'blues' | 'viridis' | 'rdbu'
         colorScalePadding: 10,
         maxScore: 1,
         minScore: 0

@@ -7,9 +7,9 @@ import { getMockData } from '../components/utils/mock';
 
 type DashboardCandidateState = {
     candidates: Candidate[];
-    setCandidates: React.Dispatch<React.SetStateAction<Candidate[]>>;
+    sourceClusters: SourceCluster[];
     selectedCandidate: Candidate | undefined;
-    handleFileUpload: (candidates: Candidate[]) => void;
+    handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
 }
@@ -22,11 +22,14 @@ export const {
     useDashboardCandidates: (): DashboardCandidateState => {
 
         const [candidates, setCandidates] = useState<Candidate[]>(getMockData());
+        const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
-        const handleFileUpload = useCallback((newCandidates: Candidate[]) => {
-            console.log('new', newCandidates);
-            setCandidates(newCandidates);
+        const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[]) => {
+            setCandidates(candidates);
+            if (sourceCluster) {
+                setSourceClusters(sourceCluster);
+            }
             setSelectedCandidate(undefined);
         }, []);
 
@@ -51,7 +54,7 @@ export const {
 
         return {
             candidates,
-            setCandidates,
+            sourceClusters,
             selectedCandidate,
             handleFileUpload,
             handleChatUpdate,
