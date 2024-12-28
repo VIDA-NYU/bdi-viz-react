@@ -8,7 +8,7 @@ type DashboardOperationProps = {
     selectedCandidate: Candidate | undefined;
     onCandidateUpdate: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     onCandidateSelect: (candidate: Candidate | undefined) => void;
-    onDiagnosis?: (diagnosis: any) => void;
+    onDiagnosis?: (diagnosis: AgentDiagnosis | undefined) => void;
 }
 
 type DashboardOperationState = {
