@@ -38,7 +38,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
         maxScore: 1,
         minScore: 0
     });
-    console.log(data, 'dd');
     // Get filtered data
     const filteredData = useMemo(() => {
         let result = [...data];
@@ -132,7 +131,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     >
                         <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
                             {/* Draw cells */}
-                            {filteredData.map((d: any, i: number) => (
+                            {filteredData.map((d: CellData, i: number) => (
                                 <CellComponent
                                     key={`${d.sourceColumn}-${d.targetColumn}`}
                                     data={d}
@@ -141,7 +140,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                     y={y(d.sourceColumn) ?? 0}
                                     width={cellWidth}
                                     height={cellHeight}
-                                    // @ts-ignore
                                     color={color}
                                     isSelected={filters?.selectedCandidate?.sourceColumn === d.sourceColumn &&
                                               filters?.selectedCandidate?.targetColumn === d.targetColumn}
