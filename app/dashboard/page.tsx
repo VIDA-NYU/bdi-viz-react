@@ -10,11 +10,7 @@ import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
 import ChatBox from "./components/langchain/chatbox";
 import AgentDiagnosisPopup from "./components/langchain/diagnosis";
-import { userOperationRequest } from "@/app/lib/langchain/agent-helper";
-import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
-import SchemaExplanation from "./components/explanation/SchemaExplanation";
 import {useSchemaExplanations} from "./components/explanation/useSchemaExplanations";
-import { Explanation } from "./components/explanation/types";
 import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
@@ -63,20 +59,6 @@ export default function Dashboard() {
     });
 
 
-    // const [candidates, setCandidates] = useState<Candidate[]>(mockData);
-    // const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
-    // const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
-
-    // const [sourceColumn, setSourceColumn] = useState<string>(mockData[0].sourceColumn);
-    // const [candidateType, setCandidateType] = useState<string>('all');
-    // const [similarSources, setSimilarSources] = useState<number>(5);
-    // const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
-
-    const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
-    // const [openDiagnosisPopup, setOpenDiagnosisPopup] = useState<boolean>(false);
-    // const [diagnosis, setDiagnosis] = useState<AgentDiagnosis | undefined>(undefined);
-
-
 
     // Schema explanation integration
     const {
@@ -87,17 +69,7 @@ export default function Dashboard() {
         removeMatch
     } = useSchemaExplanations(selectedCandidate);
 
-    // const fileUploadCallback = (candidates: Candidate[], sourceClusters: SourceCluster[]) => {
-    //     setCandidates(candidates);
-    //     setSourceClusters(sourceClusters);
-    //     setSourceColumn(candidates[0].sourceColumn);
-    // }
 
-    // const chatBoxCallback = (candidates: Candidate[]) => {
-    //     setCandidates(candidates);
-    //     setSourceColumn(candidates[0].sourceColumn);
-    // }
-    
     const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
         toastify("default", <p><strong>Source: </strong>{candidate?.sourceColumn}, <strong>Target: </strong>{candidate?.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
@@ -145,23 +117,12 @@ export default function Dashboard() {
                             allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                             allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                         />
-                    {/* <SchemaExplanation
-                            currentExplanations={currentExplanations}
-                            matches={matches}
-                            onAcceptMatch={handleAcceptMatch}
-                            sourceColumn={selectedCandidate?.sourceColumn}
-                            targetColumn={selectedCandidate?.targetColumn}
-                        /> */}
 
                     
                     <ChatBox callback={handleChatUpdate}/>
                     <FileUploading callback={handleFileUpload} />
                 </Container>
             </Box>
-            {/*  */}
-            {/* <ChatBox callback={chatBoxCallback}/> */}
-
-            {/* <FileUploading callback={fileUploadCallback} /> */}
 
             <AgentDiagnosisPopup open={openDiagnosisPopup} setOpen={setOpenDiagnosisPopup} data={diagnosis} />
         </Box>
