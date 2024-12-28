@@ -122,3 +122,24 @@ def agent_diagnose():
     response = response.model_dump()
     app.logger.info(f"Response: {response}")
     return response
+
+
+@app.route("/api/agent/explain", methods=["POST"])
+def agent_explanation():
+    data = request.json
+    app.logger.info(data)
+    source_col = data["sourceColumn"]
+    target_col = data["targetColumn"]
+    source_values = MATCHING_TASK.get_source_unique_values(source_col)
+    target_values = MATCHING_TASK.get_target_unique_values(target_col)
+    response = AGENT.explain(
+        {
+            "sourceColumn": source_col,
+            "targetColumn": target_col,
+            "sourceValues": source_values,
+            "targetValues": target_values,
+        }
+    )
+    response = response.model_dump()
+    app.logger.info(f"Response: {response}")
+    return response

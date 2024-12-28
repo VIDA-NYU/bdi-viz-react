@@ -46,7 +46,8 @@ export default function Dashboard() {
         acceptMatch,
         rejectMatch,
         discardColumn,
-        undo
+        undo,
+        explain,
     } = useDashboardOperations({
         candidates,
         selectedCandidate,
@@ -98,6 +99,7 @@ export default function Dashboard() {
                 discardColumn={discardColumn}
                 undo={undo}
                 redo={() => console.log('redo')}
+                explain={explain}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>

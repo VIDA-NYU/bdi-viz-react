@@ -17,6 +17,7 @@ type DashboardOperationState = {
     rejectMatch: () => void;
     discardColumn: () => void;
     undo: () => void;
+    explain: () => void;
 }
 
 export type { DashboardOperationState };
@@ -148,12 +149,19 @@ export const {
             setUserOperations(prev => prev.slice(0, -1));
         }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
+        const explain = useCallback(async () => {
+            if (!selectedCandidate) return;
+
+
+        }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
+
         return {
             userOperations,
             acceptMatch,
             rejectMatch,
             discardColumn,
-            undo
+            undo,
+            explain,
         };
     }
 };

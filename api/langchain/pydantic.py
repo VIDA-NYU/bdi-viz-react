@@ -84,3 +84,13 @@ class AgentDiagnosis(BaseModel):
             ...
         ]""",
     )
+
+
+class CandidateExplanation(BaseModel):
+    """Explanation for the candidate based on the diagnosis.
+    Including the explainations on the connection between source column and target column, source values and target values.
+    e.g.
+    """
+    explainations: List[str] = Field(
+        description="The explainations for the candidate, the list looks like: ['The source column and target column are likely following AJCC standard, it is a standard for cancer staging, which...', ...]"
+    )

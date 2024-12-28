@@ -33,5 +33,15 @@ const userOperationRequest = async (userOperation: UserOperation): Promise<Agent
     }
 };
 
+const candidateExplanationRequest = async (candidate: Candidate): Promise<str | undefined> => {
+    try {
+        const resp = await axios.post("/api/agent/explain", candidate);
+        console.log(resp.data?.explainations);
+        return resp.data?.explainations;
+    } catch (error) {
+        console.error("Error sending candidate explanation request:", error);
+    }
+};
 
-export { userOperationRequest };
+
+export { userOperationRequest, candidateExplanationRequest };
