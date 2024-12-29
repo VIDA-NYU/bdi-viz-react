@@ -3,6 +3,7 @@ import type { Candidate } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
+import { useDashboardFilters } from './useDashboardFilters';
 
 
 type DashboardCandidateState = {
@@ -25,12 +26,20 @@ export const {
         const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
 
+        const { updateSourceColumn } = useDashboardFilters();
+
         const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[]) => {
             setCandidates(candidates);
             if (sourceCluster) {
                 setSourceClusters(sourceCluster);
             }
-            setSelectedCandidate(undefined);
+
+            if (selectedCandidate) {
+                updateSourceColumn(selectedCandidate.sourceColumn);
+            } else {
+                updateSourceColumn(candidates[0].sourceColumn);
+            }
+            // setSelectedCandidate(undefined);
         }, []);
 
         const handleChatUpdate = useCallback((newCandidates: Candidate[]) => {
@@ -39,7 +48,6 @@ export const {
         }, []);
 
         const handleSelectedCandidate = useCallback((candidate: Candidate | undefined) => {
-            toastify("default", <p><strong>Source: </strong>{candidate?.sourceColumn}, <strong>Target: </strong>{candidate?.targetColumn}</p>, { autoClose: 200 });
             setSelectedCandidate(candidate);
         }, []);
 

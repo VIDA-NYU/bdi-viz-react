@@ -33,11 +33,11 @@ const useHeatmapScales = ({ data, width, height, margin, config }: ScaleParams) 
         const y = d3.scaleBand()
             .range([0, cellHeight * numColumnsY])
             .domain(data.map(d => d.sourceColumn));
-        console.log(data, 'ss')
+        // console.log(data, 'ss')
         const minScore =  d3.min(data, d => d.score) ?? 0;
         const maxScore =  d3.max(data, d => d.score) ?? 1;
         const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
-        console.log(minScore, maxScore, padding, 'ss')
+        // console.log(minScore, maxScore, padding, 'ss')
         const color = d3.scaleSequential()
             .interpolator(getColorInterpolator(config.colorScheme))
             .domain([minScore - padding, maxScore + padding]);

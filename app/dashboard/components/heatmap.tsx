@@ -71,7 +71,7 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
             filteredData = filteredData.filter(d => d.score >= filters.candidateThreshold);
         }
 
-        console.log('filteredData: ', filteredData);
+        // console.log('filteredData: ', filteredData);
         
         const numColumnsX = filteredData.length > 0 ? filteredData.map(d => d.targetColumn).filter((v, i, a) => a.indexOf(v) === i).length : 1;
         const numColumnsY = filteredData.length > 0 ? filteredData.map(d => d.sourceColumn).filter((v, i, a) => a.indexOf(v) === i).length : 1;

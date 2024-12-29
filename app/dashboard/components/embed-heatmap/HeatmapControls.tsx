@@ -86,7 +86,7 @@ const HeatMapControls: React.FC<HeatMapControlsProps> = ({
                             ]}
                             onChange={(_, value) => {
                                 const [min, max] = value as number[];
-                                console.log('v', value, min, max, dataRange);
+                                // console.log('v', value, min, max, dataRange);
                                 
                                 onConfigChange(
                                     prev => {

@@ -64,7 +64,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
         return result;
     }, [data, filters, sourceClusters]);
-    console.log(filteredData, filters, 'filteredData');
+    console.log(filters, 'filteredData');
     // Setup scales
     const { x, y, color, cellWidth, cellHeight, dataRange } = useHeatmapScales({
         data: filteredData,
@@ -107,7 +107,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
     }, [setSelectedCandidate, filters]);
 
     const CellComponent = config.cellType === 'rect' ? RectCell : BarCell;
-    console.log(dimensions);
+    // console.log(dimensions);
     return (
 
         <Grid container spacing={2}>
