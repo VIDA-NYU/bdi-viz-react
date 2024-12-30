@@ -7,42 +7,31 @@ const useSchemaExplanations = (
 ) => {
     const [matches, setMatches] = useState<SchemaMatch[]>([]);
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
+    const [isMatch, setIsMatch] = useState<boolean>(false);
+    const [matchingValues, setMatchingValues] = useState<string[][]>([]);
     
     // Mock function to generate explanations - replace with actual API call later
-    const generateExplanations = useCallback((sourceColumn: string, targetColumn: string) => {
-        const mockExplanations: Explanation[] = [
-            {
-                id: '1',
-                type: 'name',
-                content: `Direct name similarity between "${sourceColumn}" and "${targetColumn}"`,
-                confidence: 0.8
-            },
-            {
-                id: '2',
-                type: 'token',
-                content: `Common tokens found: "${sourceColumn.split('_').join(', ')}"`,
-                confidence: 0.6
-            },
-            {
-                id: '3',
-                type: 'value',
-                content: 'Similar value distributions detected in both columns',
-                confidence: 0.75
-            },
-            {
-                id: '4',
-                type: 'semantic',
-                content: `"${sourceColumn}" is semantically related to "${targetColumn}"`,
-                confidence: 0.65
-            }
-        ];
-        setCurrentExplanations(mockExplanations);
+    const generateExplanations = useCallback((candidateExplanation?: CandidateExplanation) => {
+        if (!candidateExplanation) return;
+        const explanations: Explanation[] = candidateExplanation?.explanations.map((explanation, index) => {
+            return {
+                id: index.toString(),
+                type: explanation.type,
+                content: explanation.content,
+                confidence: explanation.confidence
+            } as Explanation;
+        });
+        setIsMatch(candidateExplanation.isMatch);
+        if (candidateExplanation.matchingValues) {
+            setMatchingValues(candidateExplanation.matchingValues);
+        }
+        setCurrentExplanations(explanations);
     }, []);
 
 
     useEffect(() => {
         if (selectedCandidate){
-            generateExplanations(selectedCandidate.sourceColumn, selectedCandidate.targetColumn);
+            generateExplanations();
         }
     }, [
         selectedCandidate
@@ -77,7 +66,9 @@ const useSchemaExplanations = (
 
     return {
         matches,
+        isMatch,
         currentExplanations,
+        matchingValues,
         generateExplanations,
         acceptMatch,
         removeMatch

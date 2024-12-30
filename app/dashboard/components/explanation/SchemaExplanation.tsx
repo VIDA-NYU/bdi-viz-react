@@ -14,7 +14,9 @@ import ExplanationItem, { getIcon } from './ExplanationItem';
 import { Explanation, SchemaMatch } from './types';
 
 interface SchemaExplanationProps {
+    isMatch: boolean;
     currentExplanations: Explanation[];
+    valueMatches: string[][];
     matches: SchemaMatch[];
     onAcceptMatch: (explanations: Explanation[]) => void;
     sourceColumn?: string;
@@ -22,7 +24,9 @@ interface SchemaExplanationProps {
 }
 
 const SchemaExplanation = ({
+    isMatch,
     currentExplanations,
+    valueMatches,
     matches,
     onAcceptMatch,
     sourceColumn,
@@ -62,6 +66,16 @@ const SchemaExplanation = ({
                 </Box>
             )}
 
+            {/* Is Match */}
+            {isMatch !== undefined &&
+                <Box>
+                    <Chip 
+                        label={isMatch ? "Our agent thinks this is a match." : "Our agent thinks this is not a match."} 
+                        sx={{ backgroundColor: isMatch ? 'green' : 'red', color: 'white' }} 
+                    />
+                </Box>
+            }
+
             {/* Current Explanations */}
             {currentExplanations.length > 0 && (
                 <>
@@ -89,6 +103,26 @@ const SchemaExplanation = ({
                         </Button>
                     </Box>
                 </>
+            )}
+
+            {/* Value Matches */}
+            {valueMatches.length > 0 && (
+                <Box>
+                    <Typography variant="h6" gutterBottom>
+                        Value Matches
+                    </Typography>
+                    <List>
+                        {valueMatches.map((values, index) => (
+                            <Card key={index} variant="outlined" sx={{ mb: 1, p: 2 }}>
+                                <Stack direction="row" spacing={1}>
+                                    {values.map((value, index) => (
+                                        <Chip key={index} label={value} size="small" />
+                                    ))}
+                                </Stack>
+                            </Card>
+                        ))}
+                    </List>
+                </Box>
             )}
 
             {/* Accepted Matches History */}

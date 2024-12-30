@@ -64,7 +64,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
         return result;
     }, [data, filters, sourceClusters]);
-    console.log(filters, 'filteredData');
+    // console.log(filters, 'filteredData');
     // Setup scales
     const { x, y, color, cellWidth, cellHeight, dataRange } = useHeatmapScales({
         data: filteredData,

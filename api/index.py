@@ -13,7 +13,11 @@ from .langchain.pydantic import AgentResponse
 from .matcher.embedding_matcher import EmbeddingMatcher
 from .matching_task import MATCHING_TASK
 from .tools.candidate_butler import candidate_butler_tools
-from .utils import extract_data_from_request
+from .utils import (
+    extract_data_from_request,
+    read_candidate_explanation_json,
+    write_candidate_explanation_json,
+)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 DEFAULT_PARAMS = {
@@ -132,6 +136,14 @@ def agent_explanation():
     target_col = data["targetColumn"]
     source_values = MATCHING_TASK.get_source_unique_values(source_col)
     target_values = MATCHING_TASK.get_target_unique_values(target_col)
+
+    cached_explanation = read_candidate_explanation_json(source_col, target_col)
+    if cached_explanation:
+        app.logger.info(
+            f"Returning cached explanation for {source_col} and {target_col}"
+        )
+        return cached_explanation
+
     response = AGENT.explain(
         {
             "sourceColumn": source_col,
@@ -142,4 +154,5 @@ def agent_explanation():
     )
     response = response.model_dump()
     app.logger.info(f"Response: {response}")
+    write_candidate_explanation_json(source_col, target_col, response)
     return response

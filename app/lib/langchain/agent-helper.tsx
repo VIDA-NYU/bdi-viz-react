@@ -33,11 +33,29 @@ const userOperationRequest = async (userOperation: UserOperation): Promise<Agent
     }
 };
 
-const candidateExplanationRequest = async (candidate: Candidate): Promise<str | undefined> => {
+const candidateExplanationRequest = async (candidate: Candidate): Promise<CandidateExplanation | undefined> => {
     try {
         const resp = await axios.post("/api/agent/explain", candidate);
-        console.log(resp.data?.explainations);
-        return resp.data?.explainations;
+        console.log(resp.data);
+        const { is_match, explanations, matching_values } = resp.data;
+        let explanationObjects: ExplanationObject[] = [];
+        if (explanations && explanations.length > 0) {
+            explanationObjects = explanations.map((e: object) => {
+                try {
+                    return e as ExplanationObject;
+                } catch (error) {
+                    console.error("Error parsing explanation to ExplanationObject:", error);
+                    return null;
+                }
+            }).filter((e: ExplanationObject | null) => e !== null);
+        }
+        const candidateExplanation: CandidateExplanation = {
+            isMatch: is_match,
+            explanations: explanationObjects,
+            matchingValues: matching_values,
+        };
+
+        return candidateExplanation;
     } catch (error) {
         console.error("Error sending candidate explanation request:", error);
     }

@@ -26,3 +26,15 @@ declare interface UserOperation {
     candidate: Candidate; // the candidate to operate on
     references: Candidate[]; // the references to the candidate
 }
+
+declare interface ExplanationObject {
+    type: string;
+    content: string;
+    confidence: number;
+}
+
+declare interface CandidateExplanation {
+    isMatch: boolean;
+    explanations: ExplanationObject[];
+    matchingValues?: string[][]; // [source value, target value]
+}

@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import type { Candidate, UserOperation } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { userOperationRequest } from "@/app/lib/langchain/agent-helper";
+import { userOperationRequest, candidateExplanationRequest } from "@/app/lib/langchain/agent-helper";
 
 type DashboardOperationProps = {
     candidates: Candidate[];
@@ -9,6 +9,7 @@ type DashboardOperationProps = {
     onCandidateUpdate: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     onCandidateSelect: (candidate: Candidate | undefined) => void;
     onDiagnosis?: (diagnosis: AgentDiagnosis | undefined) => void;
+    onExplanation?: (explanation: CandidateExplanation | undefined) => void;
 }
 
 type DashboardOperationState = {
@@ -17,7 +18,7 @@ type DashboardOperationState = {
     rejectMatch: () => void;
     discardColumn: () => void;
     undo: () => void;
-    explain: () => void;
+    explain: () => Promise<void>;
 }
 
 export type { DashboardOperationState };
@@ -30,7 +31,8 @@ export const {
         selectedCandidate,
         onCandidateUpdate,
         onCandidateSelect,
-        onDiagnosis
+        onDiagnosis,
+        onExplanation,
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
 
@@ -150,10 +152,18 @@ export const {
         }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
         const explain = useCallback(async () => {
+            console.log('Explain');
             if (!selectedCandidate) return;
 
+            if (onExplanation) {
+                const explanation = await candidateExplanationRequest(selectedCandidate);
+                if (explanation) {
+                    console.log(explanation);
+                    onExplanation(explanation);
+                }
+            }
 
-        }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
+        }, [selectedCandidate, candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
         return {
             userOperations,

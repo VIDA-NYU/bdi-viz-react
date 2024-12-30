@@ -86,11 +86,64 @@ class AgentDiagnosis(BaseModel):
     )
 
 
+class ExplanationObject(BaseModel):
+    type: str = Field(
+        description="""
+                      The type of the explanation, from the following types: 
+                        - name: this explanation is inferred from the column names
+                        - token: this explanation is inferred from the tokens in the column names or values
+                        - value: this explanation is inferred from the values in the column
+                        - semantic: this explanation is inferred from the semantical relationship between the source and target
+                      """
+    )
+    content: str = Field(description="The content of the explanation")
+    confidence: float = Field(
+        description="The confidence of the explanation, from 0 to 1"
+    )
+
+
 class CandidateExplanation(BaseModel):
     """Explanation for the candidate based on the diagnosis.
-    Including the explainations on the connection between source column and target column, source values and target values.
+    Including the explanations on the connection between source column and target column, source values and target values.
+    Noted that neither the column names nor the values might not be exactly the same, you should infer it semantically based on your knowledge and the information from RAG.
     e.g.
     """
-    explainations: List[str] = Field(
-        description="The explainations for the candidate, the list looks like: ['The source column and target column are likely following AJCC standard, it is a standard for cancer staging, which...', ...]"
+
+    is_match: bool = Field(
+        description="The flag to indicate if the candidate is a match"
+    )
+    explanations: List[ExplanationObject] = Field(
+        description="""
+        The explanations for the candidate, the list looks like:
+        [
+            {
+                "type": "name",
+                "content": "The source column name and target column name are exact match",
+                "confidence": 0.9,
+            },
+            {
+                "type": "token",
+                "content": "The source column name and target column name are similar",
+                "confidence": 0.7,
+            },
+            {
+                "type": "value",
+                "content": "The source values and target values are aligned",
+                "confidence": 0.6,
+            }
+            ...
+        ]
+        """
+    )
+    matching_values: List[List[str]] = Field(
+        description="""The possible matching values according to your knowledge and the information from RAG on the source values and target values,
+        the list looks like:
+        [
+            ["ia", "FIGO IA"],
+            ["ib", "FIGO IB"],
+            ["iia", "FIGO IIA"],
+        ]
+        
+        If you don't have any matching values or you think the candidate might not match, it will be an empty list.
+        """
     )

@@ -13,8 +13,8 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
-from .pydantic import AgentDiagnosis, CandidateExplanation
 from ..tools.rag_researcher import retrieve_from_rag
+from .pydantic import AgentDiagnosis, CandidateExplanation
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -45,8 +45,8 @@ Unique Values: {diagnose["uniqueValues"]}
         )
 
         return response
-    
-    def explain(self, candidate: Dict[str, Any]) -> str:
+
+    def explain(self, candidate: Dict[str, Any]) -> CandidateExplanation:
         logger.info(f"[Agent] Explaining the candidate...")
         # logger.info(f"{diagnose}")
         prompt = f"""
@@ -62,7 +62,6 @@ Target Value Sample: {candidate["targetValues"]}
             output_structure=CandidateExplanation,
         )
         return response
-
 
     def make_suggestion(self, diagnosis: Dict[str, float]) -> None:
         logger.info(f"[Agent] Making suggestion to the agent...")

@@ -1,9 +1,14 @@
 import logging
 import os
 from typing import Dict, List, Tuple
+
 from langchain_core.tools import tool
+
 from ..langchain.rag import RAG
+
 logger = logging.getLogger("bdiviz_flask.sub")
+
+
 @tool
 def retrieve_from_rag(query: str, topk: int = 3) -> List[str]:
     """
