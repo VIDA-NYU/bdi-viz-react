@@ -1,5 +1,6 @@
 Flask==3.0.3
 fuzzywuzzy
+jq
 sentence_transformers
 transformers
 torch
@@ -8,6 +9,7 @@ pandas
 numpy
 langchain-anthropic
 langchain-community
+langchain_huggingface
 langgraph
 python-dotenv
 pydantic

@@ -66,7 +66,7 @@ class MatchingTask:
             self.target_df = target_df
             logger.info(f"[MatchingTask] Target dataframe updated!")
 
-    def get_candidates(self, cache_candidates: bool = True) -> Dict[str, list]:
+    def get_candidates(self, is_candidates_cached: bool = True) -> Dict[str, list]:
         if self.source_df is None or self.target_df is None:
             raise ValueError("Source and Target dataframes must be provided.")
 
@@ -95,7 +95,7 @@ class MatchingTask:
             return cached_json["candidates"]
 
         elif (
-            cache_candidates
+            is_candidates_cached
             and self.cached_candidates["source_hash"] == source_hash
             and self.cached_candidates["target_hash"] == target_hash
         ):
@@ -125,7 +125,7 @@ class MatchingTask:
                 layered_candidates[source_col] = []
             layered_candidates[source_col].append((target_col, score))
 
-        if cache_candidates:
+        if is_candidates_cached:
             self.cached_candidates = {
                 "source_hash": source_hash,
                 "target_hash": target_hash,
@@ -133,8 +133,8 @@ class MatchingTask:
                 "source_clusters": source_clusters,
             }
 
-        # Save it as Json file
-        self.export_cache_to_json(self.cached_candidates)
+            # Save it as Json file
+            self.export_cache_to_json(self.cached_candidates)
 
         return layered_candidates
 

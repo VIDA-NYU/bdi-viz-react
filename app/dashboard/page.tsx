@@ -46,7 +46,8 @@ export default function Dashboard() {
         acceptMatch,
         rejectMatch,
         discardColumn,
-        undo
+        undo,
+        explain,
     } = useDashboardOperations({
         candidates,
         selectedCandidate,
@@ -55,6 +56,10 @@ export default function Dashboard() {
         onDiagnosis: (newDiagnosis) => {
             setDiagnosis(newDiagnosis);
             setOpenDiagnosisPopup(true);
+        },
+        onExplanation: (explanation) => {
+            if (!selectedCandidate) return;
+            generateExplanations(explanation);
         }
     });
 
@@ -63,7 +68,9 @@ export default function Dashboard() {
     // Schema explanation integration
     const {
         matches,
+        isMatch,
         currentExplanations,
+        matchingValues,
         generateExplanations,
         acceptMatch: acceptMatchWithExplanations,
         removeMatch
@@ -73,16 +80,7 @@ export default function Dashboard() {
     const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
         toastify("default", <p><strong>Source: </strong>{candidate?.sourceColumn}, <strong>Target: </strong>{candidate?.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
-    }
-
-
-    // Modified setSelectedCandidate callback
-    const handleCandidateSelection = (candidate: Candidate | undefined) => {
-        setSelectedCandidate(candidate);
-        if (candidate) {
-            generateExplanations(candidate.sourceColumn, candidate.targetColumn);
-        }
-    }
+    };
 
     
     return (
@@ -98,6 +96,7 @@ export default function Dashboard() {
                 discardColumn={discardColumn}
                 undo={undo}
                 redo={() => console.log('redo')}
+                explain={explain}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
@@ -109,7 +108,9 @@ export default function Dashboard() {
                         filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
                     />
                     <CombinedView
+                            isMatch={isMatch}
                             currentExplanations={currentExplanations}
+                            matchingValues={matchingValues}
                             matches={matches}
                             onAcceptMatch={acceptMatchWithExplanations}
                             sourceColumn={selectedCandidate?.sourceColumn}

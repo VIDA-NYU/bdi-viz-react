@@ -16,7 +16,9 @@ const RowComp = styled("div")({
     paddingBottom: "45px"
 })
 interface CombinedViewProps {
+    isMatch: boolean;
     currentExplanations: Explanation[];
+    matchingValues: string[][];
     matches: SchemaMatch[];
     onAcceptMatch: (explanations: Explanation[]) => void;
     sourceColumn?: string;
@@ -26,7 +28,9 @@ interface CombinedViewProps {
 }
 
 const CombinedView = ({
+    isMatch,
     currentExplanations,
+    matchingValues,
     matches,
     onAcceptMatch,
     sourceColumn,
@@ -54,8 +58,9 @@ const CombinedView = ({
         <Stack spacing={2}>
             <RowComp>
             <SchemaExplanation
-
+                isMatch={isMatch}
                 currentExplanations={currentExplanations}
+                valueMatches={matchingValues}
                 matches={matches}
                 onAcceptMatch={handleAcceptMatch}
                 sourceColumn={sourceColumn}

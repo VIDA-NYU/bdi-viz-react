@@ -54,3 +54,6 @@ dist/
 htmlcov/
 .tox/
 docs/_build/
+
+.cache/
+**/.cache/
