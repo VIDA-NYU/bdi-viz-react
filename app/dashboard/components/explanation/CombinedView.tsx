@@ -2,6 +2,7 @@
 import { Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
 import InferredMatches, { InferredMatch } from './InferenceMatches';
+import RelativeKnowledgeView from './RelativeKnowledgeView';
 import { Explanation } from './types';
 import {useInferredMatches} from './useInferenceMatches';
 import { SchemaMatch } from './types';
@@ -19,6 +20,7 @@ interface CombinedViewProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
     matchingValues: string[][];
+    relativeKnowledge: RelativeKnowledge[];
     matches: SchemaMatch[];
     onAcceptMatch: (explanations: Explanation[]) => void;
     sourceColumn?: string;
@@ -31,6 +33,7 @@ const CombinedView = ({
     isMatch,
     currentExplanations,
     matchingValues,
+    relativeKnowledge,
     matches,
     onAcceptMatch,
     sourceColumn,
@@ -66,11 +69,14 @@ const CombinedView = ({
                 sourceColumn={sourceColumn}
                 targetColumn={targetColumn}
             />
-            <InferredMatches
+            <RelativeKnowledgeView
+                relativeKnowledge={relativeKnowledge}
+            />
+            {/* <InferredMatches
                 inferredMatches={inferredMatches}
                 onAcceptInferred={acceptInferredMatch}
                 onRejectInferred={rejectInferredMatch}
-            />
+            /> */}
             </RowComp>
             
         </Stack>

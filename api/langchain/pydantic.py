@@ -102,6 +102,11 @@ class ExplanationObject(BaseModel):
     )
 
 
+class RelativeKnowledge(BaseModel):
+    entry: str = Field(description="The entry of the relative knowledge")
+    description: str = Field(description="The description of the relative knowledge")
+
+
 class CandidateExplanation(BaseModel):
     """Explanation for the candidate based on the diagnosis.
     Including the explanations on the connection between source column and target column, source values and target values.
@@ -145,5 +150,11 @@ class CandidateExplanation(BaseModel):
         ]
         
         If you don't have any matching values or you think the candidate might not match, it will be an empty list.
+        """
+    )
+    relative_knowledge: List[RelativeKnowledge] = Field(
+        description="""The relative knowledge you think is related to the candidate from RAG retrived by the agent.
+        Note that the knowledge should be important and relevant to the candidate.
+        e.g. for candidate "ajcc_pathlogic_n" to "stage", the relative knowledge might be: AJCC, UICC, etc.
         """
     )

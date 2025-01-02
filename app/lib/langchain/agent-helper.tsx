@@ -37,7 +37,7 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
     try {
         const resp = await axios.post("/api/agent/explain", candidate);
         console.log(resp.data);
-        const { is_match, explanations, matching_values } = resp.data;
+        const { is_match, explanations, matching_values, relative_knowledge } = resp.data;
         let explanationObjects: ExplanationObject[] = [];
         if (explanations && explanations.length > 0) {
             explanationObjects = explanations.map((e: object) => {
@@ -49,10 +49,22 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
                 }
             }).filter((e: ExplanationObject | null) => e !== null);
         }
+        let relativeKnowledgeObjects: RelativeKnowledge[] = [];
+        if (relative_knowledge && relative_knowledge.length > 0) {
+            relativeKnowledgeObjects = relative_knowledge.map((rk: object) => {
+                try {
+                    return rk as RelativeKnowledge;
+                } catch (error) {
+                    console.error("Error parsing relative knowledge to RelativeKnowledge:", error);
+                    return null;
+                }
+            }).filter((rk: RelativeKnowledge | null) => rk !== null);
+        }
         const candidateExplanation: CandidateExplanation = {
             isMatch: is_match,
             explanations: explanationObjects,
             matchingValues: matching_values,
+            relativeKnowledge: relativeKnowledgeObjects,
         };
 
         return candidateExplanation;
