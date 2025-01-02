@@ -62,7 +62,8 @@ const CombinedView = ({
     return (
         <Stack spacing={2}>
             <RowComp>
-            <SchemaExplanation
+            <Stack flex={8} marginRight={2}>
+                <SchemaExplanation
                 isMatch={isMatch}
                 currentExplanations={currentExplanations}
                 valueMatches={matchingValues}
@@ -71,17 +72,20 @@ const CombinedView = ({
                 sourceColumn={sourceColumn}
                 targetColumn={targetColumn}
                 isLoading={isLoading}
-            />
-            <RelativeKnowledgeView
+                />
+            </Stack>
+            <Stack flex={4}>
+                <RelativeKnowledgeView
                 relativeKnowledge={relativeKnowledge}
-            />
+                isLoading={isLoading}
+                />
+            </Stack>
             {/* <InferredMatches
                 inferredMatches={inferredMatches}
                 onAcceptInferred={acceptInferredMatch}
                 onRejectInferred={rejectInferredMatch}
             /> */}
             </RowComp>
-            
         </Stack>
     );
 }

@@ -14,6 +14,7 @@ type DashboardOperationProps = {
 
 type DashboardOperationState = {
     userOperations: UserOperation[];
+    isExplaining: boolean;
     acceptMatch: () => Promise<void>;
     rejectMatch: () => void;
     discardColumn: () => void;
@@ -35,6 +36,7 @@ export const {
         onExplanation,
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
+        const [isExplaining, setIsExplaining] = useState<boolean>(false);
 
         const acceptMatch = useCallback(async () => {
             if (!selectedCandidate) return;
@@ -154,6 +156,9 @@ export const {
         const explain = useCallback(async (candidate?: Candidate) => {
             const candidateToExplain = candidate || selectedCandidate;
             if (!candidateToExplain) return;
+            if (isExplaining) return;
+
+            setIsExplaining(true);
 
             if (onExplanation) {
                 const explanation = await candidateExplanationRequest(candidateToExplain);
@@ -161,7 +166,9 @@ export const {
                     onExplanation(explanation);
                 }
             }
-        }, [selectedCandidate, onExplanation]);
+
+            setIsExplaining(false);
+        }, [selectedCandidate, onExplanation, isExplaining, setIsExplaining]);
 
         return {
             userOperations,
@@ -170,6 +177,7 @@ export const {
             discardColumn,
             undo,
             explain,
+            isExplaining,
         };
     }
 };

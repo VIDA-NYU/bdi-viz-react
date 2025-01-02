@@ -45,27 +45,21 @@ const SchemaExplanation = ({
     };
 
     return (
-        <Card
-            sx={{
-                marginRight: 4,
-                flexBasis: "700px",
-                flexGrow: 1,
-            }}
-        >
+        <Card>
         <CardContent>
         <Stack spacing={3}>
+            <Box>
+                <Typography variant="h6" gutterBottom>
+                    Current Selection
+                </Typography>
+            </Box>
             {isLoading ? (
-                <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+                <Box  display="flex" justifyContent="center" alignItems="center" height="100%">
                     <CircularProgress />
                 </Box>
             ) : (
                 <>
                     {/* Match Selection Display */}
-                    <Box>
-                        <Typography variant="h6" gutterBottom>
-                            Current Selection
-                        </Typography>
-                    </Box>
                     {sourceColumn && targetColumn && (
                         <Box>
                             <Stack direction="row" spacing={1} alignItems="center">

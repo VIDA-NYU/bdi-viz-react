@@ -48,6 +48,7 @@ export default function Dashboard() {
         discardColumn,
         undo,
         explain,
+        isExplaining,
     } = useDashboardOperations({
         candidates,
         selectedCandidate,
@@ -71,7 +72,6 @@ export default function Dashboard() {
         currentExplanations,
         matchingValues,
         relativeKnowledge,
-        isLoading,
         generateExplanations,
         acceptMatch: acceptMatchWithExplanations,
         removeMatch
@@ -123,7 +123,7 @@ export default function Dashboard() {
                             currentExplanations={currentExplanations}
                             matchingValues={matchingValues}
                             relativeKnowledge={relativeKnowledge}
-                            isLoading={isLoading}
+                            isLoading={isExplaining}
                             matches={matches}
                             onAcceptMatch={acceptMatchWithExplanations}
                             sourceColumn={selectedCandidate?.sourceColumn}
