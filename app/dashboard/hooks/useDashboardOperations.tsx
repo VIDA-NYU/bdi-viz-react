@@ -18,7 +18,7 @@ type DashboardOperationState = {
     rejectMatch: () => void;
     discardColumn: () => void;
     undo: () => void;
-    explain: () => Promise<void>;
+    explain: (candidate?: Candidate) => void;
 }
 
 export type { DashboardOperationState };
@@ -151,19 +151,17 @@ export const {
             setUserOperations(prev => prev.slice(0, -1));
         }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
-        const explain = useCallback(async () => {
-            console.log('Explain');
-            if (!selectedCandidate) return;
+        const explain = useCallback(async (candidate?: Candidate) => {
+            const candidateToExplain = candidate || selectedCandidate;
+            if (!candidateToExplain) return;
 
             if (onExplanation) {
-                const explanation = await candidateExplanationRequest(selectedCandidate);
+                const explanation = await candidateExplanationRequest(candidateToExplain);
                 if (explanation) {
-                    console.log(explanation);
                     onExplanation(explanation);
                 }
             }
-
-        }, [selectedCandidate, candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
+        }, [selectedCandidate, onExplanation]);
 
         return {
             userOperations,

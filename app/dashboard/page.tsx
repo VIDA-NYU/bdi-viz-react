@@ -57,8 +57,7 @@ export default function Dashboard() {
             setDiagnosis(newDiagnosis);
             setOpenDiagnosisPopup(true);
         },
-        onExplanation: (explanation) => {
-            if (!selectedCandidate) return;
+        onExplanation: (explanation) => {            
             generateExplanations(explanation);
         }
     });
@@ -72,15 +71,26 @@ export default function Dashboard() {
         currentExplanations,
         matchingValues,
         relativeKnowledge,
+        isLoading,
         generateExplanations,
         acceptMatch: acceptMatchWithExplanations,
         removeMatch
-    } = useSchemaExplanations(selectedCandidate);
+    } = useSchemaExplanations({
+        selectedCandidate
+    });
 
 
     const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
+        if (!candidate) {
+            setSelectedCandidate(undefined);
+            generateExplanations(undefined);
+            return;
+        }
         toastify("default", <p><strong>Source: </strong>{candidate?.sourceColumn}, <strong>Target: </strong>{candidate?.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
+        if (candidate) {
+            explain(candidate);
+        }
     };
 
     
@@ -97,7 +107,7 @@ export default function Dashboard() {
                 discardColumn={discardColumn}
                 undo={undo}
                 redo={() => console.log('redo')}
-                explain={explain}
+                explain={() => explain()}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
@@ -113,6 +123,7 @@ export default function Dashboard() {
                             currentExplanations={currentExplanations}
                             matchingValues={matchingValues}
                             relativeKnowledge={relativeKnowledge}
+                            isLoading={isLoading}
                             matches={matches}
                             onAcceptMatch={acceptMatchWithExplanations}
                             sourceColumn={selectedCandidate?.sourceColumn}

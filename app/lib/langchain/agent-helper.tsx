@@ -6,7 +6,7 @@ import axios from "axios";
 const userOperationRequest = async (userOperation: UserOperation): Promise<AgentDiagnosis | undefined> => {
     try {
         const resp = await axios.post("/api/agent/diagnose", userOperation);
-        console.log(resp.data);
+        console.log("userOperationRequest: ", resp.data);
         const { diagnosis, response, status } = resp.data;
         let diagnosisObjects: DiagnoseObject[] = [];
         if (diagnosis && diagnosis.length > 0) {
@@ -36,7 +36,7 @@ const userOperationRequest = async (userOperation: UserOperation): Promise<Agent
 const candidateExplanationRequest = async (candidate: Candidate): Promise<CandidateExplanation | undefined> => {
     try {
         const resp = await axios.post("/api/agent/explain", candidate);
-        console.log(resp.data);
+        console.log("candidateExplanationRequest: ", resp.data);
         const { is_match, explanations, matching_values, relative_knowledge } = resp.data;
         let explanationObjects: ExplanationObject[] = [];
         if (explanations && explanations.length > 0) {

@@ -22,6 +22,7 @@ interface CombinedViewProps {
     matchingValues: string[][];
     relativeKnowledge: RelativeKnowledge[];
     matches: SchemaMatch[];
+    isLoading: boolean;
     onAcceptMatch: (explanations: Explanation[]) => void;
     sourceColumn?: string;
     targetColumn?: string;
@@ -35,6 +36,7 @@ const CombinedView = ({
     matchingValues,
     relativeKnowledge,
     matches,
+    isLoading,
     onAcceptMatch,
     sourceColumn,
     targetColumn,
@@ -68,6 +70,7 @@ const CombinedView = ({
                 onAcceptMatch={handleAcceptMatch}
                 sourceColumn={sourceColumn}
                 targetColumn={targetColumn}
+                isLoading={isLoading}
             />
             <RelativeKnowledgeView
                 relativeKnowledge={relativeKnowledge}

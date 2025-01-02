@@ -2,18 +2,30 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Explanation, SchemaMatch } from './types';
 
-const useSchemaExplanations = (
+interface useSchemaExplanationsProps {
     selectedCandidate: Candidate | undefined,
-) => {
+}
+
+const useSchemaExplanations = ({
+    selectedCandidate
+}: useSchemaExplanationsProps) => {
     const [matches, setMatches] = useState<SchemaMatch[]>([]);
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
     const [matchingValues, setMatchingValues] = useState<string[][]>([]);
     const [relativeKnowledge, setRelativeKnowledge] = useState<RelativeKnowledge[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     
     // Mock function to generate explanations - replace with actual API call later
     const generateExplanations = useCallback((candidateExplanation?: CandidateExplanation) => {
-        if (!candidateExplanation) return;
+        if (!candidateExplanation) {
+            setCurrentExplanations([]);
+            setIsMatch(false);
+            setMatchingValues([]);
+            setRelativeKnowledge([]);
+            return;
+        }
+        setIsLoading(true);
         const explanations: Explanation[] = candidateExplanation?.explanations.map((explanation, index) => {
             return {
                 id: index.toString(),
@@ -30,16 +42,8 @@ const useSchemaExplanations = (
             setRelativeKnowledge(candidateExplanation.relativeKnowledge);
         }
         setCurrentExplanations(explanations);
+        setIsLoading(false);
     }, []);
-
-
-    useEffect(() => {
-        if (selectedCandidate){
-            generateExplanations();
-        }
-    }, [
-        selectedCandidate
-    ]);
 
     const acceptMatch = useCallback((
         // sourceColumn: string,
@@ -74,6 +78,7 @@ const useSchemaExplanations = (
         currentExplanations,
         matchingValues,
         relativeKnowledge,
+        isLoading,
         generateExplanations,
         acceptMatch,
         removeMatch
