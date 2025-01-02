@@ -14,11 +14,12 @@ type DashboardOperationProps = {
 
 type DashboardOperationState = {
     userOperations: UserOperation[];
+    isExplaining: boolean;
     acceptMatch: () => Promise<void>;
     rejectMatch: () => void;
     discardColumn: () => void;
     undo: () => void;
-    explain: () => Promise<void>;
+    explain: (candidate?: Candidate) => void;
 }
 
 export type { DashboardOperationState };
@@ -35,6 +36,7 @@ export const {
         onExplanation,
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
+        const [isExplaining, setIsExplaining] = useState<boolean>(false);
 
         const acceptMatch = useCallback(async () => {
             if (!selectedCandidate) return;
@@ -151,19 +153,22 @@ export const {
             setUserOperations(prev => prev.slice(0, -1));
         }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
-        const explain = useCallback(async () => {
-            console.log('Explain');
-            if (!selectedCandidate) return;
+        const explain = useCallback(async (candidate?: Candidate) => {
+            const candidateToExplain = candidate || selectedCandidate;
+            if (!candidateToExplain) return;
+            if (isExplaining) return;
+
+            setIsExplaining(true);
 
             if (onExplanation) {
-                const explanation = await candidateExplanationRequest(selectedCandidate);
+                const explanation = await candidateExplanationRequest(candidateToExplain);
                 if (explanation) {
-                    console.log(explanation);
                     onExplanation(explanation);
                 }
             }
 
-        }, [selectedCandidate, candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
+            setIsExplaining(false);
+        }, [selectedCandidate, onExplanation, isExplaining, setIsExplaining]);
 
         return {
             userOperations,
@@ -172,6 +177,7 @@ export const {
             discardColumn,
             undo,
             explain,
+            isExplaining,
         };
     }
 };

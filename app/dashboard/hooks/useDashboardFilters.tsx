@@ -19,7 +19,7 @@ export const {
     useDashboardFilters: (initialSourceColumn: string = ''): DashboardFilterState => {
         const [sourceColumn, setSourceColumn] = useState<string>(initialSourceColumn);
         const [candidateType, setCandidateType] = useState<string>('all');
-        const [similarSources, setSimilarSources] = useState<number>(5);
+        const [similarSources, setSimilarSources] = useState<number>(2);
         const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
 
         const updateSourceColumn = useCallback((column: string) => {

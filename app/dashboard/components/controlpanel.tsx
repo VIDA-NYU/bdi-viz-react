@@ -57,7 +57,7 @@ interface ToolbarProps {
   discardColumn: () => void;
   undo: () => void;
   redo: () => void;
-  explain: () => void;
+  explain: (candidate?: Candidate) => void;
 }
 
 const drawerWidth = 240;

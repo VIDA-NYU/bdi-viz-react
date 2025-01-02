@@ -140,7 +140,7 @@ class CandidateExplanation(BaseModel):
         ]
         """
     )
-    matching_values: List[List[str]] = Field(
+    matching_values: List[List[Union[str, None]]] = Field(
         description="""The possible matching values according to your knowledge and the information from RAG on the source values and target values,
         the list looks like:
         [
