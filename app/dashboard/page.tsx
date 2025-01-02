@@ -71,6 +71,7 @@ export default function Dashboard() {
         isMatch,
         currentExplanations,
         matchingValues,
+        relativeKnowledge,
         generateExplanations,
         acceptMatch: acceptMatchWithExplanations,
         removeMatch
@@ -111,6 +112,7 @@ export default function Dashboard() {
                             isMatch={isMatch}
                             currentExplanations={currentExplanations}
                             matchingValues={matchingValues}
+                            relativeKnowledge={relativeKnowledge}
                             matches={matches}
                             onAcceptMatch={acceptMatchWithExplanations}
                             sourceColumn={selectedCandidate?.sourceColumn}

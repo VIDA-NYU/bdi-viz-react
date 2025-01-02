@@ -9,6 +9,7 @@ const useSchemaExplanations = (
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
     const [matchingValues, setMatchingValues] = useState<string[][]>([]);
+    const [relativeKnowledge, setRelativeKnowledge] = useState<RelativeKnowledge[]>([]);
     
     // Mock function to generate explanations - replace with actual API call later
     const generateExplanations = useCallback((candidateExplanation?: CandidateExplanation) => {
@@ -24,6 +25,9 @@ const useSchemaExplanations = (
         setIsMatch(candidateExplanation.isMatch);
         if (candidateExplanation.matchingValues) {
             setMatchingValues(candidateExplanation.matchingValues);
+        }
+        if (candidateExplanation.relativeKnowledge) {
+            setRelativeKnowledge(candidateExplanation.relativeKnowledge);
         }
         setCurrentExplanations(explanations);
     }, []);
@@ -69,6 +73,7 @@ const useSchemaExplanations = (
         isMatch,
         currentExplanations,
         matchingValues,
+        relativeKnowledge,
         generateExplanations,
         acceptMatch,
         removeMatch
