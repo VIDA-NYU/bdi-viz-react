@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 
-import { Container, Toolbar, Box } from "@mui/material";
+import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
@@ -15,6 +15,7 @@ import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
+import { useLoadingGlobal } from "./hooks/useLoadingGlobal";
 
 
 export default function Dashboard() {
@@ -22,6 +23,7 @@ export default function Dashboard() {
 
     const [openDiagnosisPopup, setOpenDiagnosisPopup] = useState(false);
     const [diagnosis, setDiagnosis] = useState<AgentDiagnosis>();
+    const {isLoadingGlobal, setIsLoadingGlobal} = useLoadingGlobal();
 
     const {
         candidates,
@@ -48,6 +50,7 @@ export default function Dashboard() {
         discardColumn,
         undo,
         explain,
+        suggest,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -60,6 +63,9 @@ export default function Dashboard() {
         },
         onExplanation: (explanation) => {            
             generateExplanations(explanation);
+        },
+        onSuggestions: (suggestions) => {
+            console.log("Suggestions: ", suggestions);
         }
     });
 
@@ -138,7 +144,19 @@ export default function Dashboard() {
                 </Container>
             </Box>
 
-            <AgentDiagnosisPopup open={openDiagnosisPopup} setOpen={setOpenDiagnosisPopup} data={diagnosis} />
+            <AgentDiagnosisPopup
+                open={openDiagnosisPopup}
+                setOpen={setOpenDiagnosisPopup}
+                data={diagnosis}
+                suggest={suggest}
+            />
+            
+            {isLoadingGlobal && (
+                <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <CircularProgress />
+                </Box>
+            )}
+
         </Box>
     )
 }

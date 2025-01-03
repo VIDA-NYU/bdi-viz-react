@@ -14,7 +14,7 @@ from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
 from ..tools.rag_researcher import retrieve_from_rag
-from .pydantic import AgentDiagnosis, CandidateExplanation
+from .pydantic import AgentDiagnosis, AgentSuggestions, CandidateExplanation
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -63,7 +63,7 @@ Target Value Sample: {candidate["targetValues"]}
         )
         return response
 
-    def make_suggestion(self, diagnosis: Dict[str, float]) -> None:
+    def make_suggestion(self, diagnosis: Dict[str, float]) -> AgentSuggestions:
         logger.info(f"[Agent] Making suggestion to the agent...")
         logger.info(f"{diagnosis}")
 
@@ -72,17 +72,12 @@ The user choose the most applicable diagnosis based on the previous user operati
 {diagnosis}
 
 Please suggest a corresponding suggestion for it based on the diagnosis and the suggestions and diagnoses in your memory.
-The suggested action to choose from:
-prune_candidates - suggest pruning some candidates base on your expertise from RAG.
-update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
-
-
 """
 
         response = self.invoke(
             prompt=prompt,
             tools=[],
-            output_structure=AgentDiagnosis,
+            output_structure=AgentSuggestions,
         )
 
         return response

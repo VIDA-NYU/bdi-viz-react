@@ -86,6 +86,24 @@ class AgentDiagnosis(BaseModel):
     )
 
 
+class AgentAction(BaseModel):
+    action: str = Field(
+        description="""
+                        The action for the agent, must be one of the following:
+                            prune_candidates - suggest pruning some candidates base on your expertise from RAG.
+                            update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
+                        """
+    )
+    reason: str = Field(description="The reason for the action")
+    confidence: float = Field(description="The confidence of the action")
+
+
+class AgentSuggestions(BaseModel):
+    actions: List[AgentAction] = Field(
+        description="""The agent actions suggected based on the diagnosis user selected."""
+    )
+
+
 class ExplanationObject(BaseModel):
     type: str = Field(
         description="""

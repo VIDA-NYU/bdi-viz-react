@@ -1,71 +1,90 @@
-import * as React from 'react';
+import * as React from "react";
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    List,
-    ListItem,
-    ListItemText,
-    ListItemButton
-} from '@mui/material';
-
+  Button,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+} from "@mui/material";
 
 interface AgentDiagnosisPopupProps {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-    data: AgentDiagnosis | undefined;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  data: AgentDiagnosis | undefined;
+  suggest: (diagnosis: DiagnoseObject[]) => void;
 }
 
-export default function AgentDiagnosisPopup(props: AgentDiagnosisPopupProps) {
-  
+export default function AgentDiagnosisPopup({
+  open,
+  setOpen,
+  data,
+  suggest,
+}: AgentDiagnosisPopupProps) {
+  const [selectedDiagnosis, setSelectedDiagnosis] = React.useState<DiagnoseObject[]>([]);
 
-  const handleClickOpen = () => {
-    props.setOpen(true);
+  const handleSelect = (d: DiagnoseObject) => {
+    setSelectedDiagnosis((prev) =>
+      prev.includes(d) ? prev.filter((item) => item !== d) : [...prev, d]
+    );
   };
 
   const handleClose = () => {
-    props.setOpen(false);
+    setOpen(false);
   };
 
-  const handleDiagnosisClick = (d: DiagnoseObject) => {
-    console.log(d);
-  }
+  const handleConfirm = () => {
+    console.log(selectedDiagnosis);
+    suggest(selectedDiagnosis);
+    setOpen(false);
+  };
 
   return (
     <React.Fragment>
       <Dialog
-        open={props.open}
+        open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        
       >
         <DialogTitle id="alert-dialog-title">
           {"What's the reason behind this operation?"}
         </DialogTitle>
-        
-        {props.data && (
-            <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    {props.data.response}
-                </DialogContentText>
-                <List>
-                    {props.data.diagnosis.map((d, i) => (
-                        <ListItem key={i}>
-                            <ListItemButton onClick={() => handleDiagnosisClick(d)}>
-                                <ListItemText primary={d.reason} secondary={d.confidence} />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-            </DialogContent>
+
+        {data && (
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              {data.response}
+            </DialogContentText>
+            <List>
+              {data.diagnosis.map((d, i) => (
+                <ListItem key={i} disablePadding>
+                  <ListItemButton onClick={() => handleSelect(d)}>
+                    <Checkbox
+                      edge="start"
+                      checked={selectedDiagnosis.includes(d)}
+                      tabIndex={-1}
+                      disableRipple
+                      onChange={() => handleSelect(d)}
+                    />
+                    <ListItemText primary={d.reason} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </DialogContent>
         )}
         <DialogActions>
           <Button onClick={handleClose} autoFocus>
             Dismiss
+          </Button>
+          <Button onClick={() => handleConfirm()} autoFocus>
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>

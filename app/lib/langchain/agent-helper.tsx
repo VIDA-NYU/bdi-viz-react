@@ -73,5 +73,34 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
     }
 };
 
+const agentSuggestionsRequest = async (diagnosis: DiagnoseObject[]): Promise<AgentSuggestions | undefined> => {
+    try {
+        const resp = await axios.post("/api/agent/suggest", diagnosis);
+        console.log("agentSuggestionsRequest: ", resp.data);
 
-export { userOperationRequest, candidateExplanationRequest };
+        const { actions } = resp.data;
+        let agentActions: AgentAction[] = [];
+        if (actions && actions.length > 0) {
+            agentActions = actions.map((a: object) => {
+                try {
+                    return a as AgentAction;
+                } catch (error) {
+                    console.error("Error parsing action to AgentAction:", error);
+                    return null;
+                }
+            }).filter((a: AgentAction | null) => a !== null);
+        }
+
+        const agentSuggestions: AgentSuggestions = {
+            actions: agentActions,
+        };
+
+        return agentSuggestions;
+
+    } catch (error) {
+        console.error("Error sending agent suggestions request:", error);
+    }
+}
+
+
+export { userOperationRequest, candidateExplanationRequest, agentSuggestionsRequest };
