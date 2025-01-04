@@ -167,3 +167,17 @@ def agent_suggest():
     response = response.model_dump()
 
     return response
+
+
+@app.route("/api/agent/apply", methods=["POST"])
+def agent_apply():
+    actions = request.json
+    app.logger.info(actions)
+
+    responses = []
+    for response in AGENT.apply(actions):
+        if response:
+            response = response.model_dump()
+            responses.append(response)
+
+    return responses

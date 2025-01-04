@@ -176,3 +176,30 @@ class CandidateExplanation(BaseModel):
         e.g. for candidate "ajcc_pathlogic_n" to "stage", the relative knowledge might be: AJCC, UICC, etc.
         """
     )
+
+
+class ActionResponse(BaseModel):
+    status: str = Field(description="The status of the action: success or failure")
+    response: str = Field(description="The response from the agent")
+    action: str = Field(
+        description="""The action on candidates, must be one of:
+        prune - prune the target candidates list from the existing candidates.
+        replace - replace the target candidates list with the new candidates.
+        """
+    )
+    target_candidates: Optional[Dict[str, List[Tuple[str, float]]]] = Field(
+        default=None,
+        description="""The updated candidates for source column(s), the layered dictionary looks like:
+        {
+            "source_column_1": [
+                ("target_column_1", 0.9),
+                ("target_column_15", 0.7),
+                ...
+            ],
+            "source_column_2": [
+                ("target_column_6", 0.5),
+                ...
+            ]
+            ...
+        }""",
+    )

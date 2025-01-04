@@ -54,3 +54,10 @@ declare interface AgentAction {
 declare interface AgentSuggestions {
     actions: AgentAction[];
 }
+
+declare interface ActionResponse {
+    status: string;
+    response: string;
+    action: string;
+    targetCandidates: Candidate[];
+}

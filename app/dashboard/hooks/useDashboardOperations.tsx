@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import type { Candidate, UserOperation } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { userOperationRequest, candidateExplanationRequest, agentSuggestionsRequest } from "@/app/lib/langchain/agent-helper";
+import { userOperationRequest, candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
 import { useLoadingGlobal } from '@/app/dashboard/hooks/useLoadingGlobal';
 
 type DashboardOperationProps = {
@@ -12,6 +12,7 @@ type DashboardOperationProps = {
     onDiagnosis?: (diagnosis: AgentDiagnosis | undefined) => void;
     onExplanation?: (explanation: CandidateExplanation | undefined) => void;
     onSuggestions?: (suggestions: AgentSuggestions | undefined) => void;
+    onApply?: (actionResponses: ActionResponse[] | undefined) => void;
 }
 
 type DashboardOperationState = {
@@ -23,6 +24,7 @@ type DashboardOperationState = {
     undo: () => void;
     explain: (candidate?: Candidate) => void;
     suggest: (diagnosis: DiagnoseObject[]) => void;
+    apply: (actions: AgentAction[]) => void;
 }
 
 export type { DashboardOperationState };
@@ -38,6 +40,7 @@ export const {
         onDiagnosis,
         onExplanation,
         onSuggestions,
+        onApply,
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
@@ -197,6 +200,21 @@ export const {
             setIsLoadingGlobal(false);
         }, []);
 
+        const apply = useCallback(async (actions: AgentAction[]) => {
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
+
+            if (onApply) {
+                const actionResponses = await agentActionRequest(actions);
+                if (actionResponses) {
+                    onApply(actionResponses);
+                }
+            }
+
+            setIsLoadingGlobal(false);
+        }, []);
+
         return {
             userOperations,
             acceptMatch,
@@ -205,6 +223,7 @@ export const {
             undo,
             explain,
             suggest,
+            apply,
             isExplaining,
         };
     }
