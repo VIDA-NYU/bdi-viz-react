@@ -156,3 +156,28 @@ def agent_explanation():
     app.logger.info(f"Response: {response}")
     write_candidate_explanation_json(source_col, target_col, response)
     return response
+
+
+@app.route("/api/agent/suggest", methods=["POST"])
+def agent_suggest():
+    data = request.json
+    app.logger.info(data)
+    diagnosis_dict = {d["reason"]: d["confidence"] for d in data}
+    response = AGENT.make_suggestion(diagnosis_dict)
+    response = response.model_dump()
+
+    return response
+
+
+@app.route("/api/agent/apply", methods=["POST"])
+def agent_apply():
+    actions = request.json
+    app.logger.info(actions)
+
+    responses = []
+    for response in AGENT.apply(actions):
+        if response:
+            response = response.model_dump()
+            responses.append(response)
+
+    return responses

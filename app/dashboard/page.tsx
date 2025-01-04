@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 
-import { Container, Toolbar, Box } from "@mui/material";
+import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
@@ -10,11 +10,14 @@ import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
 import ChatBox from "./components/langchain/chatbox";
 import AgentDiagnosisPopup from "./components/langchain/diagnosis";
+import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import {useSchemaExplanations} from "./components/explanation/useSchemaExplanations";
 import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
+import { useLoadingGlobal } from "./hooks/useLoadingGlobal";
+import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
 
 export default function Dashboard() {
@@ -22,6 +25,10 @@ export default function Dashboard() {
 
     const [openDiagnosisPopup, setOpenDiagnosisPopup] = useState(false);
     const [diagnosis, setDiagnosis] = useState<AgentDiagnosis>();
+
+    const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
+    const [suggestions, setSuggestions] = useState<AgentSuggestions>();
+    const {isLoadingGlobal, setIsLoadingGlobal} = useLoadingGlobal();
 
     const {
         candidates,
@@ -48,6 +55,8 @@ export default function Dashboard() {
         discardColumn,
         undo,
         explain,
+        suggest,
+        apply,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -60,6 +69,29 @@ export default function Dashboard() {
         },
         onExplanation: (explanation) => {            
             generateExplanations(explanation);
+        },
+        onSuggestions: (suggestions) => {
+            console.log("Suggestions: ", suggestions);
+            setSuggestions(suggestions);
+            setOpenSuggestionsPopup(true);
+        },
+        onApply: (actionResponses) => {
+            console.log("Action Responses: ", actionResponses);
+            if (actionResponses && actionResponses.length > 0) {
+                actionResponses.map((ar) => {
+                    switch (ar.action) {
+                        case "prune":
+                        case "replace":
+                            getCachedResults({
+                                callback: handleFileUpload,
+                            })
+                            break;
+                        default:
+                            console.log("Action not supported: ", ar.action);
+                            break;
+                    }
+                });
+            }
         }
     });
 
@@ -138,7 +170,26 @@ export default function Dashboard() {
                 </Container>
             </Box>
 
-            <AgentDiagnosisPopup open={openDiagnosisPopup} setOpen={setOpenDiagnosisPopup} data={diagnosis} />
+            <AgentDiagnosisPopup
+                open={openDiagnosisPopup}
+                setOpen={setOpenDiagnosisPopup}
+                data={diagnosis}
+                suggest={suggest}
+            />
+
+            <AgentSuggestionsPopup
+                open={openSuggestionsPopup}
+                setOpen={setOpenSuggestionsPopup}
+                data={suggestions}
+                apply={apply}
+            />
+            
+            {isLoadingGlobal && (
+                <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <CircularProgress />
+                </Box>
+            )}
+
         </Box>
     )
 }

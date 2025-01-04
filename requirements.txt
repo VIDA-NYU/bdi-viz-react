@@ -7,7 +7,7 @@ torch
 mmh3
 pandas
 numpy
-langchain-anthropic
+langchain-anthropic==0.3.1
 langchain-community
 langchain_huggingface
 langgraph

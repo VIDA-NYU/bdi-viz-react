@@ -29,6 +29,7 @@ const getCachedResults = (prop: getCachedResultsProps) => {
                     }
                 }).filter((sourceCluster: SourceCluster | null) => sourceCluster !== null);
 
+                console.log("getCachedResults: ", candidates, sourceClusters);
                 prop.callback(candidates, sourceClusters);
             }
         });

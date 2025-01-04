@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
 import type { Candidate, UserOperation } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { userOperationRequest, candidateExplanationRequest } from "@/app/lib/langchain/agent-helper";
+import { userOperationRequest, candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
+import { useLoadingGlobal } from '@/app/dashboard/hooks/useLoadingGlobal';
 
 type DashboardOperationProps = {
     candidates: Candidate[];
@@ -10,6 +11,8 @@ type DashboardOperationProps = {
     onCandidateSelect: (candidate: Candidate | undefined) => void;
     onDiagnosis?: (diagnosis: AgentDiagnosis | undefined) => void;
     onExplanation?: (explanation: CandidateExplanation | undefined) => void;
+    onSuggestions?: (suggestions: AgentSuggestions | undefined) => void;
+    onApply?: (actionResponses: ActionResponse[] | undefined) => void;
 }
 
 type DashboardOperationState = {
@@ -20,6 +23,8 @@ type DashboardOperationState = {
     discardColumn: () => void;
     undo: () => void;
     explain: (candidate?: Candidate) => void;
+    suggest: (diagnosis: DiagnoseObject[]) => void;
+    apply: (actions: AgentAction[]) => void;
 }
 
 export type { DashboardOperationState };
@@ -34,12 +39,18 @@ export const {
         onCandidateSelect,
         onDiagnosis,
         onExplanation,
+        onSuggestions,
+        onApply,
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
+        const { setIsLoadingGlobal, isLoadingGlobal } = useLoadingGlobal();
 
         const acceptMatch = useCallback(async () => {
             if (!selectedCandidate) return;
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
 
             const references: Candidate[] = [];
             const newCandidates = candidates.filter((candidate) => {
@@ -72,6 +83,9 @@ export const {
                     onDiagnosis(diagnosis);
                 }
             }
+
+            setIsLoadingGlobal(false);
+            
         }, [candidates, selectedCandidate, onCandidateUpdate, onCandidateSelect, onDiagnosis]);
 
         const rejectMatch = useCallback(() => {
@@ -170,6 +184,37 @@ export const {
             setIsExplaining(false);
         }, [selectedCandidate, onExplanation, isExplaining, setIsExplaining]);
 
+        const suggest = useCallback(async (diagnosis: DiagnoseObject[]) => {
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
+
+            if (onSuggestions) {
+                const suggestions = await agentSuggestionsRequest(diagnosis);
+                if (suggestions) {
+                    onSuggestions(suggestions);
+                }
+            }
+            
+
+            setIsLoadingGlobal(false);
+        }, []);
+
+        const apply = useCallback(async (actions: AgentAction[]) => {
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
+
+            if (onApply) {
+                const actionResponses = await agentActionRequest(actions);
+                if (actionResponses) {
+                    onApply(actionResponses);
+                }
+            }
+
+            setIsLoadingGlobal(false);
+        }, []);
+
         return {
             userOperations,
             acceptMatch,
@@ -177,6 +222,8 @@ export const {
             discardColumn,
             undo,
             explain,
+            suggest,
+            apply,
             isExplaining,
         };
     }

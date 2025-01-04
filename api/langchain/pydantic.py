@@ -86,6 +86,24 @@ class AgentDiagnosis(BaseModel):
     )
 
 
+class AgentAction(BaseModel):
+    action: str = Field(
+        description="""
+                        The action for the agent, must be one of the following:
+                            prune_candidates - suggest pruning some candidates base on your expertise from RAG.
+                            update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
+                        """
+    )
+    reason: str = Field(description="The reason for the action")
+    confidence: float = Field(description="The confidence of the action")
+
+
+class AgentSuggestions(BaseModel):
+    actions: List[AgentAction] = Field(
+        description="""The agent actions suggected based on the diagnosis user selected."""
+    )
+
+
 class ExplanationObject(BaseModel):
     type: str = Field(
         description="""
@@ -157,4 +175,31 @@ class CandidateExplanation(BaseModel):
         Note that the knowledge should be important and relevant to the candidate.
         e.g. for candidate "ajcc_pathlogic_n" to "stage", the relative knowledge might be: AJCC, UICC, etc.
         """
+    )
+
+
+class ActionResponse(BaseModel):
+    status: str = Field(description="The status of the action: success or failure")
+    response: str = Field(description="The response from the agent")
+    action: str = Field(
+        description="""The action on candidates, must be one of:
+        prune - prune the target candidates list from the existing candidates.
+        replace - replace the target candidates list with the new candidates.
+        """
+    )
+    target_candidates: Optional[Dict[str, List[Tuple[str, float]]]] = Field(
+        default=None,
+        description="""The updated candidates for source column(s), the layered dictionary looks like:
+        {
+            "source_column_1": [
+                ("target_column_1", 0.9),
+                ("target_column_15", 0.7),
+                ...
+            ],
+            "source_column_2": [
+                ("target_column_6", 0.5),
+                ...
+            ]
+            ...
+        }""",
     )

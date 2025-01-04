@@ -44,3 +44,20 @@ declare interface CandidateExplanation {
     matchingValues?: string[][]; // [source value, target value]
     relativeKnowledge?: RelativeKnowledge[];
 }
+
+declare interface AgentAction {
+    action: string;
+    reason: string;
+    confidence: number;
+}
+
+declare interface AgentSuggestions {
+    actions: AgentAction[];
+}
+
+declare interface ActionResponse {
+    status: string;
+    response: string;
+    action: string;
+    targetCandidates: Candidate[];
+}

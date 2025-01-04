@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Generator, List, Optional
 
 from dotenv import load_dotenv
 
@@ -13,15 +13,23 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
+from ..tools.candidate_butler import candidate_butler_tools
 from ..tools.rag_researcher import retrieve_from_rag
-from .pydantic import AgentDiagnosis, CandidateExplanation
+from .pydantic import (
+    ActionResponse,
+    AgentAction,
+    AgentDiagnosis,
+    AgentSuggestions,
+    CandidateExplanation,
+)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
 
 class Agent:
     def __init__(self) -> None:
-        self.llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+        # OR claude-3-5-sonnet-20240620
+        self.llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
         self.memory = MemorySaver()
 
     def diagnose(self, diagnose: Dict[str, Any]) -> AgentDiagnosis:
@@ -63,29 +71,59 @@ Target Value Sample: {candidate["targetValues"]}
         )
         return response
 
-    def make_suggestion(self, diagnosis: Dict[str, float]) -> None:
+    def make_suggestion(self, diagnosis: Dict[str, float]) -> AgentSuggestions:
         logger.info(f"[Agent] Making suggestion to the agent...")
         logger.info(f"{diagnosis}")
 
+        diagnosis_str = "\n".join(f"{key}: {value}" for key, value in diagnosis.items())
+
         prompt = f"""
-The user choose the most applicable diagnosis based on the previous user operation:
-{diagnosis}
+The user chose the most applicable diagnosis based on the previous user operation:
+{diagnosis_str}
 
 Please suggest a corresponding suggestion for it based on the diagnosis and the suggestions and diagnoses in your memory.
-The suggested action to choose from:
-prune_candidates - suggest pruning some candidates base on your expertise from RAG.
-update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
-
-
 """
 
         response = self.invoke(
             prompt=prompt,
             tools=[],
-            output_structure=AgentDiagnosis,
+            output_structure=AgentSuggestions,
         )
 
         return response
+
+    def apply(
+        self, actions: List[Dict[str, Any]]
+    ) -> Generator[ActionResponse, None, None]:
+        for action in actions:
+            logger.info(f"[Agent] Applying the action: {action}")
+            logger.info(f"{action}")
+
+            action_type = action["action"]
+            action_confidence = action["confidence"]
+            action_reason = action["reason"]
+            if action["action"] == "prune_candidates":
+                tools = [retrieve_from_rag] + candidate_butler_tools
+                prompt = f"""
+The user requested to prune some candidates APART FROM THE USER OPERATED SOURCE COLUMN based on your expertise from RAG.
+Here's the action details:
+Action: {action_type}
+Confidence: {action_confidence}
+Reason: {action_reason}
+Please suggest the candidates to prune based on your memory, feel free to call the tools to check the source columns and their candidates if you need.
+Everytime you call read_source_column_candidate_details for a source column, if you think the candidates are not good, you can call update_candidates to update the candidates.
+Don't forget to pass the updated candidates to the update_candidates tool.
+Update as many source columns as you need.
+                """
+                response = self.invoke(
+                    prompt=prompt,
+                    tools=tools,
+                    output_structure=ActionResponse,
+                )
+                yield response
+            else:
+                logger.info(f"[Agent] Applying the action: {action}")
+                yield
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel
