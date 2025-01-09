@@ -15,12 +15,6 @@ declare interface DiagnoseObject {
     confidence: number;
 }
 
-declare interface AgentDiagnosis {
-    diagnosis: DiagnoseObject[];
-    response: string;
-    status: string;
-}
-
 declare interface UserOperation {
     operation: string; // accept, reject, discard
     candidate: Candidate; // the candidate to operate on
@@ -53,6 +47,11 @@ declare interface AgentAction {
 
 declare interface AgentSuggestions {
     actions: AgentAction[];
+}
+
+declare interface UserReaction {
+    actions: AgentAction[];
+    previousOperation: UserOperation;
 }
 
 declare interface ActionResponse {

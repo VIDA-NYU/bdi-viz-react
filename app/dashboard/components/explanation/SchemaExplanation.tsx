@@ -16,9 +16,10 @@ import { Explanation, SchemaMatch } from './types';
 interface SchemaExplanationProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
+    selectedExplanations: Explanation[];
+    setSelectExplanations: (explanations: Explanation[]) => void;
     valueMatches: string[][];
     matches: SchemaMatch[];
-    onAcceptMatch: (explanations: Explanation[]) => void;
     sourceColumn?: string;
     targetColumn?: string;
     isLoading: boolean;
@@ -27,21 +28,21 @@ interface SchemaExplanationProps {
 const SchemaExplanation = ({
     isMatch,
     currentExplanations,
+    selectedExplanations,
+    setSelectExplanations,
     valueMatches,
     matches,
-    onAcceptMatch,
     sourceColumn,
     targetColumn,
     isLoading
 }: SchemaExplanationProps) => {
-    const [selectedExplanations, setSelectedExplanations] = useState<Explanation[]>([]);
 
     const handleSelect = (explanation: Explanation) => {
-        setSelectedExplanations(prev => 
-            prev.find(e => e.id === explanation.id)
-                ? prev.filter(e => e.id !== explanation.id)
-                : [...prev, explanation]
-        );
+        if (selectedExplanations.some(e => e.id === explanation.id)) {
+            setSelectExplanations(selectedExplanations.filter(e => e.id !== explanation.id));
+        } else {
+            setSelectExplanations([...selectedExplanations, explanation]);
+        }
     };
 
     return (
@@ -97,14 +98,14 @@ const SchemaExplanation = ({
                                         />
                                     ))}
                                 </List>
-                                <Button
+                                {/* <Button
                                     variant="contained"
                                     fullWidth
                                     disabled={selectedExplanations.length === 0}
-                                    onClick={() => onAcceptMatch(selectedExplanations)}
+                                    onClick={() => onSelectExplanations(selectedExplanations)}
                                 >
                                     Accept Match with Selected Explanations
-                                </Button>
+                                </Button> */}
                             </Box>
                         </>
                     )}

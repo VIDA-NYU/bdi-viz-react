@@ -57,3 +57,8 @@ docs/_build/
 
 .cache/
 **/.cache/
+
+
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+Untitled.ipynb

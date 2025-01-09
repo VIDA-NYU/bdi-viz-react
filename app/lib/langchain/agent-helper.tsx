@@ -3,36 +3,6 @@
 import axios from "axios";
 
 
-const userOperationRequest = async (userOperation: UserOperation): Promise<AgentDiagnosis | undefined> => {
-    try {
-        const resp = await axios.post("/api/agent/diagnose", userOperation);
-        console.log("userOperationRequest: ", resp.data);
-        const { diagnosis, response, status } = resp.data;
-        let diagnosisObjects: DiagnoseObject[] = [];
-        if (diagnosis && diagnosis.length > 0) {
-            diagnosisObjects = diagnosis.map((d: object) => {
-                try {
-                    return d as DiagnoseObject;
-                } catch (error) {
-                    console.error("Error parsing diagnosis to Diagnosis:", error);
-                    return null;
-                }
-            }).filter((d: DiagnoseObject | null) => d !== null);
-        }
-
-        const agentDiagnosis: AgentDiagnosis = {
-            diagnosis: diagnosisObjects,
-            response,
-            status,
-        };
-
-        return agentDiagnosis;
-
-    } catch (error) {
-        console.error("Error sending user operation:", error);
-    }
-};
-
 const candidateExplanationRequest = async (candidate: Candidate): Promise<CandidateExplanation | undefined> => {
     try {
         const resp = await axios.post("/api/agent/explain", candidate);
@@ -73,9 +43,12 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
     }
 };
 
-const agentSuggestionsRequest = async (diagnosis: DiagnoseObject[]): Promise<AgentSuggestions | undefined> => {
+const agentSuggestionsRequest = async (userOperation: UserOperation, explanations: ExplanationObject[]): Promise<AgentSuggestions | undefined> => {
     try {
-        const resp = await axios.post("/api/agent/suggest", diagnosis);
+        const resp = await axios.post("/api/agent/suggest", {
+            userOperation,
+            explanations,
+        });
         console.log("agentSuggestionsRequest: ", resp.data);
 
         const { actions } = resp.data;
@@ -102,9 +75,9 @@ const agentSuggestionsRequest = async (diagnosis: DiagnoseObject[]): Promise<Age
     }
 }
 
-const agentActionRequest = async (actions: AgentAction[]): Promise<ActionResponse[] | undefined> => {
+const agentActionRequest = async (reaction: UserReaction): Promise<ActionResponse[] | undefined> => {
     try {
-        const resp = await axios.post("/api/agent/apply", actions);
+        const resp = await axios.post("/api/agent/apply", reaction);
         console.log("agentActionRequest: ", resp.data);
         
         let actionResponses = [];
@@ -137,4 +110,4 @@ const agentActionRequest = async (actions: AgentAction[]): Promise<ActionRespons
 }
 
 
-export { userOperationRequest, candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest };
+export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest };

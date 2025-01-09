@@ -26,12 +26,6 @@ type UserOperation = {
     references: Candidate[];
 }
 
-type AgentDiagnosis = {
-    id: string;
-    message: string;
-    suggestions?: string[];
-}
-
 type DashboardFilters = {
     selectedCandidate: Candidate | undefined;
     sourceColumn: string;
@@ -75,7 +69,6 @@ export type {
     Candidate,
     SourceCluster,
     UserOperation,
-    AgentDiagnosis,
     DashboardFilters,
     ControlPanelProps,
     HeatMapProps,

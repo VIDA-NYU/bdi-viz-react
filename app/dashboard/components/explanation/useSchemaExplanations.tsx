@@ -11,6 +11,7 @@ const useSchemaExplanations = ({
 }: useSchemaExplanationsProps) => {
     const [matches, setMatches] = useState<SchemaMatch[]>([]);
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
+    const [selectedExplanations, setSelectedExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
     const [matchingValues, setMatchingValues] = useState<string[][]>([]);
     const [relativeKnowledge, setRelativeKnowledge] = useState<RelativeKnowledge[]>([]);
@@ -19,6 +20,7 @@ const useSchemaExplanations = ({
     const generateExplanations = useCallback((candidateExplanation?: CandidateExplanation) => {
         if (!candidateExplanation) {
             setCurrentExplanations([]);
+            setSelectedExplanations([]);
             setIsMatch(false);
             setMatchingValues([]);
             setRelativeKnowledge([]);
@@ -73,9 +75,11 @@ const useSchemaExplanations = ({
         matches,
         isMatch,
         currentExplanations,
+        selectedExplanations,
         matchingValues,
         relativeKnowledge,
         generateExplanations,
+        setSelectedExplanations,
         acceptMatch,
         removeMatch
     };

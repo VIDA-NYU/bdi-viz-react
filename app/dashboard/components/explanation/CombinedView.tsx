@@ -19,11 +19,12 @@ const RowComp = styled("div")({
 interface CombinedViewProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
+    selectedExplanations: Explanation[];
+    setSelectExplanations: (explanations: Explanation[]) => void;
     matchingValues: string[][];
     relativeKnowledge: RelativeKnowledge[];
     matches: SchemaMatch[];
     isLoading: boolean;
-    onAcceptMatch: (explanations: Explanation[]) => void;
     sourceColumn?: string;
     targetColumn?: string;
     allSourceColumns: string[];
@@ -33,11 +34,12 @@ interface CombinedViewProps {
 const CombinedView = ({
     isMatch,
     currentExplanations,
+    selectedExplanations,
+    setSelectExplanations,
     matchingValues,
     relativeKnowledge,
     matches,
     isLoading,
-    onAcceptMatch,
     sourceColumn,
     targetColumn,
     allSourceColumns,
@@ -55,7 +57,7 @@ const CombinedView = ({
     });
 
     const handleAcceptMatch = (explanations: Explanation[]) => {
-        onAcceptMatch(explanations);
+        setSelectExplanations(explanations);
         handleExplanationsChange(explanations);
     };
 
@@ -66,9 +68,10 @@ const CombinedView = ({
                 <SchemaExplanation
                 isMatch={isMatch}
                 currentExplanations={currentExplanations}
+                selectedExplanations={selectedExplanations}
+                setSelectExplanations={setSelectExplanations}
                 valueMatches={matchingValues}
                 matches={matches}
-                onAcceptMatch={handleAcceptMatch}
                 sourceColumn={sourceColumn}
                 targetColumn={targetColumn}
                 isLoading={isLoading}

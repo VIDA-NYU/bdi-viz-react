@@ -2,7 +2,7 @@ import hashlib
 import json
 import logging
 import os
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -181,6 +181,12 @@ class MatchingTask:
 
         self.cached_candidates["candidates"] = cached_candidates_dict
 
+    def discard_cached_column(self, source_col: str) -> None:
+        cached_candidates_dict = self.get_cached_candidates()
+        if source_col in cached_candidates_dict:
+            del cached_candidates_dict[source_col]
+        self.cached_candidates["candidates"] = cached_candidates_dict
+
     def to_frontend_json(self) -> list:
         ret_json = {
             "candidates": [],
@@ -221,6 +227,33 @@ class MatchingTask:
         if os.path.exists(output_path):
             with open(output_path, "r") as f:
                 return json.load(f)
+
+    def apply_operation(
+        self,
+        operation: str,
+        candidate: Dict[str, Any],
+        references: List[Dict[str, Any]],
+    ) -> Dict[str, Any]:
+        logger.info(f"Applying operation: {operation}, on candidate: {candidate}...")
+
+        if operation == "accept":
+            candidates_to_accept = {
+                candidate["sourceColumn"]: [
+                    [candidate["targetColumn"], candidate["score"]]
+                ]
+            }
+            self.update_cached_candidates(candidates_to_accept)
+
+        elif operation == "reject":
+            candidates_to_reject = {
+                candidate["sourceColumn"]: [
+                    [ref["targetColumn"], ref["score"]] for ref in references
+                ]
+            }
+            self.update_cached_candidates(candidates_to_reject)
+
+        elif operation == "discard":
+            self.discard_cached_column(candidate["sourceColumn"])
 
     # Setter & Getter
     def get_source_df(self) -> pd.DataFrame:
