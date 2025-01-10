@@ -30,7 +30,7 @@ class Agent:
         # self.llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
         # self.llm = ChatOllama(base_url='https://ollama-asr498.users.hsrn.nyu.edu', model='llama3.1:8b-instruct-fp16', temperature=0.2)
         # self.llm = ChatTogether(model="meta-llama/Llama-3.3-70B-Instruct-Turbo")
-        self.llm = ChatOpenAI(model="gpt-4o")
+        self.llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.2)
 
         self.memory = MemorySaver()
 
@@ -43,7 +43,14 @@ Source: {candidate["sourceColumn"]}
 Target: {candidate["targetColumn"]}
 Source Value Sample: {candidate["sourceValues"]}
 Target Value Sample: {candidate["targetValues"]}
-Please use RAG tool to help you retrieve the relative knowledge.
+
+**Instructions**:
+Note: You may consult domain knowledge (using **retrieve_from_rag**) if clarifications are needed.
+
+1. Determine whether the source and target columns are a valid match.
+2. Provide around four (4) possible explanations for why these columns might be mapped together.
+3. Suggest potential matching value pairs based on the given samples.
+4. Generate any relevant context or key terms (“relative knowledge”) about the source and target columns.
 """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(

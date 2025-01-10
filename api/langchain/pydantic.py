@@ -81,7 +81,7 @@ class CandidateExplanation(BaseModel):
     explanations: List[ExplanationObject] = Field(
         description="List of explanations for the candidate."
     )
-    matching_values: List[List[Union[str, None]]] = Field(
+    matching_values: List[List[Union[str, float, int, bool, None]]] = Field(
         description="""Possible matching values between source and target values.
         Example:
         [
