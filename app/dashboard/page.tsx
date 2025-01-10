@@ -1,17 +1,14 @@
 'use client';
 import { useEffect, useState } from "react";
-
 import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
-
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
 import ChatBox from "./components/langchain/chatbox";
-import AgentDiagnosisPopup from "./components/langchain/diagnosis";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
-import {useSchemaExplanations} from "./components/explanation/useSchemaExplanations";
+import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
 import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
@@ -19,16 +16,10 @@ import { useDashboardOperations } from "./hooks/useDashboardOperations";
 import { useLoadingGlobal } from "./hooks/useLoadingGlobal";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
-
 export default function Dashboard() {
-
-
-    const [openDiagnosisPopup, setOpenDiagnosisPopup] = useState(false);
-    const [diagnosis, setDiagnosis] = useState<AgentDiagnosis>();
-
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
     const [suggestions, setSuggestions] = useState<AgentSuggestions>();
-    const {isLoadingGlobal, setIsLoadingGlobal} = useLoadingGlobal();
+    const { isLoadingGlobal } = useLoadingGlobal();
 
     const {
         candidates,
@@ -38,6 +29,7 @@ export default function Dashboard() {
         handleChatUpdate,
         setSelectedCandidate
     } = useDashboardCandidates();
+
     const {
         sourceColumn,
         candidateType,
@@ -50,26 +42,34 @@ export default function Dashboard() {
     } = useDashboardFilters();
 
     const {
+        matches,
+        isMatch,
+        currentExplanations,
+        selectedExplanations,
+        matchingValues,
+        relativeKnowledge,
+        generateExplanations,
+        setSelectedExplanations,
+        acceptMatch: acceptMatchWithExplanations,
+        removeMatch
+    } = useSchemaExplanations({ selectedCandidate });
+
+    const {
+        userOperations,
         acceptMatch,
         rejectMatch,
         discardColumn,
         undo,
         explain,
-        suggest,
         apply,
         isExplaining,
     } = useDashboardOperations({
         candidates,
         selectedCandidate,
+        selectedExplanations,
         onCandidateUpdate: handleFileUpload,
         onCandidateSelect: setSelectedCandidate,
-        onDiagnosis: (newDiagnosis) => {
-            setDiagnosis(newDiagnosis);
-            setOpenDiagnosisPopup(true);
-        },
-        onExplanation: (explanation) => {            
-            generateExplanations(explanation);
-        },
+        onExplanation: generateExplanations,
         onSuggestions: (suggestions) => {
             console.log("Suggestions: ", suggestions);
             setSuggestions(suggestions);
@@ -78,39 +78,16 @@ export default function Dashboard() {
         onApply: (actionResponses) => {
             console.log("Action Responses: ", actionResponses);
             if (actionResponses && actionResponses.length > 0) {
-                actionResponses.map((ar) => {
-                    switch (ar.action) {
-                        case "prune":
-                        case "replace":
-                            getCachedResults({
-                                callback: handleFileUpload,
-                            })
-                            break;
-                        default:
-                            console.log("Action not supported: ", ar.action);
-                            break;
+                actionResponses.forEach((ar) => {
+                    if (ar.action === "prune" || ar.action === "replace") {
+                        getCachedResults({ callback: handleFileUpload });
+                    } else {
+                        console.log("Action not supported: ", ar.action);
                     }
                 });
             }
         }
     });
-
-
-
-    // Schema explanation integration
-    const {
-        matches,
-        isMatch,
-        currentExplanations,
-        matchingValues,
-        relativeKnowledge,
-        generateExplanations,
-        acceptMatch: acceptMatchWithExplanations,
-        removeMatch
-    } = useSchemaExplanations({
-        selectedCandidate
-    });
-
 
     const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
         if (!candidate) {
@@ -118,14 +95,23 @@ export default function Dashboard() {
             generateExplanations(undefined);
             return;
         }
-        toastify("default", <p><strong>Source: </strong>{candidate?.sourceColumn}, <strong>Target: </strong>{candidate?.targetColumn}</p>, { autoClose: 200 });
+        toastify("default", <p><strong>Source: </strong>{candidate.sourceColumn}, <strong>Target: </strong>{candidate.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
-        if (candidate) {
-            explain(candidate);
+        explain(candidate);
+    };
+
+    const onSelectedActions = (actions: AgentAction[]) => {
+        if (actions && actions.length > 0) {
+            const previousOperation = userOperations[userOperations.length - 1];
+            const reaction: UserReaction = {
+                actions,
+                previousOperation,
+            };
+            console.log("Reaction: ", reaction);
+            apply(reaction);
         }
     };
 
-    
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: "white" }}>
             <ControlPanel
@@ -151,45 +137,34 @@ export default function Dashboard() {
                         filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
                     />
                     <CombinedView
-                            isMatch={isMatch}
-                            currentExplanations={currentExplanations}
-                            matchingValues={matchingValues}
-                            relativeKnowledge={relativeKnowledge}
-                            isLoading={isExplaining}
-                            matches={matches}
-                            onAcceptMatch={acceptMatchWithExplanations}
-                            sourceColumn={selectedCandidate?.sourceColumn}
-                            targetColumn={selectedCandidate?.targetColumn}
-                            allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                            allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
-                        />
-
-                    
-                    <ChatBox callback={handleChatUpdate}/>
+                        isMatch={isMatch}
+                        currentExplanations={currentExplanations}
+                        selectedExplanations={selectedExplanations}
+                        setSelectExplanations={setSelectedExplanations}
+                        matchingValues={matchingValues}
+                        relativeKnowledge={relativeKnowledge}
+                        isLoading={isExplaining}
+                        matches={matches}
+                        sourceColumn={selectedCandidate?.sourceColumn}
+                        targetColumn={selectedCandidate?.targetColumn}
+                        allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                        allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
+                    />
+                    <ChatBox callback={handleChatUpdate} />
                     <FileUploading callback={handleFileUpload} />
                 </Container>
             </Box>
-
-            <AgentDiagnosisPopup
-                open={openDiagnosisPopup}
-                setOpen={setOpenDiagnosisPopup}
-                data={diagnosis}
-                suggest={suggest}
-            />
-
             <AgentSuggestionsPopup
                 open={openSuggestionsPopup}
                 setOpen={setOpenSuggestionsPopup}
                 data={suggestions}
-                apply={apply}
+                onSelectedActions={onSelectedActions}
             />
-            
             {isLoadingGlobal && (
                 <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <CircularProgress />
                 </Box>
             )}
-
         </Box>
-    )
+    );
 }

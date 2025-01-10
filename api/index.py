@@ -1,16 +1,14 @@
 import json
 import logging
 import os
-from threading import Thread
 
 import pandas as pd
 from flask import Flask, request
 
-from .langchain.agent import AGENT, Agent
+from .langchain.agent import AGENT
 
 # langchain
 from .langchain.pydantic import AgentResponse
-from .matcher.embedding_matcher import EmbeddingMatcher
 from .matching_task import MATCHING_TASK
 from .tools.candidate_butler import candidate_butler_tools
 from .utils import (
@@ -85,11 +83,11 @@ def ask_agent():
 def agent_diagnose():
     data = request.json
 
-    app.logger.info(data)
-
     operation = data["operation"]
     candidate = data["candidate"]
     references = data["references"]
+
+    MATCHING_TASK.apply_operation(operation, candidate, references)
 
     source_col = candidate["sourceColumn"]
     source_unique_values = MATCHING_TASK.get_source_unique_values(source_col)
@@ -124,14 +122,13 @@ def agent_diagnose():
     )
 
     response = response.model_dump()
-    app.logger.info(f"Response: {response}")
     return response
 
 
 @app.route("/api/agent/explain", methods=["POST"])
 def agent_explanation():
     data = request.json
-    app.logger.info(data)
+
     source_col = data["sourceColumn"]
     target_col = data["targetColumn"]
     source_values = MATCHING_TASK.get_source_unique_values(source_col)
@@ -161,9 +158,17 @@ def agent_explanation():
 @app.route("/api/agent/suggest", methods=["POST"])
 def agent_suggest():
     data = request.json
-    app.logger.info(data)
-    diagnosis_dict = {d["reason"]: d["confidence"] for d in data}
-    response = AGENT.make_suggestion(diagnosis_dict)
+
+    explanations = data["explanations"]
+    diagnosis_dict = {e["content"]: e["confidence"] for e in explanations}
+
+    user_operation = data["userOperation"]
+    operation = user_operation["operation"]
+    candidate = user_operation["candidate"]
+    references = user_operation["references"]
+    MATCHING_TASK.apply_operation(operation, candidate, references)
+
+    response = AGENT.make_suggestion(user_operation, diagnosis_dict)
     response = response.model_dump()
 
     return response
@@ -171,11 +176,14 @@ def agent_suggest():
 
 @app.route("/api/agent/apply", methods=["POST"])
 def agent_apply():
-    actions = request.json
-    app.logger.info(actions)
+    reaction = request.json
+    actions = reaction["actions"]
+    previous_operation = reaction["previousOperation"]
+
+    app.logger.info(f"User Reaction: {reaction}")
 
     responses = []
-    for response in AGENT.apply(actions):
+    for response in AGENT.apply(actions, previous_operation):
         if response:
             response = response.model_dump()
             responses.append(response)

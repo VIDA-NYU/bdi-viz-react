@@ -23,5 +23,6 @@ def retrieve_from_rag(query: str, topk: int = 3) -> List[str]:
     """
     related_documents = RAG.retrieve(query, topk)
     context = [doc.page_content for doc in related_documents]
-    logger.info(f"[Candidate Butler] Retrieved the related context: {context}")
+    print(f"[RAG Researcher] Retrieved the related context: {context}")
+    logger.info(f"[RAG Researcher] Retrieved the related context: {context}")
     return context

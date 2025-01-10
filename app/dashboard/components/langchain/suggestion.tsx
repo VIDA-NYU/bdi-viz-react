@@ -17,14 +17,14 @@ interface AgentSuggestionsPopupProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   data: AgentSuggestions | undefined;
-  apply: (actions: AgentAction[]) => void;
+  onSelectedActions: (actions: AgentAction[]) => void;
 }
 
 export default function AgentSuggestionsPopup({
   open,
   setOpen,
   data,
-  apply,
+  onSelectedActions,
 }: AgentSuggestionsPopupProps) {
   const [selectedActions, setSelectedActions] = React.useState<AgentAction[]>(
     []
@@ -43,7 +43,7 @@ export default function AgentSuggestionsPopup({
 
   const handleConfirm = () => {
     console.log(selectedActions);
-    apply(selectedActions);
+    onSelectedActions(selectedActions);
     setOpen(false);
   };
 
