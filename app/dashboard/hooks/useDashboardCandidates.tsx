@@ -40,7 +40,7 @@ export const {
                 updateSourceColumn(candidates[0].sourceColumn);
             }
             // setSelectedCandidate(undefined);
-        }, []);
+        }, [selectedCandidate, updateSourceColumn]);
 
         const handleChatUpdate = useCallback((newCandidates: Candidate[]) => {
             setCandidates(newCandidates);
@@ -58,7 +58,7 @@ export const {
             getCachedResults({
                 callback: handleFileUpload 
             });
-        }, []);
+        }, [handleFileUpload]);
 
         return {
             candidates,

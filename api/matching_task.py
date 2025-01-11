@@ -3,10 +3,12 @@ import json
 import logging
 import os
 from typing import Any, Dict, List, Optional, Tuple
+from torch import Tensor
 
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
+from sklearn.cluster import KMeans
 
 from .matcher.embedding_matcher import EmbeddingMatcher
 
@@ -49,6 +51,7 @@ class MatchingTask:
             "target_hash": None,
             "candidates": None,
             "source_clusters": None,
+            "target_clusters": None,
         }
 
     def update_embedding_model(self, embedding_model: str) -> None:
@@ -110,6 +113,9 @@ class MatchingTask:
         )
 
         source_clusters = self.gen_source_clusters(source_embeddings)
+        target_clusters = self.gen_target_clusters(target_embeddings)
+
+        logger.info(f"Target Clusters: {target_clusters}")
 
         layered_candidates = {}
         for (source_col, target_col), score in embedding_candidates.items():
@@ -131,6 +137,7 @@ class MatchingTask:
                 "target_hash": target_hash,
                 "candidates": layered_candidates,
                 "source_clusters": source_clusters,
+                "target_clusters": target_clusters,
             }
 
             # Save it as Json file
@@ -138,7 +145,7 @@ class MatchingTask:
 
         return layered_candidates
 
-    def gen_source_clusters(self, source_embeddings) -> Dict[str, List[str]]:
+    def gen_source_clusters(self, source_embeddings: Tensor) -> Dict[str, List[str]]:
         knn = NearestNeighbors(
             n_neighbors=min(10, len(self.source_df.columns)), metric="cosine"
         )
@@ -157,6 +164,24 @@ class MatchingTask:
             clusters[source_column] = cluster
         return clusters
 
+    def gen_target_clusters(self, target_embeddings: Tensor) -> List[List[str]]:
+        knn = KMeans(n_clusters=min(20, len(self.target_df.columns)))
+        knn.fit(np.array(target_embeddings))
+        clusters_idx = knn.labels_
+
+        clusters = {}
+
+        for i, target_column in enumerate(self.target_df.columns):
+            cluster_idx = clusters_idx[i]
+            if cluster_idx not in clusters:
+                clusters[cluster_idx] = []
+            clusters[cluster_idx].append(target_column)
+        
+        clusters = [cluster for cluster in clusters.values()]
+
+        return clusters
+
+
     # [Cache related functions]
 
     def get_cached_candidates(self) -> Dict[str, List[Tuple[str, float]]]:
@@ -171,6 +196,13 @@ class MatchingTask:
             self.cached_candidates["source_clusters"]
             if self.cached_candidates["source_clusters"] is not None
             else {}
+        )
+
+    def get_cached_target_clusters(self) -> List[List[str]]:
+        return (
+            self.cached_candidates["target_clusters"]
+            if self.cached_candidates["target_clusters"] is not None
+            else []
         )
 
     def update_cached_candidates(self, candidates: Dict[str, list]) -> None:
@@ -214,6 +246,10 @@ class MatchingTask:
                     "cluster": cluster,
                 }
             )
+
+        # Target Clusters Object
+        target_clusters = self.get_cached_target_clusters()
+        ret_json["targetClusters"] = target_clusters
 
         return ret_json
 

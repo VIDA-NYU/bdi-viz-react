@@ -30,7 +30,7 @@ class Agent:
         # self.llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
         # self.llm = ChatOllama(base_url='https://ollama-asr498.users.hsrn.nyu.edu', model='llama3.1:8b-instruct-fp16', temperature=0.2)
         # self.llm = ChatTogether(model="meta-llama/Llama-3.3-70B-Instruct-Turbo")
-        self.llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.2)
+        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
 
         self.memory = MemorySaver()
 

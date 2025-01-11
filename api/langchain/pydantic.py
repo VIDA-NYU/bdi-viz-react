@@ -122,3 +122,20 @@ class ActionResponse(BaseModel):
             ...
         }""",
     )
+
+
+class TargetClusterInfo(BaseModel):
+    """Target cluster information from the agent."""
+
+    name: str = Field(description="The name of the target cluster")
+    keywords: List[str] = Field(description="The keywords of the target cluster")
+    description: str = Field(description="The description of the target cluster")
+
+
+class TargetClusters(BaseModel):
+    """Target clusters from the agent."""
+
+    clusters: List[TargetClusterInfo] = Field(description="The target clusters")
+
+
+    

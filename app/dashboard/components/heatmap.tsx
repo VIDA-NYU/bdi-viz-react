@@ -217,7 +217,7 @@ const HeatMap: React.FC<HeatMapProps> = (prop) => {
         drawHeatMap();
         window.addEventListener('resize', drawHeatMap);
         return () => window.removeEventListener('resize', drawHeatMap);
-    }, [candidates, filters]);
+    }, [candidates, filters, drawHeatMap]);
 
     return (
         <Card sx={{ mt: 6 }}>

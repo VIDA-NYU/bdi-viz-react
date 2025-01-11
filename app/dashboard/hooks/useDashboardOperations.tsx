@@ -206,7 +206,7 @@ export const {
             }
 
             setIsLoadingGlobal(false);
-        }, []);
+        }, [onApply, isLoadingGlobal, setIsLoadingGlobal]);
 
         return {
             userOperations,
