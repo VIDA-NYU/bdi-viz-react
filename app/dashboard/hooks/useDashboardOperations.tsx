@@ -97,8 +97,11 @@ export const {
             
         }, [candidates, selectedCandidate, selectedExplanations, onCandidateUpdate, onCandidateSelect, onSuggestions, isLoadingGlobal, setIsLoadingGlobal]);
 
-        const rejectMatch = useCallback(() => {
+        const rejectMatch = useCallback(async () => {
             if (!selectedCandidate) return;
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
 
             const references: Candidate[] = [];
             const newCandidates = candidates.filter((candidate) => {
@@ -124,10 +127,31 @@ export const {
 
             setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Match rejected: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
+
+            if (selectedExplanations && onSuggestions) {
+                const explanationObjects = selectedExplanations.map((explanation) => {
+                    return {
+                        type: explanation.type,
+                        content: explanation.content,
+                        confidence: explanation.confidence
+                    } as ExplanationObject;
+                });
+
+                const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
+                if (suggestions) {
+                    onSuggestions(suggestions);
+                }
+            }
+
+            setIsLoadingGlobal(false);
+
         }, [candidates, selectedCandidate, onCandidateUpdate, onCandidateSelect]);
 
-        const discardColumn = useCallback(() => {
+        const discardColumn = useCallback(async () => {
             if (!selectedCandidate) return;
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
 
             const references: Candidate[] = [];
             const newCandidates = candidates.filter((candidate) => {
@@ -149,6 +173,23 @@ export const {
 
             setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Column discarded: <strong>{selectedCandidate.sourceColumn}</strong></p>);
+
+            if (selectedExplanations && onSuggestions) {
+                const explanationObjects = selectedExplanations.map((explanation) => {
+                    return {
+                        type: explanation.type,
+                        content: explanation.content,
+                        confidence: explanation.confidence
+                    } as ExplanationObject;
+                });
+
+                const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
+                if (suggestions) {
+                    onSuggestions(suggestions);
+                }
+            }
+
+            setIsLoadingGlobal(false);
         }, [candidates, selectedCandidate, onCandidateUpdate, onCandidateSelect]);
 
         const undo = useCallback(() => {
@@ -169,11 +210,12 @@ export const {
                 default:
                     return;
             }
-
             // newCandidates = newCandidates.sort((a, b) => b.score - a.score);
             onCandidateUpdate(newCandidates);
             onCandidateSelect(lastOperation.candidate);
             setUserOperations(prev => prev.slice(0, -1));
+
+
         }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
         const explain = useCallback(async (candidate?: Candidate) => {

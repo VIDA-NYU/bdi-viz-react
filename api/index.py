@@ -183,9 +183,14 @@ def agent_apply():
     app.logger.info(f"User Reaction: {reaction}")
 
     responses = []
-    for response in AGENT.apply(actions, previous_operation):
+    for action in actions:
+        response = AGENT.apply(action, previous_operation)
         if response:
-            response = response.model_dump()
+            if response == "Undo":
+                MATCHING_TASK.undo_operation()
+                response = {"message": "Undo successful"}
+            else:
+                response = response.model_dump()
             responses.append(response)
 
     return responses

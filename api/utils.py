@@ -5,6 +5,8 @@ from io import StringIO
 from typing import Any, Dict, Optional
 
 import pandas as pd
+import requests
+from tqdm.autonotebook import tqdm
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -53,3 +55,29 @@ def read_candidate_explanation_json(
             return json.load(f)
 
     return
+
+
+def download_model_pt(url: str, model_name: str) -> str:
+    model_path = os.path.join(CACHE_DIR, model_name)
+    if os.path.exists(model_path):
+        logger.info(f"Model already exists at {model_path}")
+        return model_path
+
+    try:
+        response = requests.get(url, stream=True)
+        total_size = int(response.headers.get("content-length", 0))
+        block_size = 1024
+
+        with open(model_path, "wb") as f:
+            for data in tqdm(
+                response.iter_content(block_size),
+                total=total_size // block_size,
+                unit="KB",
+                unit_scale=True,
+            ):
+                f.write(data)
+    except Exception as e:
+        logger.error(f"Failed to download model from {url}: {e}")
+        raise
+
+    return model_path

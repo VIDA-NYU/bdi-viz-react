@@ -3,19 +3,18 @@ import json
 import logging
 import os
 from typing import Any, Dict, List, Optional, Tuple
-from torch import Tensor
 
 import numpy as np
 import pandas as pd
-from sklearn.neighbors import NearestNeighbors
 from sklearn.cluster import KMeans
+from sklearn.neighbors import NearestNeighbors
+from torch import Tensor
 
 from .matcher.embedding_matcher import EmbeddingMatcher
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
 DEFAULT_PARAMS = {
-    "embedding_model": "sentence-transformers/all-mpnet-base-v2",
     "encoding_mode": "header_values_verbose",
     "sampling_mode": "mixed",
     "sampling_size": 10,
@@ -37,10 +36,12 @@ class MatchingTask:
     - provide tools for agent to interact with the EmbeddingMatcher
     """
 
-    def __init__(self) -> None:
+    def __init__(
+        self, embedding_model="sentence-transformers/all-mpnet-base-v2"
+    ) -> None:
         self.embeddingMatcher = EmbeddingMatcher(
             params={
-                "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+                "embedding_model": embedding_model,
                 **DEFAULT_PARAMS,
             }
         )
@@ -176,11 +177,10 @@ class MatchingTask:
             if cluster_idx not in clusters:
                 clusters[cluster_idx] = []
             clusters[cluster_idx].append(target_column)
-        
+
         clusters = [cluster for cluster in clusters.values()]
 
         return clusters
-
 
     # [Cache related functions]
 
@@ -217,6 +217,13 @@ class MatchingTask:
         cached_candidates_dict = self.get_cached_candidates()
         if source_col in cached_candidates_dict:
             del cached_candidates_dict[source_col]
+        self.cached_candidates["candidates"] = cached_candidates_dict
+
+    def append_cached_column(
+        self, column_name: str, candidates: List[Tuple[str, float]]
+    ) -> None:
+        cached_candidates_dict = self.get_cached_candidates()
+        cached_candidates_dict[column_name] = candidates
         self.cached_candidates["candidates"] = cached_candidates_dict
 
     def to_frontend_json(self) -> list:
@@ -283,13 +290,39 @@ class MatchingTask:
         elif operation == "reject":
             candidates_to_reject = {
                 candidate["sourceColumn"]: [
-                    [ref["targetColumn"], ref["score"]] for ref in references
+                    [ref["targetColumn"], ref["score"]]
+                    for ref in references
+                    if ref["targetColumn"] != candidate["targetColumn"]
                 ]
             }
             self.update_cached_candidates(candidates_to_reject)
 
         elif operation == "discard":
             self.discard_cached_column(candidate["sourceColumn"])
+
+    def undo_operation(self, operation: str, candidate: Dict[str, Any]) -> None:
+        logger.info(f"Undoing operation: {operation}, on candidate: {candidate}...")
+
+        if operation == "accept" or operation == "reject":
+            candidates_before_operation = {
+                candidate["sourceColumn"]: [
+                    [ref["targetColumn"], ref["score"]]
+                    for ref in operation["references"]
+                ]
+            }
+            self.update_cached_candidates(candidates_before_operation)
+
+        elif operation == "discard":
+            self.append_cached_column(
+                candidate["sourceColumn"],
+                [
+                    [ref["targetColumn"], ref["score"]]
+                    for ref in operation["references"]
+                ],
+            )
+
+        else:
+            raise ValueError(f"Operation {operation} not supported.")
 
     # Setter & Getter
     def get_source_df(self) -> pd.DataFrame:
@@ -319,4 +352,4 @@ class MatchingTask:
         return uniques
 
 
-MATCHING_TASK = MatchingTask()
+MATCHING_TASK = MatchingTask(embedding_model="magneto_ft")

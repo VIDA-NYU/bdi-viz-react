@@ -52,7 +52,7 @@ Note: You may consult domain knowledge (using **retrieve_from_rag**) if clarific
 3. Suggest potential matching value pairs based on the given samples.
 4. Generate any relevant context or key terms (“relative knowledge”) about the source and target columns.
 """
-        logger.info(f"[EXPLAIN] Prompt: {prompt}")
+        # logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
             prompt=prompt,
             tools=[retrieve_from_rag],
@@ -83,7 +83,7 @@ Diagnosis:
 Generate a suggestion using the diagnosis and your memory.
     """
 
-        logger.info(f"[SUGGESTION] Prompt: {prompt}")
+        # logger.info(f"[SUGGESTION] Prompt: {prompt}")
 
         response = self.invoke(
             prompt=prompt,
@@ -94,20 +94,19 @@ Generate a suggestion using the diagnosis and your memory.
         return response
 
     def apply(
-        self, actions: List[Dict[str, Any]], previous_operation: Dict[str, Any]
-    ) -> Generator[ActionResponse, None, None]:
+        self, action: Dict[str, Any], previous_operation: Dict[str, Any]
+    ) -> Optional[ActionResponse]:
         user_operation = previous_operation["operation"]
         candidate = previous_operation["candidate"]
         # references = previous_operation["references"]
 
         source_cluster = read_source_cluster_details(candidate["sourceColumn"])
 
-        for action in actions:
-            logger.info(f"[Agent] Applying the action: {action}")
+        logger.info(f"[Agent] Applying the action: {action}")
 
-            if action["action"] == "prune_candidates":
-                tools = candidate_butler_tools + [retrieve_from_rag]
-                prompt = f"""
+        if action["action"] == "prune_candidates":
+            tools = candidate_butler_tools + [retrieve_from_rag]
+            prompt = f"""
 You have access to the user's previous operations and the related source column clusters. 
 Your goal is to help prune (remove) certain candidate mappings in the related source columns based on the user's decisions following the instructions below.
 
@@ -129,16 +128,19 @@ Candidate: {candidate}
 4. Call **update_candidates** with this updated dictionary as the parameter to refine the heatmap.
                 """
 
-                logger.info(f"[ACTION-PRUNE] Prompt: {prompt}")
-                response = self.invoke(
-                    prompt=prompt,
-                    tools=tools,
-                    output_structure=ActionResponse,
-                )
-                yield response
-            else:
-                logger.info(f"[Agent] Applying the action: {action}")
-                yield
+            logger.info(f"[ACTION-PRUNE] Prompt: {prompt}")
+            response = self.invoke(
+                prompt=prompt,
+                tools=tools,
+                output_structure=ActionResponse,
+            )
+            return response
+
+        elif action["action"] == "undo":
+            return "Undo"
+        else:
+            logger.info(f"[Agent] Applying the action: {action}")
+            return
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel

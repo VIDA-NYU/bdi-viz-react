@@ -5,11 +5,13 @@ from fuzzywuzzy import fuzz
 from sentence_transformers import SentenceTransformer
 from transformers import AutoModel, AutoTokenizer
 
+from ..utils import download_model_pt
 from .column_encoder import ColumnEncoder
 from .embedding_utils import compute_cosine_similarity_simple
 from .utils import detect_column_type, get_samples
 
 DEFAULT_MODELS = ["sentence-transformers/all-mpnet-base-v2"]
+FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
 
 class EmbeddingMatcher:
@@ -37,7 +39,7 @@ class EmbeddingMatcher:
             print(f"Loaded SentenceTransformer Model on {self.device}")
 
             # path to the trained model weights
-            model_path = params["embedding_model"]
+            model_path = self.load_ft_model(FT_MODEL_URL, self.model_name)
             if os.path.exists(model_path):
                 print(f"Loading trained model from {model_path}")
                 # Load state dict for the SentenceTransformer model
@@ -126,3 +128,7 @@ class EmbeddingMatcher:
                     candidates[(original_input_col, original_target_col)] = similarity
 
         return candidates, embeddings_input, embeddings_target
+
+    def load_ft_model(self, url: str, model_name: str) -> str:
+        model_path = download_model_pt(url, model_name)
+        return model_path
