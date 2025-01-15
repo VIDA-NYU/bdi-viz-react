@@ -10,16 +10,14 @@ logger = logging.getLogger("bdiviz_flask.sub")
 
 
 @tool
-def retrieve_from_rag(query: str, topk: int = 3) -> List[str]:
+def retrieve_from_rag(query: str, topk: int = 2) -> List[str]:
     """
-    Retrieve the related schema information from RAG, given a query.
-    This is a tool that can help the agent get diagnosis from an user operation,
-    e.g. you could infer the reason why user accept a matching candidate based on the related schema datatype or description.
+    Retrieve related schema info from RAG for a given query.
     Args:
-        query (str): The query to search for, for example "What is AJCC in GDC?"
-        topk (int, optional): The number of results to return. Defaults to 3.
+        query (str): The search query, e.g., "What is AJCC in GDC?", "What is FIGO?", "Tumour staging", etc.
+        topk (int, optional): Number of results to return. Defaults to 2.
     Returns:
-        List[str]: The related context from the biomedical schema.
+        List[str]: Related context from the biomedical schema.
     """
     related_documents = RAG.retrieve(query, topk)
     context = [doc.page_content for doc in related_documents]

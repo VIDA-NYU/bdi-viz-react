@@ -80,7 +80,7 @@ const agentActionRequest = async (reaction: UserReaction): Promise<ActionRespons
         const resp = await axios.post("/api/agent/apply", reaction);
         console.log("agentActionRequest: ", resp.data);
         
-        let actionResponses = [];
+        // let actionResponses = [];
         if (resp.data && resp.data.length > 0) {
             // actionResponses = resp.data.map((ar: object) => {
             //     try {

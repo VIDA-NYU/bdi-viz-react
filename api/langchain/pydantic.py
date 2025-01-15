@@ -39,6 +39,7 @@ class AgentAction(BaseModel):
                         The action for the agent, must be one of the following:
                             prune_candidates - suggest pruning some candidates base on your expertise from RAG.
                             update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
+                            undo - undo the last action taken by the user because you think it was a mistake.
                         """
     )
     reason: str = Field(description="The reason for the action")
@@ -122,3 +123,17 @@ class ActionResponse(BaseModel):
             ...
         }""",
     )
+
+
+class TargetClusterInfo(BaseModel):
+    """Target cluster information from the agent."""
+
+    name: str = Field(description="The name of the target cluster")
+    keywords: List[str] = Field(description="The keywords of the target cluster")
+    description: str = Field(description="The description of the target cluster")
+
+
+class TargetClusters(BaseModel):
+    """Target clusters from the agent."""
+
+    clusters: List[TargetClusterInfo] = Field(description="The target clusters")

@@ -18,19 +18,6 @@ from .utils import (
 )
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
-DEFAULT_PARAMS = {
-    "embedding_model": "sentence-transformers/all-mpnet-base-v2",
-    "encoding_mode": "header_values_verbose",
-    "sampling_mode": "mixed",
-    "sampling_size": 10,
-    "topk": 20,
-    "include_strsim_matches": False,
-    "include_embedding_matches": True,
-    "embedding_threshold": 0.1,
-    "include_equal_matches": True,
-    "use_bp_reranker": True,
-    "use_gpt_reranker": False,
-}
 
 app = Flask("bdiviz_flask")
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024
@@ -183,9 +170,14 @@ def agent_apply():
     app.logger.info(f"User Reaction: {reaction}")
 
     responses = []
-    for response in AGENT.apply(actions, previous_operation):
+    for action in actions:
+        response = AGENT.apply(action, previous_operation)
         if response:
-            response = response.model_dump()
+            if response == "Undo":
+                MATCHING_TASK.undo_operation()
+                response = {"message": "Undo successful"}
+            else:
+                response = response.model_dump()
             responses.append(response)
 
     return responses

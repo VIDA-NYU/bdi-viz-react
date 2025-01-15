@@ -26,15 +26,17 @@ export default function AgentSuggestionsPopup({
   data,
   onSelectedActions,
 }: AgentSuggestionsPopupProps) {
-  const [selectedActions, setSelectedActions] = React.useState<AgentAction[]>(
+  const [selectedActions, setSelectedActions] = React.useState<number[]>(
     []
   );
 
-  const handleSelect = (a: AgentAction) => {
+  const handleSelect = (a: AgentAction, i: number) => {
     console.log(a);
-    setSelectedActions((prev) =>
-      prev.includes(a) ? prev.filter((item) => item !== a) : [...prev, a]
-    );
+    if (selectedActions.includes(i)) {
+      setSelectedActions(selectedActions.filter((x) => x !== i));
+    } else {
+      setSelectedActions([...selectedActions, i]);
+    }
   };
 
   const handleClose = () => {
@@ -43,7 +45,9 @@ export default function AgentSuggestionsPopup({
 
   const handleConfirm = () => {
     console.log(selectedActions);
-    onSelectedActions(selectedActions);
+    if (!data) return;
+    const selectActionObjects = selectedActions.map((i) => data.actions[i]);
+    onSelectedActions(selectActionObjects);
     setOpen(false);
   };
 
@@ -65,12 +69,12 @@ export default function AgentSuggestionsPopup({
               <List>
                 {data.actions.map((action, index) => (
                   <ListItem key={index} disablePadding>
-                    <ListItemButton onClick={() => handleSelect(action)}>
+                    <ListItemButton onClick={() => handleSelect(action, index)}>
                       <Checkbox
                         edge="start"
-                        checked={selectedActions.includes(action)}
+                        checked={selectedActions.includes(index)}
                         tabIndex={-1}
-                        onChange={() => handleSelect(action)}
+                        onChange={() => handleSelect(action, index)}
                       />
                       <ListItemText
                         primary={
