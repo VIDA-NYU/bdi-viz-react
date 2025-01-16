@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import type { Candidate, UserOperation } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
+import { applyUserOperations, undoUserOperations } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
 import { useLoadingGlobal } from '@/app/dashboard/hooks/useLoadingGlobal';
 import { Explanation } from '../types';
@@ -52,7 +53,7 @@ export const {
 
             setIsLoadingGlobal(true);
 
-            const references: Candidate[] = [];
+            const references: Candidate[] = candidates.filter((candidate) => candidate.sourceColumn === selectedCandidate.sourceColumn);
             const newCandidates = candidates.filter((candidate) => {
                 if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
                     return true;
@@ -60,7 +61,6 @@ export const {
                 if (candidate.targetColumn === selectedCandidate.targetColumn) {
                     return true;
                 } else {
-                    references.push(candidate);
                     return false;
                 }
             });
@@ -103,12 +103,11 @@ export const {
 
             setIsLoadingGlobal(true);
 
-            const references: Candidate[] = [];
+            const references: Candidate[] = candidates.filter((candidate) => candidate.sourceColumn === selectedCandidate.sourceColumn);
             const newCandidates = candidates.filter((candidate) => {
                 if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
                     return true;
                 }
-                references.push(candidate);
                 if (candidate.targetColumn !== selectedCandidate.targetColumn) {
                     return true;
                 } else {
@@ -153,12 +152,11 @@ export const {
 
             setIsLoadingGlobal(true);
 
-            const references: Candidate[] = [];
+            const references: Candidate[] = candidates.filter((candidate) => candidate.sourceColumn === selectedCandidate.sourceColumn);
             const newCandidates = candidates.filter((candidate) => {
                 if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
                     return true;
                 }
-                references.push(candidate);
                 return false;
             });
 
@@ -196,26 +194,24 @@ export const {
             const lastOperation = userOperations[userOperations.length - 1];
             if (!lastOperation) return;
 
-            let newCandidates: Candidate[];
-            switch (lastOperation.operation) {
-                case 'accept':
-                case 'discard':
-                    newCandidates = [...candidates, ...lastOperation.references];
-                    newCandidates = newCandidates.sort((a, b) => b.score - a.score);
-                    break;
-                case 'reject':
-                    newCandidates = [...candidates, lastOperation.candidate];
-                    newCandidates = newCandidates.sort((a, b) => b.score - a.score);
-                    break;
-                default:
-                    return;
-            }
+            // let newCandidates: Candidate[];
+            // switch (lastOperation.operation) {
+            //     case 'accept':
+            //     case 'discard':
+            //         newCandidates = [...candidates, ...lastOperation.references];
+            //         newCandidates = newCandidates.sort((a, b) => b.score - a.score);
+            //         break;
+            //     case 'reject':
+            //         newCandidates = [...candidates, lastOperation.candidate];
+            //         newCandidates = newCandidates.sort((a, b) => b.score - a.score);
+            //         break;
+            //     default:
+            //         return;
+            // }
             // newCandidates = newCandidates.sort((a, b) => b.score - a.score);
-            onCandidateUpdate(newCandidates);
+            undoUserOperations({ userOperations: [lastOperation], callback: onCandidateUpdate });
             onCandidateSelect(lastOperation.candidate);
             setUserOperations(prev => prev.slice(0, -1));
-
-
         }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
 
         const explain = useCallback(async (candidate?: Candidate) => {

@@ -34,14 +34,7 @@ class DiagnoseObject(BaseModel):
 
 
 class AgentAction(BaseModel):
-    action: str = Field(
-        description="""
-                        The action for the agent, must be one of the following:
-                            prune_candidates - suggest pruning some candidates base on your expertise from RAG.
-                            update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
-                            undo - undo the last action taken by the user because you think it was a mistake.
-                        """
-    )
+    action: str = Field(description="""The action for the agent.""")
     reason: str = Field(description="The reason for the action")
     confidence: float = Field(description="The confidence of the action")
 
@@ -105,6 +98,7 @@ class ActionResponse(BaseModel):
         description="""The action on candidates, must be one of:
         prune - prune the target candidates list from the existing candidates.
         replace - replace the target candidates list with the new candidates.
+        undo - undo the last action taken by the user.
         """
     )
     target_candidates: Optional[Dict[str, List[Tuple[str, float]]]] = Field(

@@ -8,49 +8,49 @@ from ..matching_task import MATCHING_TASK
 logger = logging.getLogger("bdiviz_flask.sub")
 
 
-@tool
-def read_all_source_columns() -> List[str]:
-    """
-    Read all the source columns from the heapmap.
+# @tool
+# def read_all_source_columns() -> List[str]:
+#     """
+#     Read all the source columns from the heapmap.
 
-    Returns:
-        list: The list of source columns
-    """
-    candidates_dict = MATCHING_TASK.get_cached_candidates()
-    logger.info("[Candidate Butler] Get all source columns......")
-    return list(candidates_dict.keys())
+#     Returns:
+#         list: The list of source columns
+#     """
+#     candidates_dict = MATCHING_TASK.get_cached_candidates()
+#     logger.info("[Candidate Butler] Get all source columns......")
+#     return list(candidates_dict.keys())
 
 
-@tool
-def read_source_column_candidate_details(
-    source_column: str,
-) -> Dict[str, List[Tuple[str, float]]]:
-    """
-    Read the candidates from the heapmap for the given source column.
+# @tool
+# def read_source_column_candidate_details(
+#     source_column: str,
+# ) -> Dict[str, List[Tuple[str, float]]]:
+#     """
+#     Read the candidates from the heapmap for the given source column.
 
-    Args:
-        source_column (str): The source column name
+#     Args:
+#         source_column (str): The source column name
 
-    Returns:
-        dict: The candidates for the source column, the layered dictionary looks like:
-        {
-            "source_column_1": [
-                ("target_column_1", 0.9),
-                ("target_column_15", 0.7),
-                ...
-            ],
-            "source_column_2": [
-                ("target_column_6", 0.5),
-                ...
-            ]
-            ...
-        }
+#     Returns:
+#         dict: The candidates for the source column, the layered dictionary looks like:
+#         {
+#             "source_column_1": [
+#                 ("target_column_1", 0.9),
+#                 ("target_column_15", 0.7),
+#                 ...
+#             ],
+#             "source_column_2": [
+#                 ("target_column_6", 0.5),
+#                 ...
+#             ]
+#             ...
+#         }
 
-    """
-    candidates_dict = MATCHING_TASK.get_cached_candidates()
-    logger.info(f"[Candidate Butler] Read candidates for {source_column}......")
-    if source_column in candidates_dict:
-        return {source_column: candidates_dict[source_column]}
+#     """
+#     candidates_dict = MATCHING_TASK.get_cached_candidates()
+#     logger.info(f"[Candidate Butler] Read candidates for {source_column}......")
+#     if source_column in candidates_dict:
+#         return {source_column: candidates_dict[source_column]}
 
 
 @tool
@@ -83,31 +83,6 @@ def read_source_cluster_details(
 
 
 @tool
-def read_all_candidates() -> Dict[str, List[Tuple[str, float]]]:
-    """
-    Read all the candidates from the heapmap.
-
-    Returns:
-        dict: The candidates for the source column, the layered dictionary looks like:
-        {
-            "source_column_1": [
-                ("target_column_1", 0.9),
-                ("target_column_15", 0.7),
-                ...
-            ],
-            "source_column_2": [
-                ("target_column_6", 0.5),
-                ...
-            ]
-            ...
-        }
-    """
-    candidates_dict = MATCHING_TASK.get_cached_candidates()
-    logger.info("[Candidate Butler] Get all source columns......")
-    return candidates_dict
-
-
-@tool
 def update_candidates(candidates: Dict[str, List[Tuple[str, float]]]):
     """
     Updates the heatmap with refined candidate mappings.
@@ -127,9 +102,28 @@ def update_candidates(candidates: Dict[str, List[Tuple[str, float]]]):
     logger.info(
         f"[Candidate Butler] Update candidates to the matching task {candidates}......"
     )
-    MATCHING_TASK.update_cached_candidates(candidates)
+    MATCHING_TASK.set_cached_candidates(candidates)
+
+    return {"status": "success"}
+
+
+@tool
+def discard_source_column(column_name: str):
+    """
+    Discard a source column from the heatmap.
+    If you think non of the candidates are correct, you can discard the column.
+
+    Args:
+        column_name (str): The name of the column to discard
+    """
+
+    logger.info(f"[Candidate Butler] Discard column {column_name}......")
+    MATCHING_TASK.discard_cached_column(column_name)
+
+    return {"status": "success"}
 
 
 candidate_butler_tools = [
     update_candidates,
+    discard_source_column,
 ]

@@ -2,7 +2,7 @@ import json
 import logging
 import os
 from io import StringIO
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import pandas as pd
 import requests

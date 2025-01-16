@@ -173,11 +173,40 @@ def agent_apply():
     for action in actions:
         response = AGENT.apply(action, previous_operation)
         if response:
-            if response == "Undo":
-                MATCHING_TASK.undo_operation()
-                response = {"message": "Undo successful"}
-            else:
-                response = response.model_dump()
-            responses.append(response)
+            response_obj = response.model_dump()
+            if response_obj["action"] == "undo":
+                user_operation = previous_operation["operation"]
+                candidate = previous_operation["candidate"]
+                references = previous_operation["references"]
+                MATCHING_TASK.undo_operation(user_operation, candidate, references)
+            responses.append(response_obj)
 
     return responses
+
+
+@app.route("/api/user-operation/apply", methods=["POST"])
+def user_operation():
+    operation_objs = request.json["userOperations"]
+
+    for operation_obj in operation_objs:
+        operation = operation_obj["operation"]
+        candidate = operation_obj["candidate"]
+        references = operation_obj["references"]
+
+        MATCHING_TASK.apply_operation(operation, candidate, references)
+
+    return {"message": "success"}
+
+
+@app.route("/api/user-operation/undo", methods=["POST"])
+def undo_operation():
+    operation_objs = request.json["userOperations"]
+
+    for operation_obj in operation_objs:
+        operation = operation_obj["operation"]
+        candidate = operation_obj["candidate"]
+        references = operation_obj["references"]
+
+        MATCHING_TASK.undo_operation(operation, candidate, references)
+
+    return {"message": "success"}

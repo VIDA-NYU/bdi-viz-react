@@ -6,11 +6,13 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
+from magneto import Magneto
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
 
-from .matcher.embedding_matcher import EmbeddingMatcher
+from .matcher.embedding_clusterer import EmbeddingClusterer
+from .utils import download_model_pt
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -26,28 +28,23 @@ DEFAULT_PARAMS = {
     "use_bp_reranker": True,
     "use_gpt_reranker": False,
 }
+FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
 
 class MatchingTask:
-    """
-    Matching Task class
-    - Store source and target dataframes
-    - Store the EmbeddingMatcher object
-    - provide tools for agent to interact with the EmbeddingMatcher
-    """
-
     def __init__(
-        self, embedding_model="sentence-transformers/all-mpnet-base-v2"
+        self,
+        embedding_model="sentence-transformers/all-mpnet-base-v2",
+        clustering_model="sentence-transformers/all-mpnet-base-v2",
     ) -> None:
-        self.embeddingMatcher = EmbeddingMatcher(
-            params={
-                "embedding_model": embedding_model,
-                **DEFAULT_PARAMS,
-            }
-        )
+        self.embedding_model = self._download_model(embedding_model)
+        self.clustering_model = self._download_model(clustering_model)
         self.source_df = None
         self.target_df = None
-        self.cached_candidates = {
+        self.cached_candidates = self._initialize_cache()
+
+    def _initialize_cache(self) -> Dict[str, Any]:
+        return {
             "source_hash": None,
             "target_hash": None,
             "candidates": None,
@@ -55,10 +52,12 @@ class MatchingTask:
             "target_clusters": None,
         }
 
-    def update_embedding_model(self, embedding_model: str) -> None:
-        self.embeddingMatcher = EmbeddingMatcher(
-            params={"embedding_model": embedding_model, **DEFAULT_PARAMS}
-        )
+    def _download_model(self, model_name: str) -> str:
+        try:
+            return download_model_pt(model_name, f"{model_name.split('/')[-1]}.pt")
+        except Exception as e:
+            logger.error(f"Error downloading model: {e}")
+            return model_name
 
     def update_dataframe(
         self, source_df: Optional[pd.DataFrame], target_df: Optional[pd.DataFrame]
@@ -74,7 +73,21 @@ class MatchingTask:
         if self.source_df is None or self.target_df is None:
             raise ValueError("Source and Target dataframes must be provided.")
 
-        # Check if the candidates are already cached
+        source_hash, target_hash = self._compute_hashes()
+        cached_json = self._import_cache_from_json()
+
+        if self._is_cache_valid(cached_json, source_hash, target_hash):
+            self.cached_candidates = cached_json
+            return cached_json["candidates"]
+
+        if is_candidates_cached and self._is_cache_valid(
+            self.cached_candidates, source_hash, target_hash
+        ):
+            return self.cached_candidates["candidates"]
+
+        return self._generate_candidates(source_hash, target_hash, is_candidates_cached)
+
+    def _compute_hashes(self) -> Tuple[int, int]:
         source_hash = int(
             hashlib.sha256(
                 pd.util.hash_pandas_object(self.source_df, index=True).values
@@ -87,50 +100,36 @@ class MatchingTask:
             ).hexdigest(),
             16,
         )
+        return source_hash, target_hash
 
-        # Check if the candidates are already cached
-        cached_json = self.import_cache_from_json()
-        if (
-            cached_json
-            and cached_json["source_hash"] == source_hash
-            and cached_json["target_hash"] == target_hash
-        ):
-            self.cached_candidates = cached_json
-            return cached_json["candidates"]
+    def _is_cache_valid(
+        self, cache: Dict[str, Any], source_hash: int, target_hash: int
+    ) -> bool:
+        return (
+            cache
+            and cache["source_hash"] == source_hash
+            and cache["target_hash"] == target_hash
+        )
 
-        elif (
-            is_candidates_cached
-            and self.cached_candidates["source_hash"] == source_hash
-            and self.cached_candidates["target_hash"] == target_hash
-        ):
-            return self.cached_candidates["candidates"]
-
-        (
-            embedding_candidates,
-            source_embeddings,
-            target_embeddings,
-        ) = self.embeddingMatcher.get_embedding_similarity_candidates(
+    def _generate_candidates(
+        self, source_hash: int, target_hash: int, is_candidates_cached: bool
+    ) -> Dict[str, list]:
+        embedding_clusterer = EmbeddingClusterer(
+            params={"embedding_model": self.clustering_model, **DEFAULT_PARAMS}
+        )
+        source_embeddings, target_embeddings = embedding_clusterer.get_embeddings(
             source_df=self.source_df, target_df=self.target_df
         )
 
-        source_clusters = self.gen_source_clusters(source_embeddings)
-        target_clusters = self.gen_target_clusters(target_embeddings)
+        source_clusters = self._generate_source_clusters(source_embeddings)
+        target_clusters = self._generate_target_clusters(target_embeddings)
 
-        logger.info(f"Target Clusters: {target_clusters}")
+        matcher = Magneto(embedding_model=self.embedding_model, **DEFAULT_PARAMS)
+        embedding_candidates = matcher.get_matches(
+            source=self.source_df, target=self.target_df
+        )
 
-        layered_candidates = {}
-        for (source_col, target_col), score in embedding_candidates.items():
-            logger.debug(f"{source_col} matched with {target_col} with score {score}")
-            # ret_json.append(
-            #     {
-            #         "sourceColumn": source_col,
-            #         "targetColumn": target_col,
-            #         "score": score,
-            #     }
-            # )
-            if source_col not in layered_candidates:
-                layered_candidates[source_col] = []
-            layered_candidates[source_col].append((target_col, score))
+        layered_candidates = self._layer_candidates(embedding_candidates)
 
         if is_candidates_cached:
             self.cached_candidates = {
@@ -140,13 +139,24 @@ class MatchingTask:
                 "source_clusters": source_clusters,
                 "target_clusters": target_clusters,
             }
-
-            # Save it as Json file
-            self.export_cache_to_json(self.cached_candidates)
+            self._export_cache_to_json(self.cached_candidates)
 
         return layered_candidates
 
-    def gen_source_clusters(self, source_embeddings: Tensor) -> Dict[str, List[str]]:
+    def _layer_candidates(
+        self, embedding_candidates: Dict[Tuple[str, str], float]
+    ) -> Dict[str, List[Tuple[str, float]]]:
+        layered_candidates = {}
+        for (source_tuple, target_tuple), score in embedding_candidates.items():
+            source_col, target_col = source_tuple[1], target_tuple[1]
+            if source_col not in layered_candidates:
+                layered_candidates[source_col] = []
+            layered_candidates[source_col].append((target_col, score))
+        return layered_candidates
+
+    def _generate_source_clusters(
+        self, source_embeddings: Tensor
+    ) -> Dict[str, List[str]]:
         knn = NearestNeighbors(
             n_neighbors=min(10, len(self.source_df.columns)), metric="cosine"
         )
@@ -156,62 +166,27 @@ class MatchingTask:
             for source_embedding in source_embeddings
         ]
 
-        clusters = {}
-        for i, source_column in enumerate(self.source_df.columns):
-            cluster_idx = clusters_idx[i]
-            cluster = []
-            for idx in cluster_idx:
-                cluster.append(self.source_df.columns[idx])
-            clusters[source_column] = cluster
+        clusters = {
+            self.source_df.columns[i]: [
+                self.source_df.columns[idx] for idx in cluster_idx
+            ]
+            for i, cluster_idx in enumerate(clusters_idx)
+        }
         return clusters
 
-    def gen_target_clusters(self, target_embeddings: Tensor) -> List[List[str]]:
-        knn = KMeans(n_clusters=min(20, len(self.target_df.columns)))
-        knn.fit(np.array(target_embeddings))
-        clusters_idx = knn.labels_
+    def _generate_target_clusters(self, target_embeddings: Tensor) -> List[List[str]]:
+        kmeans = KMeans(n_clusters=min(20, len(self.target_df.columns)))
+        kmeans.fit(np.array(target_embeddings))
+        clusters_idx = kmeans.labels_
 
         clusters = {}
-
         for i, target_column in enumerate(self.target_df.columns):
             cluster_idx = clusters_idx[i]
             if cluster_idx not in clusters:
                 clusters[cluster_idx] = []
             clusters[cluster_idx].append(target_column)
 
-        clusters = [cluster for cluster in clusters.values()]
-
-        return clusters
-
-    # [Cache related functions]
-
-    def get_cached_candidates(self) -> Dict[str, List[Tuple[str, float]]]:
-        return (
-            self.cached_candidates["candidates"]
-            if self.cached_candidates["candidates"] is not None
-            else {}
-        )
-
-    def get_cached_source_clusters(self) -> Dict[str, List[str]]:
-        return (
-            self.cached_candidates["source_clusters"]
-            if self.cached_candidates["source_clusters"] is not None
-            else {}
-        )
-
-    def get_cached_target_clusters(self) -> List[List[str]]:
-        return (
-            self.cached_candidates["target_clusters"]
-            if self.cached_candidates["target_clusters"] is not None
-            else []
-        )
-
-    def update_cached_candidates(self, candidates: Dict[str, list]) -> None:
-        cached_candidates_dict = self.get_cached_candidates()
-        for source_col, target_infos in candidates.items():
-            if source_col in cached_candidates_dict:
-                cached_candidates_dict[source_col] = target_infos
-
-        self.cached_candidates["candidates"] = cached_candidates_dict
+        return list(clusters.values())
 
     def discard_cached_column(self, source_col: str) -> None:
         cached_candidates_dict = self.get_cached_candidates()
@@ -226,46 +201,38 @@ class MatchingTask:
         cached_candidates_dict[column_name] = candidates
         self.cached_candidates["candidates"] = cached_candidates_dict
 
-    def to_frontend_json(self) -> list:
-        ret_json = {
-            "candidates": [],
-            "sourceClusters": [],
+    def to_frontend_json(self) -> dict:
+        return {
+            "candidates": self._format_candidates_for_frontend(),
+            "sourceClusters": self._format_source_clusters_for_frontend(),
+            "targetClusters": self.get_cached_target_clusters(),
         }
 
-        # Candidates Object
+    def _format_candidates_for_frontend(self) -> List[Dict[str, Any]]:
         candidates = self.get_cached_candidates()
-        for source_col, target_infos in candidates.items():
-            for target_info in target_infos:
-                ret_json["candidates"].append(
-                    {
-                        "sourceColumn": source_col,
-                        "targetColumn": target_info[0],
-                        "score": target_info[1],
-                    }
-                )
+        return [
+            {
+                "sourceColumn": source_col,
+                "targetColumn": target_info[0],
+                "score": target_info[1],
+            }
+            for source_col, target_infos in candidates.items()
+            for target_info in target_infos
+        ]
 
-        # Source Clusters Object
+    def _format_source_clusters_for_frontend(self) -> List[Dict[str, Any]]:
         source_clusters = self.get_cached_source_clusters()
-        for source_col, cluster in source_clusters.items():
-            ret_json["sourceClusters"].append(
-                {
-                    "sourceColumn": source_col,
-                    "cluster": cluster,
-                }
-            )
+        return [
+            {"sourceColumn": source_col, "cluster": cluster}
+            for source_col, cluster in source_clusters.items()
+        ]
 
-        # Target Clusters Object
-        target_clusters = self.get_cached_target_clusters()
-        ret_json["targetClusters"] = target_clusters
-
-        return ret_json
-
-    def export_cache_to_json(self, json_obj: Dict) -> None:
+    def _export_cache_to_json(self, json_obj: Dict) -> None:
         output_path = os.path.join(os.path.dirname(__file__), "matching_results.json")
         with open(output_path, "w") as f:
             json.dump(json_obj, f, indent=4)
 
-    def import_cache_from_json(self) -> Optional[Dict]:
+    def _import_cache_from_json(self) -> Optional[Dict]:
         output_path = os.path.join(os.path.dirname(__file__), "matching_results.json")
         if os.path.exists(output_path):
             with open(output_path, "r") as f:
@@ -276,55 +243,54 @@ class MatchingTask:
         operation: str,
         candidate: Dict[str, Any],
         references: List[Dict[str, Any]],
-    ) -> Dict[str, Any]:
+    ) -> None:
         logger.info(f"Applying operation: {operation}, on candidate: {candidate}...")
 
         if operation == "accept":
-            candidates_to_accept = {
-                candidate["sourceColumn"]: [
-                    [candidate["targetColumn"], candidate["score"]]
-                ]
-            }
-            self.update_cached_candidates(candidates_to_accept)
-
+            self.set_cached_candidates(
+                {
+                    candidate["sourceColumn"]: [
+                        [candidate["targetColumn"], candidate["score"]]
+                    ]
+                }
+            )
         elif operation == "reject":
-            candidates_to_reject = {
-                candidate["sourceColumn"]: [
-                    [ref["targetColumn"], ref["score"]]
-                    for ref in references
-                    if ref["targetColumn"] != candidate["targetColumn"]
-                ]
-            }
-            self.update_cached_candidates(candidates_to_reject)
-
+            self.set_cached_candidates(
+                {
+                    candidate["sourceColumn"]: [
+                        [ref["targetColumn"], ref["score"]]
+                        for ref in references
+                        if ref["targetColumn"] != candidate["targetColumn"]
+                    ]
+                }
+            )
         elif operation == "discard":
             self.discard_cached_column(candidate["sourceColumn"])
 
-    def undo_operation(self, operation: str, candidate: Dict[str, Any]) -> None:
+    def undo_operation(
+        self,
+        operation: str,
+        candidate: Dict[str, Any],
+        references: List[Dict[str, Any]],
+    ) -> None:
         logger.info(f"Undoing operation: {operation}, on candidate: {candidate}...")
 
-        if operation == "accept" or operation == "reject":
-            candidates_before_operation = {
-                candidate["sourceColumn"]: [
-                    [ref["targetColumn"], ref["score"]]
-                    for ref in operation["references"]
-                ]
-            }
-            self.update_cached_candidates(candidates_before_operation)
-
+        if operation in ["accept", "reject"]:
+            self.set_cached_candidates(
+                {
+                    candidate["sourceColumn"]: [
+                        [ref["targetColumn"], ref["score"]] for ref in references
+                    ]
+                }
+            )
         elif operation == "discard":
             self.append_cached_column(
                 candidate["sourceColumn"],
-                [
-                    [ref["targetColumn"], ref["score"]]
-                    for ref in operation["references"]
-                ],
+                [[ref["targetColumn"], ref["score"]] for ref in references],
             )
-
         else:
             raise ValueError(f"Operation {operation} not supported.")
 
-    # Setter & Getter
     def get_source_df(self) -> pd.DataFrame:
         return self.source_df
 
@@ -336,20 +302,29 @@ class MatchingTask:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
-        uniques = self.source_df[source_col].unique().tolist()
-        if len(uniques) > 10:
-            return uniques[:10]
-        return uniques
+        return self.source_df[source_col].unique().tolist()[:10]
 
     def get_target_unique_values(self, target_col: str) -> List[str]:
         if self.target_df is None or target_col not in self.target_df.columns:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
-        uniques = self.target_df[target_col].unique().tolist()
-        if len(uniques) > 10:
-            return uniques[:10]
-        return uniques
+        return self.target_df[target_col].unique().tolist()[:10]
+
+    def get_cached_candidates(self) -> Dict[str, List[Tuple[str, float]]]:
+        return self.cached_candidates["candidates"] or {}
+
+    def set_cached_candidates(self, candidates: Dict[str, list]) -> None:
+        cached_candidates_dict = self.get_cached_candidates()
+        for source_col, target_infos in candidates.items():
+            cached_candidates_dict[source_col] = target_infos
+        self.cached_candidates["candidates"] = cached_candidates_dict
+
+    def get_cached_source_clusters(self) -> Dict[str, List[str]]:
+        return self.cached_candidates["source_clusters"] or {}
+
+    def get_cached_target_clusters(self) -> List[List[str]]:
+        return self.cached_candidates["target_clusters"] or []
 
 
-MATCHING_TASK = MatchingTask(embedding_model="magneto_ft")
+MATCHING_TASK = MatchingTask(embedding_model=FT_MODEL_URL)

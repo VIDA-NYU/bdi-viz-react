@@ -1,20 +1,17 @@
 import os
+from typing import List, Tuple
 
+import pandas as pd
 import torch
-from fuzzywuzzy import fuzz
 from sentence_transformers import SentenceTransformer
 from transformers import AutoModel, AutoTokenizer
 
-from ..utils import download_model_pt
 from .column_encoder import ColumnEncoder
-from .embedding_utils import compute_cosine_similarity_simple
-from .utils import detect_column_type, get_samples
 
 DEFAULT_MODELS = ["sentence-transformers/all-mpnet-base-v2"]
-FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
 
-class EmbeddingMatcher:
+class EmbeddingClusterer:
     def __init__(self, params):
         self.params = params
         self.topk = params["topk"]
@@ -39,7 +36,7 @@ class EmbeddingMatcher:
             print(f"Loaded SentenceTransformer Model on {self.device}")
 
             # path to the trained model weights
-            model_path = self.load_ft_model(FT_MODEL_URL, self.model_name)
+            model_path = self.model_name
             if os.path.exists(model_path):
                 print(f"Loading trained model from {model_path}")
                 # Load state dict for the SentenceTransformer model
@@ -61,7 +58,7 @@ class EmbeddingMatcher:
         else:
             return self._get_embeddings_ft(texts, batch_size)
 
-    def _get_embeddings_zs(self, texts, batch_size=32):
+    def _get_embeddings_zs(self, texts: List[str], batch_size=32):
         embeddings = []
         for i in range(0, len(texts), batch_size):
             batch_texts = texts[i : i + batch_size]
@@ -88,7 +85,7 @@ class EmbeddingMatcher:
             embeddings.append(torch.tensor(batch_embeddings))
         return torch.cat(embeddings)
 
-    def get_embedding_similarity_candidates(self, source_df, target_df):
+    def get_embeddings(self, source_df: pd.DataFrame, target_df: pd.DataFrame) -> Tuple:
         encoder = ColumnEncoder(
             self.tokenizer,
             encoding_mode=self.params["encoding_mode"],
@@ -109,26 +106,4 @@ class EmbeddingMatcher:
         embeddings_input = self._get_embeddings(cleaned_input_col_repr)
         embeddings_target = self._get_embeddings(cleaned_target_col_repr)
 
-        top_k = min(self.topk, len(cleaned_target_col_repr))
-        topk_similarity, topk_indices = compute_cosine_similarity_simple(
-            embeddings_input, embeddings_target, top_k
-        )
-
-        candidates = {}
-
-        for i, cleaned_input_col in enumerate(cleaned_input_col_repr):
-            original_input_col = input_col_repr_dict[cleaned_input_col]
-
-            for j in range(top_k):
-                cleaned_target_col = cleaned_target_col_repr[topk_indices[i, j]]
-                original_target_col = target_col_repr_dict[cleaned_target_col]
-                similarity = topk_similarity[i, j].item()
-
-                if similarity >= self.embedding_threshold:
-                    candidates[(original_input_col, original_target_col)] = similarity
-
-        return candidates, embeddings_input, embeddings_target
-
-    def load_ft_model(self, url: str, model_name: str) -> str:
-        model_path = download_model_pt(url, model_name)
-        return model_path
+        return embeddings_input, embeddings_target

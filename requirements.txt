@@ -16,3 +16,4 @@ langchain-openai
 langgraph
 python-dotenv
 pydantic
+magneto-python

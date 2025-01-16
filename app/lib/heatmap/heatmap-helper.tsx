@@ -38,5 +38,43 @@ const getCachedResults = (prop: getCachedResultsProps) => {
     }
 };
 
+interface userOperationsProps {
+    userOperations: UserOperation[];
+    callback: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
+}
 
-export { getCachedResults };
+const applyUserOperations = ({
+    userOperations,
+    callback
+}: userOperationsProps) => {
+    try {
+        axios.post("/api/user-operation/apply", { userOperations }).then((response) => {
+            console.log("applyUserOperations response: ", response);
+            if (response.data && response.data.message === "success") {
+                getCachedResults({ callback });
+            }
+        });
+    } catch (error) {
+        console.error("Error applying user operations:", error);
+    }
+};
+
+
+const undoUserOperations = ({
+    userOperations,
+    callback
+}: userOperationsProps) => {
+    try {
+        axios.post("/api/user-operation/undo", { userOperations }).then((response) => {
+            console.log("undoUserOperations response: ", response);
+            if (response.data && response.data.message === "success") {
+                getCachedResults({ callback });
+            }
+        });
+    } catch (error) {
+        console.error("Error undoing user operations:", error);
+    }
+}
+
+
+export { getCachedResults, applyUserOperations, undoUserOperations };

@@ -79,7 +79,7 @@ export default function Dashboard() {
             console.log("Action Responses: ", actionResponses);
             if (actionResponses && actionResponses.length > 0) {
                 actionResponses.forEach((ar) => {
-                    if (ar.action === "prune" || ar.action === "replace") {
+                    if (ar.action === "prune" || ar.action === "replace" || ar.action === "redo") {
                         getCachedResults({ callback: handleFileUpload });
                     } else {
                         console.log("Action not supported: ", ar.action);

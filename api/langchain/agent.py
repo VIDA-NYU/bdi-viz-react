@@ -1,11 +1,9 @@
 import logging
-import os
 from typing import Any, Dict, Generator, List, Optional
 
 from dotenv import load_dotenv
 
 load_dotenv()
-from flask.logging import default_handler
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.messages import AIMessage, HumanMessage
 
@@ -72,15 +70,19 @@ Note: You may consult domain knowledge (using **retrieve_from_rag**) if clarific
         )
 
         prompt = f"""
-Based on the following user operation and diagnosis, provide a suggestion:
+    User Operation:
+    {user_operation_str}
 
-User Operation:
-{user_operation_str}
+    Diagnosis:
+    {diagnosis_str}
 
-Diagnosis:
-{diagnosis_str}
-
-Generate a suggestion using the diagnosis and your memory.
+    **Instructions**:
+    1. Generate 2-3 suggestions based on the user operation and diagnosis:
+        - **undo**: Undo the last action if it seems incorrect.
+        - **prune_candidates**: Suggest pruning candidates based on RAG expertise.
+        - **update_embedder**: Recommend a more accurate model if matchings seem wrong.
+    2. Provide a brief explanation for each suggestion.
+    3. Include a confidence score for each suggestion.
     """
 
         # logger.info(f"[SUGGESTION] Prompt: {prompt}")
@@ -137,7 +139,11 @@ Candidate: {candidate}
             return response
 
         elif action["action"] == "undo":
-            return "Undo"
+            return ActionResponse(
+                status="success",
+                response="Action successfully undone.",
+                action="undo",
+            )
         else:
             logger.info(f"[Agent] Applying the action: {action}")
             return
