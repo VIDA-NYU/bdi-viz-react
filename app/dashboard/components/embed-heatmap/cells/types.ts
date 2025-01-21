@@ -6,6 +6,7 @@ interface CellData {
     sourceColumn: string;
     targetColumn: string;
     score: number;
+    matcher?: string;
 }
 
 interface CellProps {

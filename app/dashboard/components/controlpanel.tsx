@@ -26,7 +26,6 @@ import RejectMatchButton from "./control-inputs/reject-match-button";
 import DiscardColumnButton from "./control-inputs/discard-column-button";
 import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
-import ExplanationButton from "./control-inputs/explanation-button";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -57,7 +56,6 @@ interface ToolbarProps {
   discardColumn: () => void;
   undo: () => void;
   redo: () => void;
-  explain: (candidate?: Candidate) => void;
 }
 
 const drawerWidth = 240;
@@ -163,9 +161,6 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
                 <Box sx={{ display: "flex", flexDirection: "column", mr: 2 }}>
                   <Box sx={{ mb: 1 }}>
                     <DiscardColumnButton onClick={prop.discardColumn} />
-                  </Box>
-                  <Box>
-                    <ExplanationButton onClick={prop.explain} />
                   </Box>
                 </Box>
                 

@@ -7,7 +7,7 @@ interface getCachedResultsProps {
 }
 
 const getCachedResults = (prop: getCachedResultsProps) => {
-    try {
+    return new Promise<void>((resolve, reject) => {
         axios.get("/api/results").then((response) => {
             const results = response.data?.results;
             if (results.candidates && Array.isArray(results.candidates) && results.sourceClusters && Array.isArray(results.sourceClusters)) {
@@ -31,11 +31,15 @@ const getCachedResults = (prop: getCachedResultsProps) => {
 
                 console.log("getCachedResults: ", candidates, sourceClusters);
                 prop.callback(candidates, sourceClusters);
+                resolve();
+            } else {
+                reject(new Error("Invalid results format"));
             }
+        }).catch((error) => {
+            console.error("Error getting cached results:", error);
+            reject(error);
         });
-    } catch (error) {
-        console.error("Error getting cached results:", error);
-    }
+    });
 };
 
 interface userOperationsProps {

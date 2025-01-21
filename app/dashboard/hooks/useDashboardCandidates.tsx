@@ -29,7 +29,7 @@ export const {
         const { updateSourceColumn } = useDashboardFilters();
 
         const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[]) => {
-            setCandidates(candidates);
+            setCandidates(candidates.sort((a, b) => b.score - a.score));
             if (sourceCluster) {
                 setSourceClusters(sourceCluster);
             }

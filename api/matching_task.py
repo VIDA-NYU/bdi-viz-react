@@ -4,9 +4,9 @@ import logging
 import os
 from typing import Any, Dict, List, Optional, Tuple
 
+import bdikit as bdi
 import numpy as np
 import pandas as pd
-from magneto import Magneto
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
@@ -30,14 +30,29 @@ DEFAULT_PARAMS = {
 }
 FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
+ALLOWED_BDI_MATCHERS = [
+    "magneto_zs_bp",
+    "magneto_ft_bp",
+    "ct_learning",
+    "similarity_flooding",
+    "coma",
+    "cupid",
+    "distribution_based",
+    "jaccard_distance",
+]
+
 
 class MatchingTask:
     def __init__(
         self,
-        embedding_model="sentence-transformers/all-mpnet-base-v2",
+        top_k: int = 20,
         clustering_model="sentence-transformers/all-mpnet-base-v2",
     ) -> None:
-        self.embedding_model = self._download_model(embedding_model)
+        self.top_k = top_k
+        self.bdi_matchers = [
+            "magneto_zs_bp",
+            "magneto_ft_bp",
+        ]
         self.clustering_model = self._download_model(clustering_model)
         self.source_df = None
         self.target_df = None
@@ -47,14 +62,14 @@ class MatchingTask:
         return {
             "source_hash": None,
             "target_hash": None,
-            "candidates": None,
+            "candidates": [],
             "source_clusters": None,
             "target_clusters": None,
         }
 
     def _download_model(self, model_name: str) -> str:
         try:
-            return download_model_pt(model_name, f"{model_name.split('/')[-1]}.pt")
+            return download_model_pt(model_name, f"{model_name.split('/')[-1]}")
         except Exception as e:
             logger.error(f"Error downloading model: {e}")
             return model_name
@@ -115,7 +130,11 @@ class MatchingTask:
         self, source_hash: int, target_hash: int, is_candidates_cached: bool
     ) -> Dict[str, list]:
         embedding_clusterer = EmbeddingClusterer(
-            params={"embedding_model": self.clustering_model, **DEFAULT_PARAMS}
+            params={
+                "embedding_model": self.clustering_model,
+                "topk": self.top_k,
+                **DEFAULT_PARAMS,
+            }
         )
         source_embeddings, target_embeddings = embedding_clusterer.get_embeddings(
             source_df=self.source_df, target_df=self.target_df
@@ -124,12 +143,22 @@ class MatchingTask:
         source_clusters = self._generate_source_clusters(source_embeddings)
         target_clusters = self._generate_target_clusters(target_embeddings)
 
-        matcher = Magneto(embedding_model=self.embedding_model, **DEFAULT_PARAMS)
-        embedding_candidates = matcher.get_matches(
-            source=self.source_df, target=self.target_df
-        )
+        layered_candidates = []
+        for matcher in self.bdi_matchers:
+            if matcher not in ALLOWED_BDI_MATCHERS:
+                raise ValueError(f"Matcher {matcher} not supported.")
 
-        layered_candidates = self._layer_candidates(embedding_candidates)
+            logger.info(f"Running matcher: {matcher}...")
+            embedding_candidates = bdi.top_matches(
+                source=self.source_df,
+                target=self.target_df,
+                top_k=self.top_k,
+                method=matcher,
+            )
+            matcher_candidates = self._layer_candidates_bdi(
+                embedding_candidates, matcher
+            )
+            layered_candidates.extend(matcher_candidates)
 
         if is_candidates_cached:
             self.cached_candidates = {
@@ -143,15 +172,19 @@ class MatchingTask:
 
         return layered_candidates
 
-    def _layer_candidates(
-        self, embedding_candidates: Dict[Tuple[str, str], float]
-    ) -> Dict[str, List[Tuple[str, float]]]:
-        layered_candidates = {}
-        for (source_tuple, target_tuple), score in embedding_candidates.items():
-            source_col, target_col = source_tuple[1], target_tuple[1]
-            if source_col not in layered_candidates:
-                layered_candidates[source_col] = []
-            layered_candidates[source_col].append((target_col, score))
+    def _layer_candidates_bdi(
+        self, top_candidates: pd.DataFrame, matcher: str
+    ) -> List[Dict[str, Any]]:
+        layered_candidates = []
+        for _, row in top_candidates.iterrows():
+            candidate = {
+                "sourceColumn": row["source"],
+                "targetColumn": row["target"],
+                "score": row["similarity"],
+                "matcher": matcher,
+            }
+
+            layered_candidates.append(candidate)
         return layered_candidates
 
     def _generate_source_clusters(
@@ -191,8 +224,13 @@ class MatchingTask:
     def discard_cached_column(self, source_col: str) -> None:
         cached_candidates_dict = self.get_cached_candidates()
         if source_col in cached_candidates_dict:
-            del cached_candidates_dict[source_col]
-        self.cached_candidates["candidates"] = cached_candidates_dict
+            self.set_cached_candidates(
+                [
+                    cached_candidate
+                    for cached_candidate in candidates
+                    if cached_candidate["sourceColumn"] != source_col
+                ]
+            )
 
     def append_cached_column(
         self, column_name: str, candidates: List[Tuple[str, float]]
@@ -203,22 +241,10 @@ class MatchingTask:
 
     def to_frontend_json(self) -> dict:
         return {
-            "candidates": self._format_candidates_for_frontend(),
+            "candidates": self.get_cached_candidates(),
             "sourceClusters": self._format_source_clusters_for_frontend(),
             "targetClusters": self.get_cached_target_clusters(),
         }
-
-    def _format_candidates_for_frontend(self) -> List[Dict[str, Any]]:
-        candidates = self.get_cached_candidates()
-        return [
-            {
-                "sourceColumn": source_col,
-                "targetColumn": target_info[0],
-                "score": target_info[1],
-            }
-            for source_col, target_infos in candidates.items()
-            for target_info in target_infos
-        ]
 
     def _format_source_clusters_for_frontend(self) -> List[Dict[str, Any]]:
         source_clusters = self.get_cached_source_clusters()
@@ -246,26 +272,32 @@ class MatchingTask:
     ) -> None:
         logger.info(f"Applying operation: {operation}, on candidate: {candidate}...")
 
+        candidates = self.get_cached_candidates()
         if operation == "accept":
             self.set_cached_candidates(
-                {
-                    candidate["sourceColumn"]: [
-                        [candidate["targetColumn"], candidate["score"]]
-                    ]
-                }
+                [
+                    cached_candidate
+                    for cached_candidate in candidates
+                    if (cached_candidate["sourceColumn"] != candidate["sourceColumn"])
+                    or (cached_candidate["targetColumn"] == candidate["targetColumn"])
+                ]
             )
         elif operation == "reject":
             self.set_cached_candidates(
-                {
-                    candidate["sourceColumn"]: [
-                        [ref["targetColumn"], ref["score"]]
-                        for ref in references
-                        if ref["targetColumn"] != candidate["targetColumn"]
-                    ]
-                }
+                [
+                    cached_candidate
+                    for cached_candidate in candidates
+                    if not (
+                        cached_candidate["sourceColumn"] == candidate["sourceColumn"]
+                        and cached_candidate["targetColumn"]
+                        == candidate["targetColumn"]
+                    )
+                ]
             )
         elif operation == "discard":
             self.discard_cached_column(candidate["sourceColumn"])
+        else:
+            raise ValueError(f"Operation {operation} not supported.")
 
     def undo_operation(
         self,
@@ -273,21 +305,12 @@ class MatchingTask:
         candidate: Dict[str, Any],
         references: List[Dict[str, Any]],
     ) -> None:
-        logger.info(f"Undoing operation: {operation}, on candidate: {candidate}...")
+        logger.info(f"Undoing operation: {operation}, on candidate: {candidate}... \n")
 
-        if operation in ["accept", "reject"]:
-            self.set_cached_candidates(
-                {
-                    candidate["sourceColumn"]: [
-                        [ref["targetColumn"], ref["score"]] for ref in references
-                    ]
-                }
-            )
-        elif operation == "discard":
-            self.append_cached_column(
-                candidate["sourceColumn"],
-                [[ref["targetColumn"], ref["score"]] for ref in references],
-            )
+        candidates = self.get_cached_candidates()
+
+        if operation in ["accept", "reject", "discard"]:
+            self.set_cached_candidates(candidates + references)
         else:
             raise ValueError(f"Operation {operation} not supported.")
 
@@ -311,14 +334,11 @@ class MatchingTask:
             )
         return self.target_df[target_col].unique().tolist()[:10]
 
-    def get_cached_candidates(self) -> Dict[str, List[Tuple[str, float]]]:
-        return self.cached_candidates["candidates"] or {}
+    def get_cached_candidates(self) -> List[Dict[str, Any]]:
+        return self.cached_candidates["candidates"]
 
-    def set_cached_candidates(self, candidates: Dict[str, list]) -> None:
-        cached_candidates_dict = self.get_cached_candidates()
-        for source_col, target_infos in candidates.items():
-            cached_candidates_dict[source_col] = target_infos
-        self.cached_candidates["candidates"] = cached_candidates_dict
+    def set_cached_candidates(self, candidates: List[Dict[str, Any]]) -> None:
+        self.cached_candidates["candidates"] = candidates
 
     def get_cached_source_clusters(self) -> Dict[str, List[str]]:
         return self.cached_candidates["source_clusters"] or {}
@@ -326,5 +346,13 @@ class MatchingTask:
     def get_cached_target_clusters(self) -> List[List[str]]:
         return self.cached_candidates["target_clusters"] or []
 
+    def get_bdi_matchers(self) -> List[str]:
+        return self.bdi_matchers
 
-MATCHING_TASK = MatchingTask(embedding_model=FT_MODEL_URL)
+    def set_bdi_matchers(self, bdi_matchers: List[str]) -> None:
+        self.bdi_matchers = [
+            matcher for matcher in bdi_matchers if matcher in ALLOWED_BDI_MATCHERS
+        ]
+
+
+MATCHING_TASK = MatchingTask(clustering_model=FT_MODEL_URL)

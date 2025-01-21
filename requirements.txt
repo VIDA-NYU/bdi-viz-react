@@ -16,4 +16,4 @@ langchain-openai
 langgraph
 python-dotenv
 pydantic
-magneto-python
+git+https://github.com/VIDA-NYU/bdi-kit@devel
