@@ -1,9 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import type { Candidate, UserOperation } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { applyUserOperations, undoUserOperations } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
-import { useLoadingGlobal } from '@/app/dashboard/hooks/useLoadingGlobal';
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { Explanation } from '../types';
 
 type DashboardOperationProps = {
@@ -45,7 +45,7 @@ export const {
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
-        const { setIsLoadingGlobal, isLoadingGlobal } = useLoadingGlobal();
+        const { setIsLoadingGlobal, isLoadingGlobal } = useContext(LoadingGlobalContext);
 
         const acceptMatch = useCallback(async () => {
             if (!selectedCandidate) return;

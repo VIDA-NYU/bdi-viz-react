@@ -1,33 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
-import { Button, Container } from "@mui/material";
+import { Button, Paper } from "@mui/material";
+
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import { Dropzone } from "./file-upload/fileUploadBox";
 
 interface FileUploadingProps {
     callback: (candidates: Candidate[], sourceCluster: SourceCluster[]) => void;
 }
 
 const FileUploading = (prop: FileUploadingProps) => {
-    const [file, setFile] = useState<File | null>(null);
+    const { setIsLoadingGlobal } = useContext(LoadingGlobalContext);
 
     const customHeader = {
         headers: {
             "Content-Type": "multipart/form-data",
         },
     }
-    
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files[0]) {
-            setFile(event.target.files[0]);
-        }
-    };
-
-    const handleOnSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        
         event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const file =  formData.get("my-file");
+        
         if (file) {
             const fileReader = new FileReader();
             fileReader.onloadend = async (e) => {
@@ -38,9 +38,10 @@ const FileUploading = (prop: FileUploadingProps) => {
                     formData.append("type", "csv_input");
                     formData.append("source_csv", csv);
                     
+                    setIsLoadingGlobal(true);
                     axios.post("/api/matching", formData, {
                         ...customHeader,
-                        timeout: 10000000, // 10 seconds timeout
+                        timeout: 0, // Set timeout to unlimited
                     }).then((response) => {
                         console.log(response);
                         if (response.status === 200) {
@@ -48,6 +49,7 @@ const FileUploading = (prop: FileUploadingProps) => {
                                 callback: prop.callback
                             });
                         }
+                        setIsLoadingGlobal(false);
                     })
                 }
             };
@@ -56,15 +58,12 @@ const FileUploading = (prop: FileUploadingProps) => {
     }
 
     return (
-        <Container>
-            <input
-                type="file"
-                accept=".csv"
-                onChange={handleFileChange}
-            />
-            {file && <p>Selected file: {file.name}</p>}
-            <Button onClick={(e) => {handleOnSubmit(e);}} >IMPORT CSV</Button>
-        </Container>
+        <Paper sx={{ p: 2 }}>
+            <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
+                <Dropzone required name="my-file" />
+                <Button variant="contained" color="primary" type="submit">IMPORT CSV</Button>
+            </form>
+        </Paper>
     );
 };
 

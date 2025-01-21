@@ -1,25 +1,24 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
 import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
-import ChatBox from "./components/langchain/chatbox";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
 import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
-import { useLoadingGlobal } from "./hooks/useLoadingGlobal";
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
     const [suggestions, setSuggestions] = useState<AgentSuggestions>();
-    const { isLoadingGlobal } = useLoadingGlobal();
+    const { isLoadingGlobal, setIsLoadingGlobal } = useContext(LoadingGlobalContext);
 
     const {
         candidates,
@@ -124,7 +123,10 @@ export default function Dashboard() {
                 rejectMatch={rejectMatch}
                 discardColumn={discardColumn}
                 undo={undo}
-                redo={() => console.log('redo')}
+                redo={() => {
+                    setIsLoadingGlobal(!isLoadingGlobal);
+                    console.log('redo')
+                }}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
@@ -149,7 +151,6 @@ export default function Dashboard() {
                         allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                         allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                     />
-                    <ChatBox callback={handleChatUpdate} />
                     <FileUploading callback={handleFileUpload} />
                 </Container>
             </Box>
@@ -160,8 +161,8 @@ export default function Dashboard() {
                 onSelectedActions={onSelectedActions}
             />
             {isLoadingGlobal && (
-                <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <CircularProgress />
+                <Box sx={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'rgba(0,0,0,0)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1300 }}>
+                    <CircularProgress size={80} />
                 </Box>
             )}
         </Box>

@@ -3,246 +3,6 @@
     "target_hash": 5858499037241242318659579308324937661855492811576498202647020429983297219966,
     "candidates": [
         {
-            "sourceColumn": "Race",
-            "targetColumn": "race",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "ethnicity",
-            "score": 0.6168047225197895,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "gender",
-            "score": 0.5685979345781107,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "channel",
-            "score": 0.4782867845237477,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "relationship_gender",
-            "score": 0.45802232433030704,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "exposure_source",
-            "score": 0.4498246669968904,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "zygosity",
-            "score": 0.44834353110506553,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "eye_color",
-            "score": 0.4465054578397731,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "clonality",
-            "score": 0.4462479955284013,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "demographics",
-            "score": 0.44181657698704835,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "who_nte_grade",
-            "score": 0.42725142970720986,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "country_of_birth",
-            "score": 0.4252352135468717,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "education_level",
-            "score": 0.4237858314849124,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.42355417187523703,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "progression_or_recurrence_type",
-            "score": 0.4184530125009617,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "occupation_type",
-            "score": 0.4143819630055242,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "aneuploidy",
-            "score": 0.4138146510793362,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "alcohol_intensity",
-            "score": 0.4134133625973971,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "tissue_collection_type",
-            "score": 0.40985167754655993,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "marital_status",
-            "score": 0.40925374120169183,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "ethnicity",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "race",
-            "score": 0.5847455606842148,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "gender",
-            "score": 0.5328579348116427,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "relationship_gender",
-            "score": 0.47518320602525194,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "marital_status",
-            "score": 0.4541282014409464,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "exposure_source",
-            "score": 0.45193453740783046,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "demographics",
-            "score": 0.4497924353392157,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "channel",
-            "score": 0.4494060898360368,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "zygosity",
-            "score": 0.4479996688380131,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "clonality",
-            "score": 0.4385260374984827,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.4277959362152318,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "who_nte_grade",
-            "score": 0.4252050669560008,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.4243108773694326,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "education_level",
-            "score": 0.4202020794770689,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "country_of_birth",
-            "score": 0.41919699039987607,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "alcohol_intensity",
-            "score": 0.417993255270734,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "occupation_type",
-            "score": 0.4123535839554975,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "inpc_histologic_group",
-            "score": 0.409918920950981,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "tissue_collection_type",
-            "score": 0.4055418444632009,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "alcohol_type",
-            "score": 0.40552668428998195,
-            "matcher": "magneto_zs_bp"
-        },
-        {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_focality",
             "score": 1.0,
@@ -483,6 +243,126 @@
             "matcher": "magneto_zs_bp"
         },
         {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "figo_stage",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "iss_stage",
+            "score": 0.6203647568927404,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_clinical_stage",
+            "score": 0.615477968449226,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_pathologic_stage",
+            "score": 0.6121186217561364,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.6018231700236848,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "enneking_msts_stage",
+            "score": 0.5988940421144364,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_pathologic_stage",
+            "score": 0.596522713014084,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "inss_stage",
+            "score": 0.5952991697503062,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "masaoka_stage",
+            "score": 0.591388105693165,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ann_arbor_clinical_stage",
+            "score": 0.5802002453687067,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "cog_renal_stage",
+            "score": 0.566433852430273,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ann_arbor_pathologic_stage",
+            "score": 0.5585573822624179,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_clinical_n",
+            "score": 0.5575690605974386,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "cog_liver_stage",
+            "score": 0.5546388467158967,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ensat_pathologic_stage",
+            "score": 0.55383805074658,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "irs_group",
+            "score": 0.5525999554540677,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_pathologic_n",
+            "score": 0.5510459725407867,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "clark_level",
+            "score": 0.548884627043129,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.5389150104376556,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_clinical_t",
+            "score": 0.535719471805336,
+            "matcher": "magneto_zs_bp"
+        },
+        {
             "sourceColumn": "BMI",
             "targetColumn": "bmi",
             "score": 1.0,
@@ -603,123 +483,243 @@
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "figo_stage",
+            "sourceColumn": "Race",
+            "targetColumn": "race",
             "score": 1.0,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "iss_stage",
-            "score": 0.6203647568927404,
+            "sourceColumn": "Race",
+            "targetColumn": "ethnicity",
+            "score": 0.6168047225197895,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_clinical_stage",
-            "score": 0.615477968449226,
+            "sourceColumn": "Race",
+            "targetColumn": "gender",
+            "score": 0.5685979345781107,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_pathologic_stage",
-            "score": 0.6121186217561364,
+            "sourceColumn": "Race",
+            "targetColumn": "channel",
+            "score": 0.4782867845237477,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_clinical_stage",
-            "score": 0.6018231700236848,
+            "sourceColumn": "Race",
+            "targetColumn": "relationship_gender",
+            "score": 0.45802232433030704,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "enneking_msts_stage",
-            "score": 0.5988940421144364,
+            "sourceColumn": "Race",
+            "targetColumn": "exposure_source",
+            "score": 0.4498246669968904,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.596522713014084,
+            "sourceColumn": "Race",
+            "targetColumn": "zygosity",
+            "score": 0.44834353110506553,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "inss_stage",
-            "score": 0.5952991697503062,
+            "sourceColumn": "Race",
+            "targetColumn": "eye_color",
+            "score": 0.4465054578397731,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "masaoka_stage",
-            "score": 0.591388105693165,
+            "sourceColumn": "Race",
+            "targetColumn": "clonality",
+            "score": 0.4462479955284013,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ann_arbor_clinical_stage",
-            "score": 0.5802002453687067,
+            "sourceColumn": "Race",
+            "targetColumn": "demographics",
+            "score": 0.44181657698704835,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "cog_renal_stage",
-            "score": 0.566433852430273,
+            "sourceColumn": "Race",
+            "targetColumn": "who_nte_grade",
+            "score": 0.42725142970720986,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ann_arbor_pathologic_stage",
-            "score": 0.5585573822624179,
+            "sourceColumn": "Race",
+            "targetColumn": "country_of_birth",
+            "score": 0.4252352135468717,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_clinical_n",
-            "score": 0.5575690605974386,
+            "sourceColumn": "Race",
+            "targetColumn": "education_level",
+            "score": 0.4237858314849124,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "cog_liver_stage",
-            "score": 0.5546388467158967,
+            "sourceColumn": "Race",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.42355417187523703,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ensat_pathologic_stage",
-            "score": 0.55383805074658,
+            "sourceColumn": "Race",
+            "targetColumn": "progression_or_recurrence_type",
+            "score": 0.4184530125009617,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "irs_group",
-            "score": 0.5525999554540677,
+            "sourceColumn": "Race",
+            "targetColumn": "occupation_type",
+            "score": 0.4143819630055242,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_pathologic_n",
-            "score": 0.5510459725407867,
+            "sourceColumn": "Race",
+            "targetColumn": "aneuploidy",
+            "score": 0.4138146510793362,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "clark_level",
-            "score": 0.548884627043129,
+            "sourceColumn": "Race",
+            "targetColumn": "alcohol_intensity",
+            "score": 0.4134133625973971,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.5389150104376556,
+            "sourceColumn": "Race",
+            "targetColumn": "tissue_collection_type",
+            "score": 0.40985167754655993,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_clinical_t",
-            "score": 0.535719471805336,
+            "sourceColumn": "Race",
+            "targetColumn": "marital_status",
+            "score": 0.40925374120169183,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "ethnicity",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "race",
+            "score": 0.5847455606842148,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "gender",
+            "score": 0.5328579348116427,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "relationship_gender",
+            "score": 0.47518320602525194,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "marital_status",
+            "score": 0.4541282014409464,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "exposure_source",
+            "score": 0.45193453740783046,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "demographics",
+            "score": 0.4497924353392157,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "channel",
+            "score": 0.4494060898360368,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "zygosity",
+            "score": 0.4479996688380131,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "clonality",
+            "score": 0.4385260374984827,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "country_of_residence_at_enrollment",
+            "score": 0.4277959362152318,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "who_nte_grade",
+            "score": 0.4252050669560008,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.4243108773694326,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "education_level",
+            "score": 0.4202020794770689,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "country_of_birth",
+            "score": 0.41919699039987607,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "alcohol_intensity",
+            "score": 0.417993255270734,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "occupation_type",
+            "score": 0.4123535839554975,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "inpc_histologic_group",
+            "score": 0.409918920950981,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "tissue_collection_type",
+            "score": 0.4055418444632009,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "alcohol_type",
+            "score": 0.40552668428998195,
             "matcher": "magneto_zs_bp"
         },
         {
@@ -2043,102 +2043,6 @@
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Race",
-            "targetColumn": "race",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "ethnicity",
-            "score": 0.31977348528082034,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "demographics",
-            "score": 0.08891199143966551,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "melanoma_known_primary",
-            "score": 0.055224424861328676,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "aneuploidy",
-            "score": 0.051651325787946324,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "gender",
-            "score": 0.05045260805466017,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "relationship_gender",
-            "score": 0.04898002774357071,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "variant_origin",
-            "score": 0.04859686654747983,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "height",
-            "score": 0.03705625060356668,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "chromosome",
-            "score": 0.03699922324917145,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "ethnicity",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "race",
-            "score": 0.32282233298011653,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "demographics",
-            "score": 0.09027961494811879,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "irs_group",
-            "score": 0.04121498636166041,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "variant_origin",
-            "score": 0.04008808075279431,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "transglottic_extension",
-            "score": 0.03794088881729715,
-            "matcher": "magneto_ft_bp"
-        },
-        {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_focality",
             "score": 1.0,
@@ -2379,108 +2283,6 @@
             "matcher": "magneto_ft_bp"
         },
         {
-            "sourceColumn": "BMI",
-            "targetColumn": "bmi",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "body_surface_area",
-            "score": 0.10153375176193306,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "gross_tumor_weight",
-            "score": 0.09404836473545772,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "weight",
-            "score": 0.06767536405976506,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "current_weight",
-            "score": 0.0640048458339666,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "initial_weight",
-            "score": 0.05886033768654502,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "tumor_burden",
-            "score": 0.05752804052451931,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "height",
-            "score": 0.056448940619458,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "risk_factors",
-            "score": 0.05079398129267871,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "target_capture_kit_version",
-            "score": 0.05003553012267538,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "target_capture_kit_name",
-            "score": 0.04641818434307609,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "therapeutic_level_achieved",
-            "score": 0.04553141019277362,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "exercise_frequency_weekly",
-            "score": 0.04423151793244351,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "comorbidities",
-            "score": 0.04413935522846782,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "target_capture_kit_target_region",
-            "score": 0.04219227418682191,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "days_to_birth",
-            "score": 0.040592301668800956,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "burkitt_lymphoma_clinical_variant",
-            "score": 0.0361606717676217,
-            "matcher": "magneto_ft_bp"
-        },
-        {
             "sourceColumn": "FIGO_stage",
             "targetColumn": "figo_stage",
             "score": 1.0,
@@ -2598,6 +2400,204 @@
             "sourceColumn": "FIGO_stage",
             "targetColumn": "catalog_reference",
             "score": 0.06759367659132005,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "bmi",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "body_surface_area",
+            "score": 0.10153375176193306,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "gross_tumor_weight",
+            "score": 0.09404836473545772,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "weight",
+            "score": 0.06767536405976506,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "current_weight",
+            "score": 0.0640048458339666,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "initial_weight",
+            "score": 0.05886033768654502,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "tumor_burden",
+            "score": 0.05752804052451931,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "height",
+            "score": 0.056448940619458,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "risk_factors",
+            "score": 0.05079398129267871,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "target_capture_kit_version",
+            "score": 0.05003553012267538,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "target_capture_kit_name",
+            "score": 0.04641818434307609,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "therapeutic_level_achieved",
+            "score": 0.04553141019277362,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "exercise_frequency_weekly",
+            "score": 0.04423151793244351,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "comorbidities",
+            "score": 0.04413935522846782,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "target_capture_kit_target_region",
+            "score": 0.04219227418682191,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "days_to_birth",
+            "score": 0.040592301668800956,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "burkitt_lymphoma_clinical_variant",
+            "score": 0.0361606717676217,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "race",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "ethnicity",
+            "score": 0.31977348528082034,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "demographics",
+            "score": 0.08891199143966551,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "melanoma_known_primary",
+            "score": 0.055224424861328676,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "aneuploidy",
+            "score": 0.051651325787946324,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "gender",
+            "score": 0.05045260805466017,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "relationship_gender",
+            "score": 0.04898002774357071,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "variant_origin",
+            "score": 0.04859686654747983,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "height",
+            "score": 0.03705625060356668,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "chromosome",
+            "score": 0.03699922324917145,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "ethnicity",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "race",
+            "score": 0.32282233298011653,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "demographics",
+            "score": 0.09027961494811879,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "irs_group",
+            "score": 0.04121498636166041,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "variant_origin",
+            "score": 0.04008808075279431,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "transglottic_extension",
+            "score": 0.03794088881729715,
             "matcher": "magneto_ft_bp"
         },
         {
