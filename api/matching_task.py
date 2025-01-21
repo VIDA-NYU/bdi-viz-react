@@ -31,14 +31,11 @@ DEFAULT_PARAMS = {
 FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
 ALLOWED_BDI_MATCHERS = [
+    "ct_learning",
     "magneto_zs_bp",
     "magneto_ft_bp",
-    "ct_learning",
-    "similarity_flooding",
-    "coma",
-    "cupid",
-    "distribution_based",
-    "jaccard_distance",
+    "magneto_zs_llm",
+    "magneto_ft_llm",
 ]
 
 
@@ -49,10 +46,7 @@ class MatchingTask:
         clustering_model="sentence-transformers/all-mpnet-base-v2",
     ) -> None:
         self.top_k = top_k
-        self.bdi_matchers = [
-            "magneto_zs_bp",
-            "magneto_ft_bp",
-        ]
+        self.bdi_matchers = ["magneto_zs_bp", "magneto_ft_bp", "ct_learning"]
         self.clustering_model = self._download_model(clustering_model)
         self.source_df = None
         self.target_df = None

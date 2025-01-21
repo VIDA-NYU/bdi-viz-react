@@ -36,21 +36,19 @@ class Agent:
         logger.info(f"[Agent] Explaining the candidate...")
         # logger.info(f"{diagnose}")
         prompt = f"""
-Please diagnose the following user operation:
-Source: {candidate["sourceColumn"]}
-Target: {candidate["targetColumn"]}
-Source Value Sample: {candidate["sourceValues"]}
-Target Value Sample: {candidate["targetValues"]}
+Diagnose the following user operation:
+    - Source Column: {candidate["sourceColumn"]}
+    - Target Column: {candidate["targetColumn"]}
+    - Source Value Sample: {candidate["sourceValues"]}
+    - Target Value Sample: {candidate["targetValues"]}
 
 **Instructions**:
-Note: You may consult domain knowledge (using **retrieve_from_rag**) if clarifications are needed.
-
-1. Determine whether the source and target columns are a valid match.
-2. Provide around four (4) possible explanations for why these columns might be mapped together.
-3. Suggest potential matching value pairs based on the given samples.
-4. Generate any relevant context or key terms (“relative knowledge”) about the source and target columns.
-"""
-        # logger.info(f"[EXPLAIN] Prompt: {prompt}")
+1. Assess if the source and target columns are a valid match.
+2. Provide four (4) possible explanations for why these columns might be mapped together.
+3. Suggest potential matching value pairs based on the provided samples, ensuring they are relevant to the source and target columns. For numaeric columns, do not return potential value pairs.
+4. Generate any relevant context or key terms ("relative knowledge") about the source and target columns.
+        """
+        logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
             prompt=prompt,
             tools=[retrieve_from_rag],
@@ -123,10 +121,11 @@ Candidate: {candidate}
 1. Identify **Related Source Columns and Their Candidates**.
 2. Consult Domain Knowledge (using **retrieve_from_rag**) if any clarifications are needed.
 3. Decide Which Candidates to Prune based on your understanding and the user’s previous operations, then compile the candidates after pruning into a **dictionary** like this:
-{{
-  "source_col_1": [("target_col_1", 0.9), ("target_col_2", 0.7)],
-  "source_col_2": [("target_col_3", 0.8)]
-}}
+    [
+        {{"sourceColumn": "source_column_1", "targetColumn": "target_column_1", "score": 0.9, "matcher": "magneto_zs_bp"}},
+        {{"sourceColumn": "source_column_1", "targetColumn": "target_column_15", "score": 0.7, "matcher": "magneto_zs_bp"}},
+        ...
+    ]
 4. Call **update_candidates** with this updated dictionary as the parameter to refine the heatmap.
                 """
 

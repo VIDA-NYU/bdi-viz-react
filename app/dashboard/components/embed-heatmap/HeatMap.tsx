@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
-import { Card, Grid } from '@mui/material';
+import { Card, Grid, Typography } from '@mui/material';
 import * as d3 from 'd3';
 import { RectCell } from './cells/RectCell';
 import { BarCell } from './cells/BarCell';
@@ -40,7 +40,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
     const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
     const [config, setConfig] = useState<HeatMapConfig>({
         cellType: 'rect',
-        colorScheme: 'blues',
+        colorSchemes: ['blues', 'greens', 'oranges', 'purples', 'reds'],
         colorScalePadding: 10,
         maxScore: 1,
         minScore: 0,
@@ -133,7 +133,29 @@ const HeatMap: React.FC<HeatMapProps> = ({
                         const matcherScale = scales.filter((s) => s.matcher === matcher)[0];
                         if (!matcherScale) return null;
 
+                        
                         return (
+                        <>
+                            <Typography
+                                style={{
+                                    textAlign: 'left',
+                                    marginBottom: '10px',
+                                    position: 'absolute',
+                                    opacity: 1,
+                                    width: 'fit-content',
+                                    pointerEvents: 'none',
+                                    transform: `translateY(20px)`,
+                                    background: `linear-gradient(to right, ${matcherScale?.color(1)}, ${matcherScale?.color(0.2)})`, // Example gradient for 'blues' color scheme
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    padding: '8px',
+                                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                                    borderRadius: '4px',
+                                }}
+                            >
+                                {matcher}
+                            </Typography>
+                        
                             <svg
                                 key={matcher}
                                 width={dimensions.width}
@@ -152,7 +174,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                                 y={matcherScale.y(d.sourceColumn) ?? 0}
                                                 width={matcherScale.cellWidth ?? 0}
                                                 height={matcherScale.cellHeight ?? 0}
-                                                color={matcherScale.color ?? d3.scaleSequential(getColorInterpolator(config.colorScheme))
+                                                color={matcherScale.color ?? d3.scaleSequential(getColorInterpolator(config.colorSchemes[0]))
                                                     .domain([dataRange.min - dataRange.padding, dataRange.max + dataRange.padding])(d.score)
                                                 }
                                                 isSelected={
@@ -196,6 +218,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                     </g>
                                 </g>
                             </svg>
+                        </>
                         );
                     })}
                 </Card>

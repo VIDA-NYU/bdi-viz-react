@@ -18,8 +18,9 @@ const useHeatmapScales = ({ data, width, height, margin, matchers, config }: Sca
         const minScore = d3.min(data, d => d.score) ?? 0;
         const maxScore = d3.max(data, d => d.score) ?? 1;
         const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
+        const colors = config.colorSchemes;
 
-        const scales = matchers?.map((matcher) => {
+        const scales = matchers?.map((matcher, index) => {
             const matcherData = data.filter(d => d.matcher === matcher);
 
             const numColumnsX = [...new Set(matcherData.map(d => d.targetColumn))].length;
@@ -40,7 +41,7 @@ const useHeatmapScales = ({ data, width, height, margin, matchers, config }: Sca
                 .domain(matcherData.map(d => d.sourceColumn));
 
             const color = d3.scaleSequential()
-                .interpolator(getColorInterpolator(config.colorScheme))
+                .interpolator(getColorInterpolator(colors[index]))
                 .domain([minScore - padding, maxScore + padding]);
 
             return {
