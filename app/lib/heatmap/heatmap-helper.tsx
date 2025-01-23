@@ -1,6 +1,8 @@
 "use client";
 
 import axios from "axios";
+import http from 'http';
+import https from 'https';
 
 interface getCachedResultsProps {
     callback: (candidates: Candidate[], sourceCluster: SourceCluster[]) => void;
@@ -8,7 +10,14 @@ interface getCachedResultsProps {
 
 const getCachedResults = (prop: getCachedResultsProps) => {
     return new Promise<void>((resolve, reject) => {
-        axios.get("/api/results").then((response) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
+        axios.get("/api/results", {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
             const results = response.data?.results;
             if (results.candidates && Array.isArray(results.candidates) && results.sourceClusters && Array.isArray(results.sourceClusters)) {
                 const candidates = results.candidates.map((result: object) => {

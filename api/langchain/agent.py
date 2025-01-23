@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
-from langchain_core.messages import AIMessage, HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
@@ -21,6 +21,79 @@ from .pydantic import ActionResponse, AgentSuggestions, CandidateExplanation
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
+FN_CANDIDATES = [
+    {
+        "sourceColumn": "Tumor_Site",
+        "targetColumn": "site_of_resection_or_biopsy",
+        "sourceValues": [
+            "Posterior endometrium",
+            "Anterior endometrium",
+            "Other, specify",
+        ],
+        "targetValues": [
+            "Other specified parts of female genital organs",
+            "Endometrium",
+        ],
+    },
+    {
+        "sourceColumn": "Histologic_type",
+        "targetColumn": "primary_diagnosis",
+        "sourceValues": ["Endometrioid", "Serous", "Clear cell", "Carcinosarcoma"],
+        "targetValues": ["Serous adenocarcinofibroma", "clear cell", "Carcinosarcoma"],
+    },
+]
+
+FP_CANDIDATES = [
+    {
+        "sourceColumn": "Gender",
+        "targetColumn": "relationship_gender",
+        "sourceValues": ["Female", "Male"],
+        "targetValues": ["female", "male"],
+    },
+    {
+        "sourceColumn": "Ethnicity",
+        "targetColumn": "race",
+        "sourceValues": ["Not-Hispanic or Latino", "Hispanic or Latino"],
+        "targetValues": ["native hawaiian or other pacific islander", "white", "asian"],
+    },
+    {
+        "sourceColumn": "FIGO_stage",
+        "targetColumn": "iss_stage",
+        "sourceValues": ["IIIC1", "IA", "IIIB"],
+        "targetValues": ["I", "II", "III"],
+    },
+    {
+        "sourceColumn": "tumor_Stage-Pathological",
+        "targetColumn": "figo_stage",
+        "sourceValues": ["Stage I", "Stage II", "Stage III"],
+        "targetValues": ["Stage I", "Stage II", "Stage III"],
+    },
+    {
+        "sourceColumn": "tumor_Stage-Pathological",
+        "targetColumn": "ajcc_pathologic_t",
+        "sourceValues": ["Stage I", "Stage II", "Stage III"],
+        "targetValues": ["T0", "T1a", "T2b"],
+    },
+    {
+        "sourceColumn": "Path_Stage_Reg_Lymph_Nodes-pN",
+        "targetColumn": "uicc_clinical_n",
+        "sourceValues": ["pN1 (FIGO IIIC1)", "pN0", "pNX"],
+        "targetValues": ["N1", "N0", "NX"],
+    },
+    {
+        "sourceColumn": "Path_Stage_Primary_Tumor-pT",
+        "targetColumn": "ajcc_pathologic_stage",
+        "sourceValues": ["pT1b (FIGO IB)", "pT3a (FIGO IIIA)", "pT1 (FIGO I)"],
+        "targetValues": ["Stage I", "Stage IB", "StageIIIA"],
+    },
+    {
+        "sourceColumn": "Clin_Stage_Dist_Mets-cM",
+        "targetColumn": "uicc_pathologic_m",
+        "sourceValues": ["cM0", "cM1"],
+        "targetValues": ["cM0 (i+)", "M0", "M1"],
+    },
+]
+
 
 class Agent:
     def __init__(self) -> None:
@@ -29,24 +102,40 @@ class Agent:
         # self.llm = ChatOllama(base_url='https://ollama-asr498.users.hsrn.nyu.edu', model='llama3.1:8b-instruct-fp16', temperature=0.2)
         # self.llm = ChatTogether(model="meta-llama/Llama-3.3-70B-Instruct-Turbo")
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+        self.agent_config = {"configurable": {"thread_id": "bdiviz-1"}}
 
         self.memory = MemorySaver()
+        self.is_initialized = False
+
+    def initialize(self, results: List[Dict[str, Any]]) -> None:
+        logger.info(f"[Agent] Initializing the agent...")
+        system_messages = [
+            """You are a helpful assistant for BDI-Viz: A heatmap visualization tool for schema matching.
+    Your task is to assist with schema matching operations and provide information in a strict schema format.
+    Avoid providing any reasoning, apologies, or explanations.""",
+            # f"""Here are the candidates for all available matchers:
+            # {results}
+            # Keep these candidates in mind as you proceed with the following user operations."""
+        ]
+
+        self.invoke_system(system_messages[0])
+        self.is_initialized = True
 
     def explain(self, candidate: Dict[str, Any]) -> CandidateExplanation:
         logger.info(f"[Agent] Explaining the candidate...")
         # logger.info(f"{diagnose}")
         prompt = f"""
-Diagnose the following user operation:
-    - Source Column: {candidate["sourceColumn"]}
-    - Target Column: {candidate["targetColumn"]}
-    - Source Value Sample: {candidate["sourceValues"]}
-    - Target Value Sample: {candidate["targetValues"]}
+    Diagnose the following user operation:
+        - Source Column: {candidate["sourceColumn"]}
+        - Target Column: {candidate["targetColumn"]}
+        - Source Value Sample: {candidate["sourceValues"]}
+        - Target Value Sample: {candidate["targetValues"]}
 
-**Instructions**:
-1. Assess if the source and target columns are a valid match.
-2. Provide four (4) possible explanations for why these columns might be mapped together.
-3. Suggest potential matching value pairs based on the provided samples, ensuring they are relevant to the source and target columns. For numaeric columns, do not return potential value pairs.
-4. Generate any relevant context or key terms ("relative knowledge") about the source and target columns.
+    **Instructions**:
+    1. Assess if the source and target columns are a valid match.
+    2. Provide four (4) possible explanations for why these columns might be mapped together.
+    3. Suggest potential matching value pairs based on the provided samples, ensuring they are relevant to the source and target columns. For numeric columns, do not return potential value pairs.
+    4. Generate any relevant context or key terms ("relative knowledge") about the source and target columns.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
@@ -147,6 +236,32 @@ Candidate: {candidate}
             logger.info(f"[Agent] Applying the action: {action}")
             return
 
+    def remember_fp(self, candidate: Dict[str, Any]) -> None:
+        logger.info(f"[Agent] Remembering the false positive...")
+        prompt = f"""
+You have identified a false positive in the candidate mappings.
+Please keep this in mind as you proceed with the following user operations.
+    - Source Column: {candidate["sourceColumn"]}
+    - Target Column: {candidate["targetColumn"]}
+    - Source Value Sample: {candidate["sourceValues"]}
+    - Target Value Sample: {candidate["targetValues"]}
+"""
+        logger.info(f"[REMEMBER-FP] Prompt: {prompt}")
+        self.invoke_system(prompt)
+
+    def remember_fn(self, candidate: Dict[str, Any]) -> None:
+        logger.info(f"[Agent] Remembering the false negative...")
+        prompt = f"""
+You have identified a false negative in the candidate mappings.
+Please keep this in mind as you proceed with the following user operations.
+    - Source Column: {candidate["sourceColumn"]}
+    - Target Column: {candidate["targetColumn"]}
+    - Source Value Sample: {candidate["sourceValues"]}
+    - Target Value Sample: {candidate["targetValues"]}
+"""
+        logger.info(f"[REMEMBER-FN] Prompt: {prompt}")
+        self.invoke_system(prompt)
+
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel
     ) -> BaseModel:
@@ -156,9 +271,8 @@ Candidate: {candidate}
         agent_executor = create_react_agent(self.llm, tools, checkpointer=self.memory)
 
         responses = []
-        config = {"configurable": {"thread_id": "bdiviz-1"}}
         for chunk in agent_executor.stream(
-            {"messages": [HumanMessage(content=prompt)]}, config
+            {"messages": [HumanMessage(content=prompt)]}, self.agent_config
         ):
             logger.info(chunk)
             logger.info("----")
@@ -168,6 +282,14 @@ Candidate: {candidate}
         response = output_parser.parse(final_response)
 
         return response
+
+    def invoke_system(self, prompt: str) -> Generator[AIMessage, None, None]:
+        agent_executor = create_react_agent(self.llm, [], checkpointer=self.memory)
+        for chunk in agent_executor.stream(
+            {"messages": [SystemMessage(content=prompt)]}, self.agent_config
+        ):
+            logger.info(chunk)
+            yield chunk
 
     def bind_tools(self, tools: List, tool_choice: Optional[str] = None) -> None:
         if tool_choice is not None:
@@ -179,9 +301,6 @@ Candidate: {candidate}
     def generate_prompt(self, prompt: str, output_parser: PydanticOutputParser) -> str:
         instructions = output_parser.get_format_instructions()
         template = f"""
-You are a helpful assistant on BDI-Viz: A heatmap visualizaition tool for schema matching.
-You are an assistant that must return information in a strict schema.
-Do not provide any reasoning, apologies, or explanations.
 Directly return the JSON in the exact schema described below. 
 No extra text before or after the JSON.
 

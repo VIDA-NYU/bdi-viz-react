@@ -67,7 +67,7 @@ def read_source_cluster_details(
         is a list of tuples, each containing a candidate string and its associated float value.
     """
 
-    top_neighbors = 3
+    top_neighbors = 1
     cached_candidates = MATCHING_TASK.get_cached_candidates()
     source_cluster = MATCHING_TASK.get_cached_source_clusters()[source_column][
         1 : top_neighbors + 1

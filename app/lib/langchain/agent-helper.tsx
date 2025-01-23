@@ -1,11 +1,19 @@
 "use client";
 
 import axios from "axios";
-
+import http from 'http';
+import https from 'https';
 
 const candidateExplanationRequest = async (candidate: Candidate): Promise<CandidateExplanation | undefined> => {
     try {
-        const resp = await axios.post("/api/agent/explain", candidate);
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
+        const resp = await axios.post("/api/agent/explain", candidate, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        });
         console.log("candidateExplanationRequest: ", resp.data);
         const { is_match, explanations, matching_values, relative_knowledge } = resp.data;
         let explanationObjects: ExplanationObject[] = [];
@@ -45,9 +53,16 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
 
 const agentSuggestionsRequest = async (userOperation: UserOperation, explanations: ExplanationObject[]): Promise<AgentSuggestions | undefined> => {
     try {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
         const resp = await axios.post("/api/agent/suggest", {
             userOperation,
             explanations,
+        }, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
         });
         console.log("agentSuggestionsRequest: ", resp.data);
 
@@ -77,7 +92,14 @@ const agentSuggestionsRequest = async (userOperation: UserOperation, explanation
 
 const agentActionRequest = async (reaction: UserReaction): Promise<ActionResponse[] | undefined> => {
     try {
-        const resp = await axios.post("/api/agent/apply", reaction);
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        
+        const resp = await axios.post("/api/agent/apply", reaction, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        });
         console.log("agentActionRequest: ", resp.data);
         
         // let actionResponses = [];
