@@ -1,9 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import * as d3 from 'd3';
 import { CellData } from '../cells/types';
 import { HeatMapConfig } from '../types';
-import { getColorInterpolator } from '../utils/color';
-
+import { ColorScheme, getColorInterpolator } from '../utils/color';
 interface ScaleParams {
     data: CellData[];
     width: number;
@@ -13,15 +12,31 @@ interface ScaleParams {
     config: HeatMapConfig;
 }
 
-const useHeatmapScales = ({ data, width, height, margin, matchers, config }: ScaleParams) => {
-    return useMemo(() => {
-        const minScore = d3.min(data, d => d.score) ?? 0;
-        const maxScore = d3.max(data, d => d.score) ?? 1;
-        const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
-        const colors = config.colorSchemes;
+interface HeatmapScale {
+    matcher: string;
+    x: d3.ScaleBand<string>;
+    y: d3.ScaleBand<string>;
+    color: d3.ScaleSequential<string, string>;
+    cellWidth: number;
+    cellHeight: number;
+}
 
-        const scales = matchers?.map((matcher, index) => {
-            const matcherData = data.filter(d => d.matcher === matcher);
+function getHeatmapScale(
+    data: CellData[],
+    matcher: string,
+    matchers: string[],
+    margin: { top: number; right: number; bottom: number; left: number },
+    width: number,
+    height: number,
+    maxScore: number,
+    minScore: number,
+    padding: number,
+    colors: ColorScheme[],
+    index: number
+
+) : HeatmapScale 
+{
+    const matcherData = data.filter(d => d.matcher === matcher);
 
             const numColumnsX = [...new Set(matcherData.map(d => d.targetColumn))].length;
             const numColumnsY = [...new Set(matcherData.map(d => d.sourceColumn))].length;
@@ -52,6 +67,31 @@ const useHeatmapScales = ({ data, width, height, margin, matchers, config }: Sca
                 cellWidth,
                 cellHeight
             };
+}
+
+
+
+const useHeatmapScales = ({ data, width, height, margin, matchers, config }: ScaleParams) => {
+    return useMemo(() => {
+        const minScore = d3.min(data, d => d.score) ?? 0;
+        const maxScore = d3.max(data, d => d.score) ?? 1;
+        const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
+        const colors = config.colorSchemes;
+
+        const scales = matchers?.map((matcher, index) => {
+            return getHeatmapScale(
+                data,
+                matcher,
+                matchers,
+                margin,
+                width,
+                height,
+                maxScore,
+                minScore,
+                padding,
+                colors,
+                index
+            );
         });
 
         return { scales, dataRange: { min: minScore, max: maxScore, padding: padding } };

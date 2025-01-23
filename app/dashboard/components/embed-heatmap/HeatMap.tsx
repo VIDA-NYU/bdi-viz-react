@@ -15,6 +15,7 @@ interface SourceCluster {
     cluster: string[];
 }
 
+import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
 interface HeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
