@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-// import * as d3 from 'd3';
 import { alpha, styled } from "@mui/material/styles";
 import {
   AppBar,
   Box,
-  Container,
   Drawer,
   Divider,
   List,
@@ -31,7 +29,7 @@ import MatcherSelection from "./control-inputs/matcher-selection";
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
   flexShrink: 0,
   borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
   backdropFilter: "blur(24px)",
@@ -40,26 +38,26 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.background.default, 0.4),
   boxShadow: theme.shadows[1],
   padding: "8px 12px",
+  minHeight: "auto",
+  width: "100%"
 }));
 
 interface ToolbarProps {
   sourceColumns: string[];
   matchers: Matcher[];
+  isFloating?: boolean;
+  width?: string | number;
+  containerStyle?: React.CSSProperties;
 
   onSourceColumnSelect: (column: string) => void;
-
   onCandidateTypeSelect: (dataType: string) => void;
-
   onSimilarSourcesSelect: (num: number) => void;
-
   onCandidateThresholdSelect: (num: number) => void;
-
   acceptMatch: () => void;
   rejectMatch: () => void;
   discardColumn: () => void;
   undo: () => void;
   redo: () => void;
-
   onMatcherSelect: (matcher: Matcher) => void;
 
   state: {
@@ -73,7 +71,12 @@ interface ToolbarProps {
 
 const drawerWidth = 240;
 
-const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
+const ControlPanel: React.FC<ToolbarProps> = ({ 
+  isFloating = false, 
+  width,
+  containerStyle = {},
+  ...props 
+}) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -89,132 +92,150 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
       <List>
         <ListItem key="source-column">
           <SourceColumnSelection
-            sourceColumns={prop.sourceColumns}
-            selectedSourceColumn={prop.state.sourceColumn}
-            onSelect={prop.onSourceColumnSelect}
+            sourceColumns={props.sourceColumns}
+            selectedSourceColumn={props.state.sourceColumn}
+            onSelect={props.onSourceColumnSelect}
           />
         </ListItem>
         <ListItem key="candidate-type">
-          <CandidateTypeSelection onSelect={prop.onCandidateTypeSelect} />
+          <CandidateTypeSelection onSelect={props.onCandidateTypeSelect} />
         </ListItem>
         <ListItem key="similar-sources">
-          <SimilarSourcesSlide onSelect={prop.onSimilarSourcesSelect} />
+          <SimilarSourcesSlide onSelect={props.onSimilarSourcesSelect} />
         </ListItem>
         <ListItem key="candidate-threshold">
-          <CandidateThresholdSlide onSelect={prop.onCandidateThresholdSelect} />
+          <CandidateThresholdSlide onSelect={props.onCandidateThresholdSelect} />
         </ListItem>
       </List>
     </Box>
   );
 
+  // Styles for the AppBar when it's floating vs static
+  const appBarStyles = isFloating ? {
+    position: "fixed" as const,
+    boxShadow: 0,
+    bgcolor: "transparent",
+    backgroundImage: "none",
+    mt: "calc(var(--template-frame-height, 0px) + 28px)",
+    top: 0,
+    width: width,
+    minWidth: "min-content",
+  } : {
+    position: "static" as const,
+    bgcolor: "transparent",
+    backgroundImage: "none",
+    width: "100%",
+    minWidth: "min-content",
+  };
+
+  // Root container styles
+  const rootStyles = {
+    display: "flex",
+    flexDirection: "column" as const,
+    width: width || "100%",
+    minWidth: "min-content",
+    flex: width ? "0 0 auto" : "1 1 auto",
+    ...containerStyle
+  };
+
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={rootStyles}>
       <AppBar
-        position="fixed"
         enableColorOnDark
-        sx={{
-          boxShadow: 0,
-          bgcolor: "transparent",
-          backgroundImage: "none",
-          mt: "calc(var(--template-frame-height, 0px) + 28px)",
-          top: 0
-        }}
-        component="nav"
+        sx={appBarStyles}
+        component="div"
       >
-        <Container maxWidth="lg">
-          <StyledToolbar variant="dense" disableGutters>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ m: 2, display: { xs: "flex", sm: "none" } }}
-              >
-                <MenuIcon style={{ color: "#000" }} />
-              </IconButton>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  flexGrow: 1,
-                  display: { xs: "none", sm: "flex" },
-                  color: "#000",
-                }}
-              >
-                BDI Viz
-              </Typography>
-              <Box m={2} sx={{ display: { xs: "none", sm: "flex" } }}>
-                <Box sx={{ mr: 2 }}>
-                  <SourceColumnSelection
-                    sourceColumns={prop.sourceColumns}
-                    selectedSourceColumn={prop.state.sourceColumn}
-                    onSelect={prop.onSourceColumnSelect}
-                  />
-                </Box>
-                <Box sx={{ mr: 2 }}>
-                  <CandidateTypeSelection
-                    onSelect={prop.onCandidateTypeSelect}
-                  />
-                </Box>
-                <Box sx={{ mr: 2 }}>
-                  <SimilarSourcesSlide onSelect={prop.onSimilarSourcesSelect} />
-                </Box>
-                <Box sx={{ mr: 2 }}>
-                  <CandidateThresholdSlide
-                    onSelect={prop.onCandidateThresholdSelect}
-                  />
-                </Box>
-                <Box sx={{ display: "flex", flexDirection: "column", mr: 2 }}>
-                  <Box sx={{ mb: 1 }}>
-                    <AcceptMatchButton onClick={prop.acceptMatch} />
-                  </Box>
-                  <Box>
-                    <RejectMatchButton onClick={prop.rejectMatch} />
-                  </Box>
-                </Box>
-                <Box sx={{ display: "flex", flexDirection: "column", mr: 2 }}>
-                  <Box sx={{ mb: 1 }}>
-                    <DiscardColumnButton onClick={prop.discardColumn} />
-                  </Box>
-                  <Box>
-                    <MatcherSelection matchers={prop.matchers} selectedMatcher={prop.state.selectedMatcher} onSelect={prop.onMatcherSelect} />
-                  </Box>
-                </Box>
-                
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
-                  <Box sx={{ mb: 1 }}>
-                    <UndoButton onClick={prop.undo} />
-                  </Box>
-                  <Box>
-                    <RedoButton onClick={prop.redo} />
-                  </Box>
-                </Box>
+        <StyledToolbar variant="dense">
+          <Box sx={{ 
+            display: "flex", 
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: "center",
+            width: "100%",
+            flexWrap: "wrap",
+            gap: 2,
+            minWidth: "min-content"
+          }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ display: { xs: "flex", sm: "none" } }}
+            >
+              <MenuIcon style={{ color: "#000" }} />
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                display: { xs: "none", sm: "flex" },
+                color: "#000",
+                whiteSpace: "nowrap"
+              }}
+            >
+              BDI Viz
+            </Typography>
+            <Box sx={{ 
+              display: { xs: "none", sm: "flex" },
+              flexWrap: "wrap",
+              gap: 2,
+              flex: "1 1 auto",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              minWidth: "min-content"
+            }}>
+              <SourceColumnSelection
+                sourceColumns={props.sourceColumns}
+                selectedSourceColumn={props.state.sourceColumn}
+                onSelect={props.onSourceColumnSelect}
+              />
+              <CandidateTypeSelection
+                onSelect={props.onCandidateTypeSelect}
+              />
+              <SimilarSourcesSlide 
+                onSelect={props.onSimilarSourcesSelect} 
+              />
+              <CandidateThresholdSlide
+                onSelect={props.onCandidateThresholdSelect}
+              />
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                <AcceptMatchButton onClick={props.acceptMatch} />
+                <RejectMatchButton onClick={props.rejectMatch} />
               </Box>
-            </Toolbar>
-          </StyledToolbar>
-        </Container>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                <DiscardColumnButton onClick={props.discardColumn} />
+                <MatcherSelection 
+                  matchers={props.matchers} 
+                  selectedMatcher={props.state.selectedMatcher} 
+                  onSelect={props.onMatcherSelect} 
+                />
+              </Box>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                <UndoButton onClick={props.undo} />
+                <RedoButton onClick={props.redo} />
+              </Box>
+            </Box>
+          </Box>
+        </StyledToolbar>
       </AppBar>
 
-      <nav>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: drawerWidth,
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
     </Box>
   );
 };

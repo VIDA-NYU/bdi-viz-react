@@ -26,10 +26,10 @@ interface UpsetPlotProps {
     selectedCandidate?: Candidate;
 }
 
-const upperChartHeight = 200;
-const lowerSetChartHeight = 200;
+const upperChartHeight = 90;
+const lowerSetChartHeight = 220;
 const upperMarginLeft = 30;
-const lowerMarginBottom = 60;
+const lowerMarginBottom = 120;
 const lowerBarChartWidth = 200;
 
 const UpsetPlot: React.FC<UpsetPlotProps> = ({ data, matchers, selectedCandidate }) => {
@@ -153,6 +153,7 @@ function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
         style: {
             background: '#ffffff00'
         },
+        marginRight: 100,
         grid: true,
         x: {
             axis: null,
@@ -197,9 +198,10 @@ function lowerBarChart(matchers: Matcher[]) {
             padding: 0.1,
             align: 0,
         },
+
         width: lowerBarChartWidth,
         height: lowerSetChartHeight + lowerMarginBottom,
-        marginRight: 58,
+        marginRight: 100,
         marginBottom: lowerMarginBottom,
         style: {
             background: '#ffffff00'
@@ -281,7 +283,7 @@ function lowerSetChart({ dataCrossProduct, dataPerMatcher }: LowerSetChartProps,
         height: lowerSetChartHeight + lowerMarginBottom,
         marginTop: 28,
         marginLeft: 0,
-        marginRight: 0,
+        marginRight: 100,
         marginBottom: lowerMarginBottom,
         style: {
             background: '#ffffff00'
