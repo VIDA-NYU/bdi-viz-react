@@ -4,14 +4,15 @@ import logging
 import os
 from typing import Any, Dict, List, Optional, Tuple
 
-import bdikit as bdi
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
 
-from .matcher.embedding_clusterer import EmbeddingClusterer
+from .clusterer.embedding_clusterer import EmbeddingClusterer
+from .matcher.bdikit import BDIKitMatcher
+from .matcher.valentine import ValentineMatcher
 from .utils import download_model_pt
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -30,14 +31,6 @@ DEFAULT_PARAMS = {
 }
 FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
-ALLOWED_BDI_MATCHERS = [
-    "ct_learning",
-    "magneto_zs_bp",
-    "magneto_ft_bp",
-    "magneto_zs_llm",
-    "magneto_ft_llm",
-]
-
 
 class MatchingTask:
     def __init__(
@@ -46,7 +39,13 @@ class MatchingTask:
         clustering_model="sentence-transformers/all-mpnet-base-v2",
     ) -> None:
         self.top_k = top_k
-        self.bdi_matchers = ["magneto_zs_bp", "magneto_ft_bp", "ct_learning"]
+
+        self.matchers = {
+            "jaccard_distance_matcher": ValentineMatcher("JaccardDistanceMatcher"),
+            # "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
+            # "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),
+            # "ct_learning": BDIKitMatcher("ct_learning"),
+        }
         self.clustering_model = self._download_model(clustering_model)
         self.source_df = None
         self.target_df = None
@@ -138,19 +137,10 @@ class MatchingTask:
         target_clusters = self._generate_target_clusters(target_embeddings)
 
         layered_candidates = []
-        for matcher in self.bdi_matchers:
-            if matcher not in ALLOWED_BDI_MATCHERS:
-                raise ValueError(f"Matcher {matcher} not supported.")
-
-            logger.info(f"Running matcher: {matcher}...")
-            embedding_candidates = bdi.top_matches(
-                source=self.source_df,
-                target=self.target_df,
-                top_k=self.top_k,
-                method=matcher,
-            )
-            matcher_candidates = self._layer_candidates_bdi(
-                embedding_candidates, matcher
+        for matcher_name, matcher_instance in self.matchers.items():
+            logger.info(f"Running matcher: {matcher_name}...")
+            matcher_candidates = matcher_instance.top_matches(
+                source=self.source_df, target=self.target_df, top_k=self.top_k
             )
             layered_candidates.extend(matcher_candidates)
 
@@ -164,21 +154,6 @@ class MatchingTask:
             }
             self._export_cache_to_json(self.cached_candidates)
 
-        return layered_candidates
-
-    def _layer_candidates_bdi(
-        self, top_candidates: pd.DataFrame, matcher: str
-    ) -> List[Dict[str, Any]]:
-        layered_candidates = []
-        for _, row in top_candidates.iterrows():
-            candidate = {
-                "sourceColumn": row["source"],
-                "targetColumn": row["target"],
-                "score": row["similarity"],
-                "matcher": matcher,
-            }
-
-            layered_candidates.append(candidate)
         return layered_candidates
 
     def _generate_source_clusters(
