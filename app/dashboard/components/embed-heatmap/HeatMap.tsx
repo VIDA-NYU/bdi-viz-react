@@ -15,6 +15,7 @@ interface SourceCluster {
     cluster: string[];
 }
 
+import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
 interface HeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
@@ -44,6 +45,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
         colorScalePadding: 10,
         maxScore: 1,
         minScore: 0,
+        expandedCellType: 'histogram',
     });
 
     const filteredData = useMemo(() => {
@@ -165,15 +167,33 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                 <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
                                     {filteredData
                                         .filter((d) => d.matcher === matcher)
-                                        .map((d) => (
+                                        .map((d) => {
+                                            if(matcherScale.expandedState.expandedCell &&matcherScale.expandedState.expandedCell == d ){
+                                                return (
+                                                    <
+                                                        BaseExpandedCell
+                                                        type={config.expandedCellType}
+                                                        key={`${d.sourceColumn}-${d.targetColumn}`}
+                                                        data={d}
+                                                        sourceColumn={d.sourceColumn}
+                                                        targetColumn={d.targetColumn}
+                                                        onClose={matcherScale.handleCollapse}
+                                                        width={matcherScale.getWidth(d.targetColumn)}
+                                                        height={matcherScale.getHeight(d.sourceColumn)}
+                                                        x={matcherScale.x(d.targetColumn) ?? 0}
+                                                        y={matcherScale.y(d.sourceColumn) ?? 0}
+                                                        />
+                                                )
+                                            }
+                                            return (
                                             <CellComponent
                                                 key={`${d.sourceColumn}-${d.targetColumn}`}
                                                 data={d}
                                                 config={config}
                                                 x={matcherScale.x(d.targetColumn) ?? 0}
                                                 y={matcherScale.y(d.sourceColumn) ?? 0}
-                                                width={matcherScale.cellWidth ?? 0}
-                                                height={matcherScale.cellHeight ?? 0}
+                                                width={matcherScale.getWidth(d.targetColumn)}
+                                                height={matcherScale.getHeight(d.sourceColumn)}
                                                 color={matcherScale.color ?? d3.scaleSequential(getColorInterpolator(config.colorSchemes[0]))
                                                     .domain([dataRange.min - dataRange.padding, dataRange.max + dataRange.padding])(d.score)
                                                 }
@@ -184,15 +204,17 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                                 onHover={showTooltip}
                                                 onLeave={hideTooltip}
                                                 onClick={handleCellClick}
+                                                isExpanded={matcherScale.expandedState?.expandedCell === d}
                                             />
-                                        ))}
+                                        )}
+                                    )}
                                     <g transform={`translate(0,${matcherScale.y.range()[1]})`}>
                                         <line x1={0} x2={matcherScale.x.range()[1]} stroke="black" />
                                         {matcherScale.x.domain().map((value) => (
                                             <g
                                                 key={value}
                                                 transform={`translate(${
-                                                    matcherScale.x(value)! + matcherScale.cellWidth / 2
+                                                    matcherScale.x(value)! + matcherScale.getWidth(value) / 2
                                                 },0)`}
                                             >
                                                 <text transform="rotate(45)" dy=".35em" textAnchor="start">
@@ -207,7 +229,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                             <g
                                                 key={value}
                                                 transform={`translate(-5,${
-                                                    matcherScale.y(value)! + matcherScale.cellHeight / 2
+                                                    matcherScale.y(value)! + matcherScale.getHeight(value) / 2
                                                 })`}
                                             >
                                                 <text dy=".35em" textAnchor="end">
