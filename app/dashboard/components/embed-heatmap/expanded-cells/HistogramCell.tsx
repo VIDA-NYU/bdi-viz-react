@@ -45,7 +45,7 @@ const HistogramCell: FC<ExpandedCellProps> = ({
     <g transform={`translate(${margin.left},${margin.top})`}>
       {/* Source Histogram */}
       <g>
-        <text x={chartWidth/2} y={-5} textAnchor="middle">{sourceColumn}</text>
+        <text x={chartWidth / 2} y={-5} textAnchor="middle" style={{ position: 'absolute' }}>{sourceColumn}</text>
         {sourceBins.map((bin, i) => (
           <rect
             key={i}
@@ -61,7 +61,7 @@ const HistogramCell: FC<ExpandedCellProps> = ({
 
       {/* Target Histogram */}
       <g transform={`translate(0,${chartHeight + margin.top})`}>
-        <text x={chartWidth/2} y={-5} textAnchor="middle">{targetColumn}</text>
+        <text x={chartWidth / 2} y={-5} textAnchor="middle" style={{ position: 'absolute' }}>{targetColumn}</text>
         {targetBins.map((bin, i) => (
           <rect
             key={i}

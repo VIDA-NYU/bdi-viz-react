@@ -4,7 +4,8 @@ import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
-import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
+// import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
+import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
@@ -131,7 +132,13 @@ export default function Dashboard() {
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
                 <Container maxWidth="lg">
-                    <StackedHeatMap 
+                    {/* <StackedHeatMap 
+                        data={candidates}
+                        sourceClusters={sourceClusters}
+                        setSelectedCandidate={setSelectedCandidateCallback}
+                        filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                    /> */}
+                    <HeatMap
                         data={candidates}
                         sourceClusters={sourceClusters}
                         setSelectedCandidate={setSelectedCandidateCallback}

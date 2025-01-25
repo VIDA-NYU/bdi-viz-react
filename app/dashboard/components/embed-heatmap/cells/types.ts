@@ -21,7 +21,6 @@ interface CellProps {
     onHover?: (event: React.MouseEvent, data: CellData) => void;
     onLeave?: () => void;
     onClick?: (data: CellData) => void;
-    isExpanded: boolean;
 }
 
 export type {

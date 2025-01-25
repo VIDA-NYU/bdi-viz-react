@@ -1,4 +1,3 @@
-// components/HeatMap.tsx
 import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { Card, Grid } from '@mui/material';
 import { RectCell } from './cells/RectCell';
@@ -9,6 +8,7 @@ import { HeatMapConfig } from './types';
 import { useHeatmapScales } from './hooks/useHeatmapScales';
 import { useTooltip } from './hooks/useTooltip';
 import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
+
 interface HeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
@@ -39,52 +39,55 @@ const HeatMap: React.FC<HeatMapProps> = ({
         maxScore: 1,
         minScore: 0
     });
+
     // Get filtered data
-    const filteredData = useMemo(() => {
-        let result = [...data];
+    const {filteredData, filteredCluster} = useMemo(() => {
+        let filteredData = [...data];
+        let filteredCluster: string[] | undefined;
         
         if (filters?.sourceColumn) {
             const sourceCluster = sourceClusters?.find(sc => 
                 sc.sourceColumn === filters.sourceColumn
             );
-            let cluster = sourceCluster?.cluster;
-            
-            if (cluster && filters.similarSources) {
-                cluster = cluster.slice(0, filters.similarSources);
+            filteredCluster = sourceCluster?.cluster;
+            if (filteredCluster !== undefined) {
+                if (filters.similarSources) {
+                    filteredCluster = filteredCluster.slice(0, filters.similarSources);
+                }
+
+                filteredData = filteredCluster 
+                ? filteredData.filter(d => filteredCluster?.includes(d.sourceColumn))
+                    .sort((a, b) => (filteredCluster?.indexOf(a.sourceColumn) ?? 0) - (filteredCluster?.indexOf(b.sourceColumn) ?? 0))
+                : filteredData.filter(d => d.sourceColumn === filters.sourceColumn);
             }
-            
-            result = cluster 
-                ? result.filter(d => cluster?.includes(d.sourceColumn))
-                    .sort((a, b) => cluster.indexOf(a.sourceColumn) - cluster.indexOf(b.sourceColumn))
-                : result.filter(d => d.sourceColumn === filters.sourceColumn);
         }
 
         if (filters?.candidateThreshold) {
-            result = result.filter(d => d.score >= filters.candidateThreshold);
+            filteredData = filteredData.filter(d => d.score >= filters.candidateThreshold);
         }
 
-        return result;
+        return {
+            filteredData,
+            filteredCluster,
+        };
     }, [data, filters, sourceClusters]);
-    // console.log(filters, 'filteredData');
-    // Setup scales
-    // const { x, y, color, cellWidth, cellHeight, dataRange } = useHeatmapScales({
-    //     data: filteredData,
-    //     width: dimensions.width,
-    //     height: dimensions.height,
-    //     margin: MARGIN,
-    //     config
-    // });
 
+    // Setup scales
     const { 
-        x, y, color, getWidth, getHeight, 
-        expandedState, handleExpand, handleCollapse, 
+        x,
+        y,
+        color,
+        getWidth,
+        getHeight,
         dataRange 
     } = useHeatmapScales({
         data: filteredData,
+        sourceCluster: filteredCluster,
         width: dimensions.width,
         height: dimensions.height,
         margin: MARGIN,
-        config
+        config,
+        selectedCandidate: filters?.selectedCandidate
     });
 
     // Setup tooltip
@@ -120,9 +123,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
     }, [setSelectedCandidate, filters]);
 
     const CellComponent = config.cellType === 'rect' ? RectCell : BarCell;
-    // console.log(dimensions);
-    return (
 
+    return (
         <Grid container spacing={2}>
             <Grid item xs={12} md={3}>
                 <HeatMapControls
@@ -145,47 +147,47 @@ const HeatMap: React.FC<HeatMapProps> = ({
                         <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
                             {/* Draw cells */}
                             {filteredData.map((d: any, i: number) => {
-                                if (
-                                    expandedState.expandedCell && expandedState.expandedCell == d 
-                                ){
-                                    return (<
-                                        BaseExpandedCell
-                                        type={'histogram'}
-                                        key={`${d.sourceColumn}-${d.targetColumn}`}
-                                        data={d}
-                                        sourceColumn={d.sourceColumn}
-                                        targetColumn={d.targetColumn}
-                                        onClose={handleCollapse}
-                                        width={getWidth(d)}
-                                        height={getHeight(d)}
-                                        x={x(d.targetColumn) ?? 0}
-                                        y={y(d.sourceColumn) ?? 0}
-                                        />);
+                                if (filters?.selectedCandidate && filters?.selectedCandidate &&
+                                    filters.selectedCandidate.sourceColumn === d.sourceColumn &&
+                                    filters.selectedCandidate.targetColumn === d.targetColumn) {
+                                    return (
+                                        <BaseExpandedCell
+                                            type={'histogram'}
+                                            key={`${d.sourceColumn}-${d.targetColumn}`}
+                                            data={d}
+                                            sourceColumn={d.sourceColumn}
+                                            targetColumn={d.targetColumn}
+                                            onClose={() => {
+                                                console.log('close!!!!!!!!!!');
+                                                handleCellClick(d);
+                                            }}
+                                            width={getWidth(d)}
+                                            height={getHeight(d)}
+                                            x={x(d.targetColumn) ?? 0}
+                                            y={y(d.sourceColumn) ?? 0}
+                                        />
+                                    );
+                                } else {
+                                    return (
+                                        <CellComponent
+                                            key={`${d.sourceColumn}-${d.targetColumn}`}
+                                            data={d}
+                                            config={config}
+                                            x={x(d.targetColumn) ?? 0}
+                                            y={y(d.sourceColumn) ?? 0}
+                                            width={getWidth(d)}
+                                            height={getHeight(d)}
+                                            color={color}
+                                            isSelected={filters?.selectedCandidate?.sourceColumn === d.sourceColumn &&
+                                                        filters?.selectedCandidate?.targetColumn === d.targetColumn}
+                                            onHover={showTooltip}
+                                            onLeave={hideTooltip}
+                                            onClick={() => {
+                                                handleCellClick(d);
+                                            }}
+                                        />
+                                    );
                                 }
-                                
-                                return (<CellComponent
-                                key={`${d.sourceColumn}-${d.targetColumn}`}
-                                data={d}
-                                config={config}
-                                x={x(d.targetColumn) ?? 0}
-                                y={y(d.sourceColumn) ?? 0}
-                                width={getWidth(d)}
-                                height={getHeight(d)}
-                                color={color}
-                                isSelected={filters?.selectedCandidate?.sourceColumn === d.sourceColumn &&
-                                          filters?.selectedCandidate?.targetColumn === d.targetColumn}
-                                isExpanded={expandedState.expandedCell === d}
-                                onHover={showTooltip}
-                                onLeave={hideTooltip}
-                                onClick={() => {
-                                    handleCellClick(d);
-                                    if (expandedState.expandedCell === d) {
-                                        handleCollapse();
-                                    } else {
-                                        handleExpand(d);
-                                    }
-                                }}
-                            />);
                             })}
                             
                             {/* Axes */}
@@ -195,25 +197,25 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                     x2={x.range()[1]}
                                     stroke="black"
                                 />
-                            {x.domain().map(value => {
-                            const xPos = x(value)!;
-                            const width = getWidth({ targetColumn: value } as CellData);
-                            return (
-                                <g key={value} transform={`translate(${xPos + width/2},0)`}>
-                                    <text
-                                        transform="rotate(45)"
-                                        dy=".35em"
-                                        textAnchor="start"
-                                        style={{
-                                            fontSize: expandedState.expandedCell ? '0.8em' : '1em',
-                                            opacity: expandedState.expandedCell?.targetColumn === value ? 1 : 0.7
-                                        }}
-                                    >
-                                        {value}
-                                    </text>
-                                </g>
-                            );
-                        })}
+                                {x.domain().map(value => {
+                                    const xPos = x(value)!;
+                                    const width = getWidth({ targetColumn: value } as CellData);
+                                    return (
+                                        <g key={value} transform={`translate(${xPos + width / 2},0)`}>
+                                            <text
+                                                transform="rotate(45)"
+                                                dy=".35em"
+                                                textAnchor="start"
+                                                style={{
+                                                    fontSize: filters?.selectedCandidate ? '0.8em' : '1em',
+                                                    opacity: filters?.selectedCandidate?.targetColumn === value ? 1 : 0.7
+                                                }}
+                                            >
+                                                {value}
+                                            </text>
+                                        </g>
+                                    );
+                                })}
                             </g>
                             <g>
                                 <line
@@ -222,23 +224,23 @@ const HeatMap: React.FC<HeatMapProps> = ({
                                     stroke="black"
                                 />
                                 {y.domain().map(value => {
-                                const yPos = y(value)!;
-                                const height = getHeight({ sourceColumn: value } as CellData);
-                                return (
-                                    <g key={value} transform={`translate(-5,${yPos + height/2})`}>
-                                        <text
-                                            dy=".35em"
-                                            textAnchor="end"
-                                            style={{
-                                                fontSize: expandedState.expandedCell ? '0.8em' : '1em',
-                                                opacity: expandedState.expandedCell?.sourceColumn === value ? 1 : 0.7
-                                            }}
-                                        >
-                                            {value}
-                                        </text>
-                                    </g>
-                                );
-                            })}
+                                    const yPos = y(value)!;
+                                    const height = getHeight({ sourceColumn: value } as CellData);
+                                    return (
+                                        <g key={value} transform={`translate(-5,${yPos + height / 2})`}>
+                                            <text
+                                                dy=".35em"
+                                                textAnchor="end"
+                                                style={{
+                                                    fontSize: filters?.selectedCandidate ? '0.8em' : '1em',
+                                                    opacity: filters?.selectedCandidate?.sourceColumn === value ? 1 : 0.7
+                                                }}
+                                            >
+                                                {value}
+                                            </text>
+                                        </g>
+                                    );
+                                })}
                             </g>
                         </g>
                     </svg>
@@ -261,7 +263,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 />
             )}
         </Grid>
-
     );
 };
 
