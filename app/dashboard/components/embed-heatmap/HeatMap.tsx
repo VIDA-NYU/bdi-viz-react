@@ -12,6 +12,7 @@ import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
 interface HeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
+    selectedMatchers?: string[];
     setSelectedCandidate?: (candidate: CellData | undefined) => void;
     filters?: {
         selectedCandidate?: CellData;
@@ -26,7 +27,8 @@ const MARGIN = { top: 80, right: 110, bottom: 100, left: 90 };
 
 const HeatMap: React.FC<HeatMapProps> = ({ 
     data, 
-    sourceClusters, 
+    sourceClusters,
+    selectedMatchers,
     filters,
     setSelectedCandidate 
 }) => {
@@ -40,10 +42,19 @@ const HeatMap: React.FC<HeatMapProps> = ({
         minScore: 0
     });
 
+    const matcher = useMemo(() => {
+        return selectedMatchers?.length === 1 ? selectedMatchers[0] : undefined;
+    }, [selectedMatchers]);
+
     // Get filtered data
     const {filteredData, filteredCluster} = useMemo(() => {
         let filteredData = [...data];
         let filteredCluster: string[] | undefined;
+
+        // Filter by matcher
+        if (matcher) {
+            filteredData = filteredData.filter(d => d.matcher === matcher);
+        }
         
         if (filters?.sourceColumn) {
             const sourceCluster = sourceClusters?.find(sc => 

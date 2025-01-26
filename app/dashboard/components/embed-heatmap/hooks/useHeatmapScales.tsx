@@ -108,7 +108,7 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
                 getHeight,
                 dataRange: { min: minScore, max: maxScore }
           };
-      }, [data, width, height, margin, config]);
+      }, [data, width, height, margin, config, selectedCandidate, sourceCluster]);
   };
   
 

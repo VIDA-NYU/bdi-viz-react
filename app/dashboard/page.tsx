@@ -4,7 +4,7 @@ import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
-// import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
+import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
 import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
@@ -24,10 +24,13 @@ export default function Dashboard() {
     const {
         candidates,
         sourceClusters,
+        matchers,
         selectedCandidate,
+        selectedMatchers,
         handleFileUpload,
         handleChatUpdate,
-        setSelectedCandidate
+        setSelectedCandidate,
+        setSelectedMatchers,
     } = useDashboardCandidates();
 
     const {
@@ -116,6 +119,8 @@ export default function Dashboard() {
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: "white" }}>
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                matchers={matchers}
+                selectedMatchers={selectedMatchers}
                 onSourceColumnSelect={updateSourceColumn}
                 onCandidateTypeSelect={updateCandidateType}
                 onSimilarSourcesSelect={updateSimilarSources}
@@ -128,22 +133,31 @@ export default function Dashboard() {
                     setIsLoadingGlobal(!isLoadingGlobal);
                     console.log('redo')
                 }}
+                onMatcherSelect={(matcher) => {
+                    setSelectedMatchers(matcher);
+                    console.log("Selected Matcher: ", matcher);
+                }}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
                 <Container maxWidth="lg">
-                    {/* <StackedHeatMap 
-                        data={candidates}
-                        sourceClusters={sourceClusters}
-                        setSelectedCandidate={setSelectedCandidateCallback}
-                        filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-                    /> */}
-                    <HeatMap
-                        data={candidates}
-                        sourceClusters={sourceClusters}
-                        setSelectedCandidate={setSelectedCandidateCallback}
-                        filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-                    />
+                    {selectedMatchers.length > 1 ? (
+                        <StackedHeatMap 
+                            data={candidates}
+                            sourceClusters={sourceClusters}
+                            selectedMatchers={selectedMatchers}
+                            setSelectedCandidate={setSelectedCandidateCallback}
+                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                        />
+                    ) : (
+                        <HeatMap
+                            data={candidates}
+                            sourceClusters={sourceClusters}
+                            selectedMatchers={selectedMatchers}
+                            setSelectedCandidate={setSelectedCandidateCallback}
+                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                        />
+                    )}
                     <CombinedView
                         isMatch={isMatch}
                         currentExplanations={currentExplanations}

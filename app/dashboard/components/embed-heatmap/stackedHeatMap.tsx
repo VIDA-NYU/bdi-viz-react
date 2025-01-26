@@ -1,17 +1,16 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import { Card, Container, Typography } from '@mui/material';
-import * as d3 from 'd3';
 import { RectCell } from './cells/RectCell';
-import { BarCell } from './cells/BarCell';
 import { useStackedHeatmapScales } from './hooks/useStackedHeatmapScales';
 import { useTooltip } from './hooks/useTooltip';
 import { CellData } from './cells/types';
+import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
 import { StackedHeatMapConfig } from './types';
-import { getColorInterpolator } from './utils/color';
 
 interface StackedHeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
+    selectedMatchers?: string[];
     setSelectedCandidate?: (candidate: CellData | undefined) => void;
     filters?: {
         selectedCandidate?: CellData;
@@ -27,11 +26,12 @@ const MARGIN = { top: 80, right: 110, bottom: 100, left: 90 };
 const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     data,
     sourceClusters,
+    selectedMatchers,
     filters,
     setSelectedCandidate,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
+    const [dimensions, setDimensions] = useState({ width: 0, height: 1000 });
     const [config, setConfig] = useState<StackedHeatMapConfig>({
         cellType: 'rect',
         colorSchemes: ['blues', 'greens', 'oranges', 'purples', 'reds'],
@@ -40,44 +40,56 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
         minScore: 0,
     });
 
-    const filteredData = useMemo(() => {
-        let result = [...data];
+    const matchers = useMemo(() => {
+        return selectedMatchers ?? [...new Set(data.map((d) => d.matcher))];
+    }, [data, selectedMatchers]);
+
+    const { filteredData, filteredCluster } = useMemo(() => {
+        let filteredData = [...data];
+        let filteredCluster: string[] | undefined;
+
+        // filter by matchers
+        if (selectedMatchers) {
+            filteredData = filteredData.filter((d) => d.matcher && selectedMatchers.includes(d.matcher));
+        }
+
         if (filters?.sourceColumn) {
-            const sourceCluster = sourceClusters?.find(
-                (sc) => sc.sourceColumn === filters.sourceColumn
+            const sourceCluster = sourceClusters?.find(sc =>
+                sc.sourceColumn === filters.sourceColumn
             );
-            let cluster = sourceCluster?.cluster;
-            if (cluster && filters.similarSources) {
-                cluster = cluster.slice(0, filters.similarSources);
+            filteredCluster = sourceCluster?.cluster;
+            if (filteredCluster !== undefined) {
+                if (filters.similarSources) {
+                    filteredCluster = filteredCluster.slice(0, filters.similarSources);
+                }
+
+                filteredData = filteredCluster
+                    ? filteredData.filter(d => filteredCluster?.includes(d.sourceColumn))
+                        .sort((a, b) => (filteredCluster?.indexOf(a.sourceColumn) ?? 0) - (filteredCluster?.indexOf(b.sourceColumn) ?? 0))
+                    : filteredData.filter(d => d.sourceColumn === filters.sourceColumn);
             }
-            result = cluster
-                ? result
-                        .filter((d) => cluster?.includes(d.sourceColumn))
-                        .sort(
-                            (a, b) =>
-                                cluster.indexOf(a.sourceColumn) - cluster.indexOf(b.sourceColumn)
-                        )
-                : result.filter((d) => d.sourceColumn === filters.sourceColumn);
         }
+
         if (filters?.candidateThreshold) {
-            result = result.filter((d) => d.score >= filters.candidateThreshold);
+            filteredData = filteredData.filter((d) => d.score >= filters.candidateThreshold);
         }
-        return result;
+
+        return { filteredData, filteredCluster };
     }, [data, filters, sourceClusters]);
 
-    const matchers = useMemo(() => {
-        const matcherSet = new Set(
-            data.map((d) => d.matcher).filter((m): m is string => m !== undefined)
-        );
-        return Array.from(matcherSet);
-    }, [data]);
-
-    const { scales, padding, dataRange } = useStackedHeatmapScales({
+    const {
+        scales,
+        getWidth,
+        getHeight,
+        padding,
+        dataRange
+    } = useStackedHeatmapScales({
         data: filteredData,
+        sourceCluster: filteredCluster,
+        matchers: matchers,
         width: dimensions.width,
         height: dimensions.height,
         margin: MARGIN,
-        matchers,
         config,
     });
 
@@ -114,36 +126,36 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
         [setSelectedCandidate, filters]
     );
 
+    const CellComponent = config.cellType === 'rect' ? RectCell : RectCell;
+
     return (
         <Container>
             <Card ref={containerRef} sx={{ paddingLeft: 4 }}>
                 {matchers.map((matcher) => {
-                    const matcherScale = scales.filter((s) => s.matcher === matcher)[0];
+                    const matcherScale = scales?.find((s) => s.matcher === matcher);
                     if (!matcherScale) return null;
 
-                        
                     return (
-                    <>
+                        <>
                             <Typography
                                 style={{
-                                    textAlign: 'left',
-                                    marginBottom: '10px',
-                                    position: 'absolute',
-                                    opacity: 1,
-                                    width: 'fit-content',
-                                    pointerEvents: 'none',
-                                    transform: `translateY(20px)`,
-                                    background: `linear-gradient(to right, ${matcherScale?.color(1)}, ${matcherScale?.color(0.2)})`, // Example gradient for 'blues' color scheme
-                                    color: 'white',
-                                    fontWeight: 'bold',
-                                    padding: '8px',
-                                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-                                    borderRadius: '4px',
-                                }}
-                            >
-                                {matcher}
+                                            textAlign: 'left',
+                                            marginBottom: '10px',
+                                            position: 'absolute',
+                                            opacity: 1,
+                                            width: 'fit-content',
+                                            pointerEvents: 'none',
+                                            transform: `translateY(20px)`,
+                                            background: `linear-gradient(to right, ${matcherScale?.color(1)}, ${matcherScale?.color(0.2)})`, // Example gradient for 'blues' color scheme
+                                            color: 'white',
+                                            fontWeight: 'bold',
+                                            padding: '8px',
+                                            boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                                            borderRadius: '4px',
+                                        }}
+                                    >
+                                        {matcher}
                             </Typography>
-                        
                             <svg
                                 key={matcher}
                                 width={dimensions.width}
@@ -153,34 +165,68 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                                 <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
                                     {filteredData
                                         .filter((d) => d.matcher === matcher)
-                                        .map((d) => (
-                                            <RectCell
-                                                key={`${d.sourceColumn}-${d.targetColumn}`}
-                                                data={d}
-                                                x={matcherScale.x(d.targetColumn) ?? 0}
-                                                y={matcherScale.y(d.sourceColumn) ?? 0}
-                                                width={matcherScale.cellWidth ?? 0}
-                                                height={matcherScale.cellHeight ?? 0}
-                                                color={matcherScale.color ?? d3.scaleSequential(getColorInterpolator(config.colorSchemes[0]))
-                                                    .domain([dataRange.min - padding, dataRange.max + padding])(d.score)
-                                                }
-                                                config={config}
-                                                isSelected={
-                                                    filters?.selectedCandidate?.sourceColumn === d.sourceColumn &&
-                                                    filters?.selectedCandidate?.targetColumn === d.targetColumn
-                                                }
-                                                onHover={showTooltip}
-                                                onLeave={hideTooltip}
-                                                onClick={handleCellClick}
-                                            />
-                                        ))}
+                                        .map((d: any, i: number) => {
+                                        if (filters?.selectedCandidate && filters?.selectedCandidate &&
+                                            filters.selectedCandidate.sourceColumn === d.sourceColumn &&
+                                            filters.selectedCandidate.targetColumn === d.targetColumn &&
+                                            filters.selectedCandidate.matcher === d.matcher
+                                        ) {
+                                            return (
+                                                <BaseExpandedCell
+                                                    type={'histogram'}
+                                                    key={`${d.sourceColumn}-${d.targetColumn}`}
+                                                    data={d}
+                                                    sourceColumn={d.sourceColumn}
+                                                    targetColumn={d.targetColumn}
+                                                    onClose={() => {
+                                                        console.log('close!!!!!!!!!!');
+                                                        handleCellClick(d);
+                                                    }}
+                                                    width={getWidth(d)}
+                                                    height={getHeight(d)}
+                                                    x={matcherScale.x(d) ?? 0}
+                                                    y={matcherScale.y(d) ?? 0}
+                                                />
+                                            );
+                                        } else {
+                                            return (
+                                                <CellComponent
+                                                    key={`${d.sourceColumn}-${d.targetColumn}`}
+                                                    data={d}
+                                                    config={config}
+                                                    x={matcherScale.x(d) ?? 0}
+                                                    y={matcherScale.y(d) ?? 0}
+                                                    width={getWidth(d)}
+                                                    height={getHeight(d)}
+                                                    color={matcherScale.color}
+                                                    isSelected={filters?.selectedCandidate?.sourceColumn === d.sourceColumn &&
+                                                        filters?.selectedCandidate?.targetColumn === d.targetColumn}
+                                                    onHover={showTooltip}
+                                                    onLeave={hideTooltip}
+                                                    onClick={() => {
+                                                        handleCellClick(d);
+                                                    }}
+                                                />
+                                            );
+                                        }
+                                    })}
+
+                                    {/* Axes */}
                                     <g transform={`translate(0,${matcherScale.y.range()[1]})`}>
                                         <line x1={0} x2={matcherScale.x.range()[1]} stroke="black" />
                                         {matcherScale.x.domain().map((value) => (
                                             <g
                                                 key={value}
                                                 transform={`translate(${
-                                                    matcherScale.x(value)! + matcherScale.cellWidth / 2
+                                                    matcherScale.x({
+                                                        targetColumn: value,
+                                                        sourceColumn: "",
+                                                        score: 0
+                                                    })! + getWidth({
+                                                        targetColumn: value,
+                                                        sourceColumn: "",
+                                                        score: 0
+                                                    }) / 2
                                                 },0)`}
                                             >
                                                 <text transform="rotate(45)" dy=".35em" textAnchor="start">
@@ -189,27 +235,13 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                                             </g>
                                         ))}
                                     </g>
-                                    <g>
-                                        <line y1={0} y2={matcherScale.y.range()[1]} stroke="black" />
-                                        {matcherScale.y.domain().map((value) => (
-                                            <g
-                                                key={value}
-                                                transform={`translate(-5,${
-                                                    matcherScale.y(value)! + matcherScale.cellHeight / 2
-                                                })`}
-                                            >
-                                                <text dy=".35em" textAnchor="end">
-                                                    {value}
-                                                </text>
-                                            </g>
-                                        ))}
-                                    </g>
                                 </g>
                             </svg>
                         </>
-                        );
-                    })}
-                </Card>
+                    );
+                })}
+
+            </Card>
             {tooltip.visible && (
                 <div
                     style={{

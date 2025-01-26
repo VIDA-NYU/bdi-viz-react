@@ -22,9 +22,10 @@ const useTooltip = () => {
             y: event.pageY,
             content: `
                 <div>
-                    <div>Source: ${data.sourceColumn}</div>
-                    <div>Target: ${data.targetColumn}</div>
+                    <div><strong>Source:</strong> ${data.sourceColumn}</div>
+                    <div><strong>Target:</strong> ${data.targetColumn}</div>
                     <div>Score: ${data.score.toFixed(3)}</div>
+                    ${data.matcher ? `<div>Matcher: ${data.matcher}</div>` : ''}
                 </div>
             `
         });

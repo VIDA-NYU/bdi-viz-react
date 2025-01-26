@@ -9,10 +9,13 @@ import { useDashboardFilters } from './useDashboardFilters';
 type DashboardCandidateState = {
     candidates: Candidate[];
     sourceClusters: SourceCluster[];
+    matchers: string[];
     selectedCandidate: Candidate | undefined;
+    selectedMatchers: string[];
     handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
+    setSelectedMatchers: (matcher: string) => void;
 }
 
 export type { DashboardCandidateState };
@@ -24,7 +27,9 @@ export const {
 
         const [candidates, setCandidates] = useState<Candidate[]>(getMockData());
         const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
+        const [matchers, setMatchers] = useState<string[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
+        const [selectedMatchers, setSelectedMatchers] = useState<string[]>(matchers);
 
         const { updateSourceColumn } = useDashboardFilters();
 
@@ -33,6 +38,10 @@ export const {
             if (sourceCluster) {
                 setSourceClusters(sourceCluster);
             }
+
+            const newMatchers = [...new Set(candidates.map(c => c.matcher).filter((matcher): matcher is string => matcher !== undefined))];
+            setMatchers(newMatchers);
+            setSelectedMatchers(newMatchers);
 
             if (selectedCandidate) {
                 updateSourceColumn(selectedCandidate.sourceColumn);
@@ -51,6 +60,14 @@ export const {
             setSelectedCandidate(candidate);
         }, []);
 
+        const handleSelectedMatchers = useCallback((matcher: string) => {
+            if (selectedMatchers.includes(matcher)) {
+                setSelectedMatchers(selectedMatchers.filter(m => m !== matcher));
+            } else {
+                setSelectedMatchers([...selectedMatchers, matcher]);
+            }
+        }, [selectedMatchers]);
+
         // useEffect(() => {
 
         // })
@@ -63,10 +80,13 @@ export const {
         return {
             candidates,
             sourceClusters,
+            matchers,
             selectedCandidate,
+            selectedMatchers,
             handleFileUpload,
             handleChatUpdate,
-            setSelectedCandidate: handleSelectedCandidate
+            setSelectedCandidate: handleSelectedCandidate,
+            setSelectedMatchers: handleSelectedMatchers
         };
     }
 };

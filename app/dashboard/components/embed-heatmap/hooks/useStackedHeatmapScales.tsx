@@ -6,39 +6,91 @@ import { getColorInterpolator } from '../utils/color';
 
 interface StackedScaleParams {
     data: CellData[];
+    sourceCluster?: string[];
+    matchers?: string[];
     width: number;
     height: number;
     margin: { top: number; right: number; bottom: number; left: number };
-    matchers?: string[];
     config: StackedHeatMapConfig;
+    selectedCandidate?: CellData;
 }
 
-const useStackedHeatmapScales = ({ data, width, height, margin, matchers, config }: StackedScaleParams) => {
+const useStackedHeatmapScales = ({
+    data,
+    sourceCluster,
+    matchers,
+    width,
+    height,
+    margin,
+    config,
+    selectedCandidate
+}: StackedScaleParams) => {
     return useMemo(() => {
+        
         const minScore = d3.min(data, d => d.score) ?? 0;
         const maxScore = d3.max(data, d => d.score) ?? 1;
         const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
         const colors = config.colorSchemes;
 
+
+        const matchersGapHeight = 10;
+
+        const numColumnsX = [...new Set(data.map(d => d.targetColumn))].length;
+        const numColumnsY = sourceCluster?.length ?? [...new Set(data.map(d => d.sourceColumn))].length;
+        const yColumns = sourceCluster ?? [...new Set(data.map(d => d.sourceColumn))];
+        const xColumns = [...new Set(data.map(d => d.targetColumn))];
+
+        const baseWidth = (width - margin.left - margin.right) / numColumnsX;
+        const baseHeight = (height - margin.top - margin.bottom) / numColumnsY;
+        const expandedWidth = baseWidth * 3;
+        const expandedHeight = baseHeight * 1.5;
+
+        const shrunkWidth = (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1);
+        const shrunkHeight = (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1);
+
+        const getWidth = (cell: CellData) => {
+            if (!selectedCandidate) return baseWidth;
+            if (cell.targetColumn === selectedCandidate.targetColumn) {
+                console.log('expandedWidth', cell);
+                return expandedWidth;
+            }
+            return shrunkWidth;
+        };
+
+        const getHeight = (cell: CellData) => {
+            if (!selectedCandidate) return baseHeight;
+            if (cell.sourceColumn === selectedCandidate.sourceColumn) return expandedHeight;
+            return shrunkHeight;
+        };
+        
+
         const scales = matchers?.map((matcher, index) => {
-            const matcherData = data.filter(d => d.matcher === matcher);
 
-            const numColumnsX = [...new Set(matcherData.map(d => d.targetColumn))].length;
-            const numColumnsY = [...new Set(matcherData.map(d => d.sourceColumn))].length;
+            const getXPosition = (cell: CellData) => {
+                const index = xColumns.findIndex(d => d === cell.targetColumn);
+                const expandedIndex = selectedCandidate ? xColumns.findIndex(d => d === selectedCandidate.targetColumn) : -1;
 
-            const cellWidth = Math.min(
-                (width - margin.left - margin.right) / (numColumnsX + 1),
-                (height - margin.top - margin.bottom) / matchers.length
-            );
-            const cellHeight = cellWidth;
+                if (!selectedCandidate) return baseWidth * index;
+                if (index <= expandedIndex) return shrunkWidth * index;
+                return shrunkWidth * (index - 1) + expandedWidth;
+            };
 
-            const x = d3.scaleBand()
-                .range([0, cellWidth * numColumnsX])
-                .domain(matcherData.map(d => d.targetColumn));
+            const getYPosition = (cell: CellData) => {
+                const index = yColumns.findIndex(d => d === cell.sourceColumn);
+                const expandedIndex = selectedCandidate ? yColumns.findIndex(d => d === selectedCandidate.sourceColumn) : -1;
 
-            const y = d3.scaleBand()
-                .range([0, cellHeight * numColumnsY])
-                .domain(matcherData.map(d => d.sourceColumn));
+                if (!selectedCandidate) return baseHeight * index;
+                if (index <= expandedIndex) return shrunkHeight * index;
+                return shrunkHeight * (index - 1) + expandedHeight;
+            };
+
+            const x = (cell: CellData) => getXPosition(cell);
+            x.domain = () => [...new Set(xColumns)];
+            x.range = () => [0, width - margin.left - margin.right];
+
+            const y = (cell: CellData) => getYPosition(cell);
+            y.domain = () => [...new Set(yColumns)];
+            y.range = () => [0, height - margin.top - margin.bottom];
 
             const color = d3.scaleSequential()
                 .interpolator(getColorInterpolator(colors[index]))
@@ -48,18 +100,18 @@ const useStackedHeatmapScales = ({ data, width, height, margin, matchers, config
                 matcher,
                 x,
                 y,
-                color,
-                cellWidth,
-                cellHeight
+                color
             };
         });
 
         return {
             scales,
+            getWidth,
+            getHeight,
             padding,
             dataRange: { min: minScore, max: maxScore }
         };
-    }, [data, width, height, margin, matchers, config]);
+    }, [data, width, height, margin, config, selectedCandidate, sourceCluster, matchers]);
 };
 
 export { useStackedHeatmapScales };
