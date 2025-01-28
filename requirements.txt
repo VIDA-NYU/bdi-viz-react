@@ -16,3 +16,4 @@ langchain-openai
 langgraph
 python-dotenv
 pydantic
+git+https://github.com/VIDA-NYU/bdi-kit@devel

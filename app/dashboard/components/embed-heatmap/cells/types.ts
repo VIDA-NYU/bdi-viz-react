@@ -6,6 +6,7 @@ interface CellData {
     sourceColumn: string;
     targetColumn: string;
     score: number;
+    matcher?: string;
 }
 
 interface CellProps {
@@ -20,7 +21,6 @@ interface CellProps {
     onHover?: (event: React.MouseEvent, data: CellData) => void;
     onLeave?: () => void;
     onClick?: (data: CellData) => void;
-
 }
 
 export type {

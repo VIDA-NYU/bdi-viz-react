@@ -22,16 +22,21 @@ const ChatBox = (prop: ChatBoxProp) => {
 
             axios.get("/api/results").then((response) => {
                 const results = response.data?.results;
-                if (results.candidates && Array.isArray(results.candidates)) {
-                    const candidates = results.candidates.map((result: object) => {
-                        try {
-                            return result as Candidate;
-                        } catch (error) {
-                            console.error("Error parsing result to Candidate:", error);
-                            return null;
+                if (results.candidates) {
+                    for (const [matcher, matcher_candidates] of Object.entries(results.candidates)) {
+                        console.log(matcher, matcher_candidates);
+                        if (Array.isArray(matcher_candidates)) {
+                            const candidates = matcher_candidates.map((result: object) => {
+                                try {
+                                    return result as Candidate;
+                                } catch (error) {
+                                    console.error("Error parsing result to Candidate:", error);
+                                    return null;
+                                }
+                            }).filter((candidate: Candidate | null) => candidate !== null);
+                            prop.callback(candidates);
                         }
-                    }).filter((candidate: Candidate | null) => candidate !== null);
-                    prop.callback(candidates);
+                    }
                 }
             });
         });

@@ -50,6 +50,10 @@ def get_results():
             )
         _ = MATCHING_TASK.get_candidates()
     results = MATCHING_TASK.to_frontend_json()
+
+    if not AGENT.is_initialized:
+        AGENT.initialize(results["candidates"])
+
     return {"message": "success", "results": results}
 
 
@@ -153,6 +157,34 @@ def agent_suggest():
     operation = user_operation["operation"]
     candidate = user_operation["candidate"]
     references = user_operation["references"]
+
+    # Extract false positives and false negatives from user operation and agent explanations
+    source_col = candidate["sourceColumn"]
+    target_col = candidate["targetColumn"]
+    cached_explanation = read_candidate_explanation_json(source_col, target_col)
+    if cached_explanation:
+        agent_thinks_is_match = cached_explanation["is_match"]
+        source_values = MATCHING_TASK.get_source_unique_values(source_col)
+        target_values = MATCHING_TASK.get_target_unique_values(target_col)
+        if agent_thinks_is_match and operation == "reject":
+            AGENT.remember_fp(
+                {
+                    "sourceColumn": source_col,
+                    "targetColumn": target_col,
+                    "sourceValues": source_values,
+                    "targetValues": target_values,
+                }
+            )
+        elif not agent_thinks_is_match and operation == "accept":
+            AGENT.remember_fn(
+                {
+                    "sourceColumn": source_col,
+                    "targetColumn": target_col,
+                    "sourceValues": source_values,
+                    "targetValues": target_values,
+                }
+            )
+
     MATCHING_TASK.apply_operation(operation, candidate, references)
 
     response = AGENT.make_suggestion(user_operation, diagnosis_dict)
@@ -173,11 +205,40 @@ def agent_apply():
     for action in actions:
         response = AGENT.apply(action, previous_operation)
         if response:
-            if response == "Undo":
-                MATCHING_TASK.undo_operation()
-                response = {"message": "Undo successful"}
-            else:
-                response = response.model_dump()
-            responses.append(response)
+            response_obj = response.model_dump()
+            if response_obj["action"] == "undo":
+                user_operation = previous_operation["operation"]
+                candidate = previous_operation["candidate"]
+                references = previous_operation["references"]
+                MATCHING_TASK.undo_operation(user_operation, candidate, references)
+            responses.append(response_obj)
 
     return responses
+
+
+@app.route("/api/user-operation/apply", methods=["POST"])
+def user_operation():
+    operation_objs = request.json["userOperations"]
+
+    for operation_obj in operation_objs:
+        operation = operation_obj["operation"]
+        candidate = operation_obj["candidate"]
+        references = operation_obj["references"]
+
+        MATCHING_TASK.apply_operation(operation, candidate, references)
+
+    return {"message": "success"}
+
+
+@app.route("/api/user-operation/undo", methods=["POST"])
+def undo_operation():
+    operation_objs = request.json["userOperations"]
+
+    for operation_obj in operation_objs:
+        operation = operation_obj["operation"]
+        candidate = operation_obj["candidate"]
+        references = operation_obj["references"]
+
+        MATCHING_TASK.undo_operation(operation, candidate, references)
+
+    return {"message": "success"}

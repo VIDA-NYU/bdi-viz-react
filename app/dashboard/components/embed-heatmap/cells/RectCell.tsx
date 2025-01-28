@@ -16,6 +16,7 @@ const RectCell: React.FC<CellProps> = ({
 }) => {
     return (
         <rect
+            className='heatmap-cell'
             x={x}
             y={y}
             width={width}

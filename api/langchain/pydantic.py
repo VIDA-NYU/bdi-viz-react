@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field
 
@@ -8,21 +8,15 @@ class AgentResponse(BaseModel):
 
     status: str = Field(description="The status of the response: success or failure")
     response: str = Field(description="The response from the agent")
-    candidates: Optional[Dict[str, List[Tuple[str, float]]]] = Field(
+    candidates: Optional[List[Dict[str, Any]]] = Field(
         default=None,
         description="""The candidates for source column(s), the layered dictionary looks like:
-        {
-            "source_column_1": [
-                ("target_column_1", 0.9),
-                ("target_column_15", 0.7),
-                ...
-            ],
-            "source_column_2": [
-                ("target_column_6", 0.5),
-                ...
-            ]
+        [
+            {"sourceColumn": "source_column_1", "targetColumn": "target_column_1", "score": 0.9, "matcher": "magneto_zs_bp"},
+            {"sourceColumn": "source_column_1", "targetColumn": "target_column_15", "score": 0.7, "matcher": "magneto_zs_bp"},
             ...
-        }""",
+        ]
+        """,
     )
 
 
@@ -34,14 +28,7 @@ class DiagnoseObject(BaseModel):
 
 
 class AgentAction(BaseModel):
-    action: str = Field(
-        description="""
-                        The action for the agent, must be one of the following:
-                            prune_candidates - suggest pruning some candidates base on your expertise from RAG.
-                            update_embedder - suggest change to a more accurate model for this task if you think none of the matchings are right.
-                            undo - undo the last action taken by the user because you think it was a mistake.
-                        """
-    )
+    action: str = Field(description="""The action for the agent.""")
     reason: str = Field(description="The reason for the action")
     confidence: float = Field(description="The confidence of the action")
 
@@ -105,23 +92,17 @@ class ActionResponse(BaseModel):
         description="""The action on candidates, must be one of:
         prune - prune the target candidates list from the existing candidates.
         replace - replace the target candidates list with the new candidates.
+        undo - undo the last action taken by the user.
         """
     )
-    target_candidates: Optional[Dict[str, List[Tuple[str, float]]]] = Field(
+    target_candidates: Optional[List[Dict[str, Any]]] = Field(
         default=None,
         description="""The updated candidates for source column(s), the layered dictionary looks like:
-        {
-            "source_column_1": [
-                ("target_column_1", 0.9),
-                ("target_column_15", 0.7),
-                ...
-            ],
-            "source_column_2": [
-                ("target_column_6", 0.5),
-                ...
-            ]
+        [
+            {"sourceColumn": "source_column_1", "targetColumn": "target_column_1", "score": 0.9, "matcher": "magneto_zs_bp"},
+            {"sourceColumn": "source_column_1", "targetColumn": "target_column_15", "score": 0.7, "matcher": "magneto_zs_bp"},
             ...
-        }""",
+        ]""",
     )
 
 

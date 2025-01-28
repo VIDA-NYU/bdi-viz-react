@@ -1,33 +1,36 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
+import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
 import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
-import ChatBox from "./components/langchain/chatbox";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
 import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
-import { useLoadingGlobal } from "./hooks/useLoadingGlobal";
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
     const [suggestions, setSuggestions] = useState<AgentSuggestions>();
-    const { isLoadingGlobal } = useLoadingGlobal();
+    const { isLoadingGlobal, setIsLoadingGlobal } = useContext(LoadingGlobalContext);
 
     const {
         candidates,
         sourceClusters,
+        matchers,
         selectedCandidate,
+        selectedMatchers,
         handleFileUpload,
         handleChatUpdate,
-        setSelectedCandidate
+        setSelectedCandidate,
+        setSelectedMatchers,
     } = useDashboardCandidates();
 
     const {
@@ -79,7 +82,7 @@ export default function Dashboard() {
             console.log("Action Responses: ", actionResponses);
             if (actionResponses && actionResponses.length > 0) {
                 actionResponses.forEach((ar) => {
-                    if (ar.action === "prune" || ar.action === "replace") {
+                    if (ar.action === "prune" || ar.action === "replace" || ar.action === "redo") {
                         getCachedResults({ callback: handleFileUpload });
                     } else {
                         console.log("Action not supported: ", ar.action);
@@ -116,6 +119,8 @@ export default function Dashboard() {
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: "white" }}>
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                matchers={matchers}
+                selectedMatchers={selectedMatchers}
                 onSourceColumnSelect={updateSourceColumn}
                 onCandidateTypeSelect={updateCandidateType}
                 onSimilarSourcesSelect={updateSimilarSources}
@@ -124,18 +129,35 @@ export default function Dashboard() {
                 rejectMatch={rejectMatch}
                 discardColumn={discardColumn}
                 undo={undo}
-                redo={() => console.log('redo')}
-                explain={() => explain()}
+                redo={() => {
+                    setIsLoadingGlobal(!isLoadingGlobal);
+                    console.log('redo')
+                }}
+                onMatcherSelect={(matcher) => {
+                    setSelectedMatchers(matcher);
+                    console.log("Selected Matcher: ", matcher);
+                }}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
                 <Container maxWidth="lg">
-                    <HeatMap 
-                        data={candidates}
-                        sourceClusters={sourceClusters}
-                        setSelectedCandidate={setSelectedCandidateCallback}
-                        filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-                    />
+                    {selectedMatchers.length > 1 ? (
+                        <StackedHeatMap 
+                            data={candidates}
+                            sourceClusters={sourceClusters}
+                            selectedMatchers={selectedMatchers}
+                            setSelectedCandidate={setSelectedCandidateCallback}
+                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                        />
+                    ) : (
+                        <HeatMap
+                            data={candidates}
+                            sourceClusters={sourceClusters}
+                            selectedMatchers={selectedMatchers}
+                            setSelectedCandidate={setSelectedCandidateCallback}
+                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                        />
+                    )}
                     <CombinedView
                         isMatch={isMatch}
                         currentExplanations={currentExplanations}
@@ -150,7 +172,6 @@ export default function Dashboard() {
                         allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                         allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                     />
-                    <ChatBox callback={handleChatUpdate} />
                     <FileUploading callback={handleFileUpload} />
                 </Container>
             </Box>
@@ -161,8 +182,8 @@ export default function Dashboard() {
                 onSelectedActions={onSelectedActions}
             />
             {isLoadingGlobal && (
-                <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <CircularProgress />
+                <Box sx={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', background: 'rgba(0,0,0,0)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1300 }}>
+                    <CircularProgress size={80} />
                 </Box>
             )}
         </Box>

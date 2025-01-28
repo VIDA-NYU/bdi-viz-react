@@ -1,7 +1,7 @@
 // utils/colors.ts
 import * as d3 from 'd3';
 
-type ColorScheme = 'blues' | 'viridis' | 'rdbu' | 'spectral' | 'yellowBlue';
+type ColorScheme = 'blues' | 'viridis' | 'rdbu' | 'yellowBlue' | 'spectral' | 'greens' | 'oranges' | 'purples' | 'reds';
 
 const getColorInterpolator = (scheme: ColorScheme) => {
     switch (scheme) {
@@ -15,6 +15,14 @@ const getColorInterpolator = (scheme: ColorScheme) => {
             return d3.interpolateSpectral;
         case 'yellowBlue':
             return d3.interpolateRdYlBu;
+        case 'greens':
+            return d3.interpolateGreens;
+        case 'oranges':
+            return d3.interpolateOranges;
+        case 'purples':
+            return d3.interpolatePurples;
+        case 'reds':
+            return d3.interpolateReds;
         default:
             return d3.interpolateBlues;
     }

@@ -13,6 +13,7 @@ type Candidate = {
     sourceColumn: string;
     targetColumn: string;
     score: number;
+    matcher?: string;
 }
 
 type SourceCluster = {
