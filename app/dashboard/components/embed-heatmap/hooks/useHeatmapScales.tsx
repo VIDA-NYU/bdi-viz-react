@@ -31,12 +31,12 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
           // Dynamic cell sizing
           const baseWidth = (width - margin.left - margin.right) / numColumnsX;
           const baseHeight = (height - margin.top - margin.bottom) / numColumnsY;
-          const expandedWidth = Math.floor(baseWidth * expandRatioX);
-          const expandedHeight = Math.floor(baseHeight * expandRatioY);
+          const expandedWidth = Math.min(Math.floor(baseWidth * expandRatioX), totalWidth);
+          const expandedHeight = Math.min(Math.floor(baseHeight * expandRatioY), totalHeight);
           
-        const shrunkWidth = (totalWidth - (totalWidth/numColumnsX * expandRatioX)) / (numColumnsX - 1);
+        const shrunkWidth = numColumnsX > 1 ? (totalWidth - (totalWidth / numColumnsX * expandRatioX)) / (numColumnsX - 1) : 0;
 
-        const shrunkHeight = (totalHeight - (totalHeight/numColumnsY * expandRatioY)) / (numColumnsY - 1);
+        const shrunkHeight = numColumnsY > 1 ? (totalHeight - (totalHeight / numColumnsY * expandRatioY)) / (numColumnsY - 1) : 0;
 
           // Scale functions with expansion logic
         const getWidth = (cell: CellData) => {

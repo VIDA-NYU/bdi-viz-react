@@ -39,9 +39,12 @@ export const {
                 setSourceClusters(sourceCluster);
             }
 
-            const newMatchers = [...new Set(candidates.map(c => c.matcher).filter((matcher): matcher is string => matcher !== undefined))];
-            setMatchers(newMatchers);
-            setSelectedMatchers(newMatchers);
+            
+            const newMatchers = [...new Set(candidates.map(c => c.matcher).filter((matcher): matcher is string => matcher !== undefined))].sort();
+            if (JSON.stringify(newMatchers) !== JSON.stringify(matchers)) {
+                setMatchers(newMatchers);
+                setSelectedMatchers(newMatchers);
+            }
 
             if (selectedCandidate) {
                 updateSourceColumn(selectedCandidate.sourceColumn);

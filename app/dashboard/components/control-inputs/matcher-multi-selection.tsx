@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Checkbox, Select } from '@mui/material';
+import { Box, FormControl, FormGroup, FormControlLabel, InputLabel, MenuItem, Checkbox } from '@mui/material';
 
 
 interface MatcherSelectionProps {
@@ -12,29 +11,30 @@ interface MatcherSelectionProps {
 
 const MatcherSelection: React.FC<MatcherSelectionProps> = ({ matchers, selectedMatchers, onSelect }) => {
 
-    const handleSelect = (event: any) => {
-        const value = event.target.value as string[];
-        value.forEach(matcher => onSelect(matcher));
+    const handleSelect = (matcher: string) => {
+        
+        onSelect(matcher);
     };
 
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <FormControl fullWidth>
-                <InputLabel id="matcher-multi-select-label">Matchers</InputLabel>
-                <Select
-                    labelId="matcher-multi-select-label"
-                    multiple
-                    value={selectedMatchers}
-                    onChange={handleSelect}
-                    renderValue={(selected) => (selected as string[]).join(', ')}
-                >
-                    {matchers.map((matcher) => (
-                        <MenuItem key={matcher} value={matcher}>
-                            <Checkbox checked={selectedMatchers.indexOf(matcher) > -1} />
-                            {matcher}
-                        </MenuItem>
-                    ))}
-                </Select>
+            <FormControl component="fieldset">
+            <FormGroup>
+            {matchers.map((matcher) => (
+            <FormControlLabel
+                key={matcher}
+                control={
+                    <Checkbox
+                        checked={selectedMatchers.indexOf(matcher) > -1}
+                        onChange={() => handleSelect(matcher)}
+                        sx={{ color: 'black' }}
+                    />
+                }
+                label={matcher}
+                sx={{ color: 'black' }}
+            />
+            ))}
+            </FormGroup>
             </FormControl>
         </Box>
     );

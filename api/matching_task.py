@@ -42,9 +42,9 @@ class MatchingTask:
 
         self.matchers = {
             "jaccard_distance_matcher": ValentineMatcher("JaccardDistanceMatcher"),
-            # "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
-            # "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),
-            # "ct_learning": BDIKitMatcher("ct_learning"),
+            "ct_learning": BDIKitMatcher("ct_learning"),
+            "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
+            "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),
         }
         self.clustering_model = self._download_model(clustering_model)
         self.source_df = None

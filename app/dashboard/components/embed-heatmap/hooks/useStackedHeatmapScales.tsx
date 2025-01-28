@@ -42,16 +42,15 @@ const useStackedHeatmapScales = ({
 
         const baseWidth = (width - margin.left - margin.right) / numColumnsX;
         const baseHeight = (height - margin.top - margin.bottom) / numColumnsY;
-        const expandedWidth = baseWidth * 3;
-        const expandedHeight = baseHeight * 1.5;
+        const expandedWidth = Math.min(baseWidth * 3, width - margin.left - margin.right);
+        const expandedHeight = Math.min(baseHeight * 1.5, height - margin.top - margin.bottom);
 
-        const shrunkWidth = (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1);
-        const shrunkHeight = (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1);
+        const shrunkWidth = numColumnsX > 1 ? (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1) : 0;
+        const shrunkHeight = numColumnsY > 1 ? (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1) : 0;
 
         const getWidth = (cell: CellData) => {
             if (!selectedCandidate) return baseWidth;
             if (cell.targetColumn === selectedCandidate.targetColumn) {
-                console.log('expandedWidth', cell);
                 return expandedWidth;
             }
             return shrunkWidth;
@@ -78,7 +77,6 @@ const useStackedHeatmapScales = ({
             const getYPosition = (cell: CellData) => {
                 const index = yColumns.findIndex(d => d === cell.sourceColumn);
                 const expandedIndex = selectedCandidate ? yColumns.findIndex(d => d === selectedCandidate.sourceColumn) : -1;
-
                 if (!selectedCandidate) return baseHeight * index;
                 if (index <= expandedIndex) return shrunkHeight * index;
                 return shrunkHeight * (index - 1) + expandedHeight;
@@ -91,6 +89,7 @@ const useStackedHeatmapScales = ({
             const y = (cell: CellData) => getYPosition(cell);
             y.domain = () => [...new Set(yColumns)];
             y.range = () => [0, height - margin.top - margin.bottom];
+
 
             const color = d3.scaleSequential()
                 .interpolator(getColorInterpolator(colors[index]))

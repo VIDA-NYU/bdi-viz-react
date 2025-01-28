@@ -21,7 +21,7 @@ interface StackedHeatMapProps {
     };
 }
 
-const MARGIN = { top: 80, right: 110, bottom: 100, left: 90 };
+const MARGIN = { top: 65, right: 110, bottom: 70, left: 90 };
 
 const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     data,
@@ -86,11 +86,12 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     } = useStackedHeatmapScales({
         data: filteredData,
         sourceCluster: filteredCluster,
-        matchers: matchers,
+        matchers: matchers ?? [],
         width: dimensions.width,
         height: dimensions.height,
         margin: MARGIN,
         config,
+        selectedCandidate: filters?.selectedCandidate,
     });
 
     const { tooltip, showTooltip, hideTooltip } = useTooltip();
@@ -100,14 +101,14 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
             if (containerRef.current) {
                 setDimensions({
                     width: containerRef.current.clientWidth,
-                    height: 250,
+                    height: Math.max(200, 600 / matchers.length),
                 });
             }
         };
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [matchers.length]);
 
     const handleCellClick = useCallback(
         (cellData: CellData) => {
