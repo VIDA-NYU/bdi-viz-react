@@ -11,6 +11,21 @@ declare interface SourceCluster {
     cluster: string[];
 }
 
+declare interface CandidateCluster {
+    targetColumn: string;
+    cluster: string[];
+}
+
+declare interface SourceUniqueValues {
+    sourceColumn: string;
+    uniqueValues: string[];
+}
+
+declare interface TargetUniqueValues {
+    targetColumn: string;
+    uniqueValues: string[];
+}
+
 declare interface DiagnoseObject {
     reason: string;
     confidence: number;

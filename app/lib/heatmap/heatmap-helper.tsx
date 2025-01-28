@@ -3,6 +3,7 @@
 import axios from "axios";
 import http from 'http';
 import https from 'https';
+import { resolve } from "path";
 
 interface getCachedResultsProps {
     callback: (candidates: Candidate[], sourceCluster: SourceCluster[]) => void;
@@ -38,7 +39,7 @@ const getCachedResults = (prop: getCachedResultsProps) => {
                     }
                 }).filter((sourceCluster: SourceCluster | null) => sourceCluster !== null);
 
-                console.log("getCachedResults: ", candidates, sourceClusters);
+                console.log("getCachedResults finished!");
                 prop.callback(candidates, sourceClusters);
                 resolve();
             } else {
@@ -50,6 +51,53 @@ const getCachedResults = (prop: getCachedResultsProps) => {
         });
     });
 };
+
+interface getUniqueValuesProps {
+    callback: (sourceUniqueValuesArray: SourceUniqueValues[], targetUniqueValuesArray: TargetUniqueValues[]) => void;
+}
+
+const getUniqueValues = (prop: getUniqueValuesProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.get(`/api/unique-values`, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
+            const results = response.data?.results;
+            if (results.sourceUniqueValues && Array.isArray(results.sourceUniqueValues) && results.targetUniqueValues && Array.isArray(results.targetUniqueValues)) {
+                const sourceUniqueValuesArray = results.sourceUniqueValues.map((result: object) => {
+                    try {
+                        return result as SourceUniqueValues;
+                    } catch (error) {
+                        console.error("Error parsing result to SourceUniqueValues:", error);
+                        return null;
+                    }
+                }).filter((sourceUniqueValues: SourceUniqueValues | null) => sourceUniqueValues !== null);
+
+                const targetUniqueValuesArray = results.targetUniqueValues.map((result: object) => {
+                    try {
+                        return result as TargetUniqueValues;
+                    } catch (error) {
+                        console.error("Error parsing result to TargetUniqueValues:", error);
+                        return null;
+                    }
+                }).filter((targetUniqueValues: TargetUniqueValues | null) => targetUniqueValues !== null);
+
+                console.log("getUniqueValues finished!");
+                prop.callback(sourceUniqueValuesArray, targetUniqueValuesArray);
+                resolve();
+            } else {
+                console.error("Invalid results format");
+                reject(new Error("Invalid results format"));
+            }
+        }).catch((error) => {
+            console.error("Error getting unique values:", error);
+            reject(error);
+        });
+    });
+}
 
 interface userOperationsProps {
     userOperations: UserOperation[];
@@ -90,4 +138,4 @@ const undoUserOperations = ({
 }
 
 
-export { getCachedResults, applyUserOperations, undoUserOperations };
+export { getCachedResults, getUniqueValues, applyUserOperations, undoUserOperations };

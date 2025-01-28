@@ -210,9 +210,27 @@ class MatchingTask:
 
     def to_frontend_json(self) -> dict:
         return {
-            "candidates": self.get_cached_candidates(),
+            "candidates": self.get_cached_candidates(),  # sourceColumn, targetColumn, score, matcher
             "sourceClusters": self._format_source_clusters_for_frontend(),
-            "targetClusters": self.get_cached_target_clusters(),
+            "targetClusters": self.get_cached_target_clusters(),  # [["column1", "column2", ...], [], []]
+        }
+
+    def unique_values_to_frontend_json(self) -> dict:
+        return {
+            "sourceUniqueValues": [
+                {
+                    "sourceColumn": source_col,
+                    "uniqueValues": self.get_source_unique_values(source_col),
+                }
+                for source_col in self.source_df.columns
+            ],
+            "targetUniqueValues": [
+                {
+                    "targetColumn": target_col,
+                    "uniqueValues": self.get_target_unique_values(target_col),
+                }
+                for target_col in self.target_df.columns
+            ],
         }
 
     def _format_source_clusters_for_frontend(self) -> List[Dict[str, Any]]:
@@ -294,14 +312,14 @@ class MatchingTask:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
-        return self.source_df[source_col].unique().tolist()[:10]
+        return self.source_df[source_col].dropna().unique().tolist()[:10]
 
     def get_target_unique_values(self, target_col: str) -> List[str]:
         if self.target_df is None or target_col not in self.target_df.columns:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
-        return self.target_df[target_col].unique().tolist()[:10]
+        return self.target_df[target_col].dropna().unique().tolist()[:10]
 
     def get_cached_candidates(self) -> List[Dict[str, Any]]:
         return self.cached_candidates["candidates"]

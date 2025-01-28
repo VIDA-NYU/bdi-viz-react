@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
+import { getCachedResults, getUniqueValues } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
 import { useDashboardFilters } from './useDashboardFilters';
 
@@ -77,6 +77,12 @@ export const {
         useEffect(() => {
             getCachedResults({
                 callback: handleFileUpload 
+            });
+            getUniqueValues({
+                callback: (sourceUniqueValuesArray, targetUniqueValuesArray) => {
+                    console.log('sourceUniqueValuesArray', sourceUniqueValuesArray);
+                    console.log('targetUniqueValuesArray', targetUniqueValuesArray);
+                }
             });
         }, [handleFileUpload]);
 
