@@ -4,6 +4,7 @@ import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
+import UpsetPlot from "./components/upset-plot/UpsetPlot";
 import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
 import HeatMap from "./components/embed-heatmap/HeatMap";
 import FileUploading from "./components/fileuploading";
@@ -141,6 +142,11 @@ export default function Dashboard() {
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
                 <Container maxWidth="lg">
+                    <UpsetPlot
+                        data={candidates}
+                        matchers={matchers}
+                        filters={{ selectedCandidate, sourceColumn, candidateType, candidateThreshold }}
+                    />
                     {selectedMatchers.length > 1 ? (
                         <StackedHeatMap 
                             data={candidates}

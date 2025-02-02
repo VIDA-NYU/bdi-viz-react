@@ -44,8 +44,8 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 interface ToolbarProps {
   sourceColumns: string[];
-  matchers: string[];
-  selectedMatchers: string[];
+  matchers: Matcher[];
+  selectedMatchers: Matcher[];
 
   onSourceColumnSelect: (column: string) => void;
 
@@ -61,7 +61,7 @@ interface ToolbarProps {
   undo: () => void;
   redo: () => void;
 
-  onMatcherSelect: (matcher: string) => void;
+  onMatcherSelect: (matcher: Matcher) => void;
 }
 
 const drawerWidth = 240;

@@ -12,7 +12,7 @@ import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
 interface HeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
-    selectedMatchers?: string[];
+    selectedMatchers?: Matcher[];
     setSelectedCandidate?: (candidate: CellData | undefined) => void;
     filters?: {
         selectedCandidate?: CellData;
@@ -43,7 +43,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
     });
 
     const matcher = useMemo(() => {
-        return selectedMatchers?.length === 1 ? selectedMatchers[0] : undefined;
+        return selectedMatchers?.length === 1 ? selectedMatchers[0].name : undefined;
     }, [selectedMatchers]);
 
     // Get filtered data

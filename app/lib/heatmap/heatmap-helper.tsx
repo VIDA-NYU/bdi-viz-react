@@ -6,7 +6,7 @@ import https from 'https';
 import { resolve } from "path";
 
 interface getCachedResultsProps {
-    callback: (candidates: Candidate[], sourceCluster: SourceCluster[]) => void;
+    callback: (candidates: Candidate[], sourceCluster: SourceCluster[], matchers: Matcher[]) => void;
 }
 
 const getCachedResults = (prop: getCachedResultsProps) => {
@@ -39,8 +39,17 @@ const getCachedResults = (prop: getCachedResultsProps) => {
                     }
                 }).filter((sourceCluster: SourceCluster | null) => sourceCluster !== null);
 
+                const matchers = results.matchers.map((result: object) => {
+                    try {
+                        return result as Matcher;
+                    } catch (error) {
+                        console.error("Error parsing result to Matcher:", error);
+                        return null;
+                    }
+                }).filter((matcher: Matcher | null) => matcher !== null);
+
                 console.log("getCachedResults finished!");
-                prop.callback(candidates, sourceClusters);
+                prop.callback(candidates, sourceClusters, matchers);
                 resolve();
             } else {
                 reject(new Error("Invalid results format"));

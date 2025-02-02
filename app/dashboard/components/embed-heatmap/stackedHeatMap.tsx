@@ -10,7 +10,7 @@ import { StackedHeatMapConfig } from './types';
 interface StackedHeatMapProps {
     data: CellData[];
     sourceClusters?: SourceCluster[];
-    selectedMatchers?: string[];
+    selectedMatchers?: Matcher[];
     setSelectedCandidate?: (candidate: CellData | undefined) => void;
     filters?: {
         selectedCandidate?: CellData;
@@ -41,7 +41,7 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     });
 
     const matchers = useMemo(() => {
-        return selectedMatchers ?? [...new Set(data.map((d) => d.matcher))];
+        return selectedMatchers ? selectedMatchers.map((m) => m.name) : [...new Set(data.map((d) => d.matcher))];
     }, [data, selectedMatchers]);
 
     const { filteredData, filteredCluster } = useMemo(() => {
@@ -50,7 +50,8 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
 
         // filter by matchers
         if (selectedMatchers) {
-            filteredData = filteredData.filter((d) => d.matcher && selectedMatchers.includes(d.matcher));
+            const selectedMatcherNames = selectedMatchers.map((m) => m.name);
+            filteredData = filteredData.filter((d) => d.matcher && selectedMatcherNames.includes(d.matcher));
         }
 
         if (filters?.sourceColumn) {

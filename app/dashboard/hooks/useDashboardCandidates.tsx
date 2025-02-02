@@ -9,13 +9,13 @@ import { useDashboardFilters } from './useDashboardFilters';
 type DashboardCandidateState = {
     candidates: Candidate[];
     sourceClusters: SourceCluster[];
-    matchers: string[];
+    matchers: Matcher[];
     selectedCandidate: Candidate | undefined;
-    selectedMatchers: string[];
+    selectedMatchers: Matcher[];
     handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
-    setSelectedMatchers: (matcher: string) => void;
+    setSelectedMatchers: (matcher: Matcher) => void;
 }
 
 export type { DashboardCandidateState };
@@ -27,23 +27,21 @@ export const {
 
         const [candidates, setCandidates] = useState<Candidate[]>(getMockData());
         const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
-        const [matchers, setMatchers] = useState<string[]>([]);
+        const [matchers, setMatchers] = useState<Matcher[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
-        const [selectedMatchers, setSelectedMatchers] = useState<string[]>(matchers);
+        const [selectedMatchers, setSelectedMatchers] = useState<Matcher[]>(matchers);
 
         const { updateSourceColumn } = useDashboardFilters();
 
-        const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[]) => {
+        const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[], matchers?: Matcher[]) => {
             setCandidates(candidates.sort((a, b) => b.score - a.score));
             if (sourceCluster) {
                 setSourceClusters(sourceCluster);
             }
 
-            
-            const newMatchers = [...new Set(candidates.map(c => c.matcher).filter((matcher): matcher is string => matcher !== undefined))].sort();
-            if (JSON.stringify(newMatchers) !== JSON.stringify(matchers)) {
-                setMatchers(newMatchers);
-                setSelectedMatchers(newMatchers);
+            if (matchers) {
+                setMatchers(matchers);
+                setSelectedMatchers(matchers);
             }
 
             if (selectedCandidate) {
@@ -63,7 +61,7 @@ export const {
             setSelectedCandidate(candidate);
         }, []);
 
-        const handleSelectedMatchers = useCallback((matcher: string) => {
+        const handleSelectedMatchers = useCallback((matcher: Matcher) => {
             if (selectedMatchers.includes(matcher)) {
                 setSelectedMatchers(selectedMatchers.filter(m => m !== matcher));
             } else {

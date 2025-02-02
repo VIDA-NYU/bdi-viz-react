@@ -76,3 +76,8 @@ declare interface ActionResponse {
     action: string;
     targetCandidates: Candidate[];
 }
+
+declare interface Matcher {
+    name: string;
+    weight: number;
+}

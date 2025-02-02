@@ -213,6 +213,7 @@ class MatchingTask:
             "candidates": self.get_cached_candidates(),  # sourceColumn, targetColumn, score, matcher
             "sourceClusters": self._format_source_clusters_for_frontend(),
             "targetClusters": self.get_cached_target_clusters(),  # [["column1", "column2", ...], [], []]
+            "matchers": self.get_matchers(),
         }
 
     def unique_values_to_frontend_json(self) -> dict:
@@ -333,12 +334,9 @@ class MatchingTask:
     def get_cached_target_clusters(self) -> List[List[str]]:
         return self.cached_candidates["target_clusters"] or []
 
-    def get_bdi_matchers(self) -> List[str]:
-        return self.bdi_matchers
-
-    def set_bdi_matchers(self, bdi_matchers: List[str]) -> None:
-        self.bdi_matchers = [
-            matcher for matcher in bdi_matchers if matcher in ALLOWED_BDI_MATCHERS
+    def get_matchers(self) -> List[Dict[str, any]]:
+        return [
+            {"name": key, "weight": item.weight} for key, item in self.matchers.items()
         ]
 
 

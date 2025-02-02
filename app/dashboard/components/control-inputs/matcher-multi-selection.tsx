@@ -4,14 +4,14 @@ import { Box, FormControl, FormGroup, FormControlLabel, InputLabel, MenuItem, Ch
 
 
 interface MatcherSelectionProps {
-    matchers: string[];
-    selectedMatchers: string[];
-    onSelect: (matcher: string) => void;
+    matchers: Matcher[];
+    selectedMatchers: Matcher[];
+    onSelect: (matcher: Matcher) => void;
 }
 
 const MatcherSelection: React.FC<MatcherSelectionProps> = ({ matchers, selectedMatchers, onSelect }) => {
 
-    const handleSelect = (matcher: string) => {
+    const handleSelect = (matcher: Matcher) => {
         
         onSelect(matcher);
     };
@@ -22,7 +22,7 @@ const MatcherSelection: React.FC<MatcherSelectionProps> = ({ matchers, selectedM
             <FormGroup>
             {matchers.map((matcher) => (
             <FormControlLabel
-                key={matcher}
+                key={matcher.name}
                 control={
                     <Checkbox
                         checked={selectedMatchers.indexOf(matcher) > -1}
@@ -30,7 +30,7 @@ const MatcherSelection: React.FC<MatcherSelectionProps> = ({ matchers, selectedM
                         sx={{ color: 'black' }}
                     />
                 }
-                label={matcher}
+                label={matcher.name}
                 sx={{ color: 'black' }}
             />
             ))}
