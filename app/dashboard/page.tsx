@@ -16,6 +16,7 @@ import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
+import UpperTabs from "./components/upperTabs";
 
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
@@ -142,42 +143,45 @@ export default function Dashboard() {
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
                 <Container maxWidth="lg">
-                    <UpsetPlot
-                        data={candidates}
-                        matchers={matchers}
-                        filters={{ selectedCandidate, sourceColumn, candidateType, candidateThreshold }}
-                    />
-                    {selectedMatchers.length > 1 ? (
-                        <StackedHeatMap 
-                            data={candidates}
-                            sourceClusters={sourceClusters}
-                            selectedMatchers={selectedMatchers}
-                            setSelectedCandidate={setSelectedCandidateCallback}
-                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                        
+                        <UpperTabs
+                            candidates={candidates}
+                            matchers={matchers}
+                            filters={{ selectedCandidate, sourceColumn, candidateType, candidateThreshold }}
+                            isMatch={isMatch}
+                            currentExplanations={currentExplanations}
+                            selectedExplanations={selectedExplanations}
+                            setSelectExplanations={setSelectedExplanations}
+                            matchingValues={matchingValues}
+                            relativeKnowledge={relativeKnowledge}
+                            isLoading={isExplaining}
+                            matches={matches}
+                            sourceColumn={selectedCandidate?.sourceColumn}
+                            targetColumn={selectedCandidate?.targetColumn}
+                            allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                            allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                         />
-                    ) : (
-                        <HeatMap
-                            data={candidates}
-                            sourceClusters={sourceClusters}
-                            selectedMatchers={selectedMatchers}
-                            setSelectedCandidate={setSelectedCandidateCallback}
-                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-                        />
-                    )}
-                    <CombinedView
-                        isMatch={isMatch}
-                        currentExplanations={currentExplanations}
-                        selectedExplanations={selectedExplanations}
-                        setSelectExplanations={setSelectedExplanations}
-                        matchingValues={matchingValues}
-                        relativeKnowledge={relativeKnowledge}
-                        isLoading={isExplaining}
-                        matches={matches}
-                        sourceColumn={selectedCandidate?.sourceColumn}
-                        targetColumn={selectedCandidate?.targetColumn}
-                        allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                        allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
-                    />
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                            {selectedMatchers.length > 1 ? (
+                                <StackedHeatMap 
+                                    data={candidates}
+                                    sourceClusters={sourceClusters}
+                                    selectedMatchers={selectedMatchers}
+                                    setSelectedCandidate={setSelectedCandidateCallback}
+                                    filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                                />
+                            ) : (
+                                <HeatMap
+                                    data={candidates}
+                                    sourceClusters={sourceClusters}
+                                    selectedMatchers={selectedMatchers}
+                                    setSelectedCandidate={setSelectedCandidateCallback}
+                                    filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                                />
+                            )}
+                        </Box>
+                    </Box>
                     <FileUploading callback={handleFileUpload} />
                 </Container>
             </Box>

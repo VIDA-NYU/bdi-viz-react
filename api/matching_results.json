@@ -6,3157 +6,3157 @@
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "ensat_pathologic_stage",
             "score": 1.0,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "ann_arbor_clinical_stage",
             "score": 0.6666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "ann_arbor_pathologic_stage",
             "score": 0.6666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "cog_liver_stage",
             "score": 0.6666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "cog_renal_stage",
             "score": 0.6666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "masaoka_stage",
             "score": 0.6666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "enneking_msts_stage",
             "score": 0.5714285714285714,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ethnicity",
             "score": 0.5,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_focality",
             "score": 0.5,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "ajcc_clinical_stage",
             "score": 0.4,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "figo_stage",
             "score": 0.4,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "uicc_clinical_stage",
             "score": 0.4,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "uicc_pathologic_stage",
             "score": 0.4,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "race",
             "score": 0.36363636363636365,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "breslow_thickness",
             "score": 0.3170731707317073,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "circumferential_resection_margin",
             "score": 0.3170731707317073,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "alcohol_days_per_week",
             "score": 0.2857142857142857,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "ajcc_pathologic_stage",
             "score": 0.2727272727272727,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "alcohol_drinks_per_day",
             "score": 0.2558139534883721,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "margin_distance",
             "score": 0.22727272727272727,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "shortest_dimension",
             "score": 0.22727272727272727,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "adrenal_hormone",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "chromosome_arm",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "clinical_trial_indicator",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "consistent_pathology_review",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "double_expressor_lymphoma",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "double_hit_lymphoma",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "exposure_duration",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "extracapsular_extension",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "history_of_tumor",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "lymph_nodes_removed",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "melanoma_known_primary",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "necrosis_present",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "parent_with_radiation_exposure",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "peritoneal_washing_results",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "relative_deceased",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "relative_smoker",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "rhabdoid_present",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "sarcomatoid_present",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_depth_descriptor",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_grade_category",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ulceration_indicator",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "undescended_testis_corrected",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "undescended_testis_history",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "gender",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "relationship_gender",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "analyte_quantity",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "biospecimen_volume",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "exposure_duration_hrs_per_day",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "ribosomal_rna_28s_16s_ratio",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "size_extraocular_nodule",
             "score": 0.2,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth_measurement",
             "score": 0.17391304347826086,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_thickness",
             "score": 0.17391304347826086,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_width_measurement",
             "score": 0.17391304347826086,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "anaplasia_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "asbestos_exposure",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "barretts_esophagus_goblet_cells_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "bone_marrow_malignant_cells",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cancer_detection_method",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "chemo_concurrent_to_radiation",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "columnar_mucosa_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "distance_normal_to_tumor",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "enneking_msts_grade",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "enneking_msts_metastasis",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "enneking_msts_tumor_site",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "esophageal_columnar_metaplasia_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "gastric_esophageal_junction_involvement",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "goblet_cells_columnar_mucosa_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "haart_treatment_indicator",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "hepatitis_sustained_virological_response",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "histologic_progression_type",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "hormonal_contraceptive_type",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "inpc_histologic_group",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "lymphatic_invasion_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "metaplasia_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "micrometastasis_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "micropapillary_features",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "mismatch_repair_mutation",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "non_nodal_tumor_deposits",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "oxygen_use_indicator",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "perineural_invasion_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "pregnant_at_diagnosis",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "premature_at_birth",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "procedures_performed",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "radiosensitizing_agent",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "radon_exposure",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "relative_with_cancer_history",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "risk_factor_method_of_diagnosis",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "risk_factor_treatment",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "secondhand_smoke_as_child",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "synchronous_malignancy",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "therapeutic_levels_achieved",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "transglottic_extension",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "treatment_effect_indicator",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "treatment_or_therapy",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_confined_to_organ_of_origin",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_focality",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "undescended_testis_corrected_laterality",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "undescended_testis_history_laterality",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "vascular_invasion_present",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "wilms_tumor_histologic_subtype",
             "score": 0.16666666666666666,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "blood_test_normal_range_lower",
             "score": 0.14893617021276595,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "imaging_suv",
             "score": 0.14893617021276595,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "adrenal_hormone",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "chromosome_arm",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "clinical_trial_indicator",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "consistent_pathology_review",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "double_expressor_lymphoma",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "double_hit_lymphoma",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "exposure_duration",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "extracapsular_extension",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "history_of_tumor",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "lymph_nodes_removed",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "melanoma_known_primary",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "necrosis_present",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "parent_with_radiation_exposure",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "peritoneal_washing_results",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "relative_deceased",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "relative_smoker",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "rhabdoid_present",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "sarcomatoid_present",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_depth_descriptor",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_grade_category",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ulceration_indicator",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "undescended_testis_corrected",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "undescended_testis_history",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "adapter_content",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ann_arbor_b_symptoms",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ann_arbor_extranodal_involvement",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "basic_statistics",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "biospecimen_laterality",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cog_neuroblastoma_risk_group",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cog_rhabdomyosarcoma_risk_group",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "comorbidity_method_of_diagnosis",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "diagnosis_pathologically_confirmed",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "eln_risk_classification",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "gender",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "hormonal_contraceptive_use",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "hormone_replacement_therapy_type",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "igcccg_stage",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "iss_stage",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "kmer_content",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "largest_extrapelvic_peritoneal_focus",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "lymph_node_involvement",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "margin_status",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "menopause_status",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "mitosis_karyorrhexis_index",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "non_nodal_regional_disease",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "normal_tumor_genotype_snp_match",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ovarian_specimen_status",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ovarian_surface_involvement",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "overrepresented_sequences",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "per_base_n_content",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "per_base_sequence_content",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "per_base_sequence_quality",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "per_sequence_gc_content",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "per_sequence_quality_score",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "per_tile_sequence_quality",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "peripancreatic_lymph_nodes_positive",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "prior_malignancy",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "prior_treatment",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "relationship_gender",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "satellite_nodule_present",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "sequence_duplication_levels",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "sequence_length_distribution",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "undescended_testis_corrected_method",
             "score": 0.14285714285714285,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "anaplasia_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "asbestos_exposure",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "barretts_esophagus_goblet_cells_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "bone_marrow_malignant_cells",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cancer_detection_method",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "chemo_concurrent_to_radiation",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "columnar_mucosa_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "distance_normal_to_tumor",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "enneking_msts_grade",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "enneking_msts_metastasis",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "enneking_msts_tumor_site",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "esophageal_columnar_metaplasia_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "gastric_esophageal_junction_involvement",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "goblet_cells_columnar_mucosa_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "haart_treatment_indicator",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hepatitis_sustained_virological_response",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "histologic_progression_type",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hormonal_contraceptive_type",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "inpc_histologic_group",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "lymphatic_invasion_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "metaplasia_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "micrometastasis_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "micropapillary_features",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "mismatch_repair_mutation",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "non_nodal_tumor_deposits",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "oxygen_use_indicator",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "perineural_invasion_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "pregnant_at_diagnosis",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "premature_at_birth",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "procedures_performed",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "radiosensitizing_agent",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "radon_exposure",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "relative_with_cancer_history",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "risk_factor_method_of_diagnosis",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "risk_factor_treatment",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "secondhand_smoke_as_child",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "synchronous_malignancy",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "therapeutic_levels_achieved",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "transglottic_extension",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "treatment_effect_indicator",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "treatment_or_therapy",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_confined_to_organ_of_origin",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_focality",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "undescended_testis_corrected_laterality",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "undescended_testis_history_laterality",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "vascular_invasion_present",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "wilms_tumor_histologic_subtype",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "alcohol_history",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "alcohol_type",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ann_arbor_clinical_stage",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ann_arbor_pathologic_stage",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cause_of_death_source",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "clark_level",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cog_liver_stage",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cog_renal_stage",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "education_level",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "esophageal_columnar_dysplasia_degree",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "gleason_grade_group",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "hysterectomy_margins_involved",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "imaging_result",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "inpc_grade",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "inrg_stage",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "irs_stage",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "medulloblastoma_molecular_classification",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "peritoneal_fluid_cytological_status",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "reason_treatment_not_given",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "residual_disease",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "treatment_effect",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_regression_grade",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "who_nte_grade",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "zygosity",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "hiv_viral_load",
             "score": 0.125,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "adapter_content",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ann_arbor_b_symptoms",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ann_arbor_extranodal_involvement",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "basic_statistics",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "biospecimen_laterality",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cog_neuroblastoma_risk_group",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cog_rhabdomyosarcoma_risk_group",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "comorbidity_method_of_diagnosis",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "diagnosis_pathologically_confirmed",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "eln_risk_classification",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "gender",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hormonal_contraceptive_use",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hormone_replacement_therapy_type",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "igcccg_stage",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "iss_stage",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "kmer_content",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "largest_extrapelvic_peritoneal_focus",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "lymph_node_involvement",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "margin_status",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "menopause_status",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "mitosis_karyorrhexis_index",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "non_nodal_regional_disease",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "normal_tumor_genotype_snp_match",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ovarian_specimen_status",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ovarian_surface_involvement",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "overrepresented_sequences",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "per_base_n_content",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "per_base_sequence_content",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "per_base_sequence_quality",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "per_sequence_gc_content",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "per_sequence_quality_score",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "per_tile_sequence_quality",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "peripancreatic_lymph_nodes_positive",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "prior_malignancy",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "prior_treatment",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "relationship_gender",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "satellite_nodule_present",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "sequence_duplication_levels",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "sequence_length_distribution",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "undescended_testis_corrected_method",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cdc_hiv_risk_factors",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "enneking_msts_stage",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "histone_family",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "immunosuppressive_treatment_type",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ishak_fibrosis_score",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "laterality",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "metastasis_at_diagnosis",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "progression_or_recurrence_type",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "test_analyte_type",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tissue_type",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "vascular_invasion_type",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "vital_status",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "who_cns_grade",
             "score": 0.1111111111111111,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "amount",
             "score": 0.10638297872340426,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "blood_test_normal_range_upper",
             "score": 0.10638297872340426,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "concentration",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "msi_score",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_eosinophil_infiltration",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "rna_integrity_number",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "test_value",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_burden",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_largest_dimension_diameter",
             "score": 0.10204081632653061,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "alcohol_history",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "alcohol_type",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ann_arbor_clinical_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ann_arbor_pathologic_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cause_of_death_source",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "clark_level",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cog_liver_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cog_renal_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "education_level",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "esophageal_columnar_dysplasia_degree",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ethnicity",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "gleason_grade_group",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hysterectomy_margins_involved",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "imaging_result",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "inpc_grade",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "inrg_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "irs_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "medulloblastoma_molecular_classification",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "peritoneal_fluid_cytological_status",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "reason_treatment_not_given",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "residual_disease",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "treatment_effect",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_regression_grade",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "who_nte_grade",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "zygosity",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "alcohol_intensity",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "anaplasia_present_type",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "burkitt_lymphoma_clinical_variant",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "dysplasia_type",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ecog_performance_status",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "first_symptom_prior_to_diagnosis",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "hysterectomy_type",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "imaging_findings",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "initial_disease_status",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "inss_stage",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "last_known_disease_status",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ploidy",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "pregnancy_outcome",
             "score": 0.1,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "tumor_Stage-Pathological",
             "targetColumn": "inss_stage",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "average_base_quality",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cdc_hiv_risk_factors",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "enneking_msts_stage",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "histone_family",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "immunosuppressive_treatment_type",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ishak_fibrosis_score",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "laterality",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "metastasis_at_diagnosis",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "progression_or_recurrence_type",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "test_analyte_type",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tissue_type",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "vascular_invasion_type",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "vital_status",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "who_cns_grade",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "chromosomal_translocation",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "contiguous_organ_invaded",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "dysplasia_degree",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "eye_color",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "first_event",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "pediatric_kidney_staging",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "progression_or_recurrence",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "reflux_treatment_type",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "uicc_clinical_m",
             "score": 0.09090909090909091,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "FIGO_stage",
             "targetColumn": "iss_stage",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "percent_necrosis",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "workflow_version",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "alcohol_intensity",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "anaplasia_present_type",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "burkitt_lymphoma_clinical_variant",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "dysplasia_type",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ecog_performance_status",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "first_symptom_prior_to_diagnosis",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hysterectomy_type",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "imaging_findings",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "initial_disease_status",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "inss_stage",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "last_known_disease_status",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ploidy",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "pregnancy_outcome",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ajcc_clinical_m",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ajcc_pathologic_m",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ajcc_pathologic_stage",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ajcc_staging_system_edition",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "biospecimen_type",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "child_pugh_classification",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "chromosome",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "classification_of_tumor",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "diabetes_treatment_type",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "disease_response",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "irs_group",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "preservation_method",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "race",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "test_units",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "test_value_range",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "timepoint_category",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tobacco_smoking_status",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "treatment_intent_type",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_descriptor",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tumor_grade",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "uicc_pathologic_m",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "uicc_pathologic_n",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "uicc_pathologic_t",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "uicc_staging_system_edition",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "viral_hepatitis_serologies",
             "score": 0.08333333333333333,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "a260_a280_ratio",
             "score": 0.08,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "greatest_tumor_dimension",
             "score": 0.08,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "imaging_suv_max",
             "score": 0.08,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "rin",
             "score": 0.08,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth",
             "score": 0.08,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "FIGO_stage",
             "targetColumn": "clark_level",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "chromosomal_translocation",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "contiguous_organ_invaded",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "dysplasia_degree",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "eye_color",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "first_event",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "pediatric_kidney_staging",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "progression_or_recurrence",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "reflux_treatment_type",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "uicc_clinical_m",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "cause_of_death",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "molecular_analysis_method",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "supratentorial_localization",
             "score": 0.07692307692307693,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ajcc_clinical_m",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ajcc_pathologic_m",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ajcc_pathologic_stage",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ajcc_staging_system_edition",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "biospecimen_type",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "child_pugh_classification",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "chromosome",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "classification_of_tumor",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "diabetes_treatment_type",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "disease_response",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "irs_group",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "preservation_method",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "test_units",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "test_value_range",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "timepoint_category",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tobacco_smoking_status",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "treatment_intent_type",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_descriptor",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_grade",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "uicc_pathologic_m",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "uicc_pathologic_n",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "uicc_pathologic_t",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "uicc_staging_system_edition",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "viral_hepatitis_serologies",
             "score": 0.07142857142857142,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "bmi",
             "score": 0.06930693069306931,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "cause_of_death",
             "score": 0.06666666666666667,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "molecular_analysis_method",
             "score": 0.06666666666666667,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "supratentorial_localization",
             "score": 0.06666666666666667,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Ethnicity",
             "targetColumn": "tissue_or_organ_of_origin",
             "score": 0.06666666666666667,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "pack_years_smoked",
             "score": 0.061224489795918366,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "fragment_standard_deviation_length",
             "score": 0.058823529411764705,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tissue_or_organ_of_origin",
             "score": 0.058823529411764705,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "amount",
             "score": 0.058823529411764705,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_monocyte_infiltration",
             "score": 0.058823529411764705,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "submitted_tangent_copy_numbers",
             "score": 0.058823529411764705,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_length_measurement",
             "score": 0.058823529411764705,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "body_surface_area",
             "score": 0.04854368932038835,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "epithelioid_cell_percent",
             "score": 0.04854368932038835,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_granulocyte_infiltration",
             "score": 0.04854368932038835,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "blood_test_normal_range_lower",
             "score": 0.04,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "gross_tumor_weight",
             "score": 0.04,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "blood_test_normal_range_upper",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "methylation_beta_values",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "necrosis_percent",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "pack_years_smoked",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_neutrophil_infiltration",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_stromal_cells",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_tumor_cells",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_purity",
             "score": 0.038461538461538464,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "longest_dimension",
             "score": 0.02857142857142857,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "methylation_beta_values",
             "score": 0.02857142857142857,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_inflam_infiltration",
             "score": 0.02857142857142857,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_lymphocyte_infiltration",
             "score": 0.02857142857142857,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "epithelioid_cell_percent",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "fev1_fvc_post_bronch_percent",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "initial_weight",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "percent_follicular_component",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "percent_neutrophil_infiltration",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "percent_tumor_invasion",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "percent_tumor_nuclei",
             "score": 0.0196078431372549,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "gross_tumor_weight",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "initial_weight",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "intermediate_dimension",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "pack_years_smoked",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_stromal_cells",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "recist_targeted_regions_sum",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "spindle_cell_percent",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "tumor_purity",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "body_surface_area",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "epithelioid_cell_percent",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "intermediate_dimension",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "longest_dimension",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_follicular_component",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_granulocyte_infiltration",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_inflam_infiltration",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_lymphocyte_infiltration",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_necrosis",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_normal_cells",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_tumor_invasion",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "percent_tumor_nuclei",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "proportion_coverage_10x",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "proportion_coverage_30x",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "proportion_reads_mapped",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "recist_targeted_regions_sum",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "spindle_cell_percent",
             "score": 0.018867924528301886,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "a260_a280_ratio",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "blood_test_normal_range_lower",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "blood_test_normal_range_upper",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "concentration",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "fev1_fvc_post_bronch_percent",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "fev1_fvc_pre_bronch_percent",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "necrosis_percent",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_follicular_component",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_necrosis",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_neutrophil_infiltration",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_normal_cells",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "percent_tumor_invasion",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_coverage_10x",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_coverage_30x",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_reads_duplicated",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_reads_mapped",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_targets_no_coverage",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "submitted_tangent_copy_numbers",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "weight",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "year_of_death",
             "score": 0.009345794392523364,
-            "matcher": "JaccardDistanceMatcher"
+            "matcher": "jaccard_distance_matcher"
         },
         {
             "sourceColumn": "Country",
@@ -5199,366 +5199,6 @@
             "matcher": "ct_learning"
         },
         {
-            "sourceColumn": "Gender",
-            "targetColumn": "gender",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "relationship_gender",
-            "score": 0.6497688033481934,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "menopause_status",
-            "score": 0.5490785816947699,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "hormone_replacement_therapy_type",
-            "score": 0.5288840581170384,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "ethnicity",
-            "score": 0.5232586347582943,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "hormonal_contraceptive_type",
-            "score": 0.5192993100924246,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "clonality",
-            "score": 0.5183317522176993,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "marital_status",
-            "score": 0.5166925856377067,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "zygosity",
-            "score": 0.507824449010208,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "inpc_histologic_group",
-            "score": 0.49523950704945113,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "aneuploidy",
-            "score": 0.48158231948486396,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "exposure_source",
-            "score": 0.48129875039955344,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "vital_status",
-            "score": 0.48087170265480966,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "type",
-            "score": 0.4789023136197725,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.47763967535342433,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.4718447968779834,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "tissue_collection_type",
-            "score": 0.471768257550729,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "alcohol_type",
-            "score": 0.47039224377692673,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "who_nte_grade",
-            "score": 0.46850764745857554,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "channel",
-            "score": 0.4672674236603677,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_focality",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_depth_descriptor",
-            "score": 0.6009055234355744,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "cancer_detection_method",
-            "score": 0.5965995564135806,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "enneking_msts_tumor_site",
-            "score": 0.5861529807767486,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tissue_type",
-            "score": 0.5776567679403694,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "enneking_msts_metastasis",
-            "score": 0.5602946772988623,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "metastasis_at_diagnosis",
-            "score": 0.560154586872985,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_regression_grade",
-            "score": 0.5575486008794268,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_shape",
-            "score": 0.5554244390731027,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.5544173518068896,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.5542694423804984,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_descriptor",
-            "score": 0.5538740181489448,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "residual_tumor_measurement",
-            "score": 0.5511278548517258,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "comorbidity_method_of_diagnosis",
-            "score": 0.547867983220732,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "history_of_tumor_type",
-            "score": 0.5476851054864861,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "ensat_pathologic_n",
-            "score": 0.5391170012842692,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.5380587864424724,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "measurement_type",
-            "score": 0.5376151884799738,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_infiltrating_macrophages",
-            "score": 0.5371281081868386,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "cog_rhabdomyosarcoma_risk_group",
-            "score": 0.5329124506207824,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "figo_stage",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "iss_stage",
-            "score": 0.6203647568927404,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_clinical_stage",
-            "score": 0.615477968449226,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_pathologic_stage",
-            "score": 0.6121186217561364,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_clinical_stage",
-            "score": 0.6018231700236848,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "enneking_msts_stage",
-            "score": 0.5988940421144364,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.596522713014084,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "inss_stage",
-            "score": 0.5952991697503062,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "masaoka_stage",
-            "score": 0.591388105693165,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ann_arbor_clinical_stage",
-            "score": 0.5802002453687067,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "cog_renal_stage",
-            "score": 0.566433852430273,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ann_arbor_pathologic_stage",
-            "score": 0.5585573822624179,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_clinical_n",
-            "score": 0.5575690605974386,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "cog_liver_stage",
-            "score": 0.5546388467158967,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ensat_pathologic_stage",
-            "score": 0.55383805074658,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "irs_group",
-            "score": 0.5525999554540677,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_pathologic_n",
-            "score": 0.5510459725407867,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "clark_level",
-            "score": 0.548884627043129,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.5389150104376556,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "uicc_clinical_t",
-            "score": 0.535719471805336,
-            "matcher": "magneto_zs_bp"
-        },
-        {
             "sourceColumn": "Ethnicity",
             "targetColumn": "ethnicity",
             "score": 1.0,
@@ -5676,6 +5316,126 @@
             "sourceColumn": "Ethnicity",
             "targetColumn": "alcohol_type",
             "score": 0.40552668428998195,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "gender",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "relationship_gender",
+            "score": 0.6497688033481934,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "menopause_status",
+            "score": 0.5490785816947699,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "hormone_replacement_therapy_type",
+            "score": 0.5288840581170384,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "ethnicity",
+            "score": 0.5232586347582943,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "hormonal_contraceptive_type",
+            "score": 0.5192993100924246,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "clonality",
+            "score": 0.5183317522176993,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "marital_status",
+            "score": 0.5166925856377067,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "zygosity",
+            "score": 0.507824449010208,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "inpc_histologic_group",
+            "score": 0.49523950704945113,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "aneuploidy",
+            "score": 0.48158231948486396,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "exposure_source",
+            "score": 0.48129875039955344,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "vital_status",
+            "score": 0.48087170265480966,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "type",
+            "score": 0.4789023136197725,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.47763967535342433,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "wilms_tumor_histologic_subtype",
+            "score": 0.4718447968779834,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "tissue_collection_type",
+            "score": 0.471768257550729,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "alcohol_type",
+            "score": 0.47039224377692673,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "who_nte_grade",
+            "score": 0.46850764745857554,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "channel",
+            "score": 0.4672674236603677,
             "matcher": "magneto_zs_bp"
         },
         {
@@ -5916,6 +5676,246 @@
             "sourceColumn": "Race",
             "targetColumn": "marital_status",
             "score": 0.40925374120169183,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_focality",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_depth_descriptor",
+            "score": 0.6009055234355744,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "cancer_detection_method",
+            "score": 0.5965995564135806,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "enneking_msts_tumor_site",
+            "score": 0.5861529807767486,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tissue_type",
+            "score": 0.5776567679403694,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "enneking_msts_metastasis",
+            "score": 0.5602946772988623,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "metastasis_at_diagnosis",
+            "score": 0.560154586872985,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_regression_grade",
+            "score": 0.5575486008794268,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_shape",
+            "score": 0.5554244390731027,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "wilms_tumor_histologic_subtype",
+            "score": 0.5544173518068896,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.5542694423804984,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_descriptor",
+            "score": 0.5538740181489448,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "residual_tumor_measurement",
+            "score": 0.5511278548517258,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "comorbidity_method_of_diagnosis",
+            "score": 0.547867983220732,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "history_of_tumor_type",
+            "score": 0.5476851054864861,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "ensat_pathologic_n",
+            "score": 0.5391170012842692,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.5380587864424724,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "measurement_type",
+            "score": 0.5376151884799738,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_infiltrating_macrophages",
+            "score": 0.5371281081868386,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "cog_rhabdomyosarcoma_risk_group",
+            "score": 0.5329124506207824,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "figo_stage",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "iss_stage",
+            "score": 0.6203647568927404,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_clinical_stage",
+            "score": 0.615477968449226,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_pathologic_stage",
+            "score": 0.6121186217561364,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.6018231700236848,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "enneking_msts_stage",
+            "score": 0.5988940421144364,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_pathologic_stage",
+            "score": 0.596522713014084,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "inss_stage",
+            "score": 0.5952991697503062,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "masaoka_stage",
+            "score": 0.591388105693165,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ann_arbor_clinical_stage",
+            "score": 0.5802002453687067,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "cog_renal_stage",
+            "score": 0.566433852430273,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ann_arbor_pathologic_stage",
+            "score": 0.5585573822624179,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_clinical_n",
+            "score": 0.5575690605974386,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "cog_liver_stage",
+            "score": 0.5546388467158967,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ensat_pathologic_stage",
+            "score": 0.55383805074658,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "irs_group",
+            "score": 0.5525999554540677,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_pathologic_n",
+            "score": 0.5510459725407867,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "clark_level",
+            "score": 0.548884627043129,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.5389150104376556,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "uicc_clinical_t",
+            "score": 0.535719471805336,
             "matcher": "magneto_zs_bp"
         },
         {
@@ -7239,6 +7239,42 @@
             "matcher": "magneto_zs_bp"
         },
         {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "ethnicity",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "race",
+            "score": 0.32282233298011653,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "demographics",
+            "score": 0.09027961494811879,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "irs_group",
+            "score": 0.04121498636166041,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "variant_origin",
+            "score": 0.04008808075279431,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "transglottic_extension",
+            "score": 0.03794088881729715,
+            "matcher": "magneto_ft_bp"
+        },
+        {
             "sourceColumn": "Gender",
             "targetColumn": "gender",
             "score": 1.0,
@@ -7356,6 +7392,168 @@
             "sourceColumn": "Gender",
             "targetColumn": "risk_factor_treatment",
             "score": 0.037269551040254846,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "bmi",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "body_surface_area",
+            "score": 0.10153375176193306,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "gross_tumor_weight",
+            "score": 0.09404836473545772,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "weight",
+            "score": 0.06767536405976506,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "current_weight",
+            "score": 0.0640048458339666,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "initial_weight",
+            "score": 0.05886033768654502,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "tumor_burden",
+            "score": 0.05752804052451931,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "height",
+            "score": 0.056448940619458,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "risk_factors",
+            "score": 0.05079398129267871,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "target_capture_kit_version",
+            "score": 0.05003553012267538,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "target_capture_kit_name",
+            "score": 0.04641818434307609,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "therapeutic_level_achieved",
+            "score": 0.04553141019277362,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "exercise_frequency_weekly",
+            "score": 0.04423151793244351,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "comorbidities",
+            "score": 0.04413935522846782,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "target_capture_kit_target_region",
+            "score": 0.04219227418682191,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "days_to_birth",
+            "score": 0.040592301668800956,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "burkitt_lymphoma_clinical_variant",
+            "score": 0.0361606717676217,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "race",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "ethnicity",
+            "score": 0.31977348528082034,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "demographics",
+            "score": 0.08891199143966551,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "melanoma_known_primary",
+            "score": 0.055224424861328676,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "aneuploidy",
+            "score": 0.051651325787946324,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "gender",
+            "score": 0.05045260805466017,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "relationship_gender",
+            "score": 0.04898002774357071,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "variant_origin",
+            "score": 0.04859686654747983,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "height",
+            "score": 0.03705625060356668,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "chromosome",
+            "score": 0.03699922324917145,
             "matcher": "magneto_ft_bp"
         },
         {
@@ -7596,204 +7794,6 @@
             "sourceColumn": "FIGO_stage",
             "targetColumn": "catalog_reference",
             "score": 0.06759367659132005,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "ethnicity",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "race",
-            "score": 0.32282233298011653,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "demographics",
-            "score": 0.09027961494811879,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "irs_group",
-            "score": 0.04121498636166041,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "variant_origin",
-            "score": 0.04008808075279431,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "transglottic_extension",
-            "score": 0.03794088881729715,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "bmi",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "body_surface_area",
-            "score": 0.10153375176193306,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "gross_tumor_weight",
-            "score": 0.09404836473545772,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "weight",
-            "score": 0.06767536405976506,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "current_weight",
-            "score": 0.0640048458339666,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "initial_weight",
-            "score": 0.05886033768654502,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "tumor_burden",
-            "score": 0.05752804052451931,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "height",
-            "score": 0.056448940619458,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "risk_factors",
-            "score": 0.05079398129267871,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "target_capture_kit_version",
-            "score": 0.05003553012267538,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "target_capture_kit_name",
-            "score": 0.04641818434307609,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "therapeutic_level_achieved",
-            "score": 0.04553141019277362,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "exercise_frequency_weekly",
-            "score": 0.04423151793244351,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "comorbidities",
-            "score": 0.04413935522846782,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "target_capture_kit_target_region",
-            "score": 0.04219227418682191,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "days_to_birth",
-            "score": 0.040592301668800956,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "burkitt_lymphoma_clinical_variant",
-            "score": 0.0361606717676217,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "race",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "ethnicity",
-            "score": 0.31977348528082034,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "demographics",
-            "score": 0.08891199143966551,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "melanoma_known_primary",
-            "score": 0.055224424861328676,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "aneuploidy",
-            "score": 0.051651325787946324,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "gender",
-            "score": 0.05045260805466017,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "relationship_gender",
-            "score": 0.04898002774357071,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "variant_origin",
-            "score": 0.04859686654747983,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "height",
-            "score": 0.03705625060356668,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "chromosome",
-            "score": 0.03699922324917145,
             "matcher": "magneto_ft_bp"
         },
         {

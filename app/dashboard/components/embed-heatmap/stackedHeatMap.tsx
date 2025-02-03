@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
-import { Card, Container, Typography } from '@mui/material';
+import { Card, Box, Typography } from '@mui/material';
 import { RectCell } from './cells/RectCell';
 import { useStackedHeatmapScales } from './hooks/useStackedHeatmapScales';
 import { useTooltip } from './hooks/useTooltip';
@@ -21,7 +21,7 @@ interface StackedHeatMapProps {
     };
 }
 
-const MARGIN = { top: 65, right: 110, bottom: 70, left: 90 };
+const MARGIN = { top: 65, right: 0, bottom: 70, left: 200 };
 
 const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     data,
@@ -131,8 +131,8 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     const CellComponent = config.cellType === 'rect' ? RectCell : RectCell;
 
     return (
-        <Container>
-            <Card ref={containerRef} sx={{ paddingLeft: 4 }}>
+        <Box>
+            <Card ref={containerRef} sx={{ paddingLeft: 0 }}>
                 {matchers.map((matcher) => {
                     const matcherScale = scales?.find((s) => s.matcher === matcher);
                     if (!matcherScale) return null;
@@ -259,7 +259,7 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                     dangerouslySetInnerHTML={{ __html: tooltip.content }}
                 />
             )}
-        </Container>
+        </Box>
     );
 };
 

@@ -41,7 +41,7 @@ class MatchingTask:
         self.top_k = top_k
 
         self.matchers = {
-            "jaccard_distance_matcher": ValentineMatcher("JaccardDistanceMatcher"),
+            "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
             "ct_learning": BDIKitMatcher("ct_learning"),
             "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
             "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),

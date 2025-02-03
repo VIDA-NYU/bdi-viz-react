@@ -43,6 +43,13 @@ declare interface ExplanationObject {
     confidence: number;
 }
 
+declare interface Explanation {
+    id: string;
+    type: ExplanationType;
+    content: string;
+    confidence: number;
+}
+
 declare interface RelativeKnowledge {
     entry: string;
     description: string;
