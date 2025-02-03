@@ -13,11 +13,15 @@ type DashboardFilterState = {
 
 export type { DashboardFilterState };
 
+type DashboardFilterProps = {
+    initialSourceColumn?: string;
+}
+
 export const {
     useDashboardFilters
 } = {
-    useDashboardFilters: (initialSourceColumn: string = ''): DashboardFilterState => {
-        const [sourceColumn, setSourceColumn] = useState<string>(initialSourceColumn);
+    useDashboardFilters: ({ initialSourceColumn }: DashboardFilterProps = {}): DashboardFilterState => {
+        const [sourceColumn, setSourceColumn] = useState<string>(initialSourceColumn || '');
         const [candidateType, setCandidateType] = useState<string>('all');
         const [similarSources, setSimilarSources] = useState<number>(2);
         const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);

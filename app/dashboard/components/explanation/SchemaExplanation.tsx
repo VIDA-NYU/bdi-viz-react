@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { 
     Box, 
     Card, 
-    CardContent, 
     List, 
     Typography,
     Button,
@@ -46,9 +45,7 @@ const SchemaExplanation = ({
     };
 
     return (
-        <Card>
-        <CardContent>
-        <Stack spacing={3}>
+        <Stack spacing={3} sx={{ paddingLeft: 1}}>
             <Box>
                 <Typography variant="h6" gutterBottom>
                     Current Selection
@@ -168,8 +165,6 @@ const SchemaExplanation = ({
                 </>
             )}
         </Stack>
-    </CardContent>
-        </Card>
     );
 }
 

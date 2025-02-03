@@ -66,21 +66,21 @@ const CombinedView = ({
             <RowComp>
             <Stack flex={8} marginRight={2}>
                 <SchemaExplanation
-                isMatch={isMatch}
-                currentExplanations={currentExplanations}
-                selectedExplanations={selectedExplanations}
-                setSelectExplanations={setSelectExplanations}
-                valueMatches={matchingValues}
-                matches={matches}
-                sourceColumn={sourceColumn}
-                targetColumn={targetColumn}
-                isLoading={isLoading}
+                    isMatch={isMatch}
+                    currentExplanations={currentExplanations}
+                    selectedExplanations={selectedExplanations}
+                    setSelectExplanations={setSelectExplanations}
+                    valueMatches={matchingValues}
+                    matches={matches}
+                    sourceColumn={sourceColumn}
+                    targetColumn={targetColumn}
+                    isLoading={isLoading}
                 />
             </Stack>
             <Stack flex={4}>
                 <RelativeKnowledgeView
-                relativeKnowledge={relativeKnowledge}
-                isLoading={isLoading}
+                    relativeKnowledge={relativeKnowledge}
+                    isLoading={isLoading}
                 />
             </Stack>
             {/* <InferredMatches

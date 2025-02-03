@@ -3,32 +3,25 @@ import { Card, Box, Typography } from '@mui/material';
 import { RectCell } from './cells/RectCell';
 import { useStackedHeatmapScales } from './hooks/useStackedHeatmapScales';
 import { useTooltip } from './hooks/useTooltip';
-import { CellData } from './cells/types';
 import { BaseExpandedCell } from './expanded-cells/BaseExpandedCell';
 import { StackedHeatMapConfig } from './types';
 
 interface StackedHeatMapProps {
-    data: CellData[];
-    sourceClusters?: SourceCluster[];
+    data: Candidate[];
+    sourceCluster?: string[];
+    selectedCandidate?: Candidate;
+    setSelectedCandidate?: (candidate: Candidate | undefined) => void;
     selectedMatchers?: Matcher[];
-    setSelectedCandidate?: (candidate: CellData | undefined) => void;
-    filters?: {
-        selectedCandidate?: CellData;
-        sourceColumn: string;
-        candidateType: string;
-        similarSources: number;
-        candidateThreshold: number;
-    };
 }
 
-const MARGIN = { top: 65, right: 0, bottom: 70, left: 200 };
+const MARGIN = { top: 30, right: 0, bottom: 70, left: 200 };
 
 const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     data,
-    sourceClusters,
-    selectedMatchers,
-    filters,
+    sourceCluster,
+    selectedCandidate,
     setSelectedCandidate,
+    selectedMatchers,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 1000 });
@@ -44,40 +37,6 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
         return selectedMatchers ? selectedMatchers.map((m) => m.name) : [...new Set(data.map((d) => d.matcher))];
     }, [data, selectedMatchers]);
 
-    const { filteredData, filteredCluster } = useMemo(() => {
-        let filteredData = [...data];
-        let filteredCluster: string[] | undefined;
-
-        // filter by matchers
-        if (selectedMatchers) {
-            const selectedMatcherNames = selectedMatchers.map((m) => m.name);
-            filteredData = filteredData.filter((d) => d.matcher && selectedMatcherNames.includes(d.matcher));
-        }
-
-        if (filters?.sourceColumn) {
-            const sourceCluster = sourceClusters?.find(sc =>
-                sc.sourceColumn === filters.sourceColumn
-            );
-            filteredCluster = sourceCluster?.cluster;
-            if (filteredCluster !== undefined) {
-                if (filters.similarSources) {
-                    filteredCluster = filteredCluster.slice(0, filters.similarSources);
-                }
-
-                filteredData = filteredCluster
-                    ? filteredData.filter(d => filteredCluster?.includes(d.sourceColumn))
-                        .sort((a, b) => (filteredCluster?.indexOf(a.sourceColumn) ?? 0) - (filteredCluster?.indexOf(b.sourceColumn) ?? 0))
-                    : filteredData.filter(d => d.sourceColumn === filters.sourceColumn);
-            }
-        }
-
-        if (filters?.candidateThreshold) {
-            filteredData = filteredData.filter((d) => d.score >= filters.candidateThreshold);
-        }
-
-        return { filteredData, filteredCluster };
-    }, [data, filters, sourceClusters]);
-
     const {
         scales,
         getWidth,
@@ -85,14 +44,14 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
         padding,
         dataRange
     } = useStackedHeatmapScales({
-        data: filteredData,
-        sourceCluster: filteredCluster,
+        data: data,
+        sourceCluster: sourceCluster,
         matchers: matchers ?? [],
         width: dimensions.width,
         height: dimensions.height,
         margin: MARGIN,
         config,
-        selectedCandidate: filters?.selectedCandidate,
+        selectedCandidate: selectedCandidate,
     });
 
     const { tooltip, showTooltip, hideTooltip } = useTooltip();
@@ -112,12 +71,12 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
     }, [matchers.length]);
 
     const handleCellClick = useCallback(
-        (cellData: CellData) => {
+        (cellData: Candidate) => {
             if (setSelectedCandidate) {
                 if (
-                    filters?.selectedCandidate &&
-                    filters.selectedCandidate.sourceColumn === cellData.sourceColumn &&
-                    filters.selectedCandidate.targetColumn === cellData.targetColumn
+                    selectedCandidate &&
+                    selectedCandidate.sourceColumn === cellData.sourceColumn &&
+                    selectedCandidate.targetColumn === cellData.targetColumn
                 ) {
                     setSelectedCandidate(undefined);
                 } else {
@@ -125,7 +84,7 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                 }
             }
         },
-        [setSelectedCandidate, filters]
+        [setSelectedCandidate, selectedCandidate]
     );
 
     const CellComponent = config.cellType === 'rect' ? RectCell : RectCell;
@@ -165,13 +124,13 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                                 style={{ overflow: 'visible' }}
                             >
                                 <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
-                                    {filteredData
+                                    {data
                                         .filter((d) => d.matcher === matcher)
                                         .map((d: any, i: number) => {
-                                        if (filters?.selectedCandidate && filters?.selectedCandidate &&
-                                            filters.selectedCandidate.sourceColumn === d.sourceColumn &&
-                                            filters.selectedCandidate.targetColumn === d.targetColumn &&
-                                            filters.selectedCandidate.matcher === d.matcher
+                                        if (selectedCandidate && selectedCandidate &&
+                                            selectedCandidate.sourceColumn === d.sourceColumn &&
+                                            selectedCandidate.targetColumn === d.targetColumn &&
+                                            selectedCandidate.matcher === d.matcher
                                         ) {
                                             return (
                                                 <BaseExpandedCell
@@ -201,8 +160,8 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                                                     width={getWidth(d)}
                                                     height={getHeight(d)}
                                                     color={matcherScale.color}
-                                                    isSelected={filters?.selectedCandidate?.sourceColumn === d.sourceColumn &&
-                                                        filters?.selectedCandidate?.targetColumn === d.targetColumn}
+                                                    isSelected={selectedCandidate?.sourceColumn === d.sourceColumn &&
+                                                        selectedCandidate?.targetColumn === d.targetColumn}
                                                     onHover={showTooltip}
                                                     onLeave={hideTooltip}
                                                     onClick={() => {
@@ -236,6 +195,36 @@ const StackedHeatMap: React.FC<StackedHeatMapProps> = ({
                                                 </text>
                                             </g>
                                         ))}
+                                    </g>
+                                    <g>
+                                        <line
+                                            y1={0}
+                                            y2={matcherScale.y.range()[1]}
+                                            stroke="black"
+                                        />
+                                        {matcherScale.y.domain().map(value => {
+                                            const yPos = matcherScale.y({
+                                                matcher,
+                                                sourceColumn: value,
+                                                targetColumn: "",
+                                                score: 0
+                                            })!;
+                                            const height = getHeight({ sourceColumn: value } as Candidate);
+                                            return (
+                                                <g key={value} transform={`translate(-5,${yPos + height / 2})`}>
+                                                    <text
+                                                        dy=".35em"
+                                                        textAnchor="end"
+                                                        style={{
+                                                            fontSize: selectedCandidate ? '0.8em' : '1em',
+                                                            opacity: selectedCandidate?.sourceColumn === value ? 1 : 0.7
+                                                        }}
+                                                    >
+                                                        {value}
+                                                    </text>
+                                                </g>
+                                            );
+                                        })}
                                     </g>
                                 </g>
                             </svg>

@@ -4,18 +4,13 @@ import { useState } from "react";
 import UpsetPlot from "./upset-plot/UpsetPlot";
 import CombinedView from "./explanation/CombinedView";
 
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, Paper } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
 
 interface UpperTabsProps {
-    candidates: Candidate[];
+    filteredCandidates: Candidate[];
     matchers: Matcher[];
-    filters: {
-        selectedCandidate?: Candidate;
-        sourceColumn: string;
-        candidateType: string;
-        candidateThreshold: number;
-    };
+    selectedCandidate?: Candidate;
     isMatch: boolean;
     currentExplanations: Explanation[];
     selectedExplanations: Explanation[];
@@ -31,9 +26,9 @@ interface UpperTabsProps {
 }
 
 const UpperTabs: React.FC<UpperTabsProps> = ({
-    candidates,
+    filteredCandidates,
     matchers,
-    filters,
+    selectedCandidate,
     isMatch,
     currentExplanations,
     selectedExplanations,
@@ -54,41 +49,41 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%', marginTop: 4 }}>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Paper sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="basic tabs example">
               <Tab label="UpSet Plot" value={1} />
               <Tab label="Explanations" value={2} />
               <Tab label="Temp" value={3} />
             </TabList>
-          </Box>
-          <TabPanel sx={{ padding: 0 }} value={1}>
-                <UpsetPlot
-                    data={candidates}
-                    matchers={matchers}
-                    filters={filters}
-                />
+          <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={1}>
+            <UpsetPlot
+                data={filteredCandidates}
+                matchers={matchers}
+                selectedCandidate={selectedCandidate}
+            />
           </TabPanel>
-          <TabPanel sx={{ padding: 0 }} value={2}>
-                <CombinedView
-                    isMatch={isMatch}
-                    currentExplanations={currentExplanations}
-                    selectedExplanations={selectedExplanations}
-                    matchingValues={matchingValues}
-                    relativeKnowledge={relativeKnowledge}
-                    matches={matches}
-                    isLoading={isLoading}
-                    setSelectExplanations={setSelectExplanations}
-                    sourceColumn={sourceColumn}
-                    targetColumn={targetColumn}
-                    allSourceColumns={allSourceColumns}
-                    allTargetColumns={allTargetColumns}
-                />
+          <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={2}>
+            <CombinedView
+                isMatch={isMatch}
+                currentExplanations={currentExplanations}
+                selectedExplanations={selectedExplanations}
+                matchingValues={matchingValues}
+                relativeKnowledge={relativeKnowledge}
+                matches={matches}
+                isLoading={isLoading}
+                setSelectExplanations={setSelectExplanations}
+                sourceColumn={sourceColumn}
+                targetColumn={targetColumn}
+                allSourceColumns={allSourceColumns}
+                allTargetColumns={allTargetColumns}
+            />
           </TabPanel>
-          <TabPanel value={3}>
+          <TabPanel sx={{ maxHeight: 400, overflowY: 'auto' }} value={3}>
             Item Three
           </TabPanel>
+          </Paper>
           </TabContext>
         </Box>
     );

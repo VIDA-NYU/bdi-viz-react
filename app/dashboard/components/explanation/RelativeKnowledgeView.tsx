@@ -1,8 +1,6 @@
 // components/SchemaExplanation/RelativeKnowledge.tsx
 import { 
-    Box, 
-    Card, 
-    CardContent, 
+    Box,
     Typography, 
     List, 
     ListItem,
@@ -23,8 +21,7 @@ const RelativeKnowledgeView = ({
     isLoading
 }: RelativeKnowledgeProps) => {
     return (
-        <Card>
-            <CardContent>
+        <Box>
                 <Typography variant="h6" gutterBottom>
                     Relative Knowledge
                 </Typography>
@@ -46,8 +43,7 @@ const RelativeKnowledgeView = ({
                         ))}
                     </List>
                 )}
-            </CardContent>
-        </Card>
+        </Box>
     );
 };
 

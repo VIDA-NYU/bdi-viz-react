@@ -1,22 +1,21 @@
 'use client';
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
-import UpsetPlot from "./components/upset-plot/UpsetPlot";
-import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
-import HeatMap from "./components/embed-heatmap/HeatMap";
+import UpperTabs from "./components/upperTabs";
+import LowerTabs from "./components/lowerTabs";
 import FileUploading from "./components/fileuploading";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
+
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
-import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
-import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
-import UpperTabs from "./components/upperTabs";
+import { useDashboardInterfaces } from "./hooks/useDashboardInterfaces";
 
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
@@ -30,7 +29,6 @@ export default function Dashboard() {
         selectedCandidate,
         selectedMatchers,
         handleFileUpload,
-        handleChatUpdate,
         setSelectedCandidate,
         setSelectedMatchers,
     } = useDashboardCandidates();
@@ -44,7 +42,7 @@ export default function Dashboard() {
         updateCandidateType,
         updateSimilarSources,
         updateCandidateThreshold
-    } = useDashboardFilters();
+    } = useDashboardFilters({});
 
     const {
         matches,
@@ -75,26 +73,49 @@ export default function Dashboard() {
         onCandidateUpdate: handleFileUpload,
         onCandidateSelect: setSelectedCandidate,
         onExplanation: generateExplanations,
-        onSuggestions: (suggestions) => {
-            console.log("Suggestions: ", suggestions);
-            setSuggestions(suggestions);
-            setOpenSuggestionsPopup(true);
-        },
-        onApply: (actionResponses) => {
-            console.log("Action Responses: ", actionResponses);
-            if (actionResponses && actionResponses.length > 0) {
-                actionResponses.forEach((ar) => {
-                    if (ar.action === "prune" || ar.action === "replace" || ar.action === "redo") {
-                        getCachedResults({ callback: handleFileUpload });
-                    } else {
-                        console.log("Action not supported: ", ar.action);
-                    }
-                });
-            }
+        onSuggestions: handleSuggestions,
+        onApply: handleApply
+    });
+
+    const {
+        filteredCandidates,
+        filteredSourceCluster,
+        filteredCandidateCluster,
+    } = useDashboardInterfaces({
+        candidates,
+        sourceClusters,
+        matchers,
+        candidateClusters: [],
+        filters: {
+            selectedCandidate,
+            sourceColumn,
+            candidateType,
+            similarSources,
+            candidateThreshold,
+            selectedMatchers,
         }
     });
 
-    const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
+    function handleSuggestions(suggestions: AgentSuggestions | undefined) {
+        console.log("Suggestions: ", suggestions);
+        setSuggestions(suggestions);
+        setOpenSuggestionsPopup(true);
+    }
+
+    function handleApply(actionResponses: ActionResponse[] | undefined) {
+        console.log("Action Responses: ", actionResponses);
+        if (actionResponses && actionResponses.length > 0) {
+            actionResponses.forEach((ar) => {
+                if (["prune", "replace", "redo"].includes(ar.action)) {
+                    getCachedResults({ callback: handleFileUpload });
+                } else {
+                    console.log("Action not supported: ", ar.action);
+                }
+            });
+        }
+    }
+
+    function setSelectedCandidateCallback(candidate: Candidate | undefined) {
         if (!candidate) {
             setSelectedCandidate(undefined);
             generateExplanations(undefined);
@@ -103,9 +124,9 @@ export default function Dashboard() {
         toastify("default", <p><strong>Source: </strong>{candidate.sourceColumn}, <strong>Target: </strong>{candidate.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
         explain(candidate);
-    };
+    }
 
-    const onSelectedActions = (actions: AgentAction[]) => {
+    function onSelectedActions(actions: AgentAction[]) {
         if (actions && actions.length > 0) {
             const previousOperation = userOperations[userOperations.length - 1];
             const reaction: UserReaction = {
@@ -115,7 +136,7 @@ export default function Dashboard() {
             console.log("Reaction: ", reaction);
             apply(reaction);
         }
-    };
+    }
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: "white" }}>
@@ -143,12 +164,11 @@ export default function Dashboard() {
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
                 <Container maxWidth="lg">
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                        
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                         <UpperTabs
-                            candidates={candidates}
+                            filteredCandidates={filteredCandidates}
                             matchers={matchers}
-                            filters={{ selectedCandidate, sourceColumn, candidateType, candidateThreshold }}
+                            selectedCandidate={selectedCandidate}
                             isMatch={isMatch}
                             currentExplanations={currentExplanations}
                             selectedExplanations={selectedExplanations}
@@ -162,25 +182,13 @@ export default function Dashboard() {
                             allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                             allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                         />
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                            {selectedMatchers.length > 1 ? (
-                                <StackedHeatMap 
-                                    data={candidates}
-                                    sourceClusters={sourceClusters}
-                                    selectedMatchers={selectedMatchers}
-                                    setSelectedCandidate={setSelectedCandidateCallback}
-                                    filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-                                />
-                            ) : (
-                                <HeatMap
-                                    data={candidates}
-                                    sourceClusters={sourceClusters}
-                                    selectedMatchers={selectedMatchers}
-                                    setSelectedCandidate={setSelectedCandidateCallback}
-                                    filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
-                                />
-                            )}
-                        </Box>
+                        <LowerTabs
+                            candidates={filteredCandidates}
+                            sourceCluster={filteredSourceCluster}
+                            selectedCandidate={selectedCandidate}
+                            setSelectedCandidate={setSelectedCandidateCallback}
+                            selectedMatchers={selectedMatchers}
+                        />
                     </Box>
                     <FileUploading callback={handleFileUpload} />
                 </Container>

@@ -1,9 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
-import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { getCachedResults, getUniqueValues } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
-import { useDashboardFilters } from './useDashboardFilters';
 
 
 type DashboardCandidateState = {
@@ -31,8 +29,6 @@ export const {
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
         const [selectedMatchers, setSelectedMatchers] = useState<Matcher[]>(matchers);
 
-        const { updateSourceColumn } = useDashboardFilters();
-
         const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[], matchers?: Matcher[]) => {
             setCandidates(candidates.sort((a, b) => b.score - a.score));
             if (sourceCluster) {
@@ -43,14 +39,8 @@ export const {
                 setMatchers(matchers);
                 setSelectedMatchers(matchers);
             }
-
-            if (selectedCandidate) {
-                updateSourceColumn(selectedCandidate.sourceColumn);
-            } else {
-                updateSourceColumn(candidates[0].sourceColumn);
-            }
             // setSelectedCandidate(undefined);
-        }, [selectedCandidate, updateSourceColumn]);
+        }, [selectedCandidate]);
 
         const handleChatUpdate = useCallback((newCandidates: Candidate[]) => {
             setCandidates(newCandidates);
@@ -82,7 +72,7 @@ export const {
                     console.log('targetUniqueValuesArray', targetUniqueValuesArray);
                 }
             });
-        }, [handleFileUpload]);
+        }, []);
 
         return {
             candidates,

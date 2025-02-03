@@ -42,8 +42,8 @@ const useStackedHeatmapScales = ({
 
         const baseWidth = (width - margin.left - margin.right) / numColumnsX;
         const baseHeight = (height - margin.top - margin.bottom) / numColumnsY;
-        const expandedWidth = Math.min(baseWidth * 5, width - margin.left - margin.right);
-        const expandedHeight = Math.min(baseHeight * 2.5, height - margin.top - margin.bottom);
+        const expandedWidth = Math.min(baseWidth * 6, width - margin.left - margin.right);
+        const expandedHeight = Math.min(baseHeight * 2, height - margin.top - margin.bottom);
 
         const shrunkWidth = numColumnsX > 1 ? (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1) : 0;
         const shrunkHeight = numColumnsY > 1 ? (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1) : 0;
