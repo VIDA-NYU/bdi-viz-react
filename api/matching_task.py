@@ -252,6 +252,28 @@ class MatchingTask:
             with open(output_path, "r") as f:
                 return json.load(f)
 
+    def _bucket_column(self, df: pd.DataFrame, col: str) -> List[Dict[str, Any]]:
+        col_obj = df[col].dropna()
+        if col_obj.dtype in ["object", "category", "bool"]:
+            counter = col_obj.value_counts()[:10].to_dict()
+            return [
+                {"value": str(key), "count": int(value)}
+                for key, value in counter.items()
+                if value > 1
+            ]
+        elif col_obj.dtype in ["int64", "float64"]:
+            min = col_obj.min()
+            max = col_obj.max()
+            bins = np.linspace(min, max, num=10)
+            counter = np.histogram(col_obj, bins=bins)[0]
+            return [
+                {"value": f"{int(bins[i])}-{int(bins[i+1])}", "count": int(counter[i])}
+                for i in range(len(counter))
+            ]
+        else:
+            logger.warning(f"Column {col} is of type {col_obj.dtype}.")
+            return []
+
     def apply_operation(
         self,
         operation: str,
@@ -308,19 +330,19 @@ class MatchingTask:
     def get_target_df(self) -> pd.DataFrame:
         return self.target_df
 
-    def get_source_unique_values(self, source_col: str) -> List[str]:
+    def get_source_unique_values(self, source_col: str) -> List[Dict[str, Any]]:
         if self.source_df is None or source_col not in self.source_df.columns:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
-        return self.source_df[source_col].dropna().unique().tolist()[:10]
+        return self._bucket_column(self.source_df, source_col)
 
-    def get_target_unique_values(self, target_col: str) -> List[str]:
+    def get_target_unique_values(self, target_col: str) -> List[Dict[str, Any]]:
         if self.target_df is None or target_col not in self.target_df.columns:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
-        return self.target_df[target_col].dropna().unique().tolist()[:10]
+        return self._bucket_column(self.target_df, target_col)
 
     def get_cached_candidates(self) -> List[Dict[str, Any]]:
         return self.cached_candidates["candidates"]

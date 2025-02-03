@@ -10,6 +10,8 @@ type DashboardCandidateState = {
     matchers: Matcher[];
     selectedCandidate: Candidate | undefined;
     selectedMatchers: Matcher[];
+    sourceUniqueValues: SourceUniqueValues[];
+    targetUniqueValues: TargetUniqueValues[];
     handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
@@ -28,6 +30,8 @@ export const {
         const [matchers, setMatchers] = useState<Matcher[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
         const [selectedMatchers, setSelectedMatchers] = useState<Matcher[]>(matchers);
+        const [sourceUniqueValues, setSourceUniqueValues] = useState<SourceUniqueValues[]>([]);
+        const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
 
         const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[], matchers?: Matcher[]) => {
             setCandidates(candidates.sort((a, b) => b.score - a.score));
@@ -41,6 +45,11 @@ export const {
             }
             // setSelectedCandidate(undefined);
         }, [selectedCandidate]);
+
+        const handleUniqueValues = useCallback((sourceUniqueValuesArray: SourceUniqueValues[], targetUniqueValuesArray: TargetUniqueValues[]) => {
+            setSourceUniqueValues(sourceUniqueValuesArray);
+            setTargetUniqueValues(targetUniqueValuesArray);
+        }, []);
 
         const handleChatUpdate = useCallback((newCandidates: Candidate[]) => {
             setCandidates(newCandidates);
@@ -67,10 +76,7 @@ export const {
                 callback: handleFileUpload 
             });
             getUniqueValues({
-                callback: (sourceUniqueValuesArray, targetUniqueValuesArray) => {
-                    console.log('sourceUniqueValuesArray', sourceUniqueValuesArray);
-                    console.log('targetUniqueValuesArray', targetUniqueValuesArray);
-                }
+                callback: handleUniqueValues
             });
         }, []);
 
@@ -80,6 +86,8 @@ export const {
             matchers,
             selectedCandidate,
             selectedMatchers,
+            sourceUniqueValues,
+            targetUniqueValues,
             handleFileUpload,
             handleChatUpdate,
             setSelectedCandidate: handleSelectedCandidate,

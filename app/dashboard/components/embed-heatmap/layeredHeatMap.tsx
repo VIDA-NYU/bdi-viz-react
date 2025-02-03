@@ -12,6 +12,8 @@ interface LayeredHeatMapProps {
     selectedCandidate?: Candidate;
     setSelectedCandidate?: (candidate: Candidate | undefined) => void;
     selectedMatchers?: Matcher[];
+    sourceUniqueValues: SourceUniqueValues[];
+    targetUniqueValues: TargetUniqueValues[];
 }
 
 const MARGIN = { top: 30, right: 0, bottom: 70, left: 200 };
@@ -22,6 +24,8 @@ const LayeredHeatMap: React.FC<LayeredHeatMapProps> = ({
     selectedCandidate,
     setSelectedCandidate,
     selectedMatchers,
+    sourceUniqueValues,
+    targetUniqueValues
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 1000 });
@@ -108,6 +112,16 @@ const LayeredHeatMap: React.FC<LayeredHeatMapProps> = ({
                                         .filter((d) => d.matcher === matcher)
                                         .map((d: any, i: number) => {
                                             const opacity = 1 / matchers.length;
+                                            let sourceUniqueValue;
+                                            let targetUniqueValue;
+                                            if (sourceUniqueValues !== undefined && targetUniqueValues !== undefined) {
+                                                sourceUniqueValue = sourceUniqueValues.find(
+                                                    (s) => s.sourceColumn === d.sourceColumn
+                                                );
+                                                targetUniqueValue = targetUniqueValues.find(
+                                                    (t) => t.targetColumn === d.targetColumn
+                                                );
+                                            }
                                             if (selectedCandidate &&
                                                 selectedCandidate.sourceColumn === d.sourceColumn &&
                                                 selectedCandidate.targetColumn === d.targetColumn &&
@@ -118,8 +132,8 @@ const LayeredHeatMap: React.FC<LayeredHeatMapProps> = ({
                                                         type={'histogram'}
                                                         key={`${d.sourceColumn}-${d.targetColumn}`}
                                                         data={d}
-                                                        sourceColumn={d.sourceColumn}
-                                                        targetColumn={d.targetColumn}
+                                                        sourceUniqueValues={sourceUniqueValue ?? { sourceColumn: '', uniqueValues: [] }}
+                                                        targetUniqueValues={targetUniqueValue ?? { targetColumn: '', uniqueValues: [] }}
                                                         onClose={() => {
                                                             handleCellClick(d);
                                                         }}

@@ -14,6 +14,8 @@ interface lowerTabsProps {
     selectedCandidate: Candidate | undefined;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
     selectedMatchers: Matcher[];
+    sourceUniqueValues: SourceUniqueValues[];
+    targetUniqueValues: TargetUniqueValues[];
 }
 
 const LowerTabs: React.FC<lowerTabsProps> = ({
@@ -21,7 +23,9 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
     sourceCluster,
     selectedCandidate,
     setSelectedCandidate,
-    selectedMatchers
+    selectedMatchers,
+    sourceUniqueValues,
+    targetUniqueValues
 }) => {
     const [value, setValue] = useState(1);
 
@@ -45,6 +49,8 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
                     selectedCandidate={selectedCandidate}
                     setSelectedCandidate={setSelectedCandidate}
                     selectedMatchers={selectedMatchers}
+                    sourceUniqueValues={sourceUniqueValues}
+                    targetUniqueValues={targetUniqueValues}
                 />
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value={2}>

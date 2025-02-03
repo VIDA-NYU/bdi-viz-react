@@ -16,14 +16,19 @@ declare interface CandidateCluster {
     cluster: string[];
 }
 
+declare interface UniqueValue {
+    value: string;
+    count: number;
+}
+
 declare interface SourceUniqueValues {
     sourceColumn: string;
-    uniqueValues: string[];
+    uniqueValues: UniqueValue[];
 }
 
 declare interface TargetUniqueValues {
     targetColumn: string;
-    uniqueValues: string[];
+    uniqueValues: UniqueValue[];
 }
 
 declare interface DiagnoseObject {

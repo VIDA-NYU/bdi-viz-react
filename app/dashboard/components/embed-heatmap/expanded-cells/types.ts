@@ -3,8 +3,8 @@ import { CellData } from "../cells/types";
 
 
 interface ExpandedCellProps {
-    sourceColumn: string;
-    targetColumn: string;
+    sourceUniqueValues: SourceUniqueValues;
+    targetUniqueValues: TargetUniqueValues;
     data: CellData;
     width: number; 
     height: number;

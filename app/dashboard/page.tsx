@@ -28,6 +28,8 @@ export default function Dashboard() {
         matchers,
         selectedCandidate,
         selectedMatchers,
+        sourceUniqueValues,
+        targetUniqueValues,
         handleFileUpload,
         setSelectedCandidate,
         setSelectedMatchers,
@@ -188,6 +190,8 @@ export default function Dashboard() {
                             selectedCandidate={selectedCandidate}
                             setSelectedCandidate={setSelectedCandidateCallback}
                             selectedMatchers={selectedMatchers}
+                            sourceUniqueValues={sourceUniqueValues}
+                            targetUniqueValues={targetUniqueValues}
                         />
                     </Box>
                     <FileUploading callback={handleFileUpload} />
