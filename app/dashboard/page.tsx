@@ -29,6 +29,7 @@ export default function Dashboard() {
         selectedCandidate,
         sourceUniqueValues,
         targetUniqueValues,
+        valueMatches,
         handleFileUpload,
         setSelectedCandidate,
     } = useDashboardCandidates();
@@ -183,6 +184,7 @@ export default function Dashboard() {
                             targetColumn={selectedCandidate?.targetColumn}
                             allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                             allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
+                            valueMatches={valueMatches}
                         />
                         <LowerTabs
                             candidates={filteredCandidates}

@@ -57,7 +57,7 @@ def get_results():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/unique-values", methods=["GET"])
+@app.route("/api/value-bins", methods=["GET"])
 def get_unique_values():
     if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
         if os.path.exists(".source.csv"):
@@ -67,6 +67,20 @@ def get_unique_values():
             )
         _ = MATCHING_TASK.get_candidates()
     results = MATCHING_TASK.unique_values_to_frontend_json()
+
+    return {"message": "success", "results": results}
+
+
+@app.route("/api/value-matches", methods=["GET"])
+def get_value_matches():
+    if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
+        if os.path.exists(".source.csv"):
+            source = pd.read_csv(".source.csv")
+            MATCHING_TASK.update_dataframe(
+                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+            )
+        _ = MATCHING_TASK.get_candidates()
+    results = MATCHING_TASK.value_matches_to_frontend_json()
 
     return {"message": "success", "results": results}
 

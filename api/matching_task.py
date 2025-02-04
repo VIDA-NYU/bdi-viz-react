@@ -6,6 +6,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
+from polyfuzz import PolyFuzz
+from polyfuzz.models import RapidFuzz
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
@@ -58,6 +60,7 @@ class MatchingTask:
             "candidates": [],
             "source_clusters": None,
             "target_clusters": None,
+            "value_matches": {},
         }
 
     def _download_model(self, model_name: str) -> str:
@@ -76,6 +79,8 @@ class MatchingTask:
         if target_df is not None:
             self.target_df = target_df
             logger.info(f"[MatchingTask] Target dataframe updated!")
+
+        self._initialize_value_matches()
 
     def get_candidates(self, is_candidates_cached: bool = True) -> Dict[str, list]:
         if self.source_df is None or self.target_df is None:
@@ -142,6 +147,13 @@ class MatchingTask:
             matcher_candidates = matcher_instance.top_matches(
                 source=self.source_df, target=self.target_df, top_k=self.top_k
             )
+
+            # Generate value matches for each candidate
+            for candidate in matcher_candidates:
+                self._generate_value_matches(
+                    candidate["sourceColumn"], candidate["targetColumn"]
+                )
+
             layered_candidates.extend(matcher_candidates)
 
         if is_candidates_cached:
@@ -151,6 +163,7 @@ class MatchingTask:
                 "candidates": layered_candidates,
                 "source_clusters": source_clusters,
                 "target_clusters": target_clusters,
+                "value_matches": self.cached_candidates["value_matches"],
             }
             self._export_cache_to_json(self.cached_candidates)
 
@@ -190,6 +203,38 @@ class MatchingTask:
 
         return list(clusters.values())
 
+    def _initialize_value_matches(self) -> None:
+        self.cached_candidates["value_matches"] = {}
+        for source_col in self.source_df.columns:
+            self.cached_candidates["value_matches"][source_col] = {
+                "source_unique_values": self.get_source_unique_values(source_col),
+                "targets": {},
+            }
+
+    def _generate_value_matches(self, source_column: str, target_column: str) -> None:
+        if (
+            target_column
+            in self.cached_candidates["value_matches"][source_column]["targets"]
+        ):
+            return
+
+        if pd.api.types.is_numeric_dtype(self.source_df[source_column].dtype):
+            return
+
+        rapidfuzz_matcher = RapidFuzz(n_jobs=1)
+        value_matcher = PolyFuzz(rapidfuzz_matcher)
+
+        source_values = self.cached_candidates["value_matches"][source_column][
+            "source_unique_values"
+        ]
+        target_values = self.get_target_unique_values(target_column)
+
+        value_matcher.match(source_values, target_values)
+        match_results = value_matcher.get_matches()
+        self.cached_candidates["value_matches"][source_column]["targets"][
+            target_column
+        ] = list(match_results["To"])
+
     def discard_cached_column(self, source_col: str) -> None:
         cached_candidates_dict = self.get_cached_candidates()
         if source_col in cached_candidates_dict:
@@ -221,18 +266,37 @@ class MatchingTask:
             "sourceUniqueValues": [
                 {
                     "sourceColumn": source_col,
-                    "uniqueValues": self.get_source_unique_values(source_col),
+                    "uniqueValues": self.get_source_value_bins(source_col),
                 }
                 for source_col in self.source_df.columns
             ],
             "targetUniqueValues": [
                 {
                     "targetColumn": target_col,
-                    "uniqueValues": self.get_target_unique_values(target_col),
+                    "uniqueValues": self.get_target_value_bins(target_col),
                 }
                 for target_col in self.target_df.columns
             ],
         }
+
+    def value_matches_to_frontend_json(self) -> List[Dict[str, any]]:
+        value_matches = self.cached_candidates["value_matches"]
+        ret_json = []
+        for source_col, source_items in value_matches.items():
+            source_json = {
+                "sourceColumn": source_col,
+                "sourceValues": source_items["source_unique_values"],
+                "targets": [],
+            }
+            for target_col, target_unique_values in source_items["targets"].items():
+                source_json["targets"].append(
+                    {
+                        "targetColumn": target_col,
+                        "targetValues": target_unique_values,
+                    }
+                )
+            ret_json.append(source_json)
+        return ret_json
 
     def _format_source_clusters_for_frontend(self) -> List[Dict[str, Any]]:
         source_clusters = self.get_cached_source_clusters()
@@ -330,19 +394,33 @@ class MatchingTask:
     def get_target_df(self) -> pd.DataFrame:
         return self.target_df
 
-    def get_source_unique_values(self, source_col: str) -> List[Dict[str, Any]]:
+    def get_source_value_bins(self, source_col: str) -> List[Dict[str, Any]]:
         if self.source_df is None or source_col not in self.source_df.columns:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
         return self._bucket_column(self.source_df, source_col)
 
-    def get_target_unique_values(self, target_col: str) -> List[Dict[str, Any]]:
+    def get_source_unique_values(self, source_col: str, n: int = 20) -> List[str]:
+        if self.source_df is None or source_col not in self.source_df.columns:
+            raise ValueError(
+                f"Source column {source_col} not found in the source dataframe."
+            )
+        return list(self.source_df[source_col].dropna().unique().astype(str)[:n])
+
+    def get_target_value_bins(self, target_col: str) -> List[Dict[str, Any]]:
         if self.target_df is None or target_col not in self.target_df.columns:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
         return self._bucket_column(self.target_df, target_col)
+
+    def get_target_unique_values(self, target_col: str, n: int = 20) -> List[str]:
+        if self.target_df is None or target_col not in self.target_df.columns:
+            raise ValueError(
+                f"Target column {target_col} not found in the target dataframe."
+            )
+        return list(self.target_df[target_col].dropna().unique().astype(str)[:n])
 
     def get_cached_candidates(self) -> List[Dict[str, Any]]:
         return self.cached_candidates["candidates"]

@@ -3,6 +3,246 @@
     "target_hash": 5858499037241242318659579308324937661855492811576498202647020429983297219966,
     "candidates": [
         {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_focality",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_depth_descriptor",
+            "score": 0.6009055234355744,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "cancer_detection_method",
+            "score": 0.5965995564135806,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "enneking_msts_tumor_site",
+            "score": 0.5861529807767486,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tissue_type",
+            "score": 0.5776567679403694,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "enneking_msts_metastasis",
+            "score": 0.5602946772988623,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "metastasis_at_diagnosis",
+            "score": 0.560154586872985,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_regression_grade",
+            "score": 0.5575486008794268,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_shape",
+            "score": 0.5554244390731027,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "wilms_tumor_histologic_subtype",
+            "score": 0.5544173518068896,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.5542694423804984,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_descriptor",
+            "score": 0.5538740181489448,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "residual_tumor_measurement",
+            "score": 0.5511278548517258,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "comorbidity_method_of_diagnosis",
+            "score": 0.547867983220732,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "history_of_tumor_type",
+            "score": 0.5476851054864861,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "ensat_pathologic_n",
+            "score": 0.5391170012842692,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.5380587864424724,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "measurement_type",
+            "score": 0.5376151884799738,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "tumor_infiltrating_macrophages",
+            "score": 0.5371281081868386,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "cog_rhabdomyosarcoma_risk_group",
+            "score": 0.5329124506207824,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "bmi",
+            "score": 1.0,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "gross_tumor_weight",
+            "score": 0.5172849183655397,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "blood_test_normal_range_lower",
+            "score": 0.5169212914027435,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "blood_test_normal_range_upper",
+            "score": 0.5156184287226395,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "weight",
+            "score": 0.5074831496377685,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "percent_normal_cells",
+            "score": 0.4953218671881994,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "initial_weight",
+            "score": 0.4908920993247328,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "percent_necrosis",
+            "score": 0.4902759620842236,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "average_base_quality",
+            "score": 0.4874663780050571,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "body_surface_area",
+            "score": 0.4870022334467632,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "fev1_fvc_post_bronch_percent",
+            "score": 0.48302853050772593,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "percent_stromal_cells",
+            "score": 0.4818681039536535,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "fev1_fvc_pre_bronch_percent",
+            "score": 0.48149031591214836,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "epithelioid_cell_percent",
+            "score": 0.48073938779055475,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "percent_follicular_component",
+            "score": 0.4730075256933184,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "tumor_burden",
+            "score": 0.47043146909617234,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "tumor_purity",
+            "score": 0.46874430254080157,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "necrosis_percent",
+            "score": 0.4671821965547643,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "percent_tumor_cells",
+            "score": 0.4660341500848391,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "BMI",
+            "targetColumn": "tumor_length_measurement",
+            "score": 0.4629790928284224,
+            "matcher": "magneto_zs_bp"
+        },
+        {
             "sourceColumn": "Gender",
             "targetColumn": "gender",
             "score": 1.0,
@@ -243,126 +483,6 @@
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Race",
-            "targetColumn": "race",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "ethnicity",
-            "score": 0.6168047225197895,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "gender",
-            "score": 0.5685979345781107,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "channel",
-            "score": 0.4782867845237477,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "relationship_gender",
-            "score": 0.45802232433030704,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "exposure_source",
-            "score": 0.4498246669968904,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "zygosity",
-            "score": 0.44834353110506553,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "eye_color",
-            "score": 0.4465054578397731,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "clonality",
-            "score": 0.4462479955284013,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "demographics",
-            "score": 0.44181657698704835,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "who_nte_grade",
-            "score": 0.42725142970720986,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "country_of_birth",
-            "score": 0.4252352135468717,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "education_level",
-            "score": 0.4237858314849124,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.42355417187523703,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "progression_or_recurrence_type",
-            "score": 0.4184530125009617,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "occupation_type",
-            "score": 0.4143819630055242,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "aneuploidy",
-            "score": 0.4138146510793362,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "alcohol_intensity",
-            "score": 0.4134133625973971,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "tissue_collection_type",
-            "score": 0.40985167754655993,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "marital_status",
-            "score": 0.40925374120169183,
-            "matcher": "magneto_zs_bp"
-        },
-        {
             "sourceColumn": "FIGO_stage",
             "targetColumn": "figo_stage",
             "score": 1.0,
@@ -483,243 +603,123 @@
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_focality",
+            "sourceColumn": "Race",
+            "targetColumn": "race",
             "score": 1.0,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_depth_descriptor",
-            "score": 0.6009055234355744,
+            "sourceColumn": "Race",
+            "targetColumn": "ethnicity",
+            "score": 0.6168047225197895,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "cancer_detection_method",
-            "score": 0.5965995564135806,
+            "sourceColumn": "Race",
+            "targetColumn": "gender",
+            "score": 0.5685979345781107,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "enneking_msts_tumor_site",
-            "score": 0.5861529807767486,
+            "sourceColumn": "Race",
+            "targetColumn": "channel",
+            "score": 0.4782867845237477,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tissue_type",
-            "score": 0.5776567679403694,
+            "sourceColumn": "Race",
+            "targetColumn": "relationship_gender",
+            "score": 0.45802232433030704,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "enneking_msts_metastasis",
-            "score": 0.5602946772988623,
+            "sourceColumn": "Race",
+            "targetColumn": "exposure_source",
+            "score": 0.4498246669968904,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "metastasis_at_diagnosis",
-            "score": 0.560154586872985,
+            "sourceColumn": "Race",
+            "targetColumn": "zygosity",
+            "score": 0.44834353110506553,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_regression_grade",
-            "score": 0.5575486008794268,
+            "sourceColumn": "Race",
+            "targetColumn": "eye_color",
+            "score": 0.4465054578397731,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_shape",
-            "score": 0.5554244390731027,
+            "sourceColumn": "Race",
+            "targetColumn": "clonality",
+            "score": 0.4462479955284013,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.5544173518068896,
+            "sourceColumn": "Race",
+            "targetColumn": "demographics",
+            "score": 0.44181657698704835,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
+            "sourceColumn": "Race",
+            "targetColumn": "who_nte_grade",
+            "score": 0.42725142970720986,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "country_of_birth",
+            "score": 0.4252352135468717,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "education_level",
+            "score": 0.4237858314849124,
+            "matcher": "magneto_zs_bp"
+        },
+        {
+            "sourceColumn": "Race",
             "targetColumn": "tumor_grade_category",
-            "score": 0.5542694423804984,
+            "score": 0.42355417187523703,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_descriptor",
-            "score": 0.5538740181489448,
+            "sourceColumn": "Race",
+            "targetColumn": "progression_or_recurrence_type",
+            "score": 0.4184530125009617,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "residual_tumor_measurement",
-            "score": 0.5511278548517258,
+            "sourceColumn": "Race",
+            "targetColumn": "occupation_type",
+            "score": 0.4143819630055242,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "comorbidity_method_of_diagnosis",
-            "score": 0.547867983220732,
+            "sourceColumn": "Race",
+            "targetColumn": "aneuploidy",
+            "score": 0.4138146510793362,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "history_of_tumor_type",
-            "score": 0.5476851054864861,
+            "sourceColumn": "Race",
+            "targetColumn": "alcohol_intensity",
+            "score": 0.4134133625973971,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "ensat_pathologic_n",
-            "score": 0.5391170012842692,
+            "sourceColumn": "Race",
+            "targetColumn": "tissue_collection_type",
+            "score": 0.40985167754655993,
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.5380587864424724,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "measurement_type",
-            "score": 0.5376151884799738,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "tumor_infiltrating_macrophages",
-            "score": 0.5371281081868386,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "cog_rhabdomyosarcoma_risk_group",
-            "score": 0.5329124506207824,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "bmi",
-            "score": 1.0,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "gross_tumor_weight",
-            "score": 0.5172849183655397,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "blood_test_normal_range_lower",
-            "score": 0.5169212914027435,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "blood_test_normal_range_upper",
-            "score": 0.5156184287226395,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "weight",
-            "score": 0.5074831496377685,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "percent_normal_cells",
-            "score": 0.4953218671881994,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "initial_weight",
-            "score": 0.4908920993247328,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "percent_necrosis",
-            "score": 0.4902759620842236,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "average_base_quality",
-            "score": 0.4874663780050571,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "body_surface_area",
-            "score": 0.4870022334467632,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "fev1_fvc_post_bronch_percent",
-            "score": 0.48302853050772593,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "percent_stromal_cells",
-            "score": 0.4818681039536535,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "fev1_fvc_pre_bronch_percent",
-            "score": 0.48149031591214836,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "epithelioid_cell_percent",
-            "score": 0.48073938779055475,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "percent_follicular_component",
-            "score": 0.4730075256933184,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "tumor_burden",
-            "score": 0.47043146909617234,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "tumor_purity",
-            "score": 0.46874430254080157,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "necrosis_percent",
-            "score": 0.4671821965547643,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "percent_tumor_cells",
-            "score": 0.4660341500848391,
-            "matcher": "magneto_zs_bp"
-        },
-        {
-            "sourceColumn": "BMI",
-            "targetColumn": "tumor_length_measurement",
-            "score": 0.4629790928284224,
+            "sourceColumn": "Race",
+            "targetColumn": "marital_status",
+            "score": 0.40925374120169183,
             "matcher": "magneto_zs_bp"
         },
         {
@@ -2043,342 +2043,6 @@
             "matcher": "magneto_zs_bp"
         },
         {
-            "sourceColumn": "Gender",
-            "targetColumn": "gender",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "relationship_gender",
-            "score": 0.35451758723529414,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "demographics",
-            "score": 0.0559813641971337,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "who_cns_grade",
-            "score": 0.04981279551777814,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "percent_follicular_component",
-            "score": 0.04947660878569262,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "fev1_ref_post_bronch_percent",
-            "score": 0.04887987545317331,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "fev1_fvc_post_bronch_percent",
-            "score": 0.04883714596134757,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "is_ffpe",
-            "score": 0.048443192098346285,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "fev1_fvc_pre_bronch_percent",
-            "score": 0.04810100645120338,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "fev1_ref_pre_bronch_percent",
-            "score": 0.047609455889421066,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "hormonal_contraceptive_use",
-            "score": 0.04507807783109004,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "inpc_histologic_group",
-            "score": 0.044331713264383926,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "who_nte_grade",
-            "score": 0.043784364722278674,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "hormone_replacement_therapy_type",
-            "score": 0.04232196373611169,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "request_submission",
-            "score": 0.04209480123247704,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "aneuploidy",
-            "score": 0.039908492604670755,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "consistent_pathology_review",
-            "score": 0.03981816723656241,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.03846835485662703,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "adverse_event_grade",
-            "score": 0.03821833460355625,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "risk_factor_treatment",
-            "score": 0.037269551040254846,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "ethnicity",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "race",
-            "score": 0.32282233298011653,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "demographics",
-            "score": 0.09027961494811879,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "irs_group",
-            "score": 0.04121498636166041,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "variant_origin",
-            "score": 0.04008808075279431,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Ethnicity",
-            "targetColumn": "transglottic_extension",
-            "score": 0.03794088881729715,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "race",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "ethnicity",
-            "score": 0.31977348528082034,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "demographics",
-            "score": 0.08891199143966551,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "melanoma_known_primary",
-            "score": 0.055224424861328676,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "aneuploidy",
-            "score": 0.051651325787946324,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "gender",
-            "score": 0.05045260805466017,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "relationship_gender",
-            "score": 0.04898002774357071,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "variant_origin",
-            "score": 0.04859686654747983,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "height",
-            "score": 0.03705625060356668,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "chromosome",
-            "score": 0.03699922324917145,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "figo_stage",
-            "score": 1.0,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "iss_stage",
-            "score": 0.14570527516360993,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "inrg_stage",
-            "score": 0.13738635637553864,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "is_ffpe",
-            "score": 0.12251146812003422,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_clinical_stage",
-            "score": 0.11866421055824035,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.11480093078206005,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "morphology",
-            "score": 0.11405745268883222,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "fab_morphology_code",
-            "score": 0.08417662543973578,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "fev1_ref_pre_bronch_percent",
-            "score": 0.08081980473979877,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "fev1_ref_post_bronch_percent",
-            "score": 0.08064336131441158,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "fev1_fvc_pre_bronch_percent",
-            "score": 0.08059700019239414,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "fev1_fvc_post_bronch_percent",
-            "score": 0.08021023426707596,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "extracapsular_extension",
-            "score": 0.07630293913297241,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "per_base_sequence_quality",
-            "score": 0.07552456510874714,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "tissue_type",
-            "score": 0.07177190747830205,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "basic_statistics",
-            "score": 0.07087188729313745,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "irs_group",
-            "score": 0.07079785583915581,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "ann_arbor_clinical_stage",
-            "score": 0.06943762471571495,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "major_version",
-            "score": 0.067963801580071,
-            "matcher": "magneto_ft_bp"
-        },
-        {
-            "sourceColumn": "FIGO_stage",
-            "targetColumn": "catalog_reference",
-            "score": 0.06759367659132005,
-            "matcher": "magneto_ft_bp"
-        },
-        {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_focality",
             "score": 1.0,
@@ -2598,6 +2262,342 @@
             "sourceColumn": "BMI",
             "targetColumn": "burkitt_lymphoma_clinical_variant",
             "score": 0.0361606717676217,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "gender",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "relationship_gender",
+            "score": 0.35451758723529414,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "demographics",
+            "score": 0.0559813641971337,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "who_cns_grade",
+            "score": 0.04981279551777814,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "percent_follicular_component",
+            "score": 0.04947660878569262,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "fev1_ref_post_bronch_percent",
+            "score": 0.04887987545317331,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "fev1_fvc_post_bronch_percent",
+            "score": 0.04883714596134757,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "is_ffpe",
+            "score": 0.048443192098346285,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "fev1_fvc_pre_bronch_percent",
+            "score": 0.04810100645120338,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "fev1_ref_pre_bronch_percent",
+            "score": 0.047609455889421066,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "hormonal_contraceptive_use",
+            "score": 0.04507807783109004,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "inpc_histologic_group",
+            "score": 0.044331713264383926,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "who_nte_grade",
+            "score": 0.043784364722278674,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "hormone_replacement_therapy_type",
+            "score": 0.04232196373611169,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "request_submission",
+            "score": 0.04209480123247704,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "aneuploidy",
+            "score": 0.039908492604670755,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "consistent_pathology_review",
+            "score": 0.03981816723656241,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "wilms_tumor_histologic_subtype",
+            "score": 0.03846835485662703,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "adverse_event_grade",
+            "score": 0.03821833460355625,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "risk_factor_treatment",
+            "score": 0.037269551040254846,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "ethnicity",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "race",
+            "score": 0.32282233298011653,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "demographics",
+            "score": 0.09027961494811879,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "irs_group",
+            "score": 0.04121498636166041,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "variant_origin",
+            "score": 0.04008808075279431,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Ethnicity",
+            "targetColumn": "transglottic_extension",
+            "score": 0.03794088881729715,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "figo_stage",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "iss_stage",
+            "score": 0.14570527516360993,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "inrg_stage",
+            "score": 0.13738635637553864,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "is_ffpe",
+            "score": 0.12251146812003422,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.11866421055824035,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ajcc_pathologic_stage",
+            "score": 0.11480093078206005,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "morphology",
+            "score": 0.11405745268883222,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "fab_morphology_code",
+            "score": 0.08417662543973578,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "fev1_ref_pre_bronch_percent",
+            "score": 0.08081980473979877,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "fev1_ref_post_bronch_percent",
+            "score": 0.08064336131441158,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "fev1_fvc_pre_bronch_percent",
+            "score": 0.08059700019239414,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "fev1_fvc_post_bronch_percent",
+            "score": 0.08021023426707596,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "extracapsular_extension",
+            "score": 0.07630293913297241,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "per_base_sequence_quality",
+            "score": 0.07552456510874714,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "tissue_type",
+            "score": 0.07177190747830205,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "basic_statistics",
+            "score": 0.07087188729313745,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "irs_group",
+            "score": 0.07079785583915581,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "ann_arbor_clinical_stage",
+            "score": 0.06943762471571495,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "major_version",
+            "score": 0.067963801580071,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "FIGO_stage",
+            "targetColumn": "catalog_reference",
+            "score": 0.06759367659132005,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "race",
+            "score": 1.0,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "ethnicity",
+            "score": 0.31977348528082034,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "demographics",
+            "score": 0.08891199143966551,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "melanoma_known_primary",
+            "score": 0.055224424861328676,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "aneuploidy",
+            "score": 0.051651325787946324,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "gender",
+            "score": 0.05045260805466017,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "relationship_gender",
+            "score": 0.04898002774357071,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "variant_origin",
+            "score": 0.04859686654747983,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "height",
+            "score": 0.03705625060356668,
+            "matcher": "magneto_ft_bp"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "chromosome",
+            "score": 0.03699922324917145,
             "matcher": "magneto_ft_bp"
         },
         {
@@ -4818,5 +4818,2804 @@
             "staining_intensity_scale",
             "staining_intensity_value"
         ]
-    ]
+    ],
+    "value_matches": {
+        "Country": {
+            "source_unique_values": [
+                "United States",
+                "Other_specify",
+                "Ukraine",
+                "Poland"
+            ],
+            "targets": {
+                "country_of_birth": [
+                    "Federated States of Micronesia",
+                    "Federated States of Micronesia",
+                    "State of Palestine",
+                    "Antigua and Barbuda"
+                ],
+                "country_of_residence_at_enrollment": [
+                    "Jersey",
+                    "Jersey",
+                    "France",
+                    "Guatemala"
+                ],
+                "gender": [
+                    "male",
+                    "unspecified",
+                    "male",
+                    "not reported"
+                ],
+                "ethnicity": [
+                    "not allowed to collect",
+                    "not hispanic or latino",
+                    "hispanic or latino",
+                    "hispanic or latino"
+                ],
+                "channel": [
+                    "Red",
+                    "Green",
+                    "Red",
+                    "Red"
+                ],
+                "zygosity": [
+                    "Unknown",
+                    "Heterozygous",
+                    "Unknown",
+                    "Not Reported"
+                ],
+                "alcohol_type": [
+                    "Other",
+                    "Other",
+                    "Wine",
+                    "Not Reported"
+                ],
+                "international_prognostic_index": [
+                    "High-Intermediate Risk",
+                    "High-Intermediate Risk",
+                    "High-Intermediate Risk",
+                    "Low-Intermediate Risk"
+                ],
+                "tumor_grade_category": [
+                    "Not Reported",
+                    "Three Tier",
+                    "Four Tier",
+                    "Not Reported"
+                ],
+                "exposure_source": [
+                    "Unknown",
+                    "Social",
+                    "Unknown",
+                    "Secondary"
+                ],
+                "inpc_histologic_group": [
+                    "Unknown",
+                    "Not Reported",
+                    "Unfavorable",
+                    "Not Reported"
+                ],
+                "morphology": [
+                    "8005/0",
+                    "8005/0",
+                    "8005/0",
+                    "8005/0"
+                ],
+                "clark_level": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "iss_stage": [
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported"
+                ],
+                "vital_status": [
+                    "Dead",
+                    "Not Reported",
+                    "alive",
+                    "Dead"
+                ],
+                "relationship_gender": [
+                    "male",
+                    "unspecified",
+                    "male",
+                    "not reported"
+                ],
+                "enneking_msts_grade": [
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported"
+                ],
+                "progression_or_recurrence_type": [
+                    "Distant",
+                    "Not Reported",
+                    "Unknown",
+                    "Local"
+                ],
+                "inrg_stage": [
+                    "Ms",
+                    "Ms",
+                    "Unknown",
+                    "Not Reported"
+                ],
+                "ensat_clinical_m": [
+                    "M0",
+                    "M0",
+                    "M0",
+                    "M0"
+                ],
+                "short_name": [
+                    "UCLA",
+                    "MDACC",
+                    "UCLA",
+                    "UPMC"
+                ],
+                "doi": [
+                    "10.1126/scitranslmed.aaf6853",
+                    "10.1126/scitranslmed.aaf6853",
+                    "10.1126/scitranslmed.aaf6853",
+                    "10.1126/scitranslmed.aaf6853"
+                ],
+                "state": [
+                    "validated",
+                    "legacy",
+                    "review",
+                    "uploading"
+                ],
+                "namespace": [
+                    "vanderbilt.edu",
+                    "gustaveroussy.fr",
+                    "hopkinsmedicine.org",
+                    "vanderbilt.edu"
+                ],
+                "recist_targeted_regions_number": [
+                    "1",
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "diagnoses": [
+                    "Prostate cancer",
+                    "Leukemia",
+                    "Bladder cancer",
+                    "Pancreatic cancer"
+                ],
+                "tissue_type": [
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Peritumoral"
+                ],
+                "primary_disease": [
+                    "False",
+                    "False",
+                    "True",
+                    "False"
+                ],
+                "sample_ordinal": [
+                    "1",
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "cases": [
+                    "Prostate cancer",
+                    "Leukemia",
+                    "Bladder cancer",
+                    "Pancreatic cancer"
+                ],
+                "recist_targeted_regions_sum": [
+                    "2.5",
+                    "2.5",
+                    "2.5",
+                    "2.5"
+                ],
+                "per_sequence_gc_content": [
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "PASS"
+                ],
+                "workflow_version": [
+                    "1.0.0",
+                    "1.0.0",
+                    "1.0.0",
+                    "1.0.0"
+                ],
+                "demographics": [
+                    "Marital Status",
+                    "Ethnicity",
+                    "Insurance Status",
+                    "Geographic Location"
+                ],
+                "variant_origin": [
+                    "Somatic",
+                    "Germline",
+                    "Germline",
+                    "Somatic"
+                ],
+                "catalog_reference": [
+                    "HCMI-00123",
+                    "HCMI-00123",
+                    "HCMI-00123",
+                    "HCMI-00123"
+                ]
+            }
+        },
+        "Histologic_Grade_FIGO": {
+            "source_unique_values": [
+                "FIGO grade 1",
+                "FIGO grade 2",
+                "FIGO grade 3"
+            ],
+            "targets": {
+                "tumor_grade_category": [
+                    "Four Tier",
+                    "Four Tier",
+                    "Four Tier"
+                ],
+                "adverse_event_grade": [
+                    "Grade 1",
+                    "Grade 2",
+                    "Grade 3"
+                ],
+                "tumor_grade": [
+                    "Intermediate Grade",
+                    "G2",
+                    "G3"
+                ],
+                "tumor_regression_grade": [
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "enneking_msts_grade": [
+                    "Low Grade (G1)",
+                    "High Grade (G2)",
+                    "Low Grade (G1)"
+                ],
+                "who_cns_grade": [
+                    "Grade I",
+                    "Grade I",
+                    "Grade I"
+                ],
+                "who_nte_grade": [
+                    "G1",
+                    "G2",
+                    "G3"
+                ],
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IA",
+                    "Stage IA"
+                ],
+                "inpc_grade": [
+                    "Undifferentiated or Poorly Differentiated",
+                    "Undifferentiated or Poorly Differentiated",
+                    "Undifferentiated or Poorly Differentiated"
+                ],
+                "gleason_grade_tertiary": [
+                    "Pattern 4",
+                    "Pattern 4",
+                    "Pattern 4"
+                ],
+                "morphology": [
+                    "8013/3",
+                    "8162/3",
+                    "8013/3"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "cog_liver_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "ensat_pathologic_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "primary_gleason_grade": [
+                    "Pattern 1",
+                    "Pattern 2",
+                    "Pattern 3"
+                ],
+                "myasthenia_gravis_classification": [
+                    "Class I",
+                    "Class I",
+                    "Class I"
+                ],
+                "histologic_progression_type": [
+                    "Poorly differentiated",
+                    "Poorly differentiated",
+                    "Poorly differentiated"
+                ],
+                "cog_renal_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "ajcc_clinical_stage": [
+                    "Stage 0",
+                    "Stage 0",
+                    "Stage 0"
+                ],
+                "masaoka_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "inpc_histologic_group": [
+                    "Favorable",
+                    "Favorable",
+                    "Favorable"
+                ],
+                "wilms_tumor_histologic_subtype": [
+                    "Favorable",
+                    "Favorable",
+                    "Favorable"
+                ],
+                "histone_family": [
+                    "H1",
+                    "H2A",
+                    "H3"
+                ],
+                "pairs_on_diff_chr": [
+                    "120",
+                    "120",
+                    "30"
+                ],
+                "histone_variant": [
+                    "H3.1",
+                    "H3.2",
+                    "H3.1"
+                ],
+                "gleason_grade_group": [
+                    "Group 1",
+                    "Group 2",
+                    "Group 3"
+                ],
+                "measurement_type": [
+                    "Echographic",
+                    "Echographic",
+                    "Echographic"
+                ],
+                "iss_stage": [
+                    "I",
+                    "I",
+                    "I"
+                ],
+                "course_number": [
+                    "10",
+                    "12",
+                    "13"
+                ],
+                "ajcc_staging_system_edition": [
+                    "3rd",
+                    "3rd",
+                    "3rd"
+                ],
+                "sample_ordinal": [
+                    "10",
+                    "12",
+                    "13"
+                ]
+            }
+        },
+        "Histologic_type": {
+            "source_unique_values": [
+                "Endometrioid",
+                "Carcinosarcoma",
+                "Serous",
+                "Clear cell"
+            ],
+            "targets": {
+                "peritoneal_fluid_cytological_status": [
+                    "Not Reported",
+                    "Unsatisfactory",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "comorbidity_method_of_diagnosis": [
+                    "Not Reported",
+                    "Radiology",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "tissue_type": [
+                    "Abnormal",
+                    "Normal",
+                    "Peritumoral",
+                    "Not Allowed To Collect"
+                ],
+                "disease_type": [
+                    "Complex Mixed and Stromal Neoplasms",
+                    "Mucinous and Serous Neoplasms",
+                    "Mucinous and Serous Neoplasms",
+                    "Germ Cell Neoplasms"
+                ],
+                "residual_tumor_measurement": [
+                    "No macroscopic disease",
+                    "No macroscopic disease",
+                    "No macroscopic disease",
+                    "No macroscopic disease"
+                ],
+                "tumor_infiltrating_lymphocytes": [
+                    "Moderate",
+                    "Many",
+                    "Few",
+                    "Moderate"
+                ],
+                "history_of_tumor_type": [
+                    "Phenochromocytoma or Paraganglioma",
+                    "Phenochromocytoma or Paraganglioma",
+                    "Colorectal Cancer",
+                    "Colorectal Cancer"
+                ],
+                "wilms_tumor_histologic_subtype": [
+                    "Not Reported",
+                    "Favorable",
+                    "Not Reported",
+                    "Favorable"
+                ],
+                "last_known_disease_status": [
+                    "not reported",
+                    "Loco-regional recurrence/progression",
+                    "Distant met recurrence/progression",
+                    "Biochemical evidence of disease without structural correlate"
+                ],
+                "tumor_infiltrating_macrophages": [
+                    "Moderate",
+                    "Many",
+                    "Few",
+                    "Moderate"
+                ],
+                "relationship_primary_diagnosis": [
+                    "Gallbladder Cancer",
+                    "Kaposi Sarcoma",
+                    "Bladder Cancer",
+                    "Tonsillar Cancer"
+                ],
+                "max_tumor_bulk_site": [
+                    "Thyroid",
+                    "Ovary",
+                    "subcutaneous)",
+                    "Soft tissue (muscle"
+                ],
+                "cancer_detection_method": [
+                    "Symptomatic",
+                    "Screening",
+                    "Surveillance",
+                    "Surveillance"
+                ],
+                "classification_of_tumor": [
+                    "other",
+                    "primary",
+                    "Synchronous primary",
+                    "Not Allowed To Collect"
+                ],
+                "metastasis_at_diagnosis_site": [
+                    "Kidney",
+                    "Vertebral Canal",
+                    "Retroperitoneum",
+                    "Pleura"
+                ],
+                "treatment_effect": [
+                    "No Necrosis",
+                    "Incomplete Necrosis (Viable Tumor Present)",
+                    "Complete Necrosis (No Viable Tumor)",
+                    "Incomplete Necrosis (Viable Tumor Present)"
+                ],
+                "tumor_descriptor": [
+                    "Not Allowed To Collect",
+                    "Primary",
+                    "NOS",
+                    "Not Allowed To Collect"
+                ],
+                "enneking_msts_tumor_site": [
+                    "Extracompartmental (T2)",
+                    "Extracompartmental (T2)",
+                    "Extracompartmental (T2)",
+                    "Extracompartmental (T2)"
+                ],
+                "evidence_of_recurrence_type": [
+                    "Biopsy with Histologic Confirmation",
+                    "Physical Examination",
+                    "Positive Biomarker(s)",
+                    "Convincing Image Source"
+                ],
+                "primary_diagnosis": [
+                    "Endometrial stromal nodule",
+                    "Carcinoma",
+                    "Jadassohn blue nevus",
+                    "Carcinoma"
+                ],
+                "histologic_progression_type": [
+                    "Poorly differentiated",
+                    "Unknown",
+                    "Not Reported",
+                    "Poorly differentiated"
+                ],
+                "inpc_histologic_group": [
+                    "Not Reported",
+                    "Favorable",
+                    "Not Reported",
+                    "Favorable"
+                ],
+                "additional_pathology_findings": [
+                    "Bilateral ovaries with endometriotic cyst and surface adhesions",
+                    "Keratinizing dysplasia; severe (carcinoma in situ)",
+                    "Other Complex Extravascular Matrix Patterns",
+                    "Bone marrow concordant histology"
+                ],
+                "diagnoses": [
+                    "Melanoma",
+                    "Melanoma",
+                    "Prostate cancer",
+                    "Kidney (Renal Cell) cancer"
+                ],
+                "pathology_details": [
+                    "Melanoma",
+                    "Invasive ductal carcinoma",
+                    "Invasive lobular carcinoma",
+                    "Squamous cell carcinoma"
+                ],
+                "sample_type": [
+                    "Blood Derived Cancer - Bone Marrow",
+                    "Blood Derived Cancer - Bone Marrow",
+                    "Benign Neoplasms",
+                    "Blood Derived Cancer - Bone Marrow"
+                ],
+                "relative_with_cancer_history": [
+                    "not reported",
+                    "no",
+                    "no",
+                    "yes"
+                ],
+                "tumor_shape": [
+                    "Dome",
+                    "Dome",
+                    "Diffuse",
+                    "Dome"
+                ],
+                "tumor_code": [
+                    "other",
+                    "Rhabdomyosarcoma",
+                    "Acute Leukemia of Ambiguous Lineage (ALAL)",
+                    "anaplastic large cell lymphoma"
+                ],
+                "tumor_confined_to_organ_of_origin": [
+                    "No",
+                    "No",
+                    "No",
+                    "Yes"
+                ],
+                "described_cases": [
+                    "Acute myeloid leukemia",
+                    "Squamous cell carcinoma",
+                    "Ovarian serous carcinoma",
+                    "Basal cell carcinoma"
+                ],
+                "tumor_regression_grade": [
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "other_clinical_attributes": [
+                    "Perineural Invasion",
+                    "ECOG Performance Status",
+                    "Perineural Invasion",
+                    "Molecular Subtype"
+                ],
+                "history_of_tumor": [
+                    "No",
+                    "No",
+                    "No",
+                    "Yes"
+                ],
+                "pathology_reports": [
+                    "Melanoma",
+                    "Invasive ductal carcinoma",
+                    "Invasive lobular carcinoma",
+                    "Basal cell carcinoma"
+                ]
+            }
+        },
+        "Path_Stage_Primary_Tumor-pT": {
+            "source_unique_values": [
+                "pT1a (FIGO IA)",
+                "pT3a (FIGO IIIA)",
+                "pT1 (FIGO I)",
+                "pT1b (FIGO IB)",
+                "pT2 (FIGO II)",
+                "pT3b (FIGO IIIB)"
+            ],
+            "targets": {
+                "uicc_pathologic_stage": [
+                    "Stage IA",
+                    "Stage IIA1",
+                    "Stage IA",
+                    "Stage IB",
+                    "Stage IIIA1",
+                    "Stage IB"
+                ],
+                "uicc_clinical_stage": [
+                    "Stage IA",
+                    "Stage IIIA",
+                    "Stage IA",
+                    "Stage IVB",
+                    "Stage IIIA",
+                    "Stage IIIB"
+                ],
+                "ajcc_pathologic_stage": [
+                    "Stage IIA1",
+                    "Stage IIIA",
+                    "Stage IIB",
+                    "Stage IIB",
+                    "Stage III",
+                    "Stage IIB"
+                ],
+                "ajcc_pathologic_n": [
+                    "N1a",
+                    "N3a",
+                    "N1a",
+                    "N1b",
+                    "N1bII",
+                    "N1bIII"
+                ],
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IIIB",
+                    "Stage IA",
+                    "Stage IB1",
+                    "Stage IIIB",
+                    "Stage IIIB"
+                ],
+                "ann_arbor_pathologic_stage": [
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage II",
+                    "Stage III"
+                ],
+                "cog_liver_stage": [
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage II",
+                    "Stage III"
+                ],
+                "cog_renal_stage": [
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage II",
+                    "Stage III"
+                ],
+                "ajcc_clinical_stage": [
+                    "Stage IIA",
+                    "Stage IIIA",
+                    "Stage IV",
+                    "Stage IB2",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage II",
+                    "Stage III"
+                ],
+                "ensat_pathologic_stage": [
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage II",
+                    "Stage III"
+                ],
+                "history_of_tumor_type": [
+                    "Phenochromocytoma or Paraganglioma",
+                    "Lower Grade Glioma",
+                    "Lower Grade Glioma",
+                    "Lower Grade Glioma",
+                    "Lower Grade Glioma",
+                    "Lower Grade Glioma"
+                ],
+                "tumor_grade_category": [
+                    "Four Tier",
+                    "Four Tier",
+                    "Four Tier",
+                    "Four Tier",
+                    "Four Tier",
+                    "Four Tier"
+                ],
+                "tumor_ploidy": [
+                    "1",
+                    "3",
+                    "1",
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "uicc_clinical_t": [
+                    "T1a",
+                    "T3a",
+                    "T1a",
+                    "T1a",
+                    "T2b",
+                    "T2b"
+                ],
+                "tumor_depth_descriptor": [
+                    "Deep",
+                    "Deep",
+                    "Deep",
+                    "Deep",
+                    "Deep",
+                    "Deep"
+                ],
+                "percent_tumor_nuclei": [
+                    "12.8",
+                    "23.5",
+                    "12.8",
+                    "12.8",
+                    "5.2",
+                    "23.5"
+                ],
+                "classification_of_tumor": [
+                    "primary",
+                    "primary",
+                    "Not Allowed To Collect",
+                    "Not Allowed To Collect",
+                    "Not Allowed To Collect",
+                    "primary"
+                ],
+                "tumor_focality": [
+                    "Unifocal",
+                    "Unifocal",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "cog_neuroblastoma_risk_group": [
+                    "Low Risk",
+                    "Low Risk",
+                    "Low Risk",
+                    "Low Risk",
+                    "Not Reported",
+                    "Low Risk"
+                ],
+                "tumor_code_id": [
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "20",
+                    "1"
+                ],
+                "tumor_regression_grade": [
+                    "1",
+                    "3",
+                    "1",
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "max_tumor_bulk_site": [
+                    "Ovary",
+                    "Ovary",
+                    "Ovary",
+                    "Thyroid",
+                    "Thyroid",
+                    "Thyroid"
+                ],
+                "disease_type": [
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS"
+                ],
+                "tumor_code": [
+                    "Acute myeloid leukemia (AML)",
+                    "Acute myeloid leukemia (AML)",
+                    "Rhabdoid tumor (kidney) (RT)",
+                    "Rhabdoid tumor (kidney) (RT)",
+                    "Rhabdoid tumor (kidney) (RT)",
+                    "Rhabdoid tumor (kidney) (RT)"
+                ],
+                "primary_diagnosis": [
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS"
+                ],
+                "relative_with_cancer_history": [
+                    "not reported",
+                    "not reported",
+                    "not reported",
+                    "not reported",
+                    "not reported",
+                    "not reported"
+                ],
+                "percent_tumor_cells": [
+                    "10.4",
+                    "2.3",
+                    "10.4",
+                    "10.4",
+                    "2.3",
+                    "2.3"
+                ],
+                "relationship_primary_diagnosis": [
+                    "Lymphoma",
+                    "Lymphoma",
+                    "Lymphoma",
+                    "Lymphoma",
+                    "Lymphoma",
+                    "Lymphoma"
+                ],
+                "tumor_confined_to_organ_of_origin": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "greatest_tumor_dimension": [
+                    "1.2",
+                    "3.1",
+                    "1.2",
+                    "1.2",
+                    "1.2",
+                    "3.1"
+                ],
+                "iss_stage": [
+                    "I",
+                    "III",
+                    "I",
+                    "I",
+                    "II",
+                    "III"
+                ],
+                "pathology_details": [
+                    "Lobular carcinoma in situ",
+                    "Follicular lymphoma",
+                    "Lobular carcinoma in situ",
+                    "Invasive lobular carcinoma",
+                    "Follicular lymphoma",
+                    "Lobular carcinoma in situ"
+                ],
+                "uicc_pathologic_t": [
+                    "T1",
+                    "T1a",
+                    "T1",
+                    "T1",
+                    "T2b",
+                    "T2b"
+                ]
+            }
+        },
+        "Path_Stage_Reg_Lymph_Nodes-pN": {
+            "source_unique_values": [
+                "pN0",
+                "pNX",
+                "pN2 (FIGO IIIC2)",
+                "pN1 (FIGO IIIC1)"
+            ],
+            "targets": {
+                "peripancreatic_lymph_nodes_tested": [
+                    "0",
+                    "0",
+                    "2",
+                    "1"
+                ],
+                "lymph_nodes_tested": [
+                    "0",
+                    "0",
+                    "2",
+                    "1"
+                ],
+                "lymph_nodes_positive": [
+                    "0",
+                    "0",
+                    "2",
+                    "1"
+                ],
+                "ann_arbor_pathologic_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "uicc_pathologic_n": [
+                    "N0",
+                    "N0",
+                    "N2c",
+                    "N1c"
+                ],
+                "peripancreatic_lymph_nodes_positive": [
+                    "0",
+                    "Not Reported",
+                    "4 or More",
+                    "1-3"
+                ],
+                "lymph_node_involvement": [
+                    "Negative",
+                    "Negative",
+                    "Negative",
+                    "Negative"
+                ],
+                "uicc_pathologic_stage": [
+                    "Stage IA",
+                    "Stage IA",
+                    "Stage IIIC2",
+                    "Stage IIA1"
+                ],
+                "ajcc_pathologic_n": [
+                    "N0 (mol-)",
+                    "N0 (mol-)",
+                    "N2b",
+                    "N1a"
+                ],
+                "ensat_pathologic_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "ajcc_pathologic_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "cog_renal_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "cog_liver_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "lymph_node_dissection_site": [
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS"
+                ],
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IA",
+                    "Stage IC2",
+                    "Stage IIIC1"
+                ],
+                "enneking_msts_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "tumor_depth_descriptor": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Deep",
+                    "Deep"
+                ],
+                "lymph_node_dissection_method": [
+                    "Radical Neck Dissection",
+                    "Radical Neck Dissection",
+                    "Functional (Limited) Neck Dissection",
+                    "Functional (Limited) Neck Dissection"
+                ],
+                "lymph_node_involved_site": [
+                    "Epitrochlear",
+                    "Epitrochlear",
+                    "NOS",
+                    "NOS"
+                ],
+                "uicc_clinical_n": [
+                    "N0 (i+)",
+                    "N0 (i+)",
+                    "N2b",
+                    "N1b"
+                ],
+                "ajcc_clinical_n": [
+                    "N0 (i+)",
+                    "NX",
+                    "N0 (i+)",
+                    "N1a"
+                ],
+                "ensat_pathologic_n": [
+                    "N0",
+                    "N0",
+                    "N0",
+                    "N1"
+                ],
+                "lymph_nodes_removed": [
+                    "No",
+                    "No",
+                    "No",
+                    "No"
+                ],
+                "lymphatic_invasion_present": [
+                    "No",
+                    "No",
+                    "No",
+                    "No"
+                ],
+                "hormonal_contraceptive_use": [
+                    "Never Used",
+                    "Never Used",
+                    "Never Used",
+                    "Never Used"
+                ]
+            }
+        },
+        "Clin_Stage_Dist_Mets-cM": {
+            "source_unique_values": [
+                "cM0",
+                "Staging Incomplete",
+                "cM1"
+            ],
+            "targets": {
+                "uicc_pathologic_m": [
+                    "M0",
+                    "Unknown",
+                    "M1"
+                ],
+                "inrg_stage": [
+                    "M",
+                    "Unknown",
+                    "M"
+                ],
+                "enneking_msts_stage": [
+                    "Not Reported",
+                    "Stage IA",
+                    "Not Reported"
+                ],
+                "ajcc_pathologic_m": [
+                    "M0",
+                    "Unknown",
+                    "cM0 (i+)"
+                ],
+                "uicc_clinical_m": [
+                    "M0",
+                    "Unknown",
+                    "M1"
+                ],
+                "ensat_clinical_m": [
+                    "M0",
+                    "M0",
+                    "M1"
+                ],
+                "msi_status": [
+                    "MSI",
+                    "MSI",
+                    "MSI"
+                ],
+                "iss_stage": [
+                    "I",
+                    "I",
+                    "I"
+                ],
+                "ajcc_pathologic_stage": [
+                    "Stage 0a",
+                    "Stage 0a",
+                    "Stage IA1"
+                ],
+                "uicc_pathologic_n": [
+                    "N0",
+                    "Not Reported",
+                    "N1c"
+                ],
+                "ensat_pathologic_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "ann_arbor_pathologic_stage": [
+                    "Not Reported",
+                    "Stage I",
+                    "Not Reported"
+                ],
+                "ajcc_clinical_m": [
+                    "M0",
+                    "Unknown",
+                    "M1"
+                ],
+                "mitosis_karyorrhexis_index": [
+                    "High",
+                    "Intermediate",
+                    "High"
+                ],
+                "cog_liver_stage": [
+                    "Not Reported",
+                    "Stage I",
+                    "Not Reported"
+                ],
+                "masaoka_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "inss_stage": [
+                    "Not Reported",
+                    "Stage 1",
+                    "Stage 1"
+                ],
+                "cog_renal_stage": [
+                    "Not Reported",
+                    "Stage I",
+                    "Not Reported"
+                ],
+                "ajcc_clinical_stage": [
+                    "Stage 0",
+                    "Stage 0",
+                    "Stage 0"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Not Reported",
+                    "Stage I",
+                    "Not Reported"
+                ],
+                "schema_version": [
+                    "v1.0.0",
+                    "v1.0.0",
+                    "v5.0.1"
+                ],
+                "code": [
+                    "MOL-2023-08",
+                    "CRS-2023-01",
+                    "CRS-2023-01"
+                ],
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IA",
+                    "Stage IB1"
+                ],
+                "short_name": [
+                    "MDACC",
+                    "NCI",
+                    "MDACC"
+                ],
+                "doi": [
+                    "10.1093/jnci/djx250",
+                    "10.1126/scitranslmed.aaf6853",
+                    "10.1038/nrc.2017.104"
+                ],
+                "variant_origin": [
+                    "Somatic",
+                    "Somatic",
+                    "Somatic"
+                ],
+                "sample_ordinal": [
+                    "10",
+                    "1",
+                    "1"
+                ],
+                "major_version": [
+                    "10",
+                    "1",
+                    "1"
+                ],
+                "demographics": [
+                    "Marital Status",
+                    "Employment Status",
+                    "Marital Status"
+                ],
+                "read_group_name": [
+                    "RG001_PatientA_Tumor",
+                    "RG002_PatientA_Normal",
+                    "RG001_PatientA_Tumor"
+                ],
+                "clark_level": [
+                    "I",
+                    "I",
+                    "I"
+                ]
+            }
+        },
+        "Path_Stage_Dist_Mets-pM": {
+            "source_unique_values": [
+                "Staging Incomplete",
+                "No pathologic evidence of distant metastasis",
+                "pM1"
+            ],
+            "targets": {
+                "enneking_msts_stage": [
+                    "Stage IA",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "inrg_stage": [
+                    "Unknown",
+                    "Not Reported",
+                    "M"
+                ],
+                "ensat_pathologic_stage": [
+                    "Stage I",
+                    "Stage I",
+                    "Stage I"
+                ],
+                "masaoka_stage": [
+                    "Stage I",
+                    "Stage IIa",
+                    "Stage I"
+                ],
+                "iss_stage": [
+                    "I",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "ann_arbor_pathologic_stage": [
+                    "Stage I",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "inss_stage": [
+                    "Stage 1",
+                    "Not Reported",
+                    "Stage 1"
+                ],
+                "ajcc_pathologic_m": [
+                    "Unknown",
+                    "Not Reported",
+                    "M1a"
+                ],
+                "msi_status": [
+                    "MSI",
+                    "MSI",
+                    "MSI"
+                ],
+                "ajcc_pathologic_stage": [
+                    "Stage 0a",
+                    "Not Reported",
+                    "Stage IA1"
+                ],
+                "ensat_clinical_m": [
+                    "M0",
+                    "M0",
+                    "M1"
+                ],
+                "uicc_pathologic_m": [
+                    "Unknown",
+                    "Not Reported",
+                    "M1"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Stage I",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "variant_origin": [
+                    "Somatic",
+                    "Somatic",
+                    "Germline"
+                ],
+                "ensat_pathologic_t": [
+                    "T1",
+                    "T1",
+                    "T1"
+                ],
+                "ensat_pathologic_n": [
+                    "N0",
+                    "N0",
+                    "N1"
+                ],
+                "chromosome_arm": [
+                    "p",
+                    "p",
+                    "p"
+                ],
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IIIB",
+                    "Stage IB1"
+                ],
+                "mitosis_karyorrhexis_index": [
+                    "Intermediate",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "irs_stage": [
+                    "Unknown",
+                    "Not Reported",
+                    "1"
+                ],
+                "lane_number": [
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "schema_version": [
+                    "v1.0.0",
+                    "v1.0.0",
+                    "v5.0.1"
+                ],
+                "ajcc_clinical_stage": [
+                    "Stage 0",
+                    "Stage 0",
+                    "Stage 0"
+                ],
+                "per_base_sequence_quality": [
+                    "Unknown",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "per_base_sequence_content": [
+                    "Unknown",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "passage_count": [
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "workflow_version": [
+                    "1.0.0",
+                    "1.0.0",
+                    "1.0.0"
+                ],
+                "consistent_pathology_review": [
+                    "Yes",
+                    "No",
+                    "Not Reported"
+                ],
+                "doi": [
+                    "10.1126/scitranslmed.aaf6853",
+                    "10.1126/scitranslmed.aaf6853",
+                    "10.1038/nrc.2017.104"
+                ],
+                "code": [
+                    "CRS-2023-01",
+                    "ONC-2023-02",
+                    "CRS-2023-01"
+                ],
+                "name": [
+                    "segmented",
+                    "Normal_LogR",
+                    "MSI"
+                ],
+                "major_version": [
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "fragmentation_enzyme": [
+                    "Unknown",
+                    "Not Applicable",
+                    "Not Applicable"
+                ],
+                "read_group_name": [
+                    "RG002_PatientA_Normal",
+                    "RG002_PatientA_Normal",
+                    "RG001_PatientA_Tumor"
+                ],
+                "analytes": [
+                    "PSA",
+                    "CA 19-9",
+                    "BRCA1"
+                ]
+            }
+        },
+        "tumor_Stage-Pathological": {
+            "source_unique_values": [
+                "Stage I",
+                "Stage IV",
+                "Stage III",
+                "Stage II"
+            ],
+            "targets": {
+                "ensat_pathologic_stage": [
+                    "Stage I",
+                    "Stage IV",
+                    "Stage III",
+                    "Stage II"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Stage I",
+                    "Stage IV",
+                    "Stage III",
+                    "Stage II"
+                ],
+                "ann_arbor_pathologic_stage": [
+                    "Stage I",
+                    "Stage IV",
+                    "Stage III",
+                    "Stage II"
+                ],
+                "ajcc_pathologic_stage": [
+                    "Stage IA1",
+                    "Stage IVB",
+                    "Stage III",
+                    "Stage IIB"
+                ],
+                "ajcc_clinical_stage": [
+                    "Stage IV",
+                    "Stage IV",
+                    "Stage III",
+                    "Stage IIA"
+                ],
+                "cog_renal_stage": [
+                    "Stage I",
+                    "Stage IV",
+                    "Stage III",
+                    "Stage II"
+                ],
+                "cog_liver_stage": [
+                    "Stage I",
+                    "Stage IV",
+                    "Stage III",
+                    "Stage II"
+                ],
+                "uicc_pathologic_stage": [
+                    "Stage IA",
+                    "Stage IV",
+                    "Stage IIIA1",
+                    "Stage IIA1"
+                ],
+                "tumor_grade_category": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "uicc_clinical_stage": [
+                    "Stage IA",
+                    "Stage IVB",
+                    "Stage IIIA",
+                    "Stage IIA"
+                ],
+                "enneking_msts_stage": [
+                    "Stage IA",
+                    "Stage IA",
+                    "Stage III",
+                    "Stage IIA"
+                ],
+                "cancer_detection_method": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Symptomatic",
+                    "Not Reported"
+                ],
+                "igcccg_stage": [
+                    "Intermediate Prognosis",
+                    "Intermediate Prognosis",
+                    "Intermediate Prognosis",
+                    "Intermediate Prognosis"
+                ],
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IV",
+                    "Stage IIIB",
+                    "Stage IIIAii"
+                ],
+                "masaoka_stage": [
+                    "Stage I",
+                    "Stage IVa",
+                    "Stage III",
+                    "Stage III"
+                ],
+                "tissue_type": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Allowed To Collect",
+                    "Not Reported"
+                ],
+                "tumor_depth_descriptor": [
+                    "Not Reported",
+                    "Deep",
+                    "Deep",
+                    "Deep"
+                ],
+                "classification_of_tumor": [
+                    "not reported",
+                    "other",
+                    "other",
+                    "other"
+                ],
+                "initial_disease_status": [
+                    "Initial Diagnosis",
+                    "Initial Diagnosis",
+                    "Initial Diagnosis",
+                    "Initial Diagnosis"
+                ],
+                "history_of_tumor_type": [
+                    "Colorectal Cancer",
+                    "Colorectal Cancer",
+                    "Colorectal Cancer",
+                    "Colorectal Cancer"
+                ],
+                "iss_stage": [
+                    "I",
+                    "I",
+                    "II",
+                    "II"
+                ],
+                "inrg_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "tumor_regression_grade": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "pathology_details": [
+                    "Invasive ductal carcinoma",
+                    "Ductal carcinoma in situ",
+                    "Ductal carcinoma in situ",
+                    "Ductal carcinoma in situ"
+                ],
+                "tumor_code_id": [
+                    "1",
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "other_clinical_attributes": [
+                    "MSI Status (Microsatellite Instability)",
+                    "MSI Status (Microsatellite Instability)",
+                    "MSI Status (Microsatellite Instability)",
+                    "MSI Status (Microsatellite Instability)"
+                ],
+                "diagnoses": [
+                    "Prostate cancer",
+                    "Prostate cancer",
+                    "Prostate cancer",
+                    "Prostate cancer"
+                ],
+                "disease_type": [
+                    "Complex Mixed and Stromal Neoplasms",
+                    "Complex Mixed and Stromal Neoplasms",
+                    "NOS",
+                    "Complex Mixed and Stromal Neoplasms"
+                ],
+                "described_cases": [
+                    "Prostate adenocarcinoma",
+                    "Prostate adenocarcinoma",
+                    "Prostate adenocarcinoma",
+                    "Prostate adenocarcinoma"
+                ],
+                "primary_diagnosis": [
+                    "NOS",
+                    "NOS",
+                    "NOS",
+                    "NOS"
+                ],
+                "relationship_primary_diagnosis": [
+                    "Bladder Cancer",
+                    "Rectal Cancer",
+                    "Bladder Cancer",
+                    "Rectal Cancer"
+                ],
+                "tumor_code": [
+                    "Acute Leukemia of Ambiguous Lineage (ALAL)",
+                    "Acute Leukemia of Ambiguous Lineage (ALAL)",
+                    "CNS",
+                    "Acute Leukemia of Ambiguous Lineage (ALAL)"
+                ],
+                "test_value": [
+                    "2.5",
+                    "2.5",
+                    "2.5",
+                    "2.5"
+                ],
+                "code": [
+                    "IMM-2023-04",
+                    "SURG-2023-15",
+                    "CRS-2023-01",
+                    "SURG-2023-15"
+                ]
+            }
+        },
+        "FIGO_stage": {
+            "source_unique_values": [
+                "IA",
+                "IIIA",
+                "IIIC2",
+                "IB",
+                "II",
+                "IIIC1",
+                "IVB",
+                "IIIB"
+            ],
+            "targets": {
+                "figo_stage": [
+                    "Stage IA",
+                    "Stage IIIAii",
+                    "Stage IIIC1",
+                    "Stage IB1",
+                    "Stage IIIAii",
+                    "Stage IIIC1",
+                    "Stage IVB",
+                    "Stage IIIB"
+                ],
+                "iss_stage": [
+                    "I",
+                    "I",
+                    "I",
+                    "I",
+                    "II",
+                    "I",
+                    "I",
+                    "I"
+                ],
+                "uicc_clinical_stage": [
+                    "Stage IA",
+                    "Stage IIIA",
+                    "Stage IIIC",
+                    "Stage IIIB",
+                    "Stage IIA",
+                    "Stage IIC1",
+                    "Stage IVB",
+                    "Stage IIIB"
+                ],
+                "uicc_pathologic_stage": [
+                    "Stage IA",
+                    "Stage IIIA1",
+                    "Stage IIIC2",
+                    "Stage IB",
+                    "Stage IIA1",
+                    "Stage IIIC2",
+                    "Stage IVB",
+                    "Stage IIIA1"
+                ],
+                "ajcc_clinical_stage": [
+                    "Stage IA2",
+                    "Stage IIIA",
+                    "Stage IIIC",
+                    "Stage IB2",
+                    "Stage IIA",
+                    "Stage IIIC",
+                    "Stage IVB",
+                    "Stage III"
+                ],
+                "enneking_msts_stage": [
+                    "Stage IA",
+                    "Stage IIA",
+                    "Stage III",
+                    "Stage IB",
+                    "Stage IIA",
+                    "Stage III",
+                    "Stage IB",
+                    "Stage IIB"
+                ],
+                "ajcc_pathologic_stage": [
+                    "Stage IA1",
+                    "Stage IIIA",
+                    "Stage III",
+                    "Stage IIB",
+                    "Stage IIA1",
+                    "Stage III",
+                    "Stage IVB",
+                    "Stage IIB"
+                ],
+                "inss_stage": [
+                    "Stage 2A",
+                    "Stage 2A",
+                    "Stage 2A",
+                    "Stage 2B",
+                    "Not Reported",
+                    "Stage 1",
+                    "Stage 2B",
+                    "Stage 2B"
+                ],
+                "masaoka_stage": [
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage IVa",
+                    "Stage III"
+                ],
+                "ann_arbor_clinical_stage": [
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage III",
+                    "Stage IV",
+                    "Stage III"
+                ],
+                "cog_renal_stage": [
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage III",
+                    "Stage IV",
+                    "Stage III"
+                ],
+                "ann_arbor_pathologic_stage": [
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage III",
+                    "Stage IV",
+                    "Stage III"
+                ],
+                "uicc_clinical_n": [
+                    "N1bIV",
+                    "N1bIV",
+                    "N2b",
+                    "N1bIV",
+                    "N1bIV",
+                    "N1",
+                    "N1bIV",
+                    "N1bIV"
+                ],
+                "cog_liver_stage": [
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage III",
+                    "Stage IV",
+                    "Stage III"
+                ],
+                "ensat_pathologic_stage": [
+                    "Stage I",
+                    "Stage III",
+                    "Stage III",
+                    "Stage I",
+                    "Stage II",
+                    "Stage III",
+                    "Stage IV",
+                    "Stage III"
+                ],
+                "irs_group": [
+                    "Group II",
+                    "Group IIIa",
+                    "Group IIIa",
+                    "Group II",
+                    "Group II",
+                    "Group IIIa",
+                    "Group IV",
+                    "Group IIIa"
+                ],
+                "ajcc_pathologic_n": [
+                    "N1bII",
+                    "N1bIII",
+                    "N1bIII",
+                    "N1bII",
+                    "N1bII",
+                    "N1bIII",
+                    "N1bIV",
+                    "N1bIII"
+                ],
+                "clark_level": [
+                    "I",
+                    "I",
+                    "I",
+                    "I",
+                    "II",
+                    "I",
+                    "I",
+                    "I"
+                ],
+                "ajcc_clinical_n": [
+                    "N1bI",
+                    "N1bI",
+                    "N1bI",
+                    "N1bI",
+                    "N1bI",
+                    "N1",
+                    "N1bIV",
+                    "N1bI"
+                ],
+                "uicc_clinical_t": [
+                    "Tis (DCIS)",
+                    "Tis (DCIS)",
+                    "T2b",
+                    "Tis (DCIS)",
+                    "Tis (DCIS)",
+                    "T1a",
+                    "Tis (DCIS)",
+                    "Tis (DCIS)"
+                ],
+                "inrg_stage": [
+                    "L1",
+                    "L1",
+                    "L2",
+                    "L1",
+                    "L1",
+                    "L1",
+                    "L1",
+                    "L1"
+                ],
+                "is_ffpe": [
+                    "True",
+                    "True",
+                    "True",
+                    "True",
+                    "True",
+                    "True",
+                    "True",
+                    "True"
+                ],
+                "morphology": [
+                    "8005/0",
+                    "8005/0",
+                    "8162/3",
+                    "8005/0",
+                    "8005/0",
+                    "8013/3",
+                    "8005/0",
+                    "8005/0"
+                ],
+                "fab_morphology_code": [
+                    "M0",
+                    "M0",
+                    "M2",
+                    "M0",
+                    "M0",
+                    "M1",
+                    "M0",
+                    "M0"
+                ],
+                "fev1_ref_pre_bronch_percent": [
+                    "72",
+                    "72",
+                    "72",
+                    "72",
+                    "72",
+                    "110",
+                    "72",
+                    "72"
+                ],
+                "fev1_ref_post_bronch_percent": [
+                    "75",
+                    "75",
+                    "92",
+                    "75",
+                    "75",
+                    "103",
+                    "75",
+                    "75"
+                ],
+                "fev1_fvc_pre_bronch_percent": [
+                    "72.5",
+                    "72.5",
+                    "72.5",
+                    "72.5",
+                    "72.5",
+                    "80.1",
+                    "72.5",
+                    "72.5"
+                ],
+                "fev1_fvc_post_bronch_percent": [
+                    "75.2",
+                    "75.2",
+                    "75.2",
+                    "75.2",
+                    "75.2",
+                    "70.1",
+                    "75.2",
+                    "75.2"
+                ],
+                "extracapsular_extension": [
+                    "Extensive",
+                    "Extensive",
+                    "Extensive",
+                    "Extensive",
+                    "Extensive",
+                    "Extensive",
+                    "Extensive",
+                    "Extensive"
+                ],
+                "per_base_sequence_quality": [
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL"
+                ],
+                "tissue_type": [
+                    "Abnormal",
+                    "Abnormal",
+                    "Not Allowed To Collect",
+                    "Abnormal",
+                    "Abnormal",
+                    "Not Allowed To Collect",
+                    "Abnormal",
+                    "Abnormal"
+                ],
+                "basic_statistics": [
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL",
+                    "FAIL"
+                ],
+                "major_version": [
+                    "1",
+                    "1",
+                    "2",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "catalog_reference": [
+                    "HCMI-00123",
+                    "HCMI-00123",
+                    "HCMI-02223",
+                    "HCMI-00123",
+                    "HCMI-00123",
+                    "HCMI-00123",
+                    "HCMI-00123",
+                    "HCMI-00123"
+                ]
+            }
+        },
+        "BMI": {
+            "source_unique_values": [
+                "38.88",
+                "39.76",
+                "51.19",
+                "32.69",
+                "20.28",
+                "55.67",
+                "25.68",
+                "21.57",
+                "34.26",
+                "36.57",
+                "27.83",
+                "34.84",
+                "68.39",
+                "25.37",
+                "26.22",
+                "42.98",
+                "55.86",
+                "42.19",
+                "27.82",
+                "34.72"
+            ],
+            "targets": {}
+        },
+        "Age": {
+            "source_unique_values": [
+                "64.0",
+                "58.0",
+                "50.0",
+                "75.0",
+                "63.0",
+                "60.0",
+                "83.0",
+                "69.0",
+                "59.0",
+                "56.0",
+                "46.0",
+                "73.0",
+                "90.0",
+                "38.0",
+                "62.0",
+                "57.0",
+                "86.0",
+                "48.0",
+                "68.0",
+                "66.0"
+            ],
+            "targets": {}
+        },
+        "Race": {
+            "source_unique_values": [
+                "White",
+                " White",
+                "Asian",
+                "Not Reported",
+                "Black or African American"
+            ],
+            "targets": {
+                "race": [
+                    "white",
+                    "white",
+                    "asian",
+                    "not reported",
+                    "black or african american"
+                ],
+                "ethnicity": [
+                    "hispanic or latino",
+                    "hispanic or latino",
+                    "hispanic or latino",
+                    "not reported",
+                    "hispanic or latino"
+                ],
+                "gender": [
+                    "not reported",
+                    "not reported",
+                    "unspecified",
+                    "not reported",
+                    "male"
+                ],
+                "channel": [
+                    "Red",
+                    "Red",
+                    "Green",
+                    "Red",
+                    "Green"
+                ],
+                "relationship_gender": [
+                    "not reported",
+                    "not reported",
+                    "unspecified",
+                    "not reported",
+                    "male"
+                ],
+                "exposure_source": [
+                    "Secondary",
+                    "Home",
+                    "Social",
+                    "Home",
+                    "Work"
+                ],
+                "zygosity": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Hemizygous",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "eye_color": [
+                    "Not Reported",
+                    "Red & Violet",
+                    "Gray",
+                    "Not Reported",
+                    "Amber"
+                ],
+                "clonality": [
+                    "Clonal",
+                    "Clonal",
+                    "Non-clonal",
+                    "Non-clonal",
+                    "Clonal"
+                ],
+                "demographics": [
+                    "Age",
+                    "Age",
+                    "Insurance Status",
+                    "Gender",
+                    "Gender"
+                ],
+                "who_nte_grade": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "country_of_birth": [
+                    "State of Palestine",
+                    "Federated States of Micronesia",
+                    "Federated States of Micronesia",
+                    "Sweden",
+                    "Serbia"
+                ],
+                "education_level": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Professional or Graduate Degree",
+                    "Not Reported",
+                    "Vocational College or Some College"
+                ],
+                "tumor_grade_category": [
+                    "Four Tier",
+                    "Four Tier",
+                    "Four Tier",
+                    "Not Reported",
+                    "Four Tier"
+                ],
+                "progression_or_recurrence_type": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Distant",
+                    "Not Reported",
+                    "Distant"
+                ],
+                "occupation_type": [
+                    "Pharmacist",
+                    "Research Scientist",
+                    "Laboratory Technician",
+                    "Medical Doctor",
+                    "Dietitian"
+                ],
+                "aneuploidy": [
+                    "Trisomy",
+                    "Trisomy",
+                    "Monosomy",
+                    "Monosomy",
+                    "Trisomy"
+                ],
+                "alcohol_intensity": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Occasional Drinker",
+                    "Not Reported",
+                    "Drinker"
+                ],
+                "tissue_collection_type": [
+                    "Prospective",
+                    "Prospective",
+                    "Prospective",
+                    "Retrospective",
+                    "Retrospective"
+                ],
+                "marital_status": [
+                    "Widowed",
+                    "Widowed",
+                    "Domestic Partnership",
+                    "Separated",
+                    "Married"
+                ],
+                "melanoma_known_primary": [
+                    "Not Reported",
+                    "Yes",
+                    "Yes",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "variant_origin": [
+                    "Germline",
+                    "Germline",
+                    "Germline",
+                    "Germline",
+                    "Germline"
+                ],
+                "height": [
+                    "150",
+                    "150",
+                    "150",
+                    "150",
+                    "150"
+                ],
+                "chromosome": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "chr11"
+                ]
+            }
+        },
+        "Ethnicity": {
+            "source_unique_values": [
+                "Not-Hispanic or Latino",
+                "Hispanic or Latino",
+                "Not reported"
+            ],
+            "targets": {
+                "ethnicity": [
+                    "not hispanic or latino",
+                    "hispanic or latino",
+                    "not reported"
+                ],
+                "race": [
+                    "native hawaiian or other pacific islander",
+                    "american indian or alaska native",
+                    "not reported"
+                ],
+                "gender": [
+                    "unknown",
+                    "not reported",
+                    "not reported"
+                ],
+                "relationship_gender": [
+                    "unknown",
+                    "not reported",
+                    "not reported"
+                ],
+                "marital_status": [
+                    "Divorced",
+                    "Domestic Partnership",
+                    "Separated"
+                ],
+                "exposure_source": [
+                    "Work",
+                    "Work",
+                    "Home"
+                ],
+                "demographics": [
+                    "Geographic Location",
+                    "Geographic Location",
+                    "Gender"
+                ],
+                "channel": [
+                    "Green",
+                    "Green",
+                    "Red"
+                ],
+                "zygosity": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "clonality": [
+                    "Non-clonal",
+                    "Non-clonal",
+                    "Non-clonal"
+                ],
+                "country_of_residence_at_enrollment": [
+                    "France",
+                    "France",
+                    "Jersey"
+                ],
+                "who_nte_grade": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "tumor_grade_category": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "education_level": [
+                    "Vocational College or Some College",
+                    "High School Graduate or GED",
+                    "Not Reported"
+                ],
+                "country_of_birth": [
+                    "China",
+                    "China",
+                    "Sweden"
+                ],
+                "alcohol_intensity": [
+                    "Lifelong Non-Drinker",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "occupation_type": [
+                    "Bioinformatician",
+                    "Bioinformatician",
+                    "Medical Doctor"
+                ],
+                "inpc_histologic_group": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "tissue_collection_type": [
+                    "Prospective",
+                    "Prospective",
+                    "Retrospective"
+                ],
+                "alcohol_type": [
+                    "Wine",
+                    "Wine",
+                    "Not Reported"
+                ],
+                "irs_group": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "variant_origin": [
+                    "Somatic",
+                    "Somatic",
+                    "Germline"
+                ],
+                "transglottic_extension": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ]
+            }
+        },
+        "Gender": {
+            "source_unique_values": [
+                "Female"
+            ],
+            "targets": {
+                "gender": [
+                    "male"
+                ],
+                "relationship_gender": [
+                    "male"
+                ],
+                "menopause_status": [
+                    "Premenopausal"
+                ],
+                "hormone_replacement_therapy_type": [
+                    "Progesterone and Estrogen"
+                ],
+                "ethnicity": [
+                    "not allowed to collect"
+                ],
+                "hormonal_contraceptive_type": [
+                    "Not Reported"
+                ],
+                "clonality": [
+                    "Non-clonal"
+                ],
+                "marital_status": [
+                    "Separated"
+                ],
+                "zygosity": [
+                    "Hemizygous"
+                ],
+                "inpc_histologic_group": [
+                    "Favorable"
+                ],
+                "aneuploidy": [
+                    "Trisomy"
+                ],
+                "exposure_source": [
+                    "Home"
+                ],
+                "vital_status": [
+                    "alive"
+                ],
+                "type": [
+                    "data_release"
+                ],
+                "tumor_grade_category": [
+                    "Three Tier"
+                ],
+                "wilms_tumor_histologic_subtype": [
+                    "Favorable"
+                ],
+                "tissue_collection_type": [
+                    "Prospective"
+                ],
+                "alcohol_type": [
+                    "Beer"
+                ],
+                "who_nte_grade": [
+                    "Not Reported"
+                ],
+                "channel": [
+                    "Red"
+                ],
+                "demographics": [
+                    "Family History of Cancer"
+                ],
+                "who_cns_grade": [
+                    "Grade III"
+                ],
+                "percent_follicular_component": [
+                    "5.2"
+                ],
+                "fev1_ref_post_bronch_percent": [
+                    "75"
+                ],
+                "fev1_fvc_post_bronch_percent": [
+                    "75.2"
+                ],
+                "is_ffpe": [
+                    "False"
+                ],
+                "fev1_fvc_pre_bronch_percent": [
+                    "72.5"
+                ],
+                "fev1_ref_pre_bronch_percent": [
+                    "72"
+                ],
+                "hormonal_contraceptive_use": [
+                    "Former User"
+                ],
+                "request_submission": [
+                    "False"
+                ],
+                "consistent_pathology_review": [
+                    "Yes"
+                ],
+                "adverse_event_grade": [
+                    "Grade 1"
+                ],
+                "risk_factor_treatment": [
+                    "Yes"
+                ]
+            }
+        },
+        "Tumor_Site": {
+            "source_unique_values": [
+                "Anterior endometrium",
+                "Posterior endometrium",
+                "Other, specify"
+            ],
+            "targets": {
+                "enneking_msts_tumor_site": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "max_tumor_bulk_site": [
+                    "Pericardium",
+                    "Pericardium",
+                    "Ovary"
+                ],
+                "cancer_detection_method": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "tissue_type": [
+                    "Peritumoral",
+                    "Peritumoral",
+                    "Not Reported"
+                ],
+                "residual_tumor_measurement": [
+                    ">20 mm",
+                    "No macroscopic disease",
+                    "No macroscopic disease"
+                ],
+                "wilms_tumor_histologic_subtype": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "history_of_tumor_type": [
+                    "Phenochromocytoma or Paraganglioma",
+                    "Lower Grade Glioma",
+                    "Phenochromocytoma or Paraganglioma"
+                ],
+                "tumor_depth_descriptor": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Superficial"
+                ],
+                "peritoneal_fluid_cytological_status": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "comorbidity_method_of_diagnosis": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "tumor_focality": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Unifocal"
+                ],
+                "metastasis_at_diagnosis": [
+                    "Not Reported",
+                    "Not Reported",
+                    "NOS"
+                ],
+                "enneking_msts_metastasis": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "distance_normal_to_tumor": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "lymph_node_involved_site": [
+                    "Lateral",
+                    "Lateral",
+                    "Lateral"
+                ],
+                "hysterectomy_margins_involved": [
+                    "Macroscopic Parametrium",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "last_known_disease_status": [
+                    "not reported",
+                    "not reported",
+                    "Biochemical evidence of disease without structural correlate"
+                ],
+                "hysterectomy_type": [
+                    "Not Performed",
+                    "Not Performed",
+                    "Hysterectomy"
+                ],
+                "tumor_descriptor": [
+                    "Primary",
+                    "Not Reported",
+                    "NOS"
+                ],
+                "treatment_anatomic_sites": [
+                    "Bone",
+                    "Prostate",
+                    "Kidney"
+                ],
+                "tumor_confined_to_organ_of_origin": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "disease_type": [
+                    "Mucinous and Serous Neoplasms",
+                    "Cystic",
+                    "NOS"
+                ],
+                "primary_diagnosis": [
+                    "Endometrial stromal nodule",
+                    "Endometrial stromal nodule",
+                    "NOS"
+                ],
+                "additional_pathology_findings": [
+                    "Bilateral ovaries with endometriotic cyst and surface adhesions",
+                    "Bilateral ovaries with endometriotic cyst and surface adhesions",
+                    "Other Complex Extravascular Matrix Patterns"
+                ],
+                "tumor_code_id": [
+                    "1",
+                    "1",
+                    "1"
+                ],
+                "relative_with_cancer_history": [
+                    "not reported",
+                    "not reported",
+                    "yes"
+                ],
+                "tumor_level_prostate": [
+                    "Anterior horn",
+                    "Posterior horn",
+                    "Superior aspect"
+                ],
+                "tumor_code": [
+                    "other",
+                    "other",
+                    "other"
+                ],
+                "history_of_tumor": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "percent_tumor_nuclei": [
+                    "5.2",
+                    "5.2",
+                    "5.2"
+                ],
+                "tumor_length_measurement": [
+                    "2.5",
+                    "2.5",
+                    "2.5"
+                ],
+                "percent_tumor_cells": [
+                    "0.5",
+                    "0.5",
+                    "0.5"
+                ],
+                "sample_type": [
+                    "Primary Tumor",
+                    "Post-treatment",
+                    "Post neo-adjuvant therapy"
+                ],
+                "tumor_regression_grade": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported"
+                ],
+                "biospecimen_anatomic_site": [
+                    "Cecum",
+                    "Cecum",
+                    "Humerus"
+                ],
+                "greatest_tumor_dimension": [
+                    "0.5",
+                    "0.5",
+                    "0.5"
+                ]
+            }
+        },
+        "Tumor_Focality": {
+            "source_unique_values": [
+                "Unifocal",
+                "Multifocal"
+            ],
+            "targets": {
+                "tumor_focality": [
+                    "Unifocal",
+                    "Multifocal"
+                ],
+                "tumor_depth_descriptor": [
+                    "Superficial",
+                    "Superficial"
+                ],
+                "cancer_detection_method": [
+                    "Surveillance",
+                    "Symptomatic"
+                ],
+                "enneking_msts_tumor_site": [
+                    "Extracompartmental (T2)",
+                    "Extracompartmental (T2)"
+                ],
+                "tissue_type": [
+                    "Abnormal",
+                    "Normal"
+                ],
+                "enneking_msts_metastasis": [
+                    "Regional or Distant Metastasis (M1)",
+                    "Regional or Distant Metastasis (M1)"
+                ],
+                "metastasis_at_diagnosis": [
+                    "Regional Metastasis",
+                    "Regional Metastasis"
+                ],
+                "tumor_regression_grade": [
+                    "Unknown",
+                    "Not Reported"
+                ],
+                "tumor_shape": [
+                    "Unknown",
+                    "Mushroom"
+                ],
+                "wilms_tumor_histologic_subtype": [
+                    "Unfavorable",
+                    "Unfavorable"
+                ],
+                "tumor_grade_category": [
+                    "Not Reported",
+                    "Four Tier"
+                ],
+                "tumor_descriptor": [
+                    "Not Applicable",
+                    "Not Applicable"
+                ],
+                "residual_tumor_measurement": [
+                    "No macroscopic disease",
+                    "No macroscopic disease"
+                ],
+                "comorbidity_method_of_diagnosis": [
+                    "Unknown",
+                    "Histology"
+                ],
+                "history_of_tumor_type": [
+                    "Phenochromocytoma or Paraganglioma",
+                    "Lower Grade Glioma"
+                ],
+                "ensat_pathologic_n": [
+                    "N0",
+                    "N0"
+                ],
+                "classification_of_tumor": [
+                    "Unknown",
+                    "Premalignant"
+                ],
+                "measurement_type": [
+                    "Radiologic",
+                    "Pathologic"
+                ],
+                "tumor_infiltrating_macrophages": [
+                    "Many",
+                    "Many"
+                ],
+                "cog_rhabdomyosarcoma_risk_group": [
+                    "Unknown",
+                    "Intermediate Risk"
+                ],
+                "largest_extrapelvic_peritoneal_focus": [
+                    "Unknown",
+                    "Microscopic"
+                ],
+                "magnification": [
+                    "40",
+                    "40"
+                ],
+                "percent_tumor_cells": [
+                    "0.5",
+                    "0.5"
+                ],
+                "percent_tumor_nuclei": [
+                    "5.2",
+                    "5.2"
+                ],
+                "tumor_purity": [
+                    "0.95",
+                    "0.95"
+                ],
+                "notes": [
+                    "Patient enrolled in clinical trial for new therapy",
+                    "Surgical margins clear of tumor cells"
+                ],
+                "tumor_code_id": [
+                    "1",
+                    "1"
+                ],
+                "other_clinical_attributes": [
+                    "Tumor Mutational Burden",
+                    "Tumor Mutational Burden"
+                ],
+                "first_event": [
+                    "Induction Failure",
+                    "Induction Failure"
+                ],
+                "relative_with_cancer_history": [
+                    "no",
+                    "no"
+                ],
+                "variant_origin": [
+                    "Unknown",
+                    "Somatic"
+                ],
+                "diagnoses": [
+                    "Colorectal cancer",
+                    "Colorectal cancer"
+                ],
+                "morphology": [
+                    "8005/0",
+                    "8005/0"
+                ],
+                "cases": [
+                    "Colorectal cancer",
+                    "Colorectal cancer"
+                ],
+                "inrg_stage": [
+                    "Unknown",
+                    "Ms"
+                ]
+            }
+        },
+        "Tumor_Size_cm": {
+            "source_unique_values": [
+                "2.9",
+                "3.5",
+                "4.5",
+                "6.0",
+                "5.0",
+                "4.0",
+                "5.2",
+                "4.7",
+                "2.2",
+                "4.2",
+                "7.0",
+                "3.9",
+                "2.7",
+                "13.5",
+                "3.2",
+                "3.0",
+                "2.3",
+                "1.7",
+                "5.5",
+                "1.0"
+            ],
+            "targets": {}
+        }
+    }
 }

@@ -20,8 +20,6 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         const xColumns = [...new Set(data.map(d => d.targetColumn))];
         const yColumns = sourceCluster ?? [...new Set(data.map(d => d.sourceColumn))];
 
-        console.log('xColumns', xColumns);
-
         const numColumnsX = xColumns.length;
         const numColumnsY = yColumns.length;
         

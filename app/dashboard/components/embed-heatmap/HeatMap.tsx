@@ -186,7 +186,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
               {x.domain().map((value) => {
                 const xPos = x(value)!;
                 const width = getWidth({ targetColumn: value } as Candidate);
-                console.log("xPos", xPos, "-------- value:", value);
                 return (
                   <g key={value} transform={`translate(${xPos + width / 2},0)`}>
                     <text

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
-import { getCachedResults, getUniqueValues } from '@/app/lib/heatmap/heatmap-helper';
+import { getCachedResults, getValueBins, getValueMatches } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
 
 
@@ -11,6 +11,7 @@ type DashboardCandidateState = {
     selectedCandidate: Candidate | undefined;
     sourceUniqueValues: SourceUniqueValues[];
     targetUniqueValues: TargetUniqueValues[];
+    valueMatches: ValueMatch[];
     handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
@@ -29,6 +30,7 @@ export const {
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
         const [sourceUniqueValues, setSourceUniqueValues] = useState<SourceUniqueValues[]>([]);
         const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
+        const [valueMatches, setValueMatches] = useState<ValueMatch[]>([]);
 
         const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[], matchers?: Matcher[]) => {
             setCandidates(candidates.sort((a, b) => b.score - a.score));
@@ -56,15 +58,20 @@ export const {
             setSelectedCandidate(candidate);
         }, []);
 
-        // useEffect(() => {
+        const handleValueMatches = useCallback((valueMatches: ValueMatch[]) => {
+            setValueMatches(valueMatches);
+        }, []);
 
-        // })
+
         useEffect(() => {
             getCachedResults({
                 callback: handleFileUpload 
             });
-            getUniqueValues({
+            getValueBins({
                 callback: handleUniqueValues
+            });
+            getValueMatches({
+                callback: handleValueMatches
             });
         }, []);
 
@@ -75,6 +82,7 @@ export const {
             selectedCandidate,
             sourceUniqueValues,
             targetUniqueValues,
+            valueMatches,
             handleFileUpload,
             handleChatUpdate,
             setSelectedCandidate: handleSelectedCandidate

@@ -65,11 +65,11 @@ interface getUniqueValuesProps {
     callback: (sourceUniqueValuesArray: SourceUniqueValues[], targetUniqueValuesArray: TargetUniqueValues[]) => void;
 }
 
-const getUniqueValues = (prop: getUniqueValuesProps) => {
+const getValueBins = (prop: getUniqueValuesProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.get(`/api/unique-values`, {
+        axios.get(`/api/value-bins`, {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -94,7 +94,7 @@ const getUniqueValues = (prop: getUniqueValuesProps) => {
                     }
                 }).filter((targetUniqueValues: TargetUniqueValues | null) => targetUniqueValues !== null);
 
-                console.log("getUniqueValues finished!");
+                console.log("getValueBins finished!");
                 prop.callback(sourceUniqueValuesArray, targetUniqueValuesArray);
                 resolve();
             } else {
@@ -103,6 +103,45 @@ const getUniqueValues = (prop: getUniqueValuesProps) => {
             }
         }).catch((error) => {
             console.error("Error getting unique values:", error);
+            reject(error);
+        });
+    });
+}
+
+
+interface getValueMatchesProps {
+    callback: (valueMatches: ValueMatch[]) => void;
+}
+
+const getValueMatches = (prop: getValueMatchesProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.get(`/api/value-matches`, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
+            const results = response.data?.results;
+            if (results && Array.isArray(results)) {
+                const valueMatches = results.map((result: object) => {
+                    try {
+                        return result as ValueMatch;
+                    } catch (error) {
+                        console.error("Error parsing result to ValueMatch:", error);
+                        return null;
+                    }
+                }).filter((valueMatch: ValueMatch | null) => valueMatch !== null);
+
+                console.log("getValueMatches finished!");
+                prop.callback(valueMatches);
+                resolve();
+            } else {
+                console.error("Invalid results format");
+                reject(new Error("Invalid results format"));
+            }
+        }).catch((error) => {
+            console.error("Error getting value matches:", error);
             reject(error);
         });
     });
@@ -147,4 +186,4 @@ const undoUserOperations = ({
 }
 
 
-export { getCachedResults, getUniqueValues, applyUserOperations, undoUserOperations };
+export { getCachedResults, getValueBins, getValueMatches, applyUserOperations, undoUserOperations };

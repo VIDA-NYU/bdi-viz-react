@@ -31,6 +31,17 @@ declare interface TargetUniqueValues {
     uniqueValues: UniqueValue[];
 }
 
+declare interface ValueMatch {
+    sourceColumn: string;
+    sourceValues: string[];
+    targets: TargetValueMatch[];
+}
+
+declare interface TargetValueMatch {
+    targetColumn: string;
+    targetValues: string[];
+}
+
 declare interface DiagnoseObject {
     reason: string;
     confidence: number;
