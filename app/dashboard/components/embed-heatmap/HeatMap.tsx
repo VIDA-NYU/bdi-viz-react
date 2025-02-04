@@ -43,8 +43,13 @@ const HeatMap: React.FC<HeatMapProps> = ({
     minScore: 0,
   });
 
+  const candidates = useMemo(() => {
+    return data.filter((d) => d.matcher === selectedMatcher?.name);
+  }, [data, selectedMatcher]);
+    
+
   const { x, y, color, getWidth, getHeight, dataRange } = useHeatmapScales({
-    data: data,
+    data: candidates,
     sourceCluster: sourceCluster,
     width: dimensions.width,
     height: dimensions.height,
@@ -99,7 +104,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
           style={{ overflow: "visible" }}
         >
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
-            {data
+            {candidates
               .filter((d) => d.matcher === selectedMatcher?.name)
               .map((d: any, i: number) => {
                 let sourceUniqueValue;
@@ -181,6 +186,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
               {x.domain().map((value) => {
                 const xPos = x(value)!;
                 const width = getWidth({ targetColumn: value } as Candidate);
+                console.log("xPos", xPos, "-------- value:", value);
                 return (
                   <g key={value} transform={`translate(${xPos + width / 2},0)`}>
                     <text
@@ -188,7 +194,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                       dy=".35em"
                       textAnchor="start"
                       style={{
-                        fontSize: selectedCandidate ? "0.8em" : "1em",
+                        fontSize: selectedCandidate?.sourceColumn === value ? "1em" : "0.8em",
                         opacity:
                           selectedCandidate?.targetColumn === value ? 1 : 0.7,
                       }}
@@ -213,7 +219,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                       dy=".35em"
                       textAnchor="end"
                       style={{
-                        fontSize: selectedCandidate ? "0.8em" : "1em",
+                        fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
                         opacity:
                           selectedCandidate?.sourceColumn === value ? 1 : 0.7,
                       }}

@@ -38,10 +38,10 @@ export const {
             let filteredSourceCluster: string[] | undefined;
 
             // filter by matchers
-            if (filters.selectedMatcher) {
-                const selectedMatcherName = filters.selectedMatcher.name;
-                filteredData = filteredData.filter((d) => d.matcher && d.matcher === selectedMatcherName);
-            }
+            // if (filters.selectedMatcher) {
+            //     const selectedMatcherName = filters.selectedMatcher.name;
+            //     filteredData = filteredData.filter((d) => d.matcher && d.matcher === selectedMatcherName);
+            // }
 
             if (filters?.sourceColumn) {
                 const sourceCluster = sourceClusters?.find(sc =>

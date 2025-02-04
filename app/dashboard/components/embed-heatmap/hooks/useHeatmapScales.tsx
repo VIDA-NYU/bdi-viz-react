@@ -1,31 +1,33 @@
 // hooks/useHeatmapScales.ts
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import * as d3 from 'd3';
-import { CellData } from '../cells/types';
-import { isCellEqual } from '../cells/utils';
 import { HeatMapConfig } from '../types';
-import { ColorScheme, getColorInterpolator, getColorScale } from '../utils/color';
+import { getColorInterpolator } from '../utils/color';
 interface ScaleParams {
-    data: CellData[];
+    data: Candidate[];
     sourceCluster?: string[];
     width: number;
     height: number;
     margin: { top: number; right: number; bottom: number; left: number };
     config: HeatMapConfig;
-    selectedCandidate?: CellData;
+    selectedCandidate?: Candidate;
 }
   
 const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, selectedCandidate }: ScaleParams) => {
       
   
     return useMemo(() => {
-        const numColumnsX = [...new Set(data.map(d => d.targetColumn))].length;
-        const numColumnsY = sourceCluster?.length ?? [...new Set(data.map(d => d.sourceColumn))].length;
+        const xColumns = [...new Set(data.map(d => d.targetColumn))];
         const yColumns = sourceCluster ?? [...new Set(data.map(d => d.sourceColumn))];
+
+        console.log('xColumns', xColumns);
+
+        const numColumnsX = xColumns.length;
+        const numColumnsY = yColumns.length;
+        
+        
         const totalWidth = width - margin.left - margin.right;
         const totalHeight = height - margin.top - margin.bottom;
-        const expandRatioX = 6;
-        const expandRatioY = 2.5;
           
         
         // Dynamic cell sizing
@@ -38,7 +40,7 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         const shrunkHeight = numColumnsY > 1 ? (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1) : 0;
 
           // Scale functions with expansion logic
-        const getWidth = (cell: CellData) => {
+        const getWidth = (cell: Candidate) => {
                 if (!selectedCandidate) return baseWidth;
                 if (cell.targetColumn === selectedCandidate.targetColumn) {
                     return expandedWidth;
@@ -46,7 +48,7 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
                 return shrunkWidth;
           };
   
-          const getHeight = (cell: CellData) => {
+          const getHeight = (cell: Candidate) => {
                 if (!selectedCandidate) return baseHeight;
                 if (cell.sourceColumn === selectedCandidate.sourceColumn) return expandedHeight;
                 return shrunkHeight;
@@ -59,15 +61,13 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
 
         // Similar getXPosition and getYPosition functions but using respective shrink ratios
         const getXPosition = (column: string) => {
-            const index = data.findIndex(d => d.targetColumn === column);
+            const index = xColumns.findIndex(d => d === column);
             const expandedIndex = selectedCandidate ? 
                 data.findIndex(d => d.targetColumn === selectedCandidate?.targetColumn) : -1;
             if (!selectedCandidate) return baseWidth * index;
             if (index <= expandedIndex) return shrunkWidth * index;
             if (index > expandedIndex) return shrunkWidth * (index-1) + expandedWidth + 1; // 1 is stroke width
         };
-
-        const xColumns = data.map(d => d.targetColumn);
          
         const getYPosition = (column: string) => {
             const index = yColumns.findIndex(d => d === column);
@@ -80,11 +80,11 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
 
          
         const x = (column: string) => getXPosition(column);
-        x.domain = () => [...new Set(data.map(d => d.targetColumn))];
+        x.domain = () => xColumns;
         x.range = () => [0, width - margin.left - margin.right];
         
         const y = (column: string) => getYPosition(column);
-        y.domain = () => [...new Set(data.map(d => d.sourceColumn))];
+        y.domain = () => yColumns;
         y.range = () => [0, height - margin.top - margin.bottom];
 
         //   const y = d3.scalePoint()
@@ -108,7 +108,7 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
                 getHeight,
                 dataRange: { min: minScore, max: maxScore }
           };
-      }, [data, width, height, margin, config, selectedCandidate, sourceCluster]);
+      }, [data, sourceCluster, width, height, margin, config, selectedCandidate]);
   };
   
 
