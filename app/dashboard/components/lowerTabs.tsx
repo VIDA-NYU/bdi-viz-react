@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 // import StackedHeatMap from "./embed-heatmap/stackedHeatMap";
-import LayeredHeatMap from "./embed-heatmap/layeredHeatMap";
+import HeatMap from "./embed-heatmap/HeatMap";
 
 
 import { Box, Tab, Tabs, Paper } from "@mui/material";
@@ -13,7 +13,7 @@ interface lowerTabsProps {
     sourceCluster: string[];
     selectedCandidate: Candidate | undefined;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
-    selectedMatchers: Matcher[];
+    selectedMatcher: Matcher;
     sourceUniqueValues: SourceUniqueValues[];
     targetUniqueValues: TargetUniqueValues[];
 }
@@ -23,7 +23,7 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
     sourceCluster,
     selectedCandidate,
     setSelectedCandidate,
-    selectedMatchers,
+    selectedMatcher,
     sourceUniqueValues,
     targetUniqueValues
 }) => {
@@ -43,24 +43,18 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
             </TabList>
             </Paper>
           <TabPanel sx={{ padding: 0 }} value={1}>
-                <LayeredHeatMap
+                <HeatMap
                     data={candidates}
                     sourceCluster={sourceCluster}
                     selectedCandidate={selectedCandidate}
                     setSelectedCandidate={setSelectedCandidate}
-                    selectedMatchers={selectedMatchers}
+                    selectedMatcher={selectedMatcher}
                     sourceUniqueValues={sourceUniqueValues}
                     targetUniqueValues={targetUniqueValues}
                 />
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value={2}>
-                {/* <StackedHeatMap
-                    data={candidates}
-                    sourceCluster={sourceCluster}
-                    selectedCandidate={selectedCandidate}
-                    setSelectedCandidate={setSelectedCandidate}
-                    selectedMatchers={selectedMatchers}
-                /> */}
+                Temp
           </TabPanel>
           </TabContext>
         </Box>

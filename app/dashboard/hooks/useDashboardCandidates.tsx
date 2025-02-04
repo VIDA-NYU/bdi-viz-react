@@ -9,13 +9,11 @@ type DashboardCandidateState = {
     sourceClusters: SourceCluster[];
     matchers: Matcher[];
     selectedCandidate: Candidate | undefined;
-    selectedMatchers: Matcher[];
     sourceUniqueValues: SourceUniqueValues[];
     targetUniqueValues: TargetUniqueValues[];
     handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
-    setSelectedMatchers: (matcher: Matcher) => void;
 }
 
 export type { DashboardCandidateState };
@@ -29,7 +27,6 @@ export const {
         const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
         const [matchers, setMatchers] = useState<Matcher[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
-        const [selectedMatchers, setSelectedMatchers] = useState<Matcher[]>(matchers);
         const [sourceUniqueValues, setSourceUniqueValues] = useState<SourceUniqueValues[]>([]);
         const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
 
@@ -41,7 +38,6 @@ export const {
 
             if (matchers) {
                 setMatchers(matchers);
-                setSelectedMatchers(matchers);
             }
             // setSelectedCandidate(undefined);
         }, [selectedCandidate]);
@@ -60,14 +56,6 @@ export const {
             setSelectedCandidate(candidate);
         }, []);
 
-        const handleSelectedMatchers = useCallback((matcher: Matcher) => {
-            if (selectedMatchers.includes(matcher)) {
-                setSelectedMatchers(selectedMatchers.filter(m => m !== matcher));
-            } else {
-                setSelectedMatchers([...selectedMatchers, matcher]);
-            }
-        }, [selectedMatchers]);
-
         // useEffect(() => {
 
         // })
@@ -85,13 +73,11 @@ export const {
             sourceClusters,
             matchers,
             selectedCandidate,
-            selectedMatchers,
             sourceUniqueValues,
             targetUniqueValues,
             handleFileUpload,
             handleChatUpdate,
-            setSelectedCandidate: handleSelectedCandidate,
-            setSelectedMatchers: handleSelectedMatchers
+            setSelectedCandidate: handleSelectedCandidate
         };
     }
 };

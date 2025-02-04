@@ -13,7 +13,7 @@ const BaseExpandedCell: FC<BaseExpandedCellProps & {
     const ChartComponent = expandedCellComponents[type];
     return (
       <g
-        transform={`translate(${props.x},${props.y})`}
+        transform={`translate(${props.x},${props.y})`} onClick={props.onClick}
         >
         <rect className="expanded-cell-background"
             width={props.width}

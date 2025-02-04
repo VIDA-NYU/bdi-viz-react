@@ -18,30 +18,31 @@ interface ScaleParams {
 const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, selectedCandidate }: ScaleParams) => {
       
   
-      return useMemo(() => {
-          const numColumnsX = [...new Set(data.map(d => d.targetColumn))].length;
-          const numColumnsY = sourceCluster?.length ?? [...new Set(data.map(d => d.sourceColumn))].length;
-          const yColumns = sourceCluster ?? [...new Set(data.map(d => d.sourceColumn))];
-          const totalWidth = width - margin.left - margin.right;
-         const totalHeight = height - margin.top - margin.bottom;
-          const expandRatioX = 3;
-          const expandRatioY = 1.5;
+    return useMemo(() => {
+        const numColumnsX = [...new Set(data.map(d => d.targetColumn))].length;
+        const numColumnsY = sourceCluster?.length ?? [...new Set(data.map(d => d.sourceColumn))].length;
+        const yColumns = sourceCluster ?? [...new Set(data.map(d => d.sourceColumn))];
+        const totalWidth = width - margin.left - margin.right;
+        const totalHeight = height - margin.top - margin.bottom;
+        const expandRatioX = 6;
+        const expandRatioY = 2.5;
           
         
-          // Dynamic cell sizing
-          const baseWidth = (width - margin.left - margin.right) / numColumnsX;
-          const baseHeight = (height - margin.top - margin.bottom) / numColumnsY;
-          const expandedWidth = Math.min(Math.floor(baseWidth * expandRatioX), totalWidth);
-          const expandedHeight = Math.min(Math.floor(baseHeight * expandRatioY), totalHeight);
+        // Dynamic cell sizing
+        const baseWidth = totalWidth / numColumnsX;
+        const baseHeight = totalHeight / numColumnsY;
+        const expandedWidth = Math.min(baseWidth * 6, width - margin.left - margin.right);
+        const expandedHeight = Math.min(baseHeight * 2, height - margin.top - margin.bottom);
           
-        const shrunkWidth = numColumnsX > 1 ? (totalWidth - (totalWidth / numColumnsX * expandRatioX)) / (numColumnsX - 1) : 0;
-
-        const shrunkHeight = numColumnsY > 1 ? (totalHeight - (totalHeight / numColumnsY * expandRatioY)) / (numColumnsY - 1) : 0;
+        const shrunkWidth = numColumnsX > 1 ? (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1) : 0;
+        const shrunkHeight = numColumnsY > 1 ? (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1) : 0;
 
           // Scale functions with expansion logic
         const getWidth = (cell: CellData) => {
                 if (!selectedCandidate) return baseWidth;
-                if (isCellEqual(cell, selectedCandidate)) return expandedWidth;
+                if (cell.targetColumn === selectedCandidate.targetColumn) {
+                    return expandedWidth;
+                }
                 return shrunkWidth;
           };
   
@@ -61,7 +62,6 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
             const index = data.findIndex(d => d.targetColumn === column);
             const expandedIndex = selectedCandidate ? 
                 data.findIndex(d => d.targetColumn === selectedCandidate?.targetColumn) : -1;
-
             if (!selectedCandidate) return baseWidth * index;
             if (index <= expandedIndex) return shrunkWidth * index;
             if (index > expandedIndex) return shrunkWidth * (index-1) + expandedWidth + 1; // 1 is stroke width

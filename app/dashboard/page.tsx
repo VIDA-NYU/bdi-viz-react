@@ -27,12 +27,10 @@ export default function Dashboard() {
         sourceClusters,
         matchers,
         selectedCandidate,
-        selectedMatchers,
         sourceUniqueValues,
         targetUniqueValues,
         handleFileUpload,
         setSelectedCandidate,
-        setSelectedMatchers,
     } = useDashboardCandidates();
 
     const {
@@ -40,11 +38,13 @@ export default function Dashboard() {
         candidateType,
         similarSources,
         candidateThreshold,
+        selectedMatcher,
         updateSourceColumn,
         updateCandidateType,
         updateSimilarSources,
-        updateCandidateThreshold
-    } = useDashboardFilters({});
+        updateCandidateThreshold,
+        updateSelectedMatcher,
+    } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
         matches,
@@ -94,7 +94,7 @@ export default function Dashboard() {
             candidateType,
             similarSources,
             candidateThreshold,
-            selectedMatchers,
+            selectedMatcher,
         }
     });
 
@@ -145,7 +145,6 @@ export default function Dashboard() {
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                 matchers={matchers}
-                selectedMatchers={selectedMatchers}
                 onSourceColumnSelect={updateSourceColumn}
                 onCandidateTypeSelect={updateCandidateType}
                 onSimilarSourcesSelect={updateSimilarSources}
@@ -159,9 +158,10 @@ export default function Dashboard() {
                     console.log('redo')
                 }}
                 onMatcherSelect={(matcher) => {
-                    setSelectedMatchers(matcher);
+                    updateSelectedMatcher(matcher);
                     console.log("Selected Matcher: ", matcher);
                 }}
+                state={{sourceColumn, candidateType, similarSources, candidateThreshold, selectedMatcher}}
             />
             <Toolbar />
             <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
@@ -189,7 +189,7 @@ export default function Dashboard() {
                             sourceCluster={filteredSourceCluster}
                             selectedCandidate={selectedCandidate}
                             setSelectedCandidate={setSelectedCandidateCallback}
-                            selectedMatchers={selectedMatchers}
+                            selectedMatcher={selectedMatcher}
                             sourceUniqueValues={sourceUniqueValues}
                             targetUniqueValues={targetUniqueValues}
                         />

@@ -9,6 +9,7 @@ interface ExpandedCellProps {
     width: number; 
     height: number;
     onClose: () => void;
+    onClick: () => void;
    }
    
    interface BaseExpandedCellProps extends ExpandedCellProps {

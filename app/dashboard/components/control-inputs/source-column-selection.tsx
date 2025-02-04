@@ -1,21 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 
 interface SourceColumnSelectionProps {
     sourceColumns: string[];
+    selectedSourceColumn: string;
     onSelect: (column: string) => void;
 }
 
-const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceColumns, onSelect }) => {
+const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceColumns, selectedSourceColumn, onSelect }) => {
     const [sourceColumn, setSourceColumn] = useState<string>(sourceColumns[0]);
 
     const handleChange = (column: string) => {
         setSourceColumn(column);
         onSelect(column);
     }
+
+    useEffect(() => {
+        if (selectedSourceColumn) {
+            setSourceColumn(selectedSourceColumn);
+        }
+    }, [selectedSourceColumn]);
 
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>

@@ -86,7 +86,6 @@ const HeatMapControls: React.FC<HeatMapControlsProps> = ({
                             ]}
                             onChange={(_, value) => {
                                 const [min, max] = value as number[];
-                                // console.log('v', value, min, max, dataRange);
                                 
                                 onConfigChange(
                                     prev => {
@@ -97,8 +96,6 @@ const HeatMapControls: React.FC<HeatMapControlsProps> = ({
                                         }
                                     }
                                 )
-                                // handleChange('minScore', min);
-                                // handleChange('maxScore', max);
                             }}
                             min={0}
                             max={1}

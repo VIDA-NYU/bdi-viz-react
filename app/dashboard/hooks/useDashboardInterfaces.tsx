@@ -18,7 +18,7 @@ type DashboardInterfacesProps = {
         candidateType: string;
         similarSources: number;
         candidateThreshold: number;
-        selectedMatchers?: Matcher[];
+        selectedMatcher?: Matcher;
     };
 }
 
@@ -38,9 +38,9 @@ export const {
             let filteredSourceCluster: string[] | undefined;
 
             // filter by matchers
-            if (filters.selectedMatchers) {
-                const selectedMatcherNames = filters.selectedMatchers.map((m) => m.name);
-                filteredData = filteredData.filter((d) => d.matcher && selectedMatcherNames.includes(d.matcher));
+            if (filters.selectedMatcher) {
+                const selectedMatcherName = filters.selectedMatcher.name;
+                filteredData = filteredData.filter((d) => d.matcher && d.matcher === selectedMatcherName);
             }
 
             if (filters?.sourceColumn) {
@@ -66,7 +66,7 @@ export const {
 
             setFilteredCandidates(filteredData);
             setFilteredSourceCluster(filteredSourceCluster ?? []);
-        }, [candidates, filters.sourceColumn, filters.selectedMatchers, filters.similarSources, filters.candidateThreshold, filters.candidateType]);
+        }, [candidates, filters.sourceColumn, filters.selectedMatcher, filters.similarSources, filters.candidateThreshold, filters.candidateType]);
 
         return {
             filteredCandidates,
