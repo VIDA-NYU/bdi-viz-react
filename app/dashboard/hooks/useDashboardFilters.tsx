@@ -37,11 +37,11 @@ export const {
 
         useEffect(() => {
             setSourceColumn(candidates[0]?.sourceColumn ?? '');
-        }, [candidates]);
+        }, [sourceClusters]);
 
         useEffect(() => {
             setSelectedMatcher(matchers[0]);
-        }, [matchers]);
+        }, [sourceClusters]);
 
         const updateSourceColumn = useCallback((column: string) => {
             setSourceColumn(column);

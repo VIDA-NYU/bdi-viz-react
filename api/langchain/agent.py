@@ -17,82 +17,10 @@ from pydantic import BaseModel
 
 from ..tools.candidate_butler import candidate_butler_tools, read_source_cluster_details
 from ..tools.rag_researcher import retrieve_from_rag
+from .memory import MemoryRetriver
 from .pydantic import ActionResponse, AgentSuggestions, CandidateExplanation
 
 logger = logging.getLogger("bdiviz_flask.sub")
-
-FN_CANDIDATES = [
-    {
-        "sourceColumn": "Tumor_Site",
-        "targetColumn": "site_of_resection_or_biopsy",
-        "sourceValues": [
-            "Posterior endometrium",
-            "Anterior endometrium",
-            "Other, specify",
-        ],
-        "targetValues": [
-            "Other specified parts of female genital organs",
-            "Endometrium",
-        ],
-    },
-    {
-        "sourceColumn": "Histologic_type",
-        "targetColumn": "primary_diagnosis",
-        "sourceValues": ["Endometrioid", "Serous", "Clear cell", "Carcinosarcoma"],
-        "targetValues": ["Serous adenocarcinofibroma", "clear cell", "Carcinosarcoma"],
-    },
-]
-
-FP_CANDIDATES = [
-    {
-        "sourceColumn": "Gender",
-        "targetColumn": "relationship_gender",
-        "sourceValues": ["Female", "Male"],
-        "targetValues": ["female", "male"],
-    },
-    {
-        "sourceColumn": "Ethnicity",
-        "targetColumn": "race",
-        "sourceValues": ["Not-Hispanic or Latino", "Hispanic or Latino"],
-        "targetValues": ["native hawaiian or other pacific islander", "white", "asian"],
-    },
-    {
-        "sourceColumn": "FIGO_stage",
-        "targetColumn": "iss_stage",
-        "sourceValues": ["IIIC1", "IA", "IIIB"],
-        "targetValues": ["I", "II", "III"],
-    },
-    {
-        "sourceColumn": "tumor_Stage-Pathological",
-        "targetColumn": "figo_stage",
-        "sourceValues": ["Stage I", "Stage II", "Stage III"],
-        "targetValues": ["Stage I", "Stage II", "Stage III"],
-    },
-    {
-        "sourceColumn": "tumor_Stage-Pathological",
-        "targetColumn": "ajcc_pathologic_t",
-        "sourceValues": ["Stage I", "Stage II", "Stage III"],
-        "targetValues": ["T0", "T1a", "T2b"],
-    },
-    {
-        "sourceColumn": "Path_Stage_Reg_Lymph_Nodes-pN",
-        "targetColumn": "uicc_clinical_n",
-        "sourceValues": ["pN1 (FIGO IIIC1)", "pN0", "pNX"],
-        "targetValues": ["N1", "N0", "NX"],
-    },
-    {
-        "sourceColumn": "Path_Stage_Primary_Tumor-pT",
-        "targetColumn": "ajcc_pathologic_stage",
-        "sourceValues": ["pT1b (FIGO IB)", "pT3a (FIGO IIIA)", "pT1 (FIGO I)"],
-        "targetValues": ["Stage I", "Stage IB", "StageIIIA"],
-    },
-    {
-        "sourceColumn": "Clin_Stage_Dist_Mets-cM",
-        "targetColumn": "uicc_pathologic_m",
-        "sourceValues": ["cM0", "cM1"],
-        "targetValues": ["cM0 (i+)", "M0", "M1"],
-    },
-]
 
 
 class Agent:
@@ -100,14 +28,16 @@ class Agent:
         # OR claude-3-5-sonnet-20240620
         # self.llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
         # self.llm = ChatOllama(base_url='https://ollama-asr498.users.hsrn.nyu.edu', model='llama3.1:8b-instruct-fp16', temperature=0.2)
+        # self.llm = ChatOllama(model="deepseek-r1:1.5b", temperature=0.2)
         # self.llm = ChatTogether(model="meta-llama/Llama-3.3-70B-Instruct-Turbo")
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
         self.agent_config = {"configurable": {"thread_id": "bdiviz-1"}}
 
         self.memory = MemorySaver()
+        self.store = MemoryRetriver()
         self.is_initialized = False
 
-    def initialize(self, results: List[Dict[str, Any]]) -> None:
+    def initialize(self, results: Optional[List[Dict[str, Any]]] = None) -> None:
         logger.info(f"[Agent] Initializing the agent...")
         system_messages = [
             """You are a helpful assistant for BDI-Viz: A heatmap visualization tool for schema matching.
@@ -124,18 +54,35 @@ class Agent:
     def explain(self, candidate: Dict[str, Any]) -> CandidateExplanation:
         logger.info(f"[Agent] Explaining the candidate...")
         # logger.info(f"{diagnose}")
-        prompt = f"""
-    Diagnose the following user operation:
-        - Source Column: {candidate["sourceColumn"]}
-        - Target Column: {candidate["targetColumn"]}
-        - Source Value Sample: {candidate["sourceValues"]}
-        - Target Value Sample: {candidate["targetValues"]}
 
-    **Instructions**:
-    1. Assess if the source and target columns are a valid match.
-    2. Provide four (4) possible explanations for why these columns might be mapped together.
-    3. Suggest potential matching value pairs based on the provided samples, ensuring they are relevant to the source and target columns. For numeric columns, do not return potential value pairs.
-    4. Generate any relevant context or key terms ("relative knowledge") about the source and target columns.
+        # search for related false negative / false positive candidates
+        related_matches = self.store.search_matches(candidate["sourceColumn"], limit=3)
+        related_mismatches = self.store.search_mismatches(
+            f"{candidate['sourceColumn']}::{candidate['targetColumn']}", limit=3
+        )
+
+        prompt = f"""
+Please analyze the details of the following user operation:
+- Source Column: {candidate["sourceColumn"]}
+- Target Column: {candidate["targetColumn"]}
+- Source Sample Values: {candidate["sourceValues"]}
+- Target Sample Values: {candidate["targetValues"]}
+
+Related Matches:
+{related_matches}
+
+Related Mismatches:
+{related_mismatches}
+
+Instructions:
+1. Carefully review the related matches and mismatches. Compare these historical mappings with the current candidate to validate the match.
+2. Evaluate whether the source and target columns can be validly matched by assessing:
+    a. The similarity between the column names.
+    b. The alignment of the sample values from each column.
+    c. The history of false and true selections linked with these columns.
+3. Provide up to four possible explanations for why these columns might be mapped together, referencing the historical matches and mismatches if necessary.
+4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data.
+5. Include any additional context or key terms (i.e., "relative knowledge") that could support or contradict the current mapping.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
@@ -238,29 +185,11 @@ Candidate: {candidate}
 
     def remember_fp(self, candidate: Dict[str, Any]) -> None:
         logger.info(f"[Agent] Remembering the false positive...")
-        prompt = f"""
-You have identified a false positive in the candidate mappings.
-Please keep this in mind as you proceed with the following user operations.
-    - Source Column: {candidate["sourceColumn"]}
-    - Target Column: {candidate["targetColumn"]}
-    - Source Value Sample: {candidate["sourceValues"]}
-    - Target Value Sample: {candidate["targetValues"]}
-"""
-        logger.info(f"[REMEMBER-FP] Prompt: {prompt}")
-        self.invoke_system(prompt)
+        self.store.put_mismatch(candidate)
 
     def remember_fn(self, candidate: Dict[str, Any]) -> None:
         logger.info(f"[Agent] Remembering the false negative...")
-        prompt = f"""
-You have identified a false negative in the candidate mappings.
-Please keep this in mind as you proceed with the following user operations.
-    - Source Column: {candidate["sourceColumn"]}
-    - Target Column: {candidate["targetColumn"]}
-    - Source Value Sample: {candidate["sourceValues"]}
-    - Target Value Sample: {candidate["targetValues"]}
-"""
-        logger.info(f"[REMEMBER-FN] Prompt: {prompt}")
-        self.invoke_system(prompt)
+        self.store.put_match(candidate)
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel
@@ -268,7 +197,9 @@ Please keep this in mind as you proceed with the following user operations.
         output_parser = PydanticOutputParser(pydantic_object=output_structure)
 
         prompt = self.generate_prompt(prompt, output_parser)
-        agent_executor = create_react_agent(self.llm, tools, checkpointer=self.memory)
+        agent_executor = create_react_agent(
+            self.llm, tools, store=self.store
+        )  # checkpointer=self.memory
 
         responses = []
         for chunk in agent_executor.stream(
@@ -284,7 +215,7 @@ Please keep this in mind as you proceed with the following user operations.
         return response
 
     def invoke_system(self, prompt: str) -> Generator[AIMessage, None, None]:
-        agent_executor = create_react_agent(self.llm, [], checkpointer=self.memory)
+        agent_executor = create_react_agent(self.llm, store=self.store)
         for chunk in agent_executor.stream(
             {"messages": [SystemMessage(content=prompt)]}, self.agent_config
         ):
