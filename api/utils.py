@@ -14,6 +14,15 @@ CACHE_DIR = ".cache"
 EXPLANATION_DIR = os.path.join(CACHE_DIR, "explanations")
 
 
+def check_cache_dir(func):
+    def wrapper(*args, **kwargs):
+        if not os.path.exists(CACHE_DIR):
+            os.makedirs(CACHE_DIR)
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
 def extract_data_from_request(request):
     source_df = None
     target_df = None
@@ -35,6 +44,7 @@ def extract_data_from_request(request):
     return source_df, target_df
 
 
+@check_cache_dir
 def write_candidate_explanation_json(
     source_col: str, target_col: str, candidate_explanation: Dict[str, Any]
 ) -> None:
@@ -57,6 +67,7 @@ def read_candidate_explanation_json(
     return
 
 
+@check_cache_dir
 def download_model_pt(url: str, model_name: str) -> str:
     model_path = os.path.join(CACHE_DIR, model_name)
     if os.path.exists(model_path):

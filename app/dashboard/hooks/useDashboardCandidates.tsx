@@ -42,7 +42,7 @@ export const {
                 setMatchers(matchers);
             }
             // setSelectedCandidate(undefined);
-        }, [selectedCandidate]);
+        }, []);
 
         const handleUniqueValues = useCallback((sourceUniqueValuesArray: SourceUniqueValues[], targetUniqueValuesArray: TargetUniqueValues[]) => {
             setSourceUniqueValues(sourceUniqueValuesArray);

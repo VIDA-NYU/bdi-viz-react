@@ -90,6 +90,7 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
         <ListItem key="source-column">
           <SourceColumnSelection
             sourceColumns={prop.sourceColumns}
+            selectedSourceColumn={prop.state.sourceColumn}
             onSelect={prop.onSourceColumnSelect}
           />
         </ListItem>

@@ -33,6 +33,8 @@ USER yfw215
 ENV PATH="${PATH}:/home/yfw215/.local/bin"
 ENV PYTHONPATH="${PYTHONPATH}:/home/yfw215/.local/bin"
 
+RUN pip install --user ipython
+
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"

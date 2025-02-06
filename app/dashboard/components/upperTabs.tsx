@@ -7,6 +7,7 @@ import ValueComparisonTable from "./value-comparisons/value-comparison-table";
 
 import { Box, Tab, Tabs, Paper } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
+import { SchemaMatch } from "./explanation/types";
 
 interface UpperTabsProps {
     filteredCandidates: Candidate[];
@@ -52,7 +53,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     };
 
     return (
-        <Box sx={{ width: '100%', marginTop: 4 }}>
+        <Box sx={{ width: '100%', marginTop: 0 }}>
           <TabContext value={value}>
             <Paper sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="basic tabs example">
@@ -74,7 +75,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
                 selectedExplanations={selectedExplanations}
                 matchingValues={matchingValues}
                 relativeKnowledge={relativeKnowledge}
-                matches={matches}
+                matches={matches as SchemaMatch[]}
                 isLoading={isLoading}
                 setSelectExplanations={setSelectExplanations}
                 sourceColumn={sourceColumn}

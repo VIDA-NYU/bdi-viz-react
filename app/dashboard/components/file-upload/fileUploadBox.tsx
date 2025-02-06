@@ -61,7 +61,7 @@ export function Dropzone(props: DropzoneProps) {
                     fontSize: '1.2rem',
                     fontWeight: 'bold',
                     color: '#bbb'
-                }}>Drag 'n' drop a CSV file here</Typography>
+                }}>Drag &apos;n&apos; drop a CSV file here</Typography>
             </Box>
             <Box sx={{ mt: 1 }}>
                 <Typography variant="h6">Files</Typography>

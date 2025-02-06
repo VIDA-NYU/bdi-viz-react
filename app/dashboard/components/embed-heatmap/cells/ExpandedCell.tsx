@@ -30,7 +30,7 @@ export const ExpandedCell: React.FC<ExpandedCellProps> = ({
             source: Math.random() * 100,
             target: Math.random() * 100
         })).sort((a, b) => a.bin - b.bin);
-    }, [sourceColumn, targetColumn]);
+    }, []);
 
     return (
         <g transform={`translate(${x}, ${y})`}>

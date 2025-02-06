@@ -165,7 +165,7 @@ export default function Dashboard() {
                 state={{sourceColumn, candidateType, similarSources, candidateThreshold, selectedMatcher}}
             />
             <Toolbar />
-            <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
+            <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "180px" }}>
                 <Container maxWidth="lg">
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                         <UpperTabs
