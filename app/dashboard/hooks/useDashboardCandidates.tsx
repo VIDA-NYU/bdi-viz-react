@@ -12,7 +12,7 @@ type DashboardCandidateState = {
     sourceUniqueValues: SourceUniqueValues[];
     targetUniqueValues: TargetUniqueValues[];
     valueMatches: ValueMatch[];
-    handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
+    handleFileUpload: (newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
 }
@@ -32,17 +32,16 @@ export const {
         const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
         const [valueMatches, setValueMatches] = useState<ValueMatch[]>([]);
 
-        const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[], matchers?: Matcher[]) => {
-            setCandidates(candidates.sort((a, b) => b.score - a.score));
-            if (sourceCluster) {
-                setSourceClusters(sourceCluster);
+        const handleFileUpload = useCallback((newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => {
+            setCandidates(newCandidates.sort((a, b) => b.score - a.score));
+            if (newSourceClusters && JSON.stringify(newSourceClusters) !== JSON.stringify(sourceClusters)) {
+                setSourceClusters(newSourceClusters);
             }
 
-            if (matchers) {
-                setMatchers(matchers);
+            if (newMatchers && JSON.stringify(newMatchers) !== JSON.stringify(matchers)) {
+                setMatchers(newMatchers);
             }
-            // setSelectedCandidate(undefined);
-        }, []);
+        }, [sourceClusters]);
 
         const handleUniqueValues = useCallback((sourceUniqueValuesArray: SourceUniqueValues[], targetUniqueValuesArray: TargetUniqueValues[]) => {
             setSourceUniqueValues(sourceUniqueValuesArray);

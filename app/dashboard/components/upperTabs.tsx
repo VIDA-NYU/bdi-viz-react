@@ -13,6 +13,7 @@ interface UpperTabsProps {
     filteredCandidates: Candidate[];
     matchers: Matcher[];
     selectedCandidate?: Candidate;
+    selectedSourceColumn: string;
     isMatch: boolean;
     currentExplanations: Explanation[];
     selectedExplanations: Explanation[];
@@ -21,8 +22,6 @@ interface UpperTabsProps {
     relativeKnowledge: RelativeKnowledge[];
     matches: Candidate[];
     isLoading: boolean;
-    sourceColumn?: string;
-    targetColumn?: string;
     allSourceColumns: string[];
     allTargetColumns: string[];
     valueMatches: ValueMatch[];
@@ -32,6 +31,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     filteredCandidates,
     matchers,
     selectedCandidate,
+    selectedSourceColumn,
     isMatch,
     currentExplanations,
     selectedExplanations,
@@ -40,8 +40,6 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     relativeKnowledge,
     matches,
     isLoading,
-    sourceColumn,
-    targetColumn,
     allSourceColumns,
     allTargetColumns,
     valueMatches,
@@ -65,7 +63,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
             <UpsetPlot
                 data={filteredCandidates}
                 matchers={matchers}
-                selectedCandidate={selectedCandidate}
+                selectedCandidate={selectedCandidate? selectedCandidate : {sourceColumn: selectedSourceColumn, targetColumn: ''} as Candidate}
             />
           </TabPanel>
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={2}>
@@ -78,8 +76,8 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
                 matches={matches as SchemaMatch[]}
                 isLoading={isLoading}
                 setSelectExplanations={setSelectExplanations}
-                sourceColumn={sourceColumn}
-                targetColumn={targetColumn}
+                sourceColumn={selectedCandidate?.sourceColumn}
+                targetColumn={selectedCandidate?.targetColumn}
                 allSourceColumns={allSourceColumns}
                 allTargetColumns={allTargetColumns}
             />

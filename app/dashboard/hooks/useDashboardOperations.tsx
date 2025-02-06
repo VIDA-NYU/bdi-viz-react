@@ -54,25 +54,13 @@ export const {
             setIsLoadingGlobal(true);
 
             const references: Candidate[] = candidates.filter((candidate) => candidate.sourceColumn === selectedCandidate.sourceColumn);
-            const newCandidates = candidates.filter((candidate) => {
-                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
-                    return true;
-                }
-                if (candidate.targetColumn === selectedCandidate.targetColumn) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-
-            onCandidateUpdate(newCandidates);
-            onCandidateSelect(undefined);
-
             const userOperation: UserOperation = {
                 operation: 'accept',
                 candidate: selectedCandidate,
                 references
             };
+
+            onCandidateSelect(undefined);
 
             setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Match accepted: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
@@ -104,26 +92,14 @@ export const {
             setIsLoadingGlobal(true);
 
             const references: Candidate[] = candidates.filter((candidate) => candidate.sourceColumn === selectedCandidate.sourceColumn);
-            const newCandidates = candidates.filter((candidate) => {
-                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
-                    return true;
-                }
-                if (candidate.targetColumn !== selectedCandidate.targetColumn) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-
-            onCandidateUpdate(newCandidates);
-            onCandidateSelect(undefined);
-
             const userOperation: UserOperation = {
                 operation: 'reject',
                 candidate: selectedCandidate,
                 references
             };
 
+            onCandidateSelect(undefined);
+            
             setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Match rejected: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
 
@@ -153,14 +129,7 @@ export const {
             setIsLoadingGlobal(true);
 
             const references: Candidate[] = candidates.filter((candidate) => candidate.sourceColumn === selectedCandidate.sourceColumn);
-            const newCandidates = candidates.filter((candidate) => {
-                if (candidate.sourceColumn !== selectedCandidate.sourceColumn) {
-                    return true;
-                }
-                return false;
-            });
 
-            onCandidateUpdate(newCandidates);
             onCandidateSelect(undefined);
 
             const userOperation: UserOperation = {

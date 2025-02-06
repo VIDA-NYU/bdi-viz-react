@@ -126,6 +126,7 @@ export default function Dashboard() {
     function handleSuggestions(suggestions: AgentSuggestions | undefined) {
         console.log("Suggestions: ", suggestions);
         setSuggestions(suggestions);
+        getCachedResults({ callback: handleFileUpload });
         setOpenSuggestionsPopup(true);
     }
 
@@ -323,6 +324,7 @@ export default function Dashboard() {
                             filteredCandidates={filteredCandidates}
                             matchers={matchers}
                             selectedCandidate={selectedCandidate}
+                            selectedSourceColumn={sourceColumn}
                             isMatch={isMatch}
                             currentExplanations={currentExplanations}
                             selectedExplanations={selectedExplanations}
@@ -331,8 +333,6 @@ export default function Dashboard() {
                             relativeKnowledge={relativeKnowledge}
                             isLoading={isExplaining}
                             matches={matches}
-                            sourceColumn={selectedCandidate?.sourceColumn}
-                            targetColumn={selectedCandidate?.targetColumn}
                             allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                             allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                             valueMatches={valueMatches}

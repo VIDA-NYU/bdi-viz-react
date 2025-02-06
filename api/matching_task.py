@@ -15,6 +15,7 @@ from torch import Tensor
 from .clusterer.embedding_clusterer import EmbeddingClusterer
 from .matcher.bdikit import BDIKitMatcher
 from .matcher.valentine import ValentineMatcher
+from .matcher_weight.weight_updater import WeightUpdater
 from .utils import download_model_pt
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -39,12 +40,13 @@ class MatchingTask:
         self,
         top_k: int = 20,
         clustering_model="sentence-transformers/all-mpnet-base-v2",
+        update_matcher_weights: bool = True,
     ) -> None:
         self.top_k = top_k
 
         self.matchers = {
-            # "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
-            # "ct_learning": BDIKitMatcher("ct_learning"),
+            "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
+            "ct_learning": BDIKitMatcher("ct_learning"),
             "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
             "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),
         }
@@ -52,6 +54,8 @@ class MatchingTask:
         self.source_df = None
         self.target_df = None
         self.cached_candidates = self._initialize_cache()
+
+        self.update_matcher_weights = update_matcher_weights
 
     def _initialize_cache(self) -> Dict[str, Any]:
         return {
@@ -88,17 +92,30 @@ class MatchingTask:
 
         source_hash, target_hash = self._compute_hashes()
         cached_json = self._import_cache_from_json()
+        candidates = []
 
         if self._is_cache_valid(cached_json, source_hash, target_hash):
             self.cached_candidates = cached_json
-            return cached_json["candidates"]
+            candidates = cached_json["candidates"]
 
-        if is_candidates_cached and self._is_cache_valid(
+        elif is_candidates_cached and self._is_cache_valid(
             self.cached_candidates, source_hash, target_hash
         ):
-            return self.cached_candidates["candidates"]
+            candidates = self.get_cached_candidates()
+        else:
+            candidates = self._generate_candidates(
+                source_hash, target_hash, is_candidates_cached
+            )
 
-        return self._generate_candidates(source_hash, target_hash, is_candidates_cached)
+        if self.update_matcher_weights:
+            self.weight_updater = WeightUpdater(
+                matchers=self.matchers,
+                candidates=candidates,
+                alpha=0.1,
+                beta=0.1,
+            )
+
+        return candidates
 
     def _compute_hashes(self) -> Tuple[int, int]:
         source_hash = int(
@@ -347,6 +364,11 @@ class MatchingTask:
         logger.info(f"Applying operation: {operation}, on candidate: {candidate}...")
 
         candidates = self.get_cached_candidates()
+        if self.update_matcher_weights:
+            self.weight_updater.update_weights(
+                operation, candidate["sourceColumn"], candidate["targetColumn"]
+            )
+
         if operation == "accept":
             self.set_cached_candidates(
                 [
