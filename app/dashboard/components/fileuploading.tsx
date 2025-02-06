@@ -53,7 +53,7 @@ const FileUploading = (prop: FileUploadingProps) => {
                     })
                 }
             };
-            fileReader.readAsText(file);
+            fileReader.readAsText(file as Blob);
         }
     }
 

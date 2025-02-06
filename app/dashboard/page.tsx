@@ -1,20 +1,21 @@
 'use client';
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Container, Toolbar, Box, CircularProgress } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
-import StackedHeatMap from "./components/embed-heatmap/stackedHeatMap";
-import HeatMap from "./components/embed-heatmap/HeatMap";
+import UpperTabs from "./components/upperTabs";
+import LowerTabs from "./components/lowerTabs";
 import FileUploading from "./components/fileuploading";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
+
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
-import CombinedView from "./components/explanation/CombinedView";
 import { useDashboardCandidates } from "./hooks/useDashboardCandidates";
 import { useDashboardFilters } from "./hooks/useDashboardFilters";
 import { useDashboardOperations } from "./hooks/useDashboardOperations";
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
-import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
+import { useDashboardInterfaces } from "./hooks/useDashboardInterfaces";
 
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
@@ -26,11 +27,11 @@ export default function Dashboard() {
         sourceClusters,
         matchers,
         selectedCandidate,
-        selectedMatchers,
+        sourceUniqueValues,
+        targetUniqueValues,
+        valueMatches,
         handleFileUpload,
-        handleChatUpdate,
         setSelectedCandidate,
-        setSelectedMatchers,
     } = useDashboardCandidates();
 
     const {
@@ -38,11 +39,13 @@ export default function Dashboard() {
         candidateType,
         similarSources,
         candidateThreshold,
+        selectedMatcher,
         updateSourceColumn,
         updateCandidateType,
         updateSimilarSources,
-        updateCandidateThreshold
-    } = useDashboardFilters();
+        updateCandidateThreshold,
+        updateSelectedMatcher,
+    } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
         matches,
@@ -73,26 +76,49 @@ export default function Dashboard() {
         onCandidateUpdate: handleFileUpload,
         onCandidateSelect: setSelectedCandidate,
         onExplanation: generateExplanations,
-        onSuggestions: (suggestions) => {
-            console.log("Suggestions: ", suggestions);
-            setSuggestions(suggestions);
-            setOpenSuggestionsPopup(true);
-        },
-        onApply: (actionResponses) => {
-            console.log("Action Responses: ", actionResponses);
-            if (actionResponses && actionResponses.length > 0) {
-                actionResponses.forEach((ar) => {
-                    if (ar.action === "prune" || ar.action === "replace" || ar.action === "redo") {
-                        getCachedResults({ callback: handleFileUpload });
-                    } else {
-                        console.log("Action not supported: ", ar.action);
-                    }
-                });
-            }
+        onSuggestions: handleSuggestions,
+        onApply: handleApply
+    });
+
+    const {
+        filteredCandidates,
+        filteredSourceCluster,
+        filteredCandidateCluster,
+    } = useDashboardInterfaces({
+        candidates,
+        sourceClusters,
+        matchers,
+        candidateClusters: [],
+        filters: {
+            selectedCandidate,
+            sourceColumn,
+            candidateType,
+            similarSources,
+            candidateThreshold,
+            selectedMatcher,
         }
     });
 
-    const setSelectedCandidateCallback = (candidate: Candidate | undefined) => {
+    function handleSuggestions(suggestions: AgentSuggestions | undefined) {
+        console.log("Suggestions: ", suggestions);
+        setSuggestions(suggestions);
+        setOpenSuggestionsPopup(true);
+    }
+
+    function handleApply(actionResponses: ActionResponse[] | undefined) {
+        console.log("Action Responses: ", actionResponses);
+        if (actionResponses && actionResponses.length > 0) {
+            actionResponses.forEach((ar) => {
+                if (["prune", "replace", "redo"].includes(ar.action)) {
+                    getCachedResults({ callback: handleFileUpload });
+                } else {
+                    console.log("Action not supported: ", ar.action);
+                }
+            });
+        }
+    }
+
+    function setSelectedCandidateCallback(candidate: Candidate | undefined) {
         if (!candidate) {
             setSelectedCandidate(undefined);
             generateExplanations(undefined);
@@ -101,9 +127,9 @@ export default function Dashboard() {
         toastify("default", <p><strong>Source: </strong>{candidate.sourceColumn}, <strong>Target: </strong>{candidate.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
         explain(candidate);
-    };
+    }
 
-    const onSelectedActions = (actions: AgentAction[]) => {
+    function onSelectedActions(actions: AgentAction[]) {
         if (actions && actions.length > 0) {
             const previousOperation = userOperations[userOperations.length - 1];
             const reaction: UserReaction = {
@@ -113,14 +139,13 @@ export default function Dashboard() {
             console.log("Reaction: ", reaction);
             apply(reaction);
         }
-    };
+    }
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: "white" }}>
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                 matchers={matchers}
-                selectedMatchers={selectedMatchers}
                 onSourceColumnSelect={updateSourceColumn}
                 onCandidateTypeSelect={updateCandidateType}
                 onSimilarSourcesSelect={updateSimilarSources}
@@ -134,44 +159,43 @@ export default function Dashboard() {
                     console.log('redo')
                 }}
                 onMatcherSelect={(matcher) => {
-                    setSelectedMatchers(matcher);
+                    updateSelectedMatcher(matcher);
                     console.log("Selected Matcher: ", matcher);
                 }}
+                state={{sourceColumn, candidateType, similarSources, candidateThreshold, selectedMatcher}}
             />
             <Toolbar />
-            <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "200px" }}>
+            <Box component="main" sx={{ flexGrow: 1, py: 4, paddingTop: "180px" }}>
                 <Container maxWidth="lg">
-                    {selectedMatchers.length > 1 ? (
-                        <StackedHeatMap 
-                            data={candidates}
-                            sourceClusters={sourceClusters}
-                            selectedMatchers={selectedMatchers}
-                            setSelectedCandidate={setSelectedCandidateCallback}
-                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <UpperTabs
+                            filteredCandidates={filteredCandidates}
+                            matchers={matchers}
+                            selectedCandidate={selectedCandidate}
+                            isMatch={isMatch}
+                            currentExplanations={currentExplanations}
+                            selectedExplanations={selectedExplanations}
+                            setSelectExplanations={setSelectedExplanations}
+                            matchingValues={matchingValues}
+                            relativeKnowledge={relativeKnowledge}
+                            isLoading={isExplaining}
+                            matches={matches}
+                            sourceColumn={selectedCandidate?.sourceColumn}
+                            targetColumn={selectedCandidate?.targetColumn}
+                            allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                            allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
+                            valueMatches={valueMatches}
                         />
-                    ) : (
-                        <HeatMap
-                            data={candidates}
-                            sourceClusters={sourceClusters}
-                            selectedMatchers={selectedMatchers}
+                        <LowerTabs
+                            candidates={filteredCandidates}
+                            sourceCluster={filteredSourceCluster}
+                            selectedCandidate={selectedCandidate}
                             setSelectedCandidate={setSelectedCandidateCallback}
-                            filters={{ selectedCandidate, sourceColumn, candidateType, similarSources, candidateThreshold }}
+                            selectedMatcher={selectedMatcher}
+                            sourceUniqueValues={sourceUniqueValues}
+                            targetUniqueValues={targetUniqueValues}
                         />
-                    )}
-                    <CombinedView
-                        isMatch={isMatch}
-                        currentExplanations={currentExplanations}
-                        selectedExplanations={selectedExplanations}
-                        setSelectExplanations={setSelectedExplanations}
-                        matchingValues={matchingValues}
-                        relativeKnowledge={relativeKnowledge}
-                        isLoading={isExplaining}
-                        matches={matches}
-                        sourceColumn={selectedCandidate?.sourceColumn}
-                        targetColumn={selectedCandidate?.targetColumn}
-                        allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                        allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
-                    />
+                    </Box>
                     <FileUploading callback={handleFileUpload} />
                 </Container>
             </Box>

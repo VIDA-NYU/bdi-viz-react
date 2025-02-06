@@ -16,14 +16,30 @@ declare interface CandidateCluster {
     cluster: string[];
 }
 
+declare interface UniqueValue {
+    value: string;
+    count: number;
+}
+
 declare interface SourceUniqueValues {
     sourceColumn: string;
-    uniqueValues: string[];
+    uniqueValues: UniqueValue[];
 }
 
 declare interface TargetUniqueValues {
     targetColumn: string;
-    uniqueValues: string[];
+    uniqueValues: UniqueValue[];
+}
+
+declare interface ValueMatch {
+    sourceColumn: string;
+    sourceValues: string[];
+    targets: TargetValueMatch[];
+}
+
+declare interface TargetValueMatch {
+    targetColumn: string;
+    targetValues: string[];
 }
 
 declare interface DiagnoseObject {
@@ -39,6 +55,13 @@ declare interface UserOperation {
 
 declare interface ExplanationObject {
     type: string;
+    content: string;
+    confidence: number;
+}
+
+declare interface Explanation {
+    id: string;
+    type: ExplanationType;
     content: string;
     confidence: number;
 }
@@ -75,4 +98,9 @@ declare interface ActionResponse {
     response: string;
     action: string;
     targetCandidates: Candidate[];
+}
+
+declare interface Matcher {
+    name: string;
+    weight: number;
 }

@@ -50,7 +50,7 @@ class ExplanationObject(BaseModel):
                       """
     )
     content: str = Field(description="The content of the explanation")
-    confidence: float = Field(
+    confidence: Optional[float] = Field(
         description="The confidence of the explanation, from 0 to 1"
     )
 

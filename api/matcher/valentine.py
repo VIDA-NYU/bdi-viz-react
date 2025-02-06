@@ -52,11 +52,11 @@ class ValentineMatcher(BaseMatcher):
             return Coma()
         elif name == "cupid":
             return Cupid()
-        elif name == "similarityflooding":
+        elif name == "similarityflooding" or name == "similarity_flooding":
             return SimilarityFlooding()
-        elif name == "jaccarddistancematcher":
+        elif name == "jaccarddistancematcher" or name == "jaccard_distance_matcher":
             return JaccardDistanceMatcher()
-        elif name == "distributionbased":
+        elif name == "distributionbased" or name == "distribution_based":
             return DistributionBased()
         else:
             raise ValueError(f"Matcher {name} not found in allowed Valentine matchers")

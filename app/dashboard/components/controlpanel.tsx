@@ -26,7 +26,7 @@ import RejectMatchButton from "./control-inputs/reject-match-button";
 import DiscardColumnButton from "./control-inputs/discard-column-button";
 import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
-import MatcherSelection from "./control-inputs/matcher-multi-selection";
+import MatcherSelection from "./control-inputs/matcher-selection";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -44,8 +44,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 interface ToolbarProps {
   sourceColumns: string[];
-  matchers: string[];
-  selectedMatchers: string[];
+  matchers: Matcher[];
 
   onSourceColumnSelect: (column: string) => void;
 
@@ -61,7 +60,15 @@ interface ToolbarProps {
   undo: () => void;
   redo: () => void;
 
-  onMatcherSelect: (matcher: string) => void;
+  onMatcherSelect: (matcher: Matcher) => void;
+
+  state: {
+    sourceColumn: string;
+    candidateType: string;
+    similarSources: number;
+    candidateThreshold: number;
+    selectedMatcher: Matcher;
+  };
 }
 
 const drawerWidth = 240;
@@ -83,6 +90,7 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
         <ListItem key="source-column">
           <SourceColumnSelection
             sourceColumns={prop.sourceColumns}
+            selectedSourceColumn={prop.state.sourceColumn}
             onSelect={prop.onSourceColumnSelect}
           />
         </ListItem>
@@ -140,6 +148,7 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
                 <Box sx={{ mr: 2 }}>
                   <SourceColumnSelection
                     sourceColumns={prop.sourceColumns}
+                    selectedSourceColumn={prop.state.sourceColumn}
                     onSelect={prop.onSourceColumnSelect}
                   />
                 </Box>
@@ -169,7 +178,7 @@ const ControlPanel: React.FC<ToolbarProps> = (prop: ToolbarProps) => {
                     <DiscardColumnButton onClick={prop.discardColumn} />
                   </Box>
                   <Box>
-                    <MatcherSelection matchers={prop.matchers} selectedMatchers={prop.selectedMatchers} onSelect={prop.onMatcherSelect} />
+                    <MatcherSelection matchers={prop.matchers} selectedMatcher={prop.state.selectedMatcher} onSelect={prop.onMatcherSelect} />
                   </Box>
                 </Box>
                 

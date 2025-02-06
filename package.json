@@ -14,7 +14,11 @@
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@mui/icons-material": "^6.1.10",
+    "@mui/lab": "^6.0.0-beta.25",
     "@mui/material": "^6.1.10",
+    "@mui/x-data-grid": "^7.25.0",
+    "@observablehq/plot": "^0.6.16",
+    "@types/recharts": "^1.8.29",
     "autoprefixer": "10.4.14",
     "axios": "^1.7.9",
     "concurrently": "^8.0.1",
@@ -25,10 +29,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.3.5",
-    "react-toastify": "^10.0.6"
+    "react-toastify": "^10.0.6",
+    "recharts": "^2.15.1"
   },
   "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab",
   "devDependencies": {
+    "@simbathesailor/use-what-changed": "^2.0.0",
     "@types/d3": "^7.4.3",
     "@types/node": "^20",
     "@types/react": "^18",

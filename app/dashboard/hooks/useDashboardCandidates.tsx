@@ -1,21 +1,20 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
-import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { getCachedResults, getUniqueValues } from '@/app/lib/heatmap/heatmap-helper';
+import { getCachedResults, getValueBins, getValueMatches } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
-import { useDashboardFilters } from './useDashboardFilters';
 
 
 type DashboardCandidateState = {
     candidates: Candidate[];
     sourceClusters: SourceCluster[];
-    matchers: string[];
+    matchers: Matcher[];
     selectedCandidate: Candidate | undefined;
-    selectedMatchers: string[];
+    sourceUniqueValues: SourceUniqueValues[];
+    targetUniqueValues: TargetUniqueValues[];
+    valueMatches: ValueMatch[];
     handleFileUpload: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
-    setSelectedMatchers: (matcher: string) => void;
 }
 
 export type { DashboardCandidateState };
@@ -27,32 +26,28 @@ export const {
 
         const [candidates, setCandidates] = useState<Candidate[]>(getMockData());
         const [sourceClusters, setSourceClusters] = useState<SourceCluster[]>([]);
-        const [matchers, setMatchers] = useState<string[]>([]);
+        const [matchers, setMatchers] = useState<Matcher[]>([]);
         const [selectedCandidate, setSelectedCandidate] = useState<Candidate | undefined>(undefined);
-        const [selectedMatchers, setSelectedMatchers] = useState<string[]>(matchers);
+        const [sourceUniqueValues, setSourceUniqueValues] = useState<SourceUniqueValues[]>([]);
+        const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
+        const [valueMatches, setValueMatches] = useState<ValueMatch[]>([]);
 
-        const { updateSourceColumn } = useDashboardFilters();
-
-        const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[]) => {
+        const handleFileUpload = useCallback((candidates: Candidate[], sourceCluster?: SourceCluster[], matchers?: Matcher[]) => {
             setCandidates(candidates.sort((a, b) => b.score - a.score));
             if (sourceCluster) {
                 setSourceClusters(sourceCluster);
             }
 
-            
-            const newMatchers = [...new Set(candidates.map(c => c.matcher).filter((matcher): matcher is string => matcher !== undefined))].sort();
-            if (JSON.stringify(newMatchers) !== JSON.stringify(matchers)) {
-                setMatchers(newMatchers);
-                setSelectedMatchers(newMatchers);
-            }
-
-            if (selectedCandidate) {
-                updateSourceColumn(selectedCandidate.sourceColumn);
-            } else {
-                updateSourceColumn(candidates[0].sourceColumn);
+            if (matchers) {
+                setMatchers(matchers);
             }
             // setSelectedCandidate(undefined);
-        }, [selectedCandidate, updateSourceColumn]);
+        }, []);
+
+        const handleUniqueValues = useCallback((sourceUniqueValuesArray: SourceUniqueValues[], targetUniqueValuesArray: TargetUniqueValues[]) => {
+            setSourceUniqueValues(sourceUniqueValuesArray);
+            setTargetUniqueValues(targetUniqueValuesArray);
+        }, []);
 
         const handleChatUpdate = useCallback((newCandidates: Candidate[]) => {
             setCandidates(newCandidates);
@@ -63,39 +58,34 @@ export const {
             setSelectedCandidate(candidate);
         }, []);
 
-        const handleSelectedMatchers = useCallback((matcher: string) => {
-            if (selectedMatchers.includes(matcher)) {
-                setSelectedMatchers(selectedMatchers.filter(m => m !== matcher));
-            } else {
-                setSelectedMatchers([...selectedMatchers, matcher]);
-            }
-        }, [selectedMatchers]);
+        const handleValueMatches = useCallback((valueMatches: ValueMatch[]) => {
+            setValueMatches(valueMatches);
+        }, []);
 
-        // useEffect(() => {
 
-        // })
         useEffect(() => {
             getCachedResults({
                 callback: handleFileUpload 
             });
-            getUniqueValues({
-                callback: (sourceUniqueValuesArray, targetUniqueValuesArray) => {
-                    console.log('sourceUniqueValuesArray', sourceUniqueValuesArray);
-                    console.log('targetUniqueValuesArray', targetUniqueValuesArray);
-                }
+            getValueBins({
+                callback: handleUniqueValues
             });
-        }, [handleFileUpload]);
+            getValueMatches({
+                callback: handleValueMatches
+            });
+        }, []);
 
         return {
             candidates,
             sourceClusters,
             matchers,
             selectedCandidate,
-            selectedMatchers,
+            sourceUniqueValues,
+            targetUniqueValues,
+            valueMatches,
             handleFileUpload,
             handleChatUpdate,
-            setSelectedCandidate: handleSelectedCandidate,
-            setSelectedMatchers: handleSelectedMatchers
+            setSelectedCandidate: handleSelectedCandidate
         };
     }
 };

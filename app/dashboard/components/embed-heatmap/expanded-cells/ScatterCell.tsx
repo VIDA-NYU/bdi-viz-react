@@ -6,8 +6,8 @@ import { FC } from 'react';
 
 
 const ScatterCell: FC<ExpandedCellProps> = ({
-    sourceColumn,
-    targetColumn,
+    sourceUniqueValues,
+    targetUniqueValues,
     width,
     height,
    }) => {
@@ -39,7 +39,7 @@ const ScatterCell: FC<ExpandedCellProps> = ({
         {/* Axes */}
         <g transform={`translate(0,${chartHeight})`}>
           <line x1={0} x2={chartWidth} stroke="black"/>
-          <text x={chartWidth/2} y={30} textAnchor="middle">{sourceColumn}</text>
+          <text x={chartWidth/2} y={30} textAnchor="middle">{sourceUniqueValues.sourceColumn}</text>
         </g>
         <g>
           <line y1={0} y2={chartHeight} stroke="black"/>
@@ -47,7 +47,7 @@ const ScatterCell: FC<ExpandedCellProps> = ({
             transform={`translate(-30,${chartHeight/2}) rotate(-90)`}
             textAnchor="middle"
           >
-            {targetColumn}
+            {targetUniqueValues.targetColumn}
           </text>
         </g>
    
