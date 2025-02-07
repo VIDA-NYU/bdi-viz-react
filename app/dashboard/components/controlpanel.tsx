@@ -202,17 +202,18 @@ const ControlPanel: React.FC<ToolbarProps> = ({
                 <AcceptMatchButton onClick={props.acceptMatch} />
                 <RejectMatchButton onClick={props.rejectMatch} />
               </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
                 <DiscardColumnButton onClick={props.discardColumn} />
-                <MatcherSelection 
+                <UndoButton onClick={props.undo} />
+                <RedoButton onClick={props.redo} />
+              </Box>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+              <MatcherSelection 
                   matchers={props.matchers} 
                   selectedMatcher={props.state.selectedMatcher} 
                   onSelect={props.onMatcherSelect} 
                 />
-              </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
-                <UndoButton onClick={props.undo} />
-                <RedoButton onClick={props.redo} />
+                
               </Box>
             </Box>
           </Box>

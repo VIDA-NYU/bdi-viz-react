@@ -49,4 +49,5 @@ kubectl get ingress
 To access the service, navigate to the following URL:
 ```
 http://bdiviz.users.hsrn.nyu.edu
+https://bdiviz.users.hsrn.nyu.edu
 ```

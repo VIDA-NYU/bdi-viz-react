@@ -13,7 +13,7 @@ const DiscardColumnButton: React.FC<DiscardColumnButtonProps> = ({ onClick }) =>
                 variant="contained"
                 onClick={onClick}
             >
-                Discard Column
+                Discard 
             </Button>
         </Box>
     );

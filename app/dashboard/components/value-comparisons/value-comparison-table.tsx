@@ -57,8 +57,6 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
             }
         }
 
-        console.log("Columns: ", columns);
-
         return columns;
     }, [rows, selectedCandidate]);
 

@@ -16,6 +16,16 @@ const RowComp = styled("div")({
     paddingTop: "35px",
     paddingBottom: "45px"
 })
+
+const ColumnComp = styled("div")({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "stretch",
+    width: "100%",
+    marginTop: "28px",
+    paddingTop: "35px",
+    paddingBottom: "45px"
+})
 interface CombinedViewProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
@@ -63,7 +73,7 @@ const CombinedView = ({
 
     return (
         <Stack spacing={2}>
-            <RowComp>
+            <ColumnComp>
             <Stack flex={8} marginRight={2}>
                 <SchemaExplanation
                     isMatch={isMatch}
@@ -88,7 +98,7 @@ const CombinedView = ({
                 onAcceptInferred={acceptInferredMatch}
                 onRejectInferred={rejectInferredMatch}
             /> */}
-            </RowComp>
+            </ColumnComp>
         </Stack>
     );
 }
