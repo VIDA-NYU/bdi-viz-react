@@ -45,7 +45,7 @@ const SchemaExplanation = ({
     };
 
     return (
-        <Stack spacing={3} sx={{ paddingLeft: 1}}>
+        <Stack spacing={3} sx={{ paddingLeft: 1, maxHeight: "700px", overflowY: 'scroll'}}>
             <Box>
                 <Typography variant="h6" gutterBottom>
                     Current Selection

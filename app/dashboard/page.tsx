@@ -241,8 +241,8 @@ export default function Dashboard() {
         </MainColumn>
 
         {/* Right Column - Auxiliary Visualizations */}
-        {/* <AuxColumn> */}
-            {/* <CombinedView
+        <AuxColumn>
+            <CombinedView
                 isMatch={isMatch}
                 currentExplanations={currentExplanations}
                 selectedExplanations={selectedExplanations}
@@ -255,13 +255,13 @@ export default function Dashboard() {
                 targetColumn={selectedCandidate?.targetColumn}
                 allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                 allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
-            /> */}
+            />
           {/* <MediumVizContainer>
             <Typography variant="h6">Value Distribution</Typography>
           </MediumVizContainer> */}
 
           
-        {/* </AuxColumn> */}
+        </AuxColumn>
       </MainContent>
 
       {/* Loading Overlay */}
