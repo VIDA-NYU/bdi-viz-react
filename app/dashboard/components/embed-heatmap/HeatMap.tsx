@@ -11,6 +11,11 @@ import { useHeatmapScales } from "./hooks/useHeatmapScales";
 import { useTooltip } from "./hooks/useTooltip";
 import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
 import { HeatMapConfig } from "./types";
+import { useTreeLayout } from "./tree/useTreeLayout";
+import { ClusteringOptions, TreeConfig } from "./tree/types";
+import { TreeNodeComponent } from "./tree/TreeNode";
+import { useLabelManagement } from "./tree/useLabelManagement";
+import { TreeAxis } from "./tree/TreeAxis";
 
 interface HeatMapProps {
   data: Candidate[];
@@ -22,7 +27,15 @@ interface HeatMapProps {
   targetUniqueValues: TargetUniqueValues[];
 }
 
-const MARGIN = { top: 30, right: 0, bottom: 70, left: 200 };
+const defaultClusteringOptions: ClusteringOptions = {
+  method: 'prefix',
+  showClusterLabels: true,
+  labelSpacing: 40,
+  maxLabelsPerView: 30,
+  labelPlacementStrategy: 'fixed'
+};
+
+const MARGIN = { top: 30, right: 150, bottom: 200, left: 200 };
 
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
@@ -43,8 +56,22 @@ const HeatMap: React.FC<HeatMapProps> = ({
     minScore: 0,
   });
 
+  const treeConfig: TreeConfig = {
+    clusteringMethod: 'prefix',
+    nodeWidth: 20,
+    nodeHeight: 20,
+    nodePadding: 5
+  }
+
   const candidates = useMemo(() => {
-    return data.filter((d) => d.matcher === selectedMatcher?.name);
+    return data.filter((d) => d.matcher === selectedMatcher?.name).sort((a, b) => {
+      if (a.sourceColumn === b.sourceColumn) {
+        // compare by alphabet
+        return a.targetColumn < b.targetColumn ? -1 : 1;
+        // return a.targetColumn.localeCompare(b.targetColumn);
+      }
+      return a.sourceColumn < b.sourceColumn ? -1 : 1;
+    });
   }, [data, selectedMatcher]);
     
 
@@ -57,6 +84,34 @@ const HeatMap: React.FC<HeatMapProps> = ({
     config,
     selectedCandidate: selectedCandidate,
   });
+  const clusteringOptions = defaultClusteringOptions;
+  const {
+    treeData: targetTreeData,
+    expandedNodes: targetExpandedNodes,
+    toggleNode: toggleTargetNode,
+    getVisibleColumns: getVisibleTargetColumns
+  } = useTreeLayout({
+      width: dimensions.width,
+    height: dimensions.height,
+    margin: MARGIN,
+    columns: x.domain(),
+    scale: x,
+    options: clusteringOptions,
+    orientation: 'horizontal'
+  });
+
+  console.log(targetTreeData, 'target');
+  
+  
+  const targetLabelPlacements = useLabelManagement({
+    nodes: targetTreeData,
+    scale: x,
+    orientation: 'horizontal',
+    viewportWidth: dimensions.width - MARGIN.left - MARGIN.right,
+    options: clusteringOptions,
+    expandedNodes: targetExpandedNodes
+  });
+
 
   const { tooltip, showTooltip, hideTooltip } = useTooltip();
 
@@ -94,7 +149,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
   );
 
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
-
+  console.log("TFS", targetTreeData,  targetLabelPlacements);
   return (
     <Box>
       <Card ref={containerRef} sx={{ paddingLeft: 0 }}>
@@ -188,7 +243,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 const width = getWidth({ targetColumn: value } as Candidate);
                 return (
                   <g key={value} transform={`translate(${xPos + width / 2},0)`}>
-                    <text
+                    {/* <text
                       transform="rotate(45)"
                       dy=".35em"
                       textAnchor="start"
@@ -199,7 +254,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                       }}
                     >
                       {value}
-                    </text>
+                    </text> */}
                   </g>
                 );
               })}
@@ -229,6 +284,18 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 );
               })}
             </g>
+            
+            <g transform={`translate(0,${dimensions.height - MARGIN.top - MARGIN.bottom})`}>
+              < TreeAxis
+                treeData={targetTreeData}
+                labelPlacements={targetLabelPlacements}
+                orientation="horizontal"
+                axisLength={dimensions.width - MARGIN.left - MARGIN.right}
+                expandedNodes={targetExpandedNodes}
+                onToggleNode={toggleTargetNode}
+              />
+            </g>
+
           </g>
         </svg>
       </Card>

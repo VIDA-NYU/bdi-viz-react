@@ -27,6 +27,9 @@ const RectCell: React.FC<CellProps> = ({
             onMouseEnter={(e) => onHover?.(e, data)}
             onMouseLeave={onLeave}
             onClick={() => onClick?.(data)}
+            rx={3}
+            ry={3}
+            // cornerRadius={5}
         />
     );
 };

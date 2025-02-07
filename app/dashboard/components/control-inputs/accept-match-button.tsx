@@ -11,7 +11,7 @@ const AcceptMatchButton: React.FC<AcceptMatchButtonProps> = ({ onClick }) => {
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <Button
                 variant="contained"
-                color="success"
+                color="primary"
                 onClick={onClick}
             >
                 Accept Match
