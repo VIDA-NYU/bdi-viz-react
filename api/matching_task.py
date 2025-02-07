@@ -428,6 +428,8 @@ class MatchingTask:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
+        # if pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
+        #     return []
         return list(self.source_df[source_col].dropna().unique().astype(str)[:n])
 
     def get_target_value_bins(self, target_col: str) -> List[Dict[str, Any]]:
@@ -442,6 +444,8 @@ class MatchingTask:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
+        # if pd.api.types.is_numeric_dtype(self.target_df[target_col].dtype):
+        #     return []
         return list(self.target_df[target_col].dropna().unique().astype(str)[:n])
 
     def get_cached_candidates(self) -> List[Dict[str, Any]]:

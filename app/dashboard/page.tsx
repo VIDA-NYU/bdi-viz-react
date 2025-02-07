@@ -166,6 +166,11 @@ export default function Dashboard() {
         }
     }
 
+    function handleUpdateSourceColumn(column: string) {
+        setSelectedCandidate(undefined);
+        updateSourceColumn(column);
+    }
+
     return (
         <RootContainer>
       <Header>
@@ -298,7 +303,7 @@ export default function Dashboard() {
             <ControlPanel
                 sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
                 matchers={matchers}
-                onSourceColumnSelect={updateSourceColumn}
+                onSourceColumnSelect={handleUpdateSourceColumn}
                 onCandidateTypeSelect={updateCandidateType}
                 onSimilarSourcesSelect={updateSimilarSources}
                 onCandidateThresholdSelect={updateCandidateThreshold}

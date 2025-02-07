@@ -81,7 +81,7 @@ Instructions:
     b. The alignment of the sample values from each column.
     c. The history of false and true selections linked with these columns.
 3. Provide up to four possible explanations for why these columns might be mapped together, referencing the historical matches and mismatches if necessary.
-4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data.
+4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data. If the values are numeric, do not return any pairs.
 5. Include any additional context or key terms (i.e., "relative knowledge") that could support or contradict the current mapping.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
