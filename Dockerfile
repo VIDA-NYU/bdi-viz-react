@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 nikolaik/python-nodejs:python3.9-nodejs20 as base
+FROM nikolaik/python-nodejs:python3.9-nodejs20 as base
 
 ADD . /home/bdi-viz-react/
 WORKDIR /home/bdi-viz-react/

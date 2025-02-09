@@ -26,7 +26,7 @@ interface UpsetPlotProps {
     selectedCandidate?: Candidate;
 }
 
-const upperChartHeight = 90;
+const upperChartHeight = 150;
 const lowerSetChartHeight = 220;
 const upperMarginLeft = 30;
 const lowerMarginBottom = 120;

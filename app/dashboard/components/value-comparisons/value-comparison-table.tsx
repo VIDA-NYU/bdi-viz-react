@@ -43,7 +43,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
             return [];
         }
 
-        let columns = Object.keys(rows?.[0] || {}).map((key) => ({
+        const columns = Object.keys(rows?.[0] || {}).map((key) => ({
             accessorKey: key,
             header: key,
         })).filter(column => column.accessorKey !== "id");
