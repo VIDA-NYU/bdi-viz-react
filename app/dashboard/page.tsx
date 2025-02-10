@@ -6,6 +6,7 @@ import { toastify } from "@/app/lib/toastify/toastify-helper";
 import ControlPanel from "./components/controlpanel";
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
+import FileUploading from "./components/fileuploading";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
@@ -220,6 +221,7 @@ export default function Dashboard() {
                         sourceUniqueValues={sourceUniqueValues}
                         targetUniqueValues={targetUniqueValues}
                     />
+                    <FileUploading callback={handleFileUpload} />
                 </MainColumn>
             </MainContent>
 

@@ -20,7 +20,7 @@ export const useLabelManagement = ({
   expandedNodes
 
 }: UseLabelManagementProps) => {
-    console.log(nodes, scale, orientation, viewportWidth, options, 'ss');
+    // console.log(nodes, scale, orientation, viewportWidth, options, 'ss');
     const labelPlacements = useMemo(() => {
         const placements: LabelPlacement[] = [];
         const spacing = options.labelSpacing || 40;
@@ -71,6 +71,6 @@ export const useLabelManagement = ({
     
         return placements;
       }, [nodes, scale, orientation, viewportWidth, options]);
-    console.log(labelPlacements, 'label');
+    // console.log(labelPlacements, 'label');
      return labelPlacements;
 };

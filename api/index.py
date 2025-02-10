@@ -6,16 +6,12 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
-
 # langchain
 from .langchain.pydantic import AgentResponse
 from .matching_task import MATCHING_TASK
 from .tools.candidate_butler import candidate_butler_tools
-from .utils import (
-    extract_data_from_request,
-    read_candidate_explanation_json,
-    write_candidate_explanation_json,
-)
+from .utils import (extract_data_from_request, read_candidate_explanation_json,
+                    write_candidate_explanation_json)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 
@@ -169,7 +165,9 @@ def agent_suggest():
 
     MATCHING_TASK.apply_operation(operation, candidate, references)
 
-    response = AGENT.make_suggestion(user_operation, diagnosis_dict)
+    # put into memory
+    AGENT.remember_explanation(explanations, user_operation)
+    response = AGENT.make_suggestion(explanations, user_operation)
     response = response.model_dump()
 
     return response

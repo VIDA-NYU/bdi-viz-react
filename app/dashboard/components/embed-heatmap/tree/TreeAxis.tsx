@@ -121,7 +121,7 @@ export const TreeAxis: React.FC<TreeAxisProps> = ({
   onToggleNode
 }) => {
   const isHorizontal = orientation === 'horizontal';
-    console.log(labelPlacements, 'label');
+    // console.log(labelPlacements, 'label');
   return (
     <g>
       <line

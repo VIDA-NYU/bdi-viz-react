@@ -3,13 +3,8 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 from valentine import valentine_match
 from valentine.algorithms import BaseMatcher as ValentineBaseMatcher
-from valentine.algorithms import (
-    Coma,
-    Cupid,
-    DistributionBased,
-    JaccardDistanceMatcher,
-    SimilarityFlooding,
-)
+from valentine.algorithms import (Coma, Cupid, DistributionBased,
+                                  JaccardDistanceMatcher, SimilarityFlooding)
 
 from .utils import BaseMatcher
 

@@ -99,8 +99,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
     options: clusteringOptions,
     orientation: 'horizontal'
   });
-
-  console.log(targetTreeData, 'target');
   
   
   const targetLabelPlacements = useLabelManagement({
@@ -149,7 +147,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
   );
 
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
-  console.log("TFS", targetTreeData,  targetLabelPlacements);
+  // console.log("TFS", targetTreeData,  targetLabelPlacements);
   return (
     <Box>
       <Card ref={containerRef} sx={{ paddingLeft: 0 }}>

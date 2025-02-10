@@ -71,7 +71,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
         left: 20,
         bottom: 20,
     }
-    console.log(sourceNodes, targetNodes, links, selectedClusters, 'hello');   
+    // console.log(sourceNodes, targetNodes, links, selectedClusters, 'hello');
     return (
         <Card
             sx={{

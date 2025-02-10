@@ -2,6 +2,7 @@ import hashlib
 import json
 import logging
 import os
+import threading
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
@@ -39,9 +40,10 @@ class MatchingTask:
     def __init__(
         self,
         top_k: int = 20,
-        clustering_model="sentence-transformers/all-mpnet-base-v2",
+        clustering_model="Snowflake/snowflake-arctic-embed-m-v2.0",
         update_matcher_weights: bool = True,
     ) -> None:
+        self.lock = threading.Lock()
         self.top_k = top_k
 
         self.matchers = {
@@ -77,45 +79,47 @@ class MatchingTask:
     def update_dataframe(
         self, source_df: Optional[pd.DataFrame], target_df: Optional[pd.DataFrame]
     ):
-        if source_df is not None:
-            self.source_df = source_df
-            logger.info(f"[MatchingTask] Source dataframe updated!")
-        if target_df is not None:
-            self.target_df = target_df
-            logger.info(f"[MatchingTask] Target dataframe updated!")
+        with self.lock:
+            if source_df is not None:
+                self.source_df = source_df
+                logger.info(f"[MatchingTask] Source dataframe updated!")
+            if target_df is not None:
+                self.target_df = target_df
+                logger.info(f"[MatchingTask] Target dataframe updated!")
 
         self._initialize_value_matches()
 
     def get_candidates(self, is_candidates_cached: bool = True) -> Dict[str, list]:
-        if self.source_df is None or self.target_df is None:
-            raise ValueError("Source and Target dataframes must be provided.")
+        with self.lock:
+            if self.source_df is None or self.target_df is None:
+                raise ValueError("Source and Target dataframes must be provided.")
 
-        source_hash, target_hash = self._compute_hashes()
-        cached_json = self._import_cache_from_json()
-        candidates = []
+            source_hash, target_hash = self._compute_hashes()
+            cached_json = self._import_cache_from_json()
+            candidates = []
 
-        if self._is_cache_valid(cached_json, source_hash, target_hash):
-            self.cached_candidates = cached_json
-            candidates = cached_json["candidates"]
+            if self._is_cache_valid(cached_json, source_hash, target_hash):
+                self.cached_candidates = cached_json
+                candidates = cached_json["candidates"]
 
-        elif is_candidates_cached and self._is_cache_valid(
-            self.cached_candidates, source_hash, target_hash
-        ):
-            candidates = self.get_cached_candidates()
-        else:
-            candidates = self._generate_candidates(
-                source_hash, target_hash, is_candidates_cached
-            )
+            elif is_candidates_cached and self._is_cache_valid(
+                self.cached_candidates, source_hash, target_hash
+            ):
+                candidates = self.get_cached_candidates()
+            else:
+                candidates = self._generate_candidates(
+                    source_hash, target_hash, is_candidates_cached
+                )
 
-        if self.update_matcher_weights:
-            self.weight_updater = WeightUpdater(
-                matchers=self.matchers,
-                candidates=candidates,
-                alpha=0.1,
-                beta=0.1,
-            )
+            if self.update_matcher_weights:
+                self.weight_updater = WeightUpdater(
+                    matchers=self.matchers,
+                    candidates=candidates,
+                    alpha=0.1,
+                    beta=0.1,
+                )
 
-        return candidates
+            return candidates
 
     def _compute_hashes(self) -> Tuple[int, int]:
         source_hash = int(

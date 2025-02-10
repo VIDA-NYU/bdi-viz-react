@@ -29,6 +29,12 @@ FN_CANDIDATES = [
         "sourceValues": ["Endometrioid", "Serous", "Clear cell", "Carcinosarcoma"],
         "targetValues": ["Serous adenocarcinofibroma", "clear cell", "Carcinosarcoma"],
     },
+    {
+        "sourceColumn": "Race",
+        "targetColumn": "race",
+        "sourceValues": ["White", "Black or African American", "Asian"],
+        "targetValues": ["white", "black or african american", "asian"],
+    },
 ]
 
 FP_CANDIDATES = [
@@ -129,21 +135,22 @@ class MemoryRetriver:
                 'sourceValues': ['pT1b (FIGO IB)', 'pT3a (FIGO IIIA)', 'pT1 (FIGO I)'],
                 'targetValues': ['Stage I', 'Stage IB', 'StageIIIA']
             }
-        
+
         Returns:
             None
         """
         key = f"{value['sourceColumn']}::{value['targetColumn']}"
         self.put((self.user_id, "mismatches"), key, value)
 
-    def put_explanation(self, explanations: List[Dict[str, Any]], user_operation: Dict[str, Any]) -> None:
+    def put_explanation(
+        self, explanations: List[Dict[str, Any]], user_operation: Dict[str, Any]
+    ) -> None:
         """
         Args:
             explanations (List[Dict[str, Any]]): A list of explanations to store in the memory.
             {
-                'id': string;
                 'type': ExplanationType;
-                'text': string;
+                'content': string;
                 'confidence': number;
             }
 
@@ -158,19 +165,21 @@ class MemoryRetriver:
         """
 
         key = f"{user_operation['operation']}::{user_operation['candidate']['sourceColumn']}::{user_operation['candidate']['targetColumn']}"
-        
+
         # Only keep at most 5 most recent explanations
         existing_explanations = self.store.get((self.user_id, "explanations"), key)
         if existing_explanations is not None:
             existing_explanations = existing_explanations.value
-            explanations = [{
-                "type": explanation["type"],
-                "content": explanation["text"],
-                "confidence": explanation["confidence"]
-            } for explanation in explanations]
+            explanations = [
+                {
+                    "type": explanation["type"],
+                    "content": explanation["content"],
+                    "confidence": explanation["confidence"],
+                }
+                for explanation in explanations
+            ]
             explanations = (explanations + existing_explanations)[:5]
         self.put((self.user_id, "explanations"), key, explanations)
-
 
     # Search
     def search_mismatches(self, query: Dict[str, Any], limit: int = 10):
@@ -178,10 +187,9 @@ class MemoryRetriver:
 
     def search_matches(self, query: Dict[str, Any], limit: int = 10):
         return self.search((self.user_id, "matches"), query, limit)
-    
+
     def search_explanations(self, query: Dict[str, Any], limit: int = 10):
         return self.search((self.user_id, "explanations"), query, limit)
-
 
     # Basic operations
     def check_value(func):

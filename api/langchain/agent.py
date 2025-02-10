@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
 # from langchain_together import ChatTogether
@@ -15,7 +14,8 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
-from ..tools.candidate_butler import candidate_butler_tools, read_source_cluster_details
+from ..tools.candidate_butler import (candidate_butler_tools,
+                                      read_source_cluster_details)
 from ..tools.rag_researcher import retrieve_from_rag
 from .memory import MemoryRetriver
 from .pydantic import ActionResponse, AgentSuggestions, CandidateExplanation
@@ -61,12 +61,17 @@ class Agent:
             f"{candidate['sourceColumn']}::{candidate['targetColumn']}", limit=3
         )
 
+        # search for related explanations
+        related_explanations = self.store.search_explanations(
+            f"{candidate['sourceColumn']}::{candidate['targetColumn']}", limit=3
+        )
+
         prompt = f"""
 Please analyze the details of the following user operation:
-- Source Column: {candidate["sourceColumn"]}
-- Target Column: {candidate["targetColumn"]}
-- Source Sample Values: {candidate["sourceValues"]}
-- Target Sample Values: {candidate["targetValues"]}
+    - Source Column: {candidate["sourceColumn"]}
+    - Target Column: {candidate["targetColumn"]}
+    - Source Sample Values: {candidate["sourceValues"]}
+    - Target Sample Values: {candidate["targetValues"]}
 
 Related Matches:
 {related_matches}
@@ -74,15 +79,18 @@ Related Matches:
 Related Mismatches:
 {related_mismatches}
 
-Instructions:
-1. Carefully review the related matches and mismatches. Compare these historical mappings with the current candidate to validate the match.
-2. Evaluate whether the source and target columns can be validly matched by assessing:
-    a. The similarity between the column names.
-    b. The alignment of the sample values from each column.
-    c. The history of false and true selections linked with these columns.
-3. Provide up to four possible explanations for why these columns might be mapped together, referencing the historical matches and mismatches if necessary.
-4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data. If the values are numeric, do not return any pairs.
-5. Include any additional context or key terms (i.e., "relative knowledge") that could support or contradict the current mapping.
+Related Explanations:
+{related_explanations}
+
+**Instructions:**
+    1. Thoroughly review the related matches, mismatches and explanations.. Compare these historical mappings with the current candidate to validate the match.
+    2. Assess the validity of matching the source and target columns by considering:
+        a. The similarity between the column names.
+        b. The alignment of the sample values from each column.
+        c. The history of false positives and false negatives associated with these columns.
+    3. Provide up to four possible explanations for why these columns might be mapped together, referencing the historical matches, mismatches, and explanations where applicable.
+    4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data. If the values are numeric, do not return any pairs.
+    5. Include any additional context or key terms (i.e., "relative knowledge") that could support or contradict the current mapping.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
@@ -93,33 +101,52 @@ Instructions:
         return response
 
     def make_suggestion(
-        self, user_operation: Dict[str, Any], diagnosis: Dict[str, float]
+        self, explanations: List[Dict[str, Any]], user_operation: Dict[str, Any]
     ) -> AgentSuggestions:
+        """
+        Generate suggestions based on the user operation and diagnosis.
+
+        Args:
+            explanations (List[Dict[str, Any]]): A list of explanations to consider.
+                [
+                    {
+                        'type': ExplanationType;
+                        'content': string;
+                        'confidence': number;
+                    },
+                    ...
+                ]
+            user_operation (Dict[str, Any]): The user operation to consider.
+        """
         logger.info(f"[Agent] Making suggestion to the agent...")
         # logger.info(f"{diagnosis}")
 
-        diagnosis_str = "\n".join(f"{key}: {value}" for key, value in diagnosis.items())
-        user_operation_str = "\n".join(
-            f"{key}: {value}" for key, value in user_operation.items()
+        explanations_str = "\n".join(
+            f"\tDiagnosis: {explanation['content']}, Confidence: {explanation['confidence']}"
+            for explanation in explanations
         )
+        user_operation_str = f"""
+Operation: {user_operation["operation"]}
+Candidate: {user_operation["candidate"]}
+        """
 
         prompt = f"""
-    User Operation:
-    {user_operation_str}
+User Operation:
+{user_operation_str}
 
-    Diagnosis:
-    {diagnosis_str}
+Diagnosis:
+{explanations_str}
 
-    **Instructions**:
+**Instructions**:
     1. Generate 2-3 suggestions based on the user operation and diagnosis:
         - **undo**: Undo the last action if it seems incorrect.
         - **prune_candidates**: Suggest pruning candidates based on RAG expertise.
         - **update_embedder**: Recommend a more accurate model if matchings seem wrong.
     2. Provide a brief explanation for each suggestion.
     3. Include a confidence score for each suggestion.
-    """
+        """
 
-        # logger.info(f"[SUGGESTION] Prompt: {prompt}")
+        logger.info(f"[SUGGESTION] Prompt: {prompt}")
 
         response = self.invoke(
             prompt=prompt,
@@ -190,6 +217,12 @@ Candidate: {candidate}
     def remember_fn(self, candidate: Dict[str, Any]) -> None:
         logger.info(f"[Agent] Remembering the false negative...")
         self.store.put_match(candidate)
+
+    def remember_explanation(
+        self, explanations: List[Dict[str, Any]], user_operation: Dict[str, Any]
+    ) -> None:
+        logger.info(f"[Agent] Remembering the explanation...")
+        self.store.put_explanation(explanations, user_operation)
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel

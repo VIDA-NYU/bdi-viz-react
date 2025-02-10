@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import re
 from io import StringIO
 from typing import Any, Dict, Optional, Tuple
 
@@ -45,13 +46,21 @@ def extract_data_from_request(request):
 
 
 @check_cache_dir
+def sanitize_filename(name: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9_-]", "_", name)
+
+
 def write_candidate_explanation_json(
     source_col: str, target_col: str, candidate_explanation: Dict[str, Any]
 ) -> None:
     if not os.path.exists(EXPLANATION_DIR):
         os.makedirs(EXPLANATION_DIR)
 
-    output_path = os.path.join(EXPLANATION_DIR, f"{source_col}_{target_col}.json")
+    sanitized_source_col = sanitize_filename(source_col)
+    sanitized_target_col = sanitize_filename(target_col)
+    output_path = os.path.join(
+        EXPLANATION_DIR, f"{sanitized_source_col}_{sanitized_target_col}.json"
+    )
     with open(output_path, "w") as f:
         json.dump(candidate_explanation, f, indent=4)
 
@@ -59,7 +68,11 @@ def write_candidate_explanation_json(
 def read_candidate_explanation_json(
     source_col: str, target_col: str
 ) -> Optional[Dict[str, Any]]:
-    output_path = os.path.join(EXPLANATION_DIR, f"{source_col}_{target_col}.json")
+    sanitized_source_col = sanitize_filename(source_col)
+    sanitized_target_col = sanitize_filename(target_col)
+    output_path = os.path.join(
+        EXPLANATION_DIR, f"{sanitized_source_col}_{sanitized_target_col}.json"
+    )
     if os.path.exists(output_path):
         with open(output_path, "r") as f:
             return json.load(f)
