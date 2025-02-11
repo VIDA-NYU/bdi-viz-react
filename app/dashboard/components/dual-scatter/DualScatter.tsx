@@ -6,7 +6,7 @@ import { ClusterSelector } from './ClusterSelector';
 import { line, curveBasis } from 'd3';
 import { ClusterBackground } from './ClusterBackground';
 import { getClusterColors } from './colors';
-import { Box, Card, Tooltip, Typography } from '@mui/material';
+import { Box, Container, Card, Tooltip, Typography } from '@mui/material';
 
 interface SchemaVizProps {
     candidates: Candidate[];
@@ -67,7 +67,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
     };
 
     return (
-        <Card sx={{ flexGrow: 1, p: 2 }}>
+        <Container>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <ClusterSelector
                     clusters={clusters}
@@ -80,7 +80,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                         );
                     }}
                 />
-                <Card sx={{ position: 'relative', bgcolor: '#f5f5f5' }}>
+                <Card sx={{ position: 'relative', bgcolor: '#fefefe' }}>
                     {/* Source Schema Label */}
                     <Box sx={{
                         position: 'absolute',
@@ -182,6 +182,6 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                     </svg>
                 </Card>
             </Box>
-        </Card>
+        </Container>
     );
 };

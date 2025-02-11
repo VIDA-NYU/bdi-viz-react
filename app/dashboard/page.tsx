@@ -197,9 +197,9 @@ export default function Dashboard() {
                     />
                 </ControlColumn>
 
-        {/* Middle Column - Main Visualizations */}
-        <MainColumn>
-                <UpperTabs
+                {/* Middle Column - Main Visualizations */}
+                <MainColumn>
+                    <UpperTabs
                         filteredCandidates={filteredCandidates}
                         matchers={matchers}
                         selectedCandidate={selectedCandidate}
@@ -225,57 +225,58 @@ export default function Dashboard() {
                         sourceUniqueValues={sourceUniqueValues}
                         targetUniqueValues={targetUniqueValues}
                     />
-        </MainColumn>
+                </MainColumn>
 
-        {/* Right Column - Auxiliary Visualizations */}
-        <AuxColumn>
-            <CombinedView
-                isMatch={isMatch}
-                currentExplanations={currentExplanations}
-                selectedExplanations={selectedExplanations}
-                matchingValues={matchingValues}
-                relativeKnowledge={relativeKnowledge}
-                matches={matches as SchemaMatch[]}
-                isLoading={isExplaining}
-                setSelectExplanations={setSelectedExplanations}
-                sourceColumn={selectedCandidate?.sourceColumn}
-                targetColumn={selectedCandidate?.targetColumn}
-                allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
-            />
-          {/* <MediumVizContainer>
+                {/* Right Column - Auxiliary Visualizations */}
+                <AuxColumn>
+                    <FileUploading callback={handleFileUpload} />
+                    
+                    <CombinedView
+                        isMatch={isMatch}
+                        currentExplanations={currentExplanations}
+                        selectedExplanations={selectedExplanations}
+                        matchingValues={matchingValues}
+                        relativeKnowledge={relativeKnowledge}
+                        matches={matches as SchemaMatch[]}
+                        isLoading={isExplaining}
+                        setSelectExplanations={setSelectedExplanations}
+                        sourceColumn={selectedCandidate?.sourceColumn}
+                        targetColumn={selectedCandidate?.targetColumn}
+                        allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                        allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
+                    />
+                    {/* <MediumVizContainer>
             <Typography variant="h6">Value Distribution</Typography>
           </MediumVizContainer> */}
 
-          
-        </AuxColumn>
-      </MainContent>
+                </AuxColumn>
+            </MainContent>
 
-      {/* Loading Overlay */}
-      {isLoadingGlobal && (
-        <Box sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 0.7)',
-          zIndex: 1300,
-        }}>
-          <CircularProgress size={80} />
-        </Box>
-      )}
+            {/* Loading Overlay */}
+            {isLoadingGlobal && (
+                <Box sx={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                    zIndex: 1300,
+                }}>
+                    <CircularProgress size={80} />
+                </Box>
+            )}
 
-      {/* Popups */}
-      <AgentSuggestionsPopup
-        open={openSuggestionsPopup}
-        setOpen={setOpenSuggestionsPopup}
-        data={suggestions}
-        onSelectedActions={onSelectedActions}
-      />
-    </RootContainer>
-      );
+            {/* Popups */}
+            <AgentSuggestionsPopup
+                open={openSuggestionsPopup}
+                setOpen={setOpenSuggestionsPopup}
+                data={suggestions}
+                onSelectedActions={onSelectedActions}
+            />
+        </RootContainer>
+    );
 }
