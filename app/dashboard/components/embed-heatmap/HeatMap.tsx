@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import { Card, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import { RectCell } from "./cells/RectCell";
 import { useHeatmapScales } from "./hooks/useHeatmapScales";
 import { useTooltip } from "./hooks/useTooltip";
@@ -35,7 +35,7 @@ const defaultClusteringOptions: ClusteringOptions = {
   labelPlacementStrategy: 'fixed'
 };
 
-const MARGIN = { top: 30, right: 150, bottom: 200, left: 200 };
+const MARGIN = { top: 30, right: 70, bottom: 200, left: 200 };
 
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
@@ -99,8 +99,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
     options: clusteringOptions,
     orientation: 'horizontal'
   });
-
-  console.log(targetTreeData, 'target');
   
   
   const targetLabelPlacements = useLabelManagement({
@@ -149,10 +147,9 @@ const HeatMap: React.FC<HeatMapProps> = ({
   );
 
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
-  console.log("TFS", targetTreeData,  targetLabelPlacements);
+  // console.log("TFS", targetTreeData,  targetLabelPlacements);
   return (
-    <Box>
-      <Card ref={containerRef} sx={{ paddingLeft: 0 }}>
+    <Box ref={containerRef} sx={{ paddingLeft: 0 }}>
         <svg
           width={dimensions.width}
           height={dimensions.height}
@@ -298,7 +295,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
           </g>
         </svg>
-      </Card>
       {tooltip.visible && (
         <div
           style={{

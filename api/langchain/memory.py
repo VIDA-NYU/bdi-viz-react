@@ -29,6 +29,12 @@ FN_CANDIDATES = [
         "sourceValues": ["Endometrioid", "Serous", "Clear cell", "Carcinosarcoma"],
         "targetValues": ["Serous adenocarcinofibroma", "clear cell", "Carcinosarcoma"],
     },
+    {
+        "sourceColumn": "Race",
+        "targetColumn": "race",
+        "sourceValues": ["White", "Black or African American", "Asian"],
+        "targetValues": ["white", "black or african american", "asian"],
+    },
 ]
 
 FP_CANDIDATES = [
@@ -87,6 +93,7 @@ class MemoryRetriver:
     supported_namespaces = [
         "mismatches",
         "matches",
+        "explanations",
     ]
 
     def __init__(self):
@@ -118,18 +125,61 @@ class MemoryRetriver:
         key = f"{value['sourceColumn']}::{value['targetColumn']}"
         self.put((self.user_id, "matches"), key, value)
 
-    def put_mismatch(self, value: Dict[str, Any]):
+    def put_mismatch(self, value: Dict[str, Any]) -> None:
         """
-        value is in the following format:
-        {
-            'sourceColumn': 'Path_Stage_Primary_Tumor-pT',
-            'targetColumn': 'ajcc_pathologic_stage',
-            'sourceValues': ['pT1b (FIGO IB)', 'pT3a (FIGO IIIA)', 'pT1 (FIGO I)'],
-            'targetValues': ['Stage I', 'Stage IB', 'StageIIIA']
-        }
+        Args:
+            value (Dict[str, Any]): The value to store in the memory.
+            {
+                'sourceColumn': 'Path_Stage_Primary_Tumor-pT',
+                'targetColumn': 'ajcc_pathologic_stage',
+                'sourceValues': ['pT1b (FIGO IB)', 'pT3a (FIGO IIIA)', 'pT1 (FIGO I)'],
+                'targetValues': ['Stage I', 'Stage IB', 'StageIIIA']
+            }
+
+        Returns:
+            None
         """
         key = f"{value['sourceColumn']}::{value['targetColumn']}"
         self.put((self.user_id, "mismatches"), key, value)
+
+    def put_explanation(
+        self, explanations: List[Dict[str, Any]], user_operation: Dict[str, Any]
+    ) -> None:
+        """
+        Args:
+            explanations (List[Dict[str, Any]]): A list of explanations to store in the memory.
+            {
+                'type': ExplanationType;
+                'content': string;
+                'confidence': number;
+            }
+
+            user_operation (Dict[str, Any]): The user operation to store in the memory.
+            {
+                'operation': string;
+                'candidate': {
+                    'sourceColumn': string;
+                    'targetColumn': string;
+                };
+            }
+        """
+
+        key = f"{user_operation['operation']}::{user_operation['candidate']['sourceColumn']}::{user_operation['candidate']['targetColumn']}"
+
+        # Only keep at most 5 most recent explanations
+        existing_explanations = self.store.get((self.user_id, "explanations"), key)
+        if existing_explanations is not None:
+            existing_explanations = existing_explanations.value
+            explanations = [
+                {
+                    "type": explanation["type"],
+                    "content": explanation["content"],
+                    "confidence": explanation["confidence"],
+                }
+                for explanation in explanations
+            ]
+            explanations = (explanations + existing_explanations)[:5]
+        self.put((self.user_id, "explanations"), key, explanations)
 
     # Search
     def search_mismatches(self, query: Dict[str, Any], limit: int = 10):
@@ -138,6 +188,10 @@ class MemoryRetriver:
     def search_matches(self, query: Dict[str, Any], limit: int = 10):
         return self.search((self.user_id, "matches"), query, limit)
 
+    def search_explanations(self, query: Dict[str, Any], limit: int = 10):
+        return self.search((self.user_id, "explanations"), query, limit)
+
+    # Basic operations
     def check_value(func):
         def wrapper(self, namespace: Tuple, key: Optional[str], value: Any):
             if value is None:

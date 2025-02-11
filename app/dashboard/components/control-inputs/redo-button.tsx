@@ -11,7 +11,7 @@ const RedoButton: React.FC<RedoButtonProps> = ({ onClick }) => {
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={onClick}
             >
                 Redo

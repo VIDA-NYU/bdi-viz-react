@@ -2,6 +2,7 @@ import hashlib
 import json
 import logging
 import os
+import threading
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
@@ -15,6 +16,7 @@ from torch import Tensor
 from .clusterer.embedding_clusterer import EmbeddingClusterer
 from .matcher.bdikit import BDIKitMatcher
 from .matcher.valentine import ValentineMatcher
+from .matcher_weight.weight_updater import WeightUpdater
 from .utils import download_model_pt
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -38,13 +40,15 @@ class MatchingTask:
     def __init__(
         self,
         top_k: int = 20,
-        clustering_model="sentence-transformers/all-mpnet-base-v2",
+        clustering_model="Snowflake/snowflake-arctic-embed-m-v2.0",
+        update_matcher_weights: bool = True,
     ) -> None:
+        self.lock = threading.Lock()
         self.top_k = top_k
 
         self.matchers = {
-            # "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
-            # "ct_learning": BDIKitMatcher("ct_learning"),
+            "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
+            "ct_learning": BDIKitMatcher("ct_learning"),
             "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
             "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),
         }
@@ -52,6 +56,8 @@ class MatchingTask:
         self.source_df = None
         self.target_df = None
         self.cached_candidates = self._initialize_cache()
+
+        self.update_matcher_weights = update_matcher_weights
 
     def _initialize_cache(self) -> Dict[str, Any]:
         return {
@@ -73,32 +79,47 @@ class MatchingTask:
     def update_dataframe(
         self, source_df: Optional[pd.DataFrame], target_df: Optional[pd.DataFrame]
     ):
-        if source_df is not None:
-            self.source_df = source_df
-            logger.info(f"[MatchingTask] Source dataframe updated!")
-        if target_df is not None:
-            self.target_df = target_df
-            logger.info(f"[MatchingTask] Target dataframe updated!")
+        with self.lock:
+            if source_df is not None:
+                self.source_df = source_df
+                logger.info(f"[MatchingTask] Source dataframe updated!")
+            if target_df is not None:
+                self.target_df = target_df
+                logger.info(f"[MatchingTask] Target dataframe updated!")
 
         self._initialize_value_matches()
 
     def get_candidates(self, is_candidates_cached: bool = True) -> Dict[str, list]:
-        if self.source_df is None or self.target_df is None:
-            raise ValueError("Source and Target dataframes must be provided.")
+        with self.lock:
+            if self.source_df is None or self.target_df is None:
+                raise ValueError("Source and Target dataframes must be provided.")
 
-        source_hash, target_hash = self._compute_hashes()
-        cached_json = self._import_cache_from_json()
+            source_hash, target_hash = self._compute_hashes()
+            cached_json = self._import_cache_from_json()
+            candidates = []
 
-        if self._is_cache_valid(cached_json, source_hash, target_hash):
-            self.cached_candidates = cached_json
-            return cached_json["candidates"]
+            if self._is_cache_valid(cached_json, source_hash, target_hash):
+                self.cached_candidates = cached_json
+                candidates = cached_json["candidates"]
 
-        if is_candidates_cached and self._is_cache_valid(
-            self.cached_candidates, source_hash, target_hash
-        ):
-            return self.cached_candidates["candidates"]
+            elif is_candidates_cached and self._is_cache_valid(
+                self.cached_candidates, source_hash, target_hash
+            ):
+                candidates = self.get_cached_candidates()
+            else:
+                candidates = self._generate_candidates(
+                    source_hash, target_hash, is_candidates_cached
+                )
 
-        return self._generate_candidates(source_hash, target_hash, is_candidates_cached)
+            if self.update_matcher_weights:
+                self.weight_updater = WeightUpdater(
+                    matchers=self.matchers,
+                    candidates=candidates,
+                    alpha=0.1,
+                    beta=0.1,
+                )
+
+            return candidates
 
     def _compute_hashes(self) -> Tuple[int, int]:
         source_hash = int(
@@ -347,6 +368,11 @@ class MatchingTask:
         logger.info(f"Applying operation: {operation}, on candidate: {candidate}...")
 
         candidates = self.get_cached_candidates()
+        if self.update_matcher_weights:
+            self.weight_updater.update_weights(
+                operation, candidate["sourceColumn"], candidate["targetColumn"]
+            )
+
         if operation == "accept":
             self.set_cached_candidates(
                 [
@@ -406,6 +432,8 @@ class MatchingTask:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
+        # if pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
+        #     return []
         return list(self.source_df[source_col].dropna().unique().astype(str)[:n])
 
     def get_target_value_bins(self, target_col: str) -> List[Dict[str, Any]]:
@@ -420,6 +448,8 @@ class MatchingTask:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
+        # if pd.api.types.is_numeric_dtype(self.target_df[target_col].dtype):
+        #     return []
         return list(self.target_df[target_col].dropna().unique().astype(str)[:n])
 
     def get_cached_candidates(self) -> List[Dict[str, Any]]:

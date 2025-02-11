@@ -28,11 +28,11 @@ const HistogramCell: FC<ExpandedCellProps> = ({
     .range([0, chartWidth]);
 
   const sourceY = d3.scaleLinear()
-    .domain([0, sourceUniqueValues.uniqueValues.map(d => d.count).reduce((a, b) => Math.max(a, b))])
+    .domain([0, sourceUniqueValues.uniqueValues.length > 0 ? sourceUniqueValues.uniqueValues.map(d => d.count).reduce((a, b) => Math.max(a, b)) : 0])
     .range([chartHeight, 0]);
 
   const targetY = d3.scaleLinear()
-    .domain([0, targetUniqueValues.uniqueValues.map(d => d.count).reduce((a, b) => Math.max(a, b))])
+    .domain([0, targetUniqueValues.uniqueValues.length > 0 ? targetUniqueValues.uniqueValues.map(d => d.count).reduce((a, b) => Math.max(a, b)) : 0])
     .range([chartHeight, 0]);
 
   return (

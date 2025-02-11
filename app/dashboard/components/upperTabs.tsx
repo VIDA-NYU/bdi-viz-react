@@ -2,98 +2,55 @@
 
 import { useState } from "react";
 import UpsetPlot from "./upset-plot/UpsetPlot";
-import CombinedView from "./explanation/CombinedView";
 import ValueComparisonTable from "./value-comparisons/value-comparison-table";
 
-import { Box, Tab, Tabs, Paper } from "@mui/material";
+import { Box, Tab, Paper } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
-import { SchemaMatch } from "./explanation/types";
 
 interface UpperTabsProps {
-    filteredCandidates: Candidate[];
-    matchers: Matcher[];
-    selectedCandidate?: Candidate;
-    isMatch: boolean;
-    currentExplanations: Explanation[];
-    selectedExplanations: Explanation[];
-    setSelectExplanations: (explanations: Explanation[]) => void;
-    matchingValues: string[][];
-    relativeKnowledge: RelativeKnowledge[];
-    matches: Candidate[];
-    isLoading: boolean;
-    sourceColumn?: string;
-    targetColumn?: string;
-    allSourceColumns: string[];
-    allTargetColumns: string[];
-    valueMatches: ValueMatch[];
+  filteredCandidates: Candidate[];
+  matchers: Matcher[];
+  selectedCandidate?: Candidate;
+  selectedSourceColumn: string;
+  valueMatches: ValueMatch[];
 }
 
 const UpperTabs: React.FC<UpperTabsProps> = ({
-    filteredCandidates,
-    matchers,
-    selectedCandidate,
-    isMatch,
-    currentExplanations,
-    selectedExplanations,
-    setSelectExplanations,
-    matchingValues,
-    relativeKnowledge,
-    matches,
-    isLoading,
-    sourceColumn,
-    targetColumn,
-    allSourceColumns,
-    allTargetColumns,
-    valueMatches,
+  filteredCandidates,
+  matchers,
+  selectedCandidate,
+  selectedSourceColumn,
+  valueMatches,
 }) => {
-    const [value, setValue] = useState(1);
+  const [value, setValue] = useState(1);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
-    return (
-        <Box sx={{ width: '100%', marginTop: 0 }}>
-          <TabContext value={value}>
-            <Paper sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="UpSet Plot" value={1} />
-              <Tab label="Explanations" value={2} />
-              <Tab label="Value Comparisons" value={3} />
-            </TabList>
+  return (
+    <Box sx={{ width: '100%', marginTop: 0 }}>
+      <TabContext value={value}>
+          <TabList onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="UpSet Plot" value={1} />
+            <Tab label="Value Comparisons" value={2} />
+          </TabList>
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={1}>
             <UpsetPlot
-                data={filteredCandidates}
-                matchers={matchers}
-                selectedCandidate={selectedCandidate}
+              data={filteredCandidates}
+              matchers={matchers}
+              selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
             />
           </TabPanel>
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={2}>
-            <CombinedView
-                isMatch={isMatch}
-                currentExplanations={currentExplanations}
-                selectedExplanations={selectedExplanations}
-                matchingValues={matchingValues}
-                relativeKnowledge={relativeKnowledge}
-                matches={matches as SchemaMatch[]}
-                isLoading={isLoading}
-                setSelectExplanations={setSelectExplanations}
-                sourceColumn={sourceColumn}
-                targetColumn={targetColumn}
-                allSourceColumns={allSourceColumns}
-                allTargetColumns={allTargetColumns}
-            />
-          </TabPanel>
-          <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={3}>
             <ValueComparisonTable
-                valueMatches={valueMatches}
-                selectedCandidate={selectedCandidate}
+              valueMatches={valueMatches}
+              selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
             />
           </TabPanel>
-          </Paper>
-          </TabContext>
-        </Box>
-    );
+      </TabContext>
+    </Box>
+  );
 };
 
 export default UpperTabs;

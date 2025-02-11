@@ -1,14 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import {
-  AppBar,
   Box,
-  Drawer,
-  Divider,
-  List,
-  ListItem,
   IconButton,
   Toolbar,
   Typography,
@@ -27,19 +21,7 @@ import RedoButton from "./control-inputs/redo-button";
 import MatcherSelection from "./control-inputs/matcher-selection";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-start",
-  flexShrink: 0,
-  borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
-  backdropFilter: "blur(24px)",
-  border: "1px solid",
-  borderColor: theme.palette.divider,
-  backgroundColor: alpha(theme.palette.background.default, 0.4),
-  boxShadow: theme.shadows[1],
-  padding: "8px 12px",
-  minHeight: "auto",
-  width: "100%"
+  padding: "0px",
 }));
 
 interface ToolbarProps {
@@ -69,82 +51,23 @@ interface ToolbarProps {
   };
 }
 
-const drawerWidth = 240;
-
 const ControlPanel: React.FC<ToolbarProps> = ({ 
   isFloating = false, 
   width,
   containerStyle = {},
   ...props 
 }) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2, color: "#000" }}>
-        BDI Viz
-      </Typography>
-      <Divider />
-      <List>
-        <ListItem key="source-column">
-          <SourceColumnSelection
-            sourceColumns={props.sourceColumns}
-            selectedSourceColumn={props.state.sourceColumn}
-            onSelect={props.onSourceColumnSelect}
-          />
-        </ListItem>
-        <ListItem key="candidate-type">
-          <CandidateTypeSelection onSelect={props.onCandidateTypeSelect} />
-        </ListItem>
-        <ListItem key="similar-sources">
-          <SimilarSourcesSlide onSelect={props.onSimilarSourcesSelect} />
-        </ListItem>
-        <ListItem key="candidate-threshold">
-          <CandidateThresholdSlide onSelect={props.onCandidateThresholdSelect} />
-        </ListItem>
-      </List>
-    </Box>
-  );
-
-  // Styles for the AppBar when it's floating vs static
-  const appBarStyles = isFloating ? {
-    position: "fixed" as const,
-    boxShadow: 0,
-    bgcolor: "transparent",
-    backgroundImage: "none",
-    mt: "calc(var(--template-frame-height, 0px) + 28px)",
-    top: 0,
-    width: width,
-    minWidth: "min-content",
-  } : {
-    position: "static" as const,
-    bgcolor: "transparent",
-    backgroundImage: "none",
-    width: "100%",
-    minWidth: "min-content",
-  };
 
   // Root container styles
   const rootStyles = {
     display: "flex",
     flexDirection: "column" as const,
-    width: width || "100%",
-    minWidth: "min-content",
     flex: width ? "0 0 auto" : "1 1 auto",
     ...containerStyle
   };
 
   return (
     <Box sx={rootStyles}>
-      <AppBar
-        enableColorOnDark
-        sx={appBarStyles}
-        component="div"
-      >
         <StyledToolbar variant="dense">
           <Box sx={{ 
             display: "flex", 
@@ -159,7 +82,6 @@ const ControlPanel: React.FC<ToolbarProps> = ({
               color="inherit"
               aria-label="open drawer"
               edge="start"
-              onClick={handleDrawerToggle}
               sx={{ display: { xs: "flex", sm: "none" } }}
             >
               <MenuIcon style={{ color: "#000" }} />
@@ -173,7 +95,7 @@ const ControlPanel: React.FC<ToolbarProps> = ({
                 whiteSpace: "nowrap"
               }}
             >
-              BDI Viz
+              Control Panel
             </Typography>
             <Box sx={{ 
               display: { xs: "none", sm: "flex" },
@@ -202,40 +124,22 @@ const ControlPanel: React.FC<ToolbarProps> = ({
                 <AcceptMatchButton onClick={props.acceptMatch} />
                 <RejectMatchButton onClick={props.rejectMatch} />
               </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
                 <DiscardColumnButton onClick={props.discardColumn} />
-                <MatcherSelection 
+                <UndoButton onClick={props.undo} />
+                <RedoButton onClick={props.redo} />
+              </Box>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+              <MatcherSelection 
                   matchers={props.matchers} 
                   selectedMatcher={props.state.selectedMatcher} 
                   onSelect={props.onMatcherSelect} 
                 />
-              </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
-                <UndoButton onClick={props.undo} />
-                <RedoButton onClick={props.redo} />
+                
               </Box>
             </Box>
           </Box>
         </StyledToolbar>
-      </AppBar>
-
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth,
-          },
-        }}
-      >
-        {drawer}
-      </Drawer>
     </Box>
   );
 };

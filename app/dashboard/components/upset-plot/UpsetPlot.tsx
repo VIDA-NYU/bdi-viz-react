@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import { Card } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useRef, useEffect, useMemo, useState } from "react";
 
 interface GroupedData {
@@ -26,7 +26,7 @@ interface UpsetPlotProps {
     selectedCandidate?: Candidate;
 }
 
-const upperChartHeight = 90;
+const upperChartHeight = 150;
 const lowerSetChartHeight = 220;
 const upperMarginLeft = 30;
 const lowerMarginBottom = 120;
@@ -117,7 +117,7 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ data, matchers, selectedCandidate
     }, [groupedData, weightPerMatcher, dataCrossProduct, dataPerMatcher, fullWidth]);
 
     return (
-        <Card ref={containerRef}>
+        <Box ref={containerRef}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', width: `${fullWidth}px` }}>
                 <div ref={upperColumnChartRef}></div>
                 <div style={{ display: 'flex', position: 'relative', top: '-50px', alignItems: 'flex-start' }}>
@@ -125,7 +125,7 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ data, matchers, selectedCandidate
                     <div ref={lowerSetChartRef}></div>
                 </div>
             </div>
-        </Card>
+        </Box>
     );
 };
 

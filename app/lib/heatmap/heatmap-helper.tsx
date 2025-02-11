@@ -6,7 +6,7 @@ import https from 'https';
 import { resolve } from "path";
 
 interface getCachedResultsProps {
-    callback: (candidates: Candidate[], sourceCluster: SourceCluster[], matchers: Matcher[]) => void;
+    callback: (newCandidates: Candidate[], newSourceCluster: SourceCluster[], newMatchers: Matcher[]) => void;
 }
 
 const getCachedResults = (prop: getCachedResultsProps) => {

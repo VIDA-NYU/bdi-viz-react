@@ -5,7 +5,7 @@ import { useState } from "react";
 import HeatMap from "./embed-heatmap/HeatMap";
 
 
-import { Box, Tab, Tabs, Paper } from "@mui/material";
+import { Box, Tab } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
 
 interface lowerTabsProps {
@@ -36,12 +36,12 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
     return (
         <Box sx={{ width: '100%', marginTop: 0 }}>
           <TabContext value={value}>
-            <Paper sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Layered Heat Map" value={1} />
-              <Tab label="Stacked Heat Map" value={2} />
-            </TabList>
-            </Paper>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChange} aria-label="basic tabs example">
+                <Tab label="Layered Heat Map" value={1} />
+                <Tab label="Stacked Heat Map" value={2} />
+              </TabList>
+            </Box>
           <TabPanel sx={{ padding: 0 }} value={1}>
                 <HeatMap
                     data={candidates}

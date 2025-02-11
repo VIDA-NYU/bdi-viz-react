@@ -65,24 +65,24 @@ export const RootContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-  backgroundColor: theme.palette.background.default,
-  padding: theme.spacing(2),
+  backgroundColor: "#f5f5f5",
+  padding: theme.spacing(0.5),
 }));
 
 export const Header = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
-  marginBottom: theme.spacing(2),
 }));
 
 export const MainContent = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '400px 2fr', // Three columns: controls, main viz, secondary viz
+  gridTemplateColumns: '400px 2fr 1.2fr', // Three columns: controls, main viz, secondary viz
   gap: theme.spacing(2),
   flex: 1,
   height: 'calc(100vh - 140px)', // Adjust based on header/footer height
   overflow: 'hidden',
+  paddingTop: theme.spacing(2),
 }));
 
 // Left Column - Control Panel
@@ -90,18 +90,19 @@ export const ControlColumn = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
-  overflowY: 'auto',
   justifyContent: 'flex-start',
   alignContent: 'flex-start',
-  // width: '600px',
 }));
 
 // Middle Column - Main Visualizations
 export const MainColumn = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(2),
+  gap: theme.spacing(1),
   overflowY: 'auto',
+  overflow: 'hidden',
+  backgroundColor: 'white',
+  borderRadius: theme.shape.borderRadius,
 }));
 
 // Right Column - Auxiliary Visualizations

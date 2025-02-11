@@ -1,5 +1,5 @@
 // components/SchemaExplanation/CombinedView.tsx
-import { Stack, styled } from '@mui/material';
+import { Box, Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
 import InferredMatches, { InferredMatch } from './InferenceMatches';
 import RelativeKnowledgeView from './RelativeKnowledgeView';
@@ -15,6 +15,16 @@ const RowComp = styled("div")({
     marginTop: "28px",
     paddingTop: "35px",
     paddingBottom: "45px"
+})
+
+const ColumnComp = styled("div")({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "stretch",
+    width: "100%",
+    marginTop: "0px",
+    paddingTop: "0px",
+    paddingBottom: "0px"
 })
 interface CombinedViewProps {
     isMatch: boolean;
@@ -63,8 +73,8 @@ const CombinedView = ({
 
     return (
         <Stack spacing={2}>
-            <RowComp>
-            <Stack flex={8} marginRight={2}>
+            <ColumnComp>
+            <Stack flex={8} sx={{ maxHeight: 500 }}>
                 <SchemaExplanation
                     isMatch={isMatch}
                     currentExplanations={currentExplanations}
@@ -78,6 +88,7 @@ const CombinedView = ({
                 />
             </Stack>
             <Stack flex={4}>
+                <Divider />
                 <RelativeKnowledgeView
                     relativeKnowledge={relativeKnowledge}
                     isLoading={isLoading}
@@ -88,7 +99,7 @@ const CombinedView = ({
                 onAcceptInferred={acceptInferredMatch}
                 onRejectInferred={rejectInferredMatch}
             /> */}
-            </RowComp>
+            </ColumnComp>
         </Stack>
     );
 }

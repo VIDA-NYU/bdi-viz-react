@@ -6,16 +6,12 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
-
 # langchain
 from .langchain.pydantic import AgentResponse
 from .matching_task import MATCHING_TASK
 from .tools.candidate_butler import candidate_butler_tools
-from .utils import (
-    extract_data_from_request,
-    read_candidate_explanation_json,
-    write_candidate_explanation_json,
-)
+from .utils import (extract_data_from_request, read_candidate_explanation_json,
+                    write_candidate_explanation_json)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 
@@ -98,52 +94,6 @@ def ask_agent():
     return response
 
 
-@app.route("/api/agent/diagnose", methods=["POST"])
-def agent_diagnose():
-    data = request.json
-
-    operation = data["operation"]
-    candidate = data["candidate"]
-    references = data["references"]
-
-    MATCHING_TASK.apply_operation(operation, candidate, references)
-
-    source_col = candidate["sourceColumn"]
-    source_unique_values = MATCHING_TASK.get_source_unique_values(source_col)
-    unique_values = {
-        "sourceColumn": source_unique_values,
-        "targetColumns": [
-            {
-                "targetColumn": candidate["targetColumn"],
-                "uniqueValues": MATCHING_TASK.get_target_unique_values(
-                    candidate["targetColumn"]
-                ),
-            }
-        ],
-    }
-    for ref in references:
-        unique_values["targetColumns"].append(
-            {
-                "targetColumn": ref["targetColumn"],
-                "uniqueValues": MATCHING_TASK.get_target_unique_values(
-                    ref["targetColumn"]
-                ),
-            }
-        )
-
-    response = AGENT.diagnose(
-        {
-            "operation": operation,
-            "candidate": candidate,
-            "references": references,
-            "uniqueValues": unique_values,
-        }
-    )
-
-    response = response.model_dump()
-    return response
-
-
 @app.route("/api/agent/explain", methods=["POST"])
 def agent_explanation():
     data = request.json
@@ -215,7 +165,9 @@ def agent_suggest():
 
     MATCHING_TASK.apply_operation(operation, candidate, references)
 
-    response = AGENT.make_suggestion(user_operation, diagnosis_dict)
+    # put into memory
+    AGENT.remember_explanation(explanations, user_operation)
+    response = AGENT.make_suggestion(explanations, user_operation)
     response = response.model_dump()
 
     return response
