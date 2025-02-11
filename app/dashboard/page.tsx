@@ -204,16 +204,6 @@ export default function Dashboard() {
                         matchers={matchers}
                         selectedCandidate={selectedCandidate}
                         selectedSourceColumn={sourceColumn}
-                        isMatch={isMatch}
-                        currentExplanations={currentExplanations}
-                        selectedExplanations={selectedExplanations}
-                        setSelectExplanations={setSelectedExplanations}
-                        matchingValues={matchingValues}
-                        relativeKnowledge={relativeKnowledge}
-                        isLoading={isExplaining}
-                        matches={matches}
-                        allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                        allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                         valueMatches={valueMatches}
                     />
                     <LowerTabs
@@ -230,7 +220,7 @@ export default function Dashboard() {
                 {/* Right Column - Auxiliary Visualizations */}
                 <AuxColumn>
                     <FileUploading callback={handleFileUpload} />
-                    
+
                     <CombinedView
                         isMatch={isMatch}
                         currentExplanations={currentExplanations}
