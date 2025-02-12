@@ -90,11 +90,12 @@ const HeatMap: React.FC<HeatMapProps> = ({
     toggleNode: toggleTargetNode,
     getVisibleColumns: getVisibleTargetColumns
   } = useTreeLayout({
-      width: dimensions.width,
+    width: dimensions.width,
     height: dimensions.height,
     margin: MARGIN,
     columns: x.domain(),
     scale: x,
+    getWidth: getWidth,
     options: clusteringOptions,
     orientation: 'horizontal'
   });
