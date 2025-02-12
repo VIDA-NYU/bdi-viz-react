@@ -7,7 +7,7 @@ interface GroupedData {
     targetColumn: string;
     sourceColumn: string;
     matchers: (string | undefined)[];
-    accScore: number;
+    score: number;
     id: number;
     isSelected: boolean;
 }
@@ -16,12 +16,12 @@ interface DataPerMatcher {
     id: number;
     targetColumn: string;
     matchers: string;
-    accScore: number;
+    score: number;
     isSelected: boolean;
 }
 
 interface UpsetPlotProps {
-    data: Candidate[];
+    aggData: AggregatedCandidate[];
     matchers: Matcher[];
     selectedCandidate?: Candidate;
 }
@@ -32,7 +32,7 @@ const upperMarginLeft = 30;
 const lowerMarginBottom = 120;
 const lowerBarChartWidth = 200;
 
-const UpsetPlot: React.FC<UpsetPlotProps> = ({ data, matchers, selectedCandidate }) => {
+const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandidate }) => {
     const upperColumnChartRef = useRef<HTMLDivElement>(null);
     const lowerBarChartRef = useRef<HTMLDivElement>(null);
     const lowerSetChartRef = useRef<HTMLDivElement>(null);
@@ -51,31 +51,40 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ data, matchers, selectedCandidate
             return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const { filteredData, filteredMatchers } = useMemo(() => {
-        let filteredData = [...data];
+    // const { filteredData, filteredMatchers } = useMemo(() => {
+    //     let filteredData = [...data];
 
-        if (selectedCandidate) {
-            filteredData = filteredData.filter(d => d.sourceColumn === selectedCandidate.sourceColumn);
-        }
+    //     if (selectedCandidate) {
+    //         filteredData = filteredData.filter(d => d.sourceColumn === selectedCandidate.sourceColumn);
+    //     }
 
-        const existingMatchers = filteredData.map(d => d.matcher);
-        const filteredMatchers = matchers.filter(m => existingMatchers.includes(m.name)).sort((a, b) => a.weight - b.weight);
+    //     const existingMatchers = filteredData.map(d => d.matcher);
+    //     const filteredMatchers = matchers.filter(m => existingMatchers.includes(m.name)).sort((a, b) => a.weight - b.weight);
 
-        return { filteredData, filteredMatchers };
-    }, [data, matchers, selectedCandidate]);
+    //     return { filteredData, filteredMatchers };
+    // }, [data, matchers, selectedCandidate]);
+
+    // const groupedData = useMemo(() => {
+    //     return Array.from(d3.group(filteredData, d => d.targetColumn), ([targetColumn, items]) => {
+    //         const groupedBySource = d3.group(items, d => d.sourceColumn);
+    //         return Array.from(groupedBySource, ([sourceColumn, items]) => ({
+    //             targetColumn,
+    //             sourceColumn,
+    //             matchers: items.map(d => d.matcher),
+    //             score: d3.sum(items, d => d.score * (matchers.find(m => m.name === d.matcher)?.weight ?? 1)),
+    //             isSelected: selectedCandidate ? items.some(d => d.sourceColumn === selectedCandidate.sourceColumn && d.targetColumn == selectedCandidate.targetColumn) : false
+    //         }));
+    //     }).flat().sort((a, b) => b.score - a.score).map((d, idx) => ({ id: idx + 1, ...d }));
+    // }, [filteredData, matchers, selectedCandidate]);
+
+    const filteredMatchers = useMemo(() => matchers.filter(m => aggData.flatMap(d => d.matchers).includes(m.name)), [aggData, matchers]);
 
     const groupedData = useMemo(() => {
-        return Array.from(d3.group(filteredData, d => d.targetColumn), ([targetColumn, items]) => {
-            const groupedBySource = d3.group(items, d => d.sourceColumn);
-            return Array.from(groupedBySource, ([sourceColumn, items]) => ({
-                targetColumn,
-                sourceColumn,
-                matchers: items.map(d => d.matcher),
-                accScore: d3.sum(items, d => d.score * (matchers.find(m => m.name === d.matcher)?.weight ?? 1)),
-                isSelected: selectedCandidate ? items.some(d => d.sourceColumn === selectedCandidate.sourceColumn && d.targetColumn == selectedCandidate.targetColumn) : false
-            }));
-        }).flat().sort((a, b) => b.accScore - a.accScore).map((d, idx) => ({ id: idx + 1, ...d }));
-    }, [filteredData, matchers, selectedCandidate]);
+        return aggData.map((d) => ({
+            ...d,
+            isSelected: selectedCandidate ? d.sourceColumn === selectedCandidate.sourceColumn && d.targetColumn === selectedCandidate.targetColumn : false
+        }));
+    }, [aggData, selectedCandidate]);
 
     const dataPerMatcher = useMemo(() => {
         return groupedData.flatMap(
@@ -83,16 +92,13 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ data, matchers, selectedCandidate
                 id: d.id,
                 targetColumn: d.targetColumn,
                 matchers: matcher ?? '',
-                accScore: d.accScore,
-                isSelected: d.isSelected,
+                score: d.score,
+                isSelected: d.isSelected
             }))
         );
     }, [groupedData]);
 
     const dataCrossProduct = useMemo(() => crossProduct(dataPerMatcher), [dataPerMatcher]);
-
-    // const evenMatchers = useMemo(() => filteredMatchers.filter((_, idx) => idx % 2 === 0), [filteredMatchers]);
-    // const evenMatcherNames = useMemo(() => evenMatchers.map(matcher => matcher.name), [evenMatchers]);
 
     const weightPerMatcher = useMemo(() => {
         return Array.from(d3.group(dataPerMatcher, d => d.matchers), ([matcher, _]) => ({
@@ -141,7 +147,7 @@ function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
     const columnChart = Plot.barY(
         groupedData,
         {
-            y: d => d.accScore,
+            y: d => d.score,
             x: d => d.id,
             fill: d => d.isSelected ? 'red' : 'steelblue', // Highlight selected candidate
         }
@@ -153,7 +159,7 @@ function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
         style: {
             background: '#ffffff00'
         },
-        marginRight: 100,
+        marginRight: 80,
         grid: true,
         x: {
             axis: null,
@@ -283,7 +289,7 @@ function lowerSetChart({ dataCrossProduct, dataPerMatcher }: LowerSetChartProps,
         height: lowerSetChartHeight + lowerMarginBottom,
         marginTop: 28,
         marginLeft: 0,
-        marginRight: 100,
+        marginRight: 80,
         marginBottom: lowerMarginBottom,
         style: {
             background: '#ffffff00'

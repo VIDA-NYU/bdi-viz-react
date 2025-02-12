@@ -129,14 +129,14 @@ const ControlPanel: React.FC<ToolbarProps> = ({
                 <UndoButton onClick={props.undo} />
                 <RedoButton onClick={props.redo} />
               </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+              {/* <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
               <MatcherSelection 
                   matchers={props.matchers} 
                   selectedMatcher={props.state.selectedMatcher} 
                   onSelect={props.onMatcherSelect} 
                 />
                 
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         </StyledToolbar>
