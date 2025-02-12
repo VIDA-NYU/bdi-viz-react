@@ -96,6 +96,7 @@ export default function Dashboard() {
         filteredCandidates,
         filteredSourceCluster,
         filteredCandidateCluster,
+        weightedAggregatedCandidates,
     } = useDashboardInterfaces({
         candidates,
         sourceClusters,
@@ -200,14 +201,14 @@ export default function Dashboard() {
                 {/* Middle Column - Main Visualizations */}
                 <MainColumn>
                     <UpperTabs
-                        filteredCandidates={filteredCandidates}
+                        weightedAggregatedCandidates={weightedAggregatedCandidates}
                         matchers={matchers}
                         selectedCandidate={selectedCandidate}
                         selectedSourceColumn={sourceColumn}
                         valueMatches={valueMatches}
                     />
                     <LowerTabs
-                        candidates={filteredCandidates}
+                        weightedAggregatedCandidates={weightedAggregatedCandidates}
                         sourceCluster={filteredSourceCluster}
                         selectedCandidate={selectedCandidate}
                         setSelectedCandidate={setSelectedCandidateCallback}

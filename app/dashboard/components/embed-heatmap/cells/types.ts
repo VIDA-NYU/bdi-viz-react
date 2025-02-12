@@ -18,7 +18,7 @@ interface CellProps {
     height: number;
     color: ScaleSequential<string, string>;
     isSelected: boolean;
-    onHover?: (event: React.MouseEvent, data: CellData) => void;
+    onHover?: (event: React.MouseEvent, data: any) => void;
     onLeave?: () => void;
     onClick?: (data: CellData) => void;
 }

@@ -18,7 +18,7 @@ import { useLabelManagement } from "./tree/useLabelManagement";
 import { TreeAxis } from "./tree/TreeAxis";
 
 interface HeatMapProps {
-  data: Candidate[];
+  data: AggregatedCandidate[];
   sourceCluster?: string[];
   selectedMatcher?: Matcher;
   selectedCandidate?: Candidate;
@@ -64,15 +64,16 @@ const HeatMap: React.FC<HeatMapProps> = ({
   }
 
   const candidates = useMemo(() => {
-    return data.filter((d) => d.matcher === selectedMatcher?.name).sort((a, b) => {
-      if (a.sourceColumn === b.sourceColumn) {
-        // compare by alphabet
-        return a.targetColumn < b.targetColumn ? -1 : 1;
-        // return a.targetColumn.localeCompare(b.targetColumn);
-      }
-      return a.sourceColumn < b.sourceColumn ? -1 : 1;
-    });
-  }, [data, selectedMatcher]);
+    // return data.filter((d) => d.matcher === selectedMatcher?.name).sort((a, b) => {
+    //   if (a.sourceColumn === b.sourceColumn) {
+    //     // compare by alphabet
+    //     return a.targetColumn < b.targetColumn ? -1 : 1;
+    //     // return a.targetColumn.localeCompare(b.targetColumn);
+    //   }
+    //   return a.sourceColumn < b.sourceColumn ? -1 : 1;
+    // });
+    return data;
+  }, [data]);
     
 
   const { x, y, color, getWidth, getHeight, dataRange } = useHeatmapScales({
@@ -157,8 +158,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
         >
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
             {candidates
-              .filter((d) => d.matcher === selectedMatcher?.name)
-              .map((d: any, i: number) => {
+              // .filter((d) => d.matcher === selectedMatcher?.name)
+              .map((d: AggregatedCandidate, i: number) => {
                 let sourceUniqueValue;
                 let targetUniqueValue;
                 if (
@@ -175,8 +176,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 if (
                   selectedCandidate &&
                   selectedCandidate.sourceColumn === d.sourceColumn &&
-                  selectedCandidate.targetColumn === d.targetColumn &&
-                  selectedCandidate.matcher === d.matcher
+                  selectedCandidate.targetColumn === d.targetColumn
+                  // && selectedCandidate.matcher === d.matcher
                 ) {
                   return (
                     <BaseExpandedCell

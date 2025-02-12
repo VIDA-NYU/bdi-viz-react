@@ -6,6 +6,14 @@ declare interface Candidate {
     matcher?: string;
 }
 
+type AggregatedCandidate = {
+    id: number;
+    sourceColumn: string;
+    targetColumn: string;
+    matchers: string[];
+    score: number;
+}
+
 declare interface SourceCluster {
     sourceColumn: string;
     cluster: string[];

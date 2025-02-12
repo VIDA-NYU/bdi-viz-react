@@ -8,7 +8,7 @@ import { Box, Tab, Paper } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
 
 interface UpperTabsProps {
-  filteredCandidates: Candidate[];
+  weightedAggregatedCandidates: AggregatedCandidate[];
   matchers: Matcher[];
   selectedCandidate?: Candidate;
   selectedSourceColumn: string;
@@ -16,7 +16,7 @@ interface UpperTabsProps {
 }
 
 const UpperTabs: React.FC<UpperTabsProps> = ({
-  filteredCandidates,
+  weightedAggregatedCandidates,
   matchers,
   selectedCandidate,
   selectedSourceColumn,
@@ -37,7 +37,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
           </TabList>
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={1}>
             <UpsetPlot
-              data={filteredCandidates}
+              aggData={weightedAggregatedCandidates}
               matchers={matchers}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
             />

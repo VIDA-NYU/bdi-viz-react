@@ -1,6 +1,5 @@
 // hooks/useTooltip.ts
 import { useState, useCallback } from 'react';
-import { CellData } from '../cells/types';
 
 const useTooltip = () => {
     const [tooltip, setTooltip] = useState<{
@@ -15,18 +14,25 @@ const useTooltip = () => {
         content: ''
     });
 
-    const showTooltip = useCallback((event: React.MouseEvent, data: CellData) => {
+    const showTooltip = useCallback((event: React.MouseEvent, data: AggregatedCandidate) => {
         setTooltip({
             visible: true,
             x: event.pageX,
             y: event.pageY,
             content: `
-                <div>
-                    <div><strong>Source:</strong> ${data.sourceColumn}</div>
-                    <div><strong>Target:</strong> ${data.targetColumn}</div>
-                    <div>Score: ${data.score.toFixed(3)}</div>
-                    ${data.matcher ? `<div>Matcher: ${data.matcher}</div>` : ''}
-                </div>
+            <div style="font-family: Arial, sans-serif; font-size: 12px;">
+                <div><strong>Source:</strong> ${data.sourceColumn}</div>
+                <div><strong>Target:</strong> ${data.targetColumn}</div>
+                <div><strong>Score:</strong> ${data.score.toFixed(3)}</div>
+                ${data.matchers ? `
+                    <div>
+                        <strong>Matchers:</strong>
+                        <ul style="list-style: disc; margin-left: 20px; padding: 0;">
+                        ${data.matchers.map((matcher: string) => `<li style="margin-bottom: 4px;">${matcher}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+            </div>
             `
         });
     }, []);

@@ -9,7 +9,7 @@ import { Box, Tab } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
 
 interface lowerTabsProps {
-    candidates: Candidate[];
+    weightedAggregatedCandidates: AggregatedCandidate[];
     sourceCluster: string[];
     selectedCandidate: Candidate | undefined;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
@@ -19,7 +19,7 @@ interface lowerTabsProps {
 }
 
 const LowerTabs: React.FC<lowerTabsProps> = ({
-    candidates,
+    weightedAggregatedCandidates,
     sourceCluster,
     selectedCandidate,
     setSelectedCandidate,
@@ -36,15 +36,9 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
     return (
         <Box sx={{ width: '100%', marginTop: 0 }}>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Layered Heat Map" value={1} />
-                <Tab label="Stacked Heat Map" value={2} />
-              </TabList>
-            </Box>
           <TabPanel sx={{ padding: 0 }} value={1}>
                 <HeatMap
-                    data={candidates}
+                    data={weightedAggregatedCandidates}
                     sourceCluster={sourceCluster}
                     selectedCandidate={selectedCandidate}
                     setSelectedCandidate={setSelectedCandidate}
@@ -56,6 +50,12 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
           <TabPanel sx={{ padding: 0 }} value={2}>
                 Temp
           </TabPanel>
+            <Box sx={{ borderTop: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChange} aria-label="basic tabs example">
+                <Tab label="Layered Heat Map" value={1} />
+                <Tab label="Stacked Heat Map" value={2} />
+              </TabList>
+            </Box>
           </TabContext>
         </Box>
     );
