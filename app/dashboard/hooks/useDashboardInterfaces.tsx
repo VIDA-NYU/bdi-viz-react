@@ -57,14 +57,11 @@ export const {
                 filteredData = filteredData.filter((d) => filteredSourceCluster.includes(d.sourceColumn));
             }
 
-            if (filters?.candidateThreshold) {
-                filteredData = filteredData.filter((d) => d.score >= filters.candidateThreshold);
-            }
             return filteredData;
-        }, [candidates, filteredSourceCluster, filters.candidateThreshold, filters.candidateType]);
+        }, [candidates, filteredSourceCluster, filters.candidateType]);
 
         const weightedAggregatedCandidates = useMemo(() => {
-            const aggregatedCandidates = Array.from(d3.group(filteredCandidates, d => d.sourceColumn + d.targetColumn), ([_, items]) => {
+            let aggregatedCandidates = Array.from(d3.group(filteredCandidates, d => d.sourceColumn + d.targetColumn), ([_, items]) => {
                 return {
                     sourceColumn: items[0].sourceColumn,
                     targetColumn: items[0].targetColumn,
@@ -73,8 +70,12 @@ export const {
                 };
             }).flat().sort((a, b) => b.score - a.score).map((d, idx) => ({ id: idx + 1, ...d }));
 
+            if (filters?.candidateThreshold) {
+                aggregatedCandidates = aggregatedCandidates.filter((d) => d.score >= filters.candidateThreshold);
+            }
+
             return aggregatedCandidates;
-        }, [filteredCandidates, matchers]);
+        }, [filteredCandidates, matchers, filters.candidateThreshold]);
 
         return {
             filteredCandidates,

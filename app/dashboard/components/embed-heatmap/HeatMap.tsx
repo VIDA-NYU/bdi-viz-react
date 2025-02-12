@@ -20,7 +20,6 @@ import { TreeAxis } from "./tree/TreeAxis";
 interface HeatMapProps {
   data: AggregatedCandidate[];
   sourceCluster?: string[];
-  selectedMatcher?: Matcher;
   selectedCandidate?: Candidate;
   setSelectedCandidate?: (candidate: Candidate | undefined) => void;
   sourceUniqueValues: SourceUniqueValues[];
@@ -40,7 +39,6 @@ const MARGIN = { top: 30, right: 70, bottom: 200, left: 200 };
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
   sourceCluster,
-  selectedMatcher,
   selectedCandidate,
   setSelectedCandidate,
   sourceUniqueValues,

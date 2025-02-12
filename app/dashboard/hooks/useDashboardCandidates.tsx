@@ -15,6 +15,7 @@ type DashboardCandidateState = {
     handleFileUpload: (newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
+    setMatchers: (matchers: Matcher[]) => void;
 }
 
 export type { DashboardCandidateState };
@@ -84,7 +85,8 @@ export const {
             valueMatches,
             handleFileUpload,
             handleChatUpdate,
-            setSelectedCandidate: handleSelectedCandidate
+            setSelectedCandidate: handleSelectedCandidate,
+            setMatchers,
         };
     }
 };

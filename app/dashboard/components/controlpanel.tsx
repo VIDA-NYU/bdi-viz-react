@@ -18,7 +18,7 @@ import RejectMatchButton from "./control-inputs/reject-match-button";
 import DiscardColumnButton from "./control-inputs/discard-column-button";
 import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
-import MatcherSelection from "./control-inputs/matcher-selection";
+import MatcherSliders from "./control-inputs/matcher-selection";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "0px",
@@ -40,14 +40,13 @@ interface ToolbarProps {
   discardColumn: () => void;
   undo: () => void;
   redo: () => void;
-  onMatcherSelect: (matcher: Matcher) => void;
+  onMatchersSelect: (matchers: Matcher[]) => void;
 
   state: {
     sourceColumn: string;
     candidateType: string;
     similarSources: number;
     candidateThreshold: number;
-    selectedMatcher: Matcher;
   };
 }
 
@@ -129,14 +128,12 @@ const ControlPanel: React.FC<ToolbarProps> = ({
                 <UndoButton onClick={props.undo} />
                 <RedoButton onClick={props.redo} />
               </Box>
-              {/* <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
-              <MatcherSelection 
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                <MatcherSliders 
                   matchers={props.matchers} 
-                  selectedMatcher={props.state.selectedMatcher} 
-                  onSelect={props.onMatcherSelect} 
+                  onSlide={props.onMatchersSelect}
                 />
-                
-              </Box> */}
+              </Box>
             </Box>
           </Box>
         </StyledToolbar>
