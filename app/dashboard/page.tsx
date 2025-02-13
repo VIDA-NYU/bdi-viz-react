@@ -44,6 +44,7 @@ export default function Dashboard() {
         valueMatches,
         handleFileUpload,
         setSelectedCandidate,
+        setMatchers,
     } = useDashboardCandidates();
 
     const {
@@ -51,12 +52,10 @@ export default function Dashboard() {
         candidateType,
         similarSources,
         candidateThreshold,
-        selectedMatcher,
         updateSourceColumn,
         updateCandidateType,
         updateSimilarSources,
         updateCandidateThreshold,
-        updateSelectedMatcher,
     } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
@@ -108,7 +107,6 @@ export default function Dashboard() {
             candidateType,
             similarSources,
             candidateThreshold,
-            selectedMatcher,
         }
     });
 
@@ -184,15 +182,14 @@ export default function Dashboard() {
                             setIsLoadingGlobal(!isLoadingGlobal);
                             console.log('redo')
                         }}
-                        onMatcherSelect={(matcher) => {
-                            updateSelectedMatcher(matcher);
-                            console.log("Selected Matcher: ", matcher);
+                        onMatchersSelect={(matchers: Matcher[]) => {
+                            setMatchers(matchers);
                         }}
-                        state={{ sourceColumn, candidateType, similarSources, candidateThreshold, selectedMatcher }}
+                        state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
                     />
 
                     <DualScatter
-                        candidates={filteredCandidates}
+                        candidates={weightedAggregatedCandidates}
                         width={300}
                         height={300}
                     />
@@ -212,7 +209,6 @@ export default function Dashboard() {
                         sourceCluster={filteredSourceCluster}
                         selectedCandidate={selectedCandidate}
                         setSelectedCandidate={setSelectedCandidateCallback}
-                        selectedMatcher={selectedMatcher}
                         sourceUniqueValues={sourceUniqueValues}
                         targetUniqueValues={targetUniqueValues}
                     />

@@ -5,12 +5,10 @@ type DashboardFilterState = {
     candidateType: string;
     similarSources: number;
     candidateThreshold: number;
-    selectedMatcher: Matcher;
     updateSourceColumn: (column: string) => void;
     updateCandidateType: (type: string) => void;
     updateSimilarSources: (num: number) => void;
     updateCandidateThreshold: (threshold: number) => void;
-    updateSelectedMatcher: (matcher: Matcher) => void;
 }
 
 export type { DashboardFilterState };
@@ -33,14 +31,9 @@ export const {
         const [candidateType, setCandidateType] = useState<string>('all');
         const [similarSources, setSimilarSources] = useState<number>(2);
         const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
-        const [selectedMatcher, setSelectedMatcher] = useState<Matcher>(matchers[0]);
 
         useEffect(() => {
             setSourceColumn(candidates[0]?.sourceColumn ?? '');
-        }, [sourceClusters]);
-
-        useEffect(() => {
-            setSelectedMatcher(matchers[0]);
         }, [sourceClusters]);
 
         const updateSourceColumn = useCallback((column: string) => {
@@ -59,21 +52,15 @@ export const {
             setCandidateThreshold(threshold);
         }, []);
 
-        const updateSelectedMatcher = useCallback((matcher: Matcher) => {
-            setSelectedMatcher(matcher);
-        }, []);
-
         return {
             sourceColumn,
             candidateType,
             similarSources,
             candidateThreshold,
-            selectedMatcher,
             updateSourceColumn,
             updateCandidateType,
             updateSimilarSources,
             updateCandidateThreshold,
-            updateSelectedMatcher,
         };
     }
 };

@@ -1,49 +1,81 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Box, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
+import { Box, FormControl, Stack, Slider, Typography } from '@mui/material';
+
+interface Matcher {
+    name: string;
+    weight: number;
+}
 
 interface MatcherSelectionProps {
     matchers: Matcher[];
-    selectedMatcher: Matcher;
-    onSelect: (matcher: Matcher) => void;
+    onSlide: (matchers: Matcher[]) => void;
 }
 
-const MatcherSelection: React.FC<MatcherSelectionProps> = ({ matchers, selectedMatcher, onSelect }) => {
-    const [matcher, setMatcher] = useState<string>("");
-
-    const handleSelect = (matcher: string) => {
-        setMatcher(matcher);
-        onSelect(matchers.find((m) => m.name === matcher) as Matcher);
-    };
+const MatcherSliders: React.FC<MatcherSelectionProps> = ({ matchers, onSlide }) => {
+    const [sliderValues, setSliderValues] = useState<number[]>(matchers.map(matcher => matcher.weight));
 
     useEffect(() => {
-        if (selectedMatcher) {
-            setMatcher(selectedMatcher.name);
-        }
-    }, [selectedMatcher]);
+        setSliderValues(matchers.map(matcher => matcher.weight));
+    }, [matchers]);
+
+    const handleSliderChange = (index: number, value: number | number[]) => {
+        const newValues = [...sliderValues];
+        newValues[index] = value as number;
+        setSliderValues(newValues);
+        const newMatchers = matchers.map((matcher, i) => {
+            return {
+                name: matcher.name,
+                weight: newValues[i]
+            };
+        });
+        onSlide(newMatchers);
+    };
 
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <FormControl fullWidth>
-                <InputLabel id="matcher-select-label">Matcher</InputLabel>
-                <Select
-                    labelId="matcher-select-label"
-                    id="matcher-select"
-                    value={matcher}
-                    label="Matcher"
-                    onChange={(e) => handleSelect(e.target.value as string)}
-                    sx={{ color: 'black' }}
-                >
-                    {matchers.map((matcher) => (
-                        <MenuItem key={matcher.name} value={matcher.name}>
+        <FormControl fullWidth>
+            <Typography 
+                id="matcher-sliders-label"
+                sx={{ color: "#000", mb: 2 }}
+                gutterBottom
+            >
+                Matcher Weights
+            </Typography>
+            
+                {matchers.map((matcher, index) => (
+                    <Box key={index}>
+                        <Typography
+                            sx={{ color: "#000", fontSize: 12, flexGrow: 1 }}
+                        >
                             {matcher.name}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-        </Box>
+                        </Typography>
+                        <Stack sx={{ width: '100%' }} spacing={2} direction="row">
+                            <Slider
+                                orientation="horizontal"
+                                size="small"
+                                aria-label={matcher.name}
+                                defaultValue={matcher.weight}
+                                // marks={marks}
+                                valueLabelDisplay="auto"
+                                step={0.01}
+                                min={0}
+                                max={1}
+                                value={sliderValues[index]}
+                                onChange={(event, value) => handleSliderChange(index, value)}
+                                sx={{ flexGrow: 2 }}
+                            />
+                            <Typography
+                                sx={{ color: "#000", fontSize: 12, ml: 2 }}
+                            >
+                                {sliderValues[index]?.toFixed(2) ?? 0}
+                            </Typography>
+                        </Stack>
+                    </Box>
+                ))}
+            
+        </FormControl>
     );
 }
 
-export default MatcherSelection;
+export default MatcherSliders;
