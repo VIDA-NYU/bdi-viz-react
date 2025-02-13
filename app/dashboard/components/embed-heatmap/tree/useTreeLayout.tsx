@@ -5,7 +5,7 @@ import { TreeNode, Scale, ClusteringOptions } from './types';
 interface UseTreeLayoutProps {
   columns: string[];
   scale: Scale;
-  getWidth: (col: string) => number;
+  getWidth: (candidate: Candidate) => number;
   orientation: 'vertical' | 'horizontal';
   options: ClusteringOptions;
   width: number;
@@ -65,7 +65,7 @@ export const useTreeLayout = ({
             level: 2,
             originalColumn: col,
             // Use scale for actual column positions
-            x: orientation === 'horizontal' ? (scale(col) ?? 0) + getWidth(col)/2 : 0,
+            x: orientation === 'horizontal' ? (scale(col) ?? 0) + getWidth({targetColumn: col} as Candidate)/2 : 0,
             y: orientation === 'vertical' ? (scale(col) ?? 0) : 0,
             isExpanded: expandedNodes.has(col)
             })),

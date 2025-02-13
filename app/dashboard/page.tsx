@@ -183,7 +183,6 @@ export default function Dashboard() {
                             console.log('redo')
                         }}
                         onMatchersSelect={(matchers: Matcher[]) => {
-                            console.log('matchers', matchers);
                             setMatchers(matchers);
                         }}
                         state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}

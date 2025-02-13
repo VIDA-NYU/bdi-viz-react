@@ -14,7 +14,6 @@ interface MatcherSelectionProps {
 }
 
 const MatcherSliders: React.FC<MatcherSelectionProps> = ({ matchers, onSlide }) => {
-    console.log(matchers);
     const [sliderValues, setSliderValues] = useState<number[]>(matchers.map(matcher => matcher.weight));
 
     useEffect(() => {
@@ -25,7 +24,6 @@ const MatcherSliders: React.FC<MatcherSelectionProps> = ({ matchers, onSlide }) 
         const newValues = [...sliderValues];
         newValues[index] = value as number;
         setSliderValues(newValues);
-        console.log(`Matcher: ${matchers[index].name}, New Weight: ${value}`);
         const newMatchers = matchers.map((matcher, i) => {
             return {
                 name: matcher.name,
