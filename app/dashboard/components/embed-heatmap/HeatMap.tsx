@@ -16,6 +16,7 @@ import { ClusteringOptions, TreeConfig } from "./tree/types";
 import { TreeNodeComponent } from "./tree/TreeNode";
 import { useLabelManagement } from "./tree/useLabelManagement";
 import { TreeAxis } from "./tree/TreeAxis";
+import { useResizedSVGRef } from "../hooks/resize-hooks";
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
@@ -24,6 +25,7 @@ interface HeatMapProps {
   setSelectedCandidate?: (candidate: Candidate | undefined) => void;
   sourceUniqueValues: SourceUniqueValues[];
   targetUniqueValues: TargetUniqueValues[];
+  sx?: Record<string, any>;
 }
 
 const defaultClusteringOptions: ClusteringOptions = {
@@ -34,7 +36,7 @@ const defaultClusteringOptions: ClusteringOptions = {
   labelPlacementStrategy: 'fixed'
 };
 
-const MARGIN = { top: 30, right: 70, bottom: 200, left: 200 };
+const MARGIN = { top: 30, right: 70, bottom: 0, left: 200 };
 
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
@@ -43,9 +45,10 @@ const HeatMap: React.FC<HeatMapProps> = ({
   setSelectedCandidate,
   sourceUniqueValues,
   targetUniqueValues,
+  sx
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
+  // const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
   const [config, setConfig] = useState<HeatMapConfig>({
     cellType: "rect",
     colorScheme: "blues",
@@ -73,7 +76,14 @@ const HeatMap: React.FC<HeatMapProps> = ({
     return data;
   }, [data]);
     
+  const {
+    svgHeight, svgWidth, ref: svgRef
+  } = useResizedSVGRef();
 
+  const dimensions = {
+    width: svgWidth,
+    height: svgHeight
+  };
   const { x, y, color, getWidth, getHeight, dataRange } = useHeatmapScales({
     data: candidates,
     sourceCluster: sourceCluster,
@@ -84,50 +94,42 @@ const HeatMap: React.FC<HeatMapProps> = ({
     selectedCandidate: selectedCandidate,
   });
   const clusteringOptions = defaultClusteringOptions;
-  const {
-    treeData: targetTreeData,
-    expandedNodes: targetExpandedNodes,
-    toggleNode: toggleTargetNode,
-    getVisibleColumns: getVisibleTargetColumns
-  } = useTreeLayout({
-    width: dimensions.width,
-    height: dimensions.height,
-    margin: MARGIN,
-    columns: x.domain(),
-    scale: x,
-    getWidth: getWidth,
-    options: clusteringOptions,
-    orientation: 'horizontal'
-  });
+  // const {
+  //   treeData: targetTreeData,
+  //   expandedNodes: targetExpandedNodes,
+  //   toggleNode: toggleTargetNode,
+  //   getVisibleColumns: getVisibleTargetColumns
+  // } = useTreeLayout({
+  //   width: dimensions.width,
+  //   height: dimensions.height,
+  //   margin: MARGIN,
+  //   columns: x.domain(),
+  //   scale: x,
+  //   getWidth: getWidth,
+  //   options: clusteringOptions,
+  //   orientation: 'horizontal'
+  // });
   
   
-  const targetLabelPlacements = useLabelManagement({
-    nodes: targetTreeData,
-    scale: x,
-    orientation: 'horizontal',
-    viewportWidth: dimensions.width - MARGIN.left - MARGIN.right,
-    options: clusteringOptions,
-    expandedNodes: targetExpandedNodes
-  });
-
-
   const { tooltip, showTooltip, hideTooltip } = useTooltip();
 
   // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (containerRef.current) {
-        setDimensions({
-          width: containerRef.current.clientWidth - 16,
-          height: 400,
-        });
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (containerRef.current) {
+  //       setDimensions({
+  //         width: containerRef.current.clientWidth - 16,
+  //         height: 400,
+  //       });
+  //     }
+  //   };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+
+  
 
   const handleCellClick = useCallback(
     (cellData: Candidate) => {
@@ -149,10 +151,11 @@ const HeatMap: React.FC<HeatMapProps> = ({
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
   // console.log("TFS", targetTreeData,  targetLabelPlacements);
   return (
-    <Box ref={containerRef} sx={{ paddingLeft: 0 }}>
+    <Box sx={{ ...sx, paddingLeft: 0, height: "100%", width: "100%" }}>
         <svg
-          width={dimensions.width}
-          height={dimensions.height}
+          ref={svgRef}
+          width={"100%"}
+          height={"100%"}
           style={{ overflow: "visible" }}
         >
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
@@ -232,57 +235,34 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 }
               })}
 
-            {/* Axes */}
-            <g transform={`translate(0,${y.range()[1]})`}>
-              <line x1={0} x2={x.range()[1]} stroke="black" />
-              {x.domain().map((value) => {
-                const xPos = x(value)!;
-                const width = getWidth({ targetColumn: value } as Candidate);
-                return (
-                  <g key={value} transform={`translate(${xPos + width / 2},0)`}>
-                    {/* <text
-                      transform="rotate(45)"
-                      dy=".35em"
-                      textAnchor="start"
-                      style={{
-                        fontSize: selectedCandidate?.sourceColumn === value ? "1em" : "0.8em",
-                        opacity:
-                          selectedCandidate?.targetColumn === value ? 1 : 0.7,
-                      }}
+<g>
+                <line y1={0} y2={y.range()[1]} stroke="black" />
+                {y.domain().map((value) => {
+                  const yPos = y(value)!;
+                  const height = getHeight({ sourceColumn: value } as Candidate);
+                  return (
+                    <g
+                      key={value}
+                      transform={`translate(-5,${yPos + height / 2})`}
                     >
-                      {value}
-                    </text> */}
-                  </g>
-                );
-              })}
-            </g>
-            <g>
-              <line y1={0} y2={y.range()[1]} stroke="black" />
-              {y.domain().map((value) => {
-                const yPos = y(value)!;
-                const height = getHeight({ sourceColumn: value } as Candidate);
-                return (
-                  <g
-                    key={value}
-                    transform={`translate(-5,${yPos + height / 2})`}
-                  >
-                    <text
-                      dy=".35em"
-                      textAnchor="end"
-                      style={{
-                        fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
-                        opacity:
-                          selectedCandidate?.sourceColumn === value ? 1 : 0.7,
-                      }}
-                    >
-                      {value}
-                    </text>
-                  </g>
-                );
-              })}
-            </g>
+                      <text
+                        dy=".35em"
+                        textAnchor="end"
+                        style={{
+                          fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
+                          opacity:
+                            selectedCandidate?.sourceColumn === value ? 1 : 0.7,
+                        }}
+                      >
+                        {value}
+                      </text>
+                    </g>
+                  );
+                })}
+              </g>
+
             
-            <g transform={`translate(0,${dimensions.height - MARGIN.top - MARGIN.bottom})`}>
+            {/* <g transform={`translate(0,${dimensions.height - MARGIN.top - MARGIN.bottom})`}>
               < TreeAxis
                 treeData={targetTreeData}
                 labelPlacements={targetLabelPlacements}
@@ -291,7 +271,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 expandedNodes={targetExpandedNodes}
                 onToggleNode={toggleTargetNode}
               />
-            </g>
+            </g> */}
 
           </g>
         </svg>

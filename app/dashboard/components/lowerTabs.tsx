@@ -7,6 +7,7 @@ import HeatMap from "./embed-heatmap/HeatMap";
 
 import { Box, Tab } from "@mui/material";
 import { TabPanel, TabList, TabContext } from '@mui/lab';
+import HierarchicalAxis from "./embed-heatmap/HierarchicalAxis";
 
 interface lowerTabsProps {
     weightedAggregatedCandidates: AggregatedCandidate[];
@@ -32,9 +33,13 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
     };
 
     return (
-        <Box sx={{ width: '100%', marginTop: 0 }}>
+        <Box sx={{ width: '100%', minHeight: "500px", marginTop: 0, display: "flex", flexDirection: "column" }}>
           <TabContext value={value}>
-          <TabPanel sx={{ padding: 0 }} value={1}>
+          <TabPanel sx={{ padding: 0, flexBasis: "400px", flexGrow: 1, 
+            flexDirection: 'column',
+            display: 'flex',
+
+            }} value={1}>
                 <HeatMap
                     data={weightedAggregatedCandidates}
                     sourceCluster={sourceCluster}
@@ -42,6 +47,19 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
                     setSelectedCandidate={setSelectedCandidate}
                     sourceUniqueValues={sourceUniqueValues}
                     targetUniqueValues={targetUniqueValues}
+                    sx={{
+                      flexBasis: "200px",
+                      flexGrow: 1,
+                    }}
+                />
+                <HierarchicalAxis
+                    data={weightedAggregatedCandidates}
+                    sourceCluster={sourceCluster}
+                    selectedCandidate={selectedCandidate}
+                    sx={{
+                      flexBasis: "160px",
+                      flexGrow: 1,
+                    }}
                 />
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value={2}>
