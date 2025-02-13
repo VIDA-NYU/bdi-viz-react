@@ -39,7 +39,9 @@ const FileUploading = (prop: FileUploadingProps) => {
                     formData.append("source_csv", csv);
                     
                     setIsLoadingGlobal(true);
-                    axios.post("/api/matching", formData, {
+                    axios.post("/api/matching", {
+                        ...formData
+                    }, {
                         ...customHeader,
                         timeout: 0, // Set timeout to unlimited
                     }).then((response) => {

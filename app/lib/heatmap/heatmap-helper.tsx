@@ -14,7 +14,7 @@ const getCachedResults = (prop: getCachedResultsProps) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
 
-        axios.get("/api/results", {
+        axios.post("/api/results", {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -69,7 +69,7 @@ const getValueBins = (prop: getUniqueValuesProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.get(`/api/value-bins`, {
+        axios.post(`/api/value-bins`, {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -117,7 +117,7 @@ const getValueMatches = (prop: getValueMatchesProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.get(`/api/value-matches`, {
+        axios.post(`/api/value-matches`, {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited

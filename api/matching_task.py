@@ -468,6 +468,3 @@ class MatchingTask:
         return [
             {"name": key, "weight": item.weight} for key, item in self.matchers.items()
         ]
-
-
-MATCHING_TASK = MatchingTask(clustering_model=FT_MODEL_URL)

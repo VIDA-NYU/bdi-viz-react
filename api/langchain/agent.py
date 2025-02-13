@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
 # from langchain_together import ChatTogether
@@ -14,8 +15,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
-from ..tools.candidate_butler import (candidate_butler_tools,
-                                      read_source_cluster_details)
+from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from .memory import MemoryRetriver
 from .pydantic import ActionResponse, AgentSuggestions, CandidateExplanation
@@ -157,18 +157,22 @@ Diagnosis:
         return response
 
     def apply(
-        self, action: Dict[str, Any], previous_operation: Dict[str, Any]
+        self, session: str, action: Dict[str, Any], previous_operation: Dict[str, Any]
     ) -> Optional[ActionResponse]:
         user_operation = previous_operation["operation"]
         candidate = previous_operation["candidate"]
         # references = previous_operation["references"]
 
-        source_cluster = read_source_cluster_details(candidate["sourceColumn"])
+        candidate_butler = CandidateButler(session)
+
+        source_cluster = candidate_butler.read_source_cluster_details(
+            candidate["sourceColumn"]
+        )
 
         logger.info(f"[Agent] Applying the action: {action}")
 
         if action["action"] == "prune_candidates":
-            tools = candidate_butler_tools + [retrieve_from_rag]
+            tools = candidate_butler.get_toolset() + [retrieve_from_rag]
             prompt = f"""
 You have access to the user's previous operations and the related source column clusters. 
 Your goal is to help prune (remove) certain candidate mappings in the related source columns based on the user's decisions following the instructions below.

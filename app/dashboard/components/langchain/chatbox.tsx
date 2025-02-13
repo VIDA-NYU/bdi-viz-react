@@ -20,7 +20,7 @@ const ChatBox = (prop: ChatBoxProp) => {
         }).then(res => {
             console.log(res.data);
 
-            axios.get("/api/results").then((response) => {
+            axios.post("/api/results").then((response) => {
                 const results = response.data?.results;
                 if (results.candidates) {
                     for (const [matcher, matcher_candidates] of Object.entries(results.candidates)) {
