@@ -1,5 +1,5 @@
 // components/SchemaViz/index.tsx
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { useSchemaLayout } from './useScatterLayout';
 import { FeatureCircle } from './FeatureCircle';
 import { ClusterSelector } from './ClusterSelector';
@@ -7,6 +7,8 @@ import { line, curveBasis } from 'd3';
 import { ClusterBackground } from './ClusterBackground';
 import { getClusterColors } from './colors';
 import { Box, Container, Card, Tooltip, Typography } from '@mui/material';
+import { useLassoSelection } from './useLassoSelection';
+
 
 interface SchemaVizProps {
     candidates: Candidate[];
@@ -24,7 +26,15 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
     const { sourceNodes, targetNodes, links } = useSchemaLayout(candidates);
     const [selectedClusters, setSelectedClusters] = useState<string[]>([]);
     const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+    const [manualClusters, setManualClusters] = useState<Array<{
+        id: string,
+        nodes: string[]
+    }>>([]);
 
+    const [manuallySelectedNodes, setManuallySelectedNodes] = useState<string[]>([]);
+
+
+    
     const clusters = useMemo(() => [...new Set([
         ...sourceNodes.map(n => n.cluster),
         ...targetNodes.map(n => n.cluster)
@@ -32,6 +42,61 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
 
     const clusterColorScale = useMemo(() => 
         getClusterColors(clusters), [clusters]);
+
+    const {
+        svgRef,
+        isSelecting,
+        selectionPath,
+        selectedArea,
+        startSelection,
+        updateSelection,
+        endSelection,
+        isPointInSelection,
+        clearSelection,
+        getPathData
+    } = useLassoSelection();
+
+
+    const createClusterFromSelection = useCallback(() => {
+        if (selectedArea.length < 3) return;
+
+        const selectedNodes = sourceNodes
+            .concat(targetNodes)
+            .filter(node => {
+                const transformedPoint = {
+                    x: node.coordinates.x + width/2,
+                    y: node.coordinates.y + (
+                        targetNodes.includes(node) ? height * 3/4 : height/4
+                    )
+                };
+                return isPointInSelection(transformedPoint);
+            })
+            .map(node => node.name);
+        
+        if (selectedNodes.length > 0) {
+            setManualClusters(prev => [
+                ...prev,
+                {
+                    id: `manual-cluster-${prev.length + 1}`,
+                    nodes: selectedNodes
+                }
+            ]);
+        }
+
+        clearSelection();
+    }, [selectedArea, sourceNodes, targetNodes, width, height, isPointInSelection]);
+    const selectedNodes = sourceNodes
+            .concat(targetNodes)
+            .filter(node => {
+                const transformedPoint = {
+                    x: node.coordinates.x + width/2,
+                    y: node.coordinates.y + (
+                        targetNodes.includes(node) ? height * 3/4 : height/4
+                    )
+                };
+                return isPointInSelection(transformedPoint);
+            })
+            .map(node => node.name);
 
     const createPath = line()
         .x(d => d[0])
@@ -65,6 +130,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
             );
         });
     };
+
 
     return (
         <Container>
@@ -121,8 +187,34 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                         opacity: 0.5
                     }} />
 
-                    <svg width={width} height={height}>
+                    <svg width={width} height={height}
+                        onMouseDown={startSelection}
+                        onMouseMove={updateSelection}
+                        onMouseUp={endSelection}
+                        onMouseLeave={endSelection}
+                        ref={svgRef}
+                    >
                         {/* Source Section */}
+                        {isSelecting && selectionPath.length > 1 && (
+                            <path
+                                d={getPathData(selectionPath)}
+                                fill="rgba(0, 0, 255, 0.1)"
+                                stroke="blue"
+                                strokeWidth={1}
+                                strokeDasharray="5,5"
+                            />
+                        )}
+                        
+                        {/* Render final selection area */}
+                        {selectedArea.length > 2 && (
+                            <path
+                                d={getPathData(selectedArea)}
+                                fill="rgba(0, 0, 255, 0.1)"
+                                stroke="blue"
+                                strokeWidth={1}
+                            />
+                        )}
+
                         <g transform={`translate(${width/2}, ${height/4})`}>
                             {selectedClusters.map(cluster => (
                                 <ClusterBackground
@@ -151,7 +243,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                         </g>
 
                         {/* Target Section */}
-                        <g transform={`translate(${width/2}, ${height*3/4})`}>
+                        <g id={"target-background"} transform={`translate(${width/2}, ${height*3/4})`}>
                             {selectedClusters.map(cluster => (
                                 <ClusterBackground
                                     key={cluster}
@@ -160,6 +252,9 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                                     color={clusterColorScale(cluster)}
                                 />
                             ))}
+                        </g>
+                        <g transform={`translate(${width/2}, ${height*3/4})`}>
+                            
                             {targetNodes.slice(0, 8).map((node, i) => (
                                 <Tooltip key={i} title={node.name}>
                                     <g
