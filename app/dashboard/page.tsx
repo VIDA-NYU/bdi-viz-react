@@ -224,13 +224,10 @@ export default function Dashboard() {
                         selectedExplanations={selectedExplanations}
                         matchingValues={matchingValues}
                         relativeKnowledge={relativeKnowledge}
-                        matches={matches as SchemaMatch[]}
                         isLoading={isExplaining}
                         setSelectExplanations={setSelectedExplanations}
                         sourceColumn={selectedCandidate?.sourceColumn}
                         targetColumn={selectedCandidate?.targetColumn}
-                        allSourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                        allTargetColumns={Array.from(new Set(candidates.map(c => c.targetColumn)))}
                     />
                     {/* <MediumVizContainer>
             <Typography variant="h6">Value Distribution</Typography>

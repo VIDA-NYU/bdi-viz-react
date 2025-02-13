@@ -1,16 +1,14 @@
-import { useState } from 'react';
 import { 
     Box, 
     Card, 
     List, 
     Typography,
-    Button,
     Stack,
     Chip,
     CircularProgress
 } from '@mui/material';
-import ExplanationItem, { getIcon } from './ExplanationItem';
-import { Explanation, SchemaMatch } from './types';
+import ExplanationItem from './ExplanationItem';
+import { Explanation } from './types';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
@@ -18,7 +16,6 @@ interface SchemaExplanationProps {
     selectedExplanations: Explanation[];
     setSelectExplanations: (explanations: Explanation[]) => void;
     valueMatches: string[][];
-    matches: SchemaMatch[];
     sourceColumn?: string;
     targetColumn?: string;
     isLoading: boolean;
@@ -30,7 +27,6 @@ const SchemaExplanation = ({
     selectedExplanations,
     setSelectExplanations,
     valueMatches,
-    matches,
     sourceColumn,
     targetColumn,
     isLoading
@@ -126,42 +122,6 @@ const SchemaExplanation = ({
                             </List>
                         </Box>
                     )}
-
-                    {/* Accepted Matches History */}
-                    <Box>
-                        <Typography variant="h6" gutterBottom>
-                            Accepted Matches
-                        </Typography>
-                        <List>
-                            {matches.map((match, index) => (
-                                <Card key={index} variant="outlined" sx={{ mb: 1, p: 2 }}>
-                                    <Stack spacing={1}>
-                                        <Stack direction="row" spacing={1} alignItems="center">
-                                            <Chip label={match.sourceColumn} size="small" />
-                                            <Typography>→</Typography>
-                                            <Chip label={match.targetColumn} size="small" />
-                                        </Stack>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Based on:
-                                        </Typography>
-                                        {match.selectedExplanations.map(explanation => (
-                                            <Stack 
-                                                key={explanation.id} 
-                                                direction="row" 
-                                                spacing={1} 
-                                                alignItems="center"
-                                            >
-                                                {getIcon(explanation.type)}
-                                                <Typography variant="body2">
-                                                    {explanation.content}
-                                                </Typography>
-                                            </Stack>
-                                        ))}
-                                    </Stack>
-                                </Card>
-                            ))}
-                        </List>
-                    </Box>
                 </>
             )}
         </Stack>
