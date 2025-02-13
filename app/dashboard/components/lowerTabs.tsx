@@ -67,8 +67,8 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
           </TabPanel>
             <Box sx={{ borderTop: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Layered Heat Map" value={1} />
-                <Tab label="Stacked Heat Map" value={2} />
+                <Tab label="Clustered Heat Map" value={1} />
+                {/* <Tab label="" value={2} /> */}
               </TabList>
             </Box>
           </TabContext>

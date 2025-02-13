@@ -29,7 +29,7 @@ interface UpsetPlotProps {
 const upperChartHeight = 150;
 const lowerSetChartHeight = 220;
 const upperMarginLeft = 30;
-const lowerMarginBottom = 120;
+const lowerMarginBottom = 0;
 const lowerBarChartWidth = 200;
 
 const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandidate }) => {
@@ -272,7 +272,7 @@ function lowerSetChart({ dataCrossProduct, dataPerMatcher }: LowerSetChartProps,
             lineChart
         ],
         x: {
-            axis: 'bottom',
+            axis: null,
             padding: 0,
             round: false,
             insetRight: 1,

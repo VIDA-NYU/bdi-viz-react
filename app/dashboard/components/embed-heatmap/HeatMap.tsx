@@ -36,7 +36,7 @@ const defaultClusteringOptions: ClusteringOptions = {
   labelPlacementStrategy: 'fixed'
 };
 
-const MARGIN = { top: 30, right: 70, bottom: 0, left: 200 };
+const MARGIN = { top: 0, right: 78, bottom: 0, left: 200 };
 
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
