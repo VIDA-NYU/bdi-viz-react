@@ -1,8 +1,9 @@
 // utils/geometry.ts
+import { line, curveBasisClosed } from 'd3';
+
 export function computeConvexHull(points: Array<{x: number, y: number}>) {
     if (points.length < 3) return points;
 
-    // Graham scan algorithm
     const pivot = points.reduce((min, p) => 
         p.y < min.y || (p.y === min.y && p.x < min.x) ? p : min
     );
@@ -38,7 +39,6 @@ function isLeftTurn(p1: {x: number, y: number},
             (p2.y - p1.y) * (p3.x - p1.x)) > 0;
 }
 
-// Add padding to convex hull
 export function padHull(hull: Array<{x: number, y: number}>, padding: number) {
     if (hull.length < 3) return hull;
 
@@ -49,8 +49,20 @@ export function padHull(hull: Array<{x: number, y: number}>, padding: number) {
     center.x /= hull.length;
     center.y /= hull.length;
 
-    return hull.map(p => ({
+    const paddedHull = hull.map(p => ({
         x: center.x + (p.x - center.x) * (1 + padding),
         y: center.y + (p.y - center.y) * (1 + padding)
     }));
+
+    return paddedHull;
+}
+
+export function getCirclePoints(center: {x: number, y: number}, radius: number, numPoints: number = 16) {
+    return Array.from({ length: numPoints }).map((_, i) => {
+        const angle = (i / numPoints) * 2 * Math.PI;
+        return {
+            x: center.x + Math.cos(angle) * radius,
+            y: center.y + Math.sin(angle) * radius
+        };
+    });
 }

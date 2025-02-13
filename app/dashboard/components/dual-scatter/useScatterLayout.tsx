@@ -29,6 +29,7 @@ export const useSchemaLayout = (candidates: Candidate[]) => {
         });
 
         const getCluster = (name: string) => {
+            if(name.length <= 1) return 'default';
             const prefix = name.split('_')[0];
             return prefix || 'default';
         };
