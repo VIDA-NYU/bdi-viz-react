@@ -185,5 +185,47 @@ const undoUserOperations = ({
     }
 }
 
+interface getExactMatchesProps {
+    callback: (exactMatches: Candidate[]) => void;
+}
 
-export { getCachedResults, getValueBins, getValueMatches, applyUserOperations, undoUserOperations };
+const getExactMatches = ({callback}: getExactMatchesProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        try {
+            axios.post("/api/exact-matches", {
+                httpAgent,
+                httpsAgent,
+                timeout: 10000000, // Set timeout to unlimited
+            }).then((response) => {
+                const results = response.data?.results;
+                if (results && Array.isArray(results)) {
+                    const exactMatches = results.map((result: object) => {
+                        try {
+                            return result as Candidate;
+                        } catch (error) {
+                            console.error("Error parsing result to Candidate:", error);
+                            return null;
+                        }
+                    }).filter((candidate: Candidate | null) => candidate !== null);
+
+                    console.log("getExactMatches finished!");
+                    callback(exactMatches);
+                    resolve();
+                } else {
+                    console.error("Invalid results format");
+                    reject(new Error("Invalid results format"));
+                }
+            });
+            resolve();
+        } catch (error) {
+            console.error("Error getting exact matches:", error);
+            reject(error);
+        }
+    });
+}
+
+
+
+export { getCachedResults, getValueBins, getValueMatches, applyUserOperations, undoUserOperations, getExactMatches };

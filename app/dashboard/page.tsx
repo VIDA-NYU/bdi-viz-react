@@ -79,6 +79,7 @@ export default function Dashboard() {
         undo,
         explain,
         apply,
+        filterExactMatches,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -88,7 +89,8 @@ export default function Dashboard() {
         onCandidateSelect: setSelectedCandidate,
         onExplanation: generateExplanations,
         onSuggestions: handleSuggestions,
-        onApply: handleApply
+        onApply: handleApply,
+        onExactMatches: handleExactMatches
     });
 
     const {
@@ -128,6 +130,11 @@ export default function Dashboard() {
                 }
             });
         }
+    }
+
+    function handleExactMatches(exactMatches: Candidate[]) {
+        console.log("Exact Matches: ", exactMatches);
+        getCachedResults({ callback: handleFileUpload });
     }
 
     function setSelectedCandidateCallback(candidate: Candidate | undefined) {
@@ -178,10 +185,7 @@ export default function Dashboard() {
                         rejectMatch={rejectMatch}
                         discardColumn={discardColumn}
                         undo={undo}
-                        redo={() => {
-                            setIsLoadingGlobal(!isLoadingGlobal);
-                            console.log('redo')
-                        }}
+                        redo={filterExactMatches}
                         onMatchersSelect={(matchers: Matcher[]) => {
                             setMatchers(matchers);
                         }}

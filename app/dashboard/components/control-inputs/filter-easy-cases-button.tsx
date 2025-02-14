@@ -2,22 +2,22 @@
 
 import { Box, Button } from '@mui/material';
 
-interface AcceptMatchButtonProps {
+interface FilterEasyCasesButtonProps {
     onClick: () => void;
 }
 
-const AcceptMatchButton: React.FC<AcceptMatchButtonProps> = ({ onClick }) => {
+const FilterEasyCasesButton: React.FC<FilterEasyCasesButtonProps> = ({ onClick }) => {
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <Button
                 variant="contained"
-                color="success"
+                color="secondary"
                 onClick={onClick}
             >
-                Accept Match
+                Filter Easy Cases!
             </Button>
         </Box>
     );
 }
 
-export default AcceptMatchButton;
+export default FilterEasyCasesButton;

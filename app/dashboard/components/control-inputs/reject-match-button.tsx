@@ -11,6 +11,7 @@ const RejectMatchButton: React.FC<RejectMatchButtonProps> = ({ onClick }) => {
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <Button
                 variant="contained"
+                color="error"
                 onClick={onClick}
             >
                 Reject Match

@@ -15,6 +15,7 @@ from torch import Tensor
 
 from .clusterer.embedding_clusterer import EmbeddingClusterer
 from .matcher.bdikit import BDIKitMatcher
+from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
 from .utils import download_model_pt
@@ -119,6 +120,28 @@ class MatchingTask:
                     beta=0.1,
                 )
 
+            return candidates
+
+    def update_exact_matches(self) -> List[Dict[str, Any]]:
+        with self.lock:
+            if self.source_df is None or self.target_df is None:
+                raise ValueError("Source and Target dataframes must be provided.")
+
+            matcher = RapidFuzzMatcher("exact_matcher")
+            candidates = matcher.top_matches(
+                source=self.source_df, target=self.target_df
+            )  # Get exact matches
+
+            source_columns = [candidate["sourceColumn"] for candidate in candidates]
+
+            cached_candidates = self.get_cached_candidates()
+            cached_candidates = candidates + [
+                candidate
+                for candidate in cached_candidates
+                if candidate["sourceColumn"] not in source_columns
+            ]
+
+            self.set_cached_candidates(cached_candidates)
             return candidates
 
     def _compute_hashes(self) -> Tuple[int, int]:

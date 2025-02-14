@@ -16,4 +16,5 @@ langchain-openai
 langgraph
 python-dotenv
 pydantic
+rapidfuzz
 git+https://github.com/VIDA-NYU/bdi-kit@devel

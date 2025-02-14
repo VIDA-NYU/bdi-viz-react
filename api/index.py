@@ -43,6 +43,23 @@ def matcher():
     return {"message": "success"}
 
 
+@app.route("/api/exact-matches", methods=["POST"])
+def get_exact_matches():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
+        if os.path.exists(".source.csv"):
+            source = pd.read_csv(".source.csv")
+            matching_task.update_dataframe(
+                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+            )
+        _ = matching_task.get_candidates()
+    results = matching_task.update_exact_matches()
+
+    return {"message": "success", "results": results}
+
+
 @app.route("/api/results", methods=["POST"])
 def get_results():
     session = extract_session_name(request)

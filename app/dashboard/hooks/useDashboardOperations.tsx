@@ -1,7 +1,7 @@
 import { useState, useCallback, useContext } from 'react';
 import type { Candidate, UserOperation } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { applyUserOperations, undoUserOperations } from "@/app/lib/heatmap/heatmap-helper";
+import { applyUserOperations, undoUserOperations, getExactMatches } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { Explanation } from '../types';
@@ -15,6 +15,7 @@ type DashboardOperationProps = {
     onExplanation?: (explanation: CandidateExplanation | undefined) => void;
     onSuggestions?: (suggestions: AgentSuggestions | undefined) => void;
     onApply?: (actionResponses: ActionResponse[] | undefined) => void;
+    onExactMatches?: (exactMatches: Candidate[]) => void;
 }
 
 type DashboardOperationState = {
@@ -26,6 +27,7 @@ type DashboardOperationState = {
     undo: () => void;
     explain: (candidate?: Candidate) => void;
     apply: (reaction: UserReaction) => void;
+    filterExactMatches: () => void;
 }
 
 export type { DashboardOperationState };
@@ -42,6 +44,7 @@ export const {
         onExplanation,
         onSuggestions,
         onApply,
+        onExactMatches,
     }: DashboardOperationProps): DashboardOperationState => {
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
@@ -215,6 +218,23 @@ export const {
             setIsLoadingGlobal(false);
         }, [onApply, isLoadingGlobal, setIsLoadingGlobal]);
 
+        const filterExactMatches = useCallback(async () => {
+            if (isLoadingGlobal) return;
+
+            setIsLoadingGlobal(true);
+
+            if (onExactMatches) {
+                const exactMatches = await getExactMatches({
+                    callback: onExactMatches
+                });
+
+                console.log("Exact Matches: ", exactMatches);
+            }
+
+            setIsLoadingGlobal(false);
+        }, [onCandidateUpdate, isLoadingGlobal, setIsLoadingGlobal]);
+
+
         return {
             userOperations,
             acceptMatch,
@@ -223,6 +243,7 @@ export const {
             undo,
             explain,
             apply,
+            filterExactMatches,
             isExplaining,
         };
     }
