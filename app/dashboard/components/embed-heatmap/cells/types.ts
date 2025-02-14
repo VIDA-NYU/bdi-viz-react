@@ -21,6 +21,7 @@ interface CellProps {
     onHover?: (event: React.MouseEvent, data: any) => void;
     onLeave?: () => void;
     onClick?: (data: CellData) => void;
+    isHighlighted?: boolean;
 }
 
 export type {

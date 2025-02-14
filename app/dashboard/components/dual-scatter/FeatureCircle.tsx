@@ -9,40 +9,58 @@ interface FeatureCircleProps {
         reach: number;
         quality: number;
     };
+    degree: number;
     size: number;
     selected?: boolean;
+    maxDegree?: number;
 }
 
 export const FeatureCircle: React.FC<FeatureCircleProps> = ({
-    features,
+    degree,
     size,
-    selected
+    selected,
+    maxDegree = 10  // Default max degree for scaling
 }) => {
     const radius = size / 2;
+    const dotRadius = size * 0.08;  // Size of each dot
+    const normalizedDegree = Math.min(Math.ceil((degree / maxDegree) * 8), 8);  // Max 8 dots
     
-    // Create arcs for each feature
-    const createArc = (startAngle: number, value: number) => {
-        return arc()({
-            innerRadius: radius * 0.6,
-            outerRadius: radius * 0.8,
-            startAngle,
-            endAngle: startAngle + (Math.PI / 2) * value
-        }) || undefined;
+    // Generate positions for dots around the circle
+    const getDotPositions = () => {
+        const positions = [];
+        for (let i = 0; i < normalizedDegree; i++) {
+            const angle = (i / 8) * 2 * Math.PI - Math.PI / 2; // Start from top
+            positions.push({
+                x: Math.cos(angle) * (radius * 0.7),  // 0.7 to place dots inside the circle
+                y: Math.sin(angle) * (radius * 0.7)
+            });
+        }
+        return positions;
     };
 
     return (
         <g>
+            {/* Main circle */}
             <circle
                 r={radius}
                 fill="white"
                 stroke={selected ? '#1976d2' : '#ccc'}
                 strokeWidth={selected ? 2 : 1}
             />
-            <path d={createArc(0, features.speed)} fill="#ff7043" />
-            <path d={createArc(Math.PI/2, features.volume)} fill="#66bb6a" />
-            <path d={createArc(Math.PI, features.reach)} fill="#42a5f5" />
-            <path d={createArc(Math.PI*3/2, features.quality)} fill="#ab47bc" />
+            
+            {/* Degree dots */}
+            {getDotPositions().map((pos, i) => (
+                <circle
+                    key={i}
+                    cx={pos.x}
+                    cy={pos.y}
+                    r={dotRadius}
+                    fill={selected ? '#1976d2' : '#666'}
+                    opacity={0.8}
+                >
+                    <title>Degree: {degree}</title>
+                </circle>
+            ))}
         </g>
     );
 };
-

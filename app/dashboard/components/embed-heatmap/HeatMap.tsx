@@ -25,6 +25,8 @@ interface HeatMapProps {
   setSelectedCandidate?: (candidate: Candidate | undefined) => void;
   sourceUniqueValues: SourceUniqueValues[];
   targetUniqueValues: TargetUniqueValues[];
+  highlightSourceColumns: Array<string>;
+  highlightTargetColumns: Array<string>;
   sx?: Record<string, any>;
 }
 
@@ -45,6 +47,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
   setSelectedCandidate,
   sourceUniqueValues,
   targetUniqueValues,
+  highlightSourceColumns,
+  highlightTargetColumns,
   sx
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -230,6 +234,10 @@ const HeatMap: React.FC<HeatMapProps> = ({
                       onClick={() => {
                         handleCellClick(d);
                       }}
+                      isHighlighted={
+                        highlightSourceColumns.includes(d.sourceColumn) ||
+                        highlightTargetColumns.includes(d.targetColumn)
+                      }
                     />
                   );
                 }

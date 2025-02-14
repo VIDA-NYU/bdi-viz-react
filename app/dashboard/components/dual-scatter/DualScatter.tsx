@@ -1,6 +1,6 @@
 // components/SchemaViz/index.tsx
-import React, { useMemo, useState, useCallback } from 'react';
-import { useSchemaLayout } from './useScatterLayout';
+import React, { useMemo, useState, useCallback, useEffect } from 'react';
+import { useSchemaLayout, useScoreThreshold } from './useScatterLayout';
 import { FeatureCircle } from './FeatureCircle';
 import { ClusterSelector } from './ClusterSelector';
 import { line, curveBasis } from 'd3';
@@ -12,6 +12,8 @@ import { useLassoSelection } from './useLassoSelection';
 
 interface SchemaVizProps {
     candidates: Candidate[];
+    updateHighlightSourceColumns: (sourceColumns: Array<string>) => void;
+    updateHighlightTargetColumns: (targetColumns: Array<string>) => void;
     width?: number;
     height?: number;
 }
@@ -20,10 +22,17 @@ interface SchemaVizProps {
 
 export const DualScatter: React.FC<SchemaVizProps> = ({
     candidates,
+    updateHighlightSourceColumns,
+    updateHighlightTargetColumns,
     width = 1200,
     height = 800
 }) => {
-    const { sourceNodes, targetNodes, links } = useSchemaLayout(candidates);
+    const { threshold, handleThresholdChange } = useScoreThreshold();
+
+    const { sourceNodes, targetNodes, links, scoreRange } = useSchemaLayout(candidates, {
+        threshold,
+        normalizeScores: false
+    });
     const [selectedClusters, setSelectedClusters] = useState<string[]>([]);
     const [hoveredNode, setHoveredNode] = useState<string | null>(null);
     const [manualClusters, setManualClusters] = useState<Array<{
@@ -33,7 +42,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
 
     const [manuallySelectedNodes, setManuallySelectedNodes] = useState<string[]>([]);
 
-
+    console.log("candidates", candidates);
     
     const clusters = useMemo(() => [...new Set([
         ...sourceNodes.map(n => n.cluster),
@@ -56,6 +65,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
         getPathData
     } = useLassoSelection();
 
+    
 
     const createClusterFromSelection = useCallback(() => {
         if (selectedArea.length < 3) return;
@@ -98,39 +108,80 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
             })
             .map(node => node.name);
 
+    useEffect(() => {
+        updateHighlightTargetColumns(
+            selectedNodes
+        )
+            }, [selectedNodes])
+
     const createPath = line()
         .x(d => d[0])
         .y(d => d[1])
         .curve(curveBasis);
 
-    const renderLinks = () => {
-        return links.map((link, i) => {
-            const source = sourceNodes.find(n => n.name === link.sourceColumn);
-            const target = targetNodes.find(n => n.name === link.targetColumn);
-            
-            if (!source || !target) return null;
-            const actualSourceX = source.coordinates.x + width/4 + 70;
-            const actualSourceY = source.coordinates.y + height/4;
-            const actualTargetX = target.coordinates.x + width/4 + 70;
-            const actualTargetY = target.coordinates.y + height*3/4;
+    // components/SchemaViz/index.tsx
+const renderLinks = () => {
+    // Sort links by score to render stronger links on top
+    const sortedLinks = [...links].sort((a, b) => a.normalizedScore - b.normalizedScore);
+    
+    // Create curved paths with better control points
+    const createCurvedPath = (source: {x: number, y: number}, target: {x: number, y: number}) => {
+        const midY = (source.y + target.y) / 2;
+        const controlPoint1Y = source.y + (midY - source.y) * 0.7;
+        const controlPoint2Y = target.y - (target.y - midY) * 0.7;
 
-            return (
-                <path
-                    key={i}
-                    d={createPath([
-                        [actualSourceX, actualSourceY],
-                        [(actualSourceX + actualTargetX) / 2, (actualTargetY + actualSourceY) / 2],
-                        [actualTargetX, actualTargetY]
-                    ]) || undefined}
-                    stroke="#999"
-                    strokeWidth={link.score}
-                    fill="none"
-                    opacity={hoveredNode === source.name || hoveredNode === target.name ? 0.8 : 0.2}
-                />
-            );
-        });
+        return `M ${source.x} ${source.y} 
+                C ${source.x} ${controlPoint1Y} 
+                  ${target.x} ${controlPoint2Y} 
+                  ${target.x} ${target.y}`;
     };
 
+    // Color scale for links based on score
+    const getColor = (score: number) => {
+        const alpha = 0.3 + score * 0.4; // Vary opacity based on score
+        return `rgba(153, 153, 153, ${alpha})`;
+    };
+
+    return (
+        <g className="links">
+            {sortedLinks.map((link, i) => {
+                const source = sourceNodes.find(n => n.name === link.sourceColumn);
+                const target = targetNodes.find(n => n.name === link.targetColumn);
+                
+                if (!source || !target) return null;
+
+                const sourcePoint = {
+                    x: source.coordinates.x + width/4 + 70,
+                    y: source.coordinates.y + height/4
+                };
+                const targetPoint = {
+                    x: target.coordinates.x + width/4 + 70,
+                    y: target.coordinates.y + height*3/4
+                };
+
+                const isHighlighted = hoveredNode === source.name || 
+                                    hoveredNode === target.name;
+                
+                return (
+                    <path
+                        key={i}
+                        d={createCurvedPath(sourcePoint, targetPoint)}
+                        stroke={getColor(link.normalizedScore)}
+                        strokeWidth={Math.max(2, link.normalizedScore * 2)}
+                        fill="none"
+                        opacity={isHighlighted ? 0.9 : 0.6}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                            transition: 'opacity 0.2s ease',
+                            filter: isHighlighted ? 'drop-shadow(0 0 2px rgba(0,0,0,0.2))' : 'none'
+                        }}
+                    />
+                );
+            })}
+        </g>
+    );
+};
 
     return (
         <Container>
@@ -145,6 +196,10 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                                 : [...prev, cluster]
                         );
                     }}
+                    threshold={threshold}
+                    onThresholdChange={handleThresholdChange}
+                    scoreRange={scoreRange}
+
                 />
                 <Card sx={{ position: 'relative', bgcolor: '#fefefe' }}>
                     {/* Source Schema Label */}
@@ -236,6 +291,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                                             features={node.features}
                                             size={40}
                                             selected={selectedClusters.includes(node.cluster)}
+                                            degree={links.filter(l => l.sourceColumn === node.name).length || 0}
                                         />
                                     </g>
                                 </Tooltip>
@@ -264,6 +320,7 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
                                         style={{ cursor: 'pointer' }}
                                     >
                                         <FeatureCircle
+                                            degree={links.filter(l => l.targetColumn === node.name).length || 0}
                                             features={node.features}
                                             size={40}
                                             selected={selectedClusters.includes(node.cluster)}

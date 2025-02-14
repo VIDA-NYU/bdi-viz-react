@@ -12,7 +12,8 @@ const RectCell: React.FC<CellProps> = ({
     isSelected,
     onHover,
     onLeave,
-    onClick
+    onClick,
+    isHighlighted
 }) => {
     return (
         <rect
@@ -23,7 +24,7 @@ const RectCell: React.FC<CellProps> = ({
             height={height}
             fill={color(data.score)}
             stroke="black"
-            strokeWidth={isSelected ? 2 : 0}
+            strokeWidth={isSelected || isHighlighted ? 2 : 0}
             onMouseEnter={(e) => onHover?.(e, data)}
             onMouseLeave={onLeave}
             onClick={() => onClick?.(data)}

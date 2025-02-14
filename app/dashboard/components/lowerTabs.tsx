@@ -16,6 +16,8 @@ interface lowerTabsProps {
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
     sourceUniqueValues: SourceUniqueValues[];
     targetUniqueValues: TargetUniqueValues[];
+    highlightSourceColumns: Array<string>; 
+    highlightTargetColumns: Array<string>;
 }
 
 const LowerTabs: React.FC<lowerTabsProps> = ({
@@ -24,7 +26,9 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
     selectedCandidate,
     setSelectedCandidate,
     sourceUniqueValues,
-    targetUniqueValues
+    targetUniqueValues,
+    highlightSourceColumns,
+    highlightTargetColumns
 }) => {
     const [value, setValue] = useState(1);
 
@@ -51,6 +55,8 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
                       flexBasis: "200px",
                       flexGrow: 1,
                     }}
+                    highlightSourceColumns={highlightSourceColumns}
+                    highlightTargetColumns={highlightTargetColumns}
                 />
                 <HierarchicalAxis
                     data={weightedAggregatedCandidates}
