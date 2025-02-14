@@ -19,6 +19,7 @@ import DiscardColumnButton from "./control-inputs/discard-column-button";
 import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
 import MatcherSliders from "./control-inputs/matcher-selection";
+import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "0px",
@@ -40,6 +41,7 @@ interface ToolbarProps {
   discardColumn: () => void;
   undo: () => void;
   redo: () => void;
+  filterEasyCases: () => void;
   onMatchersSelect: (matchers: Matcher[]) => void;
 
   state: {
@@ -122,11 +124,14 @@ const ControlPanel: React.FC<ToolbarProps> = ({
               <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
                 <AcceptMatchButton onClick={props.acceptMatch} />
                 <RejectMatchButton onClick={props.rejectMatch} />
+                <DiscardColumnButton onClick={props.discardColumn} />
               </Box>
               <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
-                <DiscardColumnButton onClick={props.discardColumn} />
                 <UndoButton onClick={props.undo} />
                 <RedoButton onClick={props.redo} />
+              </Box>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                <FilterEasyCasesButton onClick={props.filterEasyCases} />
               </Box>
               <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
                 <MatcherSliders 

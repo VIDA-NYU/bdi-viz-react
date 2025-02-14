@@ -1,11 +1,8 @@
 // components/SchemaExplanation/CombinedView.tsx
-import { Box, Divider, Stack, styled } from '@mui/material';
+import { Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
-import InferredMatches, { InferredMatch } from './InferenceMatches';
 import RelativeKnowledgeView from './RelativeKnowledgeView';
 import { Explanation } from './types';
-import {useInferredMatches} from './useInferenceMatches';
-import { SchemaMatch } from './types';
 
 const RowComp = styled("div")({
     display: "flex",
@@ -33,12 +30,9 @@ interface CombinedViewProps {
     setSelectExplanations: (explanations: Explanation[]) => void;
     matchingValues: string[][];
     relativeKnowledge: RelativeKnowledge[];
-    matches: SchemaMatch[];
     isLoading: boolean;
     sourceColumn?: string;
     targetColumn?: string;
-    allSourceColumns: string[];
-    allTargetColumns: string[];
 }
 
 const CombinedView = ({
@@ -48,28 +42,10 @@ const CombinedView = ({
     setSelectExplanations,
     matchingValues,
     relativeKnowledge,
-    matches,
     isLoading,
     sourceColumn,
     targetColumn,
-    allSourceColumns,
-    allTargetColumns
 }: CombinedViewProps) => {
-    const {
-        inferredMatches,
-        handleExplanationsChange,
-        acceptInferredMatch,
-        rejectInferredMatch
-    } = useInferredMatches({
-        sourceColumn,
-        allSourceColumns,
-        allTargetColumns
-    });
-
-    const handleAcceptMatch = (explanations: Explanation[]) => {
-        setSelectExplanations(explanations);
-        handleExplanationsChange(explanations);
-    };
 
     return (
         <Stack spacing={2}>
@@ -81,7 +57,6 @@ const CombinedView = ({
                     selectedExplanations={selectedExplanations}
                     setSelectExplanations={setSelectExplanations}
                     valueMatches={matchingValues}
-                    matches={matches}
                     sourceColumn={sourceColumn}
                     targetColumn={targetColumn}
                     isLoading={isLoading}
@@ -94,11 +69,6 @@ const CombinedView = ({
                     isLoading={isLoading}
                 />
             </Stack>
-            {/* <InferredMatches
-                inferredMatches={inferredMatches}
-                onAcceptInferred={acceptInferredMatch}
-                onRejectInferred={rejectInferredMatch}
-            /> */}
             </ColumnComp>
         </Stack>
     );

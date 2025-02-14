@@ -6,12 +6,16 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
+
 # langchain
 from .langchain.pydantic import AgentResponse
-from .matching_task import MATCHING_TASK
-from .tools.candidate_butler import candidate_butler_tools
-from .utils import (extract_data_from_request, read_candidate_explanation_json,
-                    write_candidate_explanation_json)
+from .session_manager import SESSION_MANAGER
+from .utils import (
+    extract_data_from_request,
+    extract_session_name,
+    read_candidate_explanation_json,
+    write_candidate_explanation_json,
+)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 
@@ -22,6 +26,9 @@ app.logger.setLevel(logging.DEBUG)
 
 @app.route("/api/matching", methods=["POST"])
 def matcher():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
     target = pd.read_csv(GDC_DATA_PATH)
 
     source, _ = extract_data_from_request(request)
@@ -29,23 +36,43 @@ def matcher():
 
     app.logger.info("Matching task started!")
 
-    MATCHING_TASK.update_dataframe(source_df=source, target_df=target)
+    matching_task.update_dataframe(source_df=source, target_df=target)
 
-    _ = MATCHING_TASK.get_candidates()
+    _ = matching_task.get_candidates()
 
     return {"message": "success"}
 
 
-@app.route("/api/results", methods=["GET"])
-def get_results():
-    if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
+@app.route("/api/exact-matches", methods=["POST"])
+def get_exact_matches():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
-            MATCHING_TASK.update_dataframe(
+            matching_task.update_dataframe(
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
-        _ = MATCHING_TASK.get_candidates()
-    results = MATCHING_TASK.to_frontend_json()
+        _ = matching_task.get_candidates()
+    results = matching_task.update_exact_matches()
+
+    return {"message": "success", "results": results}
+
+
+@app.route("/api/results", methods=["POST"])
+def get_results():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
+        if os.path.exists(".source.csv"):
+            source = pd.read_csv(".source.csv")
+            matching_task.update_dataframe(
+                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+            )
+        _ = matching_task.get_candidates()
+    results = matching_task.to_frontend_json()
 
     if not AGENT.is_initialized:
         AGENT.initialize(results["candidates"])
@@ -53,30 +80,36 @@ def get_results():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/value-bins", methods=["GET"])
+@app.route("/api/value-bins", methods=["POST"])
 def get_unique_values():
-    if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
-            MATCHING_TASK.update_dataframe(
+            matching_task.update_dataframe(
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
-        _ = MATCHING_TASK.get_candidates()
-    results = MATCHING_TASK.unique_values_to_frontend_json()
+        _ = matching_task.get_candidates()
+    results = matching_task.unique_values_to_frontend_json()
 
     return {"message": "success", "results": results}
 
 
-@app.route("/api/value-matches", methods=["GET"])
+@app.route("/api/value-matches", methods=["POST"])
 def get_value_matches():
-    if MATCHING_TASK.source_df is None or MATCHING_TASK.target_df is None:
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
-            MATCHING_TASK.update_dataframe(
+            matching_task.update_dataframe(
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
-        _ = MATCHING_TASK.get_candidates()
-    results = MATCHING_TASK.value_matches_to_frontend_json()
+        _ = matching_task.get_candidates()
+    results = matching_task.value_matches_to_frontend_json()
 
     return {"message": "success", "results": results}
 
@@ -86,7 +119,7 @@ def ask_agent():
     data = request.json
     prompt = data["prompt"]
     app.logger.info(f"Prompt: {prompt}")
-    response = AGENT.invoke(prompt, candidate_butler_tools, AgentResponse)
+    response = AGENT.invoke(prompt, [], AgentResponse)
     app.logger.info(f"{response}")
 
     response = response.model_dump()
@@ -96,12 +129,15 @@ def ask_agent():
 
 @app.route("/api/agent/explain", methods=["POST"])
 def agent_explanation():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
     data = request.json
 
     source_col = data["sourceColumn"]
     target_col = data["targetColumn"]
-    source_values = MATCHING_TASK.get_source_unique_values(source_col)
-    target_values = MATCHING_TASK.get_target_unique_values(target_col)
+    source_values = matching_task.get_source_unique_values(source_col)
+    target_values = matching_task.get_target_unique_values(target_col)
 
     cached_explanation = read_candidate_explanation_json(source_col, target_col)
     if cached_explanation:
@@ -126,10 +162,12 @@ def agent_explanation():
 
 @app.route("/api/agent/suggest", methods=["POST"])
 def agent_suggest():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
     data = request.json
 
     explanations = data["explanations"]
-    diagnosis_dict = {e["content"]: e["confidence"] for e in explanations}
 
     user_operation = data["userOperation"]
     operation = user_operation["operation"]
@@ -142,8 +180,8 @@ def agent_suggest():
     cached_explanation = read_candidate_explanation_json(source_col, target_col)
     if cached_explanation:
         agent_thinks_is_match = cached_explanation["is_match"]
-        source_values = MATCHING_TASK.get_source_unique_values(source_col)
-        target_values = MATCHING_TASK.get_target_unique_values(target_col)
+        source_values = matching_task.get_source_unique_values(source_col)
+        target_values = matching_task.get_target_unique_values(target_col)
         if agent_thinks_is_match and operation == "reject":
             AGENT.remember_fp(
                 {
@@ -163,7 +201,7 @@ def agent_suggest():
                 }
             )
 
-    MATCHING_TASK.apply_operation(operation, candidate, references)
+    matching_task.apply_operation(operation, candidate, references)
 
     # put into memory
     AGENT.remember_explanation(explanations, user_operation)
@@ -175,6 +213,9 @@ def agent_suggest():
 
 @app.route("/api/agent/apply", methods=["POST"])
 def agent_apply():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
     reaction = request.json
     actions = reaction["actions"]
     previous_operation = reaction["previousOperation"]
@@ -183,14 +224,14 @@ def agent_apply():
 
     responses = []
     for action in actions:
-        response = AGENT.apply(action, previous_operation)
+        response = AGENT.apply(session, action, previous_operation)
         if response:
             response_obj = response.model_dump()
             if response_obj["action"] == "undo":
                 user_operation = previous_operation["operation"]
                 candidate = previous_operation["candidate"]
                 references = previous_operation["references"]
-                MATCHING_TASK.undo_operation(user_operation, candidate, references)
+                matching_task.undo_operation(user_operation, candidate, references)
             responses.append(response_obj)
 
     return responses
@@ -198,6 +239,9 @@ def agent_apply():
 
 @app.route("/api/user-operation/apply", methods=["POST"])
 def user_operation():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
     operation_objs = request.json["userOperations"]
 
     for operation_obj in operation_objs:
@@ -205,20 +249,40 @@ def user_operation():
         candidate = operation_obj["candidate"]
         references = operation_obj["references"]
 
-        MATCHING_TASK.apply_operation(operation, candidate, references)
+        matching_task.apply_operation(operation, candidate, references)
 
     return {"message": "success"}
 
 
 @app.route("/api/user-operation/undo", methods=["POST"])
 def undo_operation():
-    operation_objs = request.json["userOperations"]
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
 
-    for operation_obj in operation_objs:
-        operation = operation_obj["operation"]
-        candidate = operation_obj["candidate"]
-        references = operation_obj["references"]
+    operation = matching_task.undo()
+    if operation is None:
+        return {"message": "failure", "userOperation": None}
 
-        MATCHING_TASK.undo_operation(operation, candidate, references)
+    return {"message": "success", "userOperation": operation}
 
-    return {"message": "success"}
+
+@app.route("/api/user-operation/redo", methods=["POST"])
+def redo_operation():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    operation = matching_task.redo()
+    if operation is None:
+        return {"message": "failure", "userOperation": None}
+
+    return {"message": "success", "userOperation": operation}
+
+
+@app.route("/api/history", methods=["POST"])
+def get_history():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    history = matching_task.history.export_history_for_frontend()
+
+    return {"message": "success", "history": history}

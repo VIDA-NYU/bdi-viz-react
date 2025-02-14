@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
-import { getCachedResults, getValueBins, getValueMatches } from '@/app/lib/heatmap/heatmap-helper';
+import { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
 
 
@@ -12,10 +12,12 @@ type DashboardCandidateState = {
     sourceUniqueValues: SourceUniqueValues[];
     targetUniqueValues: TargetUniqueValues[];
     valueMatches: ValueMatch[];
+    userOperations: UserOperation[];
     handleFileUpload: (newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
     setMatchers: (matchers: Matcher[]) => void;
+    handleUserOperationsUpdate: (newUserOperations: UserOperation[]) => void;
 }
 
 export type { DashboardCandidateState };
@@ -32,6 +34,7 @@ export const {
         const [sourceUniqueValues, setSourceUniqueValues] = useState<SourceUniqueValues[]>([]);
         const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
         const [valueMatches, setValueMatches] = useState<ValueMatch[]>([]);
+        const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
 
         const handleFileUpload = useCallback((newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => {
             setCandidates(newCandidates.sort((a, b) => b.score - a.score));
@@ -62,6 +65,10 @@ export const {
             setValueMatches(valueMatches);
         }, []);
 
+        const handleUserOperationsUpdate = useCallback((newUserOperations: UserOperation[]) => {
+            setUserOperations(newUserOperations);
+        }, []);
+
 
         useEffect(() => {
             getCachedResults({
@@ -73,6 +80,9 @@ export const {
             getValueMatches({
                 callback: handleValueMatches
             });
+            getUserOperationHistory({
+                callback: handleUserOperationsUpdate
+            });
         }, []);
 
         return {
@@ -83,10 +93,12 @@ export const {
             sourceUniqueValues,
             targetUniqueValues,
             valueMatches,
+            userOperations,
             handleFileUpload,
             handleChatUpdate,
             setSelectedCandidate: handleSelectedCandidate,
             setMatchers,
+            handleUserOperationsUpdate,
         };
     }
 };

@@ -4,8 +4,6 @@ from typing import Dict, List, Tuple
 
 from langchain_core.tools import tool
 
-from ..matching_task import MATCHING_TASK
-
 logger = logging.getLogger("bdiviz_flask.sub")
 
 
@@ -17,12 +15,7 @@ def update_embedder(embedder: str):
     Args:
         embedder (str): The embedding model to update, e.g. "sentence-transformers/all-mpnet-base-v2"
     """
-    MATCHING_TASK.update_embedding_model(embedder)
-    logger.info(f"[Candidate Butler] Updated the embedding model to {embedder}......")
-
-    os.remove("matching_results.json")
-    results = MATCHING_TASK.get_candidates(cache_candidates=True)
-    logger.info(f"[Candidate Butler] Updated the candidates: {results}")
+    pass
 
 
 matcher_tweaker_tools = [update_embedder]

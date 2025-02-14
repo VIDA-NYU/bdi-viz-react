@@ -24,6 +24,16 @@ def check_cache_dir(func):
     return wrapper
 
 
+def extract_session_name(request) -> str:
+    if request.json is None:
+        return "default"
+
+    data = request.json
+    session_name = data.get("session_name", "default")
+
+    return session_name
+
+
 def extract_data_from_request(request):
     source_df = None
     target_df = None
