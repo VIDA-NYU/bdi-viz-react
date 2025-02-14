@@ -128,6 +128,9 @@ const ControlPanel: React.FC<ToolbarProps> = ({
               </Box>
               <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
                 <UndoButton onClick={props.undo} />
+                <RedoButton onClick={props.redo} />
+              </Box>
+              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
                 <FilterEasyCasesButton onClick={props.filterEasyCases} />
               </Box>
               <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>

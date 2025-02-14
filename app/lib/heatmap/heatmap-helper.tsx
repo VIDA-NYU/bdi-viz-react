@@ -147,20 +147,61 @@ const getValueMatches = (prop: getValueMatchesProps) => {
     });
 }
 
-interface userOperationsProps {
-    userOperations: UserOperation[];
-    callback: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
+interface userOperationHistoryProps {
+    callback: (userOperations: UserOperation[]) => void;
 }
 
-const applyUserOperations = ({
+const getUserOperationHistory = (prop: userOperationHistoryProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.post("/api/history", {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
+            const history = response.data?.history;
+            if (history && Array.isArray(history)) {
+                const userOperations = history.map((result: object) => {
+                    try {
+                        return result as UserOperation;
+                    } catch (error) {
+                        console.error("Error parsing result to UserOperation:", error);
+                        return null;
+                    }
+                }).filter((userOperation: UserOperation | null) => userOperation !== null);
+
+                console.log("getUserOperationHistory finished!");
+                prop.callback(userOperations);
+                resolve();
+            } else {
+                console.error("Invalid results format");
+                reject(new Error("Invalid results format"));
+            }
+        }).catch((error) => {
+            console.error("Error getting user operation history:", error);
+            reject(error);
+        });
+    });
+}
+
+interface userOperationsProps {
+    userOperations?: UserOperation[];
+    cachedResultsCallback: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
+    userOperationHistoryCallback: (userOperations: UserOperation[]) => void;
+}
+
+const applyUserOperation = ({
     userOperations,
-    callback
+    cachedResultsCallback,
+    userOperationHistoryCallback,
 }: userOperationsProps) => {
     try {
         axios.post("/api/user-operation/apply", { userOperations }).then((response) => {
             console.log("applyUserOperations response: ", response);
             if (response.data && response.data.message === "success") {
-                getCachedResults({ callback });
+                getCachedResults({ callback: cachedResultsCallback });
+                getUserOperationHistory({ callback: userOperationHistoryCallback });
             }
         });
     } catch (error) {
@@ -168,20 +209,47 @@ const applyUserOperations = ({
     }
 };
 
+interface undoRedoProps {
+    userOperationCallback: (userOperation: UserOperation) => void;
+    cachedResultsCallback: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
+    userOperationHistoryCallback: (userOperations: UserOperation[]) => void;
+}
 
-const undoUserOperations = ({
-    userOperations,
-    callback
-}: userOperationsProps) => {
+const undoUserOperation = ({
+    userOperationCallback,
+    cachedResultsCallback,
+    userOperationHistoryCallback,
+}: undoRedoProps) => {
     try {
-        axios.post("/api/user-operation/undo", { userOperations }).then((response) => {
+        axios.post("/api/user-operation/undo", {}).then((response) => {
             console.log("undoUserOperations response: ", response);
-            if (response.data && response.data.message === "success") {
-                getCachedResults({ callback });
+            if (response.data && response.data.message === "success" && response.data.userOperation) {
+                userOperationCallback(response.data.userOperation as UserOperation);
+                getCachedResults({ callback: cachedResultsCallback });
+                getUserOperationHistory({ callback: userOperationHistoryCallback });
             }
         });
     } catch (error) {
         console.error("Error undoing user operations:", error);
+    }
+}
+
+const redoUserOperation = ({
+    userOperationCallback,
+    cachedResultsCallback,
+    userOperationHistoryCallback,
+}: undoRedoProps) => {
+    try {
+        axios.post("/api/user-operation/redo", {}).then((response) => {
+            console.log("redoUserOperations response: ", response);
+            if (response.data && response.data.message === "success") {
+                userOperationCallback(response.data.userOperation as UserOperation);
+                getCachedResults({ callback: cachedResultsCallback });
+                getUserOperationHistory({ callback: userOperationHistoryCallback });
+            }
+        });
+    } catch (error) {
+        console.error("Error redoing user operations:", error);
     }
 }
 
@@ -228,4 +296,4 @@ const getExactMatches = ({callback}: getExactMatchesProps) => {
 
 
 
-export { getCachedResults, getValueBins, getValueMatches, applyUserOperations, undoUserOperations, getExactMatches };
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches };

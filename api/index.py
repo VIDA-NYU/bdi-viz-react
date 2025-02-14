@@ -259,13 +259,30 @@ def undo_operation():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
 
-    operation_objs = request.json["userOperations"]
+    operation = matching_task.undo()
+    if operation is None:
+        return {"message": "failure", "userOperation": None}
 
-    for operation_obj in operation_objs:
-        operation = operation_obj["operation"]
-        candidate = operation_obj["candidate"]
-        references = operation_obj["references"]
+    return {"message": "success", "userOperation": operation}
 
-        matching_task.undo_operation(operation, candidate, references)
 
-    return {"message": "success"}
+@app.route("/api/user-operation/redo", methods=["POST"])
+def redo_operation():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    operation = matching_task.redo()
+    if operation is None:
+        return {"message": "failure", "userOperation": None}
+
+    return {"message": "success", "userOperation": operation}
+
+
+@app.route("/api/history", methods=["POST"])
+def get_history():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    history = matching_task.history.export_history_for_frontend()
+
+    return {"message": "success", "history": history}

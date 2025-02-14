@@ -1,6 +1,6 @@
 'use client';
 import { useContext, useState } from "react";
-import { Container, Toolbar, Box, CircularProgress, Button, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import ControlPanel from "./components/controlpanel";
@@ -8,7 +8,6 @@ import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
 import FileUploading from "./components/fileuploading";
 import CombinedView from "./components/explanation/CombinedView";
-import { SchemaMatch } from "./components/explanation/types";
 import { AuxColumn } from "./layout/components";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
@@ -42,9 +41,11 @@ export default function Dashboard() {
         sourceUniqueValues,
         targetUniqueValues,
         valueMatches,
+        userOperations,
         handleFileUpload,
         setSelectedCandidate,
         setMatchers,
+        handleUserOperationsUpdate,
     } = useDashboardCandidates();
 
     const {
@@ -72,11 +73,11 @@ export default function Dashboard() {
     } = useSchemaExplanations({ selectedCandidate });
 
     const {
-        userOperations,
         acceptMatch,
         rejectMatch,
         discardColumn,
         undo,
+        redo,
         explain,
         apply,
         filterExactMatches,
@@ -90,7 +91,8 @@ export default function Dashboard() {
         onExplanation: generateExplanations,
         onSuggestions: handleSuggestions,
         onApply: handleApply,
-        onExactMatches: handleExactMatches
+        onExactMatches: handleExactMatches,
+        onUserOperationsUpdate: handleUserOperationsUpdate,
     });
 
     const {
@@ -185,7 +187,8 @@ export default function Dashboard() {
                         rejectMatch={rejectMatch}
                         discardColumn={discardColumn}
                         undo={undo}
-                        redo={filterExactMatches}
+                        redo={redo}
+                        filterEasyCases={filterExactMatches}
                         onMatchersSelect={(matchers: Matcher[]) => {
                             setMatchers(matchers);
                         }}

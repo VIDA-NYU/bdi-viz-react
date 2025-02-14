@@ -1,7 +1,7 @@
 import { useState, useCallback, useContext } from 'react';
-import type { Candidate, UserOperation } from '../types';
+import type { Candidate } from '../types';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { applyUserOperations, undoUserOperations, getExactMatches } from "@/app/lib/heatmap/heatmap-helper";
+import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { Explanation } from '../types';
@@ -16,15 +16,16 @@ type DashboardOperationProps = {
     onSuggestions?: (suggestions: AgentSuggestions | undefined) => void;
     onApply?: (actionResponses: ActionResponse[] | undefined) => void;
     onExactMatches?: (exactMatches: Candidate[]) => void;
+    onUserOperationsUpdate: (userOperations: UserOperation[]) => void;
 }
 
 type DashboardOperationState = {
-    userOperations: UserOperation[];
     isExplaining: boolean;
     acceptMatch: () => Promise<void>;
     rejectMatch: () => void;
     discardColumn: () => void;
     undo: () => void;
+    redo: () => void;
     explain: (candidate?: Candidate) => void;
     apply: (reaction: UserReaction) => void;
     filterExactMatches: () => void;
@@ -45,8 +46,8 @@ export const {
         onSuggestions,
         onApply,
         onExactMatches,
+        onUserOperationsUpdate,
     }: DashboardOperationProps): DashboardOperationState => {
-        const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
         const { setIsLoadingGlobal, isLoadingGlobal } = useContext(LoadingGlobalContext);
 
@@ -65,24 +66,33 @@ export const {
 
             onCandidateSelect(undefined);
 
-            setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Match accepted: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
 
 
-            if (selectedExplanations && onSuggestions) {
-                const explanationObjects = selectedExplanations.map((explanation) => {
-                    return {
-                        type: explanation.type,
-                        content: explanation.content,
-                        confidence: explanation.confidence
-                    } as ExplanationObject;
-                });
+            // if (selectedExplanations && onSuggestions) {
+            //     const explanationObjects = selectedExplanations.map((explanation) => {
+            //         return {
+            //             type: explanation.type,
+            //             content: explanation.content,
+            //             confidence: explanation.confidence
+            //         } as ExplanationObject;
+            //     });
 
-                const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
-                if (suggestions) {
-                    onSuggestions(suggestions);
+            //     const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
+            //     if (suggestions) {
+            //         onSuggestions(suggestions);
+            //     }
+            // }
+            
+            applyUserOperation({
+                userOperations: [userOperation],
+                cachedResultsCallback: (candidates: Candidate[]) => {
+                    onCandidateUpdate(candidates);
+                },
+                userOperationHistoryCallback(userOperations: UserOperation[]) {
+                    onUserOperationsUpdate(userOperations);
                 }
-            }
+            });
 
             setIsLoadingGlobal(false);
             
@@ -103,23 +113,32 @@ export const {
 
             onCandidateSelect(undefined);
             
-            setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Match rejected: <strong>{selectedCandidate.sourceColumn}</strong> - <strong>{selectedCandidate.targetColumn}</strong></p>);
 
-            if (selectedExplanations && onSuggestions) {
-                const explanationObjects = selectedExplanations.map((explanation) => {
-                    return {
-                        type: explanation.type,
-                        content: explanation.content,
-                        confidence: explanation.confidence
-                    } as ExplanationObject;
-                });
+            // if (selectedExplanations && onSuggestions) {
+            //     const explanationObjects = selectedExplanations.map((explanation) => {
+            //         return {
+            //             type: explanation.type,
+            //             content: explanation.content,
+            //             confidence: explanation.confidence
+            //         } as ExplanationObject;
+            //     });
 
-                const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
-                if (suggestions) {
-                    onSuggestions(suggestions);
+            //     const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
+            //     if (suggestions) {
+            //         onSuggestions(suggestions);
+            //     }
+            // }
+
+            applyUserOperation({
+                userOperations: [userOperation],
+                cachedResultsCallback: (candidates: Candidate[]) => {
+                    onCandidateUpdate(candidates);
+                },
+                userOperationHistoryCallback(userOperations: UserOperation[]) {
+                    onUserOperationsUpdate(userOperations);
                 }
-            }
+            });
 
             setIsLoadingGlobal(false);
 
@@ -141,50 +160,67 @@ export const {
                 references
             };
 
-            setUserOperations(prev => [...prev, userOperation]);
             toastify("success", <p>Column discarded: <strong>{selectedCandidate.sourceColumn}</strong></p>);
 
-            if (selectedExplanations && onSuggestions) {
-                const explanationObjects = selectedExplanations.map((explanation) => {
-                    return {
-                        type: explanation.type,
-                        content: explanation.content,
-                        confidence: explanation.confidence
-                    } as ExplanationObject;
-                });
+            // if (selectedExplanations && onSuggestions) {
+            //     const explanationObjects = selectedExplanations.map((explanation) => {
+            //         return {
+            //             type: explanation.type,
+            //             content: explanation.content,
+            //             confidence: explanation.confidence
+            //         } as ExplanationObject;
+            //     });
 
-                const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
-                if (suggestions) {
-                    onSuggestions(suggestions);
+            //     const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
+            //     if (suggestions) {
+            //         onSuggestions(suggestions);
+            //     }
+            // }
+
+            applyUserOperation({
+                userOperations: [userOperation],
+                cachedResultsCallback: (candidates: Candidate[]) => {
+                    onCandidateUpdate(candidates);
+                },
+                userOperationHistoryCallback(userOperations: UserOperation[]) {
+                    onUserOperationsUpdate(userOperations);
                 }
-            }
+            });
 
             setIsLoadingGlobal(false);
         }, [candidates, selectedCandidate, onCandidateUpdate, onCandidateSelect]);
 
         const undo = useCallback(() => {
-            const lastOperation = userOperations[userOperations.length - 1];
-            if (!lastOperation) return;
+            undoUserOperation({
+                userOperationCallback: (userOperation: UserOperation) => {
+                    toastify("info", <p>Operation undone: <strong>{userOperation.operation}</strong> - <strong>{userOperation.candidate.sourceColumn}</strong> - <strong>{userOperation.candidate.targetColumn}</strong></p>);
+                    onCandidateSelect(userOperation.candidate);
+                },
+                cachedResultsCallback: (candidates: Candidate[]) => {
+                    onCandidateUpdate(candidates);
+                },
+                userOperationHistoryCallback(userOperations: UserOperation[]) {
+                    onUserOperationsUpdate(userOperations);
+                },
+            });
+            
+        }, [candidates, onCandidateUpdate, onCandidateSelect]);
 
-            // let newCandidates: Candidate[];
-            // switch (lastOperation.operation) {
-            //     case 'accept':
-            //     case 'discard':
-            //         newCandidates = [...candidates, ...lastOperation.references];
-            //         newCandidates = newCandidates.sort((a, b) => b.score - a.score);
-            //         break;
-            //     case 'reject':
-            //         newCandidates = [...candidates, lastOperation.candidate];
-            //         newCandidates = newCandidates.sort((a, b) => b.score - a.score);
-            //         break;
-            //     default:
-            //         return;
-            // }
-            // newCandidates = newCandidates.sort((a, b) => b.score - a.score);
-            undoUserOperations({ userOperations: [lastOperation], callback: onCandidateUpdate });
-            onCandidateSelect(lastOperation.candidate);
-            setUserOperations(prev => prev.slice(0, -1));
-        }, [candidates, userOperations, onCandidateUpdate, onCandidateSelect]);
+        const redo = useCallback(() => {
+            redoUserOperation({
+                userOperationCallback: (userOperation: UserOperation) => {
+                    toastify("info", <p>Operation redone: <strong>{userOperation.operation}</strong> - <strong>{userOperation.candidate.sourceColumn}</strong> - <strong>{userOperation.candidate.targetColumn}</strong></p>);
+                    onCandidateSelect(userOperation.candidate);
+                },
+                cachedResultsCallback: (candidates: Candidate[]) => {
+                    onCandidateUpdate(candidates);
+                },
+                userOperationHistoryCallback(userOperations: UserOperation[]) {
+                    onUserOperationsUpdate(userOperations);
+                },
+            });
+        }, [candidates, onCandidateUpdate, onCandidateSelect]);
+            
 
         const explain = useCallback(async (candidate?: Candidate) => {
             const candidateToExplain = candidate || selectedCandidate;
@@ -236,11 +272,11 @@ export const {
 
 
         return {
-            userOperations,
             acceptMatch,
             rejectMatch,
             discardColumn,
             undo,
+            redo,
             explain,
             apply,
             filterExactMatches,

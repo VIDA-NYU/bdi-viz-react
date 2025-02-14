@@ -57,6 +57,7 @@ class MatchingTask:
         self.source_df = None
         self.target_df = None
         self.cached_candidates = self._initialize_cache()
+        self.history = UserOperationHistory()
 
         self.update_matcher_weights = update_matcher_weights
 
@@ -382,6 +383,26 @@ class MatchingTask:
             logger.warning(f"Column {col} is of type {col_obj.dtype}.")
             return []
 
+    def undo(self) -> Optional["UserOperation"]:
+        logger.info("Undoing last operation...")
+        operation = self.history.undo_last_operation()
+        if operation:
+            self.undo_operation(
+                operation.operation, operation.candidate, operation.references
+            )
+            return operation._json_serialize()
+        return None
+
+    def redo(self) -> Optional["UserOperation"]:
+        logger.info("Redoing last operation...")
+        operation = self.history.redo_last_operation()
+        if operation:
+            self.apply_operation(
+                operation.operation, operation.candidate, operation.references
+            )
+            return operation._json_serialize()
+        return None
+
     def apply_operation(
         self,
         operation: str,
@@ -395,6 +416,9 @@ class MatchingTask:
             self.weight_updater.update_weights(
                 operation, candidate["sourceColumn"], candidate["targetColumn"]
             )
+
+        # Add operation to history
+        self.history.add_operation(UserOperation(operation, candidate, references))
 
         if operation == "accept":
             self.set_cached_candidates(
@@ -433,7 +457,14 @@ class MatchingTask:
         candidates = self.get_cached_candidates()
 
         if operation in ["accept", "reject", "discard"]:
-            self.set_cached_candidates(candidates + references)
+            self.set_cached_candidates(
+                [
+                    c
+                    for c in candidates
+                    if c["sourceColumn"] != candidate["sourceColumn"]
+                ]
+                + references
+            )
         else:
             raise ValueError(f"Operation {operation} not supported.")
 
@@ -491,3 +522,50 @@ class MatchingTask:
         return [
             {"name": key, "weight": item.weight} for key, item in self.matchers.items()
         ]
+
+
+class UserOperationHistory:
+    def __init__(self) -> None:
+        self.history: List["UserOperation"] = []
+        self.redo_stack: List["UserOperation"] = []
+
+    def add_operation(self, operation: "UserOperation") -> None:
+        self.history.append(operation)
+        self.redo_stack.clear()  # Clear redo stack on new operation
+
+    def undo_last_operation(self) -> Optional["UserOperation"]:
+        if self.history:
+            operation = self.history.pop()
+            self.redo_stack.append(operation)
+            return operation
+        return None
+
+    def redo_last_operation(self) -> Optional["UserOperation"]:
+        if self.redo_stack:
+            operation = self.redo_stack.pop()
+            return operation
+        return None
+
+    def get_history(self) -> List[Dict[str, Any]]:
+        return self.history
+
+    def export_history_for_frontend(self) -> List[Dict[str, Any]]:
+        return [op._json_serialize() for op in self.history]
+
+
+class UserOperation:
+    def __init__(
+        self,
+        operation: str,
+        candidate: Dict[str, Any],
+        references: List[Dict[str, Any]],
+    ) -> None:
+        self.operation = operation
+        self.candidate = candidate
+        self.references = references
+
+    def _json_serialize(self) -> Dict[str, Any]:
+        return {
+            "operation": self.operation,
+            "candidate": self.candidate,
+        }
