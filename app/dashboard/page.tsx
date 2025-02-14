@@ -27,6 +27,7 @@ import {
     ControlColumn,
     MainColumn,
 } from "./layout/components";
+import { useDashboardHighlight } from "./hooks/useDashboardHighlight";
 
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
@@ -114,6 +115,13 @@ export default function Dashboard() {
         }
     });
 
+    const {
+        highlightedSourceColumns,
+        highlightedTargetColumns,
+        updateHighlightedSourceColumns,
+        updateHighlightedTargetColumns
+    } = useDashboardHighlight({candidates});
+
     function handleSuggestions(suggestions: AgentSuggestions | undefined) {
         console.log("Suggestions: ", suggestions);
         setSuggestions(suggestions);
@@ -197,6 +205,12 @@ export default function Dashboard() {
 
                     <DualScatter
                         candidates={weightedAggregatedCandidates}
+                        updateHighlightSourceColumns={
+                            updateHighlightedSourceColumns
+                        }
+                        updateHighlightTargetColumns={
+                            updateHighlightedTargetColumns
+                        }
                         width={300}
                         height={300}
                     />
@@ -218,6 +232,8 @@ export default function Dashboard() {
                         setSelectedCandidate={setSelectedCandidateCallback}
                         sourceUniqueValues={sourceUniqueValues}
                         targetUniqueValues={targetUniqueValues}
+                        highlightSourceColumns={highlightedSourceColumns}
+                        highlightTargetColumns={highlightedTargetColumns}
                     />
                 </MainColumn>
 

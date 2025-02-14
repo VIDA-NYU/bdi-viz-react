@@ -15,11 +15,35 @@ class Random {
     }
 }
 
-export const useSchemaLayout = (candidates: Candidate[]) => {
+interface LayoutOptions {
+    threshold?: number;  // Score threshold for filtering links
+    normalizeScores?: boolean;  // Whether to normalize scores to [0,1]
+}
+
+export const useSchemaLayout = (
+    candidates: Candidate[],
+    options: LayoutOptions = {}
+) => {
     return useMemo(() => {
         const rng = new Random();
         const sourceColumns = [...new Set(candidates.map(c => c.sourceColumn))];
         const targetColumns = [...new Set(candidates.map(c => c.targetColumn))];
+
+        // Normalize scores to [0,1] if requested
+        const scores = candidates.map(c => c.score);
+        const minScore = Math.min(...scores);
+        const maxScore = Math.max(...scores);
+        const normalizedLinks = candidates.map(link => ({
+            ...link,
+            normalizedScore: options.normalizeScores 
+                ? (link.score - minScore) / (maxScore - minScore)
+                : link.score
+        }));
+
+        // Filter links based on threshold
+        const filteredLinks = normalizedLinks.filter(link => 
+            link.normalizedScore >= (options.threshold || 0)
+        );
 
         const generateFeatures = () => ({
             speed: rng.random(),
@@ -69,7 +93,28 @@ export const useSchemaLayout = (candidates: Candidate[]) => {
         return {
             sourceNodes,
             targetNodes,
-            links: candidates
+            links: filteredLinks,
+            scoreRange: {
+                min: minScore,
+                max: maxScore
+            }
         };
-    }, [candidates]);
+    }, [candidates, options.threshold, options.normalizeScores]);
+};
+
+// Add a custom hook for managing the threshold
+import { useState, useCallback } from 'react';
+
+export const useScoreThreshold = (initialThreshold = 0) => {
+    const [threshold, setThreshold] = useState(initialThreshold);
+
+    const handleThresholdChange = useCallback((_event: Event, newValue: number | number[]) => {
+        setThreshold(Array.isArray(newValue) ? newValue[0] : newValue);
+    }, []);
+
+    return {
+        threshold,
+        setThreshold,
+        handleThresholdChange
+    };
 };
