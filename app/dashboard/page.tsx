@@ -8,6 +8,7 @@ import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
 import FileUploading from "./components/fileuploading";
 import CombinedView from "./components/explanation/CombinedView";
+import Timeline from "./components/timeline/timeline";
 import { AuxColumn } from "./layout/components";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
@@ -256,6 +257,9 @@ export default function Dashboard() {
             <Typography variant="h6">Value Distribution</Typography>
           </MediumVizContainer> */}
 
+                    <Box sx={{ overflowY: 'auto', maxHeight: '400px' }}>
+                        <Timeline userOperations={userOperations} />
+                    </Box>
                 </AuxColumn>
             </MainContent>
 
