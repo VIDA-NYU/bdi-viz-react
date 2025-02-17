@@ -11,7 +11,7 @@ interface TimelineProps {
 
 const Timeline = ({ userOperations }: TimelineProps) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
-    const boxRef = useRef<HTMLDivElement | null>(null);
+    // const boxRef = useRef<HTMLDivElement | null>(null);
     const [expandedNode, setExpandedNode] = useState<number | null>(null);
     const theme = useTheme();
 
@@ -21,8 +21,8 @@ const Timeline = ({ userOperations }: TimelineProps) => {
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove(); // Clear previous content
 
-        const boxWidth = boxRef.current?.clientWidth || 200;
-        const width = boxWidth;
+        // const boxWidth = boxRef.current?.clientWidth || 200;
+        const width = 380;
         const height = (nodes.length + 1) * 100; // Adjust height for the start node
 
         svg.attr("width", width).attr("height", height);
@@ -88,9 +88,9 @@ const Timeline = ({ userOperations }: TimelineProps) => {
 
                 expandedGroup
                     .append("rect")
-                    .attr("x", -(boxWidth-20)/2)
+                    .attr("x", -(width-20)/2)
                     .attr("y", -50)
-                    .attr("width", boxWidth-20)
+                    .attr("width", width-20)
                     .attr("height", 150)
                     .attr("rx", 10)
                     .attr("ry", 10)
@@ -100,9 +100,9 @@ const Timeline = ({ userOperations }: TimelineProps) => {
 
                 expandedGroup
                     .append("foreignObject")
-                    .attr("x", -(boxWidth-20)/2)
+                    .attr("x", -(width-20)/2)
                     .attr("y", -40)
-                    .attr("width", boxWidth-20)
+                    .attr("width", width-20)
                     .attr("height", 150)
                     .append("xhtml:div")
                     .style("font", "16px 'Arial'")
@@ -134,7 +134,7 @@ const Timeline = ({ userOperations }: TimelineProps) => {
     }, [nodes, expandedNode, theme]);
 
     return (
-        <Box ref={boxRef}>
+        <Box sx={{ overflowY: 'auto', maxHeight: '400px' }}>
             <Typography variant="h6">Timeline</Typography>
             <svg ref={svgRef}></svg>
         </Box>

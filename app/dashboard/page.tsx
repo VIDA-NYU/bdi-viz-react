@@ -3,12 +3,11 @@ import { useContext, useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
-import ControlPanel from "./components/controlpanel";
+import LeftPanel from "./left-panel";
+
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
-import FileUploading from "./components/fileuploading";
 import CombinedView from "./components/explanation/CombinedView";
-import Timeline from "./components/timeline/timeline";
 import { AuxColumn } from "./layout/components";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
@@ -25,7 +24,6 @@ import {
     RootContainer,
     Header,
     MainContent,
-    ControlColumn,
     MainColumn,
 } from "./layout/components";
 import { useDashboardHighlight } from "./hooks/useDashboardHighlight";
@@ -183,26 +181,27 @@ export default function Dashboard() {
             </Header>
 
             <MainContent>
-                <ControlColumn>
-                    <ControlPanel
-                        containerStyle={{ marginBottom: 0, flexGrow: 0 }}
-                        sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                        matchers={matchers}
-                        onSourceColumnSelect={handleUpdateSourceColumn}
-                        onCandidateTypeSelect={updateCandidateType}
-                        onSimilarSourcesSelect={updateSimilarSources}
-                        onCandidateThresholdSelect={updateCandidateThreshold}
-                        acceptMatch={acceptMatch}
-                        rejectMatch={rejectMatch}
-                        discardColumn={discardColumn}
-                        undo={undo}
-                        redo={redo}
-                        filterEasyCases={filterExactMatches}
-                        onMatchersSelect={(matchers: Matcher[]) => {
-                            setMatchers(matchers);
-                        }}
-                        state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
-                    />
+                <LeftPanel
+                    containerStyle={{ marginBottom: 0, flexGrow: 0 }}
+                    sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                    matchers={matchers}
+                    onSourceColumnSelect={handleUpdateSourceColumn}
+                    onCandidateTypeSelect={updateCandidateType}
+                    onSimilarSourcesSelect={updateSimilarSources}
+                    onCandidateThresholdSelect={updateCandidateThreshold}
+                    acceptMatch={acceptMatch}
+                    rejectMatch={rejectMatch}
+                    discardColumn={discardColumn}
+                    undo={undo}
+                    redo={redo}
+                    filterEasyCases={filterExactMatches}
+                    onMatchersSelect={(matchers: Matcher[]) => {
+                        setMatchers(matchers);
+                    }}
+                    state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
+                    userOperations={userOperations}
+                    handleFileUpload={handleFileUpload}
+                />
 
                     {/* <DualScatter
                         candidates={weightedAggregatedCandidates}
@@ -215,7 +214,6 @@ export default function Dashboard() {
                         width={300}
                         height={300}
                     /> */}
-                </ControlColumn>
 
                 {/* Middle Column - Main Visualizations */}
                 <MainColumn>
@@ -241,8 +239,6 @@ export default function Dashboard() {
 
                 {/* Right Column - Auxiliary Visualizations */}
                 <AuxColumn>
-                    <FileUploading callback={handleFileUpload} />
-
                     <CombinedView
                         isMatch={isMatch}
                         currentExplanations={currentExplanations}
@@ -257,10 +253,6 @@ export default function Dashboard() {
                     {/* <MediumVizContainer>
             <Typography variant="h6">Value Distribution</Typography>
           </MediumVizContainer> */}
-
-                    <Box sx={{ overflowY: 'auto', maxHeight: '400px' }}>
-                        <Timeline userOperations={userOperations} />
-                    </Box>
                 </AuxColumn>
             </MainContent>
 

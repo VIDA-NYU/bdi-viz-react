@@ -36,12 +36,6 @@ interface ControlPanelProps {
   onCandidateTypeSelect: (dataType: string) => void;
   onSimilarSourcesSelect: (num: number) => void;
   onCandidateThresholdSelect: (num: number) => void;
-  acceptMatch: () => void;
-  rejectMatch: () => void;
-  discardColumn: () => void;
-  undo: () => void;
-  redo: () => void;
-  filterEasyCases: () => void;
   onMatchersSelect: (matchers: Matcher[]) => void;
 
   state: {
@@ -62,31 +56,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   // Root container styles
   const rootStyles = {
     display: "flex",
-    flexDirection: "column" as const,
-    flex: width ? "0 0 auto" : "1 1 auto",
-    ...containerStyle
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    minWidth: "min-content",
+    gap: 2,
   };
 
   return (
     <Box sx={rootStyles}>
-        <StyledToolbar variant="dense">
-          <Box sx={{ 
-            display: "flex", 
-            flexDirection: { xs: "column", sm: "row" },
-            alignItems: "center",
-            width: "100%",
-            flexWrap: "wrap",
-            gap: 2,
-            minWidth: "min-content"
-          }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              sx={{ display: { xs: "flex", sm: "none" } }}
-            >
-              <MenuIcon style={{ color: "#000" }} />
-            </IconButton>
             <Typography
               variant="h6"
               component="div"
@@ -98,15 +75,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             >
               Control Panel
             </Typography>
-            <Box sx={{ 
-              display: { xs: "none", sm: "flex" },
-              flexWrap: "wrap",
-              gap: 2,
-              flex: "1 1 auto",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              minWidth: "min-content"
-            }}>
+            <Box sx={rootStyles}>
               <SourceColumnSelection
                 sourceColumns={props.sourceColumns}
                 selectedSourceColumn={props.state.sourceColumn}
@@ -122,26 +91,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 onSelect={props.onCandidateThresholdSelect}
               />
               <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
-                <AcceptMatchButton onClick={props.acceptMatch} />
-                <RejectMatchButton onClick={props.rejectMatch} />
-                <DiscardColumnButton onClick={props.discardColumn} />
-              </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
-                <UndoButton onClick={props.undo} />
-                <RedoButton onClick={props.redo} />
-              </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
-                <FilterEasyCasesButton onClick={props.filterEasyCases} />
-              </Box>
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
                 <MatcherSliders 
                   matchers={props.matchers} 
                   onSlide={props.onMatchersSelect}
                 />
               </Box>
             </Box>
-          </Box>
-        </StyledToolbar>
     </Box>
   );
 };
