@@ -185,6 +185,44 @@ const getUserOperationHistory = (prop: userOperationHistoryProps) => {
     });
 }
 
+interface targetOntologyProps {
+    callback: (targetOntology: TargetOntology[]) => void;
+}
+
+const getTargetOntology = (prop: targetOntologyProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.post("/api/gdc-ontology", {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
+            const results = response.data?.results;
+            if (results && Array.isArray(results)) {
+                const targetOntology = results.map((result: object) => {
+                    try {
+                        return result as TargetOntology;
+                    } catch (error) {
+                        console.error("Error parsing result to TargetOntology:", error);
+                        return null;
+                    }
+                }).filter((targetOntology: TargetOntology | null) => targetOntology !== null);
+
+                console.log("getTargetOntology finished!");
+                prop.callback(targetOntology);
+                resolve();
+            } else {
+                console.error("Invalid results format");
+                reject(new Error("Invalid results format"));
+            }
+        }).catch((error) => {
+            console.error("Error getting target ontology:", error);
+            reject(error);
+        });
+    });
+}
+
 interface userOperationsProps {
     userOperations?: UserOperation[];
     cachedResultsCallback: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
@@ -296,4 +334,4 @@ const getExactMatches = ({callback}: getExactMatchesProps) => {
 
 
 
-export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches };
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches };

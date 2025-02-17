@@ -18,7 +18,7 @@ from .matcher.bdikit import BDIKitMatcher
 from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
-from .utils import download_model_pt
+from .utils import download_model_pt, load_gdc_ontology
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -248,6 +248,10 @@ class MatchingTask:
 
         return list(clusters.values())
 
+    def _generate_gdc_ontology(self) -> List[Dict]:
+        candidates = self.get_cached_candidates()
+        return load_gdc_ontology(candidates)
+
     def _initialize_value_matches(self) -> None:
         self.cached_candidates["value_matches"] = {}
         for source_col in self.source_df.columns:
@@ -302,7 +306,7 @@ class MatchingTask:
         return {
             "candidates": self.get_cached_candidates(),  # sourceColumn, targetColumn, score, matcher
             "sourceClusters": self._format_source_clusters_for_frontend(),
-            "targetClusters": self.get_cached_target_clusters(),  # [["column1", "column2", ...], [], []]
+            # "targetClusters": self.get_cached_target_clusters(),  # [["column1", "column2", ...], [], []]
             "matchers": self.get_matchers(),
         }
 

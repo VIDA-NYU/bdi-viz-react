@@ -44,6 +44,7 @@ export default function Dashboard() {
         targetUniqueValues,
         valueMatches,
         userOperations,
+        targetOntologies,
         handleFileUpload,
         setSelectedCandidate,
         setMatchers,
@@ -106,7 +107,6 @@ export default function Dashboard() {
         candidates,
         sourceClusters,
         matchers,
-        candidateClusters: [],
         filters: {
             selectedCandidate,
             sourceColumn,
@@ -204,7 +204,7 @@ export default function Dashboard() {
                         state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
                     />
 
-                    <DualScatter
+                    {/* <DualScatter
                         candidates={weightedAggregatedCandidates}
                         updateHighlightSourceColumns={
                             updateHighlightedSourceColumns
@@ -214,7 +214,7 @@ export default function Dashboard() {
                         }
                         width={300}
                         height={300}
-                    />
+                    /> */}
                 </ControlColumn>
 
                 {/* Middle Column - Main Visualizations */}
@@ -229,6 +229,7 @@ export default function Dashboard() {
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
                         sourceCluster={filteredSourceCluster}
+                        targetOntologies={targetOntologies}
                         selectedCandidate={selectedCandidate}
                         setSelectedCandidate={setSelectedCandidateCallback}
                         sourceUniqueValues={sourceUniqueValues}

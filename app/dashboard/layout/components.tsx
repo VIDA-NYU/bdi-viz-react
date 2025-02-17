@@ -94,6 +94,14 @@ export const ControlColumn = styled(Box)(({ theme }) => ({
   alignContent: 'flex-start',
 }));
 
+export const LeftColumn = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+  justifyContent: 'flex-start',
+  alignContent: 'flex-start',
+}));
+
 // Middle Column - Main Visualizations
 export const MainColumn = styled(Box)(({ theme }) => ({
   display: 'flex',

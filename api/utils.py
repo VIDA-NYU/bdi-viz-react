@@ -3,7 +3,7 @@ import logging
 import os
 import re
 from io import StringIO
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 import requests
@@ -115,3 +115,45 @@ def download_model_pt(url: str, model_name: str) -> str:
         raise
 
     return model_path
+
+
+GDC_ONTOLOGY_FLAT_PATH = os.path.join(
+    os.path.dirname(__file__), "./resources/gdc_ontology_flat.json"
+)
+
+
+def load_gdc_ontology(candidates: List[Dict[str, Any]]) -> List[Dict]:
+    with open(GDC_ONTOLOGY_FLAT_PATH, "r") as f:
+        gdc_ontology_flat = json.load(f)
+
+    hiarchies = {}
+    target_columns = set()
+    for candidate in candidates:
+        target_columns.add(candidate["targetColumn"])
+
+    for target_column in list(target_columns):
+        if target_column not in gdc_ontology_flat:
+            continue
+        ontology = gdc_ontology_flat[target_column]
+        category = ontology["category"]
+        node = ontology["node"]
+        if category not in hiarchies:
+            hiarchies[category] = {"level": 0, "children": {}}
+        if node not in hiarchies[category]["children"]:
+            hiarchies[category]["children"][node] = {"level": 1, "children": {}}
+        hiarchies[category]["children"][node]["children"][target_column] = {
+            "level": 2,
+            "children": [],
+        }
+
+    ret = []
+    for category, category_info in hiarchies.items():
+        for node, node_info in category_info["children"].items():
+            for target_column in node_info["children"].keys():
+                target_column_obj = {
+                    "name": target_column,
+                    "parent": node,
+                    "grandparent": category,
+                }
+                ret.append(target_column_obj)
+    return ret

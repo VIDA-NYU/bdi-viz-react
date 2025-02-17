@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
-import { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory } from '@/app/lib/heatmap/heatmap-helper';
+import { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
 
 
@@ -13,6 +13,7 @@ type DashboardCandidateState = {
     targetUniqueValues: TargetUniqueValues[];
     valueMatches: ValueMatch[];
     userOperations: UserOperation[];
+    targetOntologies: TargetOntology[];
     handleFileUpload: (newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
@@ -35,6 +36,7 @@ export const {
         const [targetUniqueValues, setTargetUniqueValues] = useState<TargetUniqueValues[]>([]);
         const [valueMatches, setValueMatches] = useState<ValueMatch[]>([]);
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
+        const [targetOntologies, setTargetOntologies] = useState<TargetOntology[]>([]);
 
         const handleFileUpload = useCallback((newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => {
             setCandidates(newCandidates.sort((a, b) => b.score - a.score));
@@ -69,6 +71,10 @@ export const {
             setUserOperations(newUserOperations);
         }, []);
 
+        const handleTargetOntology = useCallback((targetOntologies: TargetOntology[]) => {
+            setTargetOntologies(targetOntologies);
+        }, []);
+
 
         useEffect(() => {
             getCachedResults({
@@ -83,6 +89,9 @@ export const {
             getUserOperationHistory({
                 callback: handleUserOperationsUpdate
             });
+            getTargetOntology({
+                callback: handleTargetOntology
+            });
         }, []);
 
         return {
@@ -94,6 +103,7 @@ export const {
             targetUniqueValues,
             valueMatches,
             userOperations,
+            targetOntologies,
             handleFileUpload,
             handleChatUpdate,
             setSelectedCandidate: handleSelectedCandidate,

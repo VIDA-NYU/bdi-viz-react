@@ -11,7 +11,8 @@ import React, {
   import { useTooltip } from "./hooks/useTooltip";
   import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
   import { HeatMapConfig } from "./types";
-  import { useTreeLayout } from "./tree/useTreeLayout";
+  // import { useTreeLayout } from "./tree/useTreeLayout";
+  import { useOntologyLayout } from "./tree/useOntologyLayout";
   import { ClusteringOptions, TreeConfig } from "./tree/types";
   import { TreeNodeComponent } from "./tree/TreeNode";
   import { useLabelManagement } from "./tree/useLabelManagement";
@@ -21,6 +22,7 @@ import React, {
   interface HierarchicalAxisProps {
     data: AggregatedCandidate[];
     sourceCluster?: string[];
+    targetOntologies?: TargetOntology[];
     selectedCandidate?: Candidate;
     sx?: Record<string, any>;
   }
@@ -38,6 +40,7 @@ import React, {
   const HierarchicalAxis: React.FC<HierarchicalAxisProps> = ({
     data,
     sourceCluster,
+    targetOntologies,
     selectedCandidate,
     sx
   }) => {
@@ -79,21 +82,36 @@ import React, {
       selectedCandidate: selectedCandidate,
     });
     const clusteringOptions = defaultClusteringOptions;
+    // const {
+    //   treeData: targetTreeData,
+    //   expandedNodes: targetExpandedNodes,
+    //   toggleNode: toggleTargetNode,
+    //   getVisibleColumns: getVisibleTargetColumns
+    // } = useTreeLayout({
+    //   width: dimensions.width,
+    //   height: dimensions.height,
+    //   margin: MARGIN,
+    //   columns: x.domain(),
+    //   scale: x,
+    //   getWidth: getWidth,
+    //   options: clusteringOptions,
+    //   orientation: 'horizontal'
+    // });
+
     const {
       treeData: targetTreeData,
       expandedNodes: targetExpandedNodes,
       toggleNode: toggleTargetNode,
       getVisibleColumns: getVisibleTargetColumns
-    } = useTreeLayout({
+    } = useOntologyLayout({
+      columns: x.domain(),
+      targetOntologies: targetOntologies ?? [],
       width: dimensions.width,
       height: dimensions.height,
       margin: MARGIN,
-      columns: x.domain(),
       scale: x,
       getWidth: getWidth,
-      options: clusteringOptions,
-      orientation: 'horizontal'
-    });
+    })
     
     
     const targetLabelPlacements = useLabelManagement({

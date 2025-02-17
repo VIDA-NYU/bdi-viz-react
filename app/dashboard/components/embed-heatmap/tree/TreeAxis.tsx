@@ -6,7 +6,7 @@ interface TreeBranchProps {
   node: TreeNode;
   isExpanded: boolean;
   orientation: 'vertical' | 'horizontal';
-  onToggle: () => void;
+  onToggle: (nodeId: string) => void;
 }
 
 const TreeBranch: React.FC<TreeBranchProps> = ({
@@ -49,7 +49,7 @@ const TreeBranch: React.FC<TreeBranchProps> = ({
           r={3}
           fill={node.children ? "#4a5568" : "#a0aec0"}
           cursor={node.children ? "pointer" : "default"}
-          onClick={node.children ? onToggle : undefined}
+          onClick={node.children ? () => onToggle(node.id) : undefined}
         />
         
         {isExpanded && node.children?.map(child => (
@@ -65,9 +65,9 @@ const TreeBranch: React.FC<TreeBranchProps> = ({
             />
             <TreeBranch 
               node={child}
-              isExpanded={isExpanded}
+              isExpanded={child.isExpanded ?? isExpanded}
               orientation={orientation}
-              onToggle={onToggle}
+              onToggle={() => onToggle(child.id)}
             />
           </g>
         ))}
@@ -76,7 +76,7 @@ const TreeBranch: React.FC<TreeBranchProps> = ({
           <g
             transform={`translate(${node.x},${node.y+2})`}
             cursor="pointer"
-            onClick={onToggle}
+            onClick={() => onToggle(node.id)}
           >
             <circle r={6} fill="white" stroke="#4a5568" strokeWidth={2} />
             <text
@@ -139,7 +139,7 @@ export const TreeAxis: React.FC<TreeAxisProps> = ({
           node={node}
           isExpanded={expandedNodes.has(node.id)}
           orientation={orientation}
-          onToggle={() => onToggleNode(node.id)}
+          onToggle={onToggleNode}
         />
       ))}
 

@@ -25,7 +25,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "0px",
 }));
 
-interface ToolbarProps {
+interface ControlPanelProps {
   sourceColumns: string[];
   matchers: Matcher[];
   isFloating?: boolean;
@@ -52,7 +52,7 @@ interface ToolbarProps {
   };
 }
 
-const ControlPanel: React.FC<ToolbarProps> = ({ 
+const ControlPanel: React.FC<ControlPanelProps> = ({ 
   isFloating = false, 
   width,
   containerStyle = {},

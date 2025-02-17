@@ -19,9 +19,10 @@ declare interface SourceCluster {
     cluster: string[];
 }
 
-declare interface CandidateCluster {
-    targetColumn: string;
-    cluster: string[];
+declare interface TargetOntology {
+    name: string;
+    parent: string;
+    grandparent: string;
 }
 
 declare interface UniqueValue {
