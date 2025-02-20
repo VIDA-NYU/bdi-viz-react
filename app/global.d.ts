@@ -75,7 +75,7 @@ declare interface Explanation {
     confidence: number;
 }
 
-declare interface RelativeKnowledge {
+declare interface RelevantKnowledge {
     entry: string;
     description: string;
 }
@@ -84,7 +84,7 @@ declare interface CandidateExplanation {
     isMatch: boolean;
     explanations: ExplanationObject[];
     matchingValues?: string[][]; // [source value, target value]
-    relativeKnowledge?: RelativeKnowledge[];
+    relevantKnowledge?: RelevantKnowledge[];
 }
 
 declare interface AgentAction {

@@ -55,11 +55,11 @@ class ExplanationObject(BaseModel):
     )
 
 
-class RelativeKnowledge(BaseModel):
+class RelevantKnowledge(BaseModel):
     entry: str = Field(
-        description="The entry of the relative knowledge. Example: FIGO, AJCC, UICC"
+        description="The entry of the relevant knowledge. Example: FIGO, AJCC, UICC"
     )
-    description: str = Field(description="The description of the relative knowledge")
+    description: str = Field(description="The description of the relevant knowledge")
 
 
 class CandidateExplanation(BaseModel):
@@ -79,8 +79,8 @@ class CandidateExplanation(BaseModel):
         ]
         """
     )
-    relative_knowledge: List[RelativeKnowledge] = Field(
-        description="""Relevant knowledge related to the candidate in RelativeKnowledge format.
+    relevant_knowledge: List[RelevantKnowledge] = Field(
+        description="""Relevant knowledge related to the candidate in RelevantKnowledge format.
         """
     )
 

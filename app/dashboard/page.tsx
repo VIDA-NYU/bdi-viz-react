@@ -71,7 +71,7 @@ export default function Dashboard() {
         currentExplanations,
         selectedExplanations,
         matchingValues,
-        relativeKnowledge,
+        relevantKnowledge,
         generateExplanations,
         setSelectedExplanations,
         acceptMatch: acceptMatchWithExplanations,
@@ -261,7 +261,7 @@ export default function Dashboard() {
                         currentExplanations={currentExplanations}
                         selectedExplanations={selectedExplanations}
                         matchingValues={matchingValues}
-                        relativeKnowledge={relativeKnowledge}
+                        relevantKnowledge={relevantKnowledge}
                         isLoading={isExplaining}
                         setSelectExplanations={setSelectedExplanations}
                         sourceColumn={selectedCandidate?.sourceColumn}

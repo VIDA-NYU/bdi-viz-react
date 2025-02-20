@@ -1,4 +1,4 @@
-// components/SchemaExplanation/RelativeKnowledge.tsx
+// components/SchemaExplanation/RelevantKnowledge.tsx
 import { 
     Box,
     Typography, 
@@ -10,20 +10,20 @@ import {
 } from '@mui/material';
 
 
-interface RelativeKnowledgeProps {
-    relativeKnowledge: RelativeKnowledge[];
+interface RelevantKnowledgeProps {
+    relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
 }
 
 
-const RelativeKnowledgeView = ({
-    relativeKnowledge,
+const RelevantKnowledgeView = ({
+    relevantKnowledge,
     isLoading
-}: RelativeKnowledgeProps) => {
+}: RelevantKnowledgeProps) => {
     return (
         <Box>
                 <Typography variant="h6" gutterBottom>
-                    Relative Knowledge
+                    Relevant Knowledge
                 </Typography>
                 {isLoading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" height="100%">
@@ -31,7 +31,7 @@ const RelativeKnowledgeView = ({
                     </Box>
                 ) : (
                     <List>
-                        {relativeKnowledge.map((rk, i) => (
+                        {relevantKnowledge.map((rk, i) => (
                             <ListItem key={i}>
                                 <Stack direction="row" alignItems="center" spacing={2}>
                                     <Chip label={rk.entry} color="primary" />
@@ -48,4 +48,4 @@ const RelativeKnowledgeView = ({
 };
 
 
-export default RelativeKnowledgeView;
+export default RelevantKnowledgeView;

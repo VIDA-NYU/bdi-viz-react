@@ -90,7 +90,7 @@ Related Explanations:
         c. The history of false positives and false negatives associated with these columns.
     3. Provide up to four possible explanations for why these columns might be mapped together, referencing the historical matches, mismatches, and explanations where applicable.
     4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data. If the values are numeric, do not return any pairs.
-    5. Include any additional context or key terms (i.e., "relative knowledge") that could support or contradict the current mapping.
+    5. Include any additional context or key terms (i.e., "relevant knowledge") that could support or contradict the current mapping.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(

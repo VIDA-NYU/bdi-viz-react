@@ -1,7 +1,7 @@
 // components/SchemaExplanation/CombinedView.tsx
 import { Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
-import RelativeKnowledgeView from './RelativeKnowledgeView';
+import RelevantKnowledgeView from './RelevantKnowledgeView';
 import { Explanation } from './types';
 
 const RowComp = styled("div")({
@@ -29,7 +29,7 @@ interface CombinedViewProps {
     selectedExplanations: Explanation[];
     setSelectExplanations: (explanations: Explanation[]) => void;
     matchingValues: string[][];
-    relativeKnowledge: RelativeKnowledge[];
+    relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
     sourceColumn?: string;
     targetColumn?: string;
@@ -41,7 +41,7 @@ const CombinedView = ({
     selectedExplanations,
     setSelectExplanations,
     matchingValues,
-    relativeKnowledge,
+    relevantKnowledge,
     isLoading,
     sourceColumn,
     targetColumn,
@@ -64,8 +64,8 @@ const CombinedView = ({
             </Stack>
             <Stack flex={4}>
                 <Divider />
-                <RelativeKnowledgeView
-                    relativeKnowledge={relativeKnowledge}
+                <RelevantKnowledgeView
+                    relevantKnowledge={relevantKnowledge}
                     isLoading={isLoading}
                 />
             </Stack>
