@@ -1,5 +1,6 @@
 "use client";
 
+import { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Box,
@@ -20,6 +21,7 @@ import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
 import MatcherSliders from "./control-inputs/matcher-selection";
 import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "0px",
@@ -52,6 +54,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   containerStyle = {},
   ...props 
 }) => {
+
+  // Loading Global Context
+  const { developerMode } = useContext(LoadingGlobalContext);
 
   // Root container styles
   const rootStyles = {
@@ -90,12 +95,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               <CandidateThresholdSlide
                 onSelect={props.onCandidateThresholdSelect}
               />
-              <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
-                <MatcherSliders 
+              {developerMode && (
+                <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                  <MatcherSliders 
                   matchers={props.matchers} 
                   onSlide={props.onMatchersSelect}
-                />
-              </Box>
+                  />
+                </Box>
+              )}
             </Box>
     </Box>
   );

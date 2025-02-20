@@ -1,7 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import { Box } from "@mui/material";
-import React, { useRef, useEffect, useMemo, useState } from "react";
+import React, { useRef, useEffect, useMemo, useState, useContext } from "react";
+import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 
 interface GroupedData {
     targetColumn: string;
@@ -107,6 +108,8 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
         })).sort((a, b) => b.weight - a.weight);
     }, [dataPerMatcher, filteredMatchers]);
 
+    const { developerMode } = useContext(LoadingGlobalContext);
+
     useEffect(() => {
         if (upperColumnChartRef.current) {
             upperColumnChartRef.current.innerHTML = '';
@@ -114,13 +117,13 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
         }
         if (lowerBarChartRef.current) {
             lowerBarChartRef.current.innerHTML = '';
-            lowerBarChartRef.current.appendChild(lowerBarChart(weightPerMatcher));
+            lowerBarChartRef.current.appendChild(lowerBarChart(weightPerMatcher, developerMode));
         }
         if (lowerSetChartRef.current) {
             lowerSetChartRef.current.innerHTML = '';
             lowerSetChartRef.current.appendChild(lowerSetChart({ dataCrossProduct, dataPerMatcher }, fullWidth));
         }
-    }, [groupedData, weightPerMatcher, dataCrossProduct, dataPerMatcher, fullWidth]);
+    }, [groupedData, weightPerMatcher, dataCrossProduct, dataPerMatcher, fullWidth, developerMode]);
 
     return (
         <Box ref={containerRef}>
@@ -177,12 +180,14 @@ function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
     });
 }
 
-function lowerBarChart(matchers: Matcher[]) {
+function lowerBarChart(matchers: Matcher[], developerMode: boolean) {
     const matcherData = Plot.barX(
         matchers,
         {
             x: d => d.weight,
             y: d => d.name,
+            opacity: developerMode ? 1 : 0,
+            fill: 'steelblue',
         }
     );
 
@@ -192,7 +197,8 @@ function lowerBarChart(matchers: Matcher[]) {
         ],
         x: {
             axis: 'top',
-            line: true,
+            line: developerMode,
+            ticks: developerMode ? undefined : [],
             reverse: true,
         },
         y: {

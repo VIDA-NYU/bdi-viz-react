@@ -1,6 +1,6 @@
 'use client';
 import { useContext, useState } from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, Switch } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import LeftPanel from "./left-panel";
@@ -31,7 +31,12 @@ import { useDashboardHighlight } from "./hooks/useDashboardHighlight";
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
     const [suggestions, setSuggestions] = useState<AgentSuggestions>();
-    const { isLoadingGlobal, setIsLoadingGlobal } = useContext(LoadingGlobalContext);
+    const {
+        isLoadingGlobal,
+        setIsLoadingGlobal,
+        developerMode,
+        setDeveloperMode,
+    } = useContext(LoadingGlobalContext);
 
     const {
         candidates,
@@ -177,7 +182,19 @@ export default function Dashboard() {
     return (
         <RootContainer>
             <Header>
-                <Typography variant="h5">BDI Visualization System</Typography>
+                <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
+                    <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+                        <Typography variant="h5">BDI Visualization System</Typography>
+                        <Box display="flex" alignItems="center">
+                            <Typography variant="body1" sx={{ marginRight: 1 }}>Developer Mode</Typography>
+                            <Switch
+                                checked={developerMode}
+                                onChange={(e) => setDeveloperMode(e.target.checked)}
+                                color="primary"
+                            />
+                        </Box>
+                    </Box>
+                </Box>
             </Header>
 
             <MainContent>
