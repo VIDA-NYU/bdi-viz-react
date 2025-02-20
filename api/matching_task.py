@@ -13,12 +13,14 @@ from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
 
+from .candidate_quadrants import CandidateQuadrants
 from .clusterer.embedding_clusterer import EmbeddingClusterer
 from .matcher.bdikit import BDIKitMatcher
+from .matcher.magneto import MagnetoMatcher
 from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
-from .utils import download_model_pt, load_gdc_ontology
+from .utils import load_gdc_ontology
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -34,26 +36,27 @@ DEFAULT_PARAMS = {
     "use_bp_reranker": True,
     "use_gpt_reranker": False,
 }
-FT_MODEL_URL = "https://nyu.box.com/shared/static/g2d3r1isdxrrxdcvqfn2orqgjfneejz1.pth"
 
 
 class MatchingTask:
     def __init__(
         self,
         top_k: int = 20,
-        clustering_model="Snowflake/snowflake-arctic-embed-m-v2.0",
+        clustering_model="Snowflake/snowflake-arctic-embed-m",
         update_matcher_weights: bool = True,
     ) -> None:
         self.lock = threading.Lock()
         self.top_k = top_k
 
+        self.candidate_quadrants = None
         self.matchers = {
             "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
             "ct_learning": BDIKitMatcher("ct_learning"),
-            "magneto_zs_bp": BDIKitMatcher("magneto_zs_bp"),
-            "magneto_ft_bp": BDIKitMatcher("magneto_ft_bp"),
+            "magneto_ft": MagnetoMatcher("magneto_ft"),
+            "magneto_zs": MagnetoMatcher("magneto_zs"),
         }
-        self.clustering_model = self._download_model(clustering_model)
+
+        self.clustering_model = clustering_model
         self.source_df = None
         self.target_df = None
         self.cached_candidates = self._initialize_cache()
@@ -70,13 +73,6 @@ class MatchingTask:
             "target_clusters": None,
             "value_matches": {},
         }
-
-    def _download_model(self, model_name: str) -> str:
-        try:
-            return download_model_pt(model_name, f"{model_name.split('/')[-1]}")
-        except Exception as e:
-            logger.error(f"Error downloading model: {e}")
-            return model_name
 
     def update_dataframe(
         self, source_df: Optional[pd.DataFrame], target_df: Optional[pd.DataFrame]
@@ -186,20 +182,57 @@ class MatchingTask:
         source_clusters = self._generate_source_clusters(source_embeddings)
         target_clusters = self._generate_target_clusters(target_embeddings)
 
+        # Apply candidate quadrants
+        self.candidate_quadrants = CandidateQuadrants(
+            source=self.source_df,
+            target=self.target_df,
+            top_k=40,
+        )
+
         layered_candidates = []
-        for matcher_name, matcher_instance in self.matchers.items():
-            logger.info(f"Running matcher: {matcher_name}...")
-            matcher_candidates = matcher_instance.top_matches(
-                source=self.source_df, target=self.target_df, top_k=self.top_k
+        numeric_columns = []
+        for source_column in self.source_df.columns:
+            layered_candidates.extend(
+                self.candidate_quadrants.get_easy_target_json(source_column)
             )
 
-            # Generate value matches for each candidate
-            for candidate in matcher_candidates:
-                self._generate_value_matches(
-                    candidate["sourceColumn"], candidate["targetColumn"]
-                )
+            if pd.api.types.is_numeric_dtype(self.source_df[source_column].dtype):
+                numeric_columns.append(source_column)
+                continue
 
-            layered_candidates.extend(matcher_candidates)
+            target_df = self.candidate_quadrants.get_potential_target_df(source_column)
+            if target_df is None:  # No potential matches
+                continue
+            for matcher_name, matcher_instance in self.matchers.items():
+                logger.info(
+                    f"Running matcher: {matcher_name} on source {source_column}..."
+                )
+                matcher_candidates = matcher_instance.top_matches(
+                    source=self.source_df[[source_column]],
+                    target=target_df,
+                    top_k=self.top_k,
+                )
+                layered_candidates.extend(matcher_candidates)
+
+        if numeric_columns:
+            target_df = self.candidate_quadrants.get_potential_numeric_target_df()
+            source_df = self.source_df[numeric_columns]
+            for matcher_name, matcher_instance in self.matchers.items():
+                logger.info(
+                    f"Running matcher: {matcher_name} on source {numeric_columns}..."
+                )
+                matcher_candidates = matcher_instance.top_matches(
+                    source=source_df,
+                    target=target_df,
+                    top_k=self.top_k,
+                )
+                layered_candidates.extend(matcher_candidates)
+
+        # Generate value matches for each candidate
+        for candidate in layered_candidates:
+            self._generate_value_matches(
+                candidate["sourceColumn"], candidate["targetColumn"]
+            )
 
         if is_candidates_cached:
             self.cached_candidates = {
