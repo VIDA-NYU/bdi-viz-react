@@ -6,12 +6,16 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
+
 # langchain
 from .langchain.pydantic import AgentResponse
 from .session_manager import SESSION_MANAGER
-from .utils import (extract_data_from_request, extract_session_name,
-                    read_candidate_explanation_json,
-                    write_candidate_explanation_json)
+from .utils import (
+    extract_data_from_request,
+    extract_session_name,
+    read_candidate_explanation_json,
+    write_candidate_explanation_json,
+)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 
@@ -68,6 +72,8 @@ def get_results():
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
         _ = matching_task.get_candidates()
+        # AGENT.remember_candidates(candidates)
+
     results = matching_task.to_frontend_json()
 
     return {"message": "success", "results": results}
@@ -134,6 +140,20 @@ def ask_agent():
 
     response = response.model_dump()
     app.logger.info(f"Response: {response}")
+    return response
+
+
+@app.route("/api/agent/search/candidates", methods=["POST"])
+def search_candidates():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    data = request.json
+    query = data["query"]
+
+    response = AGENT.search(query)
+    response = response.model_dump()
+
     return response
 
 

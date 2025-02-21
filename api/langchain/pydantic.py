@@ -20,6 +20,15 @@ class AgentResponse(BaseModel):
     )
 
 
+class CandidateObject(BaseModel):
+    """Object for single candidate match or mismatch."""
+
+    sourceColumn: str = Field(description="The source column name")
+    targetColumn: str = Field(description="The target column name")
+    score: float = Field(description="The score of the candidate")
+    matcher: str = Field(description="The matcher used for the candidate")
+
+
 class DiagnoseObject(BaseModel):
     """Object for single diagnosing the agent based on user operation."""
 

@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
 # from langchain_together import ChatTogether
@@ -17,7 +18,12 @@ from pydantic import BaseModel
 from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from .memory import MemoryRetriver
-from .pydantic import ActionResponse, AgentSuggestions, CandidateExplanation
+from .pydantic import (
+    ActionResponse,
+    AgentSuggestions,
+    CandidateExplanation,
+    CandidateObject,
+)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -32,7 +38,7 @@ class Agent:
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
         self.agent_config = {"configurable": {"thread_id": "bdiviz-1"}}
 
-        self.memory = MemorySaver()
+        # self.memory = MemorySaver()
         self.store = MemoryRetriver()
 
         self.system_messages = [
@@ -48,6 +54,29 @@ class Agent:
     4. Approach the task with the mindset of a biomedical expert.
             """,
         ]
+
+    def search(self, query: str) -> CandidateObject:
+        logger.info(f"[Agent] Searching for candidates...")
+
+        tools = [
+            self.store.query_candidates,
+        ]
+
+        prompt = f"""
+    Use the tools to search for candidates based on the user's input.
+
+    User Query: {query}
+        """
+
+        logger.info(f"[SEARCH] Prompt: {prompt}")
+
+        response = self.invoke(
+            prompt=prompt,
+            tools=tools,
+            output_structure=CandidateObject,
+        )
+
+        return response
 
     def explain(self, candidate: Dict[str, Any]) -> CandidateExplanation:
         logger.info(f"[Agent] Explaining the candidate...")
@@ -223,6 +252,11 @@ Candidate: {candidate}
     ) -> None:
         logger.info(f"[Agent] Remembering the explanation...")
         self.store.put_explanation(explanations, user_operation)
+
+    def remember_candidates(self, candidates: List[Dict[str, Any]]) -> None:
+        logger.info(f"[Agent] Remembering the candidates...")
+        for candidate in candidates:
+            self.store.put_candidate(candidate)
 
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel
