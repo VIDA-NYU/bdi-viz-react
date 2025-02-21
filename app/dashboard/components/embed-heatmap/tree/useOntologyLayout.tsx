@@ -47,7 +47,6 @@ export const useOntologyLayout = ({
                 return acc;
             }, [] as string[]);
             const grandparentPosition = (usableWidth * (index + 0.5)) / grandparents.length;
-            const parentPosition = (usableHeight * (index + 0.5)) / parents.length;
             const isExpanded = expandedNodes.has(grandparent);
             return {
                 id: grandparent,
@@ -59,6 +58,7 @@ export const useOntologyLayout = ({
                 level: 1,
                 children: parents.map(parent => {
                     const cols = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === parent).map(ontology => ontology.name);
+                    const parentPosition = (usableWidth * (parents.indexOf(parent) + 0.5)) / parents.length;
                     const parentIsExpanded = expandedNodes.has(parent);
                     return {
                         id: parent,
@@ -79,7 +79,7 @@ export const useOntologyLayout = ({
                                 },
                                 level: 3,
                                 originalColumn: col,
-                                x: scale(col) ?? 0 + getWidth({targetColumn: col} as Candidate) / 2,
+                                x: (scale(col) ?? 0) + (getWidth({targetColumn: col} as Candidate) ?? 0) / 2,
                                 y: 0,
                                 isExpanded: childIsExpanded
                             };

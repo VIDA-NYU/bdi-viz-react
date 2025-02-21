@@ -311,12 +311,12 @@ const HeatMap: React.FC<HeatMapProps> = ({
                   <StyledText
                     transform={`translate(-80, ${(y.range()[1] / 2) + 10}) rotate(-90)`}
                     textAnchor="middle"
-                    style={{ fontSize: "1em", fontWeight: "500" }}
+                    style={{ fontSize: "1em", fontWeight: "600" }}
                   >
                     Source Attributes
                   </StyledText>
-                  <line y1={0} y2={y.range()[1]} stroke="black" />
                 </g>
+                <line y1={0} y2={y.range()[1]} stroke={theme.palette.grey[500]} strokeWidth={2} />
                 {y.domain().map((value) => {
                   const yPos = y(value)!;
                   const height = getHeight({ sourceColumn: value } as Candidate);
@@ -330,9 +330,9 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     textAnchor="end"
                     transform="rotate(45)"
                     style={{
+                      fill: theme.palette.grey[600],
                       fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
-                      opacity:
-                      selectedCandidate?.sourceColumn === value ? 1 : 0.7,
+                      fontWeight: 600,
                     }}
                     >
                     {value}

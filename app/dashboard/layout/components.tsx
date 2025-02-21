@@ -77,7 +77,7 @@ export const Header = styled(Box)(({ theme }) => ({
 
 export const MainContent = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '400px 2fr 1.2fr', // Three columns: controls, main viz, secondary viz
+  gridTemplateColumns: '400px 2fr 400px', // Three columns: controls, main viz, secondary viz
   gap: theme.spacing(2),
   flex: 1,
   height: 'calc(100vh - 140px)', // Adjust based on header/footer height
@@ -110,6 +110,7 @@ export const LeftColumn = styled(Box)(({ theme }) => ({
 // Middle Column - Main Visualizations
 export const MainColumn = styled(Box)(({ theme }) => ({
   display: 'flex',
+  width: '100%',
   flexDirection: 'column',
   gap: theme.spacing(1),
   overflowY: 'auto',

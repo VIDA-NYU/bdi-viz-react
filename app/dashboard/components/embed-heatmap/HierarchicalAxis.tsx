@@ -6,6 +6,7 @@ import React, {
     useCallback,
   } from "react";
   import { Box } from "@mui/material";
+  import { useTheme, styled } from "@mui/material/styles";
   import { RectCell } from "./cells/RectCell";
   import { useHeatmapScales } from "./hooks/useHeatmapScales";
   import { useTooltip } from "./hooks/useTooltip";
@@ -44,6 +45,12 @@ import React, {
     selectedCandidate,
     sx
   }) => {
+
+    const theme = useTheme();
+    const StyledText = styled('text')({
+      fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+    });
+    
     // const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
     const [config, setConfig] = useState<HeatMapConfig>({
       cellType: "rect",
@@ -150,6 +157,16 @@ import React, {
                 />
               </g>
   
+            </g>
+
+            <g>
+                <StyledText
+                  transform={`translate(${dimensions.width / 2}, 150)`}
+                  textAnchor="middle"
+                  style={{ fontSize: "1em", fontWeight: "600" }}
+                >
+                    Target Attributes
+                </StyledText>
             </g>
           </svg>
       </Box>
