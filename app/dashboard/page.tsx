@@ -184,13 +184,13 @@ export default function Dashboard() {
             <Header>
                 <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
                     <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-                        <Typography variant="h5">BDI Visualization System</Typography>
+                        <Typography sx={{ fontSize: "1.5rem", fontWeight: "900" }}>BDI Visualization System</Typography>
                         <Box display="flex" alignItems="center">
-                            <Typography variant="body1" sx={{ marginRight: 1 }}>Developer Mode</Typography>
+                            <Typography sx={{ fontSize: "1rem", fontWeight: "300", marginRight: 0 }}>Developer Mode</Typography>
                             <Switch
                                 checked={developerMode}
                                 onChange={(e) => setDeveloperMode(e.target.checked)}
-                                color="primary"
+                                color="default"
                             />
                         </Box>
                     </Box>

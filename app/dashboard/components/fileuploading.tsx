@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
-import { Button, Paper } from "@mui/material";
+import { Box, Button, Paper } from "@mui/material";
 
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { Dropzone } from "./file-upload/fileUploadBox";
@@ -64,11 +64,29 @@ const FileUploading = (prop: FileUploadingProps) => {
             {isVisible ? (
                 <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
                     <Dropzone required name="my-file" />
-                    <Button variant="contained" color="primary" type="submit">IMPORT CSV</Button>
-                    <Button variant="contained" color="secondary" onClick={() => setIsVisible(false)}>CANCEL</Button>
+                    <Box sx={{ display: "flex", gap: 1 }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            sx={{ minHeight: 30, fontSize: 12 }}
+                        >IMPORT CSV</Button>
+                        <Button
+                            variant="outlined"
+                            color="info"
+                            onClick={() => setIsVisible(false)}
+                            sx={{ minHeight: 30, fontSize: 12 }}
+                        >CANCEL</Button>
+                    </Box>
                 </form>
             ) : (
-                <Button variant="contained" color="secondary" onClick={() => setIsVisible(true)}>UPLOAD SOURCE FILE</Button>
+                <Button
+                    variant="contained"
+                    color="info"
+                    onClick={() => setIsVisible(true)}
+                    fullWidth
+                    sx={{ minHeight: 30, fontSize: 12 }}
+                >UPLOAD SOURCE FILE</Button>
             )}
         </Paper>
     );

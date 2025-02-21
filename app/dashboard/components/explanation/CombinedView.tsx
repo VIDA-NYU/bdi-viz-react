@@ -63,7 +63,6 @@ const CombinedView = ({
                 />
             </Stack>
             <Stack flex={4}>
-                <Divider />
                 <RelevantKnowledgeView
                     relevantKnowledge={relevantKnowledge}
                     isLoading={isLoading}

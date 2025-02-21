@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Box, FormControl, Stack, Slider, Typography } from '@mui/material';
+import { SectionLabel } from '../../layout/components';
 
 interface Matcher {
     name: string;
@@ -35,13 +36,9 @@ const MatcherSliders: React.FC<MatcherSelectionProps> = ({ matchers, onSlide }) 
 
     return (
         <FormControl fullWidth>
-            <Typography 
-                id="matcher-sliders-label"
-                sx={{ color: "#000", mb: 2 }}
-                gutterBottom
-            >
+            <SectionLabel>
                 Matcher Weights
-            </Typography>
+            </SectionLabel>
             
                 {matchers.map((matcher, index) => (
                     <Box key={index}>

@@ -8,6 +8,7 @@ import {
     Stack,
     CircularProgress
 } from '@mui/material';
+import { SectionHeader } from '../../layout/components';
 
 
 interface RelevantKnowledgeProps {
@@ -22,9 +23,9 @@ const RelevantKnowledgeView = ({
 }: RelevantKnowledgeProps) => {
     return (
         <Box>
-                <Typography variant="h6" gutterBottom>
+                <SectionHeader>
                     Relevant Knowledge
-                </Typography>
+                </SectionHeader>
                 {isLoading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" height="100%">
                         <CircularProgress />

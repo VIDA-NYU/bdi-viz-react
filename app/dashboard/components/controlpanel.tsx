@@ -7,6 +7,7 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  Divider
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -22,6 +23,7 @@ import RedoButton from "./control-inputs/redo-button";
 import MatcherSliders from "./control-inputs/matcher-selection";
 import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import { SectionHeader } from "@/app/dashboard/layout/components";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: "0px",
@@ -68,18 +70,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   };
 
   return (
+    <>
+    <SectionHeader>
+      Control Panel
+    </SectionHeader>
     <Box sx={rootStyles}>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                color: "#000",
-                whiteSpace: "nowrap"
-              }}
-            >
-              Control Panel
-            </Typography>
+            
             <Box sx={rootStyles}>
               <SourceColumnSelection
                 sourceColumns={props.sourceColumns}
@@ -105,6 +101,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               )}
             </Box>
     </Box>
+    </>
   );
 };
 

@@ -7,6 +7,7 @@ import DiscardColumnButton from "./control-inputs/discard-column-button";
 import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
 import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
+import { SectionHeader } from "../layout/components";
 
 
 interface DecisionPanelProps {
@@ -38,17 +39,9 @@ const DecisionPanel: React.FC<DecisionPanelProps> = ({
 
     return (
         <Box sx={rootStyles}>
-            <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                    display: { xs: "none", sm: "flex" },
-                    color: "#000",
-                    whiteSpace: "nowrap"
-                }}
-                >
+            <SectionHeader>
                 Decision Panel
-            </Typography>
+            </SectionHeader>
             <Box sx={rootStyles}>
                 <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
                     <AcceptMatchButton onClick={acceptMatch} />

@@ -10,9 +10,11 @@ const FilterEasyCasesButton: React.FC<FilterEasyCasesButtonProps> = ({ onClick }
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <Button
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 onClick={onClick}
+                fullWidth
+                sx={{ minHeight: 60, fontSize: 12 }}
             >
                 Filter Easy Cases!
             </Button>

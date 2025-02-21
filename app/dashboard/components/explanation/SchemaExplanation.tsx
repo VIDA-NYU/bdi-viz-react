@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import ExplanationItem from './ExplanationItem';
 import { Explanation } from './types';
+import { SectionHeader } from '../../layout/components';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
@@ -43,9 +44,9 @@ const SchemaExplanation = ({
     return (
         <Stack spacing={3} sx={{ paddingLeft: 1, maxHeight: "700px", overflowY: 'scroll'}}>
             <Box>
-                <Typography variant="h6" gutterBottom>
+                <SectionHeader>
                     Current Selection
-                </Typography>
+                </SectionHeader>
             </Box>
             {isLoading ? (
                 <Box  display="flex" justifyContent="center" alignItems="center" height="100%">
@@ -78,9 +79,9 @@ const SchemaExplanation = ({
                     {currentExplanations.length > 0 && (
                         <>
                             <Box>
-                                <Typography variant="h6" gutterBottom>
+                                <SectionHeader>
                                     Match Explanations
-                                </Typography>
+                                </SectionHeader>
                                 <List>
                                     {currentExplanations.map(explanation => (
                                         <ExplanationItem
@@ -106,9 +107,9 @@ const SchemaExplanation = ({
                     {/* Value Matches */}
                     {valueMatches.length > 0 && (
                         <Box>
-                            <Typography variant="h6" gutterBottom>
+                            <SectionHeader>
                                 Value Matches
-                            </Typography>
+                            </SectionHeader>
                             <List>
                                 {valueMatches.map((values, index) => (
                                     <Card key={index} variant="outlined" sx={{ mb: 1, p: 2 }}>

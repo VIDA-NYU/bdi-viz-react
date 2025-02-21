@@ -1,6 +1,6 @@
 // components/styled/LayoutComponents.tsx
 import { styled } from '@mui/material/styles';
-import { Box, Paper } from '@mui/material';
+import { Box, Paper, Typography, Divider } from '@mui/material';
 
 export const Sidebar = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -144,4 +144,20 @@ export const MediumVizContainer = styled(VisualizationCard)(({ theme }) => ({
 
 export const SmallVizContainer = styled(VisualizationCard)(({ theme }) => ({
   height: '200px',
+}));
+
+export const SectionHeader = styled(Divider)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  fontWeight: '500',
+  fontSize: '1rem',
+  width: '100%',
+  display: 'flex',
+  textAlign: 'left',
+}));
+
+export const SectionLabel = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  fontWeight: '500',
+  fontSize: '0.8rem',
+  gutterBottom: 'true',
 }));

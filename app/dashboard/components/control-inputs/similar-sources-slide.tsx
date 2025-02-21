@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Box, FormControl, Typography, Slider } from '@mui/material';
+import { SectionLabel } from '../../layout/components';
 
 interface SimilarSourcesSlideProps {
     onSelect: (num: number) => void;
@@ -18,13 +19,9 @@ const SimilarSourcesSlide: React.FC<SimilarSourcesSlideProps> = ({ onSelect }) =
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <FormControl fullWidth>
-            <Typography
-                id="similar-sources-select-label"
-                sx={{ color: "#000" }}
-                gutterBottom
-            >
+            <SectionLabel id="similar-sources-select-label">
                 Similar Sources
-            </Typography>
+            </SectionLabel>
                 <Slider
                     value={similarSources}
                     onChange={(e, num) => handleChange(num as number)}
