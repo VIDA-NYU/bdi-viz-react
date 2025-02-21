@@ -3,8 +3,10 @@ type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
 
 interface Explanation {
     id: string;
+    isMatch: boolean;
     type: ExplanationType;
-    content: string;
+    reason: string;
+    reference: string;
     confidence: number;
 }
 

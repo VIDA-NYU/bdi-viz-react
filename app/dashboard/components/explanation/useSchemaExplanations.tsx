@@ -29,8 +29,10 @@ const useSchemaExplanations = ({
         const explanations: Explanation[] = candidateExplanation?.explanations.map((explanation, index) => {
             return {
                 id: index.toString(),
+                isMatch: explanation.isMatch,
                 type: explanation.type,
-                content: explanation.content,
+                reason: explanation.reason,
+                reference: explanation.reference,
                 confidence: explanation.confidence
             } as Explanation;
         });

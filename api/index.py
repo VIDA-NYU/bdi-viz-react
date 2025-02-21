@@ -6,16 +6,12 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
-
 # langchain
 from .langchain.pydantic import AgentResponse
 from .session_manager import SESSION_MANAGER
-from .utils import (
-    extract_data_from_request,
-    extract_session_name,
-    read_candidate_explanation_json,
-    write_candidate_explanation_json,
-)
+from .utils import (extract_data_from_request, extract_session_name,
+                    read_candidate_explanation_json,
+                    write_candidate_explanation_json)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 
@@ -73,9 +69,6 @@ def get_results():
             )
         _ = matching_task.get_candidates()
     results = matching_task.to_frontend_json()
-
-    if not AGENT.is_initialized:
-        AGENT.initialize(results["candidates"])
 
     return {"message": "success", "results": results}
 

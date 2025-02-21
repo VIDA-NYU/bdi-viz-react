@@ -63,8 +63,10 @@ declare interface UserOperation {
 }
 
 declare interface ExplanationObject {
+    isMatch: boolean;
     type: string;
-    content: string;
+    reason: string;
+    reference: string;
     confidence: number;
 }
 

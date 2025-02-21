@@ -18,9 +18,15 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
         const { is_match, explanations, matching_values, relevant_knowledge } = resp.data;
         let explanationObjects: ExplanationObject[] = [];
         if (explanations && explanations.length > 0) {
-            explanationObjects = explanations.map((e: object) => {
+            explanationObjects = explanations.map((e: { is_match: boolean; type: string; reason: string; reference: string; confidence: number }) => {
                 try {
-                    return e as ExplanationObject;
+                    return {
+                        isMatch: e.is_match,
+                        type: e.type,
+                        reason: e.reason,
+                        reference: e.reference,
+                        confidence: e.confidence,
+                    } as ExplanationObject;
                 } catch (error) {
                     console.error("Error parsing explanation to ExplanationObject:", error);
                     return null;
