@@ -6,16 +6,30 @@ import {
     ListItemIcon, 
     ListItemText 
 } from '@mui/material';
-import { Explanation } from './types';
 import { getIcon } from './icons';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import IconButton from '@mui/material/IconButton';
 
 interface ExplanationItemProps {
     explanation: Explanation;
     selected: boolean;
+    thumbUp: boolean;
+    thumbDown: boolean;
     onSelect: (explanation: Explanation) => void;
+    onThumbUpClick: (id: string) => void;
+    onThumbDownClick: (id: string) => void;
 }
 
-function ExplanationItem({ explanation, selected, onSelect }: ExplanationItemProps) {
+function ExplanationItem({
+    explanation,
+    selected,
+    thumbUp,
+    thumbDown,
+    onSelect,
+    onThumbUpClick,
+    onThumbDownClick
+}: ExplanationItemProps) {
     return (
         <ListItem 
             disablePadding
@@ -58,7 +72,24 @@ function ExplanationItem({ explanation, selected, onSelect }: ExplanationItemPro
                     checked={selected}
                     onChange={() => onSelect(explanation)}
                     sx={{ zIndex: 2 }}
+                    disabled
                 />
+                <IconButton 
+                    edge="end" 
+                    sx={{ zIndex: 2 }}
+                    onClick={() => onThumbUpClick(explanation.id)}
+                    color={thumbUp ? 'primary' : 'default'}
+                >
+                    <ThumbUpIcon />
+                </IconButton>
+                <IconButton 
+                    edge="end" 
+                    sx={{ zIndex: 2 }}
+                    onClick={() => onThumbDownClick(explanation.id)}
+                    color={thumbDown ? 'error' : 'default'}
+                >
+                    <ThumbDownIcon />
+                </IconButton>
             </ListItemButton>
         </ListItem>
     );

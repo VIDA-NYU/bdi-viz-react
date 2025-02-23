@@ -1,14 +1,3 @@
-
-
-type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
-
-type Explanation = {
-    id: string;
-    type: ExplanationType;
-    content: string;
-    confidence: number;
-}
-
 type Candidate = {
     sourceColumn: string;
     targetColumn: string;
@@ -65,8 +54,6 @@ type ChatBoxProps = {
 
 // Core Types
 export type {
-    ExplanationType,
-    Explanation,
     Candidate,
     SourceCluster,
     UserOperation,

@@ -1,18 +1,10 @@
 // components/SchemaExplanation/ExplanationItem.tsx
 import { 
-    Checkbox, 
-    ListItem, 
-    ListItemButton,
-    ListItemIcon, 
-    ListItemText 
-} from '@mui/material';
-import { 
     TextFields as TextIcon,
     Tag as TagIcon, 
     Storage as StorageIcon,
     Psychology as PsychologyIcon
 } from '@mui/icons-material';
-import { Explanation } from './types';
 
 
 

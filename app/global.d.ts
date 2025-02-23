@@ -63,6 +63,7 @@ declare interface UserOperation {
 }
 
 declare interface ExplanationObject {
+    id: string;
     isMatch: boolean;
     type: string;
     reason: string;
@@ -70,10 +71,14 @@ declare interface ExplanationObject {
     confidence: number;
 }
 
+declare type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
+
 declare interface Explanation {
     id: string;
+    isMatch: boolean;
     type: ExplanationType;
-    content: string;
+    reason: string;
+    reference: string;
     confidence: number;
 }
 

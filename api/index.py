@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from uuid import uuid4
 
 import pandas as pd
 from flask import Flask, request
@@ -185,6 +186,11 @@ def agent_explanation():
         }
     )
     response = response.model_dump()
+
+    explanations = response["explanations"]
+    for explanation in explanations:
+        explanation["id"] = str(uuid4())
+    response["explanations"] = explanations
     app.logger.info(f"Response: {response}")
     write_candidate_explanation_json(source_col, target_col, response)
     return response

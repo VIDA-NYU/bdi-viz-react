@@ -2,7 +2,6 @@
 import { Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
 import RelevantKnowledgeView from './RelevantKnowledgeView';
-import { Explanation } from './types';
 
 const RowComp = styled("div")({
     display: "flex",
@@ -27,7 +26,11 @@ interface CombinedViewProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
     selectedExplanations: Explanation[];
+    thumbUpExplanations: string[];
+    thumbDownExplanations: string[];
     setSelectExplanations: (explanations: Explanation[]) => void;
+    setThumbUpExplanations: (id: string[]) => void;
+    setThumbDownExplanations: (id: string[]) => void;
     matchingValues: string[][];
     relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
@@ -39,7 +42,11 @@ const CombinedView = ({
     isMatch,
     currentExplanations,
     selectedExplanations,
+    thumbUpExplanations,
+    thumbDownExplanations,
     setSelectExplanations,
+    setThumbUpExplanations,
+    setThumbDownExplanations,
     matchingValues,
     relevantKnowledge,
     isLoading,
@@ -55,7 +62,11 @@ const CombinedView = ({
                     isMatch={isMatch}
                     currentExplanations={currentExplanations}
                     selectedExplanations={selectedExplanations}
+                    thumbUpExplanations={thumbUpExplanations}
+                    thumbDownExplanations={thumbDownExplanations}
                     setSelectExplanations={setSelectExplanations}
+                    setThumbUpExplanations={setThumbUpExplanations}
+                    setThumbDownExplanations={setThumbDownExplanations}
                     valueMatches={matchingValues}
                     sourceColumn={sourceColumn}
                     targetColumn={targetColumn}

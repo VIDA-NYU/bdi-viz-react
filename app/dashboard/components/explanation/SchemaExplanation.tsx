@@ -8,14 +8,17 @@ import {
     CircularProgress
 } from '@mui/material';
 import ExplanationItem from './ExplanationItem';
-import { Explanation } from './types';
 import { SectionHeader } from '../../layout/components';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
     selectedExplanations: Explanation[];
+    thumbUpExplanations: string[];
+    thumbDownExplanations: string[];
     setSelectExplanations: (explanations: Explanation[]) => void;
+    setThumbUpExplanations: (id: string[]) => void;
+    setThumbDownExplanations: (id: string[]) => void
     valueMatches: string[][];
     sourceColumn?: string;
     targetColumn?: string;
@@ -26,7 +29,11 @@ const SchemaExplanation = ({
     isMatch,
     currentExplanations,
     selectedExplanations,
+    thumbUpExplanations,
+    thumbDownExplanations,
     setSelectExplanations,
+    setThumbUpExplanations,
+    setThumbDownExplanations,
     valueMatches,
     sourceColumn,
     targetColumn,
@@ -38,6 +45,22 @@ const SchemaExplanation = ({
             setSelectExplanations(selectedExplanations.filter(e => e.id !== explanation.id));
         } else {
             setSelectExplanations([...selectedExplanations, explanation]);
+        }
+    };
+
+    const handleThumbUp = (id: string) => {
+        if (thumbUpExplanations.some(e => e === id)) {
+            setThumbUpExplanations(thumbUpExplanations.filter(e => e !== id));
+        } else {
+            setThumbUpExplanations([...thumbUpExplanations, id]);
+        }
+    };
+
+    const handleThumbDown = (id: string) => {
+        if (thumbDownExplanations.some(e => e === id)) {
+            setThumbDownExplanations(thumbDownExplanations.filter(e => e !== id));
+        } else {
+            setThumbDownExplanations([...thumbDownExplanations, id]);
         }
     };
 
@@ -88,7 +111,11 @@ const SchemaExplanation = ({
                                             key={explanation.id}
                                             explanation={explanation}
                                             selected={selectedExplanations.some(e => e.id === explanation.id)}
+                                            thumbUp={thumbUpExplanations.some(id => id === explanation.id)}
+                                            thumbDown={thumbDownExplanations.some(id => id === explanation.id)}
                                             onSelect={handleSelect}
+                                            onThumbUpClick={handleThumbUp}
+                                            onThumbDownClick={handleThumbDown}
                                         />
                                     ))}
                                 </List>

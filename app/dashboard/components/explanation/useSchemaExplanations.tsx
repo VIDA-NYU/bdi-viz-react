@@ -1,16 +1,10 @@
 // hooks/useSchemaExplanations.ts
-import { useState, useCallback, useEffect } from 'react';
-import { Explanation, SchemaMatch } from './types';
+import { useState, useCallback } from 'react';
 
-interface useSchemaExplanationsProps {
-    selectedCandidate: Candidate | undefined,
-}
-
-const useSchemaExplanations = ({
-    selectedCandidate
-}: useSchemaExplanationsProps) => {
-    const [matches, setMatches] = useState<SchemaMatch[]>([]);
+const useSchemaExplanations = () => {
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
+    const [thumbUpExplanations, setThumbUpExplanations] = useState<string[]>([]);
+    const [thumbDownExplanations, setThumbDownExplanations] = useState<string[]>([]);
     const [selectedExplanations, setSelectedExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
     const [matchingValues, setMatchingValues] = useState<string[][]>([]);
@@ -28,7 +22,7 @@ const useSchemaExplanations = ({
         }
         const explanations: Explanation[] = candidateExplanation?.explanations.map((explanation, index) => {
             return {
-                id: index.toString(),
+                id: explanation.id,
                 isMatch: explanation.isMatch,
                 type: explanation.type,
                 reason: explanation.reason,
@@ -46,44 +40,18 @@ const useSchemaExplanations = ({
         setCurrentExplanations(explanations);
     }, []);
 
-    const acceptMatch = useCallback((
-        // sourceColumn: string,
-        // targetColumn: string,
-        selectedExplanations: Explanation[]
-    ) => {
-        if (!selectedCandidate) return;
-        const sourceColumn = selectedCandidate.sourceColumn;
-        const targetColumn = selectedCandidate.targetColumn
-        const newMatch: SchemaMatch = {
-            sourceColumn,
-            targetColumn,
-            selectedExplanations,
-            score: Math.max(...selectedExplanations.map(e => e.confidence))
-        };
-        
-        setMatches(prev => [...prev, newMatch]);
-        setCurrentExplanations([]);
-    }, [selectedCandidate]);
-
-    const removeMatch = useCallback((sourceColumn: string, targetColumn: string) => {
-        setMatches(prev => 
-            prev.filter(m => 
-                m.sourceColumn !== sourceColumn || m.targetColumn !== targetColumn
-            )
-        );
-    }, []);
-
     return {
-        matches,
         isMatch,
         currentExplanations,
         selectedExplanations,
+        thumbUpExplanations,
+        thumbDownExplanations,
         matchingValues,
         relevantKnowledge,
         generateExplanations,
         setSelectedExplanations,
-        acceptMatch,
-        removeMatch
+        setThumbUpExplanations,
+        setThumbDownExplanations,
     };
 }
 

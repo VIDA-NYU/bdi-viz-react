@@ -66,17 +66,18 @@ export default function Dashboard() {
     } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
-        matches,
         isMatch,
         currentExplanations,
         selectedExplanations,
+        thumbUpExplanations,
+        thumbDownExplanations,
         matchingValues,
         relevantKnowledge,
         generateExplanations,
         setSelectedExplanations,
-        acceptMatch: acceptMatchWithExplanations,
-        removeMatch
-    } = useSchemaExplanations({ selectedCandidate });
+        setThumbUpExplanations,
+        setThumbDownExplanations,
+    } = useSchemaExplanations();
 
     const {
         acceptMatch,
@@ -260,10 +261,14 @@ export default function Dashboard() {
                         isMatch={isMatch}
                         currentExplanations={currentExplanations}
                         selectedExplanations={selectedExplanations}
+                        thumbUpExplanations={thumbUpExplanations}
+                        thumbDownExplanations={thumbDownExplanations}
                         matchingValues={matchingValues}
                         relevantKnowledge={relevantKnowledge}
                         isLoading={isExplaining}
                         setSelectExplanations={setSelectedExplanations}
+                        setThumbUpExplanations={setThumbUpExplanations}
+                        setThumbDownExplanations={setThumbDownExplanations}
                         sourceColumn={selectedCandidate?.sourceColumn}
                         targetColumn={selectedCandidate?.targetColumn}
                     />
