@@ -8,7 +8,10 @@ from transformers import AutoModel, AutoTokenizer
 
 from .column_encoder import ColumnEncoder
 
-DEFAULT_MODELS = ["sentence-transformers/all-mpnet-base-v2"]
+DEFAULT_MODELS = [
+    "sentence-transformers/all-mpnet-base-v2",
+    "Snowflake/snowflake-arctic-embed-m",
+]
 
 
 class EmbeddingClusterer:

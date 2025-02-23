@@ -1,14 +1,13 @@
 'use client';
 import { useContext, useState } from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, Switch } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
-import ControlPanel from "./components/controlpanel";
+import LeftPanel from "./left-panel";
+
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
-import FileUploading from "./components/fileuploading";
 import CombinedView from "./components/explanation/CombinedView";
-import Timeline from "./components/timeline/timeline";
 import { AuxColumn } from "./layout/components";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
@@ -25,7 +24,6 @@ import {
     RootContainer,
     Header,
     MainContent,
-    ControlColumn,
     MainColumn,
 } from "./layout/components";
 import { useDashboardHighlight } from "./hooks/useDashboardHighlight";
@@ -33,7 +31,12 @@ import { useDashboardHighlight } from "./hooks/useDashboardHighlight";
 export default function Dashboard() {
     const [openSuggestionsPopup, setOpenSuggestionsPopup] = useState(false);
     const [suggestions, setSuggestions] = useState<AgentSuggestions>();
-    const { isLoadingGlobal, setIsLoadingGlobal } = useContext(LoadingGlobalContext);
+    const {
+        isLoadingGlobal,
+        setIsLoadingGlobal,
+        developerMode,
+        setDeveloperMode,
+    } = useContext(LoadingGlobalContext);
 
     const {
         candidates,
@@ -44,6 +47,7 @@ export default function Dashboard() {
         targetUniqueValues,
         valueMatches,
         userOperations,
+        targetOntologies,
         handleFileUpload,
         setSelectedCandidate,
         setMatchers,
@@ -62,17 +66,18 @@ export default function Dashboard() {
     } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
-        matches,
         isMatch,
         currentExplanations,
         selectedExplanations,
+        thumbUpExplanations,
+        thumbDownExplanations,
         matchingValues,
-        relativeKnowledge,
+        relevantKnowledge,
         generateExplanations,
         setSelectedExplanations,
-        acceptMatch: acceptMatchWithExplanations,
-        removeMatch
-    } = useSchemaExplanations({ selectedCandidate });
+        setThumbUpExplanations,
+        setThumbDownExplanations,
+    } = useSchemaExplanations();
 
     const {
         acceptMatch,
@@ -106,7 +111,6 @@ export default function Dashboard() {
         candidates,
         sourceClusters,
         matchers,
-        candidateClusters: [],
         filters: {
             selectedCandidate,
             sourceColumn,
@@ -179,32 +183,45 @@ export default function Dashboard() {
     return (
         <RootContainer>
             <Header>
-                <Typography variant="h5">BDI Visualization System</Typography>
+                <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
+                    <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+                        <Typography sx={{ fontSize: "1.5rem", fontWeight: "900" }}>BDI Visualization System</Typography>
+                        <Box display="flex" alignItems="center">
+                            <Typography sx={{ fontSize: "1rem", fontWeight: "300", marginRight: 0 }}>Developer Mode</Typography>
+                            <Switch
+                                checked={developerMode}
+                                onChange={(e) => setDeveloperMode(e.target.checked)}
+                                color="default"
+                            />
+                        </Box>
+                    </Box>
+                </Box>
             </Header>
 
             <MainContent>
-                <ControlColumn>
-                    <ControlPanel
-                        containerStyle={{ marginBottom: 0, flexGrow: 0 }}
-                        sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
-                        matchers={matchers}
-                        onSourceColumnSelect={handleUpdateSourceColumn}
-                        onCandidateTypeSelect={updateCandidateType}
-                        onSimilarSourcesSelect={updateSimilarSources}
-                        onCandidateThresholdSelect={updateCandidateThreshold}
-                        acceptMatch={acceptMatch}
-                        rejectMatch={rejectMatch}
-                        discardColumn={discardColumn}
-                        undo={undo}
-                        redo={redo}
-                        filterEasyCases={filterExactMatches}
-                        onMatchersSelect={(matchers: Matcher[]) => {
-                            setMatchers(matchers);
-                        }}
-                        state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
-                    />
+                <LeftPanel
+                    containerStyle={{ marginBottom: 0, flexGrow: 0 }}
+                    sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                    matchers={matchers}
+                    onSourceColumnSelect={handleUpdateSourceColumn}
+                    onCandidateTypeSelect={updateCandidateType}
+                    onSimilarSourcesSelect={updateSimilarSources}
+                    onCandidateThresholdSelect={updateCandidateThreshold}
+                    acceptMatch={acceptMatch}
+                    rejectMatch={rejectMatch}
+                    discardColumn={discardColumn}
+                    undo={undo}
+                    redo={redo}
+                    filterEasyCases={filterExactMatches}
+                    onMatchersSelect={(matchers: Matcher[]) => {
+                        setMatchers(matchers);
+                    }}
+                    state={{ sourceColumn, candidateType, similarSources, candidateThreshold }}
+                    userOperations={userOperations}
+                    handleFileUpload={handleFileUpload}
+                />
 
-                    <DualScatter
+                    {/* <DualScatter
                         candidates={weightedAggregatedCandidates}
                         updateHighlightSourceColumns={
                             updateHighlightedSourceColumns
@@ -214,8 +231,7 @@ export default function Dashboard() {
                         }
                         width={300}
                         height={300}
-                    />
-                </ControlColumn>
+                    /> */}
 
                 {/* Middle Column - Main Visualizations */}
                 <MainColumn>
@@ -229,6 +245,7 @@ export default function Dashboard() {
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
                         sourceCluster={filteredSourceCluster}
+                        targetOntologies={targetOntologies}
                         selectedCandidate={selectedCandidate}
                         setSelectedCandidate={setSelectedCandidateCallback}
                         sourceUniqueValues={sourceUniqueValues}
@@ -240,26 +257,24 @@ export default function Dashboard() {
 
                 {/* Right Column - Auxiliary Visualizations */}
                 <AuxColumn>
-                    <FileUploading callback={handleFileUpload} />
-
                     <CombinedView
                         isMatch={isMatch}
                         currentExplanations={currentExplanations}
                         selectedExplanations={selectedExplanations}
+                        thumbUpExplanations={thumbUpExplanations}
+                        thumbDownExplanations={thumbDownExplanations}
                         matchingValues={matchingValues}
-                        relativeKnowledge={relativeKnowledge}
+                        relevantKnowledge={relevantKnowledge}
                         isLoading={isExplaining}
                         setSelectExplanations={setSelectedExplanations}
+                        setThumbUpExplanations={setThumbUpExplanations}
+                        setThumbDownExplanations={setThumbDownExplanations}
                         sourceColumn={selectedCandidate?.sourceColumn}
                         targetColumn={selectedCandidate?.targetColumn}
                     />
                     {/* <MediumVizContainer>
             <Typography variant="h6">Value Distribution</Typography>
           </MediumVizContainer> */}
-
-                    <Box sx={{ overflowY: 'auto', maxHeight: '400px' }}>
-                        <Timeline userOperations={userOperations} />
-                    </Box>
                 </AuxColumn>
             </MainContent>
 

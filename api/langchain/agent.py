@@ -18,7 +18,12 @@ from pydantic import BaseModel
 from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from .memory import MemoryRetriver
-from .pydantic import ActionResponse, AgentSuggestions, CandidateExplanation
+from .pydantic import (
+    ActionResponse,
+    AgentSuggestions,
+    CandidateExplanation,
+    CandidateObject,
+)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -33,23 +38,45 @@ class Agent:
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
         self.agent_config = {"configurable": {"thread_id": "bdiviz-1"}}
 
-        self.memory = MemorySaver()
+        # self.memory = MemorySaver()
         self.store = MemoryRetriver()
-        self.is_initialized = False
 
-    def initialize(self, results: Optional[List[Dict[str, Any]]] = None) -> None:
-        logger.info(f"[Agent] Initializing the agent...")
-        system_messages = [
-            """You are a helpful assistant for BDI-Viz: A heatmap visualization tool for schema matching.
-    Your task is to assist with schema matching operations and provide information in a strict schema format.
-    Avoid providing any reasoning, apologies, or explanations.""",
-            # f"""Here are the candidates for all available matchers:
-            # {results}
-            # Keep these candidates in mind as you proceed with the following user operations."""
+        self.system_messages = [
+            """
+    You are an assistant for BDI-Viz, a heatmap visualization tool designed for schema matching.
+    Your role is to assist with schema matching operations and provide responses in a strict JSON schema format.
+    Do not include any reasoning, apologies, or explanations in your responses.
+
+    **Criteria for matching columns:**
+    1. Column names and values do not need to be identical.
+    2. Ignore case, special characters, and spaces.
+    3. Columns should be considered a match if they are semantically similar and their values are comparable.
+    4. Approach the task with the mindset of a biomedical expert.
+            """,
         ]
 
-        self.invoke_system(system_messages[0])
-        self.is_initialized = True
+    def search(self, query: str) -> CandidateObject:
+        logger.info(f"[Agent] Searching for candidates...")
+
+        tools = [
+            self.store.query_candidates,
+        ]
+
+        prompt = f"""
+    Use the tools to search for candidates based on the user's input.
+
+    User Query: {query}
+        """
+
+        logger.info(f"[SEARCH] Prompt: {prompt}")
+
+        response = self.invoke(
+            prompt=prompt,
+            tools=tools,
+            output_structure=CandidateObject,
+        )
+
+        return response
 
     def explain(self, candidate: Dict[str, Any]) -> CandidateExplanation:
         logger.info(f"[Agent] Explaining the candidate...")
@@ -67,35 +94,33 @@ class Agent:
         )
 
         prompt = f"""
-Please analyze the details of the following user operation:
+    Analyze the following user operation details:
+
     - Source Column: {candidate["sourceColumn"]}
     - Target Column: {candidate["targetColumn"]}
     - Source Sample Values: {candidate["sourceValues"]}
     - Target Sample Values: {candidate["targetValues"]}
 
-Related Matches:
-{related_matches}
+    Historical Data:
+    - Related Matches: {related_matches}
+    - Related Mismatches: {related_mismatches}
+    - Related Explanations: {related_explanations}
 
-Related Mismatches:
-{related_mismatches}
-
-Related Explanations:
-{related_explanations}
-
-**Instructions:**
-    1. Thoroughly review the related matches, mismatches and explanations.. Compare these historical mappings with the current candidate to validate the match.
-    2. Assess the validity of matching the source and target columns by considering:
-        a. The similarity between the column names.
-        b. The alignment of the sample values from each column.
-        c. The history of false positives and false negatives associated with these columns.
-    3. Provide up to four possible explanations for why these columns might be mapped together, referencing the historical matches, mismatches, and explanations where applicable.
-    4. For categorical (non-numeric) columns, suggest potential pairs of matching values based on the sample data. If the values are numeric, do not return any pairs.
-    5. Include any additional context or key terms (i.e., "relative knowledge") that could support or contradict the current mapping.
+    Instructions:
+    1. Review the operation details alongside the historical data.
+    2. Provide up to four possible explanations that justify whether the columns are a match or not. Reference the historical matches, mismatches, and explanations where relevant.
+    3. Conclude if the current candidate is a valid match based on:
+        a. Your explanations,
+        b. Similarity between the column names,
+        c. Consistency of the sample values, and
+        d. The history of false positives and negatives.
+    4. For categorical columns, suggest potential pairs of matching values based on the sample data. For numeric columns, omit this step.
+    5. Include any additional context or keywords that might support or contradict the current mapping.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
             prompt=prompt,
-            tools=[retrieve_from_rag],
+            tools=[],
             output_structure=CandidateExplanation,
         )
         return response
@@ -228,6 +253,11 @@ Candidate: {candidate}
         logger.info(f"[Agent] Remembering the explanation...")
         self.store.put_explanation(explanations, user_operation)
 
+    def remember_candidates(self, candidates: List[Dict[str, Any]]) -> None:
+        logger.info(f"[Agent] Remembering the candidates...")
+        for candidate in candidates:
+            self.store.put_candidate(candidate)
+
     def invoke(
         self, prompt: str, tools: List, output_structure: BaseModel
     ) -> BaseModel:
@@ -240,7 +270,13 @@ Candidate: {candidate}
 
         responses = []
         for chunk in agent_executor.stream(
-            {"messages": [HumanMessage(content=prompt)]}, self.agent_config
+            {
+                "messages": [
+                    SystemMessage(content=self.system_messages[0]),
+                    HumanMessage(content=prompt),
+                ]
+            },
+            self.agent_config,
         ):
             logger.info(chunk)
             logger.info("----")

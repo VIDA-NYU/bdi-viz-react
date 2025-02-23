@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import { useEffect, useRef, useState } from "react";
 import { useTimeline } from "./useTimeline";
 import { Box, useTheme, Typography } from '@mui/material';
+import { SectionHeader } from '../../layout/components';
 
 interface TimelineProps {
     userOperations: UserOperation[];
@@ -11,7 +12,7 @@ interface TimelineProps {
 
 const Timeline = ({ userOperations }: TimelineProps) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
-    const boxRef = useRef<HTMLDivElement | null>(null);
+    // const boxRef = useRef<HTMLDivElement | null>(null);
     const [expandedNode, setExpandedNode] = useState<number | null>(null);
     const theme = useTheme();
 
@@ -21,8 +22,8 @@ const Timeline = ({ userOperations }: TimelineProps) => {
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove(); // Clear previous content
 
-        const boxWidth = boxRef.current?.clientWidth || 200;
-        const width = boxWidth;
+        // const boxWidth = boxRef.current?.clientWidth || 200;
+        const width = 380;
         const height = (nodes.length + 1) * 100; // Adjust height for the start node
 
         svg.attr("width", width).attr("height", height);
@@ -76,6 +77,9 @@ const Timeline = ({ userOperations }: TimelineProps) => {
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
             .attr("fill", theme.palette.common.white)
+            .attr("font-size", theme.typography.fontSize)
+            .attr("font-weight", "400")
+            .attr("font-family", `"Roboto","Helvetica","Arial",sans-serif`)
             .text(d => d.operation);
 
         if (expandedNode !== null) {
@@ -88,24 +92,26 @@ const Timeline = ({ userOperations }: TimelineProps) => {
 
                 expandedGroup
                     .append("rect")
-                    .attr("x", -(boxWidth-20)/2)
+                    .attr("x", -(width-20)/2)
                     .attr("y", -50)
-                    .attr("width", boxWidth-20)
+                    .attr("width", width-20)
                     .attr("height", 150)
                     .attr("rx", 10)
                     .attr("ry", 10)
                     .attr("fill", theme.palette.background.paper)
-                    .attr("stroke", theme.palette.primary.main)
-                    .attr("stroke-width", 2);
+                    .attr("stroke", theme.palette.info.main)
+                    .attr("stroke-width", 1);
 
                 expandedGroup
                     .append("foreignObject")
-                    .attr("x", -(boxWidth-20)/2)
+                    .attr("x", -(width-20)/2)
                     .attr("y", -40)
-                    .attr("width", boxWidth-20)
+                    .attr("width", width-20)
                     .attr("height", 150)
                     .append("xhtml:div")
-                    .style("font", "16px 'Arial'")
+                    .style("font-size", theme.typography.fontSize)
+                    .attr("font-weight", "300")
+                    .style("font", `"Roboto","Helvetica","Arial",sans-serif`)
                     .style("text-align", "center")
                     .style("padding", "10px")
                     .style("color", theme.palette.text.primary)
@@ -134,9 +140,11 @@ const Timeline = ({ userOperations }: TimelineProps) => {
     }, [nodes, expandedNode, theme]);
 
     return (
-        <Box ref={boxRef}>
-            <Typography variant="h6">Timeline</Typography>
-            <svg ref={svgRef}></svg>
+        <Box sx={{ maxHeight: '400px' }}>
+            <SectionHeader>Timeline</SectionHeader>
+            <Box sx={{ maxHeight: '380px', overflowY: 'auto'}}>
+                <svg ref={svgRef}></svg>
+            </Box>
         </Box>
     );
 };

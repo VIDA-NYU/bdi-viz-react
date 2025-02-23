@@ -12,6 +12,7 @@ import HierarchicalAxis from "./embed-heatmap/HierarchicalAxis";
 interface lowerTabsProps {
     weightedAggregatedCandidates: AggregatedCandidate[];
     sourceCluster: string[];
+    targetOntologies: TargetOntology[];
     selectedCandidate: Candidate | undefined;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
     sourceUniqueValues: SourceUniqueValues[];
@@ -23,6 +24,7 @@ interface lowerTabsProps {
 const LowerTabs: React.FC<lowerTabsProps> = ({
     weightedAggregatedCandidates,
     sourceCluster,
+    targetOntologies,
     selectedCandidate,
     setSelectedCandidate,
     sourceUniqueValues,
@@ -61,6 +63,7 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
                 <HierarchicalAxis
                     data={weightedAggregatedCandidates}
                     sourceCluster={sourceCluster}
+                    targetOntologies={targetOntologies}
                     selectedCandidate={selectedCandidate}
                     sx={{
                       flexBasis: "160px",

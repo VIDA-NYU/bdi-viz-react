@@ -19,9 +19,10 @@ declare interface SourceCluster {
     cluster: string[];
 }
 
-declare interface CandidateCluster {
-    targetColumn: string;
-    cluster: string[];
+declare interface TargetOntology {
+    name: string;
+    parent: string;
+    grandparent: string;
 }
 
 declare interface UniqueValue {
@@ -62,19 +63,26 @@ declare interface UserOperation {
 }
 
 declare interface ExplanationObject {
+    id: string;
+    isMatch: boolean;
     type: string;
-    content: string;
+    reason: string;
+    reference: string;
     confidence: number;
 }
+
+declare type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
 
 declare interface Explanation {
     id: string;
+    isMatch: boolean;
     type: ExplanationType;
-    content: string;
+    reason: string;
+    reference: string;
     confidence: number;
 }
 
-declare interface RelativeKnowledge {
+declare interface RelevantKnowledge {
     entry: string;
     description: string;
 }
@@ -83,7 +91,7 @@ declare interface CandidateExplanation {
     isMatch: boolean;
     explanations: ExplanationObject[];
     matchingValues?: string[][]; // [source value, target value]
-    relativeKnowledge?: RelativeKnowledge[];
+    relevantKnowledge?: RelevantKnowledge[];
 }
 
 declare interface AgentAction {

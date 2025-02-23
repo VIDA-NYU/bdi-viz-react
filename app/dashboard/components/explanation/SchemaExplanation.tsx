@@ -8,13 +8,17 @@ import {
     CircularProgress
 } from '@mui/material';
 import ExplanationItem from './ExplanationItem';
-import { Explanation } from './types';
+import { SectionHeader } from '../../layout/components';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
     selectedExplanations: Explanation[];
+    thumbUpExplanations: string[];
+    thumbDownExplanations: string[];
     setSelectExplanations: (explanations: Explanation[]) => void;
+    setThumbUpExplanations: (id: string[]) => void;
+    setThumbDownExplanations: (id: string[]) => void
     valueMatches: string[][];
     sourceColumn?: string;
     targetColumn?: string;
@@ -25,7 +29,11 @@ const SchemaExplanation = ({
     isMatch,
     currentExplanations,
     selectedExplanations,
+    thumbUpExplanations,
+    thumbDownExplanations,
     setSelectExplanations,
+    setThumbUpExplanations,
+    setThumbDownExplanations,
     valueMatches,
     sourceColumn,
     targetColumn,
@@ -40,12 +48,28 @@ const SchemaExplanation = ({
         }
     };
 
+    const handleThumbUp = (id: string) => {
+        if (thumbUpExplanations.some(e => e === id)) {
+            setThumbUpExplanations(thumbUpExplanations.filter(e => e !== id));
+        } else {
+            setThumbUpExplanations([...thumbUpExplanations, id]);
+        }
+    };
+
+    const handleThumbDown = (id: string) => {
+        if (thumbDownExplanations.some(e => e === id)) {
+            setThumbDownExplanations(thumbDownExplanations.filter(e => e !== id));
+        } else {
+            setThumbDownExplanations([...thumbDownExplanations, id]);
+        }
+    };
+
     return (
         <Stack spacing={3} sx={{ paddingLeft: 1, maxHeight: "700px", overflowY: 'scroll'}}>
             <Box>
-                <Typography variant="h6" gutterBottom>
+                <SectionHeader>
                     Current Selection
-                </Typography>
+                </SectionHeader>
             </Box>
             {isLoading ? (
                 <Box  display="flex" justifyContent="center" alignItems="center" height="100%">
@@ -78,16 +102,20 @@ const SchemaExplanation = ({
                     {currentExplanations.length > 0 && (
                         <>
                             <Box>
-                                <Typography variant="h6" gutterBottom>
+                                <SectionHeader>
                                     Match Explanations
-                                </Typography>
+                                </SectionHeader>
                                 <List>
                                     {currentExplanations.map(explanation => (
                                         <ExplanationItem
                                             key={explanation.id}
                                             explanation={explanation}
                                             selected={selectedExplanations.some(e => e.id === explanation.id)}
+                                            thumbUp={thumbUpExplanations.some(id => id === explanation.id)}
+                                            thumbDown={thumbDownExplanations.some(id => id === explanation.id)}
                                             onSelect={handleSelect}
+                                            onThumbUpClick={handleThumbUp}
+                                            onThumbDownClick={handleThumbDown}
                                         />
                                     ))}
                                 </List>
@@ -106,9 +134,9 @@ const SchemaExplanation = ({
                     {/* Value Matches */}
                     {valueMatches.length > 0 && (
                         <Box>
-                            <Typography variant="h6" gutterBottom>
+                            <SectionHeader>
                                 Value Matches
-                            </Typography>
+                            </SectionHeader>
                             <List>
                                 {valueMatches.map((values, index) => (
                                     <Card key={index} variant="outlined" sx={{ mb: 1, p: 2 }}>

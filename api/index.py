@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from uuid import uuid4
 
 import pandas as pd
 from flask import Flask, request
@@ -72,10 +73,9 @@ def get_results():
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
         _ = matching_task.get_candidates()
-    results = matching_task.to_frontend_json()
+        # AGENT.remember_candidates(candidates)
 
-    if not AGENT.is_initialized:
-        AGENT.initialize(results["candidates"])
+    results = matching_task.to_frontend_json()
 
     return {"message": "success", "results": results}
 
@@ -114,6 +114,23 @@ def get_value_matches():
     return {"message": "success", "results": results}
 
 
+@app.route("/api/gdc-ontology", methods=["POST"])
+def get_gdc_ontology():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
+        if os.path.exists(".source.csv"):
+            source = pd.read_csv(".source.csv")
+            matching_task.update_dataframe(
+                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+            )
+        _ = matching_task.get_candidates()
+    results = matching_task._generate_gdc_ontology()
+
+    return {"message": "success", "results": results}
+
+
 @app.route("/api/agent", methods=["POST"])
 def ask_agent():
     data = request.json
@@ -124,6 +141,20 @@ def ask_agent():
 
     response = response.model_dump()
     app.logger.info(f"Response: {response}")
+    return response
+
+
+@app.route("/api/agent/search/candidates", methods=["POST"])
+def search_candidates():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    data = request.json
+    query = data["query"]
+
+    response = AGENT.search(query)
+    response = response.model_dump()
+
     return response
 
 
@@ -155,6 +186,11 @@ def agent_explanation():
         }
     )
     response = response.model_dump()
+
+    explanations = response["explanations"]
+    for explanation in explanations:
+        explanation["id"] = str(uuid4())
+    response["explanations"] = explanations
     app.logger.info(f"Response: {response}")
     write_candidate_explanation_json(source_col, target_col, response)
     return response

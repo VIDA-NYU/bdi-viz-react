@@ -10,6 +10,7 @@ from valentine.algorithms import (
     JaccardDistanceMatcher,
     SimilarityFlooding,
 )
+from valentine.algorithms.jaccard_distance import StringDistanceFunction
 
 from .utils import BaseMatcher
 
@@ -55,7 +56,10 @@ class ValentineMatcher(BaseMatcher):
         elif name == "similarityflooding" or name == "similarity_flooding":
             return SimilarityFlooding()
         elif name == "jaccarddistancematcher" or name == "jaccard_distance_matcher":
-            return JaccardDistanceMatcher()
+            return JaccardDistanceMatcher(
+                threshold_dist=0.8,
+                distance_fun=StringDistanceFunction.Levenshtein,
+            )
         elif name == "distributionbased" or name == "distribution_based":
             return DistributionBased()
         else:

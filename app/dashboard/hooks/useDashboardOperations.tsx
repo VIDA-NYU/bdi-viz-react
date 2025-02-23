@@ -4,7 +4,6 @@ import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
-import { Explanation } from '../types';
 
 type DashboardOperationProps = {
     candidates: Candidate[];

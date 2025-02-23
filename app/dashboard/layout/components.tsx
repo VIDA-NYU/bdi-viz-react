@@ -1,6 +1,6 @@
 // components/styled/LayoutComponents.tsx
 import { styled } from '@mui/material/styles';
-import { Box, Paper } from '@mui/material';
+import { Box, Paper, Typography, Divider } from '@mui/material';
 
 export const Sidebar = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -77,7 +77,7 @@ export const Header = styled(Box)(({ theme }) => ({
 
 export const MainContent = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '400px 2fr 1.2fr', // Three columns: controls, main viz, secondary viz
+  gridTemplateColumns: '400px 2fr 400px', // Three columns: controls, main viz, secondary viz
   gap: theme.spacing(2),
   flex: 1,
   height: 'calc(100vh - 140px)', // Adjust based on header/footer height
@@ -94,9 +94,23 @@ export const ControlColumn = styled(Box)(({ theme }) => ({
   alignContent: 'flex-start',
 }));
 
+export const LeftColumn = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+  justifyContent: 'flex-start',
+  alignContent: 'flex-start',
+  flexWrap: "wrap",
+  flex: "1 1 auto",
+  alignItems: "center",
+  minWidth: "min-content",
+  paddingRight: theme.spacing(1),
+}));
+
 // Middle Column - Main Visualizations
 export const MainColumn = styled(Box)(({ theme }) => ({
   display: 'flex',
+  width: '100%',
   flexDirection: 'column',
   gap: theme.spacing(1),
   overflowY: 'auto',
@@ -131,4 +145,20 @@ export const MediumVizContainer = styled(VisualizationCard)(({ theme }) => ({
 
 export const SmallVizContainer = styled(VisualizationCard)(({ theme }) => ({
   height: '200px',
+}));
+
+export const SectionHeader = styled(Divider)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  fontWeight: '500',
+  fontSize: '1rem',
+  width: '100%',
+  display: 'flex',
+  textAlign: 'left',
+}));
+
+export const SectionLabel = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  fontWeight: '500',
+  fontSize: '0.8rem',
+  gutterBottom: 'true',
 }));

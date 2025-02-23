@@ -6,12 +6,14 @@ import React, {
     useCallback,
   } from "react";
   import { Box } from "@mui/material";
+  import { useTheme, styled } from "@mui/material/styles";
   import { RectCell } from "./cells/RectCell";
   import { useHeatmapScales } from "./hooks/useHeatmapScales";
   import { useTooltip } from "./hooks/useTooltip";
   import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
   import { HeatMapConfig } from "./types";
-  import { useTreeLayout } from "./tree/useTreeLayout";
+  // import { useTreeLayout } from "./tree/useTreeLayout";
+  import { useOntologyLayout } from "./tree/useOntologyLayout";
   import { ClusteringOptions, TreeConfig } from "./tree/types";
   import { TreeNodeComponent } from "./tree/TreeNode";
   import { useLabelManagement } from "./tree/useLabelManagement";
@@ -21,6 +23,7 @@ import React, {
   interface HierarchicalAxisProps {
     data: AggregatedCandidate[];
     sourceCluster?: string[];
+    targetOntologies?: TargetOntology[];
     selectedCandidate?: Candidate;
     sx?: Record<string, any>;
   }
@@ -38,9 +41,16 @@ import React, {
   const HierarchicalAxis: React.FC<HierarchicalAxisProps> = ({
     data,
     sourceCluster,
+    targetOntologies,
     selectedCandidate,
     sx
   }) => {
+
+    const theme = useTheme();
+    const StyledText = styled('text')({
+      fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+    });
+    
     // const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
     const [config, setConfig] = useState<HeatMapConfig>({
       cellType: "rect",
@@ -79,21 +89,36 @@ import React, {
       selectedCandidate: selectedCandidate,
     });
     const clusteringOptions = defaultClusteringOptions;
+    // const {
+    //   treeData: targetTreeData,
+    //   expandedNodes: targetExpandedNodes,
+    //   toggleNode: toggleTargetNode,
+    //   getVisibleColumns: getVisibleTargetColumns
+    // } = useTreeLayout({
+    //   width: dimensions.width,
+    //   height: dimensions.height,
+    //   margin: MARGIN,
+    //   columns: x.domain(),
+    //   scale: x,
+    //   getWidth: getWidth,
+    //   options: clusteringOptions,
+    //   orientation: 'horizontal'
+    // });
+
     const {
       treeData: targetTreeData,
       expandedNodes: targetExpandedNodes,
       toggleNode: toggleTargetNode,
       getVisibleColumns: getVisibleTargetColumns
-    } = useTreeLayout({
+    } = useOntologyLayout({
+      columns: x.domain(),
+      targetOntologies: targetOntologies ?? [],
       width: dimensions.width,
       height: dimensions.height,
       margin: MARGIN,
-      columns: x.domain(),
       scale: x,
       getWidth: getWidth,
-      options: clusteringOptions,
-      orientation: 'horizontal'
-    });
+    })
     
     
     const targetLabelPlacements = useLabelManagement({
@@ -132,6 +157,16 @@ import React, {
                 />
               </g>
   
+            </g>
+
+            <g>
+                <StyledText
+                  transform={`translate(${dimensions.width / 2}, 150)`}
+                  textAnchor="middle"
+                  style={{ fontSize: "1em", fontWeight: "600" }}
+                >
+                    Target Attributes
+                </StyledText>
             </g>
           </svg>
       </Box>

@@ -1,20 +1,14 @@
 // hooks/useSchemaExplanations.ts
-import { useState, useCallback, useEffect } from 'react';
-import { Explanation, SchemaMatch } from './types';
+import { useState, useCallback } from 'react';
 
-interface useSchemaExplanationsProps {
-    selectedCandidate: Candidate | undefined,
-}
-
-const useSchemaExplanations = ({
-    selectedCandidate
-}: useSchemaExplanationsProps) => {
-    const [matches, setMatches] = useState<SchemaMatch[]>([]);
+const useSchemaExplanations = () => {
     const [currentExplanations, setCurrentExplanations] = useState<Explanation[]>([]);
+    const [thumbUpExplanations, setThumbUpExplanations] = useState<string[]>([]);
+    const [thumbDownExplanations, setThumbDownExplanations] = useState<string[]>([]);
     const [selectedExplanations, setSelectedExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
     const [matchingValues, setMatchingValues] = useState<string[][]>([]);
-    const [relativeKnowledge, setRelativeKnowledge] = useState<RelativeKnowledge[]>([]);
+    const [relevantKnowledge, setRelevantKnowledge] = useState<RelevantKnowledge[]>([]);
     
     // Mock function to generate explanations - replace with actual API call later
     const generateExplanations = useCallback((candidateExplanation?: CandidateExplanation) => {
@@ -23,14 +17,16 @@ const useSchemaExplanations = ({
             setSelectedExplanations([]);
             setIsMatch(false);
             setMatchingValues([]);
-            setRelativeKnowledge([]);
+            setRelevantKnowledge([]);
             return;
         }
         const explanations: Explanation[] = candidateExplanation?.explanations.map((explanation, index) => {
             return {
-                id: index.toString(),
+                id: explanation.id,
+                isMatch: explanation.isMatch,
                 type: explanation.type,
-                content: explanation.content,
+                reason: explanation.reason,
+                reference: explanation.reference,
                 confidence: explanation.confidence
             } as Explanation;
         });
@@ -38,50 +34,24 @@ const useSchemaExplanations = ({
         if (candidateExplanation.matchingValues) {
             setMatchingValues(candidateExplanation.matchingValues);
         }
-        if (candidateExplanation.relativeKnowledge) {
-            setRelativeKnowledge(candidateExplanation.relativeKnowledge);
+        if (candidateExplanation.relevantKnowledge) {
+            setRelevantKnowledge(candidateExplanation.relevantKnowledge);
         }
         setCurrentExplanations(explanations);
     }, []);
 
-    const acceptMatch = useCallback((
-        // sourceColumn: string,
-        // targetColumn: string,
-        selectedExplanations: Explanation[]
-    ) => {
-        if (!selectedCandidate) return;
-        const sourceColumn = selectedCandidate.sourceColumn;
-        const targetColumn = selectedCandidate.targetColumn
-        const newMatch: SchemaMatch = {
-            sourceColumn,
-            targetColumn,
-            selectedExplanations,
-            score: Math.max(...selectedExplanations.map(e => e.confidence))
-        };
-        
-        setMatches(prev => [...prev, newMatch]);
-        setCurrentExplanations([]);
-    }, [selectedCandidate]);
-
-    const removeMatch = useCallback((sourceColumn: string, targetColumn: string) => {
-        setMatches(prev => 
-            prev.filter(m => 
-                m.sourceColumn !== sourceColumn || m.targetColumn !== targetColumn
-            )
-        );
-    }, []);
-
     return {
-        matches,
         isMatch,
         currentExplanations,
         selectedExplanations,
+        thumbUpExplanations,
+        thumbDownExplanations,
         matchingValues,
-        relativeKnowledge,
+        relevantKnowledge,
         generateExplanations,
         setSelectedExplanations,
-        acceptMatch,
-        removeMatch
+        setThumbUpExplanations,
+        setThumbDownExplanations,
     };
 }
 

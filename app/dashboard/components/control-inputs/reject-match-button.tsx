@@ -13,6 +13,8 @@ const RejectMatchButton: React.FC<RejectMatchButtonProps> = ({ onClick }) => {
                 variant="contained"
                 color="error"
                 onClick={onClick}
+                fullWidth
+                sx={{ minHeight: 60, fontSize: 12 }}
             >
                 Reject Match
             </Button>

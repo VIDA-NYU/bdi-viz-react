@@ -1,8 +1,7 @@
 // components/SchemaExplanation/CombinedView.tsx
 import { Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
-import RelativeKnowledgeView from './RelativeKnowledgeView';
-import { Explanation } from './types';
+import RelevantKnowledgeView from './RelevantKnowledgeView';
 
 const RowComp = styled("div")({
     display: "flex",
@@ -27,9 +26,13 @@ interface CombinedViewProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
     selectedExplanations: Explanation[];
+    thumbUpExplanations: string[];
+    thumbDownExplanations: string[];
     setSelectExplanations: (explanations: Explanation[]) => void;
+    setThumbUpExplanations: (id: string[]) => void;
+    setThumbDownExplanations: (id: string[]) => void;
     matchingValues: string[][];
-    relativeKnowledge: RelativeKnowledge[];
+    relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
     sourceColumn?: string;
     targetColumn?: string;
@@ -39,9 +42,13 @@ const CombinedView = ({
     isMatch,
     currentExplanations,
     selectedExplanations,
+    thumbUpExplanations,
+    thumbDownExplanations,
     setSelectExplanations,
+    setThumbUpExplanations,
+    setThumbDownExplanations,
     matchingValues,
-    relativeKnowledge,
+    relevantKnowledge,
     isLoading,
     sourceColumn,
     targetColumn,
@@ -55,7 +62,11 @@ const CombinedView = ({
                     isMatch={isMatch}
                     currentExplanations={currentExplanations}
                     selectedExplanations={selectedExplanations}
+                    thumbUpExplanations={thumbUpExplanations}
+                    thumbDownExplanations={thumbDownExplanations}
                     setSelectExplanations={setSelectExplanations}
+                    setThumbUpExplanations={setThumbUpExplanations}
+                    setThumbDownExplanations={setThumbDownExplanations}
                     valueMatches={matchingValues}
                     sourceColumn={sourceColumn}
                     targetColumn={targetColumn}
@@ -63,9 +74,8 @@ const CombinedView = ({
                 />
             </Stack>
             <Stack flex={4}>
-                <Divider />
-                <RelativeKnowledgeView
-                    relativeKnowledge={relativeKnowledge}
+                <RelevantKnowledgeView
+                    relevantKnowledge={relevantKnowledge}
                     isLoading={isLoading}
                 />
             </Stack>

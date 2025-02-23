@@ -15,34 +15,41 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
             timeout: 10000000, // Set timeout to unlimited
         });
         console.log("candidateExplanationRequest: ", resp.data);
-        const { is_match, explanations, matching_values, relative_knowledge } = resp.data;
+        const { is_match, explanations, matching_values, relevant_knowledge } = resp.data;
         let explanationObjects: ExplanationObject[] = [];
         if (explanations && explanations.length > 0) {
-            explanationObjects = explanations.map((e: object) => {
+            explanationObjects = explanations.map((e: { id: string; is_match: boolean; type: string; reason: string; reference: string; confidence: number }) => {
                 try {
-                    return e as ExplanationObject;
+                    return {
+                        id: e.id,
+                        isMatch: e.is_match,
+                        type: e.type,
+                        reason: e.reason,
+                        reference: e.reference,
+                        confidence: e.confidence,
+                    } as ExplanationObject;
                 } catch (error) {
                     console.error("Error parsing explanation to ExplanationObject:", error);
                     return null;
                 }
             }).filter((e: ExplanationObject | null) => e !== null);
         }
-        let relativeKnowledgeObjects: RelativeKnowledge[] = [];
-        if (relative_knowledge && relative_knowledge.length > 0) {
-            relativeKnowledgeObjects = relative_knowledge.map((rk: object) => {
+        let relevantKnowledgeObjects: RelevantKnowledge[] = [];
+        if (relevant_knowledge && relevant_knowledge.length > 0) {
+            relevantKnowledgeObjects = relevant_knowledge.map((rk: object) => {
                 try {
-                    return rk as RelativeKnowledge;
+                    return rk as RelevantKnowledge;
                 } catch (error) {
-                    console.error("Error parsing relative knowledge to RelativeKnowledge:", error);
+                    console.error("Error parsing relevant knowledge to RelevantKnowledge:", error);
                     return null;
                 }
-            }).filter((rk: RelativeKnowledge | null) => rk !== null);
+            }).filter((rk: RelevantKnowledge | null) => rk !== null);
         }
         const candidateExplanation: CandidateExplanation = {
             isMatch: is_match,
             explanations: explanationObjects,
             matchingValues: matching_values,
-            relativeKnowledge: relativeKnowledgeObjects,
+            relevantKnowledge: relevantKnowledgeObjects,
         };
 
         return candidateExplanation;

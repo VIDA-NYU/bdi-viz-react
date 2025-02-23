@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Box, FormControl, Typography, Slider } from '@mui/material';
+import { SectionLabel } from '../../layout/components';
 
 interface CandidateThresholdSlideProps {
     onSelect: (num: number) => void;
@@ -18,13 +19,9 @@ const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({ onSel
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <FormControl fullWidth>
-            <Typography
-                id="candidate-threshold-select-label"
-                sx={{ color: "#000" }}
-                gutterBottom
-            >
+            <SectionLabel id="candidate-threshold-select-label">
                 Candidate Threshold
-            </Typography>
+            </SectionLabel>
                 <Slider
                     value={candidateThreshold}
                     onChange={(e, num) => handleChange(num as number)}

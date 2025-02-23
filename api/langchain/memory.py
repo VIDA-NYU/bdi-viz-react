@@ -5,6 +5,8 @@ from typing import Any, Dict, List, Optional, Tuple
 from uuid import uuid4
 
 from langchain.embeddings import init_embeddings
+from langchain_core.tools import tool
+from langchain_huggingface import HuggingFaceEmbeddings
 from langgraph.store.memory import InMemoryStore
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -91,13 +93,17 @@ FP_CANDIDATES = [
 
 class MemoryRetriver:
     supported_namespaces = [
+        "candidates",
         "mismatches",
         "matches",
         "explanations",
     ]
 
     def __init__(self):
-        embeddings = init_embeddings("openai:text-embedding-3-small")
+        # embeddings = init_embeddings("openai:text-embedding-3-large")
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
         self.store = InMemoryStore(
             index={
                 "embed": embeddings,
@@ -111,7 +117,53 @@ class MemoryRetriver:
         for fn in FN_CANDIDATES:
             self.put_match(fn)
 
+    # [candidates]
+    @tool
+    def query_candidates(
+        self,
+        keywords: List[str],
+        source_column: Optional[str] = None,
+        target_column: Optional[str] = None,
+        matcher: Optional[str] = None,
+        limit: int = 10,
+    ) -> List[Dict[str, Any]]:
+        """
+        Query the candidates from agent memory retriver.
+        Args:
+            keywords (List[str]): The keywords to search.
+            source_column (Optional[str], optional): The source column name. Defaults to None.
+            target_column (Optional[str], optional): The target column name. Defaults to None.
+            matcher (Optional[str], optional): The matcher name. Defaults to None.
+            limit (int, optional): The number of candidates to return. Defaults to 10.
+        Returns:
+            List[Dict[str, Any]]: The list of candidates.
+        """
+        query = ",".join(keywords)
+        if matcher is not None:
+            query = f"{matcher}::{query}"
+
+        if target_column is not None:
+            query = f"{target_column}::{query}"
+
+        if source_column is not None:
+            query = f"{source_column}::{query}"
+
+        return self.search_candidates(query, limit)
+
     # puts
+    def put_candidate(self, value: Dict[str, Any]):
+        """
+        value is in the following format:
+        {
+            'sourceColumn': 'Tumor_Site',
+            'targetColumn': 'site_of_resection_or_biopsy',
+            'score': 0.9,
+            'matcher': 'magneto_zs_bp'
+        }
+        """
+        key = f"{value['sourceColumn']}::{value['targetColumn']}::{value['matcher']}"
+        self.put((self.user_id, "candidates"), key, value)
+
     def put_match(self, value: Dict[str, Any]):
         """
         value is in the following format:
@@ -182,6 +234,9 @@ class MemoryRetriver:
         self.put((self.user_id, "explanations"), key, explanations)
 
     # Search
+    def search_candidates(self, query: Dict[str, Any], limit: int = 10):
+        return self.search((self.user_id, "candidates"), query, limit)
+
     def search_mismatches(self, query: Dict[str, Any], limit: int = 10):
         return self.search((self.user_id, "mismatches"), query, limit)
 
@@ -214,7 +269,22 @@ class MemoryRetriver:
 
         self.store.put(namespace, key, value)
 
+    async def aput(self, namespace: Tuple, key: Optional[str], value: Any):
+        if key is None:
+            key = str(uuid4())
+
+        if await self.store.aget(namespace, key) is not None:
+            logger.info(
+                f"Key {key} already exists in namespace {namespace}, updating value"
+            )
+            await self.store.adelete(namespace, key)
+
+        await self.store.aput(namespace, key, value)
+
     def search(self, namespace: Tuple, query: Any, limit: int = 10):
         logger.critical(f"namespace: {namespace}, query: {query}, limit: {limit}")
         items = self.store.search(namespace, query=query, limit=limit)
         return [item.value for item in items]
+
+    def clear_namespace(self, namespace: Tuple):
+        self.store.delete(namespace)

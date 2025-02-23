@@ -20,6 +20,15 @@ class AgentResponse(BaseModel):
     )
 
 
+class CandidateObject(BaseModel):
+    """Object for single candidate match or mismatch."""
+
+    sourceColumn: str = Field(description="The source column name")
+    targetColumn: str = Field(description="The target column name")
+    score: float = Field(description="The score of the candidate")
+    matcher: str = Field(description="The matcher used for the candidate")
+
+
 class DiagnoseObject(BaseModel):
     """Object for single diagnosing the agent based on user operation."""
 
@@ -40,35 +49,39 @@ class AgentSuggestions(BaseModel):
 
 
 class ExplanationObject(BaseModel):
+    """Detailed explanation for a candidate match or mismatch."""
+
     type: str = Field(
-        description="""
-                      The type of the explanation, from the following types: 
-                        - name: this explanation is inferred from the column names
-                        - token: this explanation is inferred from the tokens in the column names or values
-                        - value: this explanation is inferred from the values in the column
-                        - semantic: this explanation is inferred from the semantical relationship between the source and target
-                      """
+        description="""Type of explanation, can be one of the following:
+                        - semantic: based on semantic relationships
+                        - name: based on column names
+                        - token: based on tokens in column names or values
+                        - value: based on values in the column"""
     )
-    content: str = Field(description="The content of the explanation")
+    reason: str = Field(description="Detailed content of the explanation")
+    reference: Optional[str] = Field(
+        description="Reference to the explanation, if available"
+    )
     confidence: Optional[float] = Field(
-        description="The confidence of the explanation, from 0 to 1"
+        description="Confidence level of the explanation, ranging from 0 to 1"
     )
+    is_match: bool = Field(description="Indicates if the explanation supports a match")
 
 
-class RelativeKnowledge(BaseModel):
+class RelevantKnowledge(BaseModel):
     entry: str = Field(
-        description="The entry of the relative knowledge. Example: FIGO, AJCC, UICC"
+        description="The entry of the relevant knowledge. Example: FIGO, AJCC, UICC"
     )
-    description: str = Field(description="The description of the relative knowledge")
+    description: str = Field(description="The description of the relevant knowledge")
 
 
 class CandidateExplanation(BaseModel):
     """Explanation for the candidate based on the diagnosis."""
 
-    is_match: bool = Field(description="Flag indicating if the candidate is a match")
     explanations: List[ExplanationObject] = Field(
         description="List of explanations for the candidate."
     )
+    is_match: bool = Field(description="Flag indicating if the candidate is a match")
     matching_values: List[List[Union[str, float, int, bool, None]]] = Field(
         description="""Possible matching values between source and target values.
         Example:
@@ -79,8 +92,8 @@ class CandidateExplanation(BaseModel):
         ]
         """
     )
-    relative_knowledge: List[RelativeKnowledge] = Field(
-        description="""Relevant knowledge related to the candidate in RelativeKnowledge format.
+    relevant_knowledge: List[RelevantKnowledge] = Field(
+        description="""Relevant knowledge related to the candidate in RelevantKnowledge format.
         """
     )
 

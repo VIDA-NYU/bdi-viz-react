@@ -13,6 +13,8 @@ const AcceptMatchButton: React.FC<AcceptMatchButtonProps> = ({ onClick }) => {
                 variant="contained"
                 color="success"
                 onClick={onClick}
+                fullWidth
+                sx={{ minHeight: 60, fontSize: 12 }}
             >
                 Accept Match
             </Button>

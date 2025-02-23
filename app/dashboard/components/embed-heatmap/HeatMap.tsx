@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import { Box } from "@mui/material";
+import { useTheme, styled } from "@mui/material/styles";
 import { RectCell } from "./cells/RectCell";
 import { useHeatmapScales } from "./hooks/useHeatmapScales";
 import { useTooltip } from "./hooks/useTooltip";
@@ -17,6 +18,7 @@ import { TreeNodeComponent } from "./tree/TreeNode";
 import { useLabelManagement } from "./tree/useLabelManagement";
 import { TreeAxis } from "./tree/TreeAxis";
 import { useResizedSVGRef } from "../hooks/resize-hooks";
+import * as d3 from 'd3';
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
@@ -51,8 +53,12 @@ const HeatMap: React.FC<HeatMapProps> = ({
   highlightTargetColumns,
   sx
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  // const [dimensions, setDimensions] = useState({ width: 0, height: 400 });
+  
+  const theme = useTheme();
+  const StyledText = styled('text')({
+    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+  });
+
   const [config, setConfig] = useState<HeatMapConfig>({
     cellType: "rect",
     colorScheme: "blues",
@@ -152,10 +158,24 @@ const HeatMap: React.FC<HeatMapProps> = ({
     [setSelectedCandidate, selectedCandidate]
   );
 
+  const colorRamp = color
+                  .domain([0, 1]);
+
+  const legendWidth = 100;
+  const legendHeight = 15;
+
+  const legendData = d3.range(legendWidth).map((d) => d / legendWidth);
+
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
   // console.log("TFS", targetTreeData,  targetLabelPlacements);
   return (
-    <Box sx={{ ...sx, paddingLeft: 0, height: "100%", width: "100%" }}>
+    <Box sx={{
+      ...sx,
+      paddingLeft: 0,
+      height: "100%",
+      width: "100%",
+      // backgroundColor: theme.palette.grey[100],
+    }}>
         <svg
           ref={svgRef}
           width={"100%"}
@@ -242,29 +262,82 @@ const HeatMap: React.FC<HeatMapProps> = ({
                   );
                 }
               })}
+              
+              <g>
+                
+                {/* Color Legend */}
+                <rect
+                  transform="translate(-170, 0)"
+                  style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
+                  width={legendWidth + 20}
+                  height={legendHeight + 40}
+                  fill={theme.palette.grey[200]}
+                  rx={2} ry={2}
+                />
+                <g transform={`translate(-160, 15)`}>
+                  <StyledText
+                    x={0}
+                    y={0}
+                    textAnchor="start"
+                    style={{
+                      fontSize: "0.8em",
+                      fontWeight: "400"
+                    }}
+                  >
+                    Color Legend
+                  </StyledText>
+                  <g transform={`translate(0, 5)`}>
+                    {legendData.map((d, i) => (
+                      <rect
+                        key={i}
+                        x={i}
+                        y={0}
+                        width={1}
+                        height={legendHeight}
+                        fill={colorRamp(d)}
+                      />
+                    ))}
+                    <StyledText x={0} y={legendHeight + 15} textAnchor="middle" style={{ fontSize: "0.8em" }}>
+                      0
+                    </StyledText>
+                    <StyledText x={legendWidth} y={legendHeight + 15} textAnchor="middle" style={{ fontSize: "0.8em" }}>
+                      1
+                    </StyledText>
+                  </g>
+                </g>
 
-<g>
-                <line y1={0} y2={y.range()[1]} stroke="black" />
+                
+                <g>
+                  <StyledText
+                    transform={`translate(-80, ${(y.range()[1] / 2) + 10}) rotate(-90)`}
+                    textAnchor="middle"
+                    style={{ fontSize: "1em", fontWeight: "600" }}
+                  >
+                    Source Attributes
+                  </StyledText>
+                </g>
+                <line y1={0} y2={y.range()[1]} stroke={theme.palette.grey[500]} strokeWidth={2} />
                 {y.domain().map((value) => {
                   const yPos = y(value)!;
                   const height = getHeight({ sourceColumn: value } as Candidate);
                   return (
-                    <g
-                      key={value}
-                      transform={`translate(-5,${yPos + height / 2})`}
+                  <g
+                    key={value}
+                    transform={`translate(-5,${yPos + height / 2})`}
+                  >
+                    <StyledText
+                    dy=".35em"
+                    textAnchor="end"
+                    transform="rotate(45)"
+                    style={{
+                      fill: theme.palette.grey[600],
+                      fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
+                      fontWeight: 600,
+                    }}
                     >
-                      <text
-                        dy=".35em"
-                        textAnchor="end"
-                        style={{
-                          fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
-                          opacity:
-                            selectedCandidate?.sourceColumn === value ? 1 : 0.7,
-                        }}
-                      >
-                        {value}
-                      </text>
-                    </g>
+                    {value}
+                    </StyledText>
+                  </g>
                   );
                 })}
               </g>

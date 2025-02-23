@@ -14,7 +14,6 @@ type DashboardInterfacesProps = {
     candidates: Candidate[];
     sourceClusters: SourceCluster[];
     matchers: Matcher[];
-    candidateClusters: CandidateCluster[];
     filters: {
         selectedCandidate?: Candidate;
         sourceColumn: string;
@@ -30,7 +29,7 @@ export type { DashboardInterfacesState };
 export const {
     useDashboardInterfaces
 } = {
-    useDashboardInterfaces: ({ candidates, sourceClusters, matchers, candidateClusters, filters }: DashboardInterfacesProps): DashboardInterfacesState => {
+    useDashboardInterfaces: ({ candidates, sourceClusters, matchers, filters }: DashboardInterfacesProps): DashboardInterfacesState => {
         const [filteredCandidateCluster, setFilteredCandidateCluster] = useState<string[]>([]);
 
         // useWhatChanged([filters.sourceColumn, filters.selectedMatchers, filters.similarSources, filters.candidateThreshold, filters.candidateType]);

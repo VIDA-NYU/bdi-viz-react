@@ -5,10 +5,13 @@ import LoadingGlobalContext from './loading-context';
 
 const LoadingGlobalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isLoadingGlobal, setIsLoadingGlobal] = useState(false);
+    const [developerMode, setDeveloperMode] = useState(false);
 
     const value = {
         isLoadingGlobal,
         setIsLoadingGlobal,
+        developerMode,
+        setDeveloperMode,
     }
 
     return (
