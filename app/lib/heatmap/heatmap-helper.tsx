@@ -332,6 +332,57 @@ const getExactMatches = ({callback}: getExactMatchesProps) => {
     });
 }
 
+interface getGDCAttributeProps {
+    targetColumn: string;
+    callback: (gdcAttribute: GDCAttribute) => void;
+}
+
+const getGDCAttribute = (prop: getGDCAttributeProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.post("/api/gdc/property", {
+            targetColumn: prop.targetColumn,
+        }, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
+            const property = response.data?.property;
+            if (property) {
+                const gdcAttribute = {
+                    name: property.column_name,
+                    category: property.category,
+                    node: property.node,
+                    type: property.type,
+                    description: property.description.map((desc: object) => {
+                        try {
+                            return desc as GDCDescription;
+                        } catch (error) {
+                            console.error("Error parsing result to GDCDescription:", error);
+                            return null;
+                        }
+                    }).filter((desc: GDCDescription | null) => desc !== null),
+                    enum: property.enum,
+                    minimum: property.minimum,
+                    maximum: property.maximum,
+                } as GDCAttribute;
+
+                prop.callback(gdcAttribute);
+                resolve();
+            } else {
+                console.error("Invalid results format");
+                reject(new Error("Invalid results format"));
+            }
+        }).catch((error) => {
+            console.error("Error getting GDC attribute:", error);
+            reject(error);
+        });
+    });
+}
 
 
-export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches };
+
+
+
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute };

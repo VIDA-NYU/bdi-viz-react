@@ -120,3 +120,19 @@ declare interface Matcher {
     name: string;
     weight: number;
 }
+
+declare interface GDCAttribute {
+    name: string;
+    category: string;
+    node: string;
+    type: string;
+    description: GDCDescription[];
+    enum?: string[];
+    minimum?: number;
+    maximum?: number;
+}
+
+declare interface GDCDescription {
+    description: string;
+    termDef?: object;
+}

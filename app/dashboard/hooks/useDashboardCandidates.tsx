@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { Candidate } from '../types';
-import { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology } from '@/app/lib/heatmap/heatmap-helper';
+import { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, getGDCAttribute } from '@/app/lib/heatmap/heatmap-helper';
 import { getMockData } from '../components/utils/mock';
 
 
@@ -14,6 +14,7 @@ type DashboardCandidateState = {
     valueMatches: ValueMatch[];
     userOperations: UserOperation[];
     targetOntologies: TargetOntology[];
+    gdcAttribute: GDCAttribute | undefined;
     handleFileUpload: (newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => void;
     handleChatUpdate: (candidates: Candidate[]) => void;
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
@@ -37,6 +38,7 @@ export const {
         const [valueMatches, setValueMatches] = useState<ValueMatch[]>([]);
         const [userOperations, setUserOperations] = useState<UserOperation[]>([]);
         const [targetOntologies, setTargetOntologies] = useState<TargetOntology[]>([]);
+        const [gdcAttribute, setGdcAttribute] = useState<GDCAttribute | undefined>(undefined);
 
         const handleFileUpload = useCallback((newCandidates: Candidate[], newSourceClusters?: SourceCluster[], newMatchers?: Matcher[]) => {
             setCandidates(newCandidates.sort((a, b) => b.score - a.score));
@@ -75,6 +77,18 @@ export const {
             setTargetOntologies(targetOntologies);
         }, []);
 
+        useEffect(() => {
+            if (!selectedCandidate) {
+                return;
+            }
+            getGDCAttribute({
+                targetColumn: selectedCandidate.targetColumn,
+                callback: (attribute: GDCAttribute) => {
+                    setGdcAttribute(attribute);
+                }
+            });
+        }, [selectedCandidate]);
+
 
         useEffect(() => {
             getCachedResults({
@@ -104,6 +118,7 @@ export const {
             valueMatches,
             userOperations,
             targetOntologies,
+            gdcAttribute,
             handleFileUpload,
             handleChatUpdate,
             setSelectedCandidate: handleSelectedCandidate,
