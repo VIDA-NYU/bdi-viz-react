@@ -22,7 +22,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
   selectedSourceColumn,
   valueMatches,
 }) => {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -32,9 +32,12 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     <Box sx={{ width: '100%', marginTop: 0 }}>
       <TabContext value={value}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Hide" value={0} />
             <Tab label="UpSet Plot" value={1} />
             <Tab label="Value Comparisons" value={2} />
           </TabList>
+          <TabPanel sx={{ paddingBottom: 2, maxHeight: 0, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={0}>
+          </TabPanel>
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={1}>
             <UpsetPlot
               aggData={weightedAggregatedCandidates}

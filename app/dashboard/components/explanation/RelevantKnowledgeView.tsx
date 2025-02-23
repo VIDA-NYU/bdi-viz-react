@@ -13,12 +13,14 @@ import { SectionHeader } from '../../layout/components';
 
 interface RelevantKnowledgeProps {
     relevantKnowledge: RelevantKnowledge[];
+    gdcAttribute?: GDCAttribute;
     isLoading: boolean;
 }
 
 
 const RelevantKnowledgeView = ({
     relevantKnowledge,
+    gdcAttribute,
     isLoading
 }: RelevantKnowledgeProps) => {
     return (
@@ -43,6 +45,51 @@ const RelevantKnowledgeView = ({
                             </ListItem>
                         ))}
                     </List>
+                )}
+
+                {gdcAttribute && (
+                    <Box>
+                        <SectionHeader>
+                            GDC Attribute
+                        </SectionHeader>
+                        <Typography variant="body1">
+                            <strong>Name:</strong> {gdcAttribute.name}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Category:</strong> {gdcAttribute.category}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Node:</strong> {gdcAttribute.node}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                            <strong>Type:</strong> {gdcAttribute.type}
+                        </Typography>
+                        {gdcAttribute.description && gdcAttribute.description.map((desc, i) => (
+                            <Typography key={i} variant="body2" color="textSecondary" gutterBottom>
+                                <strong>Description:</strong> {desc.description}
+                            </Typography>
+                        ))}
+                        {gdcAttribute.enum && (
+                            <Box display="flex" flexWrap="wrap" gap={0.5}>
+                                <Typography variant="body2">
+                                    <strong>Enum:</strong>
+                                </Typography>
+                                {gdcAttribute.enum.map((enumValue, index) => (
+                                    <Chip key={index} label={enumValue} color="info" size='small' />
+                                ))}
+                            </Box>
+                        )}
+                        {gdcAttribute.minimum && (
+                            <Typography variant="body1">
+                                <strong>Minimum:</strong> {gdcAttribute.minimum}
+                            </Typography>
+                        )}
+                        {gdcAttribute.maximum && (
+                            <Typography variant="body1">
+                                <strong>Maximum:</strong> {gdcAttribute.maximum}
+                            </Typography>
+                        )}
+                    </Box>
                 )}
         </Box>
     );

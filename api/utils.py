@@ -157,3 +157,14 @@ def load_gdc_ontology(candidates: List[Dict[str, Any]]) -> List[Dict]:
                 }
                 ret.append(target_column_obj)
     return ret
+
+
+def load_gdc_property(target_column: str) -> Optional[Dict[str, Any]]:
+    with open(GDC_ONTOLOGY_FLAT_PATH, "r") as f:
+        gdc_ontology_flat = json.load(f)
+
+    property = None
+    if target_column in gdc_ontology_flat:
+        property = gdc_ontology_flat[target_column]
+
+    return property
