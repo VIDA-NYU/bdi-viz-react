@@ -1,7 +1,8 @@
 import { useState, useCallback, useContext } from 'react';
 import type { Candidate } from '../types';
+import { exportToJson } from '../components/utils/exportJson';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
-import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches } from "@/app/lib/heatmap/heatmap-helper";
+import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getCandidatesResult } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 
@@ -27,7 +28,8 @@ type DashboardOperationState = {
     redo: () => void;
     explain: (candidate?: Candidate) => void;
     apply: (reaction: UserReaction) => void;
-    filterExactMatches: () => void;
+    // filterExactMatches: () => void;
+    exportMatchingResults: () => void;
 }
 
 export type { DashboardOperationState };
@@ -269,6 +271,14 @@ export const {
             setIsLoadingGlobal(false);
         }, [onCandidateUpdate, isLoadingGlobal, setIsLoadingGlobal]);
 
+        const exportMatchingResults = () => {
+            console.log("Exporting Matching Results...");
+            getCandidatesResult({
+                callback: (candidates: CandidateResult[]) => {
+                    exportToJson(candidates);
+                }
+            })
+        };
 
         return {
             acceptMatch,
@@ -278,7 +288,8 @@ export const {
             redo,
             explain,
             apply,
-            filterExactMatches,
+            // filterExactMatches,
+            exportMatchingResults,
             isExplaining,
         };
     }

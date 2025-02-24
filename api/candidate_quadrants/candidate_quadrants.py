@@ -101,6 +101,7 @@ class CandidateQuadrants:
                 "targetColumn": target_column,
                 "score": 1,
                 "matcher": "candidate_quadrants",
+                "status": "accepted",
             }
             for target_column in self.get_easy_matches(source_column)
         ]

@@ -33,7 +33,8 @@ interface LeftPanelProps {
     discardColumn: () => void;
     undo: () => void;
     redo: () => void;
-    filterEasyCases: () => void;
+    // filterEasyCases: () => void;
+    exportMatchingResults: () => void;
 
     // Timeline Props
     userOperations: UserOperation[];
@@ -61,7 +62,7 @@ const LeftPanel = ({
     discardColumn,
     undo,
     redo,
-    filterEasyCases,
+    exportMatchingResults,
     // Timeline Props
     userOperations,
     // File Uploading Props
@@ -90,7 +91,7 @@ const LeftPanel = ({
                 discardColumn={discardColumn}
                 undo={undo}
                 redo={redo}
-                filterEasyCases={filterEasyCases}
+                exportMatchingResults={exportMatchingResults}
             />
 
             

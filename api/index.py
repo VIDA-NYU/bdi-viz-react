@@ -81,7 +81,7 @@ def get_results():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/value-bins", methods=["POST"])
+@app.route("/api/value/bins", methods=["POST"])
 def get_unique_values():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
@@ -98,7 +98,7 @@ def get_unique_values():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/value-matches", methods=["POST"])
+@app.route("/api/value/matches", methods=["POST"])
 def get_value_matches():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
@@ -115,7 +115,7 @@ def get_value_matches():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/gdc-ontology", methods=["POST"])
+@app.route("/api/gdc/ontology", methods=["POST"])
 def get_gdc_ontology():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
@@ -128,6 +128,28 @@ def get_gdc_ontology():
             )
         _ = matching_task.get_candidates()
     results = matching_task._generate_gdc_ontology()
+
+    return {"message": "success", "results": results}
+
+
+@app.route("/api/gdc/property", methods=["POST"])
+def get_gdc_property():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    target_col = request.json["targetColumn"]
+
+    property = load_gdc_property(target_col)
+
+    return {"message": "success", "property": property}
+
+
+@app.route("/api/candidates/results", methods=["POST"])
+def get_candidates_results():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    results = matching_task.get_accepted_candidates()
 
     return {"message": "success", "results": results}
 
@@ -323,15 +345,3 @@ def get_history():
     history = matching_task.history.export_history_for_frontend()
 
     return {"message": "success", "history": history}
-
-
-@app.route("/api/gdc/property", methods=["POST"])
-def get_gdc_property():
-    session = extract_session_name(request)
-    matching_task = SESSION_MANAGER.get_session(session).matching_task
-
-    target_col = request.json["targetColumn"]
-
-    property = load_gdc_property(target_col)
-
-    return {"message": "success", "property": property}
