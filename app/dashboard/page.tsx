@@ -88,7 +88,8 @@ export default function Dashboard() {
         redo,
         explain,
         apply,
-        filterExactMatches,
+        // filterExactMatches,
+        exportMatchingResults,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -213,7 +214,7 @@ export default function Dashboard() {
                     discardColumn={discardColumn}
                     undo={undo}
                     redo={redo}
-                    filterEasyCases={filterExactMatches}
+                    exportMatchingResults={exportMatchingResults}
                     onMatchersSelect={(matchers: Matcher[]) => {
                         setMatchers(matchers);
                     }}

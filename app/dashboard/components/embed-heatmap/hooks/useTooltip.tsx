@@ -32,6 +32,7 @@ const useTooltip = () => {
                         </ul>
                     </div>
                 ` : ''}
+                <div><strong>Status:</strong> ${data.status}</div>
             </div>
             `
         });

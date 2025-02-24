@@ -4,6 +4,7 @@ declare interface Candidate {
     targetColumn: string;
     score: number;
     matcher?: string;
+    status?: string; // accepted, rejected, discarded, idle
 }
 
 type AggregatedCandidate = {
@@ -12,6 +13,7 @@ type AggregatedCandidate = {
     targetColumn: string;
     matchers: string[];
     score: number;
+    status: string;
 }
 
 declare interface SourceCluster {
@@ -135,4 +137,11 @@ declare interface GDCAttribute {
 declare interface GDCDescription {
     description: string;
     termDef?: object;
+}
+
+declare interface CandidateResult {
+    sourceColumn: string;
+    targetColumn: string;
+    sourceValues: string[];
+    targetValues: string[];
 }

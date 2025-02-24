@@ -1,5 +1,6 @@
 // components/cells/RectCell.tsx
 import React from 'react';
+import { useTheme } from '@mui/material';
 import { CellProps } from './types';
 
 const RectCell: React.FC<CellProps> = ({
@@ -15,6 +16,19 @@ const RectCell: React.FC<CellProps> = ({
     onClick,
     isHighlighted
 }) => {
+    const theme = useTheme();
+
+    const getFillColor = () => {
+        if (data.status === 'accepted') return theme.palette.success.dark;
+        return color(data.score);
+    };
+
+    const getOpacity = () => {
+        if (data.status === 'rejected') return 0.2;
+        if (data.status === 'discarded') return 0.1;
+        return 1;
+    };
+
     return (
         <rect
             className='heatmap-cell'
@@ -22,7 +36,8 @@ const RectCell: React.FC<CellProps> = ({
             y={y}
             width={width}
             height={height}
-            fill={color(data.score)}
+            fill={getFillColor()}
+            opacity={getOpacity()}
             stroke="black"
             strokeWidth={isSelected || isHighlighted ? 2 : 0}
             onMouseEnter={(e) => onHover?.(e, data)}
@@ -30,7 +45,6 @@ const RectCell: React.FC<CellProps> = ({
             onClick={() => onClick?.(data)}
             rx={3}
             ry={3}
-            // cornerRadius={5}
         />
     );
 };

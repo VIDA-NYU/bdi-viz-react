@@ -1,12 +1,13 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import AcceptMatchButton from "./control-inputs/accept-match-button";
 import RejectMatchButton from "./control-inputs/reject-match-button";
 import DiscardColumnButton from "./control-inputs/discard-column-button";
 import UndoButton from "./control-inputs/undo-button";
 import RedoButton from "./control-inputs/redo-button";
-import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
+// import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
+import ExportMatchingResultsButton from "./control-inputs/export-matching-results";
 import { SectionHeader } from "../layout/components";
 
 
@@ -16,7 +17,8 @@ interface DecisionPanelProps {
     discardColumn: () => void;
     undo: () => void;
     redo: () => void;
-    filterEasyCases: () => void;
+    // filterEasyCases: () => void;
+    exportMatchingResults: () => void;
 }
 
 const rootStyles = {
@@ -34,7 +36,7 @@ const DecisionPanel: React.FC<DecisionPanelProps> = ({
     discardColumn,
     undo,
     redo,
-    filterEasyCases
+    exportMatchingResults
 }) => {
 
     return (
@@ -51,7 +53,7 @@ const DecisionPanel: React.FC<DecisionPanelProps> = ({
                 <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
                     <UndoButton onClick={undo} />
                     <RedoButton onClick={redo} />
-                    <FilterEasyCasesButton onClick={filterEasyCases} />
+                    <ExportMatchingResultsButton onClick={exportMatchingResults} />
                 </Box>
                 {/* <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
                     

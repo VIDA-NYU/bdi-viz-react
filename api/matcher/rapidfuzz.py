@@ -51,6 +51,7 @@ class RapidFuzzMatcher(BaseMatcher):
                     "targetColumn": target_column,
                     "score": score,
                     "matcher": matcher,
+                    "status": "idle",
                 }
             layered_candidates.append(candidate)
         return layered_candidates

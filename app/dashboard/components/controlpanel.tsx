@@ -4,30 +4,17 @@ import { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Box,
-  IconButton,
   Toolbar,
-  Typography,
-  Divider
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 
 import SourceColumnSelection from "./control-inputs/source-column-selection";
 import CandidateTypeSelection from "./control-inputs/candidate-type-selection";
 import SimilarSourcesSlide from "./control-inputs/similar-sources-slide";
 import CandidateThresholdSlide from "./control-inputs/candidate-threshold-slide";
-import AcceptMatchButton from "./control-inputs/accept-match-button";
-import RejectMatchButton from "./control-inputs/reject-match-button";
-import DiscardColumnButton from "./control-inputs/discard-column-button";
-import UndoButton from "./control-inputs/undo-button";
-import RedoButton from "./control-inputs/redo-button";
 import MatcherSliders from "./control-inputs/matcher-selection";
-import FilterEasyCasesButton from "./control-inputs/filter-easy-cases-button";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { SectionHeader } from "@/app/dashboard/layout/components";
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  padding: "0px",
-}));
 
 interface ControlPanelProps {
   sourceColumns: string[];

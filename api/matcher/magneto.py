@@ -54,6 +54,7 @@ class MagnetoMatcher(BaseMatcher):
                 "targetColumn": target_tuple[1],
                 "score": score,
                 "matcher": matcher,
+                "status": "idle",
             }
 
             layered_candidates.append(candidate)
