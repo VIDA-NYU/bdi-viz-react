@@ -58,6 +58,8 @@ class WeightUpdater:
 
     def _handle_reject(self, source_column: str, target_column: str):
         for matcher, candidates in self.candidates.items():
+            if matcher not in self.matchers:
+                continue
             for rank, candidate in enumerate(candidates):
                 if candidate[0] == source_column and candidate[1] == target_column:
                     logger.info(
