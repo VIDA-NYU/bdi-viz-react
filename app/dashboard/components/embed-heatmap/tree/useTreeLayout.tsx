@@ -71,7 +71,7 @@ export const useTreeLayout = ({
             })),
           // Use evenly distributed positions for category nodes
           x: orientation === 'horizontal' ? categoryPosition : 0,
-          y: orientation === 'vertical' ? categoryPosition : (expandedNodes.size > 0 ? 120 : 40),
+          y: orientation === 'vertical' ? categoryPosition : (expandedNodes.size > 0 ? 80 : 40),
           isExpanded: expandedNodes.has(prefix)
         };
       });

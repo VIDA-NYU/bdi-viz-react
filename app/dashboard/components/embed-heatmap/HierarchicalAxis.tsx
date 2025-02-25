@@ -12,8 +12,8 @@ import React, {
   import { useTooltip } from "./hooks/useTooltip";
   import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
   import { HeatMapConfig } from "./types";
-  // import { useTreeLayout } from "./tree/useTreeLayout";
-  import { useOntologyLayout } from "./tree/useOntologyLayout";
+  import { useTreeLayout } from "./tree/useTreeLayout";
+  // import { useOntologyLayout } from "./tree/useOntologyLayout";
   import { ClusteringOptions, TreeConfig } from "./tree/types";
   import { TreeNodeComponent } from "./tree/TreeNode";
   import { useLabelManagement } from "./tree/useLabelManagement";
@@ -89,36 +89,36 @@ import React, {
       selectedCandidate: selectedCandidate,
     });
     const clusteringOptions = defaultClusteringOptions;
-    // const {
-    //   treeData: targetTreeData,
-    //   expandedNodes: targetExpandedNodes,
-    //   toggleNode: toggleTargetNode,
-    //   getVisibleColumns: getVisibleTargetColumns
-    // } = useTreeLayout({
-    //   width: dimensions.width,
-    //   height: dimensions.height,
-    //   margin: MARGIN,
-    //   columns: x.domain(),
-    //   scale: x,
-    //   getWidth: getWidth,
-    //   options: clusteringOptions,
-    //   orientation: 'horizontal'
-    // });
-
     const {
       treeData: targetTreeData,
       expandedNodes: targetExpandedNodes,
       toggleNode: toggleTargetNode,
       getVisibleColumns: getVisibleTargetColumns
-    } = useOntologyLayout({
-      columns: x.domain(),
-      targetOntologies: targetOntologies ?? [],
+    } = useTreeLayout({
       width: dimensions.width,
       height: dimensions.height,
       margin: MARGIN,
+      columns: x.domain(),
       scale: x,
       getWidth: getWidth,
-    })
+      options: clusteringOptions,
+      orientation: 'horizontal'
+    });
+
+    // const {
+    //   treeData: targetTreeData,
+    //   expandedNodes: targetExpandedNodes,
+    //   toggleNode: toggleTargetNode,
+    //   getVisibleColumns: getVisibleTargetColumns
+    // } = useOntologyLayout({
+    //   columns: x.domain(),
+    //   targetOntologies: targetOntologies ?? [],
+    //   width: dimensions.width,
+    //   height: dimensions.height,
+    //   margin: MARGIN,
+    //   scale: x,
+    //   getWidth: getWidth,
+    // })
     
     
     const targetLabelPlacements = useLabelManagement({
