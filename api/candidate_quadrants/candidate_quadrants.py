@@ -5,6 +5,7 @@ import pandas as pd
 
 from ..matcher.rapidfuzz import RapidFuzzMatcher
 from ..matcher.rapidfuzz_value import RapidFuzzValueMatcher
+from ..matcher.valentine import ValentineMatcher
 
 
 class CandidateQuadrants:
@@ -21,7 +22,7 @@ class CandidateQuadrants:
         source: pd.DataFrame,
         target: pd.DataFrame,
         top_k: int = 20,
-        column_name_threshold: float = 0.95,
+        column_name_threshold: float = 0.7,
         value_threshold: float = 0.4,
     ) -> None:
         self.source = source
