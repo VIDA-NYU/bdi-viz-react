@@ -138,5 +138,33 @@ const agentActionRequest = async (reaction: UserReaction): Promise<ActionRespons
     }
 }
 
+const agentSearchRequest = async (query: string): Promise<Candidate[] | undefined> => {
+    try {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
 
-export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest };
+        const resp = await axios.post("/api/agent/search/candidates", { query }, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        });
+
+        if (resp.data.status === "success" &&
+            resp.data.candidates && resp.data.candidates.length > 0) {
+            const candidates = resp.data.candidates.map((c: object) => {
+                try {
+                    return c as Candidate;
+                } catch (error) {
+                    console.error("Error parsing candidate to Candidate:", error);
+                    return null;
+                }
+            }).filter((c: Candidate | null) => c !== null);
+            return candidates;
+        }
+    } catch (error) {
+        console.error("Error sending agent search request:", error);
+    }
+}
+
+
+export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentSearchRequest };

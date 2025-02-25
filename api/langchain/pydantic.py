@@ -26,7 +26,16 @@ class CandidateObject(BaseModel):
     sourceColumn: str = Field(description="The source column name")
     targetColumn: str = Field(description="The target column name")
     score: float = Field(description="The score of the candidate")
-    matcher: str = Field(description="The matcher used for the candidate")
+    # matcher: str = Field(description="The matcher used for the candidate")
+
+
+class SearchResponse(BaseModel):
+    """Response from the agent search."""
+
+    status: str = Field(description="The status of the response: success or failure")
+    candidates: Optional[List[CandidateObject]] = Field(
+        description="The searched candidates"
+    )
 
 
 class DiagnoseObject(BaseModel):
