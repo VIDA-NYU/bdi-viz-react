@@ -1,10 +1,10 @@
 'use client';
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import { Box, CircularProgress, Typography, Switch } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
+import SearchBar from "./components/search/searchBar";
 import LeftPanel from "./left-panel";
-
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
 import CombinedView from "./components/explanation/CombinedView";
@@ -60,10 +60,12 @@ export default function Dashboard() {
         candidateType,
         similarSources,
         candidateThreshold,
+        searchResults,
         updateSourceColumn,
         updateCandidateType,
         updateSimilarSources,
         updateCandidateThreshold,
+        updateSearchResults,
     } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
@@ -127,7 +129,7 @@ export default function Dashboard() {
         highlightedTargetColumns,
         updateHighlightedSourceColumns,
         updateHighlightedTargetColumns
-    } = useDashboardHighlight({candidates});
+    } = useDashboardHighlight({candidates, searchResults});
 
     function handleSuggestions(suggestions: AgentSuggestions | undefined) {
         console.log("Suggestions: ", suggestions);
@@ -182,12 +184,20 @@ export default function Dashboard() {
         updateSourceColumn(column);
     }
 
+    function handleSearchResults(results: Candidate[]) {
+        console.log("Search Results: ", results);
+        updateSearchResults(results);
+    }
+
     return (
         <RootContainer>
             <Header>
                 <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
                     <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
                         <Typography sx={{ fontSize: "1.5rem", fontWeight: "900" }}>BDI Visualization System</Typography>
+                        <Box display="flex" alignItems="center" width="400pt">
+                            <SearchBar searchResultCallback={handleSearchResults} />
+                        </Box>
                         <Box display="flex" alignItems="center">
                             <Typography sx={{ fontSize: "1rem", fontWeight: "300", marginRight: 0 }}>Developer Mode</Typography>
                             <Switch

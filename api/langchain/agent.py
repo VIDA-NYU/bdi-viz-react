@@ -22,7 +22,7 @@ from .pydantic import (
     ActionResponse,
     AgentSuggestions,
     CandidateExplanation,
-    CandidateObject,
+    SearchResponse,
 )
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -55,11 +55,11 @@ class Agent:
             """,
         ]
 
-    def search(self, query: str) -> CandidateObject:
+    def search(self, query: str) -> SearchResponse:
         logger.info(f"[Agent] Searching for candidates...")
 
         tools = [
-            self.store.query_candidates,
+            self.store.query_candidates_tool,
         ]
 
         prompt = f"""
@@ -73,7 +73,7 @@ class Agent:
         response = self.invoke(
             prompt=prompt,
             tools=tools,
-            output_structure=CandidateObject,
+            output_structure=SearchResponse,
         )
 
         return response

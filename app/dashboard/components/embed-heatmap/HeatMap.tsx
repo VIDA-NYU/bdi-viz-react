@@ -75,14 +75,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
   }
 
   const candidates = useMemo(() => {
-    // return data.filter((d) => d.matcher === selectedMatcher?.name).sort((a, b) => {
-    //   if (a.sourceColumn === b.sourceColumn) {
-    //     // compare by alphabet
-    //     return a.targetColumn < b.targetColumn ? -1 : 1;
-    //     // return a.targetColumn.localeCompare(b.targetColumn);
-    //   }
-    //   return a.sourceColumn < b.sourceColumn ? -1 : 1;
-    // });
     return data;
   }, [data]);
     
@@ -104,42 +96,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
     selectedCandidate: selectedCandidate,
   });
   const clusteringOptions = defaultClusteringOptions;
-  // const {
-  //   treeData: targetTreeData,
-  //   expandedNodes: targetExpandedNodes,
-  //   toggleNode: toggleTargetNode,
-  //   getVisibleColumns: getVisibleTargetColumns
-  // } = useTreeLayout({
-  //   width: dimensions.width,
-  //   height: dimensions.height,
-  //   margin: MARGIN,
-  //   columns: x.domain(),
-  //   scale: x,
-  //   getWidth: getWidth,
-  //   options: clusteringOptions,
-  //   orientation: 'horizontal'
-  // });
-  
   
   const { tooltip, showTooltip, hideTooltip } = useTooltip();
-
-  // Handle window resize
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (containerRef.current) {
-  //       setDimensions({
-  //         width: containerRef.current.clientWidth - 16,
-  //         height: 400,
-  //       });
-  //     }
-  //   };
-
-  //   handleResize();
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
-
-  
 
   const handleCellClick = useCallback(
     (cellData: Candidate) => {
@@ -167,14 +125,13 @@ const HeatMap: React.FC<HeatMapProps> = ({
   const legendData = d3.range(legendWidth).map((d) => d / legendWidth);
 
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
-  // console.log("TFS", targetTreeData,  targetLabelPlacements);
+
   return (
     <Box sx={{
       ...sx,
       paddingLeft: 0,
       height: "100%",
       width: "100%",
-      // backgroundColor: theme.palette.grey[100],
     }}>
         <svg
           ref={svgRef}
@@ -183,85 +140,118 @@ const HeatMap: React.FC<HeatMapProps> = ({
           style={{ overflow: "visible" }}
         >
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
-            {candidates
-              // .filter((d) => d.matcher === selectedMatcher?.name)
-              .map((d: AggregatedCandidate, i: number) => {
-                let sourceUniqueValue;
-                let targetUniqueValue;
-                if (
-                  sourceUniqueValues !== undefined &&
-                  targetUniqueValues !== undefined
-                ) {
-                  sourceUniqueValue = sourceUniqueValues.find(
-                    (s) => s.sourceColumn === d.sourceColumn
-                  );
-                  targetUniqueValue = targetUniqueValues.find(
-                    (t) => t.targetColumn === d.targetColumn
-                  );
-                }
-                if (
-                  selectedCandidate &&
-                  selectedCandidate.sourceColumn === d.sourceColumn &&
-                  selectedCandidate.targetColumn === d.targetColumn
-                  // && selectedCandidate.matcher === d.matcher
-                ) {
-                  return (
-                    <BaseExpandedCell
-                      type={"histogram"}
-                      key={`${d.sourceColumn}-${d.targetColumn}`}
-                      data={d}
-                      sourceUniqueValues={
-                        sourceUniqueValue ?? {
-                          sourceColumn: "",
-                          uniqueValues: [],
-                        }
+            {/* Background rectangles for highlighted rows */}
+            {y.domain().map((value) => {
+              if (highlightSourceColumns.includes(value)) {
+                return (
+                  <rect
+                    key={`row-${value}`}
+                    x={0}
+                    y={y(value)}
+                    width={dimensions.width - MARGIN.left - MARGIN.right}
+                    height={getHeight({ sourceColumn: value } as Candidate)}
+                    fill={theme.palette.warning.light}
+                    opacity={0.1}
+                  />
+                );
+              }
+              return null;
+            })}
+
+            {/* Background rectangles for highlighted columns */}
+            {x.domain().map((value) => {
+              if (highlightTargetColumns.includes(value)) {
+                return (
+                  <rect
+                    key={`col-${value}`}
+                    x={x(value)}
+                    y={0}
+                    width={getWidth({ targetColumn: value } as Candidate)}
+                    height={dimensions.height - MARGIN.top - MARGIN.bottom}
+                    fill={theme.palette.warning.light}
+                    opacity={0.1}
+                  />
+                );
+              }
+              return null;
+            })}
+
+            {candidates.map((d: AggregatedCandidate, i: number) => {
+              let sourceUniqueValue;
+              let targetUniqueValue;
+              if (
+                sourceUniqueValues !== undefined &&
+                targetUniqueValues !== undefined
+              ) {
+                sourceUniqueValue = sourceUniqueValues.find(
+                  (s) => s.sourceColumn === d.sourceColumn
+                );
+                targetUniqueValue = targetUniqueValues.find(
+                  (t) => t.targetColumn === d.targetColumn
+                );
+              }
+              if (
+                selectedCandidate &&
+                selectedCandidate.sourceColumn === d.sourceColumn &&
+                selectedCandidate.targetColumn === d.targetColumn
+              ) {
+                return (
+                  <BaseExpandedCell
+                    type={"histogram"}
+                    key={`${d.sourceColumn}-${d.targetColumn}`}
+                    data={d}
+                    sourceUniqueValues={
+                      sourceUniqueValue ?? {
+                        sourceColumn: "",
+                        uniqueValues: [],
                       }
-                      targetUniqueValues={
-                        targetUniqueValue ?? {
-                          targetColumn: "",
-                          uniqueValues: [],
-                        }
+                    }
+                    targetUniqueValues={
+                      targetUniqueValue ?? {
+                        targetColumn: "",
+                        uniqueValues: [],
                       }
-                      onClose={() => {
-                        handleCellClick(d);
-                      }}
-                      width={getWidth(d)}
-                      height={getHeight(d)}
-                      x={x(d.targetColumn) ?? 0}
-                      y={y(d.sourceColumn) ?? 0}
-                      onClick={() => {
-                        handleCellClick(d);
-                      }}
-                    />
-                  );
-                } else {
-                  return (
-                    <CellComponent
-                      key={`${d.sourceColumn}-${d.targetColumn}`}
-                      data={d}
-                      config={config}
-                      x={x(d.targetColumn) ?? 0}
-                      y={y(d.sourceColumn) ?? 0}
-                      width={getWidth(d)}
-                      height={getHeight(d)}
-                      color={color}
-                      isSelected={
-                        selectedCandidate?.sourceColumn === d.sourceColumn &&
-                        selectedCandidate?.targetColumn === d.targetColumn
-                      }
-                      onHover={showTooltip}
-                      onLeave={hideTooltip}
-                      onClick={() => {
-                        handleCellClick(d);
-                      }}
-                      isHighlighted={
-                        highlightSourceColumns.includes(d.sourceColumn) ||
-                        highlightTargetColumns.includes(d.targetColumn)
-                      }
-                    />
-                  );
-                }
-              })}
+                    }
+                    onClose={() => {
+                      handleCellClick(d);
+                    }}
+                    width={getWidth(d)}
+                    height={getHeight(d)}
+                    x={x(d.targetColumn) ?? 0}
+                    y={y(d.sourceColumn) ?? 0}
+                    onClick={() => {
+                      handleCellClick(d);
+                    }}
+                  />
+                );
+              } else {
+                return (
+                  <CellComponent
+                    key={`${d.sourceColumn}-${d.targetColumn}`}
+                    data={d}
+                    config={config}
+                    x={x(d.targetColumn) ?? 0}
+                    y={y(d.sourceColumn) ?? 0}
+                    width={getWidth(d)}
+                    height={getHeight(d)}
+                    color={color}
+                    isSelected={
+                      selectedCandidate?.sourceColumn === d.sourceColumn &&
+                      selectedCandidate?.targetColumn === d.targetColumn
+                    }
+                    onHover={showTooltip}
+                    onLeave={hideTooltip}
+                    onClick={() => {
+                      handleCellClick(d);
+                    }}
+                    isHighlighted={
+                      highlightSourceColumns.includes(d.sourceColumn) &&
+                      highlightTargetColumns.includes(d.targetColumn)
+                    }
+                  />
+                );
+              }
+            })}
               
               <g>
                 
@@ -332,7 +322,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     style={{
                       fill: theme.palette.grey[600],
                       fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
-                      fontWeight: 600,
+                      fontWeight: "600"
                     }}
                     >
                     {value}
@@ -341,19 +331,6 @@ const HeatMap: React.FC<HeatMapProps> = ({
                   );
                 })}
               </g>
-
-            
-            {/* <g transform={`translate(0,${dimensions.height - MARGIN.top - MARGIN.bottom})`}>
-              < TreeAxis
-                treeData={targetTreeData}
-                labelPlacements={targetLabelPlacements}
-                orientation="horizontal"
-                axisLength={dimensions.width - MARGIN.left - MARGIN.right}
-                expandedNodes={targetExpandedNodes}
-                onToggleNode={toggleTargetNode}
-              />
-            </g> */}
-
           </g>
         </svg>
       {tooltip.visible && (

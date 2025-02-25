@@ -5,10 +5,12 @@ type DashboardFilterState = {
     candidateType: string;
     similarSources: number;
     candidateThreshold: number;
+    searchResults: Candidate[];
     updateSourceColumn: (column: string) => void;
     updateCandidateType: (type: string) => void;
     updateSimilarSources: (num: number) => void;
     updateCandidateThreshold: (threshold: number) => void;
+    updateSearchResults: (results: Candidate[]) => void;
 }
 
 export type { DashboardFilterState };
@@ -31,6 +33,7 @@ export const {
         const [candidateType, setCandidateType] = useState<string>('all');
         const [similarSources, setSimilarSources] = useState<number>(2);
         const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
+        const [searchResults, setSearchResults] = useState<Candidate[]>([]);
 
         useEffect(() => {
             setSourceColumn(candidates[0]?.sourceColumn ?? '');
@@ -52,15 +55,21 @@ export const {
             setCandidateThreshold(threshold);
         }, []);
 
+        const updateSearchResults = useCallback((results: Candidate[]) => {
+            setSearchResults(results);
+        }, []);
+
         return {
             sourceColumn,
             candidateType,
             similarSources,
             candidateThreshold,
+            searchResults,
             updateSourceColumn,
             updateCandidateType,
             updateSimilarSources,
             updateCandidateThreshold,
+            updateSearchResults,
         };
     }
 };
