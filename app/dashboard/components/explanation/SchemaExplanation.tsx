@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import ExplanationItem from './ExplanationItem';
 import { SectionHeader } from '../../layout/components';
+import { agentThumbRequest } from '@/app/lib/langchain/agent-helper';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
@@ -49,6 +50,24 @@ const SchemaExplanation = ({
     };
 
     const handleThumbUp = (id: string) => {
+        const explanation = currentExplanations.find(e => e.id === id);
+        if (explanation) {
+            const userOperation = {
+                operation: "accept",
+                candidate: {
+                    sourceColumn: sourceColumn ?? "",
+                    targetColumn: targetColumn ?? "",
+                    score: explanation.confidence,
+                },
+                references: [],
+            }
+            if (explanation.isMatch) {
+                agentThumbRequest(explanation, userOperation);
+            } else {
+                userOperation.operation = "reject";
+                agentThumbRequest(explanation, userOperation);
+            }
+        }
         if (thumbUpExplanations.some(e => e === id)) {
             setThumbUpExplanations(thumbUpExplanations.filter(e => e !== id));
         } else {
@@ -57,6 +76,24 @@ const SchemaExplanation = ({
     };
 
     const handleThumbDown = (id: string) => {
+        const explanation = currentExplanations.find(e => e.id === id);
+        if (explanation) {
+            const userOperation = {
+                operation: "reject",
+                candidate: {
+                    sourceColumn: sourceColumn ?? "",
+                    targetColumn: targetColumn ?? "",
+                    score: explanation.confidence,
+                },
+                references: [],
+            }
+            if (explanation.isMatch) {
+                agentThumbRequest(explanation, userOperation);
+            } else {
+                userOperation.operation = "accept";
+                agentThumbRequest(explanation, userOperation);
+            }
+        }
         if (thumbDownExplanations.some(e => e === id)) {
             setThumbDownExplanations(thumbDownExplanations.filter(e => e !== id));
         } else {

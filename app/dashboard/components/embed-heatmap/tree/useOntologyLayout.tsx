@@ -96,8 +96,6 @@ export const useOntologyLayout = ({
             }
         });
 
-        console.log(treeNodes);
-
         return treeNodes;
 
     }, [filteredOntologies, scale, getWidth, width, margin, expandedNodes]);
@@ -110,7 +108,6 @@ export const useOntologyLayout = ({
             } else {
                 next.add(nodeId);
             }
-            console.log("nodeId", nodeId, next);
             return next;
         });
     };

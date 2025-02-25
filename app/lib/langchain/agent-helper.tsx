@@ -16,7 +16,7 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
         });
         console.log("candidateExplanationRequest: ", resp.data);
         const { is_match, explanations, matching_values, relevant_knowledge } = resp.data;
-        let explanationObjects: ExplanationObject[] = [];
+        let explanationObjects: Explanation[] = [];
         if (explanations && explanations.length > 0) {
             explanationObjects = explanations.map((e: { id: string; is_match: boolean; type: string; reason: string; reference: string; confidence: number }) => {
                 try {
@@ -27,12 +27,12 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
                         reason: e.reason,
                         reference: e.reference,
                         confidence: e.confidence,
-                    } as ExplanationObject;
+                    } as Explanation;
                 } catch (error) {
-                    console.error("Error parsing explanation to ExplanationObject:", error);
+                    console.error("Error parsing explanation to Explanation:", error);
                     return null;
                 }
-            }).filter((e: ExplanationObject | null) => e !== null);
+            }).filter((e: Explanation | null) => e !== null);
         }
         let relevantKnowledgeObjects: RelevantKnowledge[] = [];
         if (relevant_knowledge && relevant_knowledge.length > 0) {
@@ -58,7 +58,7 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
     }
 };
 
-const agentSuggestionsRequest = async (userOperation: UserOperation, explanations: ExplanationObject[]): Promise<AgentSuggestions | undefined> => {
+const agentSuggestionsRequest = async (userOperation: UserOperation, explanations: Explanation[]): Promise<AgentSuggestions | undefined> => {
     try {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
@@ -166,5 +166,18 @@ const agentSearchRequest = async (query: string): Promise<Candidate[] | undefine
     }
 }
 
+const agentThumbRequest = async (explanation: Explanation, userOperation: UserOperation) => {
+    try {
+        const resp = await axios.post("/api/agent/thumb", {
+            explanation,
+            userOperation,
+        });
+        console.log("agentThumbRequest: ", resp.data);
+        return;
+    } catch (error) {
+        console.error("Error sending agent thumb request:", error);
+    }
+}
 
-export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentSearchRequest };
+
+export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentSearchRequest, agentThumbRequest };

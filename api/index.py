@@ -23,7 +23,7 @@ GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.c
 
 app = Flask("bdiviz_flask")
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024
-app.logger.setLevel(logging.DEBUG)
+app.logger.setLevel(logging.INFO)
 
 
 @app.route("/api/matching", methods=["POST"])
@@ -268,6 +268,17 @@ def agent_suggest():
     response = response.model_dump()
 
     return response
+
+
+@app.route("/api/agent/thumb", methods=["POST"])
+def agent_thumb():
+    data = request.json
+    explanation = data["explanation"]
+    user_operation = data["userOperation"]
+
+    AGENT.remember_explanation([explanation], user_operation)
+
+    return {"message": "success"}
 
 
 @app.route("/api/agent/apply", methods=["POST"])

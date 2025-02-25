@@ -38,9 +38,6 @@ const LowerTabs: React.FC<lowerTabsProps> = ({
         setValue(newValue);
     };
 
-    console.log("highlightSourceColumns: ", highlightSourceColumns);
-    console.log("highlightTargetColumns: ", highlightTargetColumns);
-
     return (
         <Box sx={{ width: '100%', minHeight: "500px", marginTop: 0, display: "flex", flexDirection: "column" }}>
           <TabContext value={value}>

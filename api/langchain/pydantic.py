@@ -57,7 +57,7 @@ class AgentSuggestions(BaseModel):
     )
 
 
-class ExplanationObject(BaseModel):
+class Explanation(BaseModel):
     """Detailed explanation for a candidate match or mismatch."""
 
     type: str = Field(
@@ -87,7 +87,7 @@ class RelevantKnowledge(BaseModel):
 class CandidateExplanation(BaseModel):
     """Explanation for the candidate based on the diagnosis."""
 
-    explanations: List[ExplanationObject] = Field(
+    explanations: List[Explanation] = Field(
         description="List of explanations for the candidate."
     )
     is_match: bool = Field(description="Flag indicating if the candidate is a match")
