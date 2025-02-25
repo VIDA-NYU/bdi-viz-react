@@ -64,21 +64,12 @@ declare interface UserOperation {
     references: Candidate[]; // the references to the candidate
 }
 
-declare interface ExplanationObject {
-    id: string;
-    isMatch: boolean;
-    type: string;
-    reason: string;
-    reference: string;
-    confidence: number;
-}
-
 declare type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
 
 declare interface Explanation {
     id: string;
     isMatch: boolean;
-    type: ExplanationType;
+    type: ExplanationType | string;
     reason: string;
     reference: string;
     confidence: number;
@@ -91,7 +82,7 @@ declare interface RelevantKnowledge {
 
 declare interface CandidateExplanation {
     isMatch: boolean;
-    explanations: ExplanationObject[];
+    explanations: Explanation[];
     matchingValues?: string[][]; // [source value, target value]
     relevantKnowledge?: RelevantKnowledge[];
 }

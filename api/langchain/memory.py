@@ -237,7 +237,8 @@ class MemoryRetriver:
             explanations = [
                 {
                     "type": explanation["type"],
-                    "content": explanation["content"],
+                    "reason": explanation["reason"],
+                    "reference": explanation["reference"],
                     "confidence": explanation["confidence"],
                 }
                 for explanation in explanations

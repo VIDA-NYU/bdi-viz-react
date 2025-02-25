@@ -76,7 +76,7 @@ export const {
             //             type: explanation.type,
             //             content: explanation.content,
             //             confidence: explanation.confidence
-            //         } as ExplanationObject;
+            //         } as Explanation;
             //     });
 
             //     const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
@@ -122,7 +122,7 @@ export const {
             //             type: explanation.type,
             //             content: explanation.content,
             //             confidence: explanation.confidence
-            //         } as ExplanationObject;
+            //         } as Explanation;
             //     });
 
             //     const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);
@@ -169,7 +169,7 @@ export const {
             //             type: explanation.type,
             //             content: explanation.content,
             //             confidence: explanation.confidence
-            //         } as ExplanationObject;
+            //         } as Explanation;
             //     });
 
             //     const suggestions = await agentSuggestionsRequest(userOperation, explanationObjects);

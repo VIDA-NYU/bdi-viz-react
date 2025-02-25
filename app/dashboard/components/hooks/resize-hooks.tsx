@@ -11,7 +11,7 @@ function resizeSVG(
         // Get new dimensions from the container
         const newWidth = d3.select(containerRef.current)?.node()?.getBoundingClientRect().width;
         const newHeight = d3.select(containerRef.current)?.node()?.getBoundingClientRect().height;
-        console.log(newWidth, newHeight, d3.select(containerRef.current).node());
+
         if (newWidth && newHeight) {
             setWidth(newWidth);
             setHeight(newHeight)
