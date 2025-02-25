@@ -48,6 +48,7 @@ export default function Dashboard() {
         valueMatches,
         userOperations,
         targetOntologies,
+        gdcAttribute,
         handleFileUpload,
         setSelectedCandidate,
         setMatchers,
@@ -271,6 +272,7 @@ export default function Dashboard() {
                         setThumbDownExplanations={setThumbDownExplanations}
                         sourceColumn={selectedCandidate?.sourceColumn}
                         targetColumn={selectedCandidate?.targetColumn}
+                        gdcAttribute={gdcAttribute}
                     />
                     {/* <MediumVizContainer>
             <Typography variant="h6">Value Distribution</Typography>

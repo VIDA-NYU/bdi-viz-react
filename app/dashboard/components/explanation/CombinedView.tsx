@@ -36,6 +36,7 @@ interface CombinedViewProps {
     isLoading: boolean;
     sourceColumn?: string;
     targetColumn?: string;
+    gdcAttribute?: GDCAttribute;
 }
 
 const CombinedView = ({
@@ -52,6 +53,7 @@ const CombinedView = ({
     isLoading,
     sourceColumn,
     targetColumn,
+    gdcAttribute,
 }: CombinedViewProps) => {
 
     return (
@@ -76,6 +78,7 @@ const CombinedView = ({
             <Stack flex={4}>
                 <RelevantKnowledgeView
                     relevantKnowledge={relevantKnowledge}
+                    gdcAttribute={gdcAttribute}
                     isLoading={isLoading}
                 />
             </Stack>
