@@ -54,6 +54,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     justifyContent: "flex-start",
     minWidth: "min-content",
     gap: 2,
+    paddingBottom: 2,
   };
 
   return (
@@ -62,8 +63,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       Control Panel
     </SectionHeader>
     <Box sx={rootStyles}>
-            
-            <Box sx={rootStyles}>
               <SourceColumnSelection
                 sourceColumns={props.sourceColumns}
                 selectedSourceColumn={props.state.sourceColumn}
@@ -86,8 +85,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   />
                 </Box>
               )}
-            </Box>
-    </Box>
+      </Box>
     </>
   );
 };

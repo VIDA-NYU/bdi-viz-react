@@ -8,13 +8,13 @@ interface RejectMatchButtonProps {
 
 const RejectMatchButton: React.FC<RejectMatchButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
+        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
             <Button
                 variant="contained"
                 color="error"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
+                sx={{ minHeight: 50, fontSize: 11 }}
             >
                 Reject Match
             </Button>

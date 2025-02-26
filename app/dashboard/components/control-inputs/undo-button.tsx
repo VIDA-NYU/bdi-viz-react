@@ -8,13 +8,13 @@ interface UndoButtonProps {
 
 const UndoButton: React.FC<UndoButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
+        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
             <Button
                 variant="outlined"
                 color="primary"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
+                sx={{ minHeight: 50, fontSize: 11 }}
             >
                 Undo
             </Button>

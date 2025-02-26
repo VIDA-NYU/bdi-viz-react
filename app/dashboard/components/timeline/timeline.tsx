@@ -23,7 +23,7 @@ const Timeline = ({ userOperations }: TimelineProps) => {
         svg.selectAll("*").remove(); // Clear previous content
 
         // const boxWidth = boxRef.current?.clientWidth || 200;
-        const width = 380;
+        const width = 290;
         const height = (nodes.length + 1) * 100; // Adjust height for the start node
 
         svg.attr("width", width).attr("height", height);

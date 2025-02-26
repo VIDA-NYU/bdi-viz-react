@@ -8,13 +8,13 @@ interface ExportMatchingResultsButtonProps {
 
 const ExportMatchingResultsButton: React.FC<ExportMatchingResultsButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
+        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
             <Button
                 variant="outlined"
                 color="secondary"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
+                sx={{ minHeight: 50, fontSize: 11 }}
             >
                 Export Results
             </Button>

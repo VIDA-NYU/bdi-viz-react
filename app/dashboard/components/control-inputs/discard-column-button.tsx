@@ -8,13 +8,13 @@ interface DiscardColumnButtonProps {
 
 const DiscardColumnButton: React.FC<DiscardColumnButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
+        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
             <Button
                 variant="contained"
                 color='info'
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
+                sx={{ minHeight: 50, fontSize: 11 }}
             >
                 Discard 
             </Button>
