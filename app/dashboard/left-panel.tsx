@@ -3,6 +3,7 @@
 import { LeftColumn } from "./layout/components";
 import ControlPanel from "./components/controlpanel";
 import DecisionPanel from "./components/decisionpanel";
+import ShortcutPanel from "./components/shortcutpanel";
 import Timeline from "./components/timeline/timeline";
 import FileUploading from "./components/fileuploading";
 
@@ -71,7 +72,9 @@ const LeftPanel = ({
 
     return (
         <LeftColumn>
-            <FileUploading callback={handleFileUpload} />
+            <ShortcutPanel
+                handleFileUpload={handleFileUpload}
+            />
             <ControlPanel
                 sourceColumns={sourceColumns}
                 matchers={matchers}

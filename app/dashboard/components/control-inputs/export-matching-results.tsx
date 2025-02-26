@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
+import { BasicButton } from '../../layout/components';
 
 interface ExportMatchingResultsButtonProps {
     onClick: () => void;
@@ -9,15 +10,14 @@ interface ExportMatchingResultsButtonProps {
 const ExportMatchingResultsButton: React.FC<ExportMatchingResultsButtonProps> = ({ onClick }) => {
     return (
         <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <Button
+            <BasicButton
                 variant="outlined"
                 color="secondary"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 50, fontSize: 11 }}
             >
                 Export Results
-            </Button>
+            </BasicButton>
         </Box>
     );
 }

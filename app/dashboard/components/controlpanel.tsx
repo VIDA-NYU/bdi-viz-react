@@ -55,6 +55,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     minWidth: "min-content",
     gap: 2,
     paddingBottom: 2,
+    paddingTop: 2,
   };
 
   return (

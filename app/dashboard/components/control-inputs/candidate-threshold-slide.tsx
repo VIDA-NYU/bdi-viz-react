@@ -29,7 +29,6 @@ const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({ onSel
                     valueLabelDisplay="auto"
                     step={0.1}
                     marks={[
-                        { value: 0, label: '0' },
                         { value: 0.1, label: '0.1' },
                         { value: 0.3, label: '0.3' },
                         { value: 0.5, label: '0.5' },
@@ -37,7 +36,6 @@ const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({ onSel
                         { value: 0.2, label: '0.2' },
                         { value: 0.4, label: '0.4' },
                         { value: 0.6, label: '0.6' },
-                        { value: 0.8, label: '0.8' }
                     ]}
                     sx={{
                         padding: 0,
