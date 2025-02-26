@@ -25,8 +25,8 @@ const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceCol
     }, [selectedSourceColumn]);
 
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <FormControl fullWidth>
+        <Box sx={{ width: "100%", flexGrow: 1 }}>
+            <FormControl size="small" fullWidth>
                 <InputLabel id="source-column-select-label">Source Column</InputLabel>
                 <Select
                     labelId="source-column-select-label"
@@ -34,6 +34,11 @@ const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceCol
                     value={sourceColumn}
                     label="Source Column"
                     onChange={(e) => handleChange(e.target.value as string)}
+                    sx={{
+                        '& .MuiSelect-select': {
+                            fontSize: 12,
+                        },
+                    }}
                 >
                     {sourceColumns.map((column) => (
                         <MenuItem key={column} value={column}>{column}</MenuItem>

@@ -194,7 +194,7 @@ export default function Dashboard() {
             <Header>
                 <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
                     <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-                        <Typography sx={{ fontSize: "1.5rem", fontWeight: "900" }}>BDI Visualization System</Typography>
+                        <Typography sx={{ fontSize: "1.5rem", fontWeight: "200" }}>BDI Visualization System</Typography>
                         <Box display="flex" alignItems="center" width="400pt">
                             <SearchBar searchResultCallback={handleSearchResults} />
                         </Box>
