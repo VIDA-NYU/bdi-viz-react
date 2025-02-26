@@ -26,7 +26,7 @@ const rootStyles = {
     flexWrap: "wrap",
     justifyContent: "flex-start",
     minWidth: "min-content",
-    gap: 2,
+    gap: 1,
 };
 
 
@@ -45,12 +45,12 @@ const DecisionPanel: React.FC<DecisionPanelProps> = ({
                 Decision Panel
             </SectionHeader>
             <Box sx={rootStyles}>
-                <Box sx={{ display: "flex", gap: 1, minWidth: "min-content" }}>
+                <Box sx={{ display: "flex", gap: 1, width: "100%" }}>
                     <AcceptMatchButton onClick={acceptMatch} />
                     <RejectMatchButton onClick={rejectMatch} />
                     <DiscardColumnButton onClick={discardColumn} />
                 </Box>
-                <Box sx={{ display: "flex", gap: 1, minWidth: "min-content", alignContent: "flex-start", justifyContent: "flex-start" }}>
+                <Box sx={{ display: "flex", gap: 1, width: "100%" }}>
                     <UndoButton onClick={undo} />
                     <RedoButton onClick={redo} />
                     <ExportMatchingResultsButton onClick={exportMatchingResults} />

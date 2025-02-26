@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
+import { BasicButton } from '../../layout/components';
 
 interface FilterEasyCasesButtonProps {
     onClick: () => void;
@@ -9,15 +10,14 @@ interface FilterEasyCasesButtonProps {
 const FilterEasyCasesButton: React.FC<FilterEasyCasesButtonProps> = ({ onClick }) => {
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <Button
+            <BasicButton
                 variant="outlined"
                 color="secondary"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
             >
                 Filter Easy Cases!
-            </Button>
+            </BasicButton>
         </Box>
     );
 }

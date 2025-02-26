@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
+import { BasicButton } from '../../layout/components';
 
 interface AcceptMatchButtonProps {
     onClick: () => void;
@@ -9,15 +10,14 @@ interface AcceptMatchButtonProps {
 const AcceptMatchButton: React.FC<AcceptMatchButtonProps> = ({ onClick }) => {
     return (
         <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <Button
+            <BasicButton
                 variant="contained"
                 color="success"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 50, fontSize: 11 }}
             >
-                Accept Match
-            </Button>
+                Accept
+            </BasicButton>
         </Box>
     );
 }
