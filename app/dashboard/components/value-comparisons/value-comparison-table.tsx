@@ -66,6 +66,8 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
         enableColumnPinning: true,
         enableTopToolbar: false,
         enableRowActions: false,
+        enablePagination: false,
+        enableBottomToolbar: false, //hide the bottom toolbar as well if you want
         initialState: {
             columnPinning: {
                 left: selectedCandidate?.sourceColumn ? [selectedCandidate.sourceColumn] : []
@@ -100,15 +102,15 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <style>
-                {`
-                    tr {
-                        height: 10px;
-                    }
+            {`
+                tr {
+                height: 10px;
+                }
 
-                    tr td {
-                        height: auto !important;
-                    }
-                `}
+                tr td {
+                height: auto !important;
+                }
+            `}
             </style>
             <MaterialReactTable 
                 table={table}

@@ -40,7 +40,7 @@ const defaultClusteringOptions: ClusteringOptions = {
   labelPlacementStrategy: 'fixed'
 };
 
-const MARGIN = { top: 0, right: 78, bottom: 0, left: 200 };
+const MARGIN = { top: 30, right: 78, bottom: 0, left: 200 };
 
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
@@ -271,7 +271,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     y={0}
                     textAnchor="start"
                     style={{
-                      fontSize: "0.8em",
+                      fontSize: "0.7em",
                       fontWeight: "600"
                     }}
                   >
@@ -290,7 +290,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                           style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
                           rx={3} ry={3}
                         />
-                        <StyledText x={legendWidth - 50} y={i * legendWidth + 20} textAnchor="start" style={{ fontSize: "0.8em", fontWeight: "400" }}>
+                        <StyledText x={legendWidth - 50} y={i * legendWidth + 20} textAnchor="start" style={{ fontSize: "0.7em", fontWeight: "400" }}>
                           {d.toFixed(1)}
                         </StyledText>
                       </>
@@ -301,11 +301,11 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 {/* Accepted Legend */}
                 <g transform={`translate(-160, 190)`}>
                   <StyledText
-                    x={-14}
+                    x={-12}
                     y={0}
                     textAnchor="start"
                     style={{
-                      fontSize: "0.8em",
+                      fontSize: "0.7em",
                       fontWeight: "600"
                     }}
                   >
@@ -325,11 +325,11 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 {/* Rejected Legend */}
                 <g transform={`translate(-160, 245)`}>
                   <StyledText
-                    x={-12}
+                    x={-10}
                     y={0}
                     textAnchor="start"
                     style={{
-                      fontSize: "0.8em",
+                      fontSize: "0.7em",
                       fontWeight: "600"
                     }}
                   >
@@ -349,11 +349,11 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 {/* Searched Legend */}
                 <g transform={`translate(-160, 300)`}>
                   <StyledText
-                    x={-13}
+                    x={-11}
                     y={0}
                     textAnchor="start"
                     style={{
-                      fontSize: "0.8em",
+                      fontSize: "0.7em",
                       fontWeight: "600"
                     }}
                   >
