@@ -102,14 +102,9 @@ const SchemaExplanation = ({
     };
 
     return (
-        <Stack spacing={3} sx={{ paddingLeft: 1, maxHeight: "700px", overflowY: 'scroll'}}>
-            <Box>
-                <SectionHeader>
-                    Current Selection
-                </SectionHeader>
-            </Box>
+        <Stack spacing={0} sx={{ paddingLeft: 0, maxHeight: "700px", overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
             {isLoading ? (
-                <Box  display="flex" justifyContent="center" alignItems="center" height="100%">
+                <Box display="flex" justifyContent="center" alignItems="center" height="100%">
                     <CircularProgress />
                 </Box>
             ) : (
@@ -117,10 +112,13 @@ const SchemaExplanation = ({
                     {/* Match Selection Display */}
                     {sourceColumn && targetColumn && (
                         <Box>
+                            <SectionHeader>
+                                Current Selection
+                            </SectionHeader>
                             <Stack direction="row" spacing={1} alignItems="center">
-                                <Chip label={sourceColumn} color="primary" />
+                                <Chip size="small" label={sourceColumn} color="primary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
                                 <Typography>→</Typography>
-                                <Chip label={targetColumn} />
+                                <Chip size="small" label={targetColumn} color="secondary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
                             </Stack>
                         </Box>
                     )}
@@ -128,9 +126,10 @@ const SchemaExplanation = ({
                     {/* Is Match */}
                     {sourceColumn && targetColumn && isMatch !== undefined &&
                         <Box>
-                            <Chip 
+                            <Chip
+                                size="small"
                                 label={isMatch ? "Our agent thinks this is a match." : "Our agent thinks this is not a match."} 
-                                sx={{ backgroundColor: isMatch ? 'green' : 'red', color: 'white' }} 
+                                sx={{ backgroundColor: isMatch ? 'green' : 'red', color: 'white', fontSize: '0.75rem' }} 
                             />
                         </Box>
                     }
@@ -142,7 +141,7 @@ const SchemaExplanation = ({
                                 <SectionHeader>
                                     Match Explanations
                                 </SectionHeader>
-                                <List>
+                                <List sx={{ margin: 0.5 }}>
                                     {currentExplanations.map(explanation => (
                                         <ExplanationItem
                                             key={explanation.id}
@@ -156,14 +155,6 @@ const SchemaExplanation = ({
                                         />
                                     ))}
                                 </List>
-                                {/* <Button
-                                    variant="contained"
-                                    fullWidth
-                                    disabled={selectedExplanations.length === 0}
-                                    onClick={() => onSelectExplanations(selectedExplanations)}
-                                >
-                                    Accept Match with Selected Explanations
-                                </Button> */}
                             </Box>
                         </>
                     )}
@@ -176,13 +167,11 @@ const SchemaExplanation = ({
                             </SectionHeader>
                             <List>
                                 {valueMatches.map((values, index) => (
-                                    <Card key={index} variant="outlined" sx={{ mb: 1, p: 2 }}>
-                                        <Stack direction="row" spacing={1}>
-                                            {values.map((value, index) => (
-                                                <Chip key={index} label={value} size="small" />
-                                            ))}
-                                        </Stack>
-                                    </Card>
+                                    <Stack direction="row" spacing={1} key={index} sx={{ marginBottom: 0.5 }}>
+                                        <Chip variant='filled' color='primary' key={index} label={values[0]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
+                                        <Typography>→</Typography>
+                                        <Chip variant='filled' color='secondary' key={index} label={values[1]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
+                                    </Stack>
                                 ))}
                             </List>
                         </Box>
