@@ -119,10 +119,10 @@ const HeatMap: React.FC<HeatMapProps> = ({
   const colorRamp = color
                   .domain([0, 1]);
 
-  const legendWidth = 100;
-  const legendHeight = 15;
+  const legendWidth = 30;
+  const legendHeight = 350;
 
-  const legendData = d3.range(legendWidth).map((d) => d / legendWidth);
+  // const legendData = d3.range(legendHeight).map((d) => d / legendHeight);
 
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
 
@@ -257,46 +257,121 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 
                 {/* Color Legend */}
                 <rect
-                  transform="translate(-170, 0)"
-                  style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                  width={legendWidth + 20}
-                  height={legendHeight + 40}
+                  transform="translate(-190, 0)"
+                  // style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
+                  width={legendWidth + 60}
+                  // height={y.range()[1]}
+                  height={legendHeight}
                   fill={theme.palette.grey[200]}
-                  rx={2} ry={2}
+                  rx={3} ry={3}
                 />
                 <g transform={`translate(-160, 15)`}>
                   <StyledText
-                    x={0}
+                    x={-2}
                     y={0}
                     textAnchor="start"
                     style={{
                       fontSize: "0.8em",
-                      fontWeight: "400"
+                      fontWeight: "600"
                     }}
                   >
-                    Color Legend
+                    Score
                   </StyledText>
                   <g transform={`translate(0, 5)`}>
-                    {legendData.map((d, i) => (
-                      <rect
-                        key={i}
-                        x={i}
-                        y={0}
-                        width={1}
-                        height={legendHeight}
-                        fill={colorRamp(d)}
-                      />
+                    {[0.2, 0.4, 0.6, 0.8, 1.0].map((d, i) => (
+                      <>
+                        <rect
+                          key={i}
+                          x={0}
+                          y={i * legendWidth}
+                          width={legendWidth}
+                          height={legendWidth}
+                          fill={colorRamp(d)}
+                          style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
+                          rx={3} ry={3}
+                        />
+                        <StyledText x={legendWidth - 50} y={i * legendWidth + 20} textAnchor="start" style={{ fontSize: "0.8em", fontWeight: "400" }}>
+                          {d.toFixed(1)}
+                        </StyledText>
+                      </>
                     ))}
-                    <StyledText x={0} y={legendHeight + 15} textAnchor="middle" style={{ fontSize: "0.8em" }}>
-                      0
-                    </StyledText>
-                    <StyledText x={legendWidth} y={legendHeight + 15} textAnchor="middle" style={{ fontSize: "0.8em" }}>
-                      1
-                    </StyledText>
                   </g>
                 </g>
 
-                
+                {/* Accepted Legend */}
+                <g transform={`translate(-160, 190)`}>
+                  <StyledText
+                    x={-14}
+                    y={0}
+                    textAnchor="start"
+                    style={{
+                      fontSize: "0.8em",
+                      fontWeight: "600"
+                    }}
+                  >
+                    Accepted
+                  </StyledText>
+                  <rect
+                    x={0}
+                    y={5}
+                    width={legendWidth}
+                    height={legendWidth}
+                    rx={3} ry={3}
+                    fill={theme.palette.success.dark}
+                    style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
+                  />
+                </g>
+
+                {/* Rejected Legend */}
+                <g transform={`translate(-160, 245)`}>
+                  <StyledText
+                    x={-12}
+                    y={0}
+                    textAnchor="start"
+                    style={{
+                      fontSize: "0.8em",
+                      fontWeight: "600"
+                    }}
+                  >
+                    Rejected
+                  </StyledText>
+                  <rect
+                    x={0}
+                    y={5}
+                    width={legendWidth}
+                    height={legendWidth}
+                    rx={3} ry={3}
+                    fill={theme.palette.error.dark}
+                    style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
+                  />
+                </g>
+
+                {/* Searched Legend */}
+                <g transform={`translate(-160, 300)`}>
+                  <StyledText
+                    x={-13}
+                    y={0}
+                    textAnchor="start"
+                    style={{
+                      fontSize: "0.8em",
+                      fontWeight: "600"
+                    }}
+                  >
+                    Searched
+                  </StyledText>
+                  <rect
+                    x={1}
+                    y={5}
+                    width={legendWidth-2}
+                    height={legendWidth-2}
+                    rx={3} ry={3}
+                    fill={theme.palette.grey[200]}
+                    stroke={theme.palette.common.black}
+                    strokeWidth={3}
+                    style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
+                  />
+                </g>
+
                 <g>
                   <StyledText
                     transform={`translate(-80, ${(y.range()[1] / 2) + 10}) rotate(-90)`}

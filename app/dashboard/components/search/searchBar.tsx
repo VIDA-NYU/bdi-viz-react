@@ -40,7 +40,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
                         <SearchIcon />
                     </InputAdornment>
                 ),
-                style: { backgroundColor: 'white' }
+                style: {
+                    backgroundColor: 'white',
+                    height: '40px',
+                    fontSize: 12,
+                }
             }}
             fullWidth
         />

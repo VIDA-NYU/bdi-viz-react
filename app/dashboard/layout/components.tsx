@@ -70,14 +70,17 @@ export const RootContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const Header = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: theme.spacing(1),
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
+  height: '55px',
 }));
 
 export const MainContent = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '300px 2fr 400px', // Three columns: controls, main viz, secondary viz
+  gridTemplateColumns: '300px 2fr 300px', // Three columns: controls, main viz, secondary viz
   gap: theme.spacing(2),
   flex: 1,
   height: 'calc(100vh - 140px)', // Adjust based on header/footer height

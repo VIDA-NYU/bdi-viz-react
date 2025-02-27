@@ -4,11 +4,10 @@ import { Box, CircularProgress, Typography, Switch } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
 import SearchBar from "./components/search/searchBar";
-import LeftPanel from "./left-panel";
+import LeftPanel from "./leftpanel";
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
-import CombinedView from "./components/explanation/CombinedView";
-import { AuxColumn } from "./layout/components";
+import RightPanel from "./rightpanel";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
@@ -194,7 +193,7 @@ export default function Dashboard() {
             <Header>
                 <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
                     <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-                        <Typography sx={{ fontSize: "1.5rem", fontWeight: "200" }}>BDI Visualization System</Typography>
+                        <Typography sx={{ fontSize: "1.2rem", fontWeight: "200" }}>BDI Visualization System</Typography>
                         <Box display="flex" alignItems="center" width="400pt">
                             <SearchBar searchResultCallback={handleSearchResults} />
                         </Box>
@@ -268,27 +267,22 @@ export default function Dashboard() {
                 </MainColumn>
 
                 {/* Right Column - Auxiliary Visualizations */}
-                <AuxColumn>
-                    <CombinedView
-                        isMatch={isMatch}
-                        currentExplanations={currentExplanations}
-                        selectedExplanations={selectedExplanations}
-                        thumbUpExplanations={thumbUpExplanations}
-                        thumbDownExplanations={thumbDownExplanations}
-                        matchingValues={matchingValues}
-                        relevantKnowledge={relevantKnowledge}
-                        isLoading={isExplaining}
-                        setSelectExplanations={setSelectedExplanations}
-                        setThumbUpExplanations={setThumbUpExplanations}
-                        setThumbDownExplanations={setThumbDownExplanations}
-                        sourceColumn={selectedCandidate?.sourceColumn}
-                        targetColumn={selectedCandidate?.targetColumn}
-                        gdcAttribute={gdcAttribute}
-                    />
-                    {/* <MediumVizContainer>
-            <Typography variant="h6">Value Distribution</Typography>
-          </MediumVizContainer> */}
-                </AuxColumn>
+                <RightPanel
+                    isMatch={isMatch}
+                    currentExplanations={currentExplanations}
+                    selectedExplanations={selectedExplanations}
+                    thumbUpExplanations={thumbUpExplanations}
+                    thumbDownExplanations={thumbDownExplanations}
+                    matchingValues={matchingValues}
+                    relevantKnowledge={relevantKnowledge}
+                    isLoading={isExplaining}
+                    setSelectExplanations={setSelectedExplanations}
+                    setThumbUpExplanations={setThumbUpExplanations}
+                    setThumbDownExplanations={setThumbDownExplanations}
+                    sourceColumn={selectedCandidate?.sourceColumn}
+                    targetColumn={selectedCandidate?.targetColumn}
+                    gdcAttribute={gdcAttribute}
+                />
             </MainContent>
 
             {/* Loading Overlay */}

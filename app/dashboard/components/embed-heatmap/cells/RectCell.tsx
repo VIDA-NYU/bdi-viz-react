@@ -20,11 +20,12 @@ const RectCell: React.FC<CellProps> = ({
 
     const getFillColor = () => {
         if (data.status === 'accepted') return theme.palette.success.dark;
+        if (data.status === 'rejected') return theme.palette.error.dark;
         return color(data.score);
     };
 
     const getOpacity = () => {
-        if (data.status === 'rejected') return 0.2;
+        if (data.status === 'rejected') return 0.8;
         if (data.status === 'discarded') return 0.1;
         return 1;
     };
