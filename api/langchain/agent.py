@@ -50,7 +50,7 @@ class Agent:
     **Criteria for matching columns:**
     1. Column names and values do not need to be identical.
     2. Ignore case, special characters, and spaces.
-    3. Columns should be considered a match if they are semantically similar and their values are comparable.
+    3. Columns should be considered a match if they are semantically similar and their datatype and values are comparable.
     4. Approach the task with the mindset of a biomedical expert.
             """,
         ]
