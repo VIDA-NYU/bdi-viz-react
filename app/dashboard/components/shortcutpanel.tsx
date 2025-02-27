@@ -22,7 +22,7 @@ const ShortcutPanel: React.FC<ShortcutPanelProps> = ({
             Shortcut Panel
         </SectionHeader>
         <Box sx={{ width: '100%', alignItems: "left" }}>
-        <FileUploading callback={handleFileUpload}/>
+            <FileUploading callback={handleFileUpload}/>
         </Box>
     </>
   );
