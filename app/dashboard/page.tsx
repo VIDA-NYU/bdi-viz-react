@@ -248,13 +248,6 @@ export default function Dashboard() {
                 <MainColumn>
                     <UpperTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
-                        matchers={matchers}
-                        selectedCandidate={selectedCandidate}
-                        selectedSourceColumn={sourceColumn}
-                        valueMatches={valueMatches}
-                    />
-                    <LowerTabs
-                        weightedAggregatedCandidates={weightedAggregatedCandidates}
                         sourceCluster={filteredSourceCluster}
                         targetOntologies={targetOntologies}
                         selectedCandidate={selectedCandidate}
@@ -263,6 +256,13 @@ export default function Dashboard() {
                         targetUniqueValues={targetUniqueValues}
                         highlightSourceColumns={highlightedSourceColumns}
                         highlightTargetColumns={highlightedTargetColumns}
+                    />
+                    <LowerTabs
+                        weightedAggregatedCandidates={weightedAggregatedCandidates}
+                        matchers={matchers}
+                        selectedCandidate={selectedCandidate}
+                        selectedSourceColumn={sourceColumn}
+                        valueMatches={valueMatches}
                     />
                 </MainColumn>
 
