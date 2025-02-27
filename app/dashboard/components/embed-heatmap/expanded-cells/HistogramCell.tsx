@@ -62,7 +62,7 @@ const HistogramCell: FC<ExpandedCellProps> = ({
                   y={sourceY(bin.count)}
                   width={sourceX.bandwidth()}
                   height={chartHeight - sourceY(bin.count)}
-                  fill={theme.palette.secondary.dark}
+                  fill={theme.palette.primary.dark}
                   opacity={0.7}
                 />
                 <StyledText
@@ -89,7 +89,7 @@ const HistogramCell: FC<ExpandedCellProps> = ({
                   y={targetY(bin.count)}
                   width={targetX.bandwidth()}
                   height={chartHeight - targetY(bin.count)}
-                  fill={theme.palette.primary.dark}
+                  fill={theme.palette.secondary.dark}
                   opacity={0.7}
                 />
                 <StyledText
