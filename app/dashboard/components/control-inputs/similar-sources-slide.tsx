@@ -20,7 +20,7 @@ const SimilarSourcesSlide: React.FC<SimilarSourcesSlideProps> = ({ onSelect }) =
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
             <FormControl fullWidth>
                 <SectionLabel id="similar-sources-select-label" sx={{ marginBottom: 0.5 }}>
-                    Similar Sources
+                    Similar Attributes
                 </SectionLabel>
                 <Slider
                     value={similarSources}

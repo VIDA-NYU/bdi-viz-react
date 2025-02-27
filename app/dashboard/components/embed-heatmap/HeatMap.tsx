@@ -121,6 +121,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
   const legendWidth = 30;
   const legendHeight = 350;
+  const legendOffset = -195;
 
   // const legendData = d3.range(legendHeight).map((d) => d / legendHeight);
 
@@ -257,15 +258,15 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 
                 {/* Color Legend */}
                 <rect
-                  transform="translate(-190, 0)"
+                  transform={`translate(${legendOffset-25}, 0)`}
                   // style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                  width={legendWidth + 60}
+                  width={legendWidth + 40}
                   // height={y.range()[1]}
                   height={legendHeight}
                   fill={theme.palette.grey[200]}
                   rx={3} ry={3}
                 />
-                <g transform={`translate(-160, 15)`}>
+                <g transform={`translate(${legendOffset}, 15)`}>
                   <StyledText
                     x={-2}
                     y={0}
@@ -299,7 +300,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 </g>
 
                 {/* Accepted Legend */}
-                <g transform={`translate(-160, 190)`}>
+                <g transform={`translate(${legendOffset}, 190)`}>
                   <StyledText
                     x={-12}
                     y={0}
@@ -323,7 +324,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 </g>
 
                 {/* Rejected Legend */}
-                <g transform={`translate(-160, 245)`}>
+                <g transform={`translate(${legendOffset}, 245)`}>
                   <StyledText
                     x={-10}
                     y={0}
@@ -347,7 +348,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 </g>
 
                 {/* Searched Legend */}
-                <g transform={`translate(-160, 300)`}>
+                <g transform={`translate(${legendOffset}, 300)`}>
                   <StyledText
                     x={-11}
                     y={0}
@@ -374,7 +375,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
                 <g>
                   <StyledText
-                    transform={`translate(-80, ${(y.range()[1] / 2) + 10}) rotate(-90)`}
+                    transform={`translate(-120, ${(y.range()[1] / 2) + 10}) rotate(-90)`}
                     textAnchor="middle"
                     style={{ fontSize: "1em", fontWeight: "600" }}
                   >
@@ -385,24 +386,58 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 {y.domain().map((value) => {
                   const yPos = y(value)!;
                   const height = getHeight({ sourceColumn: value } as Candidate);
+                    const textValue = value.length > 15 ? value.slice(0, 12) + '...' : value;
+                    const textWidth = 0;
                   return (
-                  <g
-                    key={value}
-                    transform={`translate(-5,${yPos + height / 2})`}
-                  >
-                    <StyledText
-                    dy=".35em"
-                    textAnchor="end"
-                    transform="rotate(45)"
-                    style={{
-                      fill: theme.palette.grey[600],
-                      fontSize: selectedCandidate?.sourceColumn === value ? "1.2em" : "0.8em",
-                      fontWeight: "600"
-                    }}
+                    <g
+                      key={value}
+                      transform={`translate(-5,${yPos + height / 2})`}
+                      onMouseEnter={(e) => {
+                      const rect = e.currentTarget.querySelector('rect');
+                      const text = e.currentTarget.querySelector('text');
+                      if (rect && text) {
+                        const textValue = value;
+                        text.textContent = textValue;
+                        const textWidth = text.getBBox().width;
+                        rect.setAttribute('width', `${textWidth}`);
+                        rect.setAttribute('x', `${-textWidth}`);
+                      }
+                      }}
+                      onMouseLeave={(e) => {
+                        const rect = e.currentTarget.querySelector('rect');
+                        const text = e.currentTarget.querySelector('text');
+                        if (rect && text) {
+                          text.textContent = textValue;
+                          rect.setAttribute('width', `${textWidth}`);
+                          rect.setAttribute('x', `${-textWidth}`);
+                        }
+                      }}
                     >
-                    {value}
-                    </StyledText>
-                  </g>
+                      <rect
+                      x={-textWidth}
+                      y={-10}
+                      width={textWidth}
+                      height={20}
+                      fill={theme.palette.grey[200]}
+                      rx={3}
+                      ry={3}
+                      />
+                      <StyledText
+                      dy=".35em"
+                      textAnchor="end"
+                      style={{
+                        fill: theme.palette.grey[600],
+                        fontSize: "0.8em",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap"
+                      }}
+                      >
+                      {textValue}
+                      </StyledText>
+                    </g>
                   );
                 })}
               </g>

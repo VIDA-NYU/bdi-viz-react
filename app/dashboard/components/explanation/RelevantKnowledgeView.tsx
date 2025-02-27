@@ -62,6 +62,16 @@ const RelevantKnowledgeView = ({
                     <Typography variant="body1" gutterBottom sx={{ fontSize: '0.7rem' }}>
                         <strong>Type:</strong> {gdcAttribute.type}
                     </Typography>
+                    {gdcAttribute.minimum !== null && gdcAttribute.minimum !== undefined && (
+                        <Typography variant="body2" sx={{ fontSize: '0.7rem' }}>
+                            <strong>Minimum:</strong> {gdcAttribute.minimum}
+                        </Typography>
+                    )}
+                    {gdcAttribute.maximum !== null && gdcAttribute.maximum !== undefined && (
+                        <Typography variant="body2" sx={{ fontSize: '0.7rem' }}>
+                            <strong>Maximum:</strong> {gdcAttribute.maximum}
+                        </Typography>
+                    )}
                     {gdcAttribute.description && gdcAttribute.description.map((desc, i) => (
                         <Typography key={i} variant="body2" color="textSecondary" gutterBottom sx={{ fontSize: '0.7rem' }}>
                             <strong>Description:</strong> {desc.description}
@@ -76,16 +86,6 @@ const RelevantKnowledgeView = ({
                                 <Chip key={index} label={enumValue} color="info" size='small' sx={{ fontSize: "0.65rem" }} />
                             ))}
                         </Box>
-                    )}
-                    {gdcAttribute.minimum && (
-                        <Typography variant="body1" sx={{ fontSize: '0.7rem' }}>
-                            <strong>Minimum:</strong> {gdcAttribute.minimum}
-                        </Typography>
-                    )}
-                    {gdcAttribute.maximum && (
-                        <Typography variant="body1" sx={{ fontSize: '0.7rem' }}>
-                            <strong>Maximum:</strong> {gdcAttribute.maximum}
-                        </Typography>
                     )}
                 </Box>
             )}
