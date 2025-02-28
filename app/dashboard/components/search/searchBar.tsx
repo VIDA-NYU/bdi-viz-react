@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
+import { TextField, IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
 import { agentSearchRequest } from '@/app/lib/langchain/agent-helper';
 
 
@@ -38,6 +38,18 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 startAdornment: (
                     <InputAdornment position="start">
                         <SearchIcon />
+                    </InputAdornment>
+                ),
+                endAdornment: query && (
+                    <InputAdornment position="end">
+                        <IconButton
+                            onClick={() => {
+                                setQuery('');
+                                searchResultCallback([]); // Reset search results
+                            }}
+                        >
+                            <ClearIcon />
+                        </IconButton>
                     </InputAdornment>
                 ),
                 style: {

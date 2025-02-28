@@ -143,24 +143,24 @@ const HeatMap: React.FC<HeatMapProps> = ({
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
             {/* Background rectangles for highlighted rows */}
             {y.domain().map((value) => {
-              if (highlightSourceColumns.includes(value)) {
+              // if (highlightSourceColumns.includes(value)) {
                 return (
                   <rect
                     key={`row-${value}`}
                     x={0}
-                    y={y(value)}
+                    y={y(value) + 2}
                     width={dimensions.width - MARGIN.left - MARGIN.right}
-                    height={getHeight({ sourceColumn: value } as Candidate)}
-                    fill={theme.palette.warning.light}
-                    opacity={0.1}
+                    height={getHeight({ sourceColumn: value } as Candidate) - 4}
+                    fill={theme.palette.grey[200]}
+                    // opacity={0.1}
                   />
                 );
-              }
-              return null;
+              // }
+              // return null;
             })}
 
             {/* Background rectangles for highlighted columns */}
-            {x.domain().map((value) => {
+            {/* {x.domain().map((value) => {
               if (highlightTargetColumns.includes(value)) {
                 return (
                   <rect
@@ -175,7 +175,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 );
               }
               return null;
-            })}
+            })} */}
 
             {candidates.map((d: AggregatedCandidate, i: number) => {
               let sourceUniqueValue;
@@ -246,8 +246,11 @@ const HeatMap: React.FC<HeatMapProps> = ({
                       handleCellClick(d);
                     }}
                     isHighlighted={
-                      highlightSourceColumns.includes(d.sourceColumn) &&
-                      highlightTargetColumns.includes(d.targetColumn)
+                      highlightSourceColumns.length !== 0 &&
+                      highlightTargetColumns.length !== 0
+                        ? highlightSourceColumns.includes(d.sourceColumn) &&
+                          highlightTargetColumns.includes(d.targetColumn)
+                        : undefined
                     }
                   />
                 );

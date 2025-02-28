@@ -1,7 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
 import * as d3 from "d3";
-import { useWhatChanged } from '@simbathesailor/use-what-changed';
-import { useTreeLayout } from '../components/embed-heatmap/tree/useTreeLayout';
 
 type DashboardInterfacesState = {
     filteredCandidates: Candidate[];

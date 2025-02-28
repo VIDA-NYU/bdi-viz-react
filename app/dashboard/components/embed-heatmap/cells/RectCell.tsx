@@ -27,6 +27,7 @@ const RectCell: React.FC<CellProps> = ({
     const getOpacity = () => {
         if (data.status === 'rejected') return 0.8;
         if (data.status === 'discarded') return 0.1;
+        if (isHighlighted !== undefined && !isHighlighted) return 0.1;
         return 1;
     };
 

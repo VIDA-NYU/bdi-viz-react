@@ -1,6 +1,6 @@
 // components/styled/LayoutComponents.tsx
 import { styled } from '@mui/material/styles';
-import { Box, Button, Paper, Typography, Divider } from '@mui/material';
+import { Box, Button, Chip, Paper, Typography, Divider } from '@mui/material';
 
 export const Sidebar = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -174,4 +174,11 @@ export const BasicButton = styled(Button)(({ theme }) => ({
   fontWeight: '400',
   fontSize: '0.7rem',
   textTransform: 'none'
+}));
+
+export const HighlightedChip = styled(Chip)(({ theme }) => ({
+  border: '1px solid',
+  borderColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.common.black,
+  color: theme.palette.common.white,
 }));

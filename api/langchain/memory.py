@@ -275,7 +275,7 @@ class MemoryRetriver:
         if key is None:
             key = str(uuid4())
         if self.store.get(namespace, key) is not None:
-            logger.info(
+            logger.debug(
                 f"Key {key} already exists in namespace {namespace}, updating value"
             )
             self.store.delete(namespace, key)
@@ -287,7 +287,7 @@ class MemoryRetriver:
             key = str(uuid4())
 
         if await self.store.aget(namespace, key) is not None:
-            logger.info(
+            logger.debug(
                 f"Key {key} already exists in namespace {namespace}, updating value"
             )
             await self.store.adelete(namespace, key)
