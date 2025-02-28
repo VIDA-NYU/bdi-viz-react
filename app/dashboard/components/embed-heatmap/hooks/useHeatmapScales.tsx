@@ -97,7 +97,7 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
           const color = d3.scaleSequential()
               .interpolator(getColorInterpolator(config.colorScheme))
               .domain([minScore - padding, maxScore + padding]);
-  
+        
           return {
                 x,
                 y,

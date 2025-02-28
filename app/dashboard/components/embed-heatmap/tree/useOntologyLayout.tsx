@@ -46,8 +46,27 @@ export const useOntologyLayout = ({
                 }
                 return acc;
             }, [] as string[]);
-            const grandparentPosition = (usableWidth * (index + 0.5)) / grandparents.length;
+            const grandparentPosition = (usableWidth * (index)) / grandparents.length;
             const isExpanded = expandedNodes.has(grandparent);
+            const sortedParents = parents.sort((a, b) => {
+                const colsA = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === a).map(ontology => ontology.name);
+                const colsB = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === b).map(ontology => ontology.name);
+                const leftestColA = colsA.reduce((acc, col) => {
+                    const colX = (scale(col) ?? 0) + (getWidth({targetColumn: col} as Candidate) ?? 0) / 2;
+                    return Math.min(acc, colX);
+                }, Infinity);
+                const leftestColB = colsB.reduce((acc, col) => {
+                    const colX = (scale(col) ?? 0) + (getWidth({targetColumn: col} as Candidate) ?? 0) / 2;
+                    return Math.min(acc, colX);
+                }, Infinity);
+
+                return leftestColA - leftestColB;
+            });
+            sortedParents.forEach(parent => {
+                const cols = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === parent).map(ontology => ontology.name);
+                
+            });
+
             return {
                 id: grandparent,
                 label: {
@@ -60,6 +79,8 @@ export const useOntologyLayout = ({
                     const cols = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === parent).map(ontology => ontology.name);
                     const parentPosition = (usableWidth * (parents.indexOf(parent) + 0.5)) / parents.length;
                     const parentIsExpanded = expandedNodes.has(parent);
+                    // const parentIsExpanded = expandedNodes.size > 0;
+                    const layerIsExpanded = expandedNodes.size > 2;
                     return {
                         id: parent,
                         label: {
@@ -85,7 +106,7 @@ export const useOntologyLayout = ({
                             };
                         }),
                         x: parentPosition,
-                        y: parentIsExpanded ? 80 : 40,
+                        y: layerIsExpanded ? 80 : 40,
                         isExpanded: parentIsExpanded
                     };
                 }),

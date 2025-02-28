@@ -8,33 +8,58 @@ interface TreeBranchProps {
   isExpanded: boolean;
   orientation: 'vertical' | 'horizontal';
   onToggle: (nodeId: string) => void;
+  layer: number
 }
 
 const TreeBranch: React.FC<TreeBranchProps> = ({
     node,
     isExpanded,
     orientation,
-    onToggle
+    onToggle,
+    layer
   }) => {
     const isVertical = orientation === 'vertical';
     
     // console.log(isHorizontal, 'hori')
     // Calculate curve control points for parallel layout
-    const getCurvePath = (start: { x: number, y: number }, end: { x: number, y: number }) => {
+    const getCurvePath = (start: { x: number, y: number }, end: { x: number, y: number }, layer: number = 1) => {
+      if (layer === 1) {
+        if (isVertical) {
+          // Calculate a very small bend radius for the corner
+          const bendRadius = Math.min(Math.abs(end.x - start.x) * 0.05, 10);
+          
+          // For vertical paths, go straight down most of the way, then curve at the very end
+          return `M ${start.x} ${start.y}
+                  L ${start.x} ${end.y - bendRadius}
+                  Q ${start.x} ${end.y}, ${start.x + bendRadius} ${end.y}
+                  L ${end.x} ${end.y}`;
+        } else {
+          // Calculate a very small bend radius for the corner
+          const bendRadius = Math.min(Math.abs(end.y - start.y) * 0.1, 10);
+          
+          // For horizontal paths, go straight across most of the way, then curve at the very end
+          return `M ${start.x} ${start.y}
+                  L ${end.x - bendRadius} ${start.y}
+                  Q ${end.x} ${start.y}, ${end.x} ${start.y - bendRadius}
+                  L ${end.x} ${end.y}`;
+        }
+      }
       if (isVertical) {
         const deltaY = end.y - start.y;
         const deltaX = end.x - start.x;
         const initialBendOffset = Math.min(Math.abs(deltaX) * 0.2, 50); // Control the initial bend
-  
+        // console.log("VV", isVertical)
         return `M ${start.x} ${start.y}
                 C ${start.x + initialBendOffset} ${start.y},
                   ${start.x + initialBendOffset} ${end.y},
                   ${end.x} ${end.y}`;
       } else {
+
+        
         const deltaX = end.x - start.x;
         const deltaY = end.y - start.y;
         const initialBendOffset = Math.min(Math.abs(deltaY) * 0.2, 50); // Control the initial bend
-  
+        
         return `M ${start.x} ${start.y}
                 C ${start.x} ${start.y + initialBendOffset},
                   ${end.x} ${start.y + initialBendOffset},
@@ -58,20 +83,24 @@ const TreeBranch: React.FC<TreeBranchProps> = ({
             <path
               d={getCurvePath(
                 { x: node.x, y: node.y },
-                { x: child.x, y: child.y }
+                { x: child.x, y: child.y },
+                layer
               )}
               fill="none"
               stroke="#cbd5e0"
-              strokeWidth={1}
+              strokeWidth={2}
             />
             <TreeBranch 
               node={child}
               isExpanded={child.isExpanded ?? isExpanded}
               orientation={orientation}
               onToggle={() => onToggle(child.id)}
+              layer={layer + 1}
             />
           </g>
         ))}
+
+      
   
         {node.children && (
           <g
@@ -146,6 +175,7 @@ export const TreeAxis: React.FC<TreeAxisProps> = ({
           isExpanded={expandedNodes.has(node.id)}
           orientation={orientation}
           onToggle={onToggleNode}
+          layer={1}
         />
       ))}
 

@@ -161,7 +161,7 @@ import React, {
 
             <g>
                 <StyledText
-                  transform={`translate(${(dimensions.width + MARGIN.left - MARGIN.right) / 2}, 150)`}
+                  transform={`translate(${(dimensions.width + MARGIN.left - MARGIN.right) / 2}, 180)`}
                   textAnchor="middle"
                   style={{ fontSize: "1em", fontWeight: "600" }}
                 >
