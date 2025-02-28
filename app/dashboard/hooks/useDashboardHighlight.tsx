@@ -36,6 +36,9 @@ const useDashboardHighlight = ({candidates, searchResults}: DashboardHighlightPr
             const targetColumns = Array.from(new Set(searchResults.map((result) => result.targetColumn)));
             setHighlightedSourceColumns(sourceColumns);
             setHighlightedTargetColumns(targetColumns);
+        } else {
+            setHighlightedSourceColumns([]);
+            setHighlightedTargetColumns([]);
         }
     }, [searchResults]);
 

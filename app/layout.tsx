@@ -4,6 +4,7 @@ import "./globals.css";
 
 import ToastProvider from "@/app/lib/toastify/toastify-provider";
 import LoadingGlobalProvider from "./lib/loading/loading-provider";
+import HighlightGlobalProvider from "./lib/highlight/highlight-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,7 +34,9 @@ export default function RootLayout({
       >
         <ToastProvider>
           <LoadingGlobalProvider>
-          {children}
+            <HighlightGlobalProvider>
+              {children}
+            </HighlightGlobalProvider>
           </LoadingGlobalProvider>
         </ToastProvider>
       </body>

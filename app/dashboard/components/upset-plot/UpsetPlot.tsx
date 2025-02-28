@@ -153,6 +153,10 @@ function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
             y: d => d.score,
             x: d => d.id,
             fill: d => d.isSelected ? 'red' : 'steelblue', // Highlight selected candidate
+            marginLeft: 0,
+            marginRight: 0,
+            insetLeft: 0,
+            insetRight: -1,
         }
     );
     return Plot.plot({
@@ -166,7 +170,7 @@ function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
         grid: true,
         x: {
             axis: null,
-            padding: 0.2,
+            padding: 0,
             round: false
         },
         y: {

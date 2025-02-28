@@ -1,4 +1,5 @@
 // components/SchemaExplanation/RelevantKnowledge.tsx
+import { useContext } from 'react';
 import { 
     Box,
     Typography, 
@@ -8,7 +9,9 @@ import {
     Stack,
     CircularProgress
 } from '@mui/material';
+import { HighlightedChip } from '../../layout/components';
 import { SectionHeader } from '../../layout/components';
+import HighlightGlobalContext from '@/app/lib/highlight/highlight-context';
 
 interface RelevantKnowledgeProps {
     relevantKnowledge: RelevantKnowledge[];
@@ -21,6 +24,9 @@ const RelevantKnowledgeView = ({
     gdcAttribute,
     isLoading
 }: RelevantKnowledgeProps) => {
+
+    // Highlight Global Context
+    const { globalValueSelection } = useContext(HighlightGlobalContext);
     return (
         <Box>
             <SectionHeader>
@@ -83,7 +89,11 @@ const RelevantKnowledgeView = ({
                                 <strong>Enum:</strong>
                             </Typography>
                             {gdcAttribute.enum.map((enumValue, index) => (
-                                <Chip key={index} label={enumValue} color="info" size='small' sx={{ fontSize: "0.65rem" }} />
+                                globalValueSelection && globalValueSelection.includes(enumValue) ? (
+                                    <HighlightedChip key={index} label={enumValue} color="info" size='small' sx={{ fontSize: "0.65rem" }} />
+                                ) : (
+                                    <Chip key={index} label={enumValue} color="info" size='small' sx={{ fontSize: "0.65rem" }} />
+                                )
                             ))}
                         </Box>
                     )}
