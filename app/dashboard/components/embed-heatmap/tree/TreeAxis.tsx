@@ -157,6 +157,7 @@ export const TreeAxis: React.FC<TreeAxisProps> = ({
   const StyledText = styled('text')({
     fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
   });
+
   return (
     <g>
       <line
@@ -168,11 +169,11 @@ export const TreeAxis: React.FC<TreeAxisProps> = ({
         strokeWidth={2}
       />
 
-      {treeData.map(node => (
+      {treeData.map((node, index) => (
         <TreeBranch
-          key={node.id}
+          key={`${node.id}-${index}`}
           node={node}
-          isExpanded={expandedNodes.has(node.id)}
+          isExpanded={node.isExpanded ?? false}
           orientation={orientation}
           onToggle={onToggleNode}
           layer={1}

@@ -1,28 +1,25 @@
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { Box } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
-import { RectCell } from "./cells/RectCell";
+
+import { TreeNode } from "./tree/types";
+import { ClusteringOptions } from "./tree/types";
+import { HeatMapConfig } from "./types";
+import { useResizedSVGRef } from "../hooks/resize-hooks";
 import { useHeatmapScales } from "./hooks/useHeatmapScales";
 import { useTooltip } from "./hooks/useTooltip";
-import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
-import { HeatMapConfig } from "./types";
-import { useTreeLayout } from "./tree/useTreeLayout";
-import { ClusteringOptions, TreeConfig } from "./tree/types";
-import { TreeNodeComponent } from "./tree/TreeNode";
+import { useOntologyLayout } from "./tree/useOntologyLayout";
 import { useLabelManagement } from "./tree/useLabelManagement";
-import { TreeAxis } from "./tree/TreeAxis";
-import { useResizedSVGRef } from "../hooks/resize-hooks";
-import * as d3 from 'd3';
+import { Legend } from "./axis/Legend";
+import { YAixs } from "./axis/YAxis";
+import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
+import { RectCell } from "./cells/RectCell";
+import { HierarchicalAxis } from "./axis/HierarchicalAxis";
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
   sourceCluster?: string[];
+  targetOntologies?: TargetOntology[];
   selectedCandidate?: Candidate;
   setSelectedCandidate?: (candidate: Candidate | undefined) => void;
   sourceUniqueValues: SourceUniqueValues[];
@@ -32,33 +29,28 @@ interface HeatMapProps {
   sx?: Record<string, any>;
 }
 
-const defaultClusteringOptions: ClusteringOptions = {
-  method: 'prefix',
-  showClusterLabels: true,
-  labelSpacing: 40,
-  maxLabelsPerView: 30,
-  labelPlacementStrategy: 'fixed'
-};
-
 const MARGIN = { top: 30, right: 78, bottom: 0, left: 200 };
 
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
   sourceCluster,
+  targetOntologies,
   selectedCandidate,
   setSelectedCandidate,
   sourceUniqueValues,
   targetUniqueValues,
   highlightSourceColumns,
   highlightTargetColumns,
-  sx
+  sx,
 }) => {
-  
   const theme = useTheme();
-  const StyledText = styled('text')({
+  const StyledText = styled("text")({
     fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
   });
 
+  const [expandedCell, setExpandedCell] = useState<
+    AggregatedCandidate | undefined
+  >();
   const [config, setConfig] = useState<HeatMapConfig>({
     cellType: "rect",
     colorScheme: "blues",
@@ -67,24 +59,22 @@ const HeatMap: React.FC<HeatMapProps> = ({
     minScore: 0,
   });
 
-  const treeConfig: TreeConfig = {
-    clusteringMethod: 'prefix',
-    nodeWidth: 20,
-    nodeHeight: 20,
-    nodePadding: 5
-  }
-
   const candidates = useMemo(() => {
     return data;
   }, [data]);
-    
-  const {
-    svgHeight, svgWidth, ref: svgRef
-  } = useResizedSVGRef();
+
+  const currentExpanding = useMemo(() => {
+    if (selectedCandidate) {
+      return selectedCandidate;
+    }
+    return expandedCell;
+  }, [expandedCell, selectedCandidate]);
+
+  const { svgHeight, svgWidth, ref: svgRef } = useResizedSVGRef();
 
   const dimensions = {
     width: svgWidth,
-    height: svgHeight
+    height: svgHeight,
   };
   const { x, y, color, getWidth, getHeight, dataRange } = useHeatmapScales({
     data: candidates,
@@ -93,15 +83,46 @@ const HeatMap: React.FC<HeatMapProps> = ({
     height: dimensions.height,
     margin: MARGIN,
     config,
-    selectedCandidate: selectedCandidate,
+    selectedCandidate: currentExpanding,
   });
-  const clusteringOptions = defaultClusteringOptions;
-  
+
   const { tooltip, showTooltip, hideTooltip } = useTooltip();
+
+  const defaultClusteringOptions: ClusteringOptions = {
+    method: "prefix",
+    showClusterLabels: true,
+    labelSpacing: 40,
+    maxLabelsPerView: 30,
+    labelPlacementStrategy: "fixed",
+  };
+  const clusteringOptions = defaultClusteringOptions;
+  const {
+    treeData: targetTreeData,
+    expandedNodes: targetExpandedNodes,
+    toggleNode: toggleTargetNode,
+    getVisibleColumns: getVisibleTargetColumns,
+  } = useOntologyLayout({
+    columns: x.domain(),
+    targetOntologies: targetOntologies ?? [],
+    width: dimensions.width,
+    height: dimensions.height,
+    margin: MARGIN,
+    scale: x,
+    getWidth: getWidth,
+  });
+  const targetLabelPlacements = useLabelManagement({
+    nodes: targetTreeData,
+    scale: x,
+    orientation: "horizontal",
+    viewportWidth: dimensions.width - MARGIN.left - MARGIN.right,
+    options: clusteringOptions,
+    expandedNodes: targetExpandedNodes,
+  });
 
   const handleCellClick = useCallback(
     (cellData: Candidate) => {
       if (setSelectedCandidate) {
+        toggleTargetNode(cellData.targetColumn);
         if (
           selectedCandidate &&
           selectedCandidate.sourceColumn === cellData.sourceColumn &&
@@ -116,24 +137,20 @@ const HeatMap: React.FC<HeatMapProps> = ({
     [setSelectedCandidate, selectedCandidate]
   );
 
-  const colorRamp = color
-                  .domain([0, 1]);
-
-  const legendWidth = 30;
-  const legendHeight = 350;
-  const legendOffset = -195;
-
   // const legendData = d3.range(legendHeight).map((d) => d / legendHeight);
 
   const CellComponent = config.cellType === "rect" ? RectCell : RectCell;
 
   return (
-    <Box sx={{
-      ...sx,
-      paddingLeft: 0,
-      height: "100%",
-      width: "100%",
-    }}>
+    <>
+      <Box
+        sx={{
+          ...sx,
+          paddingLeft: 0,
+          height: "100%",
+          width: "100%",
+        }}
+      >
         <svg
           ref={svgRef}
           width={"100%"}
@@ -144,38 +161,24 @@ const HeatMap: React.FC<HeatMapProps> = ({
             {/* Background rectangles for highlighted rows */}
             {y.domain().map((value) => {
               // if (highlightSourceColumns.includes(value)) {
-                return (
-                  <rect
-                    key={`row-${value}`}
-                    x={0}
-                    y={y(value) + 2}
-                    width={dimensions.width - MARGIN.left - MARGIN.right}
-                    height={getHeight({ sourceColumn: value } as Candidate) - 4}
-                    fill={theme.palette.grey[200]}
-                    // opacity={0.1}
-                  />
-                );
+              return (
+                <rect
+                  key={`row-${value}`}
+                  x={0}
+                  y={y(value) + 2}
+                  width={dimensions.width - MARGIN.left - MARGIN.right}
+                  height={getHeight({ sourceColumn: value } as Candidate) - 4}
+                  fill={theme.palette.grey[200]}
+                  onMouseMove={(event) => {
+                    // toggleTargetNode(value);
+                    setExpandedCell(undefined);
+                  }}
+                  // opacity={0.1}
+                />
+              );
               // }
               // return null;
             })}
-
-            {/* Background rectangles for highlighted columns */}
-            {/* {x.domain().map((value) => {
-              if (highlightTargetColumns.includes(value)) {
-                return (
-                  <rect
-                    key={`col-${value}`}
-                    x={x(value)}
-                    y={0}
-                    width={getWidth({ targetColumn: value } as Candidate)}
-                    height={dimensions.height - MARGIN.top - MARGIN.bottom}
-                    fill={theme.palette.warning.light}
-                    opacity={0.1}
-                  />
-                );
-              }
-              return null;
-            })} */}
 
             {candidates.map((d: AggregatedCandidate, i: number) => {
               let sourceUniqueValue;
@@ -192,9 +195,9 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 );
               }
               if (
-                selectedCandidate &&
-                selectedCandidate.sourceColumn === d.sourceColumn &&
-                selectedCandidate.targetColumn === d.targetColumn
+                currentExpanding &&
+                currentExpanding.sourceColumn === d.sourceColumn &&
+                currentExpanding.targetColumn === d.targetColumn
               ) {
                 return (
                   <BaseExpandedCell
@@ -236,12 +239,17 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     width={getWidth(d)}
                     height={getHeight(d)}
                     color={color}
-                    isSelected={
-                      selectedCandidate?.sourceColumn === d.sourceColumn &&
-                      selectedCandidate?.targetColumn === d.targetColumn
-                    }
-                    onHover={showTooltip}
-                    onLeave={hideTooltip}
+                    onHover={(
+                      event: React.MouseEvent,
+                      data: AggregatedCandidate
+                    ) => {
+                      // showTooltip(event, data);
+                      if (!selectedCandidate) {
+                        // toggleTargetNode(data.targetColumn);
+                        setExpandedCell(data);
+                      }
+                    }}
+                    onLeave={() => {}}
                     onClick={() => {
                       handleCellClick(d);
                     }}
@@ -256,212 +264,41 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 );
               }
             })}
-              
-              <g>
-                
-                {/* Color Legend */}
-                <rect
-                  transform={`translate(${legendOffset-25}, 0)`}
-                  // style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                  width={legendWidth + 40}
-                  // height={y.range()[1]}
-                  height={legendHeight}
-                  fill={theme.palette.grey[200]}
-                  rx={3} ry={3}
-                />
-                <g transform={`translate(${legendOffset}, 15)`}>
-                  <StyledText
-                    x={-2}
-                    y={0}
-                    textAnchor="start"
-                    style={{
-                      fontSize: "0.7em",
-                      fontWeight: "600"
-                    }}
-                  >
-                    Score
-                  </StyledText>
-                  <g transform={`translate(0, 5)`}>
-                    {[0.2, 0.4, 0.6, 0.8, 1.0].map((d, i) => (
-                      <>
-                        <rect
-                          key={i}
-                          x={0}
-                          y={i * legendWidth}
-                          width={legendWidth}
-                          height={legendWidth}
-                          fill={colorRamp(d)}
-                          style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                          rx={3} ry={3}
-                        />
-                        <StyledText x={legendWidth - 50} y={i * legendWidth + 20} textAnchor="start" style={{ fontSize: "0.7em", fontWeight: "400" }}>
-                          {d.toFixed(1)}
-                        </StyledText>
-                      </>
-                    ))}
-                  </g>
-                </g>
-
-                {/* Accepted Legend */}
-                <g transform={`translate(${legendOffset}, 190)`}>
-                  <StyledText
-                    x={-12}
-                    y={0}
-                    textAnchor="start"
-                    style={{
-                      fontSize: "0.7em",
-                      fontWeight: "600"
-                    }}
-                  >
-                    Accepted
-                  </StyledText>
-                  <rect
-                    x={0}
-                    y={5}
-                    width={legendWidth}
-                    height={legendWidth}
-                    rx={3} ry={3}
-                    fill={theme.palette.success.dark}
-                    style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                  />
-                </g>
-
-                {/* Rejected Legend */}
-                <g transform={`translate(${legendOffset}, 245)`}>
-                  <StyledText
-                    x={-10}
-                    y={0}
-                    textAnchor="start"
-                    style={{
-                      fontSize: "0.7em",
-                      fontWeight: "600"
-                    }}
-                  >
-                    Rejected
-                  </StyledText>
-                  <rect
-                    x={0}
-                    y={5}
-                    width={legendWidth}
-                    height={legendWidth}
-                    rx={3} ry={3}
-                    fill={theme.palette.error.dark}
-                    style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                  />
-                </g>
-
-                {/* Searched Legend */}
-                <g transform={`translate(${legendOffset}, 300)`}>
-                  <StyledText
-                    x={-11}
-                    y={0}
-                    textAnchor="start"
-                    style={{
-                      fontSize: "0.7em",
-                      fontWeight: "600"
-                    }}
-                  >
-                    Searched
-                  </StyledText>
-                  <rect
-                    x={1}
-                    y={5}
-                    width={legendWidth-2}
-                    height={legendWidth-2}
-                    rx={3} ry={3}
-                    fill={theme.palette.grey[200]}
-                    stroke={theme.palette.common.black}
-                    strokeWidth={3}
-                    style={{ filter: "drop-shadow(1px 1px 1px rgba(0,0,0,0.3))" }}
-                  />
-                </g>
-
-                <g>
-                  <StyledText
-                    transform={`translate(-120, ${(y.range()[1] / 2) + 10}) rotate(-90)`}
-                    textAnchor="middle"
-                    style={{ fontSize: "1em", fontWeight: "600" }}
-                  >
-                    Source Attributes
-                  </StyledText>
-                </g>
-                <line y1={0} y2={y.range()[1]} stroke={theme.palette.grey[500]} strokeWidth={2} />
-                {y.domain().map((value) => {
-                  const yPos = y(value)!;
-                  const height = getHeight({ sourceColumn: value } as Candidate);
-                    const textValue = value.length > 15 ? value.slice(0, 12) + '...' : value;
-                    const textWidth = 0;
-                  return (
-                    <g
-                      key={value}
-                      transform={`translate(-5,${yPos + height / 2})`}
-                      onMouseEnter={(e) => {
-                      const rect = e.currentTarget.querySelector('rect');
-                      const text = e.currentTarget.querySelector('text');
-                      if (rect && text) {
-                        const textValue = value;
-                        text.textContent = textValue;
-                        const textWidth = text.getBBox().width;
-                        rect.setAttribute('width', `${textWidth}`);
-                        rect.setAttribute('x', `${-textWidth}`);
-                      }
-                      }}
-                      onMouseLeave={(e) => {
-                        const rect = e.currentTarget.querySelector('rect');
-                        const text = e.currentTarget.querySelector('text');
-                        if (rect && text) {
-                          text.textContent = textValue;
-                          rect.setAttribute('width', `${textWidth}`);
-                          rect.setAttribute('x', `${-textWidth}`);
-                        }
-                      }}
-                    >
-                      <rect
-                      x={-textWidth}
-                      y={-10}
-                      width={textWidth}
-                      height={20}
-                      fill={theme.palette.grey[200]}
-                      rx={3}
-                      ry={3}
-                      />
-                      <StyledText
-                      dy=".35em"
-                      textAnchor="end"
-                      style={{
-                        fill: theme.palette.grey[600],
-                        fontSize: "0.8em",
-                        fontWeight: "600",
-                        cursor: "pointer",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap"
-                      }}
-                      >
-                      {textValue}
-                      </StyledText>
-                    </g>
-                  );
-                })}
-              </g>
+            {/* Color Legend */}
+            <Legend color={color} />
+            {/* Y Axis */}
+            <YAixs y={y} getHeight={getHeight} />
           </g>
         </svg>
-      {tooltip.visible && (
-        <div
-          style={{
-            position: "absolute",
-            left: tooltip.x + 10,
-            top: tooltip.y - 10,
-            background: "white",
-            padding: "8px",
-            border: "1px solid black",
-            borderRadius: "4px",
-            pointerEvents: "none",
-          }}
-          dangerouslySetInnerHTML={{ __html: tooltip.content }}
+
+        {/* Tooltip */}
+        {tooltip.visible && (
+          <div
+            style={{
+              position: "absolute",
+              left: tooltip.x + 10,
+              top: tooltip.y - 10,
+              background: "white",
+              padding: "8px",
+              border: "1px solid black",
+              borderRadius: "4px",
+              pointerEvents: "none",
+            }}
+            dangerouslySetInnerHTML={{ __html: tooltip.content }}
+          />
+        )}
+      </Box>
+
+      <Box sx={{ flexGrow: 1, paddingLeft: 0 }}>
+        {/* Hierarchical Axis */}
+        <HierarchicalAxis
+          targetTreeData={targetTreeData}
+          targetLabelPlacements={targetLabelPlacements}
+          targetExpandedNodes={targetExpandedNodes}
+          toggleTargetNode={toggleTargetNode}
         />
-      )}
-    </Box>
+      </Box>
+    </>
   );
 };
 

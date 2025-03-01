@@ -11,7 +11,7 @@ interface SourceColumnSelectionProps {
 }
 
 const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceColumns, selectedSourceColumn, onSelect }) => {
-    const [sourceColumn, setSourceColumn] = useState<string>(sourceColumns[0]);
+    const [sourceColumn, setSourceColumn] = useState<string>("all");
 
     const handleChange = (column: string) => {
         setSourceColumn(column);
@@ -40,6 +40,7 @@ const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceCol
                         },
                     }}
                 >
+                    <MenuItem key="all" value="all">All</MenuItem>
                     {sourceColumns.map((column) => (
                         <MenuItem key={column} value={column}>{column}</MenuItem>
                     ))}

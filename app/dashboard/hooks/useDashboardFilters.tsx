@@ -29,15 +29,15 @@ export const {
         sourceClusters,
         matchers,
     }: DashboardFilterProps): DashboardFilterState => {
-        const [sourceColumn, setSourceColumn] = useState<string>(candidates[0]?.sourceColumn ?? '');
+        const [sourceColumn, setSourceColumn] = useState<string>('all');
         const [candidateType, setCandidateType] = useState<string>('all');
         const [similarSources, setSimilarSources] = useState<number>(2);
         const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
         const [searchResults, setSearchResults] = useState<Candidate[]>([]);
 
-        useEffect(() => {
-            setSourceColumn(candidates[0]?.sourceColumn ?? '');
-        }, [sourceClusters]);
+        // useEffect(() => {
+        //     setSourceColumn(candidates[0]?.sourceColumn ?? '');
+        // }, [sourceClusters]);
 
         const updateSourceColumn = useCallback((column: string) => {
             setSourceColumn(column);

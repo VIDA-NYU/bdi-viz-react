@@ -10,7 +10,6 @@ const RectCell: React.FC<CellProps> = ({
     width,
     height,
     color,
-    isSelected,
     onHover,
     onLeave,
     onClick,
@@ -41,9 +40,13 @@ const RectCell: React.FC<CellProps> = ({
             fill={getFillColor()}
             opacity={getOpacity()}
             stroke="black"
-            strokeWidth={isSelected || isHighlighted ? 2 : 0}
-            onMouseEnter={(e) => onHover?.(e, data)}
-            onMouseLeave={onLeave}
+            strokeWidth={isHighlighted ? 2 : 0}
+            onMouseEnter={(e) => {
+                onHover?.(e, data);
+            }}
+            onMouseLeave={(e) => {
+                onLeave?.();
+            }}
             onClick={() => onClick?.(data)}
             rx={3}
             ry={3}

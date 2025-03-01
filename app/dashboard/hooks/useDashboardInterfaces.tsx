@@ -34,6 +34,9 @@ export const {
 
         const filteredSourceCluster = useMemo(() => {
             if (filters?.sourceColumn) {
+                if (filters.sourceColumn === 'all') {
+                    return sourceClusters?.map(sc => sc.sourceColumn) ?? [];
+                }
                 const sourceCluster = sourceClusters?.find(sc =>
                     sc.sourceColumn === filters.sourceColumn
                 );

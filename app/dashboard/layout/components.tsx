@@ -182,3 +182,7 @@ export const HighlightedChip = styled(Chip)(({ theme }) => ({
   backgroundColor: theme.palette.common.black,
   color: theme.palette.common.white,
 }));
+
+export const StyledText = styled('text')(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+}));
