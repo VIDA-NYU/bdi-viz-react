@@ -77,6 +77,7 @@ export default function Dashboard() {
         thumbDownExplanations,
         matchingValues,
         relevantKnowledge,
+        setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,
@@ -167,7 +168,19 @@ export default function Dashboard() {
         }
         toastify("default", <p><strong>Source: </strong>{candidate.sourceColumn}, <strong>Target: </strong>{candidate.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
-        explain(candidate);
+
+        if (!(candidate as AggregatedCandidate).matchers.includes("candidate_quadrants")) {
+            explain(candidate);
+        } else {
+            setIsMatch(true);
+        }
+    }
+
+    function onGenerateExplanation() {
+        toastify("default", `Generating explanations for ${selectedCandidate?.sourceColumn}...`, { autoClose: 200 });
+        if (selectedCandidate) {
+            explain(selectedCandidate);
+        }
     }
 
     function onSelectedActions(actions: AgentAction[]) {
@@ -285,8 +298,8 @@ export default function Dashboard() {
                     setSelectExplanations={setSelectedExplanations}
                     setThumbUpExplanations={setThumbUpExplanations}
                     setThumbDownExplanations={setThumbDownExplanations}
-                    sourceColumn={selectedCandidate?.sourceColumn}
-                    targetColumn={selectedCandidate?.targetColumn}
+                    selectedCandidate={selectedCandidate}
+                    onGenerateExplanation={onGenerateExplanation}
                     gdcAttribute={gdcAttribute}
                 />
             </MainContent>

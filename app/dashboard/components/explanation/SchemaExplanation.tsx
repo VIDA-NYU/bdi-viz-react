@@ -10,6 +10,7 @@ import {
 import ExplanationItem from './ExplanationItem';
 import { SectionHeader } from '../../layout/components';
 import { agentThumbRequest } from '@/app/lib/langchain/agent-helper';
+import GenerateExplanationButton from './GenerateExplanationButton';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
@@ -19,10 +20,10 @@ interface SchemaExplanationProps {
     thumbDownExplanations: string[];
     setSelectExplanations: (explanations: Explanation[]) => void;
     setThumbUpExplanations: (id: string[]) => void;
-    setThumbDownExplanations: (id: string[]) => void
+    setThumbDownExplanations: (id: string[]) => void;
+    onGenerateExplanation: () => void;
     valueMatches: string[][];
-    sourceColumn?: string;
-    targetColumn?: string;
+    selectedCandidate?: Candidate;
     isLoading: boolean;
 }
 
@@ -35,9 +36,9 @@ const SchemaExplanation = ({
     setSelectExplanations,
     setThumbUpExplanations,
     setThumbDownExplanations,
+    onGenerateExplanation,
     valueMatches,
-    sourceColumn,
-    targetColumn,
+    selectedCandidate,
     isLoading
 }: SchemaExplanationProps) => {
 
@@ -55,8 +56,8 @@ const SchemaExplanation = ({
             const userOperation = {
                 operation: "accept",
                 candidate: {
-                    sourceColumn: sourceColumn ?? "",
-                    targetColumn: targetColumn ?? "",
+                    sourceColumn: selectedCandidate?.sourceColumn ?? "",
+                    targetColumn: selectedCandidate?.targetColumn ?? "",
                     score: explanation.confidence,
                 },
                 references: [],
@@ -81,8 +82,8 @@ const SchemaExplanation = ({
             const userOperation = {
                 operation: "reject",
                 candidate: {
-                    sourceColumn: sourceColumn ?? "",
-                    targetColumn: targetColumn ?? "",
+                    sourceColumn: selectedCandidate?.sourceColumn ?? "",
+                    targetColumn: selectedCandidate?.targetColumn ?? "",
                     score: explanation.confidence,
                 },
                 references: [],
@@ -110,21 +111,21 @@ const SchemaExplanation = ({
             ) : (
                 <>
                     {/* Match Selection Display */}
-                    {sourceColumn && targetColumn && (
+                    {selectedCandidate && (
                         <Box>
                             <SectionHeader>
                                 Current Selection
                             </SectionHeader>
                             <Stack direction="row" spacing={1} alignItems="center">
-                                <Chip size="small" label={sourceColumn} color="primary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
+                                <Chip size="small" label={selectedCandidate.sourceColumn} color="primary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
                                 <Typography>→</Typography>
-                                <Chip size="small" label={targetColumn} color="secondary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
+                                <Chip size="small" label={selectedCandidate.targetColumn} color="secondary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
                             </Stack>
                         </Box>
                     )}
 
                     {/* Is Match */}
-                    {sourceColumn && targetColumn && isMatch !== undefined &&
+                    {selectedCandidate && isMatch !== undefined &&
                         <Box>
                             <Chip
                                 size="small"
@@ -133,6 +134,32 @@ const SchemaExplanation = ({
                             />
                         </Box>
                     }
+
+                    {/* Value Matches */}
+                    {valueMatches.length > 0 && (
+                        <Box>
+                            <SectionHeader>
+                                Value Matches
+                            </SectionHeader>
+                            <List>
+                                {valueMatches.map((values, index) => (
+                                    <Stack direction="row" spacing={1} key={index} sx={{ marginBottom: 0.5 }}>
+                                        <Chip variant='filled' color='primary' key={index} label={values[0]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
+                                        <Typography>→</Typography>
+                                        <Chip variant='filled' color='secondary' key={index} label={values[1]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
+                                    </Stack>
+                                ))}
+                            </List>
+                        </Box>
+                    )}
+
+                    {/* Generate Explanation Button */}
+                    {currentExplanations.length === 0 && isMatch === true && (
+                        <GenerateExplanationButton 
+                            selectedCandidate={selectedCandidate as AggregatedCandidate}
+                            onClick={onGenerateExplanation}
+                        />
+                    )}
 
                     {/* Current Explanations */}
                     {currentExplanations.length > 0 && (
@@ -157,24 +184,6 @@ const SchemaExplanation = ({
                                 </List>
                             </Box>
                         </>
-                    )}
-
-                    {/* Value Matches */}
-                    {valueMatches.length > 0 && (
-                        <Box>
-                            <SectionHeader>
-                                Value Matches
-                            </SectionHeader>
-                            <List>
-                                {valueMatches.map((values, index) => (
-                                    <Stack direction="row" spacing={1} key={index} sx={{ marginBottom: 0.5 }}>
-                                        <Chip variant='filled' color='primary' key={index} label={values[0]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
-                                        <Typography>→</Typography>
-                                        <Chip variant='filled' color='secondary' key={index} label={values[1]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
-                                    </Stack>
-                                ))}
-                            </List>
-                        </Box>
                     )}
                 </>
             )}

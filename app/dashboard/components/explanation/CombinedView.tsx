@@ -31,11 +31,11 @@ interface CombinedViewProps {
     setSelectExplanations: (explanations: Explanation[]) => void;
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
+    onGenerateExplanation: () => void;
     matchingValues: string[][];
     relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
-    sourceColumn?: string;
-    targetColumn?: string;
+    selectedCandidate?: Candidate;
     gdcAttribute?: GDCAttribute;
 }
 
@@ -48,11 +48,11 @@ const CombinedView = ({
     setSelectExplanations,
     setThumbUpExplanations,
     setThumbDownExplanations,
+    onGenerateExplanation,
     matchingValues,
     relevantKnowledge,
     isLoading,
-    sourceColumn,
-    targetColumn,
+    selectedCandidate,
     gdcAttribute,
 }: CombinedViewProps) => {
 
@@ -69,9 +69,9 @@ const CombinedView = ({
                     setSelectExplanations={setSelectExplanations}
                     setThumbUpExplanations={setThumbUpExplanations}
                     setThumbDownExplanations={setThumbDownExplanations}
+                    onGenerateExplanation={onGenerateExplanation}
                     valueMatches={matchingValues}
-                    sourceColumn={sourceColumn}
-                    targetColumn={targetColumn}
+                    selectedCandidate={selectedCandidate}
                     isLoading={isLoading}
                 />
             </Stack>
