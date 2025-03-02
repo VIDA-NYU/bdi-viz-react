@@ -6,6 +6,7 @@ type DashboardInterfacesState = {
     filteredSourceCluster: string[];
     filteredCandidateCluster: string[];
     weightedAggregatedCandidates: AggregatedCandidate[];
+    filteredSourceColumns: SourceColumn[];
 }
 
 type DashboardInterfacesProps = {
@@ -78,11 +79,23 @@ export const {
             return aggregatedCandidates;
         }, [filteredCandidates, matchers, filters.candidateThreshold]);
 
+        const filteredSourceColumns = useMemo(() => {
+        const groupedSourceColumns = Array.from(d3.group(candidates, d => d.sourceColumn), ([name, items]: [string, Candidate[]]) => {
+            return {
+                name,
+                status: items.some(item => item.status === 'accepted') ? 'complete' : (items.every(item => item.status === 'discarded') ? 'ignored' : 'incomplete')
+            } as SourceColumn;
+        });
+
+            return groupedSourceColumns;
+        }, [candidates]);
+
         return {
             filteredCandidates,
             filteredSourceCluster,
             filteredCandidateCluster,
             weightedAggregatedCandidates,
+            filteredSourceColumns,
         };
     }
 }

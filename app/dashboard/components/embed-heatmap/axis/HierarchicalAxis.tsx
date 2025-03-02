@@ -27,8 +27,6 @@ const HierarchicalAxis: React.FC<HierarchicalAxisProps> = ({
     height: svgHeight,
   };
 
-  console.log("targetTreeData", targetTreeData);
-
   return (
     <svg
       ref={svgRef}

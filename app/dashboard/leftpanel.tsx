@@ -9,7 +9,7 @@ import FileUploading from "./components/fileuploading";
 
 interface LeftPanelProps {
     // ControlPanel Props
-    sourceColumns: string[];
+    sourceColumns: SourceColumn[];
     matchers: Matcher[];
     isFloating?: boolean;
     width?: string | number;

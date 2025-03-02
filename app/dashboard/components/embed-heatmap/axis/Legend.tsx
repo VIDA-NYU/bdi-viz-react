@@ -15,8 +15,8 @@ const Legend: React.FC<LegendProps> = ({
   const legendHeight = 350;
   const legendOffset = -195;
 
-  const colorRamp = color
-    .domain([0, 1]);
+  const colorRamp = color;
+    
 
   return (
     <g>

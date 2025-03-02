@@ -16,6 +16,11 @@ type AggregatedCandidate = {
     status: string;
 }
 
+declare interface SourceColumn {
+    name: string;
+    status: string; // 'complete', 'incomplete', 'discard'
+}
+
 declare interface SourceCluster {
     sourceColumn: string;
     cluster: string[];

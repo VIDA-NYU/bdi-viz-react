@@ -110,6 +110,7 @@ export default function Dashboard() {
         filteredSourceCluster,
         filteredCandidateCluster,
         weightedAggregatedCandidates,
+        filteredSourceColumns,
     } = useDashboardInterfaces({
         candidates,
         sourceClusters,
@@ -212,7 +213,7 @@ export default function Dashboard() {
             <MainContent>
                 <LeftPanel
                     containerStyle={{ marginBottom: 0, flexGrow: 0 }}
-                    sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                    sourceColumns={filteredSourceColumns}
                     matchers={matchers}
                     onSourceColumnSelect={handleUpdateSourceColumn}
                     onCandidateTypeSelect={updateCandidateType}

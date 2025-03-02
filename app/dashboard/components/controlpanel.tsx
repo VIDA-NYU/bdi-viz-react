@@ -17,7 +17,7 @@ import { SectionHeader } from "@/app/dashboard/layout/components";
 
 
 interface ControlPanelProps {
-  sourceColumns: string[];
+  sourceColumns: SourceColumn[];
   matchers: Matcher[];
   isFloating?: boolean;
   width?: string | number;

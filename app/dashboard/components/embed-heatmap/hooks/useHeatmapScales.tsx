@@ -90,13 +90,18 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         //       .domain(data.map(d => d.sourceColumn))
         //       .padding(0.1);
   
-          // Color scale remains unchanged
-          const minScore = d3.min(data, d => d.score) ?? 0;
-          const maxScore = d3.max(data, d => d.score) ?? 1;
-          const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
-          const color = d3.scaleSequential()
-              .interpolator(getColorInterpolator(config.colorScheme))
-              .domain([minScore - padding, maxScore + padding]);
+        // Color scale remains unchanged
+        
+        //   const minScore = d3.min(data, d => d.score) ?? 0;
+        //   const maxScore = Math.min(d3.max(data, d => d.score) ?? 1, 1);
+        const minScore = 0;
+        const maxScore = 1;
+
+        const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
+
+        const color = d3.scaleSequential()
+            .interpolator(getColorInterpolator(config.colorScheme))
+            .domain([minScore - padding, maxScore + padding]);
         
           return {
                 x,
