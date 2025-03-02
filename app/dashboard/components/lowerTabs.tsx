@@ -32,7 +32,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
     <Box sx={{ width: '100%', marginTop: 0 }}>
       <TabContext value={value}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Hide" value={0} />
+            <Tab label="Hidden" value={0} />
             <Tab label="UpSet Plot" value={1} />
             <Tab label="Value Comparisons" value={2} />
           </TabList>
