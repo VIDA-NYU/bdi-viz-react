@@ -55,7 +55,7 @@ const HierarchicalAxis: React.FC<HierarchicalAxisProps> = ({
         <StyledText
           transform={`translate(${
             (dimensions.width + MARGIN.left - MARGIN.right) / 2
-          }, 180)`}
+          }, 150)`}
           textAnchor="middle"
           style={{ fontSize: "1em", fontWeight: "600" }}
         >

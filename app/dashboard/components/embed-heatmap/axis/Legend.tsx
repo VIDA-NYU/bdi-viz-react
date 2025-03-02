@@ -13,7 +13,7 @@ const Legend: React.FC<LegendProps> = ({
 
   const legendWidth = 30;
   const legendHeight = 350;
-  const legendOffset = -195;
+  const legendOffset = -170;
 
   const colorRamp = color;
     

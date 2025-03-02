@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select, useTheme } from '@mui/material';
+import HighlightGlobalContext from '@/app/lib/highlight/highlight-context';
 
 
 interface SourceColumnSelectionProps {
@@ -12,6 +13,7 @@ interface SourceColumnSelectionProps {
 
 const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceColumns, selectedSourceColumn, onSelect }) => {
     const [sourceColumn, setSourceColumn] = useState<string>("all");
+    const { setGlobalCandidateHighlight } = useContext(HighlightGlobalContext);
 
     const theme = useTheme();
 
@@ -23,6 +25,7 @@ const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceCol
     useEffect(() => {
         if (selectedSourceColumn) {
             setSourceColumn(selectedSourceColumn);
+            setGlobalCandidateHighlight(undefined);
         }
     }, [selectedSourceColumn]);
 

@@ -19,6 +19,7 @@ import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
+  sourceColumn: string;
   sourceCluster?: string[];
   targetOntologies?: TargetOntology[];
   selectedCandidate?: Candidate;
@@ -35,6 +36,7 @@ const MARGIN = { top: 30, right: 78, bottom: 0, left: 200 };
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
   sourceCluster,
+  sourceColumn,
   targetOntologies,
   selectedCandidate,
   setSelectedCandidate,
@@ -158,26 +160,25 @@ const HeatMap: React.FC<HeatMapProps> = ({
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
             {/* Background rectangles for highlighted rows */}
             {y.domain().map((value) => {
-              // if (highlightSourceColumns.includes(value)) {
+              const isLastRow = value === sourceColumn;
               return (
-                <rect
-                  key={`row-${value}`}
-                  x={0}
-                  y={y(value) + 2}
-                  width={dimensions.width - MARGIN.left - MARGIN.right}
-                  height={getHeight({ sourceColumn: value } as Candidate) - 4}
-                  fill={theme.palette.grey[200]}
-                  onMouseMove={(event) => {
-                    // toggleTargetNode(value);
-                    setGlobalCandidateHighlight(undefined);
-                  }}
-                  // opacity={0.1}
-                />
+              <rect
+                key={`row-${value}`}
+                x={0}
+                y={y(value) + 3}
+                width={dimensions.width - MARGIN.left - MARGIN.right + 8}
+                height={getHeight({ sourceColumn: value } as Candidate) - 6}
+                fill={isLastRow ? theme.palette.grey[400] : theme.palette.grey[400]}
+                opacity={0.3}
+                stroke={theme.palette.grey[600]}
+                strokeWidth={isLastRow ? 2 : 0}
+                onMouseMove={() => {
+                setGlobalCandidateHighlight(undefined);
+                }}
+              />
               );
-              // }
-              // return null;
             })}
-
+            
             {candidates.map((d: AggregatedCandidate, i: number) => {
               let sourceUniqueValue;
               let targetUniqueValue;
@@ -265,7 +266,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
             {/* Color Legend */}
             <Legend color={color} />
             {/* Y Axis */}
-            <YAixs y={y} getHeight={getHeight} />
+            <YAixs y={y} getHeight={getHeight} sourceColumn={sourceColumn} />
           </g>
         </svg>
 

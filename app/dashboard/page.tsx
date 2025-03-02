@@ -60,11 +60,13 @@ export default function Dashboard() {
         similarSources,
         candidateThreshold,
         searchResults,
+        status,
         updateSourceColumn,
         updateCandidateType,
         updateSimilarSources,
         updateCandidateThreshold,
         updateSearchResults,
+        updateStatus,
     } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
@@ -121,6 +123,7 @@ export default function Dashboard() {
             candidateType,
             similarSources,
             candidateThreshold,
+            status,
         }
     });
 
@@ -249,6 +252,7 @@ export default function Dashboard() {
                 <MainColumn>
                     <UpperTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
+                        sourceColumn={sourceColumn}
                         sourceCluster={filteredSourceCluster}
                         targetOntologies={targetOntologies}
                         selectedCandidate={selectedCandidate}
@@ -257,6 +261,7 @@ export default function Dashboard() {
                         targetUniqueValues={targetUniqueValues}
                         highlightSourceColumns={highlightedSourceColumns}
                         highlightTargetColumns={highlightedTargetColumns}
+                        updateStatus={updateStatus}
                     />
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}

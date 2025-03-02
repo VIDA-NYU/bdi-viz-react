@@ -20,6 +20,7 @@ type DashboardInterfacesProps = {
         similarSources: number;
         candidateThreshold: number;
         selectedMatcher?: Matcher;
+        status: string[];
     };
 }
 
@@ -76,8 +77,12 @@ export const {
                 aggregatedCandidates = aggregatedCandidates.filter((d) => d.score >= filters.candidateThreshold);
             }
 
+            if (filters.status.length > 0) {
+                aggregatedCandidates = aggregatedCandidates.filter((d) => filters.status.includes(d.status));
+            }
+
             return aggregatedCandidates;
-        }, [filteredCandidates, matchers, filters.candidateThreshold]);
+        }, [filteredCandidates, matchers, filters.candidateThreshold, filters.status]);
 
         const filteredSourceColumns = useMemo(() => {
         const groupedSourceColumns = Array.from(d3.group(candidates, d => d.sourceColumn), ([name, items]: [string, Candidate[]]) => {

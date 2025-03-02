@@ -5,29 +5,62 @@ import { StyledText } from "@/app/dashboard/layout/components";
 interface YAixsProps {
   y: any;
   getHeight: (d: Candidate) => number;
+  sourceColumn: string;
 }
 
-const YAixs = ({ y, getHeight }: YAixsProps) => {
+const YAixs = ({ y, getHeight, sourceColumn }: YAixsProps) => {
   const theme = useTheme();
 
   return (
     <g>
       <g>
         <StyledText
-          transform={`translate(-120, ${y.range()[1] / 2 + 10}) rotate(-90)`}
+          transform={`translate(-110, ${y.range()[1] / 2 + 10}) rotate(-90)`}
           textAnchor="middle"
           style={{ fontSize: "1em", fontWeight: "600" }}
         >
           Source Attributes
         </StyledText>
       </g>
+      <defs>
+        <marker
+          id="arrowUp"
+          markerWidth="10"
+          markerHeight="10"
+          refX="5"
+          refY="5"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path
+            transform="translate(0, -2) rotate(-90 5 5)"
+            d="M0,10 L3,0 L6,10"
+            fill={theme.palette.grey[500]}
+          />
+        </marker>
+      </defs>
       <line
+        x1={0}
         y1={0}
+        x2={0}
         y2={y.range()[1]}
         stroke={theme.palette.grey[500]}
         strokeWidth={2}
+        markerStart="url(#arrowUp)"
       />
+      <StyledText
+        x={5}
+        y={0}
+        textAnchor="start"
+        style={{
+          fontSize: "0.8em",
+          fill: theme.palette.grey[500],
+        }}
+      >
+        less similar
+      </StyledText>
       {y.domain().map((value: string) => {
+        const isSelected = value === sourceColumn;
         const yPos = y(value)!;
         const height = getHeight({ sourceColumn: value } as Candidate);
         const textValue =
@@ -64,6 +97,8 @@ const YAixs = ({ y, getHeight }: YAixsProps) => {
               width={textWidth}
               height={20}
               fill={theme.palette.grey[200]}
+              stroke={theme.palette.grey[500]}
+              strokeWidth={isSelected ? 2 : 0}
               rx={3}
               ry={3}
             />
