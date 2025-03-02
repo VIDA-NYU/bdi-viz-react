@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, useCallback, useContext } from "react";
 import { Box } from "@mui/material";
-import { useTheme, styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 
 import { TreeNode } from "./tree/types";
 import { ClusteringOptions } from "./tree/types";
@@ -15,6 +15,7 @@ import { YAixs } from "./axis/YAxis";
 import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
 import { RectCell } from "./cells/RectCell";
 import { HierarchicalAxis } from "./axis/HierarchicalAxis";
+import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
@@ -44,13 +45,10 @@ const HeatMap: React.FC<HeatMapProps> = ({
   sx,
 }) => {
   const theme = useTheme();
-  const StyledText = styled("text")({
-    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
-  });
 
-  const [expandedCell, setExpandedCell] = useState<
-    AggregatedCandidate | undefined
-  >();
+  const { globalCandidateHighlight, setGlobalCandidateHighlight } = useContext(HighlightGlobalContext);
+
+
   const [config, setConfig] = useState<HeatMapConfig>({
     cellType: "rect",
     colorScheme: "blues",
@@ -67,8 +65,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
     if (selectedCandidate) {
       return selectedCandidate;
     }
-    return expandedCell;
-  }, [expandedCell, selectedCandidate]);
+    return globalCandidateHighlight;
+  }, [globalCandidateHighlight, selectedCandidate]);
 
   const { svgHeight, svgWidth, ref: svgRef } = useResizedSVGRef();
 
@@ -171,7 +169,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                   fill={theme.palette.grey[200]}
                   onMouseMove={(event) => {
                     // toggleTargetNode(value);
-                    setExpandedCell(undefined);
+                    setGlobalCandidateHighlight(undefined);
                   }}
                   // opacity={0.1}
                 />
@@ -246,7 +244,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                       // showTooltip(event, data);
                       if (!selectedCandidate) {
                         // toggleTargetNode(data.targetColumn);
-                        setExpandedCell(data);
+                        setGlobalCandidateHighlight(data);
                       }
                     }}
                     onLeave={() => {}}

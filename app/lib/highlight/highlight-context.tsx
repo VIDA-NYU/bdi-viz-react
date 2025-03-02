@@ -5,6 +5,8 @@ type HighlightGlobalState = {
     setGlobalValueSelection: (value: string) => void;
     globalValueConnections: [number, number][];
     setGlobalValueConnections: (value: [number, number][]) => void;
+    globalCandidateHighlight?: AggregatedCandidate;
+    setGlobalCandidateHighlight: (value: AggregatedCandidate | undefined) => void;
 }
 
 const HighlightGlobalContext = createContext<HighlightGlobalState>({
@@ -12,6 +14,8 @@ const HighlightGlobalContext = createContext<HighlightGlobalState>({
     setGlobalValueSelection: () => {},
     globalValueConnections: [],
     setGlobalValueConnections: () => {},
+    globalCandidateHighlight: undefined,
+    setGlobalCandidateHighlight: () => {},
 });
 
 
