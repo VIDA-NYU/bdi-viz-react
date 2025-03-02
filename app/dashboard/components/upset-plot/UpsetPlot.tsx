@@ -1,8 +1,13 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import React, { useRef, useEffect, useMemo, useState, useContext } from "react";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import { useHeatmapScales } from "../embed-heatmap/hooks/useHeatmapScales";
+import { useResizedSVGRef } from "../hooks/resize-hooks";
+import { HeatMapConfig } from "../embed-heatmap/types";
+import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
+
 
 interface GroupedData {
     targetColumn: string;
@@ -10,6 +15,7 @@ interface GroupedData {
     matchers: (string | undefined)[];
     score: number;
     id: number;
+    status: string;
     isSelected: boolean;
 }
 
@@ -40,6 +46,38 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [fullWidth, setFullWidth] = useState(containerRef.current ? containerRef.current.clientWidth : 0);
+    
+    const theme = useTheme();
+    const { svgHeight, svgWidth, ref: svgRef } = useResizedSVGRef();
+    const dimensions = {
+        width: svgWidth,
+        height: svgHeight,
+    };
+
+    const { globalCandidateHighlight } = useContext(HighlightGlobalContext);
+    const currentExpanding = useMemo(() => {
+        let candidate = selectedCandidate;
+        if (selectedCandidate?.targetColumn === "") {
+            if (globalCandidateHighlight) {
+                candidate = globalCandidateHighlight as Candidate;
+            }
+        }
+        return candidate;
+    }, [selectedCandidate, globalCandidateHighlight]);
+    const { x, y, color, getWidth, getHeight, dataRange } = useHeatmapScales({
+        data: aggData,
+        sourceCluster: selectedCandidate ? [selectedCandidate.sourceColumn] : undefined,
+        width: dimensions.width,
+        height: dimensions.height,
+        margin: { top: 30, right: 78, bottom: 0, left: 200 },
+        config: {
+            colorScheme: "blues",
+            colorScalePadding: 10,
+            maxScore: 1,
+            minScore: 0,
+        } as HeatMapConfig,
+        selectedCandidate: currentExpanding,
+    });
 
     useEffect(() => {
         const handleResize = () => {
@@ -83,9 +121,9 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
     const groupedData = useMemo(() => {
         return aggData.map((d) => ({
             ...d,
-            isSelected: selectedCandidate ? d.sourceColumn === selectedCandidate.sourceColumn && d.targetColumn === selectedCandidate.targetColumn : false
+            isSelected: currentExpanding ? d.sourceColumn === currentExpanding.sourceColumn && d.targetColumn === currentExpanding.targetColumn : false
         }));
-    }, [aggData, selectedCandidate]);
+    }, [aggData, currentExpanding]);
 
     const dataPerMatcher = useMemo(() => {
         return groupedData.flatMap(
@@ -113,7 +151,7 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
     useEffect(() => {
         if (upperColumnChartRef.current) {
             upperColumnChartRef.current.innerHTML = '';
-            upperColumnChartRef.current.appendChild(upperColumnChart(groupedData, fullWidth));
+            upperColumnChartRef.current.appendChild(upperColumnChart(groupedData, fullWidth, color, theme));
         }
         if (lowerBarChartRef.current) {
             lowerBarChartRef.current.innerHTML = '';
@@ -146,17 +184,17 @@ function crossProduct(data: DataPerMatcher[]) {
     return d3.cross(categories, ids).map((d) => ({ matchers: d[0], id: d[1] }));
 }
 
-function upperColumnChart(groupedData: GroupedData[], fullWidth: number) {
+function upperColumnChart(groupedData: GroupedData[], fullWidth: number, color: d3.ScaleSequential<string>, theme: any) {
     const columnChart = Plot.barY(
         groupedData,
         {
             y: d => d.score,
             x: d => d.id,
-            fill: d => d.isSelected ? 'red' : 'steelblue', // Highlight selected candidate
+            fill: d => d.isSelected ? theme.palette.error.dark : d.status === "accepted" ? theme.palette.success.dark : color(d.score),
+            insetLeft: 0.5,
+            insetRight: 0.5,
             marginLeft: 0,
             marginRight: 0,
-            insetLeft: 0,
-            insetRight: -1,
         }
     );
     return Plot.plot({
