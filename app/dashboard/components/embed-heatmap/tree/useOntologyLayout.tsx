@@ -52,7 +52,8 @@ export const useOntologyLayout = ({
         }
         return acc;
       }, [] as string[]);
-      const grandparentPosition = (usableWidth * index) / grandparents.length;
+      // const grandparentPosition = (usableWidth * index) / grandparents.length;
+      const grandparentPosition = 0;
       const isExpanded =
         expandedNodes.has(grandparent) ||
         nodes.some(

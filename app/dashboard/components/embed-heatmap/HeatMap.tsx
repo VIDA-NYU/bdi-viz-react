@@ -15,6 +15,7 @@ import { YAixs } from "./axis/YAxis";
 import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
 import { RectCell } from "./cells/RectCell";
 import { HierarchicalAxis } from "./axis/HierarchicalAxis";
+import IndentedTreeAxis from "./axis/IndentedTreeAxis";
 import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
 interface HeatMapProps {
@@ -290,12 +291,13 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
       <Box sx={{ flexGrow: 1, paddingLeft: 0 }}>
         {/* Hierarchical Axis */}
-        <HierarchicalAxis
+        {/* <HierarchicalAxis
           targetTreeData={targetTreeData}
           targetLabelPlacements={targetLabelPlacements}
           targetExpandedNodes={targetExpandedNodes}
           toggleTargetNode={toggleTargetNode}
-        />
+        /> */}
+        <IndentedTreeAxis targetTreeData={targetTreeData} />
       </Box>
     </>
   );

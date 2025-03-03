@@ -130,7 +130,7 @@ const TreeBranch: React.FC<TreeBranchProps> = ({
         return str;
     }
     return str.slice(0, maxLength - ellipsis.length) + ellipsis;
-}
+  }
 
 
 interface TreeAxisProps {
