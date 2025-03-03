@@ -9,6 +9,7 @@ interface UseOntologyLayoutProps {
   width: number;
   height: number;
   margin: { top: number; right: number; bottom: number; left: number };
+  currentExpanding?: AggregatedCandidate;
 }
 
 export const useOntologyLayout = ({
@@ -19,6 +20,7 @@ export const useOntologyLayout = ({
   width,
   height,
   margin,
+  currentExpanding,
 }: UseOntologyLayoutProps) => {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(
     new Set(["root"])
@@ -39,7 +41,6 @@ export const useOntologyLayout = ({
     }, [] as string[]);
 
     const usableWidth = width - margin.left - margin.right;
-    const usableHeight = height - margin.top - margin.bottom;
 
     const treeNodes: TreeNode[] = grandparents.map((grandparent, index) => {
       // Calculate category node position evenly across available space
@@ -52,33 +53,21 @@ export const useOntologyLayout = ({
         }
         return acc;
       }, [] as string[]);
-      // const grandparentPosition = (usableWidth * index) / grandparents.length;
+
       const grandparentPosition = 0;
-      const isExpanded =
-        expandedNodes.has(grandparent) ||
-        nodes.some(
-          (ontology) =>
-            expandedNodes.has(ontology.parent) ||
-            expandedNodes.has(ontology.name)
-        );
-      // const sortedParents = parents.sort((a, b) => {
-      //     const colsA = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === a).map(ontology => ontology.name);
-      //     const colsB = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === b).map(ontology => ontology.name);
-      //     const leftestColA = colsA.reduce((acc, col) => {
-      //         const colX = (scale(col) ?? 0) + (getWidth({targetColumn: col} as Candidate) ?? 0) / 2;
-      //         return Math.min(acc, colX);
-      //     }, Infinity);
-      //     const leftestColB = colsB.reduce((acc, col) => {
-      //         const colX = (scale(col) ?? 0) + (getWidth({targetColumn: col} as Candidate) ?? 0) / 2;
-      //         return Math.min(acc, colX);
-      //     }, Infinity);
+      // const isExpanded =
+      //   expandedNodes.has(grandparent) ||
+      //   nodes.some(
+      //     (ontology) =>
+      //       expandedNodes.has(ontology.parent) ||
+      //       expandedNodes.has(ontology.name)
+      //   );
 
-      //     return leftestColA - leftestColB;
-      // });
-      // sortedParents.forEach(parent => {
-      //     const cols = filteredOntologies.filter(ontology => ontology.grandparent === grandparent).filter(ontology => ontology.parent === parent).map(ontology => ontology.name);
-
-      // });
+      let isExpanded = true;
+      if (currentExpanding) {
+        isExpanded = nodes.some((ontology) => currentExpanding.targetColumn == ontology.name);
+      }
+      
 
       return {
         id: grandparent,
@@ -94,9 +83,10 @@ export const useOntologyLayout = ({
             .map((ontology) => ontology.name);
           const parentPosition =
             (usableWidth * (parents.indexOf(parent) + 0.5)) / parents.length;
-          const parentIsExpanded =
-            expandedNodes.has(parent) ||
-            cols.some((col) => expandedNodes.has(col));
+          let parentIsExpanded = true;
+          if (currentExpanding) {
+            parentIsExpanded = cols.some((col) => currentExpanding.targetColumn == col);
+          }
           // const parentIsExpanded = expandedNodes.size > 0;
           const layerIsExpanded = expandedNodes.size > 2;
           return {
@@ -108,7 +98,10 @@ export const useOntologyLayout = ({
             },
             level: 2,
             children: cols.map((col) => {
-              const childIsExpanded = expandedNodes.has(col);
+              let childIsExpanded = true;
+              if (currentExpanding) {
+                childIsExpanded = currentExpanding.targetColumn == col;
+              }
               return {
                 id: col,
                 label: {

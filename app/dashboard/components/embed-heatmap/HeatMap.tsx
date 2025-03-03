@@ -110,6 +110,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
     margin: MARGIN,
     scale: x,
     getWidth: getWidth,
+    currentExpanding: currentExpanding as AggregatedCandidate,
   });
   const targetLabelPlacements = useLabelManagement({
     nodes: targetTreeData,
@@ -297,7 +298,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
           targetExpandedNodes={targetExpandedNodes}
           toggleTargetNode={toggleTargetNode}
         /> */}
-        <IndentedTreeAxis targetTreeData={targetTreeData} />
+        <IndentedTreeAxis targetTreeData={targetTreeData} currentExpanding={currentExpanding as AggregatedCandidate} />
       </Box>
     </>
   );
