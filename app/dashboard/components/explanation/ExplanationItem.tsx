@@ -33,64 +33,58 @@ function ExplanationItem({
     return (
         <ListItem 
             disablePadding
-            sx={{ mb: 1 }}
+            sx={{
+                mb: 1,
+                borderRadius: 2,
+                border: '1px solid',
+                borderColor: 'divider',
+                position: 'relative',
+                overflow: 'hidden',
+                padding: 1,
+                boxShadow: 3,
+                backgroundColor: 'background.paper',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+                '&:hover': {
+                    transform: 'scale(1.02)',
+                    boxShadow: 6,
+                }
+            }}
         >
-            <ListItemButton
-                dense
-                onClick={() => onSelect(explanation)}
-                sx={{ 
-                    borderRadius: 1,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    '&:before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: `${explanation.confidence * 100}%`,
-                        height: '100%',
-                        bgcolor: explanation.isMatch ? 'lightgreen' : 'lightcoral',
-                        zIndex: 1
-                    },
-                    '&:hover:before': {
-                        bgcolor: explanation.isMatch ? 'green' : 'coral'
-                    }
-                }}
+            <ListItemText
+            primaryTypographyProps={{
+                sx: {
+                fontSize: '0.7rem',
+                fontWeight: 300,
+                color: explanation.isMatch ? 'text.primary' : 'error.main',
+                }
+            }}
+            secondaryTypographyProps={{
+                sx: {
+                fontSize: '0.65rem',
+                fontWeight: 400,
+                color: 'text.secondary'
+                }
+            }}
+            primary={explanation.reason}
+            secondary={explanation.reference}
+            sx={{ zIndex: 2 }}
+            />
+            <IconButton 
+            edge="end" 
+            sx={{ zIndex: 2 }}
+            onClick={() => onThumbUpClick(explanation.id)}
+            color={thumbUp ? 'primary' : 'default'}
             >
-                <ListItemIcon sx={{ zIndex: 2 }}>
-                    {getIcon(explanation.type)}
-                </ListItemIcon>
-                <ListItemText
-                    primary={explanation.reason}
-                    secondary={explanation.reference}
-                    sx={{ zIndex: 2 }}
-                />
-                <Checkbox 
-                    edge="end"
-                    checked={selected}
-                    onChange={() => onSelect(explanation)}
-                    sx={{ zIndex: 2 }}
-                    disabled
-                />
-                <IconButton 
-                    edge="end" 
-                    sx={{ zIndex: 2 }}
-                    onClick={() => onThumbUpClick(explanation.id)}
-                    color={thumbUp ? 'primary' : 'default'}
-                >
-                    <ThumbUpIcon />
-                </IconButton>
-                <IconButton 
-                    edge="end" 
-                    sx={{ zIndex: 2 }}
-                    onClick={() => onThumbDownClick(explanation.id)}
-                    color={thumbDown ? 'error' : 'default'}
-                >
-                    <ThumbDownIcon />
-                </IconButton>
-            </ListItemButton>
+            <ThumbUpIcon />
+            </IconButton>
+            <IconButton 
+            edge="end" 
+            sx={{ zIndex: 2 }}
+            onClick={() => onThumbDownClick(explanation.id)}
+            color={thumbDown ? 'error' : 'default'}
+            >
+            <ThumbDownIcon />
+            </IconButton>
         </ListItem>
     );
 }

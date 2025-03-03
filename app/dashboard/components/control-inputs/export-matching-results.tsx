@@ -3,23 +3,23 @@
 import { Box } from '@mui/material';
 import { BasicButton } from '../../layout/components';
 
-interface AcceptMatchButtonProps {
+interface ExportMatchingResultsButtonProps {
     onClick: () => void;
 }
 
-const AcceptMatchButton: React.FC<AcceptMatchButtonProps> = ({ onClick }) => {
+const ExportMatchingResultsButton: React.FC<ExportMatchingResultsButtonProps> = ({ onClick }) => {
     return (
         <Box sx={{ minWidth: 80, flexGrow: 1 }}>
             <BasicButton
-                variant="contained"
-                color="success"
+                variant="outlined"
+                color="secondary"
                 onClick={onClick}
                 fullWidth
             >
-                Accept
+                Export Results
             </BasicButton>
         </Box>
     );
 }
 
-export default AcceptMatchButton;
+export default ExportMatchingResultsButton;

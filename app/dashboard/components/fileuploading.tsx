@@ -4,7 +4,9 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper, IconButton } from "@mui/material";
+import { BasicButton } from "../layout/components";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { Dropzone } from "./file-upload/fileUploadBox";
@@ -60,35 +62,36 @@ const FileUploading = (prop: FileUploadingProps) => {
     }
 
     return (
-        <Paper sx={{ p: 2, width: "100%" }}>
+        <>
             {isVisible ? (
-                <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
-                    <Dropzone required name="my-file" />
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            sx={{ minHeight: 30, fontSize: 12 }}
-                        >IMPORT CSV</Button>
-                        <Button
-                            variant="outlined"
-                            color="info"
-                            onClick={() => setIsVisible(false)}
-                            sx={{ minHeight: 30, fontSize: 12 }}
-                        >CANCEL</Button>
-                    </Box>
-                </form>
+                <Paper sx={{ p: 2, width: "100%" }}>
+                    <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
+                        <Dropzone required name="my-file" />
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                            <BasicButton
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                            >Import CSV</BasicButton>
+                            <BasicButton
+                                variant="outlined"
+                                color="info"
+                                onClick={() => setIsVisible(false)}
+                            >Cancel</BasicButton>
+                        </Box>
+                    </form>
+                </Paper>
             ) : (
-                <Button
-                    variant="contained"
-                    color="info"
+                <IconButton
+                    color="primary"
                     onClick={() => setIsVisible(true)}
-                    fullWidth
-                    sx={{ minHeight: 30, fontSize: 12 }}
-                >UPLOAD SOURCE FILE</Button>
+                    sx={{ '&:hover': { color: 'primary.dark' } }}
+                    title="New matching task"
+                >
+                    <AddBoxIcon />
+                </IconButton>
             )}
-        </Paper>
+        </>
     );
 };
 

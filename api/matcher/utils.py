@@ -20,7 +20,7 @@ class BaseMatcher:
 
         Returns:
             Dict[str, List[Tuple[str, float]]]: A dictionary where the key is the source column name and the value, e.g.
-            [{"sourceColumn": "source_column_1", "targetColumn": "target_column_1", "score": 0.9, "matcher": "magneto_zs_bp"},
-            {"sourceColumn": "source_column_1", "targetColumn": "target_column_15", "score": 0.7, "matcher": "magneto_zs_bp"}, ...]
+            [{"sourceColumn": "source_column_1", "targetColumn": "target_column_1", "score": 0.9, "matcher": "magneto_zs_bp", "status": "idle"},
+            {"sourceColumn": "source_column_1", "targetColumn": "target_column_15", "score": 0.7, "matcher": "magneto_zs_bp", "status": "idle"}, ...]
         """
         pass

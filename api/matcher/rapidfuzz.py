@@ -1,9 +1,12 @@
+import logging
 from typing import Any, Dict, List, Tuple
 
 import pandas as pd
 from rapidfuzz import fuzz, process, utils
 
 from .utils import BaseMatcher
+
+logger = logging.getLogger("bdiviz_flask.sub")
 
 
 class RapidFuzzMatcher(BaseMatcher):
@@ -28,12 +31,24 @@ class RapidFuzzMatcher(BaseMatcher):
             matches = process.extract(
                 source_column,
                 target_columns,
-                scorer=fuzz.WRatio,
+                scorer=lambda x, y, score_cutoff: fuzz.token_set_ratio(x, y),
                 processor=utils.default_process,
                 limit=top_k,
             )
+            exact_matches = process.extract(
+                source_column,
+                [match[0] for match in matches],
+                scorer=lambda x, y, score_cutoff: fuzz.WRatio(x, y, score_cutoff=95),
+                processor=utils.default_process,
+                limit=top_k,
+            )
+            exact_matches = {match[0] for match in exact_matches if match[1] >= 95}
+
             for match in matches:
-                score = match[1] / 100
+                if match[0] in exact_matches:
+                    score = 1.0
+                else:
+                    score = match[1] / 100
                 if score > 0:
                     ret[source_column][match[0]] = score
         return ret
@@ -51,6 +66,7 @@ class RapidFuzzMatcher(BaseMatcher):
                     "targetColumn": target_column,
                     "score": score,
                     "matcher": matcher,
+                    "status": "idle",
                 }
             layered_candidates.append(candidate)
         return layered_candidates

@@ -1,13 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import * as d3 from "d3";
-import { useWhatChanged } from '@simbathesailor/use-what-changed';
-import { useTreeLayout } from '../components/embed-heatmap/tree/useTreeLayout';
 
 type DashboardInterfacesState = {
     filteredCandidates: Candidate[];
     filteredSourceCluster: string[];
     filteredCandidateCluster: string[];
     weightedAggregatedCandidates: AggregatedCandidate[];
+    filteredSourceColumns: SourceColumn[];
 }
 
 type DashboardInterfacesProps = {
@@ -21,6 +20,7 @@ type DashboardInterfacesProps = {
         similarSources: number;
         candidateThreshold: number;
         selectedMatcher?: Matcher;
+        status: string[];
     };
 }
 
@@ -36,6 +36,9 @@ export const {
 
         const filteredSourceCluster = useMemo(() => {
             if (filters?.sourceColumn) {
+                if (filters.sourceColumn === 'all') {
+                    return sourceClusters?.map(sc => sc.sourceColumn) ?? [];
+                }
                 const sourceCluster = sourceClusters?.find(sc =>
                     sc.sourceColumn === filters.sourceColumn
                 );
@@ -65,7 +68,8 @@ export const {
                     sourceColumn: items[0].sourceColumn,
                     targetColumn: items[0].targetColumn,
                     matchers: items.map(d => d.matcher).filter((m): m is string => m !== undefined),
-                    score: d3.sum(items, d => d.score * (matchers.find(m => m.name === d.matcher)?.weight ?? 1))
+                    score: d3.sum(items, d => d.score * (matchers.find(m => m.name === d.matcher)?.weight ?? 1)),
+                    status: items[0].status ?? '',
                 };
             }).flat().sort((a, b) => b.score - a.score).map((d, idx) => ({ id: idx + 1, ...d }));
 
@@ -73,14 +77,30 @@ export const {
                 aggregatedCandidates = aggregatedCandidates.filter((d) => d.score >= filters.candidateThreshold);
             }
 
+            if (filters.status.length > 0) {
+                aggregatedCandidates = aggregatedCandidates.filter((d) => filters.status.includes(d.status));
+            }
+
             return aggregatedCandidates;
-        }, [filteredCandidates, matchers, filters.candidateThreshold]);
+        }, [filteredCandidates, matchers, filters.candidateThreshold, filters.status]);
+
+        const filteredSourceColumns = useMemo(() => {
+        const groupedSourceColumns = Array.from(d3.group(candidates, d => d.sourceColumn), ([name, items]: [string, Candidate[]]) => {
+            return {
+                name,
+                status: items.some(item => item.status === 'accepted') ? 'complete' : (items.every(item => item.status === 'discarded') ? 'ignored' : 'incomplete')
+            } as SourceColumn;
+        });
+
+            return groupedSourceColumns;
+        }, [candidates]);
 
         return {
             filteredCandidates,
             filteredSourceCluster,
             filteredCandidateCluster,
             weightedAggregatedCandidates,
+            filteredSourceColumns,
         };
     }
 }

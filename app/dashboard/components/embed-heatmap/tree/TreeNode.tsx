@@ -1,19 +1,22 @@
 // components/TreeNode.tsx
 import React from 'react';
 import { TreeNode } from './types';
+import { NumberValue } from 'd3';
 
 interface TreeNodeProps {
   node: TreeNode;
   isExpanded: boolean;
   onToggle: (nodeId: string) => void;
   orientation: 'vertical' | 'horizontal';
+  level: NumberValue
 }
 
 export const TreeNodeComponent: React.FC<TreeNodeProps> = ({
   node,
   isExpanded,
   onToggle,
-  orientation
+  orientation,
+  level
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

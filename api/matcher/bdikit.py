@@ -56,6 +56,7 @@ class BDIKitMatcher(BaseMatcher):
                 "targetColumn": row["target"],
                 "score": row["similarity"],
                 "matcher": matcher,
+                "status": "idle",
             }
 
             layered_candidates.append(candidate)

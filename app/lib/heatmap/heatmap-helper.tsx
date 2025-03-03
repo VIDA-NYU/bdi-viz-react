@@ -69,7 +69,7 @@ const getValueBins = (prop: getUniqueValuesProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.post(`/api/value-bins`, {
+        axios.post(`/api/value/bins`, {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -117,7 +117,7 @@ const getValueMatches = (prop: getValueMatchesProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.post(`/api/value-matches`, {
+        axios.post(`/api/value/matches`, {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -193,7 +193,7 @@ const getTargetOntology = (prop: targetOntologyProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.post("/api/gdc-ontology", {
+        axios.post("/api/gdc/ontology", {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -381,8 +381,46 @@ const getGDCAttribute = (prop: getGDCAttributeProps) => {
     });
 }
 
+interface getCandidatesResultProps {
+    callback: (candidates: CandidateResult[]) => void;
+}
+
+const getCandidatesResult = (prop: getCandidatesResultProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.post("/api/candidates/results", {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then((response) => {
+            const results = response.data?.results;
+            if (results && Array.isArray(results)) {
+                const candidates = results.map((result: object) => {
+                    try {
+                        return result as CandidateResult;
+                    } catch (error) {
+                        console.error("Error parsing result to CandidateResult:", error);
+                        return null;
+                    }
+                }).filter((candidate: CandidateResult | null) => candidate !== null);
+
+                console.log("getCandidatesResult finished!");
+                prop.callback(candidates);
+                resolve();
+            } else {
+                console.error("Invalid results format");
+                reject(new Error("Invalid results format"));
+            }
+        }).catch((error) => {
+            console.error("Error getting candidates result:", error);
+            reject(error);
+        });
+    });
+}
 
 
 
 
-export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute };
+
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult };

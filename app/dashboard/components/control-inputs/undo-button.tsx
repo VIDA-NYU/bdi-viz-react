@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
+import { BasicButton } from '../../layout/components';
 
 interface UndoButtonProps {
     onClick: () => void;
@@ -8,16 +9,15 @@ interface UndoButtonProps {
 
 const UndoButton: React.FC<UndoButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <Button
+        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
+            <BasicButton
                 variant="outlined"
                 color="primary"
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
             >
                 Undo
-            </Button>
+            </BasicButton>
         </Box>
     );
 }

@@ -1,14 +1,13 @@
 'use client';
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import { Box, CircularProgress, Typography, Switch } from "@mui/material";
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 
-import LeftPanel from "./left-panel";
-
+import SearchBar from "./components/search/searchBar";
+import LeftPanel from "./leftpanel";
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
-import CombinedView from "./components/explanation/CombinedView";
-import { AuxColumn } from "./layout/components";
+import RightPanel from "./rightpanel";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
@@ -60,10 +59,14 @@ export default function Dashboard() {
         candidateType,
         similarSources,
         candidateThreshold,
+        searchResults,
+        status,
         updateSourceColumn,
         updateCandidateType,
         updateSimilarSources,
         updateCandidateThreshold,
+        updateSearchResults,
+        updateStatus,
     } = useDashboardFilters({ candidates, sourceClusters, matchers });
 
     const {
@@ -74,6 +77,7 @@ export default function Dashboard() {
         thumbDownExplanations,
         matchingValues,
         relevantKnowledge,
+        setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,
@@ -88,7 +92,8 @@ export default function Dashboard() {
         redo,
         explain,
         apply,
-        filterExactMatches,
+        // filterExactMatches,
+        exportMatchingResults,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -108,6 +113,7 @@ export default function Dashboard() {
         filteredSourceCluster,
         filteredCandidateCluster,
         weightedAggregatedCandidates,
+        filteredSourceColumns,
     } = useDashboardInterfaces({
         candidates,
         sourceClusters,
@@ -118,6 +124,7 @@ export default function Dashboard() {
             candidateType,
             similarSources,
             candidateThreshold,
+            status,
         }
     });
 
@@ -126,7 +133,7 @@ export default function Dashboard() {
         highlightedTargetColumns,
         updateHighlightedSourceColumns,
         updateHighlightedTargetColumns
-    } = useDashboardHighlight({candidates});
+    } = useDashboardHighlight({candidates, searchResults});
 
     function handleSuggestions(suggestions: AgentSuggestions | undefined) {
         console.log("Suggestions: ", suggestions);
@@ -161,7 +168,19 @@ export default function Dashboard() {
         }
         toastify("default", <p><strong>Source: </strong>{candidate.sourceColumn}, <strong>Target: </strong>{candidate.targetColumn}</p>, { autoClose: 200 });
         setSelectedCandidate(candidate);
-        explain(candidate);
+
+        if (!(candidate as AggregatedCandidate).matchers.includes("candidate_quadrants")) {
+            explain(candidate);
+        } else {
+            setIsMatch(true);
+        }
+    }
+
+    function onGenerateExplanation() {
+        toastify("default", `Generating explanations for ${selectedCandidate?.sourceColumn}...`, { autoClose: 200 });
+        if (selectedCandidate) {
+            explain(selectedCandidate);
+        }
     }
 
     function onSelectedActions(actions: AgentAction[]) {
@@ -181,12 +200,20 @@ export default function Dashboard() {
         updateSourceColumn(column);
     }
 
+    function handleSearchResults(results: Candidate[]) {
+        console.log("Search Results: ", results);
+        updateSearchResults(results);
+    }
+
     return (
         <RootContainer>
             <Header>
                 <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems="center">
                     <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-                        <Typography sx={{ fontSize: "1.5rem", fontWeight: "900" }}>BDI Visualization System</Typography>
+                        <Typography sx={{ fontSize: "1.2rem", fontWeight: "200" }}>BDI Visualization System</Typography>
+                        <Box display="flex" alignItems="center" width="400pt">
+                            <SearchBar searchResultCallback={handleSearchResults} />
+                        </Box>
                         <Box display="flex" alignItems="center">
                             <Typography sx={{ fontSize: "1rem", fontWeight: "300", marginRight: 0 }}>Developer Mode</Typography>
                             <Switch
@@ -202,7 +229,7 @@ export default function Dashboard() {
             <MainContent>
                 <LeftPanel
                     containerStyle={{ marginBottom: 0, flexGrow: 0 }}
-                    sourceColumns={Array.from(new Set(candidates.map(c => c.sourceColumn)))}
+                    sourceColumns={filteredSourceColumns}
                     matchers={matchers}
                     onSourceColumnSelect={handleUpdateSourceColumn}
                     onCandidateTypeSelect={updateCandidateType}
@@ -213,7 +240,7 @@ export default function Dashboard() {
                     discardColumn={discardColumn}
                     undo={undo}
                     redo={redo}
-                    filterEasyCases={filterExactMatches}
+                    exportMatchingResults={exportMatchingResults}
                     onMatchersSelect={(matchers: Matcher[]) => {
                         setMatchers(matchers);
                     }}
@@ -238,13 +265,7 @@ export default function Dashboard() {
                 <MainColumn>
                     <UpperTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
-                        matchers={matchers}
-                        selectedCandidate={selectedCandidate}
-                        selectedSourceColumn={sourceColumn}
-                        valueMatches={valueMatches}
-                    />
-                    <LowerTabs
-                        weightedAggregatedCandidates={weightedAggregatedCandidates}
+                        sourceColumn={sourceColumn}
                         sourceCluster={filteredSourceCluster}
                         targetOntologies={targetOntologies}
                         selectedCandidate={selectedCandidate}
@@ -253,31 +274,34 @@ export default function Dashboard() {
                         targetUniqueValues={targetUniqueValues}
                         highlightSourceColumns={highlightedSourceColumns}
                         highlightTargetColumns={highlightedTargetColumns}
+                        updateStatus={updateStatus}
+                    />
+                    <LowerTabs
+                        weightedAggregatedCandidates={weightedAggregatedCandidates}
+                        matchers={matchers}
+                        selectedCandidate={selectedCandidate}
+                        selectedSourceColumn={sourceColumn}
+                        valueMatches={valueMatches}
                     />
                 </MainColumn>
 
                 {/* Right Column - Auxiliary Visualizations */}
-                <AuxColumn>
-                    <CombinedView
-                        isMatch={isMatch}
-                        currentExplanations={currentExplanations}
-                        selectedExplanations={selectedExplanations}
-                        thumbUpExplanations={thumbUpExplanations}
-                        thumbDownExplanations={thumbDownExplanations}
-                        matchingValues={matchingValues}
-                        relevantKnowledge={relevantKnowledge}
-                        isLoading={isExplaining}
-                        setSelectExplanations={setSelectedExplanations}
-                        setThumbUpExplanations={setThumbUpExplanations}
-                        setThumbDownExplanations={setThumbDownExplanations}
-                        sourceColumn={selectedCandidate?.sourceColumn}
-                        targetColumn={selectedCandidate?.targetColumn}
-                        gdcAttribute={gdcAttribute}
-                    />
-                    {/* <MediumVizContainer>
-            <Typography variant="h6">Value Distribution</Typography>
-          </MediumVizContainer> */}
-                </AuxColumn>
+                <RightPanel
+                    isMatch={isMatch}
+                    currentExplanations={currentExplanations}
+                    selectedExplanations={selectedExplanations}
+                    thumbUpExplanations={thumbUpExplanations}
+                    thumbDownExplanations={thumbDownExplanations}
+                    matchingValues={matchingValues}
+                    relevantKnowledge={relevantKnowledge}
+                    isLoading={isExplaining}
+                    setSelectExplanations={setSelectedExplanations}
+                    setThumbUpExplanations={setThumbUpExplanations}
+                    setThumbDownExplanations={setThumbDownExplanations}
+                    selectedCandidate={selectedCandidate}
+                    onGenerateExplanation={onGenerateExplanation}
+                    gdcAttribute={gdcAttribute}
+                />
             </MainContent>
 
             {/* Loading Overlay */}

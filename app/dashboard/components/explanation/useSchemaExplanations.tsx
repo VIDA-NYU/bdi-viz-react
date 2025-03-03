@@ -48,6 +48,7 @@ const useSchemaExplanations = () => {
         thumbDownExplanations,
         matchingValues,
         relevantKnowledge,
+        setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,

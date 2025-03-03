@@ -23,7 +23,7 @@ GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.c
 
 app = Flask("bdiviz_flask")
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024
-app.logger.setLevel(logging.DEBUG)
+app.logger.setLevel(logging.INFO)
 
 
 @app.route("/api/matching", methods=["POST"])
@@ -73,15 +73,15 @@ def get_results():
             matching_task.update_dataframe(
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
-        _ = matching_task.get_candidates()
-        # AGENT.remember_candidates(candidates)
+        candidates = matching_task.get_candidates()
+        AGENT.remember_candidates(candidates)
 
     results = matching_task.to_frontend_json()
 
     return {"message": "success", "results": results}
 
 
-@app.route("/api/value-bins", methods=["POST"])
+@app.route("/api/value/bins", methods=["POST"])
 def get_unique_values():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
@@ -98,7 +98,7 @@ def get_unique_values():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/value-matches", methods=["POST"])
+@app.route("/api/value/matches", methods=["POST"])
 def get_value_matches():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
@@ -115,7 +115,7 @@ def get_value_matches():
     return {"message": "success", "results": results}
 
 
-@app.route("/api/gdc-ontology", methods=["POST"])
+@app.route("/api/gdc/ontology", methods=["POST"])
 def get_gdc_ontology():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
@@ -128,6 +128,28 @@ def get_gdc_ontology():
             )
         _ = matching_task.get_candidates()
     results = matching_task._generate_gdc_ontology()
+
+    return {"message": "success", "results": results}
+
+
+@app.route("/api/gdc/property", methods=["POST"])
+def get_gdc_property():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    target_col = request.json["targetColumn"]
+
+    property = load_gdc_property(target_col)
+
+    return {"message": "success", "property": property}
+
+
+@app.route("/api/candidates/results", methods=["POST"])
+def get_candidates_results():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    results = matching_task.get_accepted_candidates()
 
     return {"message": "success", "results": results}
 
@@ -248,6 +270,17 @@ def agent_suggest():
     return response
 
 
+@app.route("/api/agent/thumb", methods=["POST"])
+def agent_thumb():
+    data = request.json
+    explanation = data["explanation"]
+    user_operation = data["userOperation"]
+
+    AGENT.remember_explanation([explanation], user_operation)
+
+    return {"message": "success"}
+
+
 @app.route("/api/agent/apply", methods=["POST"])
 def agent_apply():
     session = extract_session_name(request)
@@ -323,15 +356,3 @@ def get_history():
     history = matching_task.history.export_history_for_frontend()
 
     return {"message": "success", "history": history}
-
-
-@app.route("/api/gdc/property", methods=["POST"])
-def get_gdc_property():
-    session = extract_session_name(request)
-    matching_task = SESSION_MANAGER.get_session(session).matching_task
-
-    target_col = request.json["targetColumn"]
-
-    property = load_gdc_property(target_col)
-
-    return {"message": "success", "property": property}

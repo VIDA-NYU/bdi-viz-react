@@ -12,7 +12,6 @@ interface TimelineProps {
 
 const Timeline = ({ userOperations }: TimelineProps) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
-    // const boxRef = useRef<HTMLDivElement | null>(null);
     const [expandedNode, setExpandedNode] = useState<number | null>(null);
     const theme = useTheme();
 
@@ -22,8 +21,7 @@ const Timeline = ({ userOperations }: TimelineProps) => {
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove(); // Clear previous content
 
-        // const boxWidth = boxRef.current?.clientWidth || 200;
-        const width = 380;
+        const width = 290;
         const height = (nodes.length + 1) * 100; // Adjust height for the start node
 
         svg.attr("width", width).attr("height", height);
@@ -34,9 +32,9 @@ const Timeline = ({ userOperations }: TimelineProps) => {
             .enter()
             .append("line")
             .attr("class", "link")
-            .attr("x1", width / 2)
+            .attr("x1", 50)
             .attr("y1", (d, i) => i * 100 + 50)
-            .attr("x2", width / 2)
+            .attr("x2", 50)
             .attr("y2", (d, i) => (i + 1) * 100 + 22)
             .attr("stroke", theme.palette.primary.main)
             .attr("stroke-width", 2)
@@ -46,7 +44,7 @@ const Timeline = ({ userOperations }: TimelineProps) => {
         const startNodeGroup = svg
             .append("g")
             .attr("class", "start-node")
-            .attr("transform", `translate(${width / 2}, 50)`);
+            .attr("transform", `translate(50, 50)`);
 
         startNodeGroup
             .append("circle")
@@ -59,7 +57,7 @@ const Timeline = ({ userOperations }: TimelineProps) => {
             .enter()
             .append("g")
             .attr("class", "node")
-            .attr("transform", (d, i) => `translate(${width / 2}, ${(i + 1) * 100 + 50})`)
+            .attr("transform", (d, i) => `translate(50, ${(i + 1) * 100 + 50})`)
             .on("mouseover", (event, d) => {
                 setExpandedNode(d.timelineId);
             })
@@ -69,7 +67,7 @@ const Timeline = ({ userOperations }: TimelineProps) => {
 
         nodeGroup
             .append("circle")
-            .attr("r", 25)
+            .attr("r", 20)
             .attr("fill", d => d.operation === 'accept' ? theme.palette.success.main : d.operation === 'reject' ? theme.palette.error.main : theme.palette.secondary.main);
 
         nodeGroup
@@ -77,52 +75,26 @@ const Timeline = ({ userOperations }: TimelineProps) => {
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
             .attr("fill", theme.palette.common.white)
-            .attr("font-size", theme.typography.fontSize)
+            .attr("font-size", "0.7rem")
             .attr("font-weight", "400")
             .attr("font-family", `"Roboto","Helvetica","Arial",sans-serif`)
             .text(d => d.operation);
 
-        if (expandedNode !== null) {
-            const expandedNodeData = nodes.find(node => node.timelineId === expandedNode);
-            if (expandedNodeData) {
-                const expandedGroup = svg
-                    .append("g")
-                    .attr("class", "expanded-node")
-                    .attr("transform", `translate(${width / 2}, ${(expandedNodeData.timelineId + 1) * 100 + 50})`);
-
-                expandedGroup
-                    .append("rect")
-                    .attr("x", -(width-20)/2)
-                    .attr("y", -50)
-                    .attr("width", width-20)
-                    .attr("height", 150)
-                    .attr("rx", 10)
-                    .attr("ry", 10)
-                    .attr("fill", theme.palette.background.paper)
-                    .attr("stroke", theme.palette.info.main)
-                    .attr("stroke-width", 1);
-
-                expandedGroup
-                    .append("foreignObject")
-                    .attr("x", -(width-20)/2)
-                    .attr("y", -40)
-                    .attr("width", width-20)
-                    .attr("height", 150)
-                    .append("xhtml:div")
-                    .style("font-size", theme.typography.fontSize)
-                    .attr("font-weight", "300")
-                    .style("font", `"Roboto","Helvetica","Arial",sans-serif`)
-                    .style("text-align", "center")
-                    .style("padding", "10px")
-                    .style("color", theme.palette.text.primary)
-                    .html(`
-                        <b>Operation:</b> ${expandedNodeData.operation}<br/>
-                        <b>Candidate:</b><br/>
-                        ${expandedNodeData.candidate?.sourceColumn}<br/>
-                        ${expandedNodeData.candidate?.targetColumn}
-                    `);
-            }
-        }
+        nodeGroup
+            .append("foreignObject")
+            .attr("x", 30)
+            .attr("y", -15)
+            .attr("width", 200)
+            .attr("height", 50)
+            .append("xhtml:div")
+            .style("background", theme.palette.grey[200])
+            .style("padding", "5px")
+            .style("border-radius", "5px")
+            .style("font-size", "0.7rem")
+            .style("font-family", `"Roboto","Helvetica","Arial",sans-serif`)
+            .html(d => `
+                <b>${d.candidate?.sourceColumn}</b> -> ${d.candidate?.targetColumn}
+            `);
 
         svg
             .append("defs")

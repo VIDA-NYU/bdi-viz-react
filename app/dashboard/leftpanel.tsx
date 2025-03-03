@@ -3,12 +3,13 @@
 import { LeftColumn } from "./layout/components";
 import ControlPanel from "./components/controlpanel";
 import DecisionPanel from "./components/decisionpanel";
+import ShortcutPanel from "./components/shortcutpanel";
 import Timeline from "./components/timeline/timeline";
 import FileUploading from "./components/fileuploading";
 
 interface LeftPanelProps {
     // ControlPanel Props
-    sourceColumns: string[];
+    sourceColumns: SourceColumn[];
     matchers: Matcher[];
     isFloating?: boolean;
     width?: string | number;
@@ -33,7 +34,8 @@ interface LeftPanelProps {
     discardColumn: () => void;
     undo: () => void;
     redo: () => void;
-    filterEasyCases: () => void;
+    // filterEasyCases: () => void;
+    exportMatchingResults: () => void;
 
     // Timeline Props
     userOperations: UserOperation[];
@@ -61,7 +63,7 @@ const LeftPanel = ({
     discardColumn,
     undo,
     redo,
-    filterEasyCases,
+    exportMatchingResults,
     // Timeline Props
     userOperations,
     // File Uploading Props
@@ -70,7 +72,9 @@ const LeftPanel = ({
 
     return (
         <LeftColumn>
-            <FileUploading callback={handleFileUpload} />
+            <ShortcutPanel
+                handleFileUpload={handleFileUpload}
+            />
             <ControlPanel
                 sourceColumns={sourceColumns}
                 matchers={matchers}
@@ -90,7 +94,7 @@ const LeftPanel = ({
                 discardColumn={discardColumn}
                 undo={undo}
                 redo={redo}
-                filterEasyCases={filterEasyCases}
+                exportMatchingResults={exportMatchingResults}
             />
 
             

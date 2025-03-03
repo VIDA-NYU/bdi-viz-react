@@ -4,6 +4,7 @@ declare interface Candidate {
     targetColumn: string;
     score: number;
     matcher?: string;
+    status?: string; // accepted, rejected, discarded, idle
 }
 
 type AggregatedCandidate = {
@@ -12,6 +13,12 @@ type AggregatedCandidate = {
     targetColumn: string;
     matchers: string[];
     score: number;
+    status: string;
+}
+
+declare interface SourceColumn {
+    name: string;
+    status: string; // 'complete', 'incomplete', 'discard'
 }
 
 declare interface SourceCluster {
@@ -62,21 +69,12 @@ declare interface UserOperation {
     references: Candidate[]; // the references to the candidate
 }
 
-declare interface ExplanationObject {
-    id: string;
-    isMatch: boolean;
-    type: string;
-    reason: string;
-    reference: string;
-    confidence: number;
-}
-
 declare type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
 
 declare interface Explanation {
     id: string;
     isMatch: boolean;
-    type: ExplanationType;
+    type: ExplanationType | string;
     reason: string;
     reference: string;
     confidence: number;
@@ -89,7 +87,7 @@ declare interface RelevantKnowledge {
 
 declare interface CandidateExplanation {
     isMatch: boolean;
-    explanations: ExplanationObject[];
+    explanations: Explanation[];
     matchingValues?: string[][]; // [source value, target value]
     relevantKnowledge?: RelevantKnowledge[];
 }
@@ -135,4 +133,11 @@ declare interface GDCAttribute {
 declare interface GDCDescription {
     description: string;
     termDef?: object;
+}
+
+declare interface CandidateResult {
+    sourceColumn: string;
+    targetColumn: string;
+    sourceValues: string[];
+    targetValues: string[];
 }

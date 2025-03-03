@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
+import { BasicButton } from '../../layout/components';
 
 interface DiscardColumnButtonProps {
     onClick: () => void;
@@ -8,16 +9,15 @@ interface DiscardColumnButtonProps {
 
 const DiscardColumnButton: React.FC<DiscardColumnButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <Button
+        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
+            <BasicButton
                 variant="contained"
                 color='info'
                 onClick={onClick}
                 fullWidth
-                sx={{ minHeight: 60, fontSize: 12 }}
             >
-                Discard 
-            </Button>
+                Discard
+            </BasicButton>
         </Box>
     );
 }

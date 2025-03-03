@@ -18,7 +18,8 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
   
     return useMemo(() => {
         const xColumns = [...new Set(data.map(d => d.targetColumn))];
-        const yColumns = sourceCluster ?? [...new Set(data.map(d => d.sourceColumn))];
+        const yColumns = (sourceCluster ? [...sourceCluster] : [...new Set(data.map(d => d.sourceColumn))]).reverse();
+        
 
         const numColumnsX = xColumns.length;
         const numColumnsY = yColumns.length;
@@ -31,8 +32,9 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         // Dynamic cell sizing
         const baseWidth = totalWidth / numColumnsX;
         const baseHeight = totalHeight / numColumnsY;
-        const expandedWidth = Math.min(baseWidth * 6, width - margin.left - margin.right);
-        const expandedHeight = Math.min(baseHeight * 2, height - margin.top - margin.bottom);
+        const expandMultiplier = Math.max(numColumnsY / 5, 1);
+        const expandedWidth = Math.min(baseWidth * 3 * expandMultiplier, width - margin.left - margin.right);
+        const expandedHeight = Math.min(baseHeight * 2 * expandMultiplier, height - margin.top - margin.bottom);
           
         const shrunkWidth = numColumnsX > 1 ? (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1) : 0;
         const shrunkHeight = numColumnsY > 1 ? (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1) : 0;
@@ -90,14 +92,19 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         //       .domain(data.map(d => d.sourceColumn))
         //       .padding(0.1);
   
-          // Color scale remains unchanged
-          const minScore = d3.min(data, d => d.score) ?? 0;
-          const maxScore = d3.max(data, d => d.score) ?? 1;
-          const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
-          const color = d3.scaleSequential()
-              .interpolator(getColorInterpolator(config.colorScheme))
-              .domain([minScore - padding, maxScore + padding]);
-  
+        // Color scale remains unchanged
+        
+        //   const minScore = d3.min(data, d => d.score) ?? 0;
+        //   const maxScore = Math.min(d3.max(data, d => d.score) ?? 1, 1);
+        const minScore = 0;
+        const maxScore = 1;
+
+        const padding = ((maxScore - minScore) * config.colorScalePadding) / 100;
+
+        const color = d3.scaleSequential()
+            .interpolator(getColorInterpolator(config.colorScheme))
+            .domain([minScore - padding, maxScore + padding]);
+        
           return {
                 x,
                 y,

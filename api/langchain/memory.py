@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from uuid import uuid4
 
 from langchain.embeddings import init_embeddings
-from langchain_core.tools import tool
+from langchain.tools import StructuredTool
 from langchain_huggingface import HuggingFaceEmbeddings
 from langgraph.store.memory import InMemoryStore
 
@@ -117,30 +117,33 @@ class MemoryRetriver:
         for fn in FN_CANDIDATES:
             self.put_match(fn)
 
-    # [candidates]
-    @tool
-    def query_candidates(
-        self,
-        keywords: List[str],
-        source_column: Optional[str] = None,
-        target_column: Optional[str] = None,
-        matcher: Optional[str] = None,
-        limit: int = 10,
-    ) -> List[Dict[str, Any]]:
-        """
+        self.query_candidates_tool = StructuredTool.from_function(
+            func=self.query_candidates,
+            name="query_candidates",
+            description="""
         Query the candidates from agent memory retriver.
         Args:
             keywords (List[str]): The keywords to search.
             source_column (Optional[str], optional): The source column name. Defaults to None.
             target_column (Optional[str], optional): The target column name. Defaults to None.
-            matcher (Optional[str], optional): The matcher name. Defaults to None.
-            limit (int, optional): The number of candidates to return. Defaults to 10.
+            limit (int, optional): The number of candidates to return. Defaults to 20.
         Returns:
             List[Dict[str, Any]]: The list of candidates.
-        """
+        """.strip(),
+        )
+
+    # [candidates]
+    def query_candidates(
+        self,
+        keywords: List[str],
+        source_column: Optional[str] = None,
+        target_column: Optional[str] = None,
+        # matcher: Optional[str] = None,
+        limit: int = 20,
+    ) -> List[Dict[str, Any]]:
         query = ",".join(keywords)
-        if matcher is not None:
-            query = f"{matcher}::{query}"
+        # if matcher is not None:
+        #     query = f"{matcher}::{query}"
 
         if target_column is not None:
             query = f"{target_column}::{query}"
@@ -148,7 +151,8 @@ class MemoryRetriver:
         if source_column is not None:
             query = f"{source_column}::{query}"
 
-        return self.search_candidates(query, limit)
+        results = self.search_candidates(query, limit)
+        return results
 
     # puts
     def put_candidate(self, value: Dict[str, Any]):
@@ -161,8 +165,16 @@ class MemoryRetriver:
             'matcher': 'magneto_zs_bp'
         }
         """
-        key = f"{value['sourceColumn']}::{value['targetColumn']}::{value['matcher']}"
-        self.put((self.user_id, "candidates"), key, value)
+        key = f"{value['sourceColumn']}::{value['targetColumn']}"
+        self.put(
+            (self.user_id, "candidates"),
+            key,
+            {
+                "sourceColumn": value["sourceColumn"],
+                "targetColumn": value["targetColumn"],
+                "score": value["score"],
+            },
+        )
 
     def put_match(self, value: Dict[str, Any]):
         """
@@ -225,7 +237,8 @@ class MemoryRetriver:
             explanations = [
                 {
                     "type": explanation["type"],
-                    "content": explanation["content"],
+                    "reason": explanation["reason"],
+                    "reference": explanation["reference"],
                     "confidence": explanation["confidence"],
                 }
                 for explanation in explanations
@@ -262,7 +275,7 @@ class MemoryRetriver:
         if key is None:
             key = str(uuid4())
         if self.store.get(namespace, key) is not None:
-            logger.info(
+            logger.debug(
                 f"Key {key} already exists in namespace {namespace}, updating value"
             )
             self.store.delete(namespace, key)
@@ -274,7 +287,7 @@ class MemoryRetriver:
             key = str(uuid4())
 
         if await self.store.aget(namespace, key) is not None:
-            logger.info(
+            logger.debug(
                 f"Key {key} already exists in namespace {namespace}, updating value"
             )
             await self.store.adelete(namespace, key)

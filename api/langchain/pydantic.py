@@ -26,7 +26,16 @@ class CandidateObject(BaseModel):
     sourceColumn: str = Field(description="The source column name")
     targetColumn: str = Field(description="The target column name")
     score: float = Field(description="The score of the candidate")
-    matcher: str = Field(description="The matcher used for the candidate")
+    # matcher: str = Field(description="The matcher used for the candidate")
+
+
+class SearchResponse(BaseModel):
+    """Response from the agent search."""
+
+    status: str = Field(description="The status of the response: success or failure")
+    candidates: Optional[List[CandidateObject]] = Field(
+        description="The searched candidates"
+    )
 
 
 class DiagnoseObject(BaseModel):
@@ -48,7 +57,7 @@ class AgentSuggestions(BaseModel):
     )
 
 
-class ExplanationObject(BaseModel):
+class Explanation(BaseModel):
     """Detailed explanation for a candidate match or mismatch."""
 
     type: str = Field(
@@ -78,7 +87,7 @@ class RelevantKnowledge(BaseModel):
 class CandidateExplanation(BaseModel):
     """Explanation for the candidate based on the diagnosis."""
 
-    explanations: List[ExplanationObject] = Field(
+    explanations: List[Explanation] = Field(
         description="List of explanations for the candidate."
     )
     is_match: bool = Field(description="Flag indicating if the candidate is a match")

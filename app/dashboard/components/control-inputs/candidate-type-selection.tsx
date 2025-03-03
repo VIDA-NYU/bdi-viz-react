@@ -17,14 +17,19 @@ const CandidateTypeSelection: React.FC<CandidateTypeSelectionProps> = ({ onSelec
 
     return (
         <Box sx={{ minWidth: 120, flexGrow: 1 }}>
-            <FormControl fullWidth>
-                <InputLabel id="candidate-type-select-label">Candidate Type</InputLabel>
+            <FormControl size="small" fullWidth>
+                <InputLabel id="candidate-type-select-label">Data Type</InputLabel>
                 <Select
                     labelId="candidate-type-select-label"
                     id="candidate-type-select"
                     value={candidateType}
-                    label="Candidate Type"
+                    label="Data Type"
                     onChange={(e) => handleChange(e.target.value as string)}
+                    sx={{
+                        '& .MuiSelect-select': {
+                            fontSize: 12,
+                        },
+                    }}
                 >
                     <MenuItem key='all' value='all'>All</MenuItem>
                     <MenuItem key='enum' value='enum'>Enum</MenuItem>

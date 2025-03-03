@@ -1,57 +1,97 @@
-'use client';
+"use client";
 
-import { useState } from "react";
-import UpsetPlot from "./upset-plot/UpsetPlot";
-import ValueComparisonTable from "./value-comparisons/value-comparison-table";
+import { useState, useContext } from "react";
+import { Box, Tab } from "@mui/material";
+import { TabList, TabContext } from "@mui/lab";
 
-import { Box, Tab, Paper } from "@mui/material";
-import { TabPanel, TabList, TabContext } from '@mui/lab';
+import HeatMap from "./embed-heatmap/HeatMap";
+import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
 interface UpperTabsProps {
   weightedAggregatedCandidates: AggregatedCandidate[];
-  matchers: Matcher[];
-  selectedCandidate?: Candidate;
-  selectedSourceColumn: string;
-  valueMatches: ValueMatch[];
+  sourceColumn: string;
+  sourceCluster: string[];
+  targetOntologies: TargetOntology[];
+  selectedCandidate: Candidate | undefined;
+  setSelectedCandidate: (candidate: Candidate | undefined) => void;
+  sourceUniqueValues: SourceUniqueValues[];
+  targetUniqueValues: TargetUniqueValues[];
+  highlightSourceColumns: string[];
+  highlightTargetColumns: string[];
+  updateStatus: (status: string[]) => void;
 }
 
 const UpperTabs: React.FC<UpperTabsProps> = ({
   weightedAggregatedCandidates,
-  matchers,
+  sourceColumn,
+  sourceCluster,
+  targetOntologies,
   selectedCandidate,
-  selectedSourceColumn,
-  valueMatches,
+  setSelectedCandidate,
+  sourceUniqueValues,
+  targetUniqueValues,
+  highlightSourceColumns,
+  highlightTargetColumns,
+  updateStatus,
 }) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("1");
+  const { setGlobalCandidateHighlight } = useContext(HighlightGlobalContext);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    setGlobalCandidateHighlight(undefined);
+    if (newValue === "1") {
+      updateStatus(["accepted"]);
+    } else if (newValue === "2") {
+      updateStatus(["rejected", "discarded", "idle"]);
+    } else {
+      updateStatus(["accepted", "rejected", "discarded", "idle"]);
+    }
   };
 
   return (
-    <Box sx={{ width: '100%', marginTop: 0 }}>
+    <Box
+      sx={{
+        width: "100%",
+        minHeight: "600px",
+        marginTop: 0,
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <TabContext value={value}>
+        <Box sx={{ borderTop: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Hide" value={0} />
-            <Tab label="UpSet Plot" value={1} />
-            <Tab label="Value Comparisons" value={2} />
+            <Tab label="Confirmed Matches" value="1" />
+            <Tab label="Undone Candidates" value="2" />
+            <Tab label="All Candidates" value="3" />
           </TabList>
-          <TabPanel sx={{ paddingBottom: 2, maxHeight: 0, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={0}>
-          </TabPanel>
-          <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={1}>
-            <UpsetPlot
-              aggData={weightedAggregatedCandidates}
-              matchers={matchers}
-              selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
-            />
-          </TabPanel>
-          <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={2}>
-            <ValueComparisonTable
-              valueMatches={valueMatches}
-              selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
-            />
-          </TabPanel>
+        </Box>
       </TabContext>
+      <Box
+        sx={{
+          paddingTop: 0,
+          flexGrow: 1,
+          flexDirection: "column",
+          display: "flex",
+        }}
+      >
+        <HeatMap
+          data={weightedAggregatedCandidates}
+          sourceColumn={sourceColumn}
+          sourceCluster={sourceCluster}
+          targetOntologies={targetOntologies}
+          selectedCandidate={selectedCandidate}
+          setSelectedCandidate={setSelectedCandidate}
+          sourceUniqueValues={sourceUniqueValues}
+          targetUniqueValues={targetUniqueValues}
+          sx={{
+            flexGrow: 1,
+          }}
+          highlightSourceColumns={highlightSourceColumns}
+          highlightTargetColumns={highlightTargetColumns}
+        />
+      </Box>
     </Box>
   );
 };

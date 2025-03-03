@@ -1,6 +1,6 @@
 // components/styled/LayoutComponents.tsx
 import { styled } from '@mui/material/styles';
-import { Box, Paper, Typography, Divider } from '@mui/material';
+import { Box, Button, Chip, Paper, Typography, Divider } from '@mui/material';
 
 export const Sidebar = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -70,14 +70,17 @@ export const RootContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const Header = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: theme.spacing(1),
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
+  height: '55px',
 }));
 
 export const MainContent = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '400px 2fr 400px', // Three columns: controls, main viz, secondary viz
+  gridTemplateColumns: '300px 2fr 300px', // Three columns: controls, main viz, secondary viz
   gap: theme.spacing(2),
   flex: 1,
   height: 'calc(100vh - 140px)', // Adjust based on header/footer height
@@ -97,14 +100,15 @@ export const ControlColumn = styled(Box)(({ theme }) => ({
 export const LeftColumn = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(2),
+  gap: theme.spacing(0),
   justifyContent: 'flex-start',
   alignContent: 'flex-start',
   flexWrap: "wrap",
   flex: "1 1 auto",
   alignItems: "center",
   minWidth: "min-content",
-  paddingRight: theme.spacing(1),
+  paddingLeft: theme.spacing(0.5),
+  paddingRight: theme.spacing(0.5),
 }));
 
 // Middle Column - Main Visualizations
@@ -148,12 +152,13 @@ export const SmallVizContainer = styled(VisualizationCard)(({ theme }) => ({
 }));
 
 export const SectionHeader = styled(Divider)(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: theme.palette.grey[600],
   fontWeight: '500',
-  fontSize: '1rem',
+  fontSize: '0.8rem',
   width: '100%',
   display: 'flex',
   textAlign: 'left',
+  paddingTop: theme.spacing(1),
 }));
 
 export const SectionLabel = styled(Typography)(({ theme }) => ({
@@ -161,4 +166,23 @@ export const SectionLabel = styled(Typography)(({ theme }) => ({
   fontWeight: '500',
   fontSize: '0.8rem',
   gutterBottom: 'true',
+}));
+
+
+export const BasicButton = styled(Button)(({ theme }) => ({
+  minHeight: 30,
+  fontWeight: '400',
+  fontSize: '0.7rem',
+  textTransform: 'none'
+}));
+
+export const HighlightedChip = styled(Chip)(({ theme }) => ({
+  border: '1px solid',
+  borderColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.common.black,
+  color: theme.palette.common.white,
+}));
+
+export const StyledText = styled('text')(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
 }));

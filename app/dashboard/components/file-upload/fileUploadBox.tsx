@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {useDropzone} from 'react-dropzone';
-import {Box, Button, Typography, List, ListItem, ListItemText, Paper} from '@mui/material';
+import {Box, Typography, List, ListItem, ListItemText, Paper} from '@mui/material';
+import { SectionLabel } from '../../layout/components';
 
 interface DropzoneProps {
     required?: boolean;
@@ -58,13 +59,13 @@ export function Dropzone(props: DropzoneProps) {
                 <input type="file" name={name} required={required} style={{ display: 'none' }} ref={hiddenInputRef} accept=".csv"/>
                 <input {...getInputProps()} />
                 <Typography variant="body1" sx={{
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold',
+                    fontSize: '0.9rem',
+                    fontWeight: '800',
                     color: '#bbb'
                 }}>Drag &apos;n&apos; drop a CSV file here</Typography>
             </Box>
             <Box sx={{ mt: 1 }}>
-                <Typography variant="h6">Files</Typography>
+                <SectionLabel>Files</SectionLabel>
                 <List>{files}</List>
             </Box>
         </Box>

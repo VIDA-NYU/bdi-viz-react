@@ -120,26 +120,7 @@ class MatchingTask:
             return candidates
 
     def update_exact_matches(self) -> List[Dict[str, Any]]:
-        with self.lock:
-            if self.source_df is None or self.target_df is None:
-                raise ValueError("Source and Target dataframes must be provided.")
-
-            matcher = RapidFuzzMatcher("exact_matcher")
-            candidates = matcher.top_matches(
-                source=self.source_df, target=self.target_df
-            )  # Get exact matches
-
-            source_columns = [candidate["sourceColumn"] for candidate in candidates]
-
-            cached_candidates = self.get_cached_candidates()
-            cached_candidates = candidates + [
-                candidate
-                for candidate in cached_candidates
-                if candidate["sourceColumn"] not in source_columns
-            ]
-
-            self.set_cached_candidates(cached_candidates)
-            return candidates
+        return self.get_candidates()
 
     def _compute_hashes(self) -> Tuple[int, int]:
         source_hash = int(
@@ -317,23 +298,43 @@ class MatchingTask:
             target_column
         ] = list(match_results["To"])
 
-    def discard_cached_column(self, source_col: str) -> None:
-        cached_candidates_dict = self.get_cached_candidates()
-        if source_col in cached_candidates_dict:
-            self.set_cached_candidates(
-                [
-                    cached_candidate
-                    for cached_candidate in candidates
-                    if cached_candidate["sourceColumn"] != source_col
-                ]
-            )
+    def accept_cached_candidate(self, candidate: Dict[str, Any]) -> None:
+        cached_candidates = self.get_cached_candidates()
+        for cached_candidate in cached_candidates:
+            if (
+                cached_candidate["sourceColumn"] == candidate["sourceColumn"]
+                and cached_candidate["targetColumn"] == candidate["targetColumn"]
+            ):
+                cached_candidate["status"] = "accepted"
+        self.set_cached_candidates(cached_candidates)
 
-    def append_cached_column(
-        self, column_name: str, candidates: List[Tuple[str, float]]
-    ) -> None:
-        cached_candidates_dict = self.get_cached_candidates()
-        cached_candidates_dict[column_name] = candidates
-        self.cached_candidates["candidates"] = cached_candidates_dict
+    def reject_cached_candidate(self, candidate: Dict[str, Any]) -> None:
+        cached_candidates = self.get_cached_candidates()
+        for cached_candidate in cached_candidates:
+            if (
+                cached_candidate["sourceColumn"] == candidate["sourceColumn"]
+                and cached_candidate["targetColumn"] == candidate["targetColumn"]
+            ):
+                cached_candidate["status"] = "rejected"
+        self.set_cached_candidates(cached_candidates)
+
+    def discard_cached_column(self, source_col: str) -> None:
+        cached_candidates = self.get_cached_candidates()
+        for candidate in cached_candidates:
+            if candidate["sourceColumn"] == source_col:
+                candidate["status"] = "discarded"
+        self.set_cached_candidates(cached_candidates)
+
+    def append_cached_column(self, column_name: str) -> None:
+        cached_candidates = self.get_cached_candidates()
+        for candidate in cached_candidates:
+            if (
+                column_name == candidate["sourceColumn"]
+                and candidate["status"] == "discarded"
+            ):
+                candidate["status"] = "idle"
+
+        self.set_cached_candidates(cached_candidates)
 
     def to_frontend_json(self) -> dict:
         return {
@@ -458,26 +459,28 @@ class MatchingTask:
         self.history.add_operation(UserOperation(operation, candidate, references))
 
         if operation == "accept":
-            self.set_cached_candidates(
-                [
-                    cached_candidate
-                    for cached_candidate in candidates
-                    if (cached_candidate["sourceColumn"] != candidate["sourceColumn"])
-                    or (cached_candidate["targetColumn"] == candidate["targetColumn"])
-                ]
-            )
+            self.accept_cached_candidate(candidate)
+            # self.set_cached_candidates(
+            #     [
+            #         cached_candidate
+            #         for cached_candidate in candidates
+            #         if (cached_candidate["sourceColumn"] != candidate["sourceColumn"])
+            #         or (cached_candidate["targetColumn"] == candidate["targetColumn"])
+            #     ] + [candidate]
+            # )
         elif operation == "reject":
-            self.set_cached_candidates(
-                [
-                    cached_candidate
-                    for cached_candidate in candidates
-                    if not (
-                        cached_candidate["sourceColumn"] == candidate["sourceColumn"]
-                        and cached_candidate["targetColumn"]
-                        == candidate["targetColumn"]
-                    )
-                ]
-            )
+            self.reject_cached_candidate(candidate)
+            # self.set_cached_candidates(
+            #     [
+            #         cached_candidate
+            #         for cached_candidate in candidates
+            #         if not (
+            #             cached_candidate["sourceColumn"] == candidate["sourceColumn"]
+            #             and cached_candidate["targetColumn"]
+            #             == candidate["targetColumn"]
+            #         )
+            #     ]
+            # )
         elif operation == "discard":
             self.discard_cached_column(candidate["sourceColumn"])
         else:
@@ -491,17 +494,25 @@ class MatchingTask:
     ) -> None:
         logger.info(f"Undoing operation: {operation}, on candidate: {candidate}... \n")
 
-        candidates = self.get_cached_candidates()
+        # candidates = self.get_cached_candidates()
 
-        if operation in ["accept", "reject", "discard"]:
-            self.set_cached_candidates(
-                [
-                    c
-                    for c in candidates
-                    if c["sourceColumn"] != candidate["sourceColumn"]
-                ]
-                + references
-            )
+        # if operation in ["accept", "reject", "discard"]:
+        #     self.set_cached_candidates(
+        #         [
+        #             c
+        #             for c in candidates
+        #             if c["sourceColumn"] != candidate["sourceColumn"]
+        #         ]
+        #         + references
+        #     )
+        if operation == "accept":
+            candidate["status"] = "idle"
+            self.update_cached_candidate(candidate)
+        elif operation == "reject":
+            candidate["status"] = "idle"
+            self.update_cached_candidate(candidate)
+        elif operation == "discard":
+            self.append_cached_column(candidate["sourceColumn"])
         else:
             raise ValueError(f"Operation {operation} not supported.")
 
@@ -549,6 +560,20 @@ class MatchingTask:
     def set_cached_candidates(self, candidates: List[Dict[str, Any]]) -> None:
         self.cached_candidates["candidates"] = candidates
 
+    def get_value_matches(self) -> Dict[str, Dict[str, Any]]:
+        return self.cached_candidates["value_matches"]
+
+    def update_cached_candidate(self, candidate: List[Dict[str, Any]]) -> None:
+        candidates = self.get_cached_candidates()
+        for index, candidate in enumerate(candidates):
+            if (
+                candidate["sourceColumn"] == candidate["sourceColumn"]
+                and candidate["targetColumn"] == candidate["targetColumn"]
+            ):
+                candidates[index] = candidate
+                break
+        self.set_cached_candidates(candidates)
+
     def get_cached_source_clusters(self) -> Dict[str, List[str]]:
         return self.cached_candidates["source_clusters"] or {}
 
@@ -559,6 +584,36 @@ class MatchingTask:
         return [
             {"name": key, "weight": item.weight} for key, item in self.matchers.items()
         ]
+
+    def get_accepted_candidates(self) -> List[Dict[str, Any]]:
+        candidates_set = set()
+        for candidate in self.get_cached_candidates():
+            if candidate["status"] == "accepted":
+                candidates_set.add(
+                    (candidate["sourceColumn"], candidate["targetColumn"])
+                )
+
+        ret = []
+        value_matches = self.get_value_matches()
+        for sourceColumn, targetColumn in candidates_set:
+            candidate_obj = {
+                "sourceColumn": sourceColumn,
+                "targetColumn": targetColumn,
+                "sourceValues": [],
+                "targetValues": [],
+            }
+            if (
+                sourceColumn in value_matches
+                and targetColumn in value_matches[sourceColumn]["targets"]
+            ):
+                candidate_obj["sourceValues"] = value_matches[sourceColumn][
+                    "source_unique_values"
+                ]
+                candidate_obj["targetValues"] = value_matches[sourceColumn]["targets"][
+                    targetColumn
+                ]
+            ret.append(candidate_obj)
+        return ret
 
 
 class UserOperationHistory:
