@@ -167,7 +167,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
               <rect
                 key={`row-${value}`}
                 x={0}
-                y={y(value) + 3}
+                y={(y(value) ?? 0) + 3}
                 width={dimensions.width - MARGIN.left - MARGIN.right + 8}
                 height={getHeight({ sourceColumn: value } as Candidate) - 6}
                 fill={isLastRow ? theme.palette.grey[400] : theme.palette.grey[400]}

@@ -1,10 +1,9 @@
-import { CellData } from "./types";
 
-function isCandidateEqual(a: CellData, b: CellData) {
+function isCandidateEqual(a: Candidate, b: Candidate) {
     return a.sourceColumn === b.sourceColumn && a.targetColumn === b.targetColumn;
 }
 
-function isCellEqual(a: CellData, b: CellData) {
+function isCellEqual(a: Candidate, b: Candidate) {
     return a.sourceColumn === b.sourceColumn && a.targetColumn === b.targetColumn && a.matcher === b.matcher;
 }
 
