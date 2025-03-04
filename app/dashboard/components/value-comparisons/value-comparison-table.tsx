@@ -85,10 +85,13 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
                 left: candidate?.sourceColumn ? [candidate.sourceColumn] : []
             }
         },
-        muiTableBodyCellProps: ({ cell }) => {
+        muiTableBodyCellProps: ({ cell, column, table }) => {
             const isSourceColumn = cell.column.id === candidate?.sourceColumn;
             const isTargetColumn = cell.column.id === candidate?.targetColumn;
             return {
+                onClick: () => {
+                    table.setEditingCell(cell); //set editing cell
+                },
                 style: {
                     backgroundColor: isSourceColumn ? theme.palette.error.main : isTargetColumn ? theme.palette.info.main : undefined,
                     color: isSourceColumn ? theme.palette.common.black : isTargetColumn ? theme.palette.common.black : undefined,
@@ -96,6 +99,8 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
                 },
             };
         },
+        enableEditing: true,
+        editDisplayMode: 'cell',
     });
 
     useMemo(() => {

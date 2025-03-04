@@ -47,7 +47,7 @@ const IndentedTreeAxis: React.FC<IndentedTreeAxisProps> = ({ targetTreeData, cur
             return parents.indexOf(label) * 10;
         }
 
-        let grandParents: string[] = targetTreeData.map((node) => node.label.text);
+        const grandParents: string[] = targetTreeData.map((node) => node.label.text);
         const getGrandParentYOffset = (label: string) => {
             return grandParents.indexOf(label) * 30;
         }
@@ -57,7 +57,7 @@ const IndentedTreeAxis: React.FC<IndentedTreeAxisProps> = ({ targetTreeData, cur
         let index = 0;
         const root = d3.hierarchy({ label: { text: "root" }, children: targetTreeData } as TreeNode);
         root.eachBefore(d => {
-            d.index = index++;
+            (d as any).index = index++;
         });
         const treeLayout = d3.tree<TreeNode>().nodeSize([40, 200]);
         treeLayout(root);
@@ -86,23 +86,23 @@ const IndentedTreeAxis: React.FC<IndentedTreeAxisProps> = ({ targetTreeData, cur
             .data(root.links().filter(d => d.target.data.isExpanded === true))
             .join("path")
             .attr("d", d => {
-            const lineX = d.source.data.x;
-            let lineY = newHeight - d.source.depth * nodeSize;
-            let lineY2 = newHeight - d.target.depth * nodeSize;
-            if (d.source.depth == 0) {
-                
-            } else if (d.source.depth == 1) {
-                lineY -= getGrandParentYOffset(d.source.data.label.text);
-                lineY2 -= getParentYOffset(d.target.data.label.text);
-            } else if (d.source.depth == 2) {
-                lineY -= getParentYOffset(d.source.data.label.text);
-                lineY2 -= nodeSize;
-            }
-            return `
-                M${lineX},${lineY}
-                H${d.target.data.x}
-                V${lineY2}
-            `;
+                const lineX = d.source.data.x;
+                let lineY = newHeight - d.source.depth * nodeSize;
+                let lineY2 = newHeight - d.target.depth * nodeSize;
+                if (d.source.depth == 0) {
+                    
+                } else if (d.source.depth == 1) {
+                    lineY -= getGrandParentYOffset(d.source.data.label.text);
+                    lineY2 -= getParentYOffset(d.target.data.label.text);
+                } else if (d.source.depth == 2) {
+                    lineY -= getParentYOffset(d.source.data.label.text);
+                    lineY2 -= nodeSize;
+                }
+                return `
+                    M${lineX},${lineY}
+                    H${d.target.data.x}
+                    V${lineY2}
+                `;
             });
 
         // Create nodes.

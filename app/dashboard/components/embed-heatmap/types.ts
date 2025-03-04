@@ -1,6 +1,3 @@
-import { RectCell } from './cells/RectCell';
-import { BarCell } from './cells/BarCell';
-import { CellData } from './cells/types';
 import { ExpandedCellType } from './expanded-cells/types';
 
 type CellType = 'rect' | 'bar';

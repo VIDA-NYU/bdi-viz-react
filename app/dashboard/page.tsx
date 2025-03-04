@@ -212,7 +212,7 @@ export default function Dashboard() {
                     <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
                         <Typography sx={{ fontSize: "1.2rem", fontWeight: "200" }}>BDI Visualization System</Typography>
                         <Box display="flex" alignItems="center" width="400pt">
-                            <SearchBar searchResultCallback={handleSearchResults} />
+                            <SearchBar agentSearchResultCallback={handleSearchResults} />
                         </Box>
                         <Box display="flex" alignItems="center">
                             <Typography sx={{ fontSize: "1rem", fontWeight: "300", marginRight: 0 }}>Developer Mode</Typography>

@@ -1,11 +1,9 @@
 // types.ts
-import { CellData } from "../cells/types";
-
 
 interface ExpandedCellProps {
     sourceUniqueValues: SourceUniqueValues;
     targetUniqueValues: TargetUniqueValues;
-    data: CellData;
+    data: AggregatedCandidate;
     width: number; 
     height: number;
     onClose: () => void;
