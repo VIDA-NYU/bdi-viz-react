@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, useTheme } from "@mui/material";
 import { StyledText } from "@/app/dashboard/layout/components";
+import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
 interface LegendProps {
   color: d3.ScaleSequential<string, never>;
@@ -10,6 +11,7 @@ const Legend: React.FC<LegendProps> = ({
   color,
 }) => {
   const theme = useTheme();
+  const { globalQuery } = useContext(HighlightGlobalContext);
 
   const legendWidth = 30;
   const legendHeight = 350;
@@ -122,15 +124,19 @@ const Legend: React.FC<LegendProps> = ({
       {/* Searched Legend */}
       <g transform={`translate(${legendOffset}, 300)`}>
         <StyledText
-          x={-11}
+          x={-17}
           y={0}
           textAnchor="start"
           style={{
             fontSize: "0.7em",
-            fontWeight: "600",
+            fontWeight: "800",
+            paintOrder: "stroke",
+            fill: theme.palette.primary.main,
+            stroke: theme.palette.common.white,
+            strokeWidth: 2,
           }}
         >
-          Searched
+          Highlighted
         </StyledText>
         <rect
           x={1}

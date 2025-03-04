@@ -90,39 +90,13 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
             return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // const { filteredData, filteredMatchers } = useMemo(() => {
-    //     let filteredData = [...data];
-
-    //     if (selectedCandidate) {
-    //         filteredData = filteredData.filter(d => d.sourceColumn === selectedCandidate.sourceColumn);
-    //     }
-
-    //     const existingMatchers = filteredData.map(d => d.matcher);
-    //     const filteredMatchers = matchers.filter(m => existingMatchers.includes(m.name)).sort((a, b) => a.weight - b.weight);
-
-    //     return { filteredData, filteredMatchers };
-    // }, [data, matchers, selectedCandidate]);
-
-    // const groupedData = useMemo(() => {
-    //     return Array.from(d3.group(filteredData, d => d.targetColumn), ([targetColumn, items]) => {
-    //         const groupedBySource = d3.group(items, d => d.sourceColumn);
-    //         return Array.from(groupedBySource, ([sourceColumn, items]) => ({
-    //             targetColumn,
-    //             sourceColumn,
-    //             matchers: items.map(d => d.matcher),
-    //             score: d3.sum(items, d => d.score * (matchers.find(m => m.name === d.matcher)?.weight ?? 1)),
-    //             isSelected: selectedCandidate ? items.some(d => d.sourceColumn === selectedCandidate.sourceColumn && d.targetColumn == selectedCandidate.targetColumn) : false
-    //         }));
-    //     }).flat().sort((a, b) => b.score - a.score).map((d, idx) => ({ id: idx + 1, ...d }));
-    // }, [filteredData, matchers, selectedCandidate]);
-
     const filteredMatchers = useMemo(() => matchers.filter(m => aggData.flatMap(d => d.matchers).includes(m.name)), [aggData, matchers]);
 
     const groupedData = useMemo(() => {
         return aggData.map((d) => ({
             ...d,
             isSelected: currentExpanding ? d.sourceColumn === currentExpanding.sourceColumn && d.targetColumn === currentExpanding.targetColumn : false
-        }));
+        })).map((d, idx) => ({ id: idx + 1, ...d }));
     }, [aggData, currentExpanding]);
 
     const dataPerMatcher = useMemo(() => {

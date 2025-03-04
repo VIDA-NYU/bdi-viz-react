@@ -8,7 +8,6 @@ declare interface Candidate {
 }
 
 type AggregatedCandidate = {
-    id: number;
     sourceColumn: string;
     targetColumn: string;
     matchers: string[];

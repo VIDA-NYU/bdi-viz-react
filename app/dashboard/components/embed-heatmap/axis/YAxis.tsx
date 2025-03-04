@@ -1,18 +1,120 @@
+import { useContext, useState, useLayoutEffect, useRef, useCallback } from "react";
 import { useTheme } from "@mui/material";
 
 import { StyledText } from "@/app/dashboard/layout/components";
+import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
-interface YAixsProps {
-  y: any;
+interface YAxisProps {
+  y: any; // (scale) function with domain() and range() methods
   getHeight: (d: Candidate) => number;
   sourceColumn: string;
 }
 
-const YAixs = ({ y, getHeight, sourceColumn }: YAixsProps) => {
+interface LabelProps {
+  value: string;
+  yPos: number;
+  isSelected: boolean;
+  getHeight: (d: Candidate) => number;
+  globalQuery: string;
+  theme: any;
+}
+
+const highlightText = (
+  text: string,
+  globalQuery: string,
+  theme: any
+): React.ReactNode => {
+  if (!globalQuery) return text;
+
+  // Split and highlight matching parts
+  const parts = text.split(new RegExp(`(${globalQuery})`, "gi"));
+  return parts.map((part, index) =>
+    part.toLowerCase() === globalQuery.toLowerCase() ? (
+      <tspan
+        key={index}
+        style={{
+          fontWeight: "800",
+          paintOrder: "stroke",
+          fill: theme.palette.primary.main,
+          stroke: theme.palette.common.white,
+          strokeWidth: 2,
+        }}
+      >
+        {part}
+      </tspan>
+    ) : (
+      part
+    )
+  );
+};
+
+const AxisLabel = ({
+  value,
+  yPos,
+  isSelected,
+  getHeight,
+  globalQuery,
+  theme,
+}: LabelProps) => {
+  const [hovered, setHovered] = useState(false);
+  const [textWidth, setTextWidth] = useState(0);
+  const textRef = useRef<SVGTextElement>(null);
+
+  // Show full text on hover, or truncated when not hovered.
+  const displayedText = hovered || value.length <= 15 ? value : value.slice(0, 12) + "...";
+
+  // Update text width whenever text changes.
+  useLayoutEffect(() => {
+    if (textRef.current) {
+      const { width } = textRef.current.getBBox();
+      setTextWidth(width);
+    }
+  }, [displayedText]);
+
+  return (
+    <g
+      transform={`translate(-5, ${yPos})`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <rect
+        x={-textWidth}
+        y={-10}
+        width={textWidth}
+        height={20}
+        fill={theme.palette.grey[200]}
+        stroke={theme.palette.grey[500]}
+        strokeWidth={isSelected ? 2 : 0}
+        rx={3}
+        ry={3}
+      />
+      <StyledText
+        ref={textRef}
+        dy=".35em"
+        textAnchor="end"
+        style={{
+          fill: theme.palette.grey[600],
+          fontSize: "0.8em",
+          fontWeight: "600",
+          cursor: "pointer",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {highlightText(displayedText, globalQuery, theme)}
+      </StyledText>
+    </g>
+  );
+};
+
+const YAxis = ({ y, getHeight, sourceColumn }: YAxisProps) => {
   const theme = useTheme();
+  const { globalQuery } = useContext(HighlightGlobalContext);
 
   return (
     <g>
+      {/* Title */}
       <g>
         <StyledText
           transform={`translate(-110, ${y.range()[1] / 2 + 10}) rotate(-90)`}
@@ -22,6 +124,8 @@ const YAixs = ({ y, getHeight, sourceColumn }: YAixsProps) => {
           Source Attributes
         </StyledText>
       </g>
+
+      {/* Arrow marker definition */}
       <defs>
         <marker
           id="arrowUp"
@@ -39,6 +143,8 @@ const YAixs = ({ y, getHeight, sourceColumn }: YAixsProps) => {
           />
         </marker>
       </defs>
+
+      {/* Vertical line with arrow */}
       <line
         x1={0}
         y1={0}
@@ -48,6 +154,7 @@ const YAixs = ({ y, getHeight, sourceColumn }: YAixsProps) => {
         strokeWidth={2}
         markerStart="url(#arrowUp)"
       />
+
       <StyledText
         x={5}
         y={0}
@@ -59,69 +166,25 @@ const YAixs = ({ y, getHeight, sourceColumn }: YAixsProps) => {
       >
         less similar
       </StyledText>
+
+      {/* Axis labels */}
       {y.domain().map((value: string) => {
         const isSelected = value === sourceColumn;
-        const yPos = y(value)!;
-        const height = getHeight({ sourceColumn: value } as Candidate);
-        const textValue =
-          value.length > 15 ? value.slice(0, 12) + "..." : value;
-        const textWidth = 0;
+        const yPos = (y(value) as number) + getHeight({ sourceColumn: value } as Candidate) / 2;
         return (
-          <g
+          <AxisLabel
             key={value}
-            transform={`translate(-5,${yPos + height / 2})`}
-            onMouseEnter={(e) => {
-              const rect = e.currentTarget.querySelector("rect");
-              const text = e.currentTarget.querySelector("text");
-              if (rect && text) {
-                const textValue = value;
-                text.textContent = textValue;
-                const textWidth = text.getBBox().width;
-                rect.setAttribute("width", `${textWidth}`);
-                rect.setAttribute("x", `${-textWidth}`);
-              }
-            }}
-            onMouseLeave={(e) => {
-              const rect = e.currentTarget.querySelector("rect");
-              const text = e.currentTarget.querySelector("text");
-              if (rect && text) {
-                text.textContent = textValue;
-                rect.setAttribute("width", `${textWidth}`);
-                rect.setAttribute("x", `${-textWidth}`);
-              }
-            }}
-          >
-            <rect
-              x={-textWidth}
-              y={-10}
-              width={textWidth}
-              height={20}
-              fill={theme.palette.grey[200]}
-              stroke={theme.palette.grey[500]}
-              strokeWidth={isSelected ? 2 : 0}
-              rx={3}
-              ry={3}
-            />
-            <StyledText
-              dy=".35em"
-              textAnchor="end"
-              style={{
-                fill: theme.palette.grey[600],
-                fontSize: "0.8em",
-                fontWeight: "600",
-                cursor: "pointer",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {textValue}
-            </StyledText>
-          </g>
+            value={value}
+            yPos={yPos}
+            isSelected={isSelected}
+            getHeight={getHeight}
+            globalQuery={globalQuery || ""}
+            theme={theme}
+          />
         );
       })}
     </g>
   );
 };
 
-export { YAixs };
+export { YAxis };
