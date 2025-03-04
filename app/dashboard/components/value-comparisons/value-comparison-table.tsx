@@ -6,13 +6,15 @@ import {
     type MRT_ColumnDef,
 } from "material-react-table";
 import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
+import { updateSourceValue } from "@/app/lib/heatmap/heatmap-helper";
 
 interface ValueComparisonTableProps {
     valueMatches: ValueMatch[];
     selectedCandidate?: Candidate;
+    handleValueMatches: (valueMatches: ValueMatch[]) => void;
 }
 
-const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatches, selectedCandidate }) => {
+const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatches, selectedCandidate, handleValueMatches }) => {
     const theme = useTheme();
 
     const { globalCandidateHighlight } = useContext(HighlightGlobalContext);
@@ -90,17 +92,49 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
             const isTargetColumn = cell.column.id === candidate?.targetColumn;
             return {
                 onClick: () => {
-                    table.setEditingCell(cell); //set editing cell
+                    console.log(column, "column");
+                    if (isSourceColumn) {
+                        table.setEditingCell(cell); //set editing cell
+                    } else {
+                        // Set source column accordingly
+                        if (candidate) {
+                            updateSourceValue({
+                                column: candidate?.sourceColumn,
+                                value: cell.row.original[candidate?.sourceColumn],
+                                newValue: cell.row.original[column.id],
+                                valueMatchesCallback: handleValueMatches,
+                            });
+                        }
+                    }
+                    
                 },
                 style: {
-                    backgroundColor: isSourceColumn ? theme.palette.error.main : isTargetColumn ? theme.palette.info.main : undefined,
+                    backgroundColor: isSourceColumn ? theme.palette.primary.dark : isTargetColumn ? theme.palette.secondary.dark : undefined,
                     color: isSourceColumn ? theme.palette.common.black : isTargetColumn ? theme.palette.common.black : undefined,
                     fontWeight: isSourceColumn || isTargetColumn ? 'bold' : undefined,
                 },
+                onKeyDown: (event) => {
+                    if (event.key === 'Enter') {
+                        if (isSourceColumn) {
+                            if (candidate) {
+                                updateSourceValue({
+                                    column: candidate?.sourceColumn,
+                                    value: cell.row.original[candidate?.sourceColumn],
+                                    newValue: cell.getValue(),
+                                    valueMatchesCallback: handleValueMatches,
+                                });
+                            }
+                            table.setEditingCell(null); //set editing cell
+                        }
+                    }
+                }
             };
         },
         enableEditing: true,
         editDisplayMode: 'cell',
+        // onEditingCellChange: ({column, getValue}) => {
+        //     console.log('onEditCellChange', column, getValue());
+        // },
     });
 
     useMemo(() => {

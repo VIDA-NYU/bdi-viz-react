@@ -382,7 +382,7 @@ const getGDCAttribute = (prop: getGDCAttributeProps) => {
 }
 
 interface getCandidatesResultProps {
-    callback: (candidates: CandidateResult[]) => void;
+    callback: (candidates: string) => void;
 }
 
 const getCandidatesResult = (prop: getCandidatesResultProps) => {
@@ -395,18 +395,11 @@ const getCandidatesResult = (prop: getCandidatesResultProps) => {
             timeout: 10000000, // Set timeout to unlimited
         }).then((response) => {
             const results = response.data?.results;
-            if (results && Array.isArray(results)) {
-                const candidates = results.map((result: object) => {
-                    try {
-                        return result as CandidateResult;
-                    } catch (error) {
-                        console.error("Error parsing result to CandidateResult:", error);
-                        return null;
-                    }
-                }).filter((candidate: CandidateResult | null) => candidate !== null);
-
-                console.log("getCandidatesResult finished!");
-                prop.callback(candidates);
+            if (results) {
+                // const csv = results.split('\n').map((line: string) => line.split(','));
+                // const headers = csv[0];
+                console.log("getCandidatesResult finished!", results);
+                prop.callback(results as string);
                 resolve();
             } else {
                 console.error("Invalid results format");
@@ -419,8 +412,38 @@ const getCandidatesResult = (prop: getCandidatesResultProps) => {
     });
 }
 
+interface updateSourceValueProps {
+    column: string;
+    value: any;
+    newValue: any;
+    valueMatchesCallback: (valueMatches: ValueMatch[]) => void;
+
+}
+
+const updateSourceValue = ({ column, value, newValue, valueMatchesCallback }: updateSourceValueProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+        axios.post("/api/value/update", {
+            column,
+            value,
+            newValue,
+        }, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        }).then(() => {
+            console.log("updateSourceValue finished!");
+            getValueMatches({ callback: valueMatchesCallback });
+            resolve();
+        }).catch((error) => {
+            console.error("Error updating source value:", error);
+            reject(error);
+        });
+    });
+}
 
 
 
 
-export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult };
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult, updateSourceValue };

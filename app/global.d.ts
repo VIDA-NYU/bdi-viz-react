@@ -134,10 +134,3 @@ declare interface GDCDescription {
     description: string;
     termDef?: object;
 }
-
-declare interface CandidateResult {
-    sourceColumn: string;
-    targetColumn: string;
-    sourceValues: string[];
-    targetValues: string[];
-}

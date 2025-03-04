@@ -20,6 +20,7 @@ type DashboardCandidateState = {
     setSelectedCandidate: (candidate: Candidate | undefined) => void;
     setMatchers: (matchers: Matcher[]) => void;
     handleUserOperationsUpdate: (newUserOperations: UserOperation[]) => void;
+    handleValueMatches: (valueMatches: ValueMatch[]) => void;
 }
 
 export type { DashboardCandidateState };
@@ -124,6 +125,7 @@ export const {
             setSelectedCandidate: handleSelectedCandidate,
             setMatchers,
             handleUserOperationsUpdate,
+            handleValueMatches,
         };
     }
 };

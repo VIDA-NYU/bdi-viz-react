@@ -13,6 +13,7 @@ interface LowerTabsProps {
   selectedCandidate?: Candidate;
   selectedSourceColumn: string;
   valueMatches: ValueMatch[];
+  handleValueMatches: (valueMatches: ValueMatch[]) => void;
 }
 
 const LowerTabs: React.FC<LowerTabsProps> = ({
@@ -21,6 +22,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
   selectedCandidate,
   selectedSourceColumn,
   valueMatches,
+  handleValueMatches,
 }) => {
   const [value, setValue] = useState(0);
 
@@ -49,6 +51,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
             <ValueComparisonTable
               valueMatches={valueMatches}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
+              handleValueMatches={handleValueMatches}
             />
           </TabPanel>
       </TabContext>

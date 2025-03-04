@@ -1,6 +1,6 @@
 import { useState, useCallback, useContext } from 'react';
 import type { Candidate } from '../types';
-import { exportToJson } from '../components/utils/exportJson';
+import { exportToJson, exportCsv } from '../components/utils/exportJson';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getCandidatesResult } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
@@ -274,8 +274,8 @@ export const {
         const exportMatchingResults = () => {
             console.log("Exporting Matching Results...");
             getCandidatesResult({
-                callback: (candidates: CandidateResult[]) => {
-                    exportToJson(candidates);
+                callback: (candidates: string) => {
+                    exportCsv(candidates);
                 }
             })
         };

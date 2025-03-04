@@ -52,6 +52,7 @@ export default function Dashboard() {
         setSelectedCandidate,
         setMatchers,
         handleUserOperationsUpdate,
+        handleValueMatches,
     } = useDashboardCandidates();
 
     const {
@@ -282,6 +283,7 @@ export default function Dashboard() {
                         selectedCandidate={selectedCandidate}
                         selectedSourceColumn={sourceColumn}
                         valueMatches={valueMatches}
+                        handleValueMatches={handleValueMatches}
                     />
                 </MainColumn>
 
