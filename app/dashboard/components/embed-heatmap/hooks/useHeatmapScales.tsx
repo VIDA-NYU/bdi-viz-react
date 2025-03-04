@@ -63,7 +63,7 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         const getXPosition = (column: string) => {
             const index = xColumns.findIndex(d => d === column);
             const expandedIndex = selectedCandidate ? 
-                data.findIndex(d => d.targetColumn === selectedCandidate?.targetColumn) : -1;
+                xColumns.findIndex(d => d === selectedCandidate?.targetColumn) : -1;
             if (!selectedCandidate) return baseWidth * index;
             if (index <= expandedIndex) return shrunkWidth * index;
             if (index > expandedIndex) return shrunkWidth * (index-1) + expandedWidth + 1; // 1 is stroke width

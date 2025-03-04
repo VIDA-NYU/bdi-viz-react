@@ -49,7 +49,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 }) => {
   const theme = useTheme();
 
-  const { globalCandidateHighlight, setGlobalCandidateHighlight } = useContext(HighlightGlobalContext);
+  const { globalCandidateHighlight, setGlobalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
 
 
   const [config, setConfig] = useState<HeatMapConfig>({
@@ -232,35 +232,37 @@ const HeatMap: React.FC<HeatMapProps> = ({
               } else {
                 return (
                   <CellComponent
-                    key={`${d.sourceColumn}-${d.targetColumn}`}
-                    data={d}
-                    config={config}
-                    x={x(d.targetColumn) ?? 0}
-                    y={y(d.sourceColumn) ?? 0}
-                    width={getWidth(d)}
-                    height={getHeight(d)}
-                    color={color}
-                    onHover={(
-                      event: React.MouseEvent,
-                      data: AggregatedCandidate
-                    ) => {
-                      // showTooltip(event, data);
-                      if (!selectedCandidate) {
-                        // toggleTargetNode(data.targetColumn);
-                        setGlobalCandidateHighlight(data);
-                      }
-                    }}
-                    onLeave={() => {}}
-                    onClick={() => {
-                      handleCellClick(d);
-                    }}
-                    isHighlighted={
-                      highlightSourceColumns.length !== 0 &&
-                      highlightTargetColumns.length !== 0
-                        ? highlightSourceColumns.includes(d.sourceColumn) &&
-                          highlightTargetColumns.includes(d.targetColumn)
-                        : undefined
+                  key={`${d.sourceColumn}-${d.targetColumn}`}
+                  data={d}
+                  config={config}
+                  x={x(d.targetColumn) ?? 0}
+                  y={y(d.sourceColumn) ?? 0}
+                  width={getWidth(d)}
+                  height={getHeight(d)}
+                  color={color}
+                  onHover={(
+                    event: React.MouseEvent,
+                    data: AggregatedCandidate
+                  ) => {
+                    // showTooltip(event, data);
+                    if (!selectedCandidate) {
+                    // toggleTargetNode(data.targetColumn);
+                    setGlobalCandidateHighlight(data);
                     }
+                  }}
+                  onLeave={() => {}}
+                  onClick={() => {
+                    handleCellClick(d);
+                  }}
+                  isHighlighted={
+                    highlightSourceColumns.length !== 0 &&
+                    highlightTargetColumns.length !== 0
+                    ? highlightSourceColumns.includes(d.sourceColumn) &&
+                      highlightTargetColumns.includes(d.targetColumn)
+                    : globalQuery ?
+                      (d.sourceColumn.includes(globalQuery) ||
+                      d.targetColumn.includes(globalQuery)) : undefined
+                  }
                   />
                 );
               }

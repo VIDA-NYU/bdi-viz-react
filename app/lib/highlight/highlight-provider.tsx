@@ -7,6 +7,7 @@ const HighlightGlobalProvider: React.FC<{ children: ReactNode }> = ({ children }
     const [globalValueSelection, setGlobalValueSelection] = useState<string | undefined>("T0");
     const [globalValueConnections, setGlobalValueConnections] = useState<[number, number][]>([]);
     const [globalCandidateHighlight, setGlobalCandidateHighlight] = useState<AggregatedCandidate | undefined>(undefined);
+    const [globalQuery, setGlobalQuery] = useState<string | undefined>();
 
     const value = {
         globalValueSelection,
@@ -15,6 +16,8 @@ const HighlightGlobalProvider: React.FC<{ children: ReactNode }> = ({ children }
         setGlobalValueConnections,
         globalCandidateHighlight,
         setGlobalCandidateHighlight,
+        globalQuery,
+        setGlobalQuery,
     }
 
     return (
