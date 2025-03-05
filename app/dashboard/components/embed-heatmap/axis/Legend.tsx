@@ -122,15 +122,19 @@ const Legend: React.FC<LegendProps> = ({
       {/* Searched Legend */}
       <g transform={`translate(${legendOffset}, 300)`}>
         <StyledText
-          x={-11}
+          x={-17}
           y={0}
           textAnchor="start"
           style={{
             fontSize: "0.7em",
-            fontWeight: "600",
+            fontWeight: "800",
+            paintOrder: "stroke",
+            fill: theme.palette.primary.main,
+            stroke: theme.palette.common.white,
+            strokeWidth: 2,
           }}
         >
-          Searched
+          Highlighted
         </StyledText>
         <rect
           x={1}

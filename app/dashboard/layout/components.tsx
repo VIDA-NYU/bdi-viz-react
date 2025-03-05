@@ -176,10 +176,18 @@ export const BasicButton = styled(Button)(({ theme }) => ({
   textTransform: 'none'
 }));
 
-export const HighlightedChip = styled(Chip)(({ theme }) => ({
-  border: '1px solid',
-  borderColor: theme.palette.primary.main,
-  backgroundColor: theme.palette.common.black,
+export const BasicChip = styled(Chip)(({ theme }) => ({
+  '&:hover': {
+    backgroundColor: theme.palette.grey[800],
+    cursor: 'pointer',
+  },
+}));
+
+export const HighlightedChip = styled(BasicChip)(({ theme }) => ({
+  border: '3px solid',
+  fontWeight: '800',
+  borderColor: theme.palette.common.black,
+  backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
 }));
 

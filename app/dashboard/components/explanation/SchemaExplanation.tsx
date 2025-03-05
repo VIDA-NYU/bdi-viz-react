@@ -8,9 +8,10 @@ import {
     CircularProgress
 } from '@mui/material';
 import ExplanationItem from './ExplanationItem';
-import { SectionHeader } from '../../layout/components';
+import { BasicChip, SectionHeader } from '../../layout/components';
 import { agentThumbRequest } from '@/app/lib/langchain/agent-helper';
 import GenerateExplanationButton from './GenerateExplanationButton';
+import { handleCopy } from '../../utils/clipboard';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
@@ -117,9 +118,21 @@ const SchemaExplanation = ({
                                 Current Selection
                             </SectionHeader>
                             <Stack direction="row" spacing={1} alignItems="center">
-                                <Chip size="small" label={selectedCandidate.sourceColumn} color="primary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
+                                <BasicChip 
+                                    size="small" 
+                                    label={selectedCandidate.sourceColumn} 
+                                    color="primary" 
+                                    sx={{ fontSize: '0.7rem', fontWeight: "600" }} 
+                                    onClick={() => handleCopy(selectedCandidate.sourceColumn)}
+                                />
                                 <Typography>→</Typography>
-                                <Chip size="small" label={selectedCandidate.targetColumn} color="secondary" sx={{ fontSize: '0.7rem', fontWeight: "600" }} />
+                                <BasicChip
+                                    size="small" 
+                                    label={selectedCandidate.targetColumn} 
+                                    color="secondary" 
+                                    sx={{ fontSize: '0.7rem', fontWeight: "600" }} 
+                                    onClick={() => handleCopy(selectedCandidate.targetColumn)}
+                                />
                             </Stack>
                         </Box>
                     )}
@@ -144,9 +157,25 @@ const SchemaExplanation = ({
                             <List>
                                 {valueMatches.map((values, index) => (
                                     <Stack direction="row" spacing={1} key={index} sx={{ marginBottom: 0.5 }}>
-                                        <Chip variant='filled' color='primary' key={index} label={values[0]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
+                                        <BasicChip
+                                            variant='filled'
+                                            color='primary' 
+                                            key={index} 
+                                            label={values[0]} 
+                                            size="small" 
+                                            sx={{ fontSize: "0.6rem", fontWeight: "600" }} 
+                                            onClick={() => handleCopy(values[0])}
+                                        />
                                         <Typography>→</Typography>
-                                        <Chip variant='filled' color='secondary' key={index} label={values[1]} size="small" sx={{ fontSize: "0.6rem", fontWeight: "600" }} />
+                                        <BasicChip
+                                            variant='filled'
+                                            color='secondary'
+                                            key={index}
+                                            label={values[1]}
+                                            size="small"
+                                            sx={{ fontSize: "0.6rem", fontWeight: "600" }}
+                                            onClick={() => handleCopy(values[1])}
+                                        />
                                     </Stack>
                                 ))}
                             </List>

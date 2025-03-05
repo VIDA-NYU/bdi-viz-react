@@ -8,7 +8,6 @@ declare interface Candidate {
 }
 
 type AggregatedCandidate = {
-    id: number;
     sourceColumn: string;
     targetColumn: string;
     matchers: string[];
@@ -133,11 +132,4 @@ declare interface GDCAttribute {
 declare interface GDCDescription {
     description: string;
     termDef?: object;
-}
-
-declare interface CandidateResult {
-    sourceColumn: string;
-    targetColumn: string;
-    sourceValues: string[];
-    targetValues: string[];
 }

@@ -11,4 +11,15 @@ const exportToJson = (data: any) => {
     document.body.removeChild(tempLink);
 };
 
-export { exportToJson };
+const exportCsv = (data: string) => {
+    const csvData = new Blob([data], { type: 'text/csv' });
+    const csvUrl = URL.createObjectURL(csvData);
+    const tempLink = document.createElement('a');
+    tempLink.href = csvUrl;
+    tempLink.setAttribute('download', 'data.csv');
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+}
+
+export { exportToJson, exportCsv };

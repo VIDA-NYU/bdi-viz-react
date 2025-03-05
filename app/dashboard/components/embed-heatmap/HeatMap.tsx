@@ -11,7 +11,7 @@ import { useTooltip } from "./hooks/useTooltip";
 import { useOntologyLayout } from "./tree/useOntologyLayout";
 import { useLabelManagement } from "./tree/useLabelManagement";
 import { Legend } from "./axis/Legend";
-import { YAixs } from "./axis/YAxis";
+import { YAxis } from "./axis/YAxis";
 import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
 import { RectCell } from "./cells/RectCell";
 import { HierarchicalAxis } from "./axis/HierarchicalAxis";
@@ -270,7 +270,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
             {/* Color Legend */}
             <Legend color={color} />
             {/* Y Axis */}
-            <YAixs y={y} getHeight={getHeight} sourceColumn={sourceColumn} />
+            <YAxis y={y} getHeight={getHeight} sourceColumn={sourceColumn} />
           </g>
         </svg>
 

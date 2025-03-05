@@ -7,17 +7,12 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
-
 # langchain
 from .langchain.pydantic import AgentResponse
 from .session_manager import SESSION_MANAGER
-from .utils import (
-    extract_data_from_request,
-    extract_session_name,
-    load_gdc_property,
-    read_candidate_explanation_json,
-    write_candidate_explanation_json,
-)
+from .utils import (extract_data_from_request, extract_session_name,
+                    load_gdc_property, read_candidate_explanation_json,
+                    write_candidate_explanation_json)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 
@@ -74,7 +69,7 @@ def get_results():
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
         candidates = matching_task.get_candidates()
-        AGENT.remember_candidates(candidates)
+        # AGENT.remember_candidates(candidates)
 
     results = matching_task.to_frontend_json()
 
@@ -151,7 +146,8 @@ def get_candidates_results():
 
     results = matching_task.get_accepted_candidates()
 
-    return {"message": "success", "results": results}
+    results_csv = results.to_csv(index=True)
+    return {"message": "success", "results": results_csv}
 
 
 @app.route("/api/agent", methods=["POST"])
@@ -356,3 +352,18 @@ def get_history():
     history = matching_task.history.export_history_for_frontend()
 
     return {"message": "success", "history": history}
+
+
+@app.route("/api/value/update", methods=["POST"])
+def update_value():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    data = request.json
+    column = data["column"]
+    value = data["value"]
+    new_value = data["newValue"]
+
+    matching_task.set_source_value(column, value, new_value)
+
+    return {"message": "success"}

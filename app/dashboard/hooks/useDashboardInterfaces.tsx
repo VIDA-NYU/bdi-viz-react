@@ -71,7 +71,7 @@ export const {
                     score: d3.sum(items, d => d.score * (matchers.find(m => m.name === d.matcher)?.weight ?? 1)),
                     status: items.some(item => item.status === 'accepted') ? 'accepted' : items.some(item => item.status === 'rejected') ? 'rejected' : (items.every(item => item.status === 'discarded') ? 'discarded' : 'idle'),
                 };
-            }).flat().sort((a, b) => b.score - a.score).map((d, idx) => ({ id: idx + 1, ...d }));
+            }).flat().sort((a, b) => b.score - a.score);
 
             if (filters?.candidateThreshold) {
                 aggregatedCandidates = aggregatedCandidates.filter((d) => d.score >= filters.candidateThreshold);

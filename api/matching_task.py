@@ -1,3 +1,4 @@
+import difflib
 import hashlib
 import json
 import logging
@@ -7,8 +8,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
-from polyfuzz import PolyFuzz
-from polyfuzz.models import RapidFuzz
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
@@ -284,19 +283,40 @@ class MatchingTask:
         if pd.api.types.is_numeric_dtype(self.source_df[source_column].dtype):
             return
 
-        rapidfuzz_matcher = RapidFuzz(n_jobs=1)
-        value_matcher = PolyFuzz(rapidfuzz_matcher)
-
         source_values = self.cached_candidates["value_matches"][source_column][
             "source_unique_values"
         ]
         target_values = self.get_target_unique_values(target_column)
 
-        value_matcher.match(source_values, target_values)
-        match_results = value_matcher.get_matches()
+        match_results = {
+            "From": [],
+            "To": [],
+        }
+        for source_v in source_values:
+            # scores = [
+            #     fuzz.QRatio(source_v, target_v, processor=utils.default_process) / 100
+            #     for target_v in target_values
+            # ]
+            # max_score = max(scores)
+            # max_target_v = target_values[scores.index(max_score)]
+            # match_results["From"].append(source_v)
+            # match_results["To"].append(max_target_v)
+            # match_results["Score"].append(max_score)
+            match_results["From"].append(source_v)
+            best_matches = difflib.get_close_matches(
+                source_v, target_values, n=1, cutoff=0.1
+            )
+            if best_matches:
+                best_norm = best_matches[0]
+                match_results["To"].append(best_norm)
+            else:
+                match_results["To"].append("")
+
         self.cached_candidates["value_matches"][source_column]["targets"][
             target_column
         ] = list(match_results["To"])
+
+        logger.critical(match_results)
 
     def accept_cached_candidate(self, candidate: Dict[str, Any]) -> None:
         cached_candidates = self.get_cached_candidates()
@@ -545,7 +565,7 @@ class MatchingTask:
             )
         return self._bucket_column(self.target_df, target_col)
 
-    def get_target_unique_values(self, target_col: str, n: int = 20) -> List[str]:
+    def get_target_unique_values(self, target_col: str, n: int = 40) -> List[str]:
         if self.target_df is None or target_col not in self.target_df.columns:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
@@ -585,7 +605,7 @@ class MatchingTask:
             {"name": key, "weight": item.weight} for key, item in self.matchers.items()
         ]
 
-    def get_accepted_candidates(self) -> List[Dict[str, Any]]:
+    def get_accepted_candidates(self) -> pd.DataFrame:
         candidates_set = set()
         for candidate in self.get_cached_candidates():
             if candidate["status"] == "accepted":
@@ -593,27 +613,28 @@ class MatchingTask:
                     (candidate["sourceColumn"], candidate["targetColumn"])
                 )
 
-        ret = []
-        value_matches = self.get_value_matches()
-        for sourceColumn, targetColumn in candidates_set:
-            candidate_obj = {
-                "sourceColumn": sourceColumn,
-                "targetColumn": targetColumn,
-                "sourceValues": [],
-                "targetValues": [],
-            }
-            if (
-                sourceColumn in value_matches
-                and targetColumn in value_matches[sourceColumn]["targets"]
-            ):
-                candidate_obj["sourceValues"] = value_matches[sourceColumn][
-                    "source_unique_values"
-                ]
-                candidate_obj["targetValues"] = value_matches[sourceColumn]["targets"][
-                    targetColumn
-                ]
-            ret.append(candidate_obj)
-        return ret
+        target_columns = []
+        ret_df = self.source_df.copy()
+        for source_col, target_col in candidates_set:
+            target_columns.append(target_col)
+            ret_df[target_col] = self.source_df[source_col]
+
+        return ret_df[target_columns]
+
+    def set_source_value_matches(
+        self, source_col: str, from_val: str, to_val: str
+    ) -> None:
+        self.cached_candidates["value_matches"][source_col]["source_unique_values"] = [
+            to_val if val == from_val else val
+            for val in self.cached_candidates["value_matches"][source_col][
+                "source_unique_values"
+            ]
+        ]
+
+    def set_source_value(self, column: str, from_val: str, to_val: str) -> None:
+        logger.info(f"Setting value {from_val} to {to_val} in column {column}...")
+        self.source_df[column] = self.source_df[column].replace(from_val, to_val)
+        self.set_source_value_matches(column, from_val, to_val)
 
 
 class UserOperationHistory:
