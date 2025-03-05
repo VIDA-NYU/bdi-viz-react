@@ -8,6 +8,8 @@ interface ExpandedCellProps {
     height: number;
     onClose: () => void;
     onClick: () => void;
+    onMouseMove: (event: React.MouseEvent) => void;
+    onMouseLeave: () => void;
    }
    
    interface BaseExpandedCellProps extends ExpandedCellProps {

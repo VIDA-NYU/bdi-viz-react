@@ -1,7 +1,7 @@
 'use client';
 
-import { Box } from '@mui/material';
-import { BasicButton } from '../../layout/components';
+import { Box, IconButton } from '@mui/material';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 interface UndoButtonProps {
     onClick: () => void;
@@ -9,16 +9,19 @@ interface UndoButtonProps {
 
 const UndoButton: React.FC<UndoButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <BasicButton
-                variant="outlined"
-                color="primary"
+            <IconButton
                 onClick={onClick}
-                fullWidth
+                sx={{
+                    px: 0,
+                    py: 0,
+                    borderRadius: 1,
+                    color: 'grey.800',
+                    '&:hover': { color: 'primary.dark' } 
+                }}
+                title="Undo"
             >
-                Undo
-            </BasicButton>
-        </Box>
+                <ReplayIcon />
+            </IconButton>
     );
 }
 

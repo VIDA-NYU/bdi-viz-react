@@ -1,7 +1,8 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { BasicButton } from '../../layout/components';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 interface RedoButtonProps {
     onClick: () => void;
@@ -9,16 +10,20 @@ interface RedoButtonProps {
 
 const RedoButton: React.FC<RedoButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <BasicButton
-                variant="outlined"
-                color="primary"
+            <IconButton
                 onClick={onClick}
-                fullWidth
+                sx={{
+                    px: 0,
+                    py: 0,
+                    borderRadius: 1,
+                    color: 'grey.800',
+                    '&:hover': { color: 'primary.dark' },
+                    transform: 'scaleX(-1)'
+                }}
+                title="Redo"
             >
-                Redo
-            </BasicButton>
-        </Box>
+                <ReplayIcon />
+            </IconButton>
     );
 }
 

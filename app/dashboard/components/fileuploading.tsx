@@ -6,7 +6,7 @@ import { getCachedResults } from "@/app/lib/heatmap/heatmap-helper";
 
 import { Box, Paper, IconButton } from "@mui/material";
 import { BasicButton } from "../layout/components";
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 import LoadingGlobalContext from "@/app/lib/loading/loading-context";
 import { Dropzone } from "./file-upload/fileUploadBox";
@@ -15,7 +15,7 @@ interface FileUploadingProps {
     callback: (candidates: Candidate[], sourceCluster: SourceCluster[]) => void;
 }
 
-const FileUploading = (prop: FileUploadingProps) => {
+const FileUploading: React.FC<FileUploadingProps> = ({ callback }) => {
     const { setIsLoadingGlobal } = useContext(LoadingGlobalContext);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -50,7 +50,7 @@ const FileUploading = (prop: FileUploadingProps) => {
                         console.log(response);
                         if (response.status === 200) {
                             getCachedResults({
-                                callback: prop.callback
+                                callback: callback
                             });
                         }
                         setIsLoadingGlobal(false);
@@ -64,7 +64,13 @@ const FileUploading = (prop: FileUploadingProps) => {
     return (
         <>
             {isVisible ? (
-                <Paper sx={{ p: 2, width: "100%" }}>
+                <Paper sx={{ 
+                    p: 2, 
+                    position: 'fixed', 
+                    zIndex: 1300,
+                    left: '10px',
+                    top: '10px'
+                }}>
                     <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
                         <Dropzone required name="my-file" />
                         <Box sx={{ display: "flex", gap: 1 }}>
@@ -85,10 +91,15 @@ const FileUploading = (prop: FileUploadingProps) => {
                 <IconButton
                     color="primary"
                     onClick={() => setIsVisible(true)}
-                    sx={{ '&:hover': { color: 'primary.dark' } }}
+                    sx={{ 
+                        borderRadius: 1,
+                        py: 0,
+                        px: 0,
+                        '&:hover': { color: 'primary.dark' }
+                    }}
                     title="New matching task"
                 >
-                    <AddBoxIcon />
+                    <UploadFileIcon />
                 </IconButton>
             )}
         </>
