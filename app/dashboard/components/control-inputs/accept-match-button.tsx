@@ -1,7 +1,8 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { BasicButton } from '../../layout/components';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 interface AcceptMatchButtonProps {
     onClick: () => void;
@@ -9,16 +10,19 @@ interface AcceptMatchButtonProps {
 
 const AcceptMatchButton: React.FC<AcceptMatchButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <BasicButton
-                variant="contained"
-                color="success"
-                onClick={onClick}
-                fullWidth
-            >
-                Accept
-            </BasicButton>
-        </Box>
+        <IconButton
+            onClick={onClick}
+            sx={{
+                px: 0,
+                py: 0,
+                borderRadius: 1,
+                color: 'success.main',
+                '&:hover': { color: 'success.dark' }
+            }}
+            title="Accept Match"
+        >
+            <CheckCircleOutlineIcon />
+        </IconButton>
     );
 }
 

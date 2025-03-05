@@ -1,7 +1,8 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { BasicButton } from '../../layout/components';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface RejectMatchButtonProps {
     onClick: () => void;
@@ -9,16 +10,19 @@ interface RejectMatchButtonProps {
 
 const RejectMatchButton: React.FC<RejectMatchButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <BasicButton
-                variant="contained"
-                color="error"
-                onClick={onClick}
-                fullWidth
-            >
-                Reject
-            </BasicButton>
-        </Box>
+        <IconButton
+            onClick={onClick}
+            sx={{
+                px: 0,
+                py: 0,
+                borderRadius: 1,
+                color: 'error.main',
+                '&:hover': { color: 'error.dark' }
+            }}
+            title="Reject Match"
+        >
+            <HighlightOffIcon />
+        </IconButton>
     );
 }
 

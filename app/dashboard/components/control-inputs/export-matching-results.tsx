@@ -1,7 +1,8 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { BasicButton } from '../../layout/components';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 interface ExportMatchingResultsButtonProps {
     onClick: () => void;
@@ -9,16 +10,19 @@ interface ExportMatchingResultsButtonProps {
 
 const ExportMatchingResultsButton: React.FC<ExportMatchingResultsButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <BasicButton
-                variant="outlined"
-                color="secondary"
-                onClick={onClick}
-                fullWidth
-            >
-                Export Results
-            </BasicButton>
-        </Box>
+        <IconButton
+            onClick={onClick}
+            sx={{
+                py: 0,
+                px: 0,
+                borderRadius: 1,
+                color: 'primary.main',
+                '&:hover': { color: 'primary.dark' },
+            }}
+            title="Export Matching Results"
+        >
+            <IosShareIcon />
+        </IconButton>
     );
 }
 

@@ -1,7 +1,8 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { BasicButton } from '../../layout/components';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 interface DiscardColumnButtonProps {
     onClick: () => void;
@@ -9,16 +10,19 @@ interface DiscardColumnButtonProps {
 
 const DiscardColumnButton: React.FC<DiscardColumnButtonProps> = ({ onClick }) => {
     return (
-        <Box sx={{ minWidth: 80, flexGrow: 1 }}>
-            <BasicButton
-                variant="contained"
-                color='info'
-                onClick={onClick}
-                fullWidth
-            >
-                Discard
-            </BasicButton>
-        </Box>
+        <IconButton
+            onClick={onClick}
+            sx={{
+                px: 0,
+                py: 0,
+                borderRadius: 1,
+                color: 'grey.800',
+                '&:hover': { color: 'error.dark' }
+            }}
+            title="Discard Column"
+        >
+            <DeleteForeverIcon />
+        </IconButton>
     );
 }
 

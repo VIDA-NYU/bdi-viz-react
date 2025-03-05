@@ -69,7 +69,7 @@ def get_results():
                 source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
             )
         candidates = matching_task.get_candidates()
-        # AGENT.remember_candidates(candidates)
+        AGENT.remember_candidates(candidates)
 
     results = matching_task.to_frontend_json()
 

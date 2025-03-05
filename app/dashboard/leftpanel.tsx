@@ -5,7 +5,6 @@ import ControlPanel from "./components/controlpanel";
 import DecisionPanel from "./components/decisionpanel";
 import ShortcutPanel from "./components/shortcutpanel";
 import Timeline from "./components/timeline/timeline";
-import FileUploading from "./components/fileuploading";
 
 interface LeftPanelProps {
     // ControlPanel Props
@@ -74,6 +73,12 @@ const LeftPanel = ({
         <LeftColumn>
             <ShortcutPanel
                 handleFileUpload={handleFileUpload}
+                acceptMatch={acceptMatch}
+                rejectMatch={rejectMatch}
+                discardColumn={discardColumn}
+                undo={undo}
+                redo={redo}
+                exportMatchingResults={exportMatchingResults}
             />
             <ControlPanel
                 sourceColumns={sourceColumns}
@@ -88,14 +93,11 @@ const LeftPanel = ({
                 onMatchersSelect={onMatchersSelect}
                 state={state}
             />
-            <DecisionPanel
+            {/* <DecisionPanel
                 acceptMatch={acceptMatch}
                 rejectMatch={rejectMatch}
                 discardColumn={discardColumn}
-                undo={undo}
-                redo={redo}
-                exportMatchingResults={exportMatchingResults}
-            />
+            /> */}
 
             
             <Timeline userOperations={userOperations} />
