@@ -81,11 +81,13 @@ export default function Dashboard() {
         thumbDownExplanations,
         matchingValues,
         relevantKnowledge,
+        relatedOuterSources,
         setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,
         setThumbDownExplanations,
+        setRelatedOuterSources,
     } = useSchemaExplanations();
 
     const {
@@ -110,6 +112,7 @@ export default function Dashboard() {
         onApply: handleApply,
         onExactMatches: handleExactMatches,
         onUserOperationsUpdate: handleUserOperationsUpdate,
+        onRelatedOuterSources: setRelatedOuterSources,
     });
 
     const {
@@ -320,6 +323,7 @@ export default function Dashboard() {
                     selectedCandidate={selectedCandidate}
                     onGenerateExplanation={onGenerateExplanation}
                     gdcAttribute={gdcAttribute}
+                    relatedOuterSources={relatedOuterSources}
                 />
             </MainContent>
 

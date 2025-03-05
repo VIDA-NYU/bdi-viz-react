@@ -17,11 +17,13 @@ from pydantic import BaseModel
 
 from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
+from ..tools.source_scraper import scraping_websource
 from .memory import MemoryRetriver
 from .pydantic import (
     ActionResponse,
     AgentSuggestions,
     CandidateExplanation,
+    RelatedSources,
     SearchResponse,
 )
 
@@ -177,6 +179,33 @@ Diagnosis:
             prompt=prompt,
             tools=[],
             output_structure=AgentSuggestions,
+        )
+
+        return response
+
+    def search_for_sources(self, candidate: Dict[str, Any]) -> RelatedSources:
+        logger.info(f"[Agent] Searching for sources...")
+
+        tools = [
+            scraping_websource,
+        ]
+
+        prompt = f"""
+    Use the tools to search for related sources based on the candidate details.
+
+    Candidate:
+    - Source Column: {candidate["sourceColumn"]}
+    - Target Column: {candidate["targetColumn"]}
+    - Source Sample Values: {candidate["sourceValues"]}
+    - Target Sample Values: {candidate["targetValues"]}
+        """
+
+        logger.info(f"[SEARCH-SOURCES] Prompt: {prompt}")
+
+        response = self.invoke(
+            prompt=prompt,
+            tools=tools,
+            output_structure=RelatedSources,
         )
 
         return response

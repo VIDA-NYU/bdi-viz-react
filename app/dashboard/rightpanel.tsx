@@ -21,6 +21,7 @@ interface RightPanelProps {
     isLoading: boolean;
     selectedCandidate?: Candidate;
     gdcAttribute?: GDCAttribute;
+    relatedOuterSources: RelatedSource[];
 }
 
 
@@ -39,7 +40,8 @@ const RightPanel = ({
     relevantKnowledge,
     isLoading,
     selectedCandidate,
-    gdcAttribute
+    gdcAttribute,
+    relatedOuterSources,
 }: RightPanelProps) => {
     
     return (
@@ -59,6 +61,7 @@ const RightPanel = ({
                 isLoading={isLoading}
                 selectedCandidate={selectedCandidate}
                 gdcAttribute={gdcAttribute}
+                relatedOuterSources={relatedOuterSources}
             />
         </AuxColumn>
     );

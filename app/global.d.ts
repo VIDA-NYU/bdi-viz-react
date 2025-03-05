@@ -133,3 +133,9 @@ declare interface GDCDescription {
     description: string;
     termDef?: object;
 }
+
+declare interface RelatedSource {
+    snippet: string;
+    title: string;
+    link: string;
+}

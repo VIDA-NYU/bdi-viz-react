@@ -180,4 +180,32 @@ const agentThumbRequest = async (explanation: Explanation, userOperation: UserOp
 }
 
 
-export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentSearchRequest, agentThumbRequest };
+const agentGetRelatedSources = async (candidate: Candidate) => {
+    try {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
+        const resp = await axios.post("/api/agent/outer-source", candidate, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        });
+        console.log("agentGetRelatedSources: ", resp.data);
+        const sources = resp.data.results.sources.map((s: object) => {
+            try {
+                return s as RelatedSource;
+            } catch (error) {
+                console.error("Error parsing source to Source:", error);
+                return null;
+            }
+        }).filter((s: RelatedSource | null) => s !== null);
+
+        return sources;
+
+    } catch (error) {
+        console.error("Error sending agent get related sources request:", error);
+    }
+}
+
+
+export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentSearchRequest, agentThumbRequest, agentGetRelatedSources };

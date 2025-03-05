@@ -2,6 +2,7 @@
 import { Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
 import RelevantKnowledgeView from './RelevantKnowledgeView';
+import { SectionHeader } from '../../layout/components';
 
 const RowComp = styled("div")({
     display: "flex",
@@ -37,6 +38,7 @@ interface CombinedViewProps {
     isLoading: boolean;
     selectedCandidate?: Candidate;
     gdcAttribute?: GDCAttribute;
+    relatedOuterSources: RelatedSource[];
 }
 
 const CombinedView = ({
@@ -54,6 +56,7 @@ const CombinedView = ({
     isLoading,
     selectedCandidate,
     gdcAttribute,
+    relatedOuterSources,
 }: CombinedViewProps) => {
 
     return (
@@ -75,11 +78,15 @@ const CombinedView = ({
                     isLoading={isLoading}
                 />
             </Stack>
-            <Stack flex={4}>
+            <Stack flex={4} sx={{ flexGrow: 1 }}>
+                <SectionHeader>
+                    Relevant Knowledge
+                </SectionHeader>
                 <RelevantKnowledgeView
                     relevantKnowledge={relevantKnowledge}
                     gdcAttribute={gdcAttribute}
                     isLoading={isLoading}
+                    relatedOuterSources={relatedOuterSources}
                 />
             </Stack>
             </ColumnComp>

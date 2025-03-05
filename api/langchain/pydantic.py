@@ -140,3 +140,17 @@ class TargetClusters(BaseModel):
     """Target clusters from the agent."""
 
     clusters: List[TargetClusterInfo] = Field(description="The target clusters")
+
+
+class RelatedSource(BaseModel):
+    """Related source from the agent."""
+
+    snippet: str = Field(description="The snippet of the related source")
+    title: str = Field(description="The title of the related source")
+    link: str = Field(description="The link of the related source")
+
+
+class RelatedSources(BaseModel):
+    """Related sources from the agent."""
+
+    sources: List[RelatedSource] = Field(description="The related sources")

@@ -280,6 +280,30 @@ def agent_suggest():
     return response
 
 
+@app.route("/api/agent/outer-source", methods=["POST"])
+def agent_related_source():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    data = request.json
+    source_col = data["sourceColumn"]
+    target_col = data["targetColumn"]
+    source_values = matching_task.get_source_unique_values(source_col)
+    target_values = matching_task.get_target_unique_values(target_col)
+
+    candidate = {
+        "sourceColumn": source_col,
+        "targetColumn": target_col,
+        "sourceValues": source_values,
+        "targetValues": target_values,
+    }
+
+    response = AGENT.search_for_sources(candidate)
+    response = response.model_dump()
+
+    return {"message": "success", "results": response}
+
+
 @app.route("/api/agent/thumb", methods=["POST"])
 def agent_thumb():
     data = request.json

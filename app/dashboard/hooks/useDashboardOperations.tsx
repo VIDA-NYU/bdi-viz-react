@@ -3,7 +3,7 @@ import type { Candidate } from '../types';
 import { exportToJson, exportCsv } from '../components/utils/exportJson';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getCandidatesResult } from "@/app/lib/heatmap/heatmap-helper";
-import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
+import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentGetRelatedSources } from "@/app/lib/langchain/agent-helper";
 import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 
 type DashboardOperationProps = {
@@ -17,6 +17,7 @@ type DashboardOperationProps = {
     onApply?: (actionResponses: ActionResponse[] | undefined) => void;
     onExactMatches?: (exactMatches: Candidate[]) => void;
     onUserOperationsUpdate: (userOperations: UserOperation[]) => void;
+    onRelatedOuterSources?: (relatedOuterSources: RelatedSource[]) => void;
 }
 
 type DashboardOperationState = {
@@ -48,6 +49,7 @@ export const {
         onApply,
         onExactMatches,
         onUserOperationsUpdate,
+        onRelatedOuterSources,
     }: DashboardOperationProps): DashboardOperationState => {
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
         const { setIsLoadingGlobal, isLoadingGlobal } = useContext(SettingsGlobalContext);
@@ -234,6 +236,13 @@ export const {
                 const explanation = await candidateExplanationRequest(candidateToExplain);
                 if (explanation) {
                     onExplanation(explanation);
+                }
+            }
+
+            if (onRelatedOuterSources) {
+                const relatedOuterSources = await agentGetRelatedSources(candidateToExplain);
+                if (relatedOuterSources) {
+                    onRelatedOuterSources(relatedOuterSources);
                 }
             }
 
