@@ -352,7 +352,7 @@ class MatchingTask:
                 column_name == candidate["sourceColumn"]
                 and candidate["status"] == "discarded"
             ):
-                if candidate.matcher in ["candidate_quadrants"]:
+                if candidate["matcher"] in ["candidate_quadrants"]:
                     candidate["status"] = "accepted"
                 else:
                     candidate["status"] = "idle"
@@ -432,6 +432,9 @@ class MatchingTask:
                 if value > 1
             ]
         elif col_obj.dtype in ["int64", "float64"]:
+            col_obj = col_obj.dropna()  # Drop NaN values
+            if len(col_obj) == 0:
+                return []
             min = col_obj.min()
             max = col_obj.max()
             bins = np.linspace(min, max, num=10)
