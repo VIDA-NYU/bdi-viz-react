@@ -175,7 +175,8 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 stroke={theme.palette.grey[600]}
                 strokeWidth={isLastRow ? 2 : 0}
                 onMouseMove={() => {
-                setGlobalCandidateHighlight(undefined);
+                  hideTooltip();
+                  setGlobalCandidateHighlight(undefined);
                 }}
               />
               );
@@ -207,14 +208,14 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     data={d}
                     sourceUniqueValues={
                       sourceUniqueValue ?? {
-                        sourceColumn: "",
-                        uniqueValues: [],
+                      sourceColumn: "",
+                      uniqueValues: [],
                       }
                     }
                     targetUniqueValues={
                       targetUniqueValue ?? {
-                        targetColumn: "",
-                        uniqueValues: [],
+                      targetColumn: "",
+                      uniqueValues: [],
                       }
                     }
                     onClose={() => {
@@ -226,6 +227,12 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     y={y(d.sourceColumn) ?? 0}
                     onClick={() => {
                       handleCellClick(d);
+                    }}
+                    onMouseMove={(event: React.MouseEvent) => {
+                      showTooltip(event, d);
+                    }}
+                    onMouseLeave={() => {
+                      hideTooltip();
                     }}
                   />
                 );
@@ -244,7 +251,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     event: React.MouseEvent,
                     data: AggregatedCandidate
                   ) => {
-                    // showTooltip(event, data);
+                    showTooltip(event, data);
                     if (!selectedCandidate) {
                     // toggleTargetNode(data.targetColumn);
                     setGlobalCandidateHighlight(data);

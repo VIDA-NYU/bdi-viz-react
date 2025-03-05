@@ -15,7 +15,7 @@ const UndoButton: React.FC<UndoButtonProps> = ({ onClick }) => {
                     px: 0,
                     py: 0,
                     borderRadius: 1,
-                    color: 'primary.main',
+                    color: 'grey.800',
                     '&:hover': { color: 'primary.dark' } 
                 }}
                 title="Undo"

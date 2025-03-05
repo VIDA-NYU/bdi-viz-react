@@ -27,6 +27,8 @@ const BaseExpandedCell: FC<BaseExpandedCellProps & {
           fill={theme.palette.grey[100]}
           rx={3} // Add this line to give the rect a radius
           ry={3} // Add this line to give the rect a radius
+          onMouseMove={(e) => props.onMouseMove(e)}
+          onMouseLeave={props.onMouseLeave}
         />
         <ChartComponent {...props}/>
         <button onClick={props.onClose}/>

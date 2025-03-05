@@ -7,12 +7,17 @@ import pandas as pd
 from flask import Flask, request
 
 from .langchain.agent import AGENT
+
 # langchain
 from .langchain.pydantic import AgentResponse
 from .session_manager import SESSION_MANAGER
-from .utils import (extract_data_from_request, extract_session_name,
-                    load_gdc_property, read_candidate_explanation_json,
-                    write_candidate_explanation_json)
+from .utils import (
+    extract_data_from_request,
+    extract_session_name,
+    load_gdc_property,
+    read_candidate_explanation_json,
+    write_candidate_explanation_json,
+)
 
 GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
 

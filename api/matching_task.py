@@ -352,7 +352,10 @@ class MatchingTask:
                 column_name == candidate["sourceColumn"]
                 and candidate["status"] == "discarded"
             ):
-                candidate["status"] = "idle"
+                if candidate.matcher in ["candidate_quadrants"]:
+                    candidate["status"] = "accepted"
+                else:
+                    candidate["status"] = "idle"
 
         self.set_cached_candidates(cached_candidates)
 
@@ -525,11 +528,9 @@ class MatchingTask:
         #         ]
         #         + references
         #     )
-        if operation == "accept":
-            candidate["status"] = "idle"
-            self.update_cached_candidate(candidate)
-        elif operation == "reject":
-            candidate["status"] = "idle"
+        last_status = candidate["status"]
+        if operation in ["accept", "reject"]:
+            candidate["status"] = last_status
             self.update_cached_candidate(candidate)
         elif operation == "discard":
             self.append_cached_column(candidate["sourceColumn"])
@@ -585,12 +586,13 @@ class MatchingTask:
 
     def update_cached_candidate(self, candidate: List[Dict[str, Any]]) -> None:
         candidates = self.get_cached_candidates()
-        for index, candidate in enumerate(candidates):
+        for index, c in enumerate(candidates):
             if (
-                candidate["sourceColumn"] == candidate["sourceColumn"]
-                and candidate["targetColumn"] == candidate["targetColumn"]
+                c["sourceColumn"] == candidate["sourceColumn"]
+                and c["targetColumn"] == candidate["targetColumn"]
             ):
-                candidates[index] = candidate
+                candidates[index]["status"] = candidate["status"]
+
                 break
         self.set_cached_candidates(candidates)
 

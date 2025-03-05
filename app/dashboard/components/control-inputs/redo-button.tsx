@@ -16,7 +16,7 @@ const RedoButton: React.FC<RedoButtonProps> = ({ onClick }) => {
                     px: 0,
                     py: 0,
                     borderRadius: 1,
-                    color: 'primary.main',
+                    color: 'grey.800',
                     '&:hover': { color: 'primary.dark' },
                     transform: 'scaleX(-1)'
                 }}

@@ -41,20 +41,20 @@ const ShortcutPanel: React.FC<ShortcutPanelProps> = ({
             Shortcut Panel
         </SectionHeader>
         <Box sx={{ display: "flex", gap: 1, width: "100%", alignItems: "left", height: "30px" }}>
-            <Box sx={{ display: "flex", gap: 0, backgroundColor: theme.palette.grey[300], px: 1, py: 0.5, borderRadius: 2 }}>
+            <Box sx={{ display: "flex", gap: 0.5, backgroundColor: theme.palette.grey[300], px: 1, py: 0.5, borderRadius: 2, alignItems: "center" }}>
               <SectionLabel
-                sx={{
-                  paddingRight: "0.5rem",
-                  fontSize: "0.8rem",
-                  fontWeight: "800",
-                  color: theme.palette.text.secondary,
-                }}
+              sx={{
+                paddingRight: "0.2rem",
+                fontSize: "0.8rem",
+                fontWeight: "800",
+                color: theme.palette.text.secondary,
+              }}
               >Decision</SectionLabel>
               <AcceptMatchButton onClick={acceptMatch} />
               <RejectMatchButton onClick={rejectMatch} />
               <DiscardColumnButton onClick={discardColumn} />
             </Box>
-            <Box sx={{ display: "flex", gap: 1, backgroundColor: theme.palette.grey[300], px: 1, py: 0.5, borderRadius: 2 }}>
+            <Box sx={{ display: "flex", gap: 0.5, backgroundColor: theme.palette.grey[300], px: 1, py: 0.5, borderRadius: 2 }}>
               <UndoButton onClick={undo} />
               <RedoButton onClick={redo} />
             </Box>
