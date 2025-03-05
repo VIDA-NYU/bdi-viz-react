@@ -382,7 +382,9 @@ const getGDCAttribute = (prop: getGDCAttributeProps) => {
 }
 
 interface getCandidatesResultProps {
-    callback: (candidates: string) => void;
+    format: string;
+    callbackCsv: (candidates: string) => void;
+    callbackJson: (candidates: string) => void;
 }
 
 const getCandidatesResult = (prop: getCandidatesResultProps) => {
@@ -390,6 +392,8 @@ const getCandidatesResult = (prop: getCandidatesResultProps) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
         axios.post("/api/candidates/results", {
+            format: prop.format,
+        }, {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -399,7 +403,11 @@ const getCandidatesResult = (prop: getCandidatesResultProps) => {
                 // const csv = results.split('\n').map((line: string) => line.split(','));
                 // const headers = csv[0];
                 console.log("getCandidatesResult finished!", results);
-                prop.callback(results as string);
+                if (prop.format === "csv") {
+                    prop.callbackCsv(results as string);
+                } else if (prop.format === "json") {
+                    prop.callbackJson(results as string);
+                }
                 resolve();
             } else {
                 console.error("Invalid results format");

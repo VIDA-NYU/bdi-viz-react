@@ -22,7 +22,7 @@ interface ShortcutPanelProps {
     discardColumn: () => void;
     undo: () => void;
     redo: () => void;
-    exportMatchingResults: () => void;
+    exportMatchingResults: (format: string) => void;
 }
 
 const ShortcutPanel: React.FC<ShortcutPanelProps> = ({

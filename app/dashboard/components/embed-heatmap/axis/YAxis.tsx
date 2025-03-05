@@ -8,6 +8,7 @@ interface YAxisProps {
   y: any; // (scale) function with domain() and range() methods
   getHeight: (d: Candidate) => number;
   sourceColumn: string;
+  sourceColumns: SourceColumn[];
 }
 
 interface LabelProps {
@@ -17,34 +18,52 @@ interface LabelProps {
   getHeight: (d: Candidate) => number;
   globalQuery: string;
   theme: any;
+  status?: string;
 }
 
 const highlightText = (
   text: string,
   globalQuery: string,
-  theme: any
+  theme: any,
+  status?: string
 ): React.ReactNode => {
-  if (!globalQuery) return text;
+  let parts = [text];
+  if (globalQuery) {
+    // Split and highlight matching parts
+    parts = text.split(new RegExp(`(${globalQuery})`, "gi"));
+  }
 
-  // Split and highlight matching parts
-  const parts = text.split(new RegExp(`(${globalQuery})`, "gi"));
-  return parts.map((part, index) =>
-    part.toLowerCase() === globalQuery.toLowerCase() ? (
-      <tspan
-        key={index}
-        style={{
-          fontWeight: "800",
-          paintOrder: "stroke",
-          fill: theme.palette.primary.main,
-          stroke: theme.palette.common.white,
-          strokeWidth: 2,
-        }}
-      >
-        {part}
-      </tspan>
-    ) : (
-      part
-    )
+  return (
+    <>
+      {status && status === "complete" && (
+        <tspan
+          style={{
+            fill: theme.palette.success.main,
+            fontWeight: "1000",
+          }}
+        >
+          ✓
+        </tspan>
+      )}
+      {parts.map((part, index) =>
+        part.toLowerCase() === globalQuery.toLowerCase() ? (
+          <tspan
+            key={index}
+            style={{
+              fontWeight: "800",
+              paintOrder: "stroke",
+              fill: theme.palette.primary.main,
+              stroke: theme.palette.common.white,
+              strokeWidth: 2,
+            }}
+          >
+            {part}
+          </tspan>
+        ) : (
+          part
+        )
+      )}
+    </>
   );
 };
 
@@ -55,6 +74,7 @@ const AxisLabel = ({
   getHeight,
   globalQuery,
   theme,
+  status
 }: LabelProps) => {
   const [hovered, setHovered] = useState(false);
   const [textWidth, setTextWidth] = useState(0);
@@ -102,13 +122,13 @@ const AxisLabel = ({
           whiteSpace: "nowrap",
         }}
       >
-        {highlightText(displayedText, globalQuery, theme)}
+        {highlightText(displayedText, globalQuery, theme, status)}
       </StyledText>
     </g>
   );
 };
 
-const YAxis = ({ y, getHeight, sourceColumn }: YAxisProps) => {
+const YAxis = ({ y, getHeight, sourceColumn, sourceColumns }: YAxisProps) => {
   const theme = useTheme();
   const { globalQuery } = useContext(HighlightGlobalContext);
 
@@ -169,6 +189,10 @@ const YAxis = ({ y, getHeight, sourceColumn }: YAxisProps) => {
 
       {/* Axis labels */}
       {y.domain().map((value: string) => {
+        const status = sourceColumns.find(
+          (col) => col.name === value
+        )?.status;
+
         const isSelected = value === sourceColumn;
         const yPos = (y(value) as number) + getHeight({ sourceColumn: value } as Candidate) / 2;
         return (
@@ -180,6 +204,7 @@ const YAxis = ({ y, getHeight, sourceColumn }: YAxisProps) => {
             getHeight={getHeight}
             globalQuery={globalQuery || ""}
             theme={theme}
+            status={status}
           />
         );
       })}

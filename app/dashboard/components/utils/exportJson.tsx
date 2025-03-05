@@ -1,6 +1,6 @@
 import React from 'react';
 
-const exportToJson = (data: any) => {
+const exportToJson = (data: string) => {
     const jsonData = new Blob([JSON.stringify(data)], { type: 'application/json' });
     const jsonUrl = URL.createObjectURL(jsonData);
     const tempLink = document.createElement('a');

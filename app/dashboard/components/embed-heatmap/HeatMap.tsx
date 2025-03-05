@@ -21,6 +21,7 @@ import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 interface HeatMapProps {
   data: AggregatedCandidate[];
   sourceColumn: string;
+  sourceColumns: SourceColumn[];
   sourceCluster?: string[];
   targetOntologies?: TargetOntology[];
   selectedCandidate?: Candidate;
@@ -37,6 +38,7 @@ const MARGIN = { top: 30, right: 78, bottom: 0, left: 200 };
 const HeatMap: React.FC<HeatMapProps> = ({
   data,
   sourceCluster,
+  sourceColumns,
   sourceColumn,
   targetOntologies,
   selectedCandidate,
@@ -162,6 +164,9 @@ const HeatMap: React.FC<HeatMapProps> = ({
           <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
             {/* Background rectangles for highlighted rows */}
             {y.domain().map((value) => {
+              const status = sourceColumns.find(
+                (col) => col.name === value
+              )?.status;
               const isLastRow = value === sourceColumn;
               return (
               <rect
@@ -170,7 +175,9 @@ const HeatMap: React.FC<HeatMapProps> = ({
                 y={(y(value) ?? 0) + 3}
                 width={dimensions.width - MARGIN.left - MARGIN.right + 8}
                 height={getHeight({ sourceColumn: value } as Candidate) - 6}
-                fill={isLastRow ? theme.palette.grey[400] : theme.palette.grey[400]}
+                fill={
+                  status === "complete" ? "#bbdcae" : theme.palette.grey[300]
+                }
                 opacity={0.3}
                 stroke={theme.palette.grey[600]}
                 strokeWidth={isLastRow ? 2 : 0}
@@ -277,7 +284,12 @@ const HeatMap: React.FC<HeatMapProps> = ({
             {/* Color Legend */}
             <Legend color={color} />
             {/* Y Axis */}
-            <YAxis y={y} getHeight={getHeight} sourceColumn={sourceColumn} />
+            <YAxis
+              y={y}
+              getHeight={getHeight}
+              sourceColumn={sourceColumn}
+              sourceColumns={sourceColumns}
+            />
           </g>
         </svg>
 

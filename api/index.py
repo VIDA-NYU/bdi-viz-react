@@ -149,10 +149,19 @@ def get_candidates_results():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
 
-    results = matching_task.get_accepted_candidates()
+    format = request.json["format"]
 
-    results_csv = results.to_csv(index=True)
-    return {"message": "success", "results": results_csv}
+    if format == "csv":
+        results = matching_task.get_accepted_candidates()
+
+        results_csv = results.to_csv(index=True)
+        return {"message": "success", "results": results_csv}
+    elif format == "json":
+        results = matching_task.get_accepted_mappings()
+        return {"message": "success", "results": results}
+
+    else:
+        return {"message": "failure", "results": None}
 
 
 @app.route("/api/agent", methods=["POST"])
