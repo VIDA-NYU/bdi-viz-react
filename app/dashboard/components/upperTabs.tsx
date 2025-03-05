@@ -10,6 +10,7 @@ import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 interface UpperTabsProps {
   weightedAggregatedCandidates: AggregatedCandidate[];
   sourceColumn: string;
+  sourceColumns: SourceColumn[];
   sourceCluster: string[];
   targetOntologies: TargetOntology[];
   selectedCandidate: Candidate | undefined;
@@ -24,6 +25,7 @@ interface UpperTabsProps {
 const UpperTabs: React.FC<UpperTabsProps> = ({
   weightedAggregatedCandidates,
   sourceColumn,
+  sourceColumns,
   sourceCluster,
   targetOntologies,
   selectedCandidate,
@@ -62,8 +64,8 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
       <TabContext value={value}>
         <Box sx={{ borderTop: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Confirmed Matches" value="1" />
-            <Tab label="Undone Candidates" value="2" />
+            <Tab label="Accepted Matches" value="1" />
+            <Tab label="Unfinished Candidates" value="2" />
             <Tab label="All Candidates" value="3" />
           </TabList>
         </Box>
@@ -79,6 +81,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
         <HeatMap
           data={weightedAggregatedCandidates}
           sourceColumn={sourceColumn}
+          sourceColumns={sourceColumns}
           sourceCluster={sourceCluster}
           targetOntologies={targetOntologies}
           selectedCandidate={selectedCandidate}

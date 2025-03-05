@@ -34,7 +34,7 @@ interface LeftPanelProps {
     undo: () => void;
     redo: () => void;
     // filterEasyCases: () => void;
-    exportMatchingResults: () => void;
+    exportMatchingResults: (format: string) => void;
 
     // Timeline Props
     userOperations: UserOperation[];

@@ -626,6 +626,52 @@ class MatchingTask:
 
         return ret_df[target_columns]
 
+    def get_accepted_mappings(self) -> List[Dict[str, str]]:
+        """
+        Export a json like structure for all accepted mappings:
+        {
+            "sourceColumn": "source_column_1",
+            "targetColumn": "target_column_1",
+            "valueMatches": [
+                {
+                    "from": "value1",
+                    "to": "value2"
+                },
+                ...
+            ]
+        }
+        """
+        candidates_set = set()
+        for candidate in self.get_cached_candidates():
+            if candidate["status"] == "accepted":
+                candidates_set.add(
+                    (candidate["sourceColumn"], candidate["targetColumn"])
+                )
+
+        ret = []
+        for source_col, target_col in candidates_set:
+            if source_col not in self.get_value_matches():
+                continue
+            if target_col not in self.get_value_matches()[source_col]["targets"]:
+                value_matches = []
+            else:
+                value_matches = self.get_value_matches()[source_col]["targets"][
+                    target_col
+                ]
+            ret.append(
+                {
+                    "sourceColumn": source_col,
+                    "targetColumn": target_col,
+                    "valueMatches": [
+                        {"from": from_val, "to": to_val}
+                        for from_val, to_val in zip(
+                            self.get_source_unique_values(source_col), value_matches
+                        )
+                    ],
+                }
+            )
+        return ret
+
     def set_source_value_matches(
         self, source_col: str, from_val: str, to_val: str
     ) -> None:

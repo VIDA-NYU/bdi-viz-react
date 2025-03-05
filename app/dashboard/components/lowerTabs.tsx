@@ -50,6 +50,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={2}>
             <ValueComparisonTable
               valueMatches={valueMatches}
+              targetColumns={weightedAggregatedCandidates.map((agg) => agg.targetColumn)}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
               handleValueMatches={handleValueMatches}
             />

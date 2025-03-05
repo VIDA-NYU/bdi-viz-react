@@ -29,7 +29,7 @@ type DashboardOperationState = {
     explain: (candidate?: Candidate) => void;
     apply: (reaction: UserReaction) => void;
     // filterExactMatches: () => void;
-    exportMatchingResults: () => void;
+    exportMatchingResults: (format: string) => void;
 }
 
 export type { DashboardOperationState };
@@ -271,11 +271,15 @@ export const {
             setIsLoadingGlobal(false);
         }, [onCandidateUpdate, isLoadingGlobal, setIsLoadingGlobal]);
 
-        const exportMatchingResults = () => {
+        const exportMatchingResults = (format: string) => {
             console.log("Exporting Matching Results...");
             getCandidatesResult({
-                callback: (candidates: string) => {
+                format,
+                callbackCsv: (candidates: string) => {
                     exportCsv(candidates);
+                },
+                callbackJson: (candidates: string) => {
+                    exportToJson(candidates);
                 }
             })
         };
