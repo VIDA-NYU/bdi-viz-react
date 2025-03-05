@@ -17,7 +17,7 @@ interface ValueComparisonTableProps {
 const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatches, selectedCandidate, handleValueMatches }) => {
     const theme = useTheme();
 
-    const { globalCandidateHighlight } = useContext(HighlightGlobalContext);
+    const { globalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
 
     const candidate = useMemo(() => {
         let candidate = selectedCandidate;
@@ -90,6 +90,33 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
         muiTableBodyCellProps: ({ cell, column, table }) => {
             const isSourceColumn = cell.column.id === candidate?.sourceColumn;
             const isTargetColumn = cell.column.id === candidate?.targetColumn;
+            const cellValue = cell.getValue();
+
+            // base styling
+            let cellStyle: React.CSSProperties = {
+                backgroundColor: isSourceColumn
+                    ? theme.palette.primary.dark
+                    : isTargetColumn
+                    ? theme.palette.secondary.dark
+                    : undefined,
+                color: isSourceColumn || isTargetColumn 
+                    ? theme.palette.common.black
+                    : undefined,
+                fontWeight: isSourceColumn || isTargetColumn ? 'bold' : undefined,
+            };
+            
+            if (
+                globalQuery &&
+                typeof cellValue === 'string' &&
+                cellValue.toLowerCase().includes(globalQuery.toLowerCase())
+            ) {
+                cellStyle = {
+                    ...cellStyle,
+                    fontWeight: "800",
+                    color: theme.palette.primary.main,
+                };
+            }
+
             return {
                 onClick: () => {
                     console.log(column, "column");
@@ -108,11 +135,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
                     }
                     
                 },
-                style: {
-                    backgroundColor: isSourceColumn ? theme.palette.primary.dark : isTargetColumn ? theme.palette.secondary.dark : undefined,
-                    color: isSourceColumn ? theme.palette.common.black : isTargetColumn ? theme.palette.common.black : undefined,
-                    fontWeight: isSourceColumn || isTargetColumn ? 'bold' : undefined,
-                },
+                style: cellStyle,
                 onKeyDown: (event) => {
                     if (event.key === 'Enter') {
                         if (isSourceColumn) {

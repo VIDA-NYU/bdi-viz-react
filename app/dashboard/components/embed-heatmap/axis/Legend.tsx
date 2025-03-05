@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, useTheme } from "@mui/material";
 import { StyledText } from "@/app/dashboard/layout/components";
-import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 
 interface LegendProps {
   color: d3.ScaleSequential<string, never>;
@@ -11,7 +10,6 @@ const Legend: React.FC<LegendProps> = ({
   color,
 }) => {
   const theme = useTheme();
-  const { globalQuery } = useContext(HighlightGlobalContext);
 
   const legendWidth = 30;
   const legendHeight = 350;

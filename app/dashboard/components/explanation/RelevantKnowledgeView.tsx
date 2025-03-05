@@ -9,9 +9,10 @@ import {
     Stack,
     CircularProgress
 } from '@mui/material';
-import { HighlightedChip } from '../../layout/components';
+import { BasicChip, HighlightedChip } from '../../layout/components';
 import { SectionHeader } from '../../layout/components';
 import HighlightGlobalContext from '@/app/lib/highlight/highlight-context';
+import { handleCopy } from '../../utils/clipboard';
 
 interface RelevantKnowledgeProps {
     relevantKnowledge: RelevantKnowledge[];
@@ -26,7 +27,7 @@ const RelevantKnowledgeView = ({
 }: RelevantKnowledgeProps) => {
 
     // Highlight Global Context
-    const { globalValueSelection } = useContext(HighlightGlobalContext);
+    const { globalQuery } = useContext(HighlightGlobalContext);
     return (
         <Box>
             <SectionHeader>
@@ -89,10 +90,24 @@ const RelevantKnowledgeView = ({
                                 <strong>Enum:</strong>
                             </Typography>
                             {gdcAttribute.enum.map((enumValue, index) => (
-                                globalValueSelection && globalValueSelection.includes(enumValue) ? (
-                                    <HighlightedChip key={index} label={enumValue} color="info" size='small' sx={{ fontSize: "0.65rem" }} />
+                                globalQuery && enumValue.toLowerCase().includes(globalQuery.toLowerCase()) ? (
+                                    <HighlightedChip
+                                        key={index}
+                                        label={enumValue}
+                                        color="info" 
+                                        size='small' 
+                                        sx={{ fontSize: "0.65rem" }} 
+                                        onClick={() => handleCopy(enumValue)}
+                                    />
                                 ) : (
-                                    <Chip key={index} label={enumValue} color="info" size='small' sx={{ fontSize: "0.65rem" }} />
+                                    <BasicChip
+                                        key={index} 
+                                        label={enumValue} 
+                                        color="info" 
+                                        size='small' 
+                                        sx={{ fontSize: "0.65rem" }}
+                                        onClick={() => handleCopy(enumValue)}
+                                    />
                                 )
                             ))}
                         </Box>
