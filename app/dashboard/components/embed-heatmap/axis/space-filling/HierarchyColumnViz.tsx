@@ -43,10 +43,10 @@ const HierarchicalColumnViz: React.FC<HierarchicalColumnVizProps> = ({
   const layoutConfig = {
     innerWidth,
     innerHeight,
-    columnHeight: 60,
+    columnHeight: 50,
     columnWidth: 80,
-    columnSpacing: 20,
-    hierarchyHeight: 30,
+    columnSpacing: 30,
+    hierarchyHeight: 20,
     hierarchySpacing: 20,
     segmentSpacing: 2,
     theme,
@@ -78,9 +78,10 @@ const HierarchicalColumnViz: React.FC<HierarchicalColumnVizProps> = ({
 
     // Calculate spacing and positions
     
-    const superCategoryY = dimensions.height;
-    const categoryY = superCategoryY - layoutConfig.hierarchyHeight - layoutConfig.hierarchySpacing;
-    const columnsY = categoryY - layoutConfig.hierarchyHeight - layoutConfig.hierarchySpacing * 3;
+    const columnsY = 0;
+    const categoryY = columnsY + layoutConfig.columnHeight + layoutConfig.columnSpacing;
+    const superCategoryY = categoryY + layoutConfig.hierarchyHeight + layoutConfig.hierarchySpacing;
+    
 
     const spaceFillingWidth = columnData.reduce(
       (acc, column) => Math.max(acc, column.x! + column.width!),
@@ -129,8 +130,9 @@ const HierarchicalColumnViz: React.FC<HierarchicalColumnVizProps> = ({
 
     // Add title
     g.append('text')
-      .attr('x', 0)
-      .attr('y', -20)
+      .attr('text-anchor', 'middle')
+      .attr('x', spaceFillingWidth / 2)
+      .attr('y', superCategoryY + 50)
       .attr('font-size', '1rem')
       .attr('font-weight', 'bold')
       .attr('font-family', `"Roboto","Helvetica","Arial",sans-serif`)

@@ -13,23 +13,6 @@ interface BundledPath {
   category: CategoryData;
 }
 
-// Calculate column positions based on their order
-export function calculateColumnPositions(
-  columnData: ColumnData[],
-  layoutConfig: LayoutConfig,
-  columnsY: number
-): ColumnData[] {
-  const { columnWidth, columnSpacing } = layoutConfig;
-  
-  return columnData.map((column, i) => ({
-    ...column,
-    x: i * (columnWidth + columnSpacing),
-    y: columnsY,
-    width: columnWidth,
-    height: layoutConfig.columnHeight
-  }));
-}
-
 // Create the bundled paths from columns to categories
 function createBundledPaths(
   positionedColumns: ColumnData[],
