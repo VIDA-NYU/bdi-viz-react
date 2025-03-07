@@ -19,6 +19,8 @@ README.md
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
 Untitled.ipynb
+*.ipynb
+**/.ipynb
 
 .idea/
 .vscode/
@@ -30,3 +32,5 @@ dist/
 htmlcov/
 .tox/
 docs/_build/
+tmp*/
+**/tmp*/

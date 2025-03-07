@@ -4,7 +4,7 @@ import { exportToJson, exportCsv } from '../components/utils/exportJson';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getCandidatesResult } from "@/app/lib/heatmap/heatmap-helper";
 import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 
 type DashboardOperationProps = {
     candidates: Candidate[];
@@ -50,7 +50,7 @@ export const {
         onUserOperationsUpdate,
     }: DashboardOperationProps): DashboardOperationState => {
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
-        const { setIsLoadingGlobal, isLoadingGlobal } = useContext(LoadingGlobalContext);
+        const { setIsLoadingGlobal, isLoadingGlobal } = useContext(SettingsGlobalContext);
 
         const acceptMatch = useCallback(async () => {
             if (!selectedCandidate) return;

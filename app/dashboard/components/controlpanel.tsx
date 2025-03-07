@@ -12,7 +12,7 @@ import CandidateTypeSelection from "./control-inputs/candidate-type-selection";
 import SimilarSourcesSlide from "./control-inputs/similar-sources-slide";
 import CandidateThresholdSlide from "./control-inputs/candidate-threshold-slide";
 import MatcherSliders from "./control-inputs/matcher-selection";
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 import { SectionHeader } from "@/app/dashboard/layout/components";
 
 
@@ -45,7 +45,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 }) => {
 
   // Loading Global Context
-  const { developerMode } = useContext(LoadingGlobalContext);
+  const { developerMode } = useContext(SettingsGlobalContext);
 
   // Root container styles
   const rootStyles = {

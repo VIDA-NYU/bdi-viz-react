@@ -8,7 +8,7 @@ import { Box, Paper, IconButton } from "@mui/material";
 import { BasicButton } from "../layout/components";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 import { Dropzone } from "./file-upload/fileUploadBox";
 
 interface FileUploadingProps {
@@ -16,7 +16,7 @@ interface FileUploadingProps {
 }
 
 const FileUploading: React.FC<FileUploadingProps> = ({ callback }) => {
-    const { setIsLoadingGlobal } = useContext(LoadingGlobalContext);
+    const { setIsLoadingGlobal } = useContext(SettingsGlobalContext);
     const [isVisible, setIsVisible] = useState(false);
 
     const customHeader = {

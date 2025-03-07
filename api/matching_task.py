@@ -560,7 +560,9 @@ class MatchingTask:
             )
         # if pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
         #     return []
-        return list(self.source_df[source_col].dropna().unique().astype(str)[:n])
+        return sorted(
+            list(self.source_df[source_col].dropna().unique().astype(str)[:n])
+        )
 
     def get_target_value_bins(self, target_col: str) -> List[Dict[str, Any]]:
         if self.target_df is None or target_col not in self.target_df.columns:

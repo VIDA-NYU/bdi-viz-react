@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import { Box, useTheme } from "@mui/material";
 import React, { useRef, useEffect, useMemo, useState, useContext } from "react";
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 import { useHeatmapScales } from "../embed-heatmap/hooks/useHeatmapScales";
 import { useResizedSVGRef } from "../hooks/resize-hooks";
 import { HeatMapConfig } from "../embed-heatmap/types";
@@ -120,7 +120,7 @@ const UpsetPlot: React.FC<UpsetPlotProps> = ({ aggData, matchers, selectedCandid
         })).sort((a, b) => b.weight - a.weight);
     }, [dataPerMatcher, filteredMatchers]);
 
-    const { developerMode } = useContext(LoadingGlobalContext);
+    const { developerMode } = useContext(SettingsGlobalContext);
 
     useEffect(() => {
         if (upperColumnChartRef.current) {

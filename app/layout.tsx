@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import ToastProvider from "@/app/lib/toastify/toastify-provider";
-import LoadingGlobalProvider from "./lib/loading/loading-provider";
+import SettingsGlobalProvider from "./lib/settings/settings-provider";
 import HighlightGlobalProvider from "./lib/highlight/highlight-provider";
 
 const geistSans = localFont({
@@ -33,11 +33,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ToastProvider>
-          <LoadingGlobalProvider>
+          <SettingsGlobalProvider>
             <HighlightGlobalProvider>
               {children}
             </HighlightGlobalProvider>
-          </LoadingGlobalProvider>
+          </SettingsGlobalProvider>
         </ToastProvider>
       </body>
     </html>

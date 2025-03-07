@@ -10,7 +10,7 @@ import LowerTabs from "./components/lowerTabs";
 import RightPanel from "./rightpanel";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
-import LoadingGlobalContext from "@/app/lib/loading/loading-context";
+import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
@@ -35,7 +35,9 @@ export default function Dashboard() {
         setIsLoadingGlobal,
         developerMode,
         setDeveloperMode,
-    } = useContext(LoadingGlobalContext);
+        hoverMode,
+        setHoverMode,
+    } = useContext(SettingsGlobalContext);
 
     const {
         candidates,
@@ -286,6 +288,18 @@ export default function Dashboard() {
                         valueMatches={valueMatches}
                         handleValueMatches={handleValueMatches}
                     />
+                    <Box sx={{ position: 'fixed', right: 320, display: 'flex', alignItems: 'center' }}>
+                        <Typography sx={{ fontSize: "0.7rem", fontWeight: "300", marginRight: 0 }}>Expand On Hover</Typography>
+                        <Switch
+                            checked={hoverMode}
+                            onChange={(e) => setHoverMode(e.target.checked)}
+                            color="info"
+                            sx={{ 
+                                '& .MuiSwitch-thumb': { borderRadius: 1 },
+                                '& .MuiSwitch-track': { borderRadius: 1 }
+                            }}
+                        />
+                    </Box>
                 </MainColumn>
 
                 {/* Right Column - Auxiliary Visualizations */}

@@ -17,6 +17,7 @@ import { RectCell } from "./cells/RectCell";
 import { HierarchicalAxis } from "./axis/HierarchicalAxis";
 import IndentedTreeAxis from "./axis/IndentedTreeAxis";
 import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
+import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
@@ -52,6 +53,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
   const theme = useTheme();
 
   const { globalCandidateHighlight, setGlobalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
+  const { hoverMode } = useContext(SettingsGlobalContext);
 
 
   const [config, setConfig] = useState<HeatMapConfig>({
@@ -67,6 +69,9 @@ const HeatMap: React.FC<HeatMapProps> = ({
   }, [data]);
 
   const currentExpanding = useMemo(() => {
+    if (!hoverMode) {
+      return selectedCandidate;
+    }
     if (selectedCandidate) {
       return selectedCandidate;
     }
