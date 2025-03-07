@@ -10,8 +10,14 @@ interface UseOntologyLayoutProps {
   height: number;
   margin: { top: number; right: number; bottom: number; left: number };
   currentExpanding?: AggregatedCandidate;
+  useHorizontalPadding?: boolean;
 }
-
+interface ColumnWithLocation {
+  name: string;
+  x: number;
+  y: number;
+  width: number;
+  }
 export const useOntologyLayout = ({
   columns,
   targetOntologies,
@@ -21,6 +27,7 @@ export const useOntologyLayout = ({
   height,
   margin,
   currentExpanding,
+  useHorizontalPadding = true,
 }: UseOntologyLayoutProps) => {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(
     new Set(["root"])
@@ -41,6 +48,20 @@ export const useOntologyLayout = ({
     }, [] as string[]);
 
     const usableWidth = width - margin.left - margin.right;
+
+    const columnsWithLocation: ColumnWithLocation[] = columns.map((col) => {
+      const x = scale(col) ?? 0;
+      return {
+        name: col,
+        x: x + (useHorizontalPadding? 1 : 0) * (getWidth({ targetColumn: col } as Candidate) ?? 0) / 2,
+        y: 0,
+        width: 0,
+      };
+    }
+    );
+    
+
+
 
     const treeNodes: TreeNode[] = grandparents.map((grandparent, index) => {
       // Calculate category node position evenly across available space
@@ -113,18 +134,21 @@ export const useOntologyLayout = ({
                 originalColumn: col,
                 x:
                   (scale(col) ?? 0) +
-                  (getWidth({ targetColumn: col } as Candidate) ?? 0) / 2,
+                  (useHorizontalPadding? 1 :0) * (getWidth({ targetColumn: col } as Candidate) ?? 0) / 2,
                 y: 0,
+                width: getWidth({ targetColumn: col } as Candidate) ?? 0,
                 isExpanded: childIsExpanded,
               };
             }),
             x: parentPosition,
             y: layerIsExpanded ? 80 : 40,
+            width: 0,
             isExpanded: parentIsExpanded,
           };
         }),
         x: grandparentPosition,
         y: isExpanded ? 120 : 40,
+        width: 0,
         isExpanded: isExpanded,
       };
     });
