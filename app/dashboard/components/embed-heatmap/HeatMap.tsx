@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useMemo, useCallback, useContext } from "react";
+import React, { useState, useMemo, useCallback, useContext } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import { TreeNode } from "./tree/types";
 import { ClusteringOptions } from "./tree/types";
 import { HeatMapConfig } from "./types";
 import { useResizedSVGRef } from "../hooks/resize-hooks";
@@ -14,10 +13,11 @@ import { Legend } from "./axis/Legend";
 import { YAxis } from "./axis/YAxis";
 import { BaseExpandedCell } from "./expanded-cells/BaseExpandedCell";
 import { RectCell } from "./cells/RectCell";
-import { HierarchicalAxis } from "./axis/HierarchicalAxis";
-import IndentedTreeAxis from "./axis/IndentedTreeAxis";
+// import { HierarchicalAxis } from "./axis/HierarchicalAxis";
+// import IndentedTreeAxis from "./axis/IndentedTreeAxis";
 import HighlightGlobalContext from "@/app/lib/highlight/highlight-context";
 import SettingsGlobalContext from "@/app/lib/settings/settings-context";
+import HierarchicalColumnViz from "./axis/space-filling/HierarchyColumnViz";
 
 interface HeatMapProps {
   data: AggregatedCandidate[];
@@ -118,6 +118,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
     scale: x,
     getWidth: getWidth,
     currentExpanding: currentExpanding as AggregatedCandidate,
+    useHorizontalPadding: false,
   });
   const targetLabelPlacements = useLabelManagement({
     nodes: targetTreeData,
@@ -316,7 +317,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
         )}
       </Box>
 
-      <Box sx={{ flexGrow: 1, paddingLeft: 0 }}>
+      <Box sx={{ flexGrow: 1, paddingLeft: 0, flexBasis: "280px" }}>
         {/* Hierarchical Axis */}
         {/* <HierarchicalAxis
           targetTreeData={targetTreeData}
@@ -324,7 +325,12 @@ const HeatMap: React.FC<HeatMapProps> = ({
           targetExpandedNodes={targetExpandedNodes}
           toggleTargetNode={toggleTargetNode}
         /> */}
-        <IndentedTreeAxis targetTreeData={targetTreeData} currentExpanding={currentExpanding as AggregatedCandidate} />
+        <HierarchicalColumnViz
+          targetTreeData={targetTreeData} currentExpanding={currentExpanding as AggregatedCandidate}
+          transform={`translate(${MARGIN.left},${0})`}
+
+        />
+        {/* <IndentedTreeAxis targetTreeData={targetTreeData} currentExpanding={currentExpanding as AggregatedCandidate} /> */}
       </Box>
     </>
   );

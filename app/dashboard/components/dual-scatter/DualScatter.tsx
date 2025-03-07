@@ -42,7 +42,6 @@ export const DualScatter: React.FC<SchemaVizProps> = ({
 
     const [manuallySelectedNodes, setManuallySelectedNodes] = useState<string[]>([]);
 
-    console.log("candidates", candidates);
     
     const clusters = useMemo(() => [...new Set([
         ...sourceNodes.map(n => n.cluster),
