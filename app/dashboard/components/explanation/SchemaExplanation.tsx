@@ -137,17 +137,6 @@ const SchemaExplanation = ({
                         </Box>
                     )}
 
-                    {/* Is Match */}
-                    {selectedCandidate && isMatch !== undefined &&
-                        <Box>
-                            <Chip
-                                size="small"
-                                label={isMatch ? "Our agent thinks this is a match." : "Our agent thinks this is not a match."} 
-                                sx={{ backgroundColor: isMatch ? 'green' : 'red', color: 'white', fontSize: '0.75rem' }} 
-                            />
-                        </Box>
-                    }
-
                     {/* Value Matches */}
                     {valueMatches.length > 0 && (
                         <Box>
@@ -189,14 +178,25 @@ const SchemaExplanation = ({
                             onClick={onGenerateExplanation}
                         />
                     )}
-
+                    
+                    {/* Is Match */}
+                    {selectedCandidate && isMatch !== undefined &&
+                        <>
+                            <SectionHeader>
+                                Match Explanations
+                            </SectionHeader>
+                            <Box>
+                                <Chip
+                                    size="small"
+                                    label={isMatch ? "Our agent thinks this is a match." : "Our agent thinks this is not a match."} 
+                                    sx={{ backgroundColor: isMatch ? 'green' : 'red', color: 'white', fontSize: '0.75rem' }} 
+                                />
+                            </Box>
+                        </>
+                    }
                     {/* Current Explanations */}
                     {currentExplanations.length > 0 && (
-                        <>
                             <Box>
-                                <SectionHeader>
-                                    Match Explanations
-                                </SectionHeader>
                                 <List sx={{ margin: 0.5 }}>
                                     {currentExplanations.map(explanation => (
                                         <ExplanationItem
@@ -212,7 +212,6 @@ const SchemaExplanation = ({
                                     ))}
                                 </List>
                             </Box>
-                        </>
                     )}
                 </>
             )}

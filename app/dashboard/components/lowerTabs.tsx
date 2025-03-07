@@ -24,7 +24,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
   valueMatches,
   handleValueMatches,
 }) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(2);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -34,7 +34,6 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
     <Box sx={{ width: '100%', marginTop: 0 }}>
       <TabContext value={value}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Hidden" value={0} />
             <Tab label="UpSet Plot" value={1} />
             <Tab label="Value Comparisons" value={2} />
           </TabList>

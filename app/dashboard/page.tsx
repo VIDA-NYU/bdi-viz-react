@@ -55,6 +55,7 @@ export default function Dashboard() {
         setMatchers,
         handleUserOperationsUpdate,
         handleValueMatches,
+        setGdcAttribute,
     } = useDashboardCandidates();
 
     const {
@@ -167,6 +168,7 @@ export default function Dashboard() {
         if (!candidate) {
             setSelectedCandidate(undefined);
             generateExplanations(undefined);
+            setGdcAttribute(undefined);
             return;
         }
         toastify("default", <p><strong>Source: </strong>{candidate.sourceColumn}, <strong>Target: </strong>{candidate.targetColumn}</p>, { autoClose: 200 });
@@ -288,7 +290,7 @@ export default function Dashboard() {
                         valueMatches={valueMatches}
                         handleValueMatches={handleValueMatches}
                     />
-                    <Box sx={{ position: 'fixed', right: 320, display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{ position: 'absolute', right: 320, display: 'flex', alignItems: 'center' }}>
                         <Typography sx={{ fontSize: "0.7rem", fontWeight: "300", marginRight: 0 }}>Expand On Hover</Typography>
                         <Switch
                             checked={hoverMode}

@@ -21,6 +21,7 @@ type DashboardCandidateState = {
     setMatchers: (matchers: Matcher[]) => void;
     handleUserOperationsUpdate: (newUserOperations: UserOperation[]) => void;
     handleValueMatches: (valueMatches: ValueMatch[]) => void;
+    setGdcAttribute: (attribute: GDCAttribute | undefined) => void;
 }
 
 export type { DashboardCandidateState };
@@ -126,6 +127,7 @@ export const {
             setMatchers,
             handleUserOperationsUpdate,
             handleValueMatches,
+            setGdcAttribute,
         };
     }
 };

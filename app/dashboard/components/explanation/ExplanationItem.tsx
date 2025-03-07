@@ -36,55 +36,70 @@ function ExplanationItem({
             sx={{
                 mb: 1,
                 borderRadius: 2,
-                border: '1px solid',
-                borderColor: 'divider',
+                border: 3,
+                borderColor: explanation.isMatch ? 'success.dark' : 'error.dark',
                 position: 'relative',
                 overflow: 'hidden',
                 padding: 1,
-                boxShadow: 3,
+                // boxShadow: 3,
                 backgroundColor: 'background.paper',
-                transition: 'transform 0.2s, box-shadow 0.2s',
+                transition: 'transform 0.2s',
                 '&:hover': {
                     transform: 'scale(1.02)',
-                    boxShadow: 6,
+                    // boxShadow: 6,
                 }
             }}
         >
             <ListItemText
-            primaryTypographyProps={{
-                sx: {
-                fontSize: '0.7rem',
-                fontWeight: 300,
-                color: explanation.isMatch ? 'text.primary' : 'error.main',
+                primaryTypographyProps={{
+                    sx: {
+                        fontSize: '0.7rem',
+                        fontWeight: 400,
+                        color: explanation.isMatch ? 'text.primary' : 'error.main',
+                    }
+                }}
+                secondaryTypographyProps={{
+                    sx: {
+                        fontSize: '0.65rem',
+                        fontWeight: 400,
+                        color: 'text.secondary'
+                    }
+                }}
+                primary={explanation.reason}
+                secondary={
+                    <>
+                        {explanation.reference &&  (
+                            <span style={{ fontSize: '0.65rem', fontWeight: 400, color: 'gray' }}>
+                                {explanation.reference}
+                                <br />
+                            </span>
+                        )}
+                        <span style={{ fontSize: '0.65rem', fontWeight: 400, color: 'gray' }}>
+                            {`Confidence: ${explanation.confidence}`}
+                        </span>
+                    </>
                 }
-            }}
-            secondaryTypographyProps={{
-                sx: {
-                fontSize: '0.65rem',
-                fontWeight: 400,
-                color: 'text.secondary'
-                }
-            }}
-            primary={explanation.reason}
-            secondary={explanation.reference}
-            sx={{ zIndex: 2 }}
+                sx={{ zIndex: 2, margin: 0 }}
             />
-            <IconButton 
-            edge="end" 
-            sx={{ zIndex: 2 }}
-            onClick={() => onThumbUpClick(explanation.id)}
-            color={thumbUp ? 'primary' : 'default'}
-            >
-            <ThumbUpIcon />
-            </IconButton>
-            <IconButton 
-            edge="end" 
-            sx={{ zIndex: 2 }}
-            onClick={() => onThumbDownClick(explanation.id)}
-            color={thumbDown ? 'error' : 'default'}
-            >
-            <ThumbDownIcon />
-            </IconButton>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingRight: 10 }}>
+                <IconButton 
+                    edge="end" 
+                    sx={{ zIndex: 2, borderRadius: 1, px: 0.5, py: 0.5 }}
+                    onClick={() => onThumbUpClick(explanation.id)}
+                    color={thumbUp ? 'primary' : 'default'}
+                >
+                    <ThumbUpIcon />
+                </IconButton>
+                
+                <IconButton 
+                    edge="end" 
+                    sx={{ zIndex: 2, borderRadius: 1, px: 0.5, py: 0.5 }}
+                    onClick={() => onThumbDownClick(explanation.id)}
+                    color={thumbDown ? 'error' : 'default'}
+                >
+                    <ThumbDownIcon />
+                </IconButton>
+            </div>
         </ListItem>
     );
 }

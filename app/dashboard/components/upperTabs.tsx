@@ -42,6 +42,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     setGlobalCandidateHighlight(undefined);
+    setSelectedCandidate(undefined);
     if (newValue === "1") {
       updateStatus(["accepted"]);
     } else if (newValue === "2") {
@@ -64,9 +65,9 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
       <TabContext value={value}>
         <Box sx={{ borderTop: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Accepted Matches" value="1" />
-            <Tab label="Unfinished Candidates" value="2" />
-            <Tab label="All Candidates" value="3" />
+            <Tab label="Accepted" value="1" />
+            <Tab label="Unmatched" value="2" />
+            <Tab label="All" value="3" />
           </TabList>
         </Box>
       </TabContext>
