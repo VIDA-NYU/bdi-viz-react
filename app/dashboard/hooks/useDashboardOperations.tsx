@@ -239,14 +239,14 @@ export const {
                 }
             }
 
+            setIsExplaining(false);
+
             if (onRelatedOuterSources) {
                 const relatedOuterSources = await agentGetRelatedSources(candidateToExplain);
                 if (relatedOuterSources) {
                     onRelatedOuterSources(relatedOuterSources);
                 }
             }
-
-            setIsExplaining(false);
         }, [selectedCandidate, onExplanation, isExplaining, setIsExplaining]);
 
         const apply = useCallback(async (reaction: UserReaction) => {

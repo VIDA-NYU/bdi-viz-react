@@ -33,7 +33,7 @@ const RelevantKnowledgeView = ({
     // Highlight Global Context
     const { globalQuery } = useContext(HighlightGlobalContext);
     return (
-        <Stack sx={{overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+        <Stack>
             {isLoading ? (
             <Box display="flex" justifyContent="center" alignItems="center" height="100%">
                 <CircularProgress />
