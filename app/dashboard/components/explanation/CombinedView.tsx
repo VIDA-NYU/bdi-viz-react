@@ -53,7 +53,7 @@ const CombinedView = ({
                     );
                 }}
             >
-            <Box sx={{ paddingLeft: 0, height: "100%", overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+            <Box sx={{ paddingLeft: 0, height: "400px", overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
                 <SchemaExplanation
                     isMatch={isMatch}
                     currentExplanations={currentExplanations}

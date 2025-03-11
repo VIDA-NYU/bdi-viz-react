@@ -64,15 +64,17 @@ export const useTreeLayout = ({
             },
             level: 2,
             originalColumn: col,
+            width: getWidth({targetColumn: col} as Candidate),
             // Use scale for actual column positions
             x: orientation === 'horizontal' ? (scale(col) ?? 0) + getWidth({targetColumn: col} as Candidate)/2 : 0,
             y: orientation === 'vertical' ? (scale(col) ?? 0) : 0,
             isExpanded: expandedNodes.has(col)
-            })),
+          })),
           // Use evenly distributed positions for category nodes
           x: orientation === 'horizontal' ? categoryPosition : 0,
           y: orientation === 'vertical' ? categoryPosition : (expandedNodes.size > 0 ? 80 : 40),
-          isExpanded: expandedNodes.has(prefix)
+          isExpanded: expandedNodes.has(prefix),
+          width: 0
         };
       });
     };

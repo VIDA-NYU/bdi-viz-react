@@ -32,7 +32,7 @@ const RelevantKnowledgeView = ({
     const { globalQuery } = useContext(HighlightGlobalContext);
     return (
         <Stack>
-            {isLoading ? (
+            {/* {isLoading ? (
             <Box display="flex" justifyContent="center" alignItems="center" height="100%">
                 <CircularProgress />
             </Box>
@@ -49,7 +49,7 @@ const RelevantKnowledgeView = ({
                 </ListItem>
                 ))}
             </List>
-            )}
+            )} */}
 
             {gdcAttribute && (
             <Box>

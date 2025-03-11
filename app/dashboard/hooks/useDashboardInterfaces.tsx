@@ -34,7 +34,7 @@ export const {
         // useWhatChanged([filters.sourceColumn, filters.selectedMatchers, filters.similarSources, filters.candidateThreshold, filters.candidateType]);
 
         const weightedCandidates = useMemo(() => {
-            let aggregatedCandidates = Array.from(d3.group(candidates, d => d.sourceColumn + d.targetColumn), ([_, items]) => {
+            const aggregatedCandidates = Array.from(d3.group(candidates, d => d.sourceColumn + d.targetColumn), ([_, items]) => {
                 return {
                     sourceColumn: items[0].sourceColumn,
                     targetColumn: items[0].targetColumn,
