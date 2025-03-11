@@ -28,8 +28,6 @@ const RelevantKnowledgeView = ({
     relatedOuterSources,
 }: RelevantKnowledgeProps) => {
 
-    console.log('RelevantKnowledgeView', relatedOuterSources);
-
     // Highlight Global Context
     const { globalQuery } = useContext(HighlightGlobalContext);
     return (

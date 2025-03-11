@@ -1,20 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useState, useEffect } from 'react';
 import { Box, FormControl, Typography, Slider } from '@mui/material';
 import { SectionLabel } from '../../layout/components';
 
 interface CandidateThresholdSlideProps {
+    selectedCandidateThreshold: number;
     onSelect: (num: number) => void;
 }
 
-const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({ onSelect }) => {
+const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({ selectedCandidateThreshold, onSelect }) => {
     const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
 
     const handleChange = (num: number) => {
         setCandidateThreshold(num);
         onSelect(num);
     }
+
+    useEffect(() => {
+        if (selectedCandidateThreshold) {
+            setCandidateThreshold(selectedCandidateThreshold);
+        }
+    }
+    , [selectedCandidateThreshold]);
 
     return (
         <Box sx={{ width: "100%", flexGrow: 1 }}>

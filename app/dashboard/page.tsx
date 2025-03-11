@@ -116,7 +116,6 @@ export default function Dashboard() {
     });
 
     const {
-        filteredCandidates,
         filteredSourceCluster,
         filteredCandidateCluster,
         weightedAggregatedCandidates,
@@ -205,6 +204,19 @@ export default function Dashboard() {
 
     function handleUpdateSourceColumn(column: string) {
         setSelectedCandidate(undefined);
+
+        const filteredSourceColumn = filteredSourceColumns.find((sc) => sc.name === column);
+        console.log("Filtered Source Column: ", filteredSourceColumn);
+        if (filteredSourceColumn) {
+            if (filteredSourceColumn.status !== "complete") {
+                updateStatus(["accepted", "rejected", "discarded", "idle"]);
+            }
+            
+            if (candidateThreshold > filteredSourceColumn.maxScore) {
+                updateCandidateThreshold(filteredSourceColumn.maxScore);
+            }
+        }
+        
         updateSourceColumn(column);
     }
 
@@ -283,6 +295,7 @@ export default function Dashboard() {
                         targetUniqueValues={targetUniqueValues}
                         highlightSourceColumns={highlightedSourceColumns}
                         highlightTargetColumns={highlightedTargetColumns}
+                        status={status}
                         updateStatus={updateStatus}
                     />
                     <LowerTabs

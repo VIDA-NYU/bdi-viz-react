@@ -69,13 +69,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 selectedSourceColumn={props.state.sourceColumn}
                 onSelect={props.onSourceColumnSelect}
               />
-              <CandidateTypeSelection
+              {/* <CandidateTypeSelection
                 onSelect={props.onCandidateTypeSelect}
-              />
+              /> */}
               <SimilarSourcesSlide 
                 onSelect={props.onSimilarSourcesSelect} 
               />
               <CandidateThresholdSlide
+                selectedCandidateThreshold={props.state.candidateThreshold}
                 onSelect={props.onCandidateThresholdSelect}
               />
               {developerMode && (

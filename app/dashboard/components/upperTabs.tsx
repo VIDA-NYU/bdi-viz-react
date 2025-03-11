@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Box, Tab } from "@mui/material";
 import { TabList, TabContext } from "@mui/lab";
 
@@ -19,6 +19,7 @@ interface UpperTabsProps {
   targetUniqueValues: TargetUniqueValues[];
   highlightSourceColumns: string[];
   highlightTargetColumns: string[];
+  status: string[];
   updateStatus: (status: string[]) => void;
 }
 
@@ -34,6 +35,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
   targetUniqueValues,
   highlightSourceColumns,
   highlightTargetColumns,
+  status,
   updateStatus,
 }) => {
   const [value, setValue] = useState("1");
@@ -51,6 +53,16 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
       updateStatus(["accepted", "rejected", "discarded", "idle"]);
     }
   };
+
+  useEffect(() => {
+    if (status.length === 1 && status[0] === "accepted") {
+      setValue("1");
+    } else if (status.length === 3) {
+      setValue("2");
+    } else {
+      setValue("3");
+    }
+  }, [status]);
 
   return (
     <Box

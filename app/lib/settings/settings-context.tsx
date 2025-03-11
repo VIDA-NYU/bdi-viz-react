@@ -14,7 +14,7 @@ const SettingsGlobalContext = createContext<LoadingGlobalState>({
     setIsLoadingGlobal: () => { },
     developerMode: false,
     setDeveloperMode: () => { },
-    hoverMode: true,
+    hoverMode: false,
     setHoverMode: () => { },
 });
 

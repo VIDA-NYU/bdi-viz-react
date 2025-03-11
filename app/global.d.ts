@@ -18,6 +18,7 @@ type AggregatedCandidate = {
 declare interface SourceColumn {
     name: string;
     status: string; // 'complete', 'incomplete', 'discard'
+    maxScore: number;
 }
 
 declare interface SourceCluster {

@@ -29,6 +29,8 @@ def scraping_websource(query: str, topk: int = 5) -> List[Dict[str, str]]:
 
     search = DuckDuckGoSearchResults(output_format="list")
 
+    query = f"biomedical {query}"
+
     results = search.invoke(query)[:topk]
 
     return results
