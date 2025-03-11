@@ -316,8 +316,6 @@ class MatchingTask:
             target_column
         ] = list(match_results["To"])
 
-        logger.critical(match_results)
-
     def accept_cached_candidate(self, candidate: Dict[str, Any]) -> None:
         cached_candidates = self.get_cached_candidates()
         for cached_candidate in cached_candidates:

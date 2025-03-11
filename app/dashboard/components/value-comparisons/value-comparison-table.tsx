@@ -10,12 +10,12 @@ import { updateSourceValue } from "@/app/lib/heatmap/heatmap-helper";
 
 interface ValueComparisonTableProps {
     valueMatches: ValueMatch[];
-    targetColumns: string[];
+    weightedAggregatedCandidates: AggregatedCandidate[];
     selectedCandidate?: Candidate;
     handleValueMatches: (valueMatches: ValueMatch[]) => void;
 }
 
-const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatches, targetColumns, selectedCandidate, handleValueMatches }) => {
+const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatches, weightedAggregatedCandidates, selectedCandidate, handleValueMatches }) => {
     const theme = useTheme();
 
     const { globalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
@@ -36,6 +36,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
         }
         const valueMatch = valueMatches.find((valueMatch) => valueMatch.sourceColumn === candidate.sourceColumn);
         if (valueMatch) {
+            const targetColumns = weightedAggregatedCandidates.filter((aggCandidate) => aggCandidate.sourceColumn === candidate.sourceColumn).map((aggCandidate) => aggCandidate.targetColumn);
             const rows = valueMatch.sourceValues.map((sourceValue, index) => {
                 const rowObj = {
                     id: index,
@@ -54,7 +55,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
 
             return rows;
         }
-    }, [valueMatches, targetColumns, candidate]);
+    }, [valueMatches, weightedAggregatedCandidates, candidate]);
 
     const columns: MRT_ColumnDef<any>[] = useMemo(() => {
         if (!rows) {

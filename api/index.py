@@ -19,7 +19,7 @@ from .utils import (
     write_candidate_explanation_json,
 )
 
-GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
+GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_metadata.csv")
 
 app = Flask("bdiviz_flask")
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024
