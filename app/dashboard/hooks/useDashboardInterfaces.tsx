@@ -21,6 +21,9 @@ type DashboardInterfacesProps = {
         selectedMatcher?: Matcher;
         status: string[];
     };
+    pageNumber: number;
+    pageSize: number;
+    setTotalPages: (totalPages: number) => void;
 }
 
 export type { DashboardInterfacesState };
@@ -28,7 +31,15 @@ export type { DashboardInterfacesState };
 export const {
     useDashboardInterfaces
 } = {
-    useDashboardInterfaces: ({ candidates, sourceClusters, matchers, filters }: DashboardInterfacesProps): DashboardInterfacesState => {
+    useDashboardInterfaces: ({
+        candidates,
+        sourceClusters,
+        matchers,
+        filters,
+        pageNumber,
+        pageSize,
+        setTotalPages,
+    }: DashboardInterfacesProps): DashboardInterfacesState => {
         const [filteredCandidateCluster, setFilteredCandidateCluster] = useState<string[]>([]);
 
         // useWhatChanged([filters.sourceColumn, filters.selectedMatchers, filters.similarSources, filters.candidateThreshold, filters.candidateType]);
@@ -47,11 +58,33 @@ export const {
             return aggregatedCandidates;
         }, [candidates, matchers]);
 
+        const filteredSourceColumns = useMemo(() => {
+            const groupedSourceColumns = Array.from(d3.group(weightedCandidates, d => d.sourceColumn), ([name, items]: [string, Candidate[]]) => {
+                return {
+                    name,
+                    status: items.some(item => item.status === 'accepted') ? 'complete' : (items.every(item => item.status === 'discarded') ? 'ignored' : 'incomplete'),
+                    maxScore: Math.floor(((d3.max(items, d => d.score) ?? 0) / 0.1)) * 0.1,
+                } as SourceColumn;
+            });
+
+            return groupedSourceColumns;
+        }, [weightedCandidates]);
+
+
+        useEffect(() => {
+            setTotalPages(Math.ceil(filteredSourceColumns.length / pageSize));
+        }, [filteredSourceColumns, pageSize, setTotalPages]);
+
 
         const filteredSourceCluster = useMemo(() => {
             if (filters?.sourceColumn) {
                 if (filters.sourceColumn === 'all') {
-                    return sourceClusters?.map(sc => sc.sourceColumn) ?? [];
+                    const pageStart = (pageNumber - 1) * pageSize;
+                    const pageEnd = pageStart + pageSize;
+
+                    
+                    const pageSources = filteredSourceColumns.map(d => d.name).slice(pageStart, pageEnd);
+                    return pageSources;
                 }
                 const sourceCluster = sourceClusters?.find(sc =>
                     sc.sourceColumn === filters.sourceColumn
@@ -65,7 +98,7 @@ export const {
                 }
             }
             return [];
-        }, [sourceClusters, filters.sourceColumn, filters.similarSources]);
+        }, [sourceClusters, filters.sourceColumn, filters.similarSources, pageNumber, pageSize]);
 
         const weightedAggregatedCandidates = useMemo(() => {
 
@@ -84,18 +117,6 @@ export const {
 
             return filteredData;
         }, [weightedCandidates, filteredSourceCluster, filters.candidateThreshold, filters.status]);
-
-        const filteredSourceColumns = useMemo(() => {
-        const groupedSourceColumns = Array.from(d3.group(weightedCandidates, d => d.sourceColumn), ([name, items]: [string, Candidate[]]) => {
-            return {
-                name,
-                status: items.some(item => item.status === 'accepted') ? 'complete' : (items.every(item => item.status === 'discarded') ? 'ignored' : 'incomplete'),
-                maxScore: Math.floor(((d3.max(items, d => d.score) ?? 0) / 0.1)) * 0.1,
-            } as SourceColumn;
-        });
-
-            return groupedSourceColumns;
-        }, [weightedCandidates]);
 
         return {
             filteredSourceCluster,

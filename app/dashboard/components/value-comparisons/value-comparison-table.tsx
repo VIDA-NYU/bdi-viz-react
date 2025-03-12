@@ -49,7 +49,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
             const rows = valueMatch.sourceValues.map((sourceValue, index) => {
                 const rowObj = {
                     id: index,
-                    [valueMatch.sourceColumn]: (valueMatch.sourceMappedValues[index] === sourceValue) ? sourceValue : (
+                    [`${valueMatch.sourceColumn}(source)`]: (valueMatch.sourceMappedValues[index] === sourceValue) ? sourceValue : (
                         <>
                             <del>{sourceValue}</del> {valueMatch.sourceMappedValues[index]}
                         </>
@@ -102,11 +102,11 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
         enableBottomToolbar: false, //hide the bottom toolbar as well if you want
         initialState: {
             columnPinning: {
-                left: candidate?.sourceColumn ? [candidate.sourceColumn] : []
+                left: candidate?.sourceColumn ? [`${candidate?.sourceColumn}(source)`] : []
             }
         },
         muiTableBodyCellProps: ({ cell, column, table }) => {
-            const isSourceColumn = cell.column.id === candidate?.sourceColumn;
+            const isSourceColumn = cell.column.id === `${candidate?.sourceColumn}(source)`;
             const isTargetColumn = cell.column.id === candidate?.targetColumn;
             const cellValue = cell.getValue();
 
@@ -181,7 +181,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     useMemo(() => {
         const columnPinning = [];
         if (candidate?.sourceColumn) {
-            columnPinning.push(candidate.sourceColumn);
+            columnPinning.push(`${candidate.sourceColumn}(source)`);
         }
         if (candidate?.targetColumn) {
             columnPinning.push(candidate.targetColumn);

@@ -8,9 +8,11 @@ import LeftPanel from "./leftpanel";
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
 import RightPanel from "./rightpanel";
+import Paginator from "./components/control-inputs/paginator";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import SettingsGlobalContext from "@/app/lib/settings/settings-context";
+import PaginationGlobalContext from "../lib/pagination/pagination-context";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
@@ -38,6 +40,12 @@ export default function Dashboard() {
         hoverMode,
         setHoverMode,
     } = useContext(SettingsGlobalContext);
+
+    const {
+        pageNumber,
+        pageSize,
+        setTotalPages,
+    } = useContext(PaginationGlobalContext);
 
     const {
         candidates,
@@ -133,7 +141,10 @@ export default function Dashboard() {
             similarSources,
             candidateThreshold,
             status,
-        }
+        },
+        pageNumber,
+        pageSize,
+        setTotalPages,
     });
 
     const {
@@ -295,6 +306,8 @@ export default function Dashboard() {
                         status={status}
                         updateStatus={updateStatus}
                     />
+
+                    <Paginator />
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
                         matchers={matchers}
