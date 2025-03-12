@@ -11,13 +11,6 @@
         },
         {
             "sourceColumn": "Case_ID",
-            "targetColumn": "gene_symbol",
-            "score": 0.4487348067516529,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Case_ID",
             "targetColumn": "histone_variant",
             "score": 0.42518610323755934,
             "matcher": "ct_learning",
@@ -27,13 +20,6 @@
             "sourceColumn": "Case_ID",
             "targetColumn": "antigen",
             "score": 0.41071566114835123,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Case_ID",
-            "targetColumn": "second_gene_symbol",
-            "score": 0.3050439916342723,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -109,22 +95,8 @@
         },
         {
             "sourceColumn": "Case_ID",
-            "targetColumn": "second_gene_symbol",
-            "score": 0.5753922462463379,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Case_ID",
             "targetColumn": "morphology",
             "score": 0.5551708936691284,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Case_ID",
-            "targetColumn": "gene_symbol",
-            "score": 0.5344390869140625,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -180,112 +152,98 @@
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "uicc_clinical_t",
-            "score": 0.5250061989025014,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "uicc_pathologic_t",
-            "score": 0.4687274540151708,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "ajcc_pathologic_t",
-            "score": 0.4586652085661771,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "ajcc_clinical_t",
-            "score": 0.4499087264093978,
+            "score": 0.48684865485673506,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "ensat_pathologic_t",
-            "score": 0.44210069579201267,
+            "score": 0.4523676855901978,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor/Normal",
+            "targetColumn": "uicc_pathologic_t",
+            "score": 0.4334058591965697,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor/Normal",
+            "targetColumn": "ajcc_clinical_t",
+            "score": 0.3887790037621549,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor/Normal",
+            "targetColumn": "ajcc_pathologic_t",
+            "score": 0.3597767622028827,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "imaging_type",
-            "score": 0.3188675267772488,
+            "score": 0.33589835515343847,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "preservation_method",
-            "score": 0.1419476548920665,
+            "score": 0.14018003840191678,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
-            "targetColumn": "relationship_type",
-            "score": 0.07184222198356247,
+            "targetColumn": "country_of_residence_at_enrollment",
+            "score": 0.1125891525759178,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "second_gene_symbol",
-            "score": 0.04296703786536654,
+            "score": 0.050735345433600545,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "analyte_type_id",
-            "score": 0.032052909577683315,
+            "score": 0.03375768085346299,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "uicc_staging_system_edition",
-            "score": 0.0032214237546889773,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "protocol_identifier",
-            "score": -0.0553338904292906,
+            "score": 0.02531104461228433,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "gene_symbol",
-            "score": -0.05783106630018261,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "comorbidity",
-            "score": -0.09722184297138092,
+            "score": -0.023645428845005468,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "ajcc_staging_system_edition",
-            "score": -0.1114549954692047,
+            "score": -0.09492508152170279,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "data_format",
-            "score": -0.17546063066242185,
+            "score": -0.15492585955005111,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -355,112 +313,98 @@
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "ajcc_clinical_t",
-            "score": 0.7630273103713989,
+            "score": 0.7805330753326416,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "uicc_clinical_t",
-            "score": 0.7541959881782532,
+            "score": 0.7701984643936157,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "ajcc_pathologic_t",
-            "score": 0.7419726252555847,
+            "score": 0.761284589767456,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "ensat_pathologic_t",
-            "score": 0.7342420816421509,
+            "score": 0.7470740079879761,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "imaging_type",
-            "score": 0.7241640090942383,
+            "score": 0.7314668297767639,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "uicc_pathologic_t",
-            "score": 0.6946792602539062,
+            "score": 0.7104498147964478,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "analyte_type_id",
-            "score": 0.6139369010925293,
+            "score": 0.6236163377761841,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "second_gene_symbol",
-            "score": 0.6080973148345947,
+            "score": 0.615485429763794,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "gene_symbol",
-            "score": 0.5681483745574951,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "protocol_identifier",
-            "score": 0.5250369310379028,
+            "score": 0.5709801912307739,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "data_format",
-            "score": 0.5177099704742432,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "comorbidity",
-            "score": 0.5168944597244263,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor/Normal",
-            "targetColumn": "relationship_type",
-            "score": 0.5073038935661316,
+            "score": 0.5252377986907959,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "uicc_staging_system_edition",
-            "score": 0.48284921050071716,
+            "score": 0.4896959066390991,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "ajcc_staging_system_edition",
-            "score": 0.4764460325241089,
+            "score": 0.4837256371974945,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor/Normal",
+            "targetColumn": "country_of_residence_at_enrollment",
+            "score": 0.4793308675289154,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "preservation_method",
-            "score": 0.41706305742263794,
+            "score": 0.4286278486251831,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -536,6 +480,13 @@
         },
         {
             "sourceColumn": "Gender",
+            "targetColumn": "biospecimen_anatomic_site",
+            "score": 0.21961325577522142,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Gender",
             "targetColumn": "biospecimen_type",
             "score": 0.2176532431019646,
             "matcher": "ct_learning",
@@ -606,13 +557,6 @@
         },
         {
             "sourceColumn": "Gender",
-            "targetColumn": "site_of_resection_or_biopsy",
-            "score": 0.12661136987956967,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Gender",
             "targetColumn": "exposure_type",
             "score": 0.1263089747496518,
             "matcher": "ct_learning",
@@ -621,175 +565,175 @@
         {
             "sourceColumn": "Gender",
             "targetColumn": "relationship_gender",
-            "score": 0.9892833828926086,
+            "score": 0.989283561706543,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "inpc_histologic_group",
-            "score": 0.12043654173612595,
+            "score": 0.12043662369251251,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "variant_origin",
-            "score": 0.10839573293924332,
+            "score": 0.10839568078517914,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.10636317729949951,
+            "score": 0.10636328160762787,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "vital_status",
-            "score": 0.1012740433216095,
+            "score": 0.10127398371696472,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "relationship_gender",
-            "score": 0.8345030546188354,
+            "score": 0.8329479694366455,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "marital_status",
-            "score": 0.6633262038230896,
+            "score": 0.6617240905761719,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "inpc_histologic_group",
-            "score": 0.6339093446731567,
+            "score": 0.6322516202926636,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.6203755736351013,
+            "score": 0.6184975504875183,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "vital_status",
-            "score": 0.5983816385269165,
+            "score": 0.5966709852218628,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "eln_risk_classification",
-            "score": 0.5943489074707031,
+            "score": 0.5925407409667969,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "uicc_clinical_m",
-            "score": 0.57942134141922,
+            "score": 0.5770267248153687,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "ajcc_clinical_m",
-            "score": 0.578087568283081,
+            "score": 0.5755887031555176,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "country_of_birth",
-            "score": 0.5693925619125366,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "calgb_risk_group",
-            "score": 0.5659666061401367,
+            "score": 0.5695663690567017,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.5611026287078857,
+            "score": 0.5624043941497803,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "calgb_risk_group",
+            "score": 0.558386504650116,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "laterality",
-            "score": 0.5437983274459839,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "uicc_pathologic_m",
-            "score": 0.5379607677459717,
+            "score": 0.5422095656394958,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "ajcc_pathologic_m",
-            "score": 0.5340094566345215,
+            "score": 0.5313907265663147,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "variant_origin",
-            "score": 0.5305402278900146,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Gender",
-            "targetColumn": "tissue_type",
-            "score": 0.5210963487625122,
+            "score": 0.5285310745239258,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "biospecimen_type",
-            "score": 0.5180239677429199,
+            "score": 0.52168869972229,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
-            "targetColumn": "tumor_infiltrating_lymphocytes",
-            "score": 0.49091923236846924,
+            "targetColumn": "tissue_type",
+            "score": 0.5196965336799622,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
-            "targetColumn": "max_tumor_bulk_site",
-            "score": 0.4905652403831482,
+            "targetColumn": "uicc_pathologic_m",
+            "score": 0.5195252895355225,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "primary_site",
-            "score": 0.4898487329483032,
+            "score": 0.4912257492542267,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "max_tumor_bulk_site",
+            "score": 0.4874155521392822,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Gender",
+            "targetColumn": "extracapsular_extension",
+            "score": 0.4818500280380249,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -816,6 +760,13 @@
         },
         {
             "sourceColumn": "Race",
+            "targetColumn": "satellite_nodule_present",
+            "score": 0.125,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
             "targetColumn": "non_nodal_regional_disease",
             "score": 0.125,
             "matcher": "jaccard_distance_matcher",
@@ -824,13 +775,6 @@
         {
             "sourceColumn": "Race",
             "targetColumn": "ovarian_surface_involvement",
-            "score": 0.125,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "satellite_nodule_present",
             "score": 0.125,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -865,6 +809,13 @@
         },
         {
             "sourceColumn": "Race",
+            "targetColumn": "exposure_source",
+            "score": 0.1,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
             "targetColumn": "progression_or_recurrence_type",
             "score": 0.1,
             "matcher": "jaccard_distance_matcher",
@@ -873,13 +824,6 @@
         {
             "sourceColumn": "Race",
             "targetColumn": "scan_tracer_used",
-            "score": 0.1,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "exposure_source",
             "score": 0.1,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -900,7 +844,7 @@
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "morphologic_architectural_pattern",
+            "targetColumn": "embolic_agent",
             "score": 0.07692307692307693,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -914,15 +858,8 @@
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "embolic_agent",
+            "targetColumn": "morphologic_architectural_pattern",
             "score": 0.07692307692307693,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "margins_involved_site",
-            "score": 0.06666666666666667,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
@@ -935,8 +872,22 @@
         },
         {
             "sourceColumn": "Race",
+            "targetColumn": "margins_involved_site",
+            "score": 0.06666666666666667,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
             "targetColumn": "diabetes_treatment_type",
             "score": 0.06666666666666667,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "first_event",
+            "score": 0.058823529411764705,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
@@ -1019,6 +970,20 @@
         },
         {
             "sourceColumn": "Race",
+            "targetColumn": "timepoint_category",
+            "score": 0.025,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.024390243902439025,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
             "targetColumn": "molecular_consequence",
             "score": 0.023809523809523808,
             "matcher": "jaccard_distance_matcher",
@@ -1047,20 +1012,6 @@
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "primary_site",
-            "score": 0.013333333333333334,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "treatment_type",
-            "score": 0.0125,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
             "targetColumn": "relationship_type",
             "score": 0.008264462809917356,
             "matcher": "jaccard_distance_matcher",
@@ -1075,148 +1026,141 @@
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.004219409282700422,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
             "targetColumn": "relationship_type",
-            "score": 0.3554756156972001,
+            "score": 0.3603865310158316,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "country_of_birth",
-            "score": 0.3437782823634583,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.3185703739896263,
+            "score": 0.3453679397462259,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "supratentorial_localization",
-            "score": 0.2918504480725729,
+            "score": 0.2896192989558459,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "marital_status",
-            "score": 0.27311384537955896,
+            "score": 0.2842534845973846,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "exposure_source",
-            "score": 0.26977266042980697,
+            "score": 0.2783694446276093,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "exposure_type",
-            "score": 0.2584940592480762,
+            "score": 0.2676905186435106,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "alcohol_type",
-            "score": 0.2452981004784468,
+            "score": 0.2504976836344989,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "specimen_type",
-            "score": 0.23841045170219644,
+            "score": 0.23608254413991264,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "morphologic_architectural_pattern",
-            "score": 0.23193443884758635,
+            "score": 0.23391521944032406,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "biospecimen_type",
-            "score": 0.22803734417848925,
+            "score": 0.23135051031569925,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "first_event",
+            "score": 0.2218461907294669,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "composition",
-            "score": 0.22297321870924955,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "test_result",
-            "score": 0.1976320129456678,
+            "score": 0.2137192754709475,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "asbestos_exposure_type",
-            "score": 0.1957617412145748,
+            "score": 0.20576864890812252,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
+            "targetColumn": "test_result",
+            "score": 0.19908332586148175,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "variant_type",
-            "score": 0.18980089580139675,
+            "score": 0.19858600015238317,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "margins_involved_site",
-            "score": 0.18518109925443377,
+            "score": 0.18065430567839255,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "scan_tracer_used",
-            "score": 0.14322241228725818,
+            "score": 0.14682287468685454,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "sample_type",
-            "score": 0.1352407518449205,
+            "targetColumn": "peritoneal_fluid_cytological_status",
+            "score": 0.13701185641434105,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "primary_site",
-            "score": 0.12942106050941804,
+            "targetColumn": "method_of_diagnosis",
+            "score": 0.13458021726035513,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "hysterectomy_margins_involved",
-            "score": 0.12857857575660414,
+            "score": 0.12953222491599647,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -1231,13 +1175,6 @@
             "sourceColumn": "Race",
             "targetColumn": "relationship_type",
             "score": 0.5453530550003052,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Race",
-            "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.5425611734390259,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -1265,7 +1202,7 @@
         {
             "sourceColumn": "Race",
             "targetColumn": "alcohol_type",
-            "score": 0.5133649110794067,
+            "score": 0.5159296989440918,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -1285,6 +1222,13 @@
         },
         {
             "sourceColumn": "Race",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.4325907826423645,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Race",
             "targetColumn": "supratentorial_localization",
             "score": 0.4324316382408142,
             "matcher": "magneto_zs",
@@ -1292,15 +1236,15 @@
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "biospecimen_type",
-            "score": 0.4184960424900055,
+            "targetColumn": "asbestos_exposure_type",
+            "score": 0.420188307762146,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
-            "targetColumn": "asbestos_exposure_type",
-            "score": 0.41826432943344116,
+            "targetColumn": "biospecimen_type",
+            "score": 0.4169706106185913,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -1314,7 +1258,7 @@
         {
             "sourceColumn": "Race",
             "targetColumn": "nononcologic_therapeutic_agents",
-            "score": 0.40729644894599915,
+            "score": 0.4070762097835541,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -1342,7 +1286,7 @@
         {
             "sourceColumn": "Race",
             "targetColumn": "molecular_analysis_method",
-            "score": 0.38358068466186523,
+            "score": 0.3824465870857239,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -1369,14 +1313,14 @@
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
-            "targetColumn": "country_of_birth",
+            "targetColumn": "country_of_residence_at_enrollment",
             "score": 0.008064516129032258,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
-            "targetColumn": "country_of_residence_at_enrollment",
+            "targetColumn": "country_of_birth",
             "score": 0.008064516129032258,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -1481,6 +1425,13 @@
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
+            "targetColumn": "dysplasia_degree",
+            "score": 0.11111539981966466,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "comorbidity",
             "score": 0.10448278936034314,
             "matcher": "ct_learning",
@@ -1502,13 +1453,6 @@
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
-            "targetColumn": "site_of_resection_or_biopsy",
-            "score": 0.09552863534104754,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "exposure_type",
             "score": 0.09468444587529584,
             "matcher": "ct_learning",
@@ -1524,147 +1468,147 @@
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "race",
-            "score": 0.9593058824539185,
+            "score": 0.9593059420585632,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "race",
-            "score": 0.8514336347579956,
+            "score": 0.8550141453742981,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "country_of_birth",
-            "score": 0.6356119513511658,
+            "score": 0.6359157562255859,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.6295880079269409,
+            "score": 0.6300410628318787,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "exposure_source",
-            "score": 0.5371787548065186,
+            "score": 0.5398674607276917,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "relationship_type",
-            "score": 0.5365687608718872,
+            "score": 0.5373802185058594,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "alcohol_type",
-            "score": 0.4951358139514923,
+            "score": 0.4951357841491699,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "supratentorial_localization",
-            "score": 0.47419291734695435,
+            "score": 0.4703809320926666,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "relationship_primary_diagnosis",
-            "score": 0.467651903629303,
+            "score": 0.46056807041168213,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Ethnicity_Self_Identify",
+            "targetColumn": "dysplasia_degree",
+            "score": 0.4585975706577301,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "biospecimen_type",
-            "score": 0.4413289427757263,
+            "score": 0.4413290023803711,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "scan_tracer_used",
-            "score": 0.4245627820491791,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Ethnicity_Self_Identify",
-            "targetColumn": "lymph_node_involved_site",
-            "score": 0.4187004566192627,
+            "score": 0.42658114433288574,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "molecular_analysis_method",
-            "score": 0.41070127487182617,
+            "score": 0.41151362657546997,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Ethnicity_Self_Identify",
+            "targetColumn": "lymph_node_involved_site",
+            "score": 0.4109288454055786,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "timepoint_category",
-            "score": 0.4086299538612366,
+            "score": 0.40559303760528564,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "metastasis_at_diagnosis_site",
-            "score": 0.4038935601711273,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Ethnicity_Self_Identify",
-            "targetColumn": "max_tumor_bulk_site",
-            "score": 0.4020376205444336,
+            "score": 0.4012102484703064,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "category",
-            "score": 0.4000081717967987,
+            "score": 0.4000082015991211,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Ethnicity_Self_Identify",
+            "targetColumn": "max_tumor_bulk_site",
+            "score": 0.39668339490890503,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "composition",
-            "score": 0.393110990524292,
+            "score": 0.39299309253692627,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "diabetes_treatment_type",
-            "score": 0.39289548993110657,
+            "score": 0.38976383209228516,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "second_gene_symbol",
-            "score": 0.390272319316864,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Ethnicity_Self_Identify",
-            "targetColumn": "treatment_anatomic_site",
-            "score": 0.38491225242614746,
+            "score": 0.38870102167129517,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -1677,14 +1621,14 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "ann_arbor_b_symptoms_described",
+            "targetColumn": "type_of_tobacco_used",
             "score": 0.1111111111111111,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "type_of_tobacco_used",
+            "targetColumn": "ann_arbor_b_symptoms_described",
             "score": 0.1111111111111111,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -1712,13 +1656,6 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "reason_treatment_ended",
-            "score": 0.09090909090909091,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
             "targetColumn": "dysplasia_type",
             "score": 0.09090909090909091,
             "matcher": "jaccard_distance_matcher",
@@ -1727,6 +1664,13 @@
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "library_selection",
+            "score": 0.09090909090909091,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site",
+            "targetColumn": "reason_treatment_ended",
             "score": 0.09090909090909091,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -1747,14 +1691,14 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "diabetes_treatment_type",
+            "targetColumn": "margins_involved_site",
             "score": 0.06666666666666667,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "margins_involved_site",
+            "targetColumn": "diabetes_treatment_type",
             "score": 0.06666666666666667,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -1824,13 +1768,6 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "additional_pathology_findings",
-            "score": 0.01694915254237288,
-            "matcher": "jaccard_distance_matcher",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
             "targetColumn": "treatment_type",
             "score": 0.0125,
             "matcher": "jaccard_distance_matcher",
@@ -1845,9 +1782,30 @@
         },
         {
             "sourceColumn": "Tumor_Site",
+            "targetColumn": "comorbidity",
+            "score": 0.00546448087431694,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site",
+            "targetColumn": "biospecimen_anatomic_site",
+            "score": 0.003367003367003367,
+            "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site",
             "targetColumn": "treatment_anatomic_site",
             "score": 0.003278688524590164,
             "matcher": "jaccard_distance_matcher",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site",
+            "targetColumn": "tissue_or_organ_of_origin",
+            "score": 0.3285355741928341,
+            "matcher": "ct_learning",
             "status": "idle"
         },
         {
@@ -1943,8 +1901,8 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "additional_pathology_findings",
-            "score": 0.11571724309620221,
+            "targetColumn": "biospecimen_anatomic_site",
+            "score": 0.12470169864347146,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -1985,15 +1943,8 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "variant_type",
-            "score": 0.08497271214016024,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.6825889945030212,
+            "score": 0.682589054107666,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2001,13 +1952,6 @@
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_purity",
             "score": 0.5413095355033875,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
-            "targetColumn": "disease_type",
-            "score": 0.4394053816795349,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2027,15 +1971,8 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "additional_pathology_findings",
-            "score": 0.2883985638618469,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
             "targetColumn": "classification_of_tumor",
-            "score": 0.2644018530845642,
+            "score": 0.26440197229385376,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2049,7 +1986,7 @@
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "sample_type",
-            "score": 0.1821775734424591,
+            "score": 0.18217772245407104,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2063,28 +2000,28 @@
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "prescribed_dose_units",
-            "score": 0.12620940804481506,
+            "score": 0.1262095421552658,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "first_event",
-            "score": 0.11731672286987305,
+            "score": 0.11731652915477753,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "platform",
-            "score": 0.11379070580005646,
+            "score": 0.11379073560237885,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.7241272330284119,
+            "score": 0.7212926745414734,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2104,22 +2041,8 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.6314690113067627,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
             "targetColumn": "metastasis_at_diagnosis_site",
             "score": 0.6282278895378113,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
-            "targetColumn": "disease_type",
-            "score": 0.627142608165741,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2139,8 +2062,15 @@
         },
         {
             "sourceColumn": "Tumor_Site",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.6211013793945312,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site",
             "targetColumn": "hpv_positive_type",
-            "score": 0.6113241910934448,
+            "score": 0.6073719263076782,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2153,15 +2083,8 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "first_event",
-            "score": 0.5817541480064392,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site",
             "targetColumn": "platform",
-            "score": 0.5791157484054565,
+            "score": 0.5856540203094482,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2174,8 +2097,8 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "contiguous_organ_invaded",
-            "score": 0.5722262859344482,
+            "targetColumn": "first_event",
+            "score": 0.5666065812110901,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2195,6 +2118,13 @@
         },
         {
             "sourceColumn": "Tumor_Site",
+            "targetColumn": "reason_treatment_ended",
+            "score": 0.5616902709007263,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_code",
             "score": 0.5597442388534546,
             "matcher": "magneto_zs",
@@ -2202,15 +2132,15 @@
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "sample_type",
-            "score": 0.5548256635665894,
+            "targetColumn": "biospecimen_anatomic_site",
+            "score": 0.5569676160812378,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
-            "targetColumn": "reason_treatment_ended",
-            "score": 0.5540479421615601,
+            "targetColumn": "sample_type",
+            "score": 0.5557898283004761,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2222,15 +2152,22 @@
             "status": "idle"
         },
         {
+            "sourceColumn": "Tumor_Site",
+            "targetColumn": "treatment_dose_units",
+            "score": 0.5466720461845398,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
             "sourceColumn": "Tumor_Site_Other",
-            "targetColumn": "undescended_testis_corrected_laterality",
+            "targetColumn": "undescended_testis_history_laterality",
             "score": 0.06896551724137931,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
-            "targetColumn": "undescended_testis_history_laterality",
+            "targetColumn": "undescended_testis_corrected_laterality",
             "score": 0.06896551724137931,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -2370,15 +2307,15 @@
         },
         {
             "sourceColumn": "Tumor_Site_Other",
-            "targetColumn": "disease_response",
-            "score": 0.3426551441559224,
+            "targetColumn": "primary_diagnosis",
+            "score": 0.3483005205087585,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
-            "targetColumn": "first_event",
-            "score": 0.33695260123778137,
+            "targetColumn": "disease_response",
+            "score": 0.3426551441559224,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -2434,21 +2371,21 @@
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "laterality",
-            "score": 0.6673592925071716,
+            "score": 0.6673592329025269,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "biospecimen_laterality",
-            "score": 0.6282277703285217,
+            "score": 0.6282278299331665,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "undescended_testis_corrected_laterality",
-            "score": 0.5581706762313843,
+            "score": 0.5581705570220947,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2462,7 +2399,7 @@
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "lymph_node_involved_site",
-            "score": 0.34251999855041504,
+            "score": 0.3425200283527374,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2476,35 +2413,42 @@
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "treatment_anatomic_site",
-            "score": 0.20345330238342285,
+            "score": 0.20345339179039001,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site_Other",
+            "targetColumn": "primary_diagnosis",
+            "score": 0.20217618346214294,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "biospecimen_anatomic_site",
-            "score": 0.18556095659732819,
+            "score": 0.1855609118938446,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "imaging_findings",
-            "score": 0.1740630567073822,
+            "score": 0.17406311631202698,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "metastasis_at_diagnosis_site",
-            "score": 0.16118530929088593,
+            "score": 0.1611853986978531,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "relationship_primary_diagnosis",
-            "score": 0.14989900588989258,
+            "score": 0.14989882707595825,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2518,7 +2462,7 @@
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "primary_site",
-            "score": 0.11942462623119354,
+            "score": 0.1194247230887413,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2532,140 +2476,140 @@
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "lymph_node_involved_site",
-            "score": 0.7775248885154724,
+            "score": 0.7786183953285217,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "contiguous_organ_invaded",
-            "score": 0.7518436908721924,
+            "score": 0.7560060024261475,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.7436172962188721,
+            "score": 0.7448410391807556,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "metastasis_at_diagnosis_site",
-            "score": 0.7399216890335083,
+            "score": 0.74288409948349,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "laterality",
-            "score": 0.7014012932777405,
+            "score": 0.7050075531005859,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "undescended_testis_corrected_laterality",
-            "score": 0.696701169013977,
+            "score": 0.700797438621521,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "treatment_anatomic_site",
-            "score": 0.6857911348342896,
+            "score": 0.6879139542579651,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "relationship_primary_diagnosis",
-            "score": 0.6792813539505005,
+            "score": 0.6784961223602295,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "biospecimen_laterality",
-            "score": 0.6715047955513,
+            "score": 0.6750047206878662,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "undescended_testis_history_laterality",
-            "score": 0.661363959312439,
+            "score": 0.6661434173583984,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "biospecimen_anatomic_site",
-            "score": 0.6585047245025635,
+            "score": 0.6586507558822632,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "tissue_or_organ_of_origin",
-            "score": 0.6484240293502808,
+            "score": 0.6512606143951416,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "primary_site",
-            "score": 0.6382174491882324,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Site_Other",
-            "targetColumn": "best_overall_response",
-            "score": 0.6188769340515137,
+            "score": 0.6380082368850708,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "method_of_diagnosis",
-            "score": 0.6175715923309326,
+            "score": 0.6201236248016357,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Site_Other",
+            "targetColumn": "best_overall_response",
+            "score": 0.6189472675323486,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "treatment_intent_type",
-            "score": 0.6158323884010315,
+            "score": 0.6178885698318481,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "site_of_resection_or_biopsy",
-            "score": 0.6100627183914185,
+            "score": 0.6034029722213745,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "specimen_type",
-            "score": 0.5984679460525513,
+            "score": 0.5997532606124878,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "method_of_sample_procurement",
-            "score": 0.5894718170166016,
+            "score": 0.5882480144500732,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "imaging_findings",
-            "score": 0.5815912485122681,
+            "score": 0.5831199884414673,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2748,13 +2692,6 @@
         },
         {
             "sourceColumn": "Tumor_Focality",
-            "targetColumn": "adverse_event",
-            "score": 0.1880134046928379,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
             "targetColumn": "peritoneal_fluid_cytological_status",
             "score": 0.1860408653772902,
             "matcher": "ct_learning",
@@ -2785,6 +2722,13 @@
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "test_result",
             "score": 0.1412520247546128,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "library_strand",
+            "score": 0.12144149453378367,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -2826,7 +2770,7 @@
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tissue_type",
-            "score": 0.17421238124370575,
+            "score": 0.1742124855518341,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2840,14 +2784,14 @@
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "variant_type",
-            "score": 0.16274064779281616,
+            "score": 0.1627405285835266,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "exposure_source",
-            "score": 0.15644849836826324,
+            "score": 0.15644842386245728,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2861,14 +2805,14 @@
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "margin_status",
-            "score": 0.127845898270607,
+            "score": 0.12784597277641296,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "test_result",
-            "score": 0.11008058488368988,
+            "score": 0.11008055508136749,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -2882,7 +2826,7 @@
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tissue_type",
-            "score": 0.7946670055389404,
+            "score": 0.7670047283172607,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2910,7 +2854,14 @@
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "peritoneal_fluid_cytological_status",
-            "score": 0.6840395927429199,
+            "score": 0.6840395331382751,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "inpc_histologic_group",
+            "score": 0.6597586274147034,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2930,8 +2881,15 @@
         },
         {
             "sourceColumn": "Tumor_Focality",
-            "targetColumn": "inpc_histologic_group",
-            "score": 0.6395642757415771,
+            "targetColumn": "calgb_risk_group",
+            "score": 0.6428205966949463,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
+            "targetColumn": "anaplasia_present_type",
+            "score": 0.6398700475692749,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2944,13 +2902,6 @@
         },
         {
             "sourceColumn": "Tumor_Focality",
-            "targetColumn": "test_result",
-            "score": 0.6316879391670227,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
             "targetColumn": "clonality",
             "score": 0.6268970966339111,
             "matcher": "magneto_zs",
@@ -2958,15 +2909,8 @@
         },
         {
             "sourceColumn": "Tumor_Focality",
-            "targetColumn": "anaplasia_present_type",
-            "score": 0.6207321882247925,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "calgb_risk_group",
-            "score": 0.6188461780548096,
+            "targetColumn": "test_result",
+            "score": 0.6192784309387207,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -2993,6 +2937,13 @@
         },
         {
             "sourceColumn": "Tumor_Focality",
+            "targetColumn": "second_gene_symbol",
+            "score": 0.5861202478408813,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Focality",
             "targetColumn": "biospecimen_type",
             "score": 0.564746081829071,
             "matcher": "magneto_zs",
@@ -3000,15 +2951,8 @@
         },
         {
             "sourceColumn": "Tumor_Focality",
-            "targetColumn": "second_gene_symbol",
-            "score": 0.5632606744766235,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Focality",
-            "targetColumn": "reflux_treatment_type",
-            "score": 0.548102617263794,
+            "targetColumn": "treatment_emergent_adverse_event",
+            "score": 0.5610134601593018,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3140,15 +3084,15 @@
         },
         {
             "sourceColumn": "Histologic_Type",
-            "targetColumn": "margins_involved_site",
-            "score": 0.2234291232540287,
+            "targetColumn": "biospecimen_type",
+            "score": 0.19309100009938887,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
-            "targetColumn": "biospecimen_type",
-            "score": 0.19309100009938887,
+            "targetColumn": "histologic_progression_type",
+            "score": 0.1889128876346634,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -3176,7 +3120,7 @@
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "relationship_primary_diagnosis",
-            "score": 0.13862237334251404,
+            "score": 0.13862228393554688,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -3190,21 +3134,21 @@
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "additional_pathology_findings",
-            "score": 0.10941589623689651,
+            "score": 0.10941599309444427,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "tumor_code",
-            "score": 0.10287924855947495,
+            "score": 0.10287941992282867,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "relationship_primary_diagnosis",
-            "score": 0.7856109142303467,
+            "score": 0.7745984792709351,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3225,7 +3169,7 @@
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "last_known_disease_status",
-            "score": 0.7538226246833801,
+            "score": 0.7334396839141846,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3266,13 +3210,6 @@
         },
         {
             "sourceColumn": "Histologic_Type",
-            "targetColumn": "margins_involved_site",
-            "score": 0.6734045743942261,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Histologic_Type",
             "targetColumn": "best_overall_response",
             "score": 0.6441329121589661,
             "matcher": "magneto_zs",
@@ -3288,28 +3225,21 @@
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "biospecimen_type",
-            "score": 0.6314172744750977,
+            "score": 0.6314173340797424,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "sample_type",
-            "score": 0.6301735639572144,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Histologic_Type",
-            "targetColumn": "laboratory_test",
-            "score": 0.6216928958892822,
+            "score": 0.6174992322921753,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "category",
-            "score": 0.6025546789169312,
+            "score": 0.6025547981262207,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3322,8 +3252,8 @@
         },
         {
             "sourceColumn": "Histologic_Type",
-            "targetColumn": "disease_response",
-            "score": 0.5835927724838257,
+            "targetColumn": "laboratory_test",
+            "score": 0.5963476300239563,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3337,7 +3267,21 @@
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "risk_factor",
-            "score": 0.5652719736099243,
+            "score": 0.5652720332145691,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Histologic_Type",
+            "targetColumn": "type_of_smoke_exposure",
+            "score": 0.5539636611938477,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Histologic_Type",
+            "targetColumn": "disease_response",
+            "score": 0.5526543259620667,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3603,7 +3547,7 @@
         {
             "sourceColumn": "Grade",
             "targetColumn": "who_nte_grade",
-            "score": 0.8552788496017456,
+            "score": 0.8718065023422241,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3624,7 +3568,7 @@
         {
             "sourceColumn": "Grade",
             "targetColumn": "adverse_event_grade",
-            "score": 0.766081690788269,
+            "score": 0.7870461940765381,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3645,14 +3589,14 @@
         {
             "sourceColumn": "Grade",
             "targetColumn": "ensat_pathologic_t",
-            "score": 0.6539420485496521,
+            "score": 0.6603232622146606,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
-            "targetColumn": "uicc_clinical_n",
-            "score": 0.6419072151184082,
+            "targetColumn": "histone_family",
+            "score": 0.6406270265579224,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3660,6 +3604,13 @@
             "sourceColumn": "Grade",
             "targetColumn": "tumor_regression_grade",
             "score": 0.6402163505554199,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Grade",
+            "targetColumn": "uicc_clinical_n",
+            "score": 0.6355210542678833,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3679,8 +3630,8 @@
         },
         {
             "sourceColumn": "Grade",
-            "targetColumn": "histone_family",
-            "score": 0.629409909248352,
+            "targetColumn": "ajcc_pathologic_n",
+            "score": 0.6242201328277588,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3688,13 +3639,6 @@
             "sourceColumn": "Grade",
             "targetColumn": "uicc_clinical_t",
             "score": 0.6229193210601807,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Grade",
-            "targetColumn": "ajcc_pathologic_n",
-            "score": 0.6219863295555115,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -3714,6 +3658,20 @@
         },
         {
             "sourceColumn": "Grade",
+            "targetColumn": "uicc_staging_system_edition",
+            "score": 0.6032636165618896,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Grade",
+            "targetColumn": "irs_stage",
+            "score": 0.6028947234153748,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Grade",
             "targetColumn": "fab_morphology_code",
             "score": 0.5975744724273682,
             "matcher": "magneto_zs",
@@ -3727,22 +3685,8 @@
             "status": "idle"
         },
         {
-            "sourceColumn": "Grade",
-            "targetColumn": "uicc_pathologic_n",
-            "score": 0.5920217037200928,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Grade",
-            "targetColumn": "irs_stage",
-            "score": 0.5853822827339172,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "cog_liver_stage",
+            "targetColumn": "ann_arbor_pathologic_stage",
             "score": 0.6666666666666666,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -3756,7 +3700,7 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "ann_arbor_pathologic_stage",
+            "targetColumn": "cog_renal_stage",
             "score": 0.6666666666666666,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -3770,7 +3714,7 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "cog_renal_stage",
+            "targetColumn": "cog_liver_stage",
             "score": 0.6666666666666666,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -3791,14 +3735,14 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "figo_stage",
+            "targetColumn": "uicc_clinical_stage",
             "score": 0.11764705882352941,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "uicc_clinical_stage",
+            "targetColumn": "figo_stage",
             "score": 0.11764705882352941,
             "matcher": "jaccard_distance_matcher",
             "status": "idle"
@@ -4071,6 +4015,13 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "gene_symbol",
+            "score": 0.18781691789627075,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "treatment_outcome",
             "score": 0.18434253334999084,
             "matcher": "magneto_ft",
@@ -4106,36 +4057,36 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "uicc_clinical_t",
-            "score": 0.1423567235469818,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.8829510807991028,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "uicc_pathologic_stage",
-            "score": 0.870287299156189,
+            "score": 0.8901990056037903,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ensat_pathologic_stage",
-            "score": 0.8688853979110718,
+            "score": 0.8764232993125916,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ann_arbor_pathologic_stage",
-            "score": 0.8600296974182129,
+            "score": 0.8692845106124878,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "uicc_pathologic_stage",
+            "score": 0.8643560409545898,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.8591189980506897,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -4148,22 +4099,15 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "cog_renal_stage",
-            "score": 0.8536499738693237,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "ajcc_clinical_stage",
-            "score": 0.8521772623062134,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "uicc_clinical_stage",
-            "score": 0.8464573621749878,
+            "score": 0.8407941460609436,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "cog_renal_stage",
+            "score": 0.8376617431640625,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -4176,78 +4120,78 @@
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "masaoka_stage",
-            "score": 0.8060504198074341,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "enneking_msts_stage",
-            "score": 0.7939954400062561,
+            "score": 0.8008430004119873,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "figo_stage",
-            "score": 0.7925878763198853,
+            "score": 0.798589825630188,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "masaoka_stage",
+            "score": 0.7954213619232178,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "treatment_outcome",
-            "score": 0.7540676593780518,
+            "score": 0.7605401277542114,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "inss_stage",
-            "score": 0.7479574680328369,
+            "score": 0.7549403309822083,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "best_overall_response",
-            "score": 0.6878451704978943,
+            "score": 0.6851338148117065,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ajcc_clinical_t",
-            "score": 0.6719905734062195,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "treatment_intent_type",
-            "score": 0.669232964515686,
+            "score": 0.6799788475036621,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "uicc_clinical_t",
-            "score": 0.6664148569107056,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Tumor_Stage_Pathological",
-            "targetColumn": "myasthenia_gravis_classification",
-            "score": 0.6606696844100952,
+            "score": 0.6735622882843018,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ajcc_pathologic_t",
-            "score": 0.6557424068450928,
+            "score": 0.6650771498680115,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "treatment_intent_type",
+            "score": 0.6598931550979614,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Tumor_Stage_Pathological",
+            "targetColumn": "myasthenia_gravis_classification",
+            "score": 0.6523865461349487,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -4478,14 +4422,14 @@
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "uicc_pathologic_t",
-            "score": 0.6937385201454163,
+            "score": 0.693738579750061,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "uicc_clinical_n",
-            "score": 0.6899949908256531,
+            "score": 0.6899950504302979,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -4533,15 +4477,15 @@
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
-            "targetColumn": "chromosome_arm",
-            "score": 0.6084499359130859,
+            "targetColumn": "lymph_node_involved_site",
+            "score": 0.6106414794921875,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
-            "targetColumn": "lymph_node_involved_site",
-            "score": 0.6029834747314453,
+            "targetColumn": "chromosome_arm",
+            "score": 0.6084499359130859,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -4568,148 +4512,148 @@
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
-            "targetColumn": "staining_intensity_value",
-            "score": 0.5647661089897156,
+            "targetColumn": "irs_stage",
+            "score": 0.5731313228607178,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ensat_pathologic_n",
-            "score": 0.6295770424740217,
+            "score": 0.617777548027017,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "uicc_pathologic_n",
-            "score": 0.5844113102840923,
+            "score": 0.5761686322729184,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ajcc_pathologic_n",
-            "score": 0.5542980394773094,
+            "score": 0.5398427005066555,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "uicc_clinical_n",
-            "score": 0.5374986548193428,
+            "score": 0.5268786326005837,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ajcc_clinical_n",
-            "score": 0.5250590654984764,
+            "score": 0.49711178671442274,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "histologic_progression",
-            "score": 0.3406661307703621,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "gene_symbol",
-            "score": 0.26179141667010414,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "normal_tumor_genotype_snp_match",
-            "score": 0.2370670574946684,
-            "matcher": "ct_learning",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "chromosome_arm",
-            "score": 0.22971001559826543,
+            "score": 0.31783380541261097,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "progression_or_recurrence",
-            "score": 0.22249674991767449,
+            "score": 0.23904719219791876,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "second_gene_symbol",
-            "score": 0.21568954703135812,
+            "targetColumn": "normal_tumor_genotype_snp_match",
+            "score": 0.230213627291907,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "protocol_identifier",
-            "score": 0.21461965337357977,
+            "targetColumn": "gene_symbol",
+            "score": 0.22477358902389089,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "chromosome_arm",
+            "score": 0.2057320442915873,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "undescended_testis_history",
-            "score": 0.20917018039691565,
+            "score": 0.191131804726336,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "hpv_strain",
-            "score": 0.15306923088234164,
+            "targetColumn": "second_gene_symbol",
+            "score": 0.18621389766683688,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "tissue_or_organ_of_origin",
+            "score": 0.18210617768223097,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "diagnosis_pathologically_confirmed",
-            "score": 0.14842551155156242,
+            "score": 0.17128326218863263,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "nononcologic_therapeutic_agents",
-            "score": 0.09739252728060713,
+            "targetColumn": "hpv_strain",
+            "score": 0.14688102971744832,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "pregnant_at_diagnosis",
-            "score": 0.09698084956583772,
+            "score": 0.08952241452446405,
+            "matcher": "ct_learning",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "nononcologic_therapeutic_agents",
+            "score": 0.0803529856965704,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "history_of_tumor",
-            "score": 0.08812701889147226,
+            "score": 0.074911545797013,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "relative_smoker",
-            "score": 0.08237554024003801,
+            "score": 0.07386234932265026,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "relative_with_cancer_history",
-            "score": 0.07237334220397898,
+            "targetColumn": "parent_with_radiation_exposure",
+            "score": 0.0658457892624065,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -4723,21 +4667,21 @@
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ensat_pathologic_n",
-            "score": 0.21948958933353424,
+            "score": 0.2194896638393402,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ajcc_pathologic_n",
-            "score": 0.2149260938167572,
+            "score": 0.21492615342140198,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "uicc_clinical_n",
-            "score": 0.21256205439567566,
+            "score": 0.21256208419799805,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -4750,141 +4694,141 @@
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "ajcc_pathologic_n",
-            "score": 0.7513156533241272,
+            "targetColumn": "uicc_pathologic_n",
+            "score": 0.7480311393737793,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "uicc_pathologic_n",
-            "score": 0.7469785809516907,
+            "targetColumn": "ajcc_pathologic_n",
+            "score": 0.7349679470062256,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ensat_pathologic_n",
-            "score": 0.7231042385101318,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "uicc_clinical_n",
-            "score": 0.6776481866836548,
+            "score": 0.7086718678474426,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "chromosome_arm",
-            "score": 0.6702013611793518,
+            "score": 0.6728131771087646,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.6668170690536499,
+            "targetColumn": "uicc_clinical_n",
+            "score": 0.6649197936058044,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.6636996269226074,
+            "score": 0.6620737910270691,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.6532065272331238,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "gene_symbol",
-            "score": 0.6467260122299194,
+            "score": 0.635256290435791,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "second_gene_symbol",
-            "score": 0.6407118439674377,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "protocol_identifier",
-            "score": 0.6060250401496887,
+            "score": 0.624245285987854,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "contiguous_organ_invaded",
-            "score": 0.5621139407157898,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "normal_tumor_genotype_snp_match",
-            "score": 0.5490182042121887,
+            "score": 0.5619193315505981,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "hpv_strain",
-            "score": 0.5476700663566589,
+            "score": 0.5397310256958008,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "metastasis_at_diagnosis_site",
-            "score": 0.5383155345916748,
+            "score": 0.5356817245483398,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "nononcologic_therapeutic_agents",
-            "score": 0.5273959636688232,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "histologic_progression",
-            "score": 0.5257922410964966,
+            "targetColumn": "normal_tumor_genotype_snp_match",
+            "score": 0.5268466472625732,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "relative_with_cancer_history",
-            "score": 0.5182607173919678,
+            "score": 0.525547206401825,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "nononcologic_therapeutic_agents",
+            "score": 0.5238003730773926,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "histologic_progression",
+            "score": 0.5012733936309814,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "history_of_tumor",
-            "score": 0.5120403170585632,
-            "matcher": "magneto_zs",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
-            "targetColumn": "biospecimen_anatomic_site",
-            "score": 0.5074635744094849,
+            "score": 0.49321475625038147,
             "matcher": "magneto_zs",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "diagnosis_pathologically_confirmed",
-            "score": 0.5010004043579102,
+            "score": 0.4817812442779541,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "state",
+            "score": 0.4799307584762573,
+            "matcher": "magneto_zs",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
+            "targetColumn": "hormonal_replacement_therapy_status",
+            "score": 0.47749611735343933,
             "matcher": "magneto_zs",
             "status": "idle"
         },
@@ -4919,420 +4863,420 @@
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_diagnosis",
-            "score": 0.6025150193043822,
+            "score": 0.6025150195339972,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_onset",
-            "score": 0.5702404186721738,
+            "score": 0.570240419321965,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "relationship_age_at_diagnosis",
-            "score": 0.5487709012303993,
+            "score": 0.5487709018174436,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_index",
-            "score": 0.505954029715074,
+            "score": 0.5059540296112027,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "year_of_death",
-            "score": 0.4438732299276863,
+            "score": 0.44387322973155424,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_last_exposure",
-            "score": 0.439475423265297,
+            "score": 0.4394754237932687,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "year_of_birth",
-            "score": 0.39438525036368444,
+            "score": 0.394385250490367,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "tumor_code_id",
-            "score": 0.3320654960862621,
+            "score": 0.33206549657222817,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "weight",
-            "score": 0.31490724436393913,
+            "score": 0.3149072443302252,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_death",
-            "score": 0.29093513637736024,
+            "score": 0.29093513652338565,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "year_of_diagnosis",
-            "score": 0.26432787414822073,
+            "score": 0.26432787395326157,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "pancreatitis_onset_year",
-            "score": 0.2599427213761164,
+            "score": 0.25994272146087705,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_birth",
-            "score": 0.246488612624823,
+            "score": 0.2464886129119188,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "height",
-            "score": 0.2413932496455441,
+            "score": 0.24139324974936283,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "current_weight",
-            "score": 0.21047941659204114,
+            "score": 0.21047941627103273,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "initial_weight",
-            "score": 0.20186113618273974,
+            "score": 0.20186113576869644,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "weeks_gestation_at_birth",
-            "score": 0.1964544678277505,
+            "score": 0.1964544683948365,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_imaging",
-            "score": 0.18501252168873372,
+            "score": 0.18501252335744164,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_last_known_disease_status",
-            "score": 0.18142204169496653,
+            "score": 0.1814220416730843,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "revision",
-            "score": 0.17829626050643377,
+            "score": 0.17829626058415105,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "sample_type_id",
-            "score": 0.4314770161743483,
+            "score": 0.4314770152536691,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "a260_a280_ratio",
-            "score": 0.42176307728961315,
+            "score": 0.42176307693701487,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_base_mismatch",
-            "score": 0.37728068178258123,
+            "score": 0.37728068185637575,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "tumor_code_id",
-            "score": 0.3754701171370865,
+            "score": 0.375470116526584,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "average_base_quality",
-            "score": 0.3621226691886551,
+            "score": 0.36212266929564324,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "body_surface_area",
-            "score": 0.35802763700992307,
+            "score": 0.35802763722960224,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "gross_tumor_weight",
-            "score": 0.35174849322159807,
+            "score": 0.35174849215078174,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_reads_mapped",
-            "score": 0.34526066728531674,
+            "score": 0.3452606668181883,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_coverage_30x",
-            "score": 0.3427636010736854,
+            "score": 0.3427636011088404,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "bmi",
-            "score": 0.3322744964709393,
+            "score": 0.33227449705425327,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "weight",
-            "score": 0.3299179899339991,
+            "score": 0.32991798933619154,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "proportion_reads_duplicated",
-            "score": 0.2862471480194873,
+            "score": 0.2862471481503105,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "height",
-            "score": 0.27193395809331505,
+            "score": 0.2719339579488142,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "ribosomal_rna_28s_16s_ratio",
-            "score": 0.26305487623502527,
+            "score": 0.2630548764931291,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "average_insert_size",
-            "score": 0.2618834208026983,
+            "score": 0.2618834204552404,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "portion_number",
-            "score": 0.26004918358585866,
+            "score": 0.26004918369791097,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "current_weight",
-            "score": 0.25384172832746366,
+            "score": 0.2538417281201981,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "library_preparation_kit_vendor",
-            "score": 0.2508143051147672,
+            "score": 0.250814306316065,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "fragment_mean_length",
-            "score": 0.25030204938950673,
+            "score": 0.25030204899873687,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "age_at_onset",
-            "score": 0.2495226626139409,
+            "score": 0.24952266203967993,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "gross_tumor_weight",
-            "score": 0.4260208453861657,
+            "score": 0.4260208451082204,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_largest_dimension_diameter",
-            "score": 0.35668876283702894,
+            "score": 0.3566887625721257,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "height",
-            "score": 0.32892735660101713,
+            "score": 0.3289273558916176,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "greatest_tumor_dimension",
-            "score": 0.3203370351537606,
+            "score": 0.32033703452540585,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "sample_type_id",
-            "score": 0.3093040034017924,
+            "score": 0.3093040030659686,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth_measurement",
-            "score": 0.30689645282439665,
+            "score": 0.30689645337387694,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_code_id",
-            "score": 0.30223987443291905,
+            "score": 0.3022398733494537,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "average_insert_size",
-            "score": 0.29503846725470195,
+            "score": 0.2950384666929197,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth",
-            "score": 0.29137100289158424,
+            "score": 0.29137100331630433,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "proportion_coverage_10x",
-            "score": 0.27789035306174265,
+            "score": 0.2778903521590102,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_width_measurement",
-            "score": 0.25080772876580565,
+            "score": 0.2508077281579492,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_basal_diameter",
-            "score": 0.24870520731659837,
+            "score": 0.2487052070177694,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "body_surface_area",
-            "score": 0.24073279412757845,
+            "score": 0.2407327938487778,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_length_measurement",
-            "score": 0.21968342807497246,
+            "score": 0.21968342763222276,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "weight",
-            "score": 0.21945295720959945,
+            "score": 0.21945295642416954,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "proportion_targets_no_coverage",
-            "score": 0.21714830406822652,
+            "score": 0.21714830208892924,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_burden",
-            "score": 0.21466739526203354,
+            "score": 0.21466739539841231,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "mean_coverage",
-            "score": 0.19964043845816185,
+            "score": 0.1996404374455085,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "fragment_standard_deviation_length",
-            "score": 0.19943505980358153,
+            "score": 0.199435059450307,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "intermediate_dimension",
-            "score": 0.1886116089241322,
+            "score": 0.1886116078099958,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -6926,6 +6870,28 @@
                 "C3L-00581",
                 "C3L-00583"
             ],
+            "source_mapped_values": [
+                "C3L-00004",
+                "C3L-00010",
+                "C3L-00011",
+                "C3L-00026",
+                "C3L-00079",
+                "C3L-00088",
+                "C3L-00096",
+                "C3L-00097",
+                "C3L-00103",
+                "C3L-00183",
+                "C3L-00359",
+                "C3L-00360",
+                "C3L-00369",
+                "C3L-00416",
+                "C3L-00418",
+                "C3L-00447",
+                "C3L-00448",
+                "C3L-00561",
+                "C3L-00581",
+                "C3L-00583"
+            ],
             "targets": {
                 "protocol_identifier": [
                     "ANBL0421",
@@ -6948,28 +6914,6 @@
                     "ACCL05C1",
                     "ACCL05C1",
                     "ACCL1031"
-                ],
-                "gene_symbol": [
-                    "CBLC",
-                    "CLIP1",
-                    "BCL11B",
-                    "LMO2",
-                    "CBLC",
-                    "CBLC",
-                    "CBLC",
-                    "CBLC",
-                    "BCL3",
-                    "BCL3",
-                    "BCL3",
-                    "BCL3",
-                    "BCL3",
-                    "CLIP1",
-                    "CLIP1",
-                    "CBLC",
-                    "CBLC",
-                    "CLIP1",
-                    "CLIP1",
-                    "BCL3"
                 ],
                 "histone_variant": [
                     "CENP-A",
@@ -7014,28 +6958,6 @@
                     "CD56",
                     "CD30",
                     "CD33"
-                ],
-                "second_gene_symbol": [
-                    "CBLC",
-                    "CLIP1",
-                    "BCL11B",
-                    "LMO2",
-                    "CBLC",
-                    "CBLC",
-                    "CBLC",
-                    "CBLC",
-                    "BCL3",
-                    "BCL3",
-                    "BCL3",
-                    "BCL3",
-                    "BCL3",
-                    "CLIP1",
-                    "CLIP1",
-                    "CBLC",
-                    "CBLC",
-                    "CLIP1",
-                    "CLIP1",
-                    "BCL3"
                 ],
                 "morphology": [
                     "9390/0",
@@ -7176,6 +7098,10 @@
                 "T",
                 "TN"
             ],
+            "source_mapped_values": [
+                "T",
+                "TN"
+            ],
             "targets": {
                 "analyte_type_id": [
                     "T",
@@ -7185,11 +7111,11 @@
                     "Ta",
                     "Ta"
                 ],
-                "uicc_pathologic_t": [
-                    "Ta",
-                    "Ta"
+                "ensat_pathologic_t": [
+                    "T4",
+                    "T4"
                 ],
-                "ajcc_pathologic_t": [
+                "uicc_pathologic_t": [
                     "Ta",
                     "Ta"
                 ],
@@ -7197,9 +7123,9 @@
                     "Ta",
                     "Ta"
                 ],
-                "ensat_pathologic_t": [
-                    "T4",
-                    "T4"
+                "ajcc_pathologic_t": [
+                    "Ta",
+                    "Ta"
                 ],
                 "imaging_type": [
                     "PET",
@@ -7209,9 +7135,9 @@
                     "OCT",
                     "OCT"
                 ],
-                "relationship_type": [
-                    "",
-                    "Nephew"
+                "country_of_residence_at_enrollment": [
+                    "Togo",
+                    "Togo"
                 ],
                 "second_gene_symbol": [
                     "TLX3",
@@ -7221,17 +7147,9 @@
                     "",
                     "Not Reported"
                 ],
-                "protocol_identifier": [
-                    "NWTS-4",
-                    "ALTE03N1"
-                ],
                 "gene_symbol": [
                     "TLX3",
                     "TLX3"
-                ],
-                "comorbidity": [
-                    "Diabetes, Type II",
-                    "CNS Infection"
                 ],
                 "ajcc_staging_system_edition": [
                     "",
@@ -7245,6 +7163,10 @@
         },
         "Gender": {
             "source_unique_values": [
+                "Female",
+                "Male"
+            ],
+            "source_mapped_values": [
                 "Female",
                 "Male"
             ],
@@ -7284,6 +7206,10 @@
                 "laterality": [
                     "Bilateral",
                     "Midline"
+                ],
+                "biospecimen_anatomic_site": [
+                    "Dermal",
+                    "Nails"
                 ],
                 "biospecimen_type": [
                     "Feces",
@@ -7325,10 +7251,6 @@
                     "Focal",
                     "Focal"
                 ],
-                "site_of_resection_or_biopsy": [
-                    "Mandible",
-                    "Mandible"
-                ],
                 "exposure_type": [
                     "Chemical",
                     "Chemical"
@@ -7357,18 +7279,40 @@
                     "Normal",
                     "Normal"
                 ],
-                "tumor_infiltrating_lymphocytes": [
-                    "Few",
-                    "Many"
-                ],
                 "max_tumor_bulk_site": [
                     "Adrenal",
                     "Mandible"
+                ],
+                "extracapsular_extension": [
+                    "Focal",
+                    "Focal"
                 ]
             }
         },
         "Age": {
             "source_unique_values": [
+                "30",
+                "33",
+                "35",
+                "44",
+                "49",
+                "50",
+                "52",
+                "55",
+                "56",
+                "57",
+                "59",
+                "61",
+                "62",
+                "63",
+                "65",
+                "66",
+                "72",
+                "73",
+                "75",
+                "89"
+            ],
+            "source_mapped_values": [
                 "30",
                 "33",
                 "35",
@@ -7415,10 +7359,38 @@
                 "42.92",
                 "59.88"
             ],
+            "source_mapped_values": [
+                "22.8",
+                "26.18",
+                "27.35",
+                "27.44",
+                "27.47",
+                "28.23",
+                "28.7",
+                "32.0",
+                "32.82",
+                "33.66",
+                "34.15",
+                "36.39",
+                "36.57",
+                "36.81",
+                "37.72",
+                "37.88",
+                "38.94",
+                "42.33",
+                "42.92",
+                "59.88"
+            ],
             "targets": {}
         },
         "Race": {
             "source_unique_values": [
+                "Asian",
+                "Black or African American",
+                "Not Reported",
+                "White"
+            ],
+            "source_mapped_values": [
                 "Asian",
                 "Black or African American",
                 "Not Reported",
@@ -7437,6 +7409,12 @@
                     "Not Reported",
                     "Amosite"
                 ],
+                "satellite_nodule_present": [
+                    "Absent",
+                    "Indeterminate",
+                    "Not Reported",
+                    "Not Reported"
+                ],
                 "non_nodal_regional_disease": [
                     "Absent",
                     "Indeterminate",
@@ -7444,12 +7422,6 @@
                     "Not Reported"
                 ],
                 "ovarian_surface_involvement": [
-                    "Absent",
-                    "Indeterminate",
-                    "Not Reported",
-                    "Not Reported"
-                ],
-                "satellite_nodule_present": [
                     "Absent",
                     "Indeterminate",
                     "Not Reported",
@@ -7479,6 +7451,12 @@
                     "Not Reported",
                     "Wine"
                 ],
+                "exposure_source": [
+                    "Social",
+                    "Occupational",
+                    "Not Reported",
+                    "Not Reported"
+                ],
                 "progression_or_recurrence_type": [
                     "Distant",
                     "Locoregional",
@@ -7490,12 +7468,6 @@
                     "Axumin",
                     "Not Reported",
                     "Choline"
-                ],
-                "exposure_source": [
-                    "Social",
-                    "Occupational",
-                    "Not Reported",
-                    "Not Reported"
                 ],
                 "marital_status": [
                     "Domestic Partnership",
@@ -7509,11 +7481,11 @@
                     "Not Reported",
                     "Indefinite"
                 ],
-                "morphologic_architectural_pattern": [
-                    "Cohesive",
-                    "Papillary Renal Cell",
+                "embolic_agent": [
+                    "PVA Particles",
+                    "Plastic Beads",
                     "Not Reported",
-                    "Cohesive"
+                    "Other"
                 ],
                 "supratentorial_localization": [
                     "Spinal Cord",
@@ -7521,17 +7493,11 @@
                     "Not Reported",
                     "White Matter"
                 ],
-                "embolic_agent": [
-                    "PVA Particles",
-                    "Plastic Beads",
+                "morphologic_architectural_pattern": [
+                    "Cohesive",
+                    "Papillary Renal Cell",
                     "Not Reported",
-                    "Other"
-                ],
-                "margins_involved_site": [
-                    "Gerota Fascia",
-                    "Cervix Uteri",
-                    "Not Reported",
-                    "Other"
+                    "Cohesive"
                 ],
                 "classification_of_tumor": [
                     "Progression",
@@ -7539,11 +7505,23 @@
                     "not reported",
                     "other"
                 ],
+                "margins_involved_site": [
+                    "Gerota Fascia",
+                    "Cervix Uteri",
+                    "Not Reported",
+                    "Other"
+                ],
                 "diabetes_treatment_type": [
                     "Biguanide",
                     "Biguanide",
                     "Not Reported",
                     "Diet"
+                ],
+                "first_event": [
+                    "Progression",
+                    "Second Malignant Neoplasm",
+                    "Not Reported",
+                    "Other"
                 ],
                 "exposure_type": [
                     "Radiation",
@@ -7611,6 +7589,18 @@
                     "Not Reported",
                     "Lymphocytes"
                 ],
+                "timepoint_category": [
+                    "Progression",
+                    "Post Adjuvant Therapy",
+                    "Not Reported",
+                    "Other"
+                ],
+                "ajcc_clinical_stage": [
+                    "Unknown",
+                    "Stage IIA Cervix",
+                    "Not Reported",
+                    "Stage X"
+                ],
                 "molecular_consequence": [
                     "Missense Variant",
                     "Regulatory Region Amplification",
@@ -7635,18 +7625,6 @@
                     "Not Reported",
                     "Slides"
                 ],
-                "primary_site": [
-                    "Skin",
-                    "Base of tongue",
-                    "Not Reported",
-                    "Kidney"
-                ],
-                "treatment_type": [
-                    "Ablation, NOS",
-                    "Ancillary Treatment",
-                    "Not Reported",
-                    "Whipple"
-                ],
                 "relationship_type": [
                     "Cousin",
                     "Identical Twin Sister",
@@ -7658,17 +7636,29 @@
                     "Bosnia and Herzegovina",
                     "Montserrat",
                     "China"
-                ],
-                "country_of_residence_at_enrollment": [
-                    "Algeria",
-                    "Bosnia and Herzegovina",
-                    "Montserrat",
-                    "China"
                 ]
             }
         },
         "Ethnicity_Self_Identify": {
             "source_unique_values": [
+                "American",
+                "Asian",
+                "Caucasian",
+                "Caucasion",
+                "Hispanic",
+                "Indian",
+                "Medical Record Does Not State",
+                "Medical record does not state",
+                "Medical record does not state.",
+                "Patient not interviewed",
+                "Slavonic",
+                "Vietnam",
+                "WHITE",
+                "White",
+                "Whte",
+                "white"
+            ],
+            "source_mapped_values": [
                 "American",
                 "Asian",
                 "Caucasian",
@@ -7705,7 +7695,7 @@
                     "white",
                     "white"
                 ],
-                "country_of_birth": [
+                "country_of_residence_at_enrollment": [
                     "Algeria",
                     "Algeria",
                     "Malaysia",
@@ -7723,7 +7713,7 @@
                     "Bhutan",
                     "Kuwait"
                 ],
-                "country_of_residence_at_enrollment": [
+                "country_of_birth": [
                     "Algeria",
                     "Algeria",
                     "Malaysia",
@@ -7939,6 +7929,24 @@
                     "WGA Failure",
                     "Duplicate item"
                 ],
+                "dysplasia_degree": [
+                    "Moderate",
+                    "No Dysplasia",
+                    "No Dysplasia",
+                    "No Dysplasia",
+                    "No Dysplasia",
+                    "Indefinite",
+                    "Moderate",
+                    "Moderate",
+                    "Moderate",
+                    "Not Reported",
+                    "No Dysplasia",
+                    "Moderate",
+                    "Indefinite",
+                    "Indefinite",
+                    "Moderate",
+                    "Indefinite"
+                ],
                 "comorbidity": [
                     "Allergies",
                     "Anemia",
@@ -7992,24 +8000,6 @@
                     "Popliteal",
                     "Popliteal",
                     "Popliteal"
-                ],
-                "site_of_resection_or_biopsy": [
-                    "Appendix",
-                    "Frontal sinus",
-                    "Frontal sinus",
-                    "Olfactory nerve",
-                    "Mandible",
-                    "Mandible",
-                    "Spinal cord",
-                    "Spinal cord",
-                    "Spinal cord",
-                    "Optic nerve",
-                    "Subglottis",
-                    "Vagina, NOS",
-                    "Tonsillar fossa",
-                    "Cervix uteri",
-                    "Optic nerve",
-                    "Cervix uteri"
                 ],
                 "exposure_type": [
                     "Chemical",
@@ -8172,29 +8162,17 @@
                     "WDCP",
                     "WDCP",
                     ""
-                ],
-                "treatment_anatomic_site": [
-                    "Dermal",
-                    "Joint",
-                    "Paraspinal Ganglion",
-                    "Paraspinal Ganglion",
-                    "Hepatic",
-                    "Penis",
-                    "Locoregional Site",
-                    "Periorbital Soft Tissue",
-                    "Periorbital Soft Tissue",
-                    "Distant Site",
-                    "Hepatic",
-                    "Diaphragm",
-                    "Thymus",
-                    "Anal Sphincter",
-                    "Prostate",
-                    "Anal Sphincter"
                 ]
             }
         },
         "Tumor_Site": {
             "source_unique_values": [
+                "Lower pole",
+                "Middle",
+                "Other",
+                "Upper pole"
+            ],
+            "source_mapped_values": [
                 "Lower pole",
                 "Middle",
                 "Other",
@@ -8207,17 +8185,17 @@
                     "Other",
                     "Other"
                 ],
-                "ann_arbor_b_symptoms_described": [
-                    "Not Reported",
-                    "Night Sweats",
-                    "Other",
-                    "Not Reported"
-                ],
                 "type_of_tobacco_used": [
                     "Smokeless Tobacco",
                     "Pipe",
                     "Other",
                     "Pipe"
+                ],
+                "ann_arbor_b_symptoms_described": [
+                    "Not Reported",
+                    "Night Sweats",
+                    "Other",
+                    "Not Reported"
                 ],
                 "alcohol_type": [
                     "Not Reported",
@@ -8237,12 +8215,6 @@
                     "Other",
                     "Not Reported"
                 ],
-                "reason_treatment_ended": [
-                    "Not Reported",
-                    "Withdrawal by Subject",
-                    "Other",
-                    "Not Reported"
-                ],
                 "dysplasia_type": [
                     "Not Reported",
                     "Epithelial",
@@ -8254,6 +8226,12 @@
                     "Hybrid Selection",
                     "Other",
                     "rRNA Depletion"
+                ],
+                "reason_treatment_ended": [
+                    "Not Reported",
+                    "Withdrawal by Subject",
+                    "Other",
+                    "Not Reported"
                 ],
                 "eye_color": [
                     "Red & Violet",
@@ -8267,17 +8245,17 @@
                     "Other",
                     "Spherical Particles"
                 ],
-                "diabetes_treatment_type": [
-                    "Not Reported",
-                    "Diet",
-                    "Other",
-                    "Oral Hypoglycemic"
-                ],
                 "margins_involved_site": [
                     "Not Reported",
                     "Renal Capsule",
                     "Other",
                     "Renal Capsule"
+                ],
+                "diabetes_treatment_type": [
+                    "Not Reported",
+                    "Diet",
+                    "Other",
+                    "Oral Hypoglycemic"
                 ],
                 "classification_of_tumor": [
                     "not reported",
@@ -8333,12 +8311,6 @@
                     "Other",
                     "Ascites/peritoneum"
                 ],
-                "additional_pathology_findings": [
-                    "Benign endocervical polyp",
-                    "Sialadenitis",
-                    "Other",
-                    "Benign endocervical polyp"
-                ],
                 "treatment_type": [
                     "Not Reported",
                     "Whipple",
@@ -8351,11 +8323,29 @@
                     "Mother",
                     "Paternal Uncle"
                 ],
+                "comorbidity": [
+                    "Ulcerative Colitis",
+                    "Dyslipidemia",
+                    "Osteoarthritis",
+                    "Ulcerative Colitis"
+                ],
+                "biospecimen_anatomic_site": [
+                    "Lymph Node",
+                    "Nails",
+                    "Parathyroid",
+                    "Lymph Node"
+                ],
                 "treatment_anatomic_site": [
                     "Lymph Node",
                     "Nails",
                     "Parathyroid",
                     "Epitrochlear"
+                ],
+                "tissue_or_organ_of_origin": [
+                    "Vertebral column",
+                    "Mandible",
+                    "Optic nerve",
+                    "Vertebral column"
                 ],
                 "primary_site": [
                     "Not Reported",
@@ -8405,12 +8395,6 @@
                     "Not Reported",
                     "percent"
                 ],
-                "disease_type": [
-                    "Not Reported",
-                    "Mucoepidermoid Neoplasms",
-                    "Other Leukemias",
-                    "Not Reported"
-                ],
                 "tumor_code": [
                     "Lung Cancer (all types)",
                     "Rhabdoid tumor (kidney) (RT)",
@@ -8446,12 +8430,6 @@
                     "Midline",
                     "Bilateral",
                     "Unilateral"
-                ],
-                "contiguous_organ_invaded": [
-                    "Not Reported",
-                    "Kidney",
-                    "Liver",
-                    "Spleen"
                 ]
             }
         },
@@ -8478,8 +8456,30 @@
                 "mid-inferior",
                 "posterior central"
             ],
+            "source_mapped_values": [
+                "Central",
+                "HILAR",
+                "Hilum, recurrent clear cell renal cell carcinoma, original tumor had sarcomatoid features",
+                "Inferior to Mid Pole",
+                "Kidney",
+                "Kidney, not otherwise specified",
+                "Left",
+                "Left Central Anterior",
+                "Left Upper Pole, Lateral aspect",
+                "MID TO LOWER POLE",
+                "Mid to inferior aspect",
+                "Pole",
+                "Reports only indicate \"deep renal tumor\"",
+                "Right",
+                "Right Inferior",
+                "Right Lower Pole",
+                "Tumor invades the lower and middle poles",
+                "mid anterior",
+                "mid-inferior",
+                "posterior central"
+            ],
             "targets": {
-                "undescended_testis_corrected_laterality": [
+                "undescended_testis_history_laterality": [
                     "Bilateral",
                     "Left",
                     "Not Reported",
@@ -8501,7 +8501,7 @@
                     "Bilateral",
                     "Bilateral"
                 ],
-                "undescended_testis_history_laterality": [
+                "undescended_testis_corrected_laterality": [
                     "Bilateral",
                     "Left",
                     "Not Reported",
@@ -8875,6 +8875,28 @@
                     "CPD-Clinical Progression",
                     "TE-Too Early"
                 ],
+                "primary_diagnosis": [
+                    "Central odontogenic fibroma",
+                    "VIN III",
+                    "Large cell carcinoma with rhabdoid phenotype",
+                    "Giant osteoid osteoma",
+                    "Dysplastic nevus",
+                    "Central odontogenic fibroma",
+                    "Spermatocytoma",
+                    "Central odontogenic fibroma",
+                    "Spermatocytoma",
+                    "Mast cell tumor, NOS",
+                    "Acidophil adenocarcinoma",
+                    "Acidophil adenocarcinoma",
+                    "Mixed mesenchymal tumor",
+                    "Systemic light chain disease",
+                    "Atypical leiomyoma",
+                    "Giant osteoid osteoma",
+                    "Subacute myeloid leukemia",
+                    "Haemangiosarcoma",
+                    "Hodgkin granuloma",
+                    "Giant osteoid osteoma"
+                ],
                 "disease_response": [
                     "AJ-Adjuvant Therapy",
                     "IMR-Immunoresponse",
@@ -8896,28 +8918,6 @@
                     "AJ-Adjuvant Therapy",
                     "CPD-Clinical Progression",
                     "TE-Too Early"
-                ],
-                "first_event": [
-                    "Censored",
-                    "Relapse",
-                    "Second Malignant Neoplasm",
-                    "Induction Failure",
-                    "Induction Death",
-                    "Death without Remission",
-                    "Event",
-                    "Second Malignant Neoplasm",
-                    "Presented with Metastases",
-                    "Death without Remission",
-                    "Not Reported",
-                    "Progression",
-                    "Not Reported",
-                    "Second Malignant Neoplasm",
-                    "Not Reported",
-                    "Not Reported",
-                    "Presented with Metastases",
-                    "Second Malignant Neoplasm",
-                    "Censored",
-                    "Induction Failure"
                 ],
                 "comorbidity": [
                     "Cataracts",
@@ -9120,10 +9120,36 @@
                 "7.5",
                 "8.7"
             ],
+            "source_mapped_values": [
+                "1.5",
+                "10.0",
+                "11.0",
+                "12.0",
+                "12.3",
+                "12.5",
+                "13.0",
+                "14.0",
+                "2.0",
+                "2.8",
+                "3.0",
+                "3.7",
+                "4.0",
+                "5.5",
+                "5.6",
+                "6.0",
+                "6.5",
+                "7.0",
+                "7.5",
+                "8.7"
+            ],
             "targets": {}
         },
         "Tumor_Focality": {
             "source_unique_values": [
+                "Multifocal",
+                "Unifocal"
+            ],
+            "source_mapped_values": [
                 "Multifocal",
                 "Unifocal"
             ],
@@ -9172,10 +9198,6 @@
                     "Uninvolved",
                     "Uninvolved"
                 ],
-                "adverse_event": [
-                    "Myocarditis",
-                    "Menopause"
-                ],
                 "peritoneal_fluid_cytological_status": [
                     "Atypical",
                     "Atypical"
@@ -9195,6 +9217,10 @@
                 "test_result": [
                     "Equivocal",
                     "Equivocal"
+                ],
+                "library_strand": [
+                    "Not Applicable",
+                    "Not Applicable"
                 ],
                 "treatment_emergent_adverse_event": [
                     "Unlikely",
@@ -9220,6 +9246,14 @@
                     "Unfavorable",
                     "Unfavorable"
                 ],
+                "calgb_risk_group": [
+                    "Intermediate/Normal",
+                    "Unknown"
+                ],
+                "anaplasia_present_type": [
+                    "Equivocal",
+                    "Focal"
+                ],
                 "disease_type": [
                     "Gliomas",
                     "Meningiomas"
@@ -9227,14 +9261,6 @@
                 "clonality": [
                     "Clonal",
                     "Non-clonal"
-                ],
-                "anaplasia_present_type": [
-                    "Equivocal",
-                    "Focal"
-                ],
-                "calgb_risk_group": [
-                    "Intermediate/Normal",
-                    "Unknown"
                 ],
                 "chipseq_antibody": [
                     "Not Applicable",
@@ -9251,15 +9277,15 @@
                 "second_gene_symbol": [
                     "MYB",
                     "POU5F1"
-                ],
-                "reflux_treatment_type": [
-                    "Medically Treated",
-                    "Unknown"
                 ]
             }
         },
         "Histologic_Type": {
             "source_unique_values": [
+                "Clear cell renal cell carcinoma",
+                "non-Clear Cell renal cell carcinoma"
+            ],
+            "source_mapped_values": [
                 "Clear cell renal cell carcinoma",
                 "non-Clear Cell renal cell carcinoma"
             ],
@@ -9336,10 +9362,6 @@
                     "Single Cell Analysis",
                     "Single Cell Analysis"
                 ],
-                "margins_involved_site": [
-                    "Renal Vein",
-                    "Renal Vein"
-                ],
                 "biospecimen_type": [
                     "Cerebrospinal Fluid",
                     "Cerebrospinal Fluid"
@@ -9364,6 +9386,10 @@
                     "C-Reactive Protein",
                     "C-Reactive Protein"
                 ],
+                "type_of_smoke_exposure": [
+                    "Recreational fire smoke",
+                    "Indoor stove or fireplace smoke, wood burning"
+                ],
                 "disease_response": [
                     "PLD-Persistent Locoregional Disease",
                     "PLD-Persistent Locoregional Disease"
@@ -9372,6 +9398,12 @@
         },
         "Grade": {
             "source_unique_values": [
+                "G1",
+                "G2",
+                "G3",
+                "G4"
+            ],
+            "source_mapped_values": [
                 "G1",
                 "G2",
                 "G3",
@@ -9549,8 +9581,14 @@
                 "Stage III",
                 "Stage IV"
             ],
+            "source_mapped_values": [
+                "Stage I",
+                "Stage II",
+                "Stage III",
+                "Stage IV"
+            ],
             "targets": {
-                "cog_liver_stage": [
+                "ann_arbor_pathologic_stage": [
                     "Stage I",
                     "Stage II",
                     "Stage III",
@@ -9562,7 +9600,7 @@
                     "Stage III",
                     "Stage IV"
                 ],
-                "ann_arbor_pathologic_stage": [
+                "cog_renal_stage": [
                     "Stage I",
                     "Stage II",
                     "Stage III",
@@ -9574,7 +9612,7 @@
                     "Stage III",
                     "Stage IV"
                 ],
-                "cog_renal_stage": [
+                "cog_liver_stage": [
                     "Stage I",
                     "Stage II",
                     "Stage III",
@@ -9592,13 +9630,13 @@
                     "Stage III",
                     "Stage IVb"
                 ],
-                "figo_stage": [
+                "uicc_clinical_stage": [
                     "Stage I",
                     "Stage II",
                     "Stage III",
                     "Stage IV"
                 ],
-                "uicc_clinical_stage": [
+                "figo_stage": [
                     "Stage I",
                     "Stage II",
                     "Stage III",
@@ -9682,6 +9720,12 @@
                     "Start Lost",
                     "Start Lost"
                 ],
+                "gene_symbol": [
+                    "Not Applicable",
+                    "HIST1H4I",
+                    "HIST1H4I",
+                    "Not Applicable"
+                ],
                 "irs_group": [
                     "Group I",
                     "Group II",
@@ -9716,6 +9760,16 @@
         },
         "Path_Stage_Primary_Tumor_pT": {
             "source_unique_values": [
+                "pT1a",
+                "pT1b",
+                "pT2a",
+                "pT2b",
+                "pT3",
+                "pT3a",
+                "pT3b",
+                "pT4"
+            ],
+            "source_mapped_values": [
                 "pT1a",
                 "pT1b",
                 "pT2a",
@@ -9946,16 +10000,6 @@
                     "T",
                     "T"
                 ],
-                "chromosome_arm": [
-                    "p",
-                    "p",
-                    "p",
-                    "p",
-                    "p",
-                    "p",
-                    "p",
-                    "p"
-                ],
                 "lymph_node_involved_site": [
                     "Popliteal",
                     "Splenic",
@@ -9965,6 +10009,16 @@
                     "Popliteal",
                     "Splenic",
                     "Splenic"
+                ],
+                "chromosome_arm": [
+                    "p",
+                    "p",
+                    "p",
+                    "p",
+                    "p",
+                    "p",
+                    "p",
+                    "p"
                 ],
                 "hpv_strain": [
                     "HPV51",
@@ -9980,6 +10034,11 @@
         },
         "Path_Stage_Reg_Lymph_Nodes_pN": {
             "source_unique_values": [
+                "pN0",
+                "pN1",
+                "pNX"
+            ],
+            "source_mapped_values": [
                 "pN0",
                 "pN1",
                 "pNX"
@@ -10015,37 +10074,42 @@
                     "No",
                     "No"
                 ],
-                "gene_symbol": [
-                    "NRAS",
-                    "ZEB1",
-                    "XPC"
+                "progression_or_recurrence": [
+                    "not reported",
+                    "not reported",
+                    "not reported"
                 ],
                 "normal_tumor_genotype_snp_match": [
                     "No",
                     "No",
                     "No"
                 ],
+                "gene_symbol": [
+                    "NRAS",
+                    "ZEB1",
+                    "XPC"
+                ],
                 "chromosome_arm": [
                     "p",
                     "p",
                     "p"
                 ],
-                "progression_or_recurrence": [
-                    "not reported",
-                    "not reported",
-                    "not reported"
+                "undescended_testis_history": [
+                    "No",
+                    "No",
+                    "No"
                 ],
                 "second_gene_symbol": [
                     "NRAS",
                     "ZEB1",
                     "XPC"
                 ],
-                "protocol_identifier": [
-                    "ANBL0421",
-                    "ANBL0421",
-                    "NWTS-4"
+                "tissue_or_organ_of_origin": [
+                    "Oropharynx, NOS",
+                    "Oropharynx, NOS",
+                    "Oropharynx, NOS"
                 ],
-                "undescended_testis_history": [
+                "diagnosis_pathologically_confirmed": [
                     "No",
                     "No",
                     "No"
@@ -10055,7 +10119,7 @@
                     "HPV51",
                     "Not Reported"
                 ],
-                "diagnosis_pathologically_confirmed": [
+                "pregnant_at_diagnosis": [
                     "No",
                     "No",
                     "No"
@@ -10064,11 +10128,6 @@
                     "Aspirin",
                     "Aspirin",
                     "Aspirin"
-                ],
-                "pregnant_at_diagnosis": [
-                    "No",
-                    "No",
-                    "No"
                 ],
                 "history_of_tumor": [
                     "No",
@@ -10080,10 +10139,10 @@
                     "No",
                     "No"
                 ],
-                "relative_with_cancer_history": [
-                    "not reported",
-                    "not reported",
-                    "not reported"
+                "parent_with_radiation_exposure": [
+                    "No",
+                    "No",
+                    "No"
                 ],
                 "max_tumor_bulk_site": [
                     "Neck",
@@ -10100,10 +10159,20 @@
                     "Neck",
                     "Neck"
                 ],
-                "biospecimen_anatomic_site": [
-                    "Lymph Node",
-                    "Lymph Node",
-                    "Lymph Node"
+                "relative_with_cancer_history": [
+                    "not reported",
+                    "not reported",
+                    "not reported"
+                ],
+                "state": [
+                    "open",
+                    "open",
+                    "open"
+                ],
+                "hormonal_replacement_therapy_status": [
+                    "No",
+                    "No",
+                    "No"
                 ]
             }
         }

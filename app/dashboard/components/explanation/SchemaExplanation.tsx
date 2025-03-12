@@ -24,7 +24,6 @@ interface SchemaExplanationProps {
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
     onGenerateExplanation: () => void;
-    valueMatches: string[][];
     selectedCandidate?: Candidate;
     isLoading: boolean;
 }
@@ -39,7 +38,6 @@ const SchemaExplanation = ({
     setThumbUpExplanations,
     setThumbDownExplanations,
     onGenerateExplanation,
-    valueMatches,
     selectedCandidate,
     isLoading
 }: SchemaExplanationProps) => {
@@ -143,7 +141,7 @@ const SchemaExplanation = ({
                     )}
 
                     {/* Value Matches */}
-                    {valueMatches.length > 0 && (
+                    {/* {valueMatches.length > 0 && (
                         <Box>
                             <SectionHeader>
                                 Value Matches
@@ -174,7 +172,7 @@ const SchemaExplanation = ({
                                 ))}
                             </List>
                         </Box>
-                    )}
+                    )} */}
 
                     {/* Generate Explanation Button */}
                     {currentExplanations.length === 0 && isMatch === true && (

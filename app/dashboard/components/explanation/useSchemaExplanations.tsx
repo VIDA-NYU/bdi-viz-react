@@ -7,7 +7,7 @@ const useSchemaExplanations = () => {
     const [thumbDownExplanations, setThumbDownExplanations] = useState<string[]>([]);
     const [selectedExplanations, setSelectedExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
-    const [matchingValues, setMatchingValues] = useState<string[][]>([]);
+    const [valueMappings, setValueMappings] = useState<SuggestedValueMappings[]>([]);
     const [relevantKnowledge, setRelevantKnowledge] = useState<RelevantKnowledge[]>([]);
     const [relatedOuterSources, setRelatedOuterSources] = useState<RelatedSource[]>([]);
     
@@ -17,7 +17,6 @@ const useSchemaExplanations = () => {
             setCurrentExplanations([]);
             setSelectedExplanations([]);
             setIsMatch(false);
-            setMatchingValues([]);
             setRelevantKnowledge([]);
             return;
         }
@@ -32,13 +31,31 @@ const useSchemaExplanations = () => {
             } as Explanation;
         });
         setIsMatch(candidateExplanation.isMatch);
-        if (candidateExplanation.matchingValues) {
-            setMatchingValues(candidateExplanation.matchingValues);
-        }
+        
         if (candidateExplanation.relevantKnowledge) {
             setRelevantKnowledge(candidateExplanation.relevantKnowledge);
         }
         setCurrentExplanations(explanations);
+    }, []);
+
+    const updateValueMappings = useCallback((newValueMapping: SuggestedValueMappings) => {
+        setValueMappings((prevValueMappings) => {
+            const exists = prevValueMappings.some(
+                (valueMapping) =>
+                    valueMapping.sourceColumn === newValueMapping.sourceColumn &&
+                    valueMapping.targetColumn === newValueMapping.targetColumn
+            );
+            if (exists) {
+                return prevValueMappings.map((valueMapping) =>
+                    valueMapping.sourceColumn === newValueMapping.sourceColumn &&
+                    valueMapping.targetColumn === newValueMapping.targetColumn
+                        ? newValueMapping
+                        : valueMapping
+                );
+            } else {
+                return [...prevValueMappings, newValueMapping];
+            }
+        });
     }, []);
 
     return {
@@ -47,7 +64,7 @@ const useSchemaExplanations = () => {
         selectedExplanations,
         thumbUpExplanations,
         thumbDownExplanations,
-        matchingValues,
+        valueMappings,
         relevantKnowledge,
         relatedOuterSources,
         setIsMatch,
@@ -56,6 +73,7 @@ const useSchemaExplanations = () => {
         setThumbUpExplanations,
         setThumbDownExplanations,
         setRelatedOuterSources,
+        updateValueMappings,
     };
 }
 

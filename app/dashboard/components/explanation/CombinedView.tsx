@@ -16,7 +16,6 @@ interface CombinedViewProps {
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
     onGenerateExplanation: () => void;
-    matchingValues: string[][];
     relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
     selectedCandidate?: Candidate;
@@ -34,7 +33,6 @@ const CombinedView = ({
     setThumbUpExplanations,
     setThumbDownExplanations,
     onGenerateExplanation,
-    matchingValues,
     relevantKnowledge,
     isLoading,
     selectedCandidate,
@@ -64,7 +62,6 @@ const CombinedView = ({
                     setThumbUpExplanations={setThumbUpExplanations}
                     setThumbDownExplanations={setThumbDownExplanations}
                     onGenerateExplanation={onGenerateExplanation}
-                    valueMatches={matchingValues}
                     selectedCandidate={selectedCandidate}
                     isLoading={isLoading}
                 />

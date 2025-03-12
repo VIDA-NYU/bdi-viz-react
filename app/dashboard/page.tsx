@@ -79,15 +79,16 @@ export default function Dashboard() {
         selectedExplanations,
         thumbUpExplanations,
         thumbDownExplanations,
-        matchingValues,
         relevantKnowledge,
         relatedOuterSources,
+        valueMappings,
         setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,
         setThumbDownExplanations,
         setRelatedOuterSources,
+        updateValueMappings,
     } = useSchemaExplanations();
 
     const {
@@ -100,6 +101,7 @@ export default function Dashboard() {
         apply,
         // filterExactMatches,
         exportMatchingResults,
+        suggestValueMappings,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -110,9 +112,9 @@ export default function Dashboard() {
         onExplanation: generateExplanations,
         onSuggestions: handleSuggestions,
         onApply: handleApply,
-        onExactMatches: handleExactMatches,
         onUserOperationsUpdate: handleUserOperationsUpdate,
         onRelatedOuterSources: setRelatedOuterSources,
+        onValueMappings: updateValueMappings,
     });
 
     const {
@@ -159,11 +161,6 @@ export default function Dashboard() {
                 }
             });
         }
-    }
-
-    function handleExactMatches(exactMatches: Candidate[]) {
-        console.log("Exact Matches: ", exactMatches);
-        getCachedResults({ callback: handleFileUpload });
     }
 
     function setSelectedCandidateCallback(candidate: Candidate | undefined) {
@@ -305,6 +302,7 @@ export default function Dashboard() {
                         selectedSourceColumn={sourceColumn}
                         valueMatches={valueMatches}
                         handleValueMatches={handleValueMatches}
+                        suggestedValueMappings={valueMappings}
                     />
                     <Box sx={{ position: 'absolute', right: 320, display: 'flex', alignItems: 'center' }}>
                         <Typography sx={{ fontSize: "0.7rem", fontWeight: "300", marginRight: 0 }}>Expand On Hover</Typography>
@@ -327,7 +325,6 @@ export default function Dashboard() {
                     selectedExplanations={selectedExplanations}
                     thumbUpExplanations={thumbUpExplanations}
                     thumbDownExplanations={thumbDownExplanations}
-                    matchingValues={matchingValues}
                     relevantKnowledge={relevantKnowledge}
                     isLoading={isExplaining}
                     setSelectExplanations={setSelectedExplanations}

@@ -13,9 +13,16 @@ interface ValueComparisonTableProps {
     weightedAggregatedCandidates: AggregatedCandidate[];
     selectedCandidate?: Candidate;
     handleValueMatches: (valueMatches: ValueMatch[]) => void;
+    suggestedValueMappings: SuggestedValueMappings[];
 }
 
-const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatches, weightedAggregatedCandidates, selectedCandidate, handleValueMatches }) => {
+const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
+    valueMatches,
+    weightedAggregatedCandidates,
+    selectedCandidate,
+    handleValueMatches,
+    suggestedValueMappings,
+}) => {
     const theme = useTheme();
 
     const { globalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
@@ -35,12 +42,18 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({ valueMatche
             return [];
         }
         const valueMatch = valueMatches.find((valueMatch) => valueMatch.sourceColumn === candidate.sourceColumn);
+
+        const suggestedValueMapping = suggestedValueMappings.find((valueMapping) => valueMapping.sourceColumn === candidate.sourceColumn && valueMapping.targetColumn === candidate.targetColumn);
         if (valueMatch) {
             const targetColumns = weightedAggregatedCandidates.filter((aggCandidate) => aggCandidate.sourceColumn === candidate.sourceColumn).map((aggCandidate) => aggCandidate.targetColumn);
             const rows = valueMatch.sourceValues.map((sourceValue, index) => {
                 const rowObj = {
                     id: index,
-                    [valueMatch.sourceColumn]: sourceValue,
+                    [valueMatch.sourceColumn]: (valueMatch.sourceMappedValues[index] === sourceValue) ? sourceValue : (
+                        <>
+                            <del>{sourceValue}</del> {valueMatch.sourceMappedValues[index]}
+                        </>
+                    ),
                 };
                 const targetValueMatchs = targetColumns.map((targetColumn) => {
                     return valueMatch.targets.find((valueMatch) => valueMatch.targetColumn === targetColumn);

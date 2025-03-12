@@ -25,6 +25,7 @@ from .pydantic import (
     CandidateExplanation,
     RelatedSources,
     SearchResponse,
+    SuggestedValueMappings,
 )
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -116,8 +117,7 @@ class Agent:
         b. Similarity between the column names,
         c. Consistency of the sample values, and
         d. The history of false positives and negatives.
-    4. For categorical columns, suggest potential pairs of matching values based on the sample data. For numeric columns, omit this step.
-    5. Include any additional context or keywords that might support or contradict the current mapping.
+    4. Include any additional context or keywords that might support or contradict the current mapping.
         """
         logger.info(f"[EXPLAIN] Prompt: {prompt}")
         response = self.invoke(
@@ -125,6 +125,34 @@ class Agent:
             tools=[],
             output_structure=CandidateExplanation,
         )
+        return response
+
+    def suggest_value_mapping(
+        self, candidate: Dict[str, Any]
+    ) -> SuggestedValueMappings:
+        logger.info(f"[Agent] Suggesting value mapping...")
+
+        prompt = f"""
+        Analyze the following lists of values and determine the best mapping from each source value to one of the target values.
+        
+        Source Column: {candidate["sourceColumn"]}
+        Target Column: {candidate["targetColumn"]}
+        Source Values: {candidate["sourceValues"]}
+        Target Values: {candidate["targetValues"]}
+
+        Instructions:
+        1. For every source value, identify the most appropriate corresponding target value.
+        2. If no clear match exists for a source value, return an empty string for that value.
+        """
+
+        logger.info(f"[SUGGEST-VALUE-MAPPING] Prompt: {prompt}")
+
+        response = self.invoke(
+            prompt=prompt,
+            tools=[],
+            output_structure=SuggestedValueMappings,
+        )
+
         return response
 
     def make_suggestion(

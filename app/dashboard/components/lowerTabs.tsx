@@ -14,6 +14,7 @@ interface LowerTabsProps {
   selectedSourceColumn: string;
   valueMatches: ValueMatch[];
   handleValueMatches: (valueMatches: ValueMatch[]) => void;
+  suggestedValueMappings: SuggestedValueMappings[];
 }
 
 const LowerTabs: React.FC<LowerTabsProps> = ({
@@ -23,6 +24,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
   selectedSourceColumn,
   valueMatches,
   handleValueMatches,
+  suggestedValueMappings,
 }) => {
   const [value, setValue] = useState(2);
 
@@ -52,6 +54,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
               weightedAggregatedCandidates={weightedAggregatedCandidates}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
               handleValueMatches={handleValueMatches}
+              suggestedValueMappings={suggestedValueMappings}
             />
           </TabPanel>
       </TabContext>

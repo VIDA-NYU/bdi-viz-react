@@ -16,7 +16,6 @@ interface RightPanelProps {
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
     onGenerateExplanation: () => void;
-    matchingValues: string[][];
     relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
     selectedCandidate?: Candidate;
@@ -36,7 +35,6 @@ const RightPanel = ({
     setThumbUpExplanations,
     setThumbDownExplanations,
     onGenerateExplanation,
-    matchingValues,
     relevantKnowledge,
     isLoading,
     selectedCandidate,
@@ -56,7 +54,6 @@ const RightPanel = ({
                 setThumbUpExplanations={setThumbUpExplanations}
                 setThumbDownExplanations={setThumbDownExplanations}
                 onGenerateExplanation={onGenerateExplanation}
-                matchingValues={matchingValues}
                 relevantKnowledge={relevantKnowledge}
                 isLoading={isLoading}
                 selectedCandidate={selectedCandidate}
