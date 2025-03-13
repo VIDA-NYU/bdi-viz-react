@@ -16,6 +16,30 @@ interface ValueComparisonTableProps {
     suggestedValueMappings: SuggestedValueMappings[];
 }
 
+// A helper component that displays both the original source value and the edited value
+// If they differ, the original appears struck through, and the edited value is highlighted with a badge.
+const SourceValueDisplay: React.FC<{ original: string; edited: string }> = ({ original, edited }) => {
+    const isEdited = original !== edited;
+
+    return (
+        <div style={{ display: "flex", alignItems: "center" }}>
+            {isEdited ? (
+                <>
+                    <span style={{ textDecoration: "line-through", marginRight: 4, color: "#a0a0a0" }}>
+                        {original}
+                    </span>
+                    <span style={{ fontWeight: "bold", color: "#1976d2", marginRight: 6 }}>
+                        {edited}
+                    </span>
+                    <span style={{ fontSize: 10, color: "red" }}>(edited)</span>
+                </>
+            ) : (
+                <span>{original}</span>
+            )}
+        </div>
+    );
+};
+
 const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     valueMatches,
     weightedAggregatedCandidates,
@@ -24,7 +48,6 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     suggestedValueMappings,
 }) => {
     const theme = useTheme();
-
     const { globalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
 
     const candidate = useMemo(() => {
@@ -38,94 +61,109 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     }, [selectedCandidate, globalCandidateHighlight]);
 
     const rows = useMemo(() => {
-        if (!candidate) {
-            return [];
-        }
-        const valueMatch = valueMatches.find((valueMatch) => valueMatch.sourceColumn === candidate.sourceColumn);
+        if (!candidate) return [];
+        const valueMatch = valueMatches.find(
+            (valueMatch) => valueMatch.sourceColumn === candidate.sourceColumn
+        );
 
-        const suggestedValueMapping = suggestedValueMappings.find((valueMapping) => valueMapping.sourceColumn === candidate.sourceColumn && valueMapping.targetColumn === candidate.targetColumn);
         if (valueMatch) {
-            const targetColumns = weightedAggregatedCandidates.filter((aggCandidate) => aggCandidate.sourceColumn === candidate.sourceColumn).map((aggCandidate) => aggCandidate.targetColumn);
-            const rows = valueMatch.sourceValues.map((sourceValue, index) => {
-                const rowObj = {
+            const targetColumns = weightedAggregatedCandidates
+                .filter((aggCandidate) => aggCandidate.sourceColumn === candidate.sourceColumn)
+                .map((aggCandidate) => aggCandidate.targetColumn);
+            return valueMatch.sourceValues.map((sourceValue, index) => {
+                const rowObj: Record<string, any> = {
                     id: index,
-                    [`${valueMatch.sourceColumn}(source)`]: (valueMatch.sourceMappedValues[index] === sourceValue) ? sourceValue : (
-                        <>
-                            <del>{sourceValue}</del> {valueMatch.sourceMappedValues[index]}
-                        </>
-                    ),
+                    // Use our helper component to display both original and edited values on the source column
+                    [`${valueMatch.sourceColumn}(source)`]:  valueMatch.sourceMappedValues[index],
+                    "SourceOriginalValues": sourceValue,
+                    // (
+                    //     <SourceValueDisplay
+                    //         original={sourceValue}
+                    //         edited={valueMatch.sourceMappedValues[index]}
+                    //     />
+                    // ),
                 };
-                const targetValueMatchs = targetColumns.map((targetColumn) => {
-                    return valueMatch.targets.find((valueMatch) => valueMatch.targetColumn === targetColumn);
-                }).filter((target) => target !== undefined);
-                targetValueMatchs.forEach((targetObj) => {
+                const targetValueMatches = targetColumns
+                    .map((targetColumn) =>
+                        valueMatch.targets.find((target) => target.targetColumn === targetColumn)
+                    )
+                    .filter(target => target !== undefined);
+                targetValueMatches.forEach((targetObj) => {
                     const targetColumn = targetObj.targetColumn;
-                    const targetValue = targetObj.targetValues[index] !== undefined ? targetObj.targetValues[index] : "";
+                    const targetValue =
+                        targetObj.targetValues[index] !== undefined ? targetObj.targetValues[index] : "";
                     rowObj[targetColumn] = targetValue;
                 });
                 return rowObj;
             });
-
-            return rows;
         }
+        return [];
     }, [valueMatches, weightedAggregatedCandidates, candidate]);
 
     const columns: MRT_ColumnDef<any>[] = useMemo(() => {
-        if (!rows) {
-            return [];
-        }
+        if (!rows.length || !candidate) return [];
+        const cols = Object.keys(rows[0])
+            .map((key) => ({
+                accessorKey: key,
+                header: key,
+            } as MRT_ColumnDef<any>))
+            .filter((column) => column.accessorKey !== "id");
 
-        const columns = Object.keys(rows?.[0] || {}).map((key) => ({
-            accessorKey: key,
-            header: key,
-        })).filter(column => column.accessorKey !== "id");
+        cols.push({
+            header: "Changes",
+            accessorKey: "changes",
+            Cell: ({ row }) => {
+                return (
+                    <SourceValueDisplay
+                        original={row.original[`SourceOriginalValues`]}
+                        edited={row.original[`${candidate.sourceColumn}(source)`]}
+                    />
+                );
+            },
+            enableEditing: false,
+            maxSize: 30,
+        });
 
-        // Move the selected target column to the first position
-        if (candidate?.targetColumn && columns.length > 0) {
-            const targetColumnIndex = columns.findIndex(column => column.accessorKey === candidate.targetColumn);
-            if (targetColumnIndex > -1) {
-                const [targetColumn] = columns.splice(targetColumnIndex, 1);
-                columns.unshift(targetColumn);
-            }
-        }
-
-        return columns;
+        return cols;
     }, [rows, candidate]);
 
     const table = useMaterialReactTable({
         columns: columns,
-        data: rows || [],
+        data: rows,
         enableColumnPinning: true,
         enableTopToolbar: false,
         enableRowActions: false,
         enablePagination: false,
-        enableBottomToolbar: false, //hide the bottom toolbar as well if you want
+        enableBottomToolbar: false,
         initialState: {
             columnPinning: {
-                left: candidate?.sourceColumn ? [`${candidate?.sourceColumn}(source)`] : []
+                left: candidate?.sourceColumn ? [`changes`, `${candidate.sourceColumn}(source)`] : [],
+            },
+            columnVisibility: {
+                SourceOriginalValues: false,
             }
         },
         muiTableBodyCellProps: ({ cell, column, table }) => {
             const isSourceColumn = cell.column.id === `${candidate?.sourceColumn}(source)`;
             const isTargetColumn = cell.column.id === candidate?.targetColumn;
+            const isChangesColumn = cell.column.id === "changes";
             const cellValue = cell.getValue();
 
-            // base styling
             let cellStyle: React.CSSProperties = {
-                backgroundColor: isSourceColumn
+                backgroundColor: isChangesColumn
+                    ? theme.palette.primary.light
+                    : isSourceColumn
                     ? theme.palette.primary.dark
                     : isTargetColumn
                     ? theme.palette.secondary.dark
                     : undefined,
-                color: isSourceColumn || isTargetColumn 
-                    ? theme.palette.common.black
-                    : undefined,
-                fontWeight: isSourceColumn || isTargetColumn ? 'bold' : undefined,
+                color: isSourceColumn || isTargetColumn ? theme.palette.common.black : undefined,
+                fontWeight: isSourceColumn || isTargetColumn ? "bold" : undefined,
             };
-            
+
             if (
                 globalQuery &&
-                typeof cellValue === 'string' &&
+                typeof cellValue === "string" &&
                 cellValue.toLowerCase().includes(globalQuery.toLowerCase())
             ) {
                 cellStyle = {
@@ -137,78 +175,63 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
 
             return {
                 onClick: () => {
-                    console.log(column, "column");
                     if (isSourceColumn) {
-                        table.setEditingCell(cell); //set editing cell
+                        table.setEditingCell(cell);
                     } else {
-                        // Set source column accordingly
-                        if (candidate) {
+                        if (candidate && column.id !== "changes") {
                             updateSourceValue({
-                                column: candidate?.sourceColumn,
-                                value: cell.row.original[candidate?.sourceColumn],
+                                column: candidate.sourceColumn,
+                                value: cell.row.original[`${candidate?.sourceColumn}(source)`],
                                 newValue: cell.row.original[column.id],
                                 valueMatchesCallback: handleValueMatches,
                             });
                         }
                     }
-                    
                 },
                 style: cellStyle,
                 onKeyDown: (event) => {
-                    if (event.key === 'Enter') {
-                        if (isSourceColumn) {
-                            if (candidate) {
-                                updateSourceValue({
-                                    column: candidate?.sourceColumn,
-                                    value: cell.row.original[candidate?.sourceColumn],
-                                    newValue: cell.getValue(),
-                                    valueMatchesCallback: handleValueMatches,
-                                });
-                            }
-                            table.setEditingCell(null); //set editing cell
-                        }
+                    if (event.key === "Enter" && isSourceColumn && candidate) {
+                        updateSourceValue({
+                            column: candidate.sourceColumn,
+                            value: cell.row.original[`${candidate?.sourceColumn}(source)`],
+                            newValue: cell.getValue(),
+                            valueMatchesCallback: handleValueMatches,
+                        });
+                        table.setEditingCell(null);
                     }
-                }
+                },
             };
         },
         enableEditing: true,
-        editDisplayMode: 'cell',
-        // onEditingCellChange: ({column, getValue}) => {
-        //     console.log('onEditCellChange', column, getValue());
-        // },
+        editDisplayMode: "cell",
     });
 
     useMemo(() => {
-        const columnPinning = [];
+        const columnPinning = [`changes`];
         if (candidate?.sourceColumn) {
             columnPinning.push(`${candidate.sourceColumn}(source)`);
         }
         if (candidate?.targetColumn) {
             columnPinning.push(candidate.targetColumn);
         }
-        table.setColumnPinning({
-            left: columnPinning,
-        });
+        table.setColumnPinning({ left: columnPinning });
     }, [candidate, table]);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
             <style>
-            {`
-                tr {
-                height: 10px;
-                }
-
-                tr td {
-                height: auto !important;
-                }
-            `}
+                {`
+                    tr {
+                        height: 10px;
+                    }
+                    tr td {
+                        height: auto !important;
+                    }
+                `}
             </style>
-            <MaterialReactTable 
-                table={table}
-            />
+            <MaterialReactTable table={table} />
         </div>
     );
-}
+};
 
 export default ValueComparisonTable;

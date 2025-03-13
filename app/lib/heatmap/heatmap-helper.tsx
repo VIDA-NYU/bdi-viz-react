@@ -432,6 +432,8 @@ const updateSourceValue = ({ column, value, newValue, valueMatchesCallback }: up
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
+
+        console.log(`Updating source value: ${column} ${value} -> ${newValue}`);
         axios.post("/api/value/update", {
             column,
             value,
