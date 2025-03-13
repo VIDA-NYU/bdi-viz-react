@@ -12,7 +12,7 @@ type DashboardOperationProps = {
     selectedExplanations?: Explanation[];
     onCandidateUpdate: (candidates: Candidate[], sourceCluster?: SourceCluster[]) => void;
     onCandidateSelect: (candidate: Candidate | undefined) => void;
-    onExplanation?: (explanation: CandidateExplanation | undefined) => void;
+    onExplanation?: (candidate: Candidate, explanation: CandidateExplanation | undefined) => void;
     onSuggestions?: (suggestions: AgentSuggestions | undefined) => void;
     onApply?: (actionResponses: ActionResponse[] | undefined) => void;
     onUserOperationsUpdate: (userOperations: UserOperation[]) => void;
@@ -233,7 +233,7 @@ export const {
             if (onExplanation) {
                 const explanation = await candidateExplanationRequest(candidateToExplain);
                 if (explanation) {
-                    onExplanation(explanation);
+                    onExplanation(candidateToExplain, explanation);
                 }
             }
 

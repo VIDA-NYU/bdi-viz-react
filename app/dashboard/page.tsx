@@ -172,7 +172,7 @@ export default function Dashboard() {
     function setSelectedCandidateCallback(candidate: Candidate | undefined) {
         if (!candidate) {
             setSelectedCandidate(undefined);
-            generateExplanations(undefined);
+            generateExplanations();
             setGdcAttribute(undefined);
             return;
         }
@@ -316,6 +316,7 @@ export default function Dashboard() {
                         selectedCandidate={selectedCandidate}
                         setSelectedCandidate={setSelectedCandidateByTargetColumnCallback}
                         selectedSourceColumn={sourceColumn}
+                        handleValueMatches={handleValueMatches}
                         valueMatches={valueMatches}
                     />
                     <Box sx={{ position: 'absolute', right: 320, display: 'flex', alignItems: 'center' }}>

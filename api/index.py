@@ -32,8 +32,6 @@ def matcher():
 
     target = pd.read_csv(GDC_DATA_PATH)
 
-    app.logger.info(request)
-
     source, _ = extract_data_from_request(request)
     source.to_csv(".source.csv", index=False)
 

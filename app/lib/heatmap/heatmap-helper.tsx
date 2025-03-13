@@ -3,7 +3,6 @@
 import axios from "axios";
 import http from 'http';
 import https from 'https';
-import { resolve } from "path";
 
 interface getCachedResultsProps {
     callback: (newCandidates: Candidate[], newSourceCluster: SourceCluster[], newMatchers: Matcher[]) => void;
@@ -17,7 +16,7 @@ const getCachedResults = (prop: getCachedResultsProps) => {
         axios.post("/api/results", {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const results = response.data?.results;
             if (results.candidates && Array.isArray(results.candidates) && results.sourceClusters && Array.isArray(results.sourceClusters)) {
@@ -72,7 +71,7 @@ const getValueBins = (prop: getUniqueValuesProps) => {
         axios.post(`/api/value/bins`, {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const results = response.data?.results;
             if (results.sourceUniqueValues && Array.isArray(results.sourceUniqueValues) && results.targetUniqueValues && Array.isArray(results.targetUniqueValues)) {
@@ -120,7 +119,7 @@ const getValueMatches = (prop: getValueMatchesProps) => {
         axios.post(`/api/value/matches`, {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const results = response.data?.results;
             if (results && Array.isArray(results)) {
@@ -158,7 +157,7 @@ const getUserOperationHistory = (prop: userOperationHistoryProps) => {
         axios.post("/api/history", {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const history = response.data?.history;
             if (history && Array.isArray(history)) {
@@ -196,7 +195,7 @@ const getTargetOntology = (prop: targetOntologyProps) => {
         axios.post("/api/gdc/ontology", {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const results = response.data?.results;
             if (results && Array.isArray(results)) {
@@ -303,7 +302,7 @@ const getExactMatches = ({callback}: getExactMatchesProps) => {
             axios.post("/api/exact-matches", {
                 httpAgent,
                 httpsAgent,
-                timeout: 10000000, // Set timeout to unlimited
+                timeout: 600000, // 10 minutes in milliseconds
             }).then((response) => {
                 const results = response.data?.results;
                 if (results && Array.isArray(results)) {
@@ -346,7 +345,7 @@ const getGDCAttribute = (prop: getGDCAttributeProps) => {
         }, {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const property = response.data?.property;
             if (property) {
@@ -396,7 +395,7 @@ const getCandidatesResult = (prop: getCandidatesResultProps) => {
         }, {
             httpAgent,
             httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
+            timeout: 600000, // 10 minutes in milliseconds
         }).then((response) => {
             const results = response.data?.results;
             if (results) {
@@ -428,7 +427,31 @@ interface updateSourceValueProps {
 
 }
 
+const updateSourceValue = ({ column, value, newValue, valueMatchesCallback }: updateSourceValueProps) => {
+    return new Promise<void>((resolve, reject) => {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
+        console.log(`Updating source value: ${column} ${value} -> ${newValue}`);
+        axios.post("/api/value/update", {
+            column,
+            value,
+            newValue,
+        }, {
+            httpAgent,
+            httpsAgent,
+            timeout: 600000, // 10 minutes in milliseconds
+        }).then(() => {
+            console.log("updateSourceValue finished!");
+            getValueMatches({ callback: valueMatchesCallback });
+            resolve();
+        }).catch((error) => {
+            console.error("Error updating source value:", error);
+            reject(error);
+        });
+    });
+}
 
 
 
-export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult };
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult, updateSourceValue };

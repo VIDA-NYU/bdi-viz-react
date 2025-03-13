@@ -45,7 +45,7 @@ const FileUploading: React.FC<FileUploadingProps> = ({ callback }) => {
                         formData, 
                     {
                         ...customHeader,
-                        timeout: 300000, // 3 minutes in milliseconds
+                        timeout: 300000, // 5 minutes in milliseconds
                     }).then((response) => {
                         console.log(response);
                         if (response.status === 200) {

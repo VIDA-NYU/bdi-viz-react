@@ -11,8 +11,8 @@ const useSchemaExplanations = () => {
     const [relatedOuterSources, setRelatedOuterSources] = useState<RelatedSource[]>([]);
     
     // Mock function to generate explanations - replace with actual API call later
-    const generateExplanations = useCallback((candidateExplanation?: CandidateExplanation) => {
-        if (!candidateExplanation) {
+    const generateExplanations = useCallback((candidate?: Candidate, candidateExplanation?: CandidateExplanation) => {
+        if (!candidateExplanation || !candidate) {
             setCurrentExplanations([]);
             setSelectedExplanations([]);
             setIsMatch(false);
