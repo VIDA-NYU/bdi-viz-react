@@ -12,6 +12,7 @@ interface CellProps {
     color: ScaleSequential<string, string>;
     isSelected?: boolean;
     onHover?: (event: React.MouseEvent, data: any) => void;
+    onMouseMove?: (event: React.MouseEvent) => void;
     onLeave?: () => void;
     onClick?: (data: AggregatedCandidate) => void;
     isHighlighted?: boolean;

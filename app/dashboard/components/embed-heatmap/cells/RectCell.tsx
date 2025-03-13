@@ -11,6 +11,7 @@ const RectCell: React.FC<CellProps> = ({
     height,
     color,
     onHover,
+    onMouseMove,
     onLeave,
     onClick,
     isHighlighted
@@ -47,6 +48,7 @@ const RectCell: React.FC<CellProps> = ({
             onMouseLeave={(e) => {
                 onLeave?.();
             }}
+            onMouseMove={onMouseMove}
             onClick={() => onClick?.(data)}
             rx={3}
             ry={3}

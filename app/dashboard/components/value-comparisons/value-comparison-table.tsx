@@ -23,7 +23,7 @@ const SourceValueDisplay: React.FC<{ original: string; edited: string }> = ({ or
 
     return (
         <div style={{ display: "flex", alignItems: "center" }}>
-            {isEdited ? (
+            {isEdited && (
                 <>
                     <span style={{ textDecoration: "line-through", marginRight: 4, color: "#a0a0a0" }}>
                         {original}
@@ -33,8 +33,6 @@ const SourceValueDisplay: React.FC<{ original: string; edited: string }> = ({ or
                     </span>
                     <span style={{ fontSize: 10, color: "red" }}>(edited)</span>
                 </>
-            ) : (
-                <span>{original}</span>
             )}
         </div>
     );
@@ -114,13 +112,23 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
             accessorKey: "changes",
             Cell: ({ row }) => {
                 return (
-                    <SourceValueDisplay
-                        original={row.original[`SourceOriginalValues`]}
-                        edited={row.original[`${candidate.sourceColumn}(source)`]}
-                    />
+                    <div style={{ fontSize: "0.75rem", color: "#757575" }}>
+                        <SourceValueDisplay
+                            original={row.original[`SourceOriginalValues`]}
+                            edited={row.original[`${candidate.sourceColumn}(source)`]}
+                        />
+                    </div>
+                );
+            },
+            Header: () => {
+                return (
+                    <div style={{ display: "flex", alignItems: "center", fontSize: "0.75rem", color: "#757575" }}>
+                        <span>Changes</span>
+                    </div>
                 );
             },
             enableEditing: false,
+            enableColumnActions: false,
             maxSize: 30,
         });
 
