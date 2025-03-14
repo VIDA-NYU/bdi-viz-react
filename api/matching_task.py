@@ -199,43 +199,53 @@ class MatchingTask:
         )
 
         layered_candidates = []
-        numeric_columns = []
+        # numeric_columns = []
         for source_column in self.source_df.columns:
             layered_candidates.extend(
                 self.candidate_quadrants.get_easy_target_json(source_column)
             )
 
-            if pd.api.types.is_numeric_dtype(self.source_df[source_column].dtype):
-                numeric_columns.append(source_column)
-                continue
+            # if pd.api.types.is_numeric_dtype(self.source_df[source_column].dtype):
+            #     numeric_columns.append(source_column)
+            #     continue
 
-            target_df = self.candidate_quadrants.get_potential_target_df(source_column)
-            if target_df is None:  # No potential matches
-                continue
-            for matcher_name, matcher_instance in self.matchers.items():
-                logger.info(
-                    f"Running matcher: {matcher_name} on source {source_column}..."
-                )
-                matcher_candidates = matcher_instance.top_matches(
-                    source=self.source_df[[source_column]],
-                    target=target_df,
-                    top_k=self.top_k,
-                )
-                layered_candidates.extend(matcher_candidates)
+            # target_df = self.candidate_quadrants.get_potential_target_df(source_column)
+            # if target_df is None:  # No potential matches
+            #     continue
+        for matcher_name, matcher_instance in self.matchers.items():
+            matcher_candidates = matcher_instance.top_matches(
+                source=self.source_df,
+                target=self.target_df,
+                top_k=self.top_k,
+            )
+            layered_candidates.extend(matcher_candidates)
 
-        if numeric_columns:
-            target_df = self.candidate_quadrants.get_potential_numeric_target_df()
-            source_df = self.source_df[numeric_columns]
-            for matcher_name, matcher_instance in self.matchers.items():
-                logger.info(
-                    f"Running matcher: {matcher_name} on source {numeric_columns}..."
-                )
-                matcher_candidates = matcher_instance.top_matches(
-                    source=source_df,
-                    target=target_df,
-                    top_k=self.top_k,
-                )
-                layered_candidates.extend(matcher_candidates)
+        # if numeric_columns:
+        #     target_df = self.candidate_quadrants.get_potential_numeric_target_df()
+        #     source_df = self.source_df[numeric_columns]
+        #     for matcher_name, matcher_instance in self.matchers.items():
+        #         logger.info(
+        #             f"Running matcher: {matcher_name} on source {numeric_columns}..."
+        #         )
+        #         matcher_candidates = matcher_instance.top_matches(
+        #             source=source_df,
+        #             target=target_df,
+        #             top_k=self.top_k,
+        #         )
+        #         layered_candidates.extend(matcher_candidates)
+
+        easy_match_keys = {
+            (candidate["sourceColumn"], candidate["targetColumn"])
+            for candidate in layered_candidates
+            if candidate["matcher"] == "candidate_quadrants"
+        }
+        layered_candidates = [
+            candidate
+            for candidate in layered_candidates
+            if candidate["matcher"] == "candidate_quadrants"
+            or (candidate["sourceColumn"], candidate["targetColumn"])
+            not in easy_match_keys
+        ]
 
         # Generate value matches for each candidate
         for candidate in layered_candidates:
@@ -450,7 +460,7 @@ class MatchingTask:
             return [
                 {"value": str(key), "count": int(value)}
                 for key, value in counter.items()
-                if value > 1
+                if value >= 1
             ]
         elif col_obj.dtype in ["int64", "float64"]:
             col_obj = col_obj.dropna()  # Drop NaN values
