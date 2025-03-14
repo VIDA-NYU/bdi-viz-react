@@ -32,9 +32,10 @@ const useHeatmapScales = ({ data, sourceCluster, width, height, margin, config, 
         // Dynamic cell sizing
         const baseWidth = totalWidth / numColumnsX;
         const baseHeight = totalHeight / numColumnsY;
-        const expandMultiplier = Math.max(numColumnsY / 5, 1);
-        const expandedWidth = Math.min(baseWidth * 3 * expandMultiplier, width - margin.left - margin.right);
-        const expandedHeight = Math.min(baseHeight * 2 * expandMultiplier, height - margin.top - margin.bottom);
+        const expandMultiplierY = Math.max(numColumnsY / 4, 1);
+        const expandMultiplierX = Math.max(numColumnsX / 3, 1);
+        const expandedWidth = Math.min(baseWidth * 2 * expandMultiplierX, width - margin.left - margin.right);
+        const expandedHeight = Math.min(baseHeight * 2 * expandMultiplierY, height - margin.top - margin.bottom);
           
         const shrunkWidth = numColumnsX > 1 ? (width - margin.left - margin.right - expandedWidth) / (numColumnsX - 1) : 0;
         const shrunkHeight = numColumnsY > 1 ? (height - margin.top - margin.bottom - expandedHeight) / (numColumnsY - 1) : 0;

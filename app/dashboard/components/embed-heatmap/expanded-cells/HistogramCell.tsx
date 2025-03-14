@@ -19,11 +19,12 @@ const HistogramCell: FC<ExpandedCellProps> = ({
 
   const Label = styled('text')({
     position: 'absolute',
-    backgroundColor: theme.palette.grey[800],
+    fill: theme.palette.grey[800],
     boxShadow: theme.shadows[1],
     padding: '2px 8px',
     borderRadius: '4px',
-    fontWeight: '400',
+    fontWeight: '300',
+    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
     fontSize: '0.8rem',
     zIndex: 999,
   });
@@ -32,22 +33,25 @@ const HistogramCell: FC<ExpandedCellProps> = ({
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = (height) / 2 - margin.top - margin.bottom;
 
-  const getSortValue = (val: string) => {
-    const parts = val.split('-');
-    const num = parseFloat(parts[0]);
-    return isNaN(num) ? 0 : num;
+  const compareValues = (a: string, b: string) => {
+    const numA = parseFloat(a.split('-')[0]);
+    const numB = parseFloat(b.split('-')[0]);
+    if (!isNaN(numA) && !isNaN(numB)) {
+      return numA - numB;
+    }
+    return a.localeCompare(b);
   };
 
   const sourceDomain = sourceUniqueValues.uniqueValues
     .map(d => d.value.toString())
-    .sort((a, b) => getSortValue(a) - getSortValue(b));
+    .sort((a, b) => compareValues(a, b));
   const sourceX = d3.scaleBand()
     .domain(sourceDomain)
     .range([0, chartWidth]);
 
   const targetDomain = targetUniqueValues.uniqueValues
     .map(d => d.value!.toString())
-    .sort((a, b) => getSortValue(a) - getSortValue(b));
+    .sort((a, b) => compareValues(a, b));
   const targetX = d3.scaleBand()
     .domain(targetDomain)
     .range([0, chartWidth]);
@@ -82,10 +86,10 @@ const HistogramCell: FC<ExpandedCellProps> = ({
                   x={sourceX(bin.value!)! + sourceX.bandwidth() / 2}
                   y={sourceY(bin.count) - 2}
                   textAnchor="middle"
-                  fontSize="0.6rem"
+                  fontSize={`${Math.min(sourceX.bandwidth() * 0.2, 10)}px`}
                   fontWeight={600}
-                  fontStyle={'italic'}
-                  fill={theme.palette.common.black}
+                  fontStyle="normal"
+                  fill={theme.palette.text.primary}
                 >
                   {bin.value}
                 </StyledText>
@@ -122,7 +126,7 @@ const HistogramCell: FC<ExpandedCellProps> = ({
                 x={targetX(bin.value!)! + targetX.bandwidth() / 2}
                 y={targetY(bin.count) - 2}
                 textAnchor="middle"
-                fontSize="0.6rem"
+                fontSize={`${Math.min(sourceX.bandwidth() * 0.2, 10)}px`}
                 fontWeight={600}
                 fontStyle={'italic'}
                 fill={theme.palette.common.black}

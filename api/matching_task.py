@@ -64,35 +64,6 @@ class MatchingTask:
         self.update_matcher_weights = update_matcher_weights
 
     def _initialize_cache(self) -> Dict[str, Any]:
-        """
-        Initialize the cache dictionary with default values.
-
-        Data structure:
-        - source_hash: int
-        - target_hash: int
-        - candidates: [{
-            "sourceColumn": str,
-            "targetColumn": str,
-            "score": float,
-            "matcher": str,
-            "status": str
-        }, ...]
-        - source_clusters: {
-            "source_column_1": ["source_column_1", "source_column_2", ...],
-            ...
-        }
-        - value_matches: {
-            "source_column_1": {
-                "source_unique_values": ["value1", "value2", ...],
-                "source_mapped_values": ["value1", "value3", ...],  # Mapped values
-                "targets": {
-                    "target_column_1": ["value1", "value2", ...],
-                    ...
-                }
-            },
-            ...
-        }
-        """
         return {
             "source_hash": None,
             "target_hash": None,
@@ -307,10 +278,12 @@ class MatchingTask:
     def _initialize_value_matches(self) -> None:
         self.cached_candidates["value_matches"] = {}
         for source_col in self.source_df.columns:
-            source_unique_values = self.get_source_unique_values(source_col)
+            source_unique_values = []
+            if not pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
+                source_unique_values = self.get_source_unique_values(source_col)
+
             self.cached_candidates["value_matches"][source_col] = {
                 "source_unique_values": source_unique_values,
-                "source_mapped_values": source_unique_values,
                 "targets": {},
             }
 
@@ -321,12 +294,12 @@ class MatchingTask:
         ):
             return
 
-        if pd.api.types.is_numeric_dtype(self.source_df[source_column].dtype):
-            return
-
         source_values = self.cached_candidates["value_matches"][source_column][
             "source_unique_values"
         ]
+        if not source_values:  # Source unique values are empty
+            return
+
         target_values = self.get_target_unique_values(target_column)
 
         match_results = {
@@ -422,7 +395,6 @@ class MatchingTask:
             source_json = {
                 "sourceColumn": source_col,
                 "sourceValues": source_items["source_unique_values"],
-                "sourceMappedValues": source_items["source_mapped_values"],
                 "targets": [],
             }
             for target_col, target_unique_values in source_items["targets"].items():
@@ -685,55 +657,40 @@ class MatchingTask:
         for source_col, target_col in candidates_set:
             if source_col not in self.get_value_matches():
                 continue
-
-            source_unique_values = self.get_value_matches()[source_col][
-                "source_unique_values"
-            ]
-            source_mapped_values = self.get_value_matches()[source_col][
-                "source_mapped_values"
-            ]
             if target_col not in self.get_value_matches()[source_col]["targets"]:
                 value_matches = []
             else:
                 value_matches = self.get_value_matches()[source_col]["targets"][
                     target_col
                 ]
-
             ret.append(
                 {
                     "sourceColumn": source_col,
                     "targetColumn": target_col,
                     "valueMatches": [
-                        {
-                            "from": from_val,
-                            "to": (
-                                to_val
-                                if source_mapped_values[index] == from_val
-                                else source_mapped_values[index]
-                            ),
-                        }
-                        for index, (from_val, to_val) in enumerate(
-                            zip(source_unique_values, value_matches)
+                        {"from": from_val, "to": to_val}
+                        for from_val, to_val in zip(
+                            self.get_source_unique_values(source_col), value_matches
                         )
                     ],
                 }
             )
         return ret
 
-    def set_source_mapped_values(
+    def set_source_value_matches(
         self, source_col: str, from_val: str, to_val: str
     ) -> None:
-        self.cached_candidates["value_matches"][source_col]["source_mapped_values"] = [
+        self.cached_candidates["value_matches"][source_col]["source_unique_values"] = [
             to_val if val == from_val else val
             for val in self.cached_candidates["value_matches"][source_col][
-                "source_mapped_values"
+                "source_unique_values"
             ]
         ]
 
     def set_source_value(self, column: str, from_val: str, to_val: str) -> None:
         logger.info(f"Setting value {from_val} to {to_val} in column {column}...")
         self.source_df[column] = self.source_df[column].replace(from_val, to_val)
-        self.set_source_mapped_values(column, from_val, to_val)
+        self.set_source_value_matches(column, from_val, to_val)
 
 
 class UserOperationHistory:

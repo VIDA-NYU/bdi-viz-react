@@ -428,32 +428,7 @@ interface updateSourceValueProps {
 
 }
 
-const updateSourceValue = ({ column, value, newValue, valueMatchesCallback }: updateSourceValueProps) => {
-    return new Promise<void>((resolve, reject) => {
-        const httpAgent = new http.Agent({ keepAlive: true });
-        const httpsAgent = new https.Agent({ keepAlive: true });
-
-        console.log(`Updating source value: ${column} ${value} -> ${newValue}`);
-        axios.post("/api/value/update", {
-            column,
-            value,
-            newValue,
-        }, {
-            httpAgent,
-            httpsAgent,
-            timeout: 10000000, // Set timeout to unlimited
-        }).then(() => {
-            console.log("updateSourceValue finished!");
-            getValueMatches({ callback: valueMatchesCallback });
-            resolve();
-        }).catch((error) => {
-            console.error("Error updating source value:", error);
-            reject(error);
-        });
-    });
-}
 
 
 
-
-export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult, updateSourceValue };
+export { getCachedResults, getValueBins, getValueMatches, getUserOperationHistory, getTargetOntology, applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getGDCAttribute, getCandidatesResult };

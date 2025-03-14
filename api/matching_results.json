@@ -418,2212 +418,2212 @@
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "cd4_count",
-            "score": 0.4173458885468765,
+            "score": 0.41734588939010686,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "ajcc_pathologic_n",
-            "score": 0.3677662698966891,
+            "score": 0.3677662690476063,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "nadir_cd4_count",
-            "score": 0.300269934516185,
+            "score": 0.3002699342328265,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "ajcc_pathologic_m",
-            "score": 0.2836963945994256,
+            "score": 0.28369639467232993,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.2621948918820428,
+            "score": 0.2621948919288553,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "cell_count",
-            "score": 0.25972249081644105,
+            "score": 0.259722490510677,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "primary_diagnosis",
-            "score": 0.2576486538399683,
+            "score": 0.2576486538821683,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "ajcc_pathologic_t",
-            "score": 0.24974844736813678,
+            "score": 0.24974844738495336,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "days_to_birth",
-            "score": 0.24487780723363808,
+            "score": 0.24487780681843455,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "ajcc_clinical_m",
-            "score": 0.24429714707771738,
+            "score": 0.24429714670191272,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "clark_level",
-            "score": 0.2382224299081802,
+            "score": 0.23822242950576775,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "icd_10_code",
-            "score": 0.23270977581297603,
+            "score": 0.23270977646151034,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "extrascleral_extension",
-            "score": 0.22890474446621503,
+            "score": 0.22890474463092272,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "extrascleral_extension_present",
-            "score": 0.227942838595889,
+            "score": 0.2279428378364267,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "days_to_recurrence",
-            "score": 0.2130991887480366,
+            "score": 0.21309918918177234,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "who_cns_grade",
-            "score": 0.21238586298733603,
+            "score": 0.21238586229501352,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "clonality",
-            "score": 0.2074952038679766,
+            "score": 0.20749520440278285,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "bone_marrow_malignant_cells",
-            "score": 0.20664827291459834,
+            "score": 0.20664827317556267,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "age_at_diagnosis",
-            "score": 0.20597449340990043,
+            "score": 0.20597449259533962,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Case_ID",
             "targetColumn": "extracapsular_extension_present",
-            "score": 0.19913914418608494,
+            "score": 0.19913914406544125,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "history_of_tumor",
-            "score": 0.7712317789010563,
+            "score": 0.7712317780972482,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "percent_tumor_invasion",
-            "score": 0.7408439227749567,
+            "score": 0.7408439227566046,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "history_of_tumor_type",
-            "score": 0.7095811121194829,
+            "score": 0.7095811131722654,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_shape",
-            "score": 0.706580091103549,
+            "score": 0.7065800916559767,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "residual_tumor",
-            "score": 0.6775144369061281,
+            "score": 0.6775144368790974,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_depth",
-            "score": 0.6686202225810832,
+            "score": 0.6686202235425536,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_thickness",
-            "score": 0.6645981446020911,
+            "score": 0.664598145252929,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_infiltrating_macrophages",
-            "score": 0.6608608478070469,
+            "score": 0.6608608472971809,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_of_origin",
-            "score": 0.6544907808263251,
+            "score": 0.6544907808368325,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "classification_of_tumor",
-            "score": 0.6269714924031919,
+            "score": 0.6269714920755922,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "residual_tumor_measurement",
-            "score": 0.6111408148592429,
+            "score": 0.6111408145456464,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_regression_grade",
-            "score": 0.6087038438247285,
+            "score": 0.6087038436020437,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "non_nodal_tumor_deposits",
-            "score": 0.6027747995511895,
+            "score": 0.602774798840405,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_focality",
-            "score": 0.5921050666633577,
+            "score": 0.5921050664340641,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_infiltrating_lymphocytes",
-            "score": 0.5886815763680872,
+            "score": 0.5886815760352567,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_level_prostate",
-            "score": 0.5826651359122639,
+            "score": 0.5826651349673866,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_length_measurement",
-            "score": 0.5780803484345594,
+            "score": 0.5780803488385506,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_depth_measurement",
-            "score": 0.5768438361760555,
+            "score": 0.5768438356649077,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "tumor_depth_descriptor",
-            "score": 0.5687122141777509,
+            "score": 0.5687122149573918,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor/Normal",
             "targetColumn": "greatest_tumor_dimension",
-            "score": 0.5559194159530548,
+            "score": 0.5559194163725477,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "pregnancy_outcome",
-            "score": 0.598911703080644,
+            "score": 0.5989117038517624,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "pregnant_at_diagnosis",
-            "score": 0.5786747253351796,
+            "score": 0.5786747253505297,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "premature_at_birth",
-            "score": 0.5414972685328345,
+            "score": 0.5414972688982411,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "population_group",
-            "score": 0.5357608628316604,
+            "score": 0.5357608628184599,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "comorbidities",
-            "score": 0.5212512873713029,
+            "score": 0.5212512873903865,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "weeks_gestation_at_birth",
-            "score": 0.4949044717632211,
+            "score": 0.4949044730362949,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "pregnancy_count",
-            "score": 0.4856890719019607,
+            "score": 0.4856890706600856,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "days_to_comorbidity",
-            "score": 0.47053202827674145,
+            "score": 0.47053202826131324,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "occupation_type",
-            "score": 0.4632555641902371,
+            "score": 0.46325556489892594,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "marital_status",
-            "score": 0.4554811702376325,
+            "score": 0.45548117062719834,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "country_of_birth",
-            "score": 0.43422354706269184,
+            "score": 0.4342235469626896,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "menopause_status",
-            "score": 0.43366647341446557,
+            "score": 0.4336664732999066,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "age_is_obfuscated",
-            "score": 0.4270614363886125,
+            "score": 0.42706143662158735,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "hysterectomy_type",
-            "score": 0.40439094576807366,
+            "score": 0.40439094634028394,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "fab_morphology_code",
-            "score": 0.39192591235140306,
+            "score": 0.3919259113011032,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "variant_origin",
-            "score": 0.3912961588806243,
+            "score": 0.39129615862647604,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "variant_type",
-            "score": 0.3910402809384318,
+            "score": 0.3910402819968503,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "hormonal_contraceptive_type",
-            "score": 0.3781075111137812,
+            "score": 0.3781075120032388,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Gender",
             "targetColumn": "laterality",
-            "score": 0.37520785036744403,
+            "score": 0.3752078503679835,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "year_of_birth",
-            "score": 0.6480081844974316,
+            "score": 0.6480081836378512,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_diagnosis",
-            "score": 0.635721519108678,
+            "score": 0.6357215188378808,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_onset",
-            "score": 0.598265194934462,
+            "score": 0.5982651956618694,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "years_smoked",
-            "score": 0.5222791107844837,
+            "score": 0.5222791105340088,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "pack_years_smoked",
-            "score": 0.4891611954573762,
+            "score": 0.48916119616512094,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_last_exposure",
-            "score": 0.4687850057394244,
+            "score": 0.4687850059850913,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "weight",
-            "score": 0.4514935798625209,
+            "score": 0.45149358018452174,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_at_index",
-            "score": 0.4283312365061262,
+            "score": 0.42833123572816945,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "year_of_death",
-            "score": 0.42111049061434735,
+            "score": 0.42111049109312615,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_death",
-            "score": 0.41695952660611724,
+            "score": 0.4169595273897655,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "tobacco_smoking_onset_year",
-            "score": 0.416108685522835,
+            "score": 0.4161086864602627,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_birth",
-            "score": 0.39577535883343606,
+            "score": 0.39577535898690025,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "age_is_obfuscated",
-            "score": 0.36770226366633196,
+            "score": 0.36770226372036185,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "tobacco_smoking_quit_year",
-            "score": 0.34139436994110495,
+            "score": 0.3413943702664075,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "height",
-            "score": 0.3377994733080752,
+            "score": 0.3377994739783374,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "days_to_last_known_disease_status",
-            "score": 0.32067549213503616,
+            "score": 0.3206754918906028,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "exposure_duration_years",
-            "score": 0.3060020620833137,
+            "score": 0.3060020611945489,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "morphology",
-            "score": 0.30454687835248234,
+            "score": 0.30454687819482573,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "bmi",
-            "score": 0.25414995116375866,
+            "score": 0.25414995108392724,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Age",
             "targetColumn": "year_of_diagnosis",
-            "score": 0.24714529124464124,
+            "score": 0.2471452918654551,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "age_at_diagnosis",
-            "score": 0.5252642911336293,
+            "score": 0.5252642908821138,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "days_to_birth",
-            "score": 0.49617676393816507,
+            "score": 0.4961767637467391,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "weight",
-            "score": 0.3846827972950828,
+            "score": 0.3846827973630498,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "gross_tumor_weight",
-            "score": 0.38199832512958576,
+            "score": 0.3819983251748202,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "height",
-            "score": 0.37172858727817,
+            "score": 0.3717285867764612,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "body_surface_area",
-            "score": 0.3152281282033253,
+            "score": 0.31522812708408543,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "ajcc_clinical_m",
-            "score": 0.29687566217231837,
+            "score": 0.29687566288416634,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "measurement_type",
-            "score": 0.29139602468686593,
+            "score": 0.2913960241520736,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "year_of_birth",
-            "score": 0.2892079851692268,
+            "score": 0.289207984049463,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "metaplasia_present",
-            "score": 0.28507322709350047,
+            "score": 0.285073227765888,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "years_smoked",
-            "score": 0.27628820428652523,
+            "score": 0.27628820376043034,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "medulloblastoma_molecular_classification",
-            "score": 0.2748987113312237,
+            "score": 0.27489870980043135,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "ajcc_pathologic_m",
-            "score": 0.2724368678163566,
+            "score": 0.27243686735012973,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.27146852452968573,
+            "score": 0.27146852392661586,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "cigarettes_per_day",
-            "score": 0.2712044073738616,
+            "score": 0.27120440685058483,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "fev1_fvc_pre_bronch_percent",
-            "score": 0.26787830274075747,
+            "score": 0.26787830247957606,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "age_at_index",
-            "score": 0.26154515883627244,
+            "score": 0.2615451589256222,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "tumor_width_measurement",
-            "score": 0.25999362266932996,
+            "score": 0.25999362162161765,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "BMI",
             "targetColumn": "mismatch_repair_mutation",
-            "score": 0.24311948763666447,
+            "score": 0.2431194863239483,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "ethnicity",
-            "score": 0.676644855743325,
+            "score": 0.6766448555130697,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "variant_origin",
-            "score": 0.46527733264408017,
+            "score": 0.46527733269028887,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "variant_type",
-            "score": 0.3687012117723065,
+            "score": 0.3687012123292567,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "aa_change",
-            "score": 0.3645824386033275,
+            "score": 0.3645824387338132,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "fab_morphology_code",
-            "score": 0.36387657235632886,
+            "score": 0.3638765707089592,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "country_of_birth",
-            "score": 0.35351557216632845,
+            "score": 0.35351557203510797,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "occupation_type",
-            "score": 0.3499347012948292,
+            "score": 0.34993470195006826,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "morphologic_architectural_pattern",
-            "score": 0.3483129302179696,
+            "score": 0.34831292994777285,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "gender",
-            "score": 0.34362460738726214,
+            "score": 0.3436246080952664,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "population_group",
-            "score": 0.3423941727130696,
+            "score": 0.34239417210463763,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "eye_color",
-            "score": 0.3364415264188015,
+            "score": 0.33644152683800577,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "histone_family",
-            "score": 0.32997087082790566,
+            "score": 0.3299708705254901,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "histone_variant",
-            "score": 0.32878540489744085,
+            "score": 0.32878540446047333,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "body_surface_area",
-            "score": 0.2912509949722739,
+            "score": 0.29125099509213837,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "copy_number",
-            "score": 0.28877585846148923,
+            "score": 0.28877585918050275,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.2870035095560095,
+            "score": 0.2870035097724996,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "alcohol_frequency",
-            "score": 0.2751336145147029,
+            "score": 0.275133614813455,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "first_event",
-            "score": 0.27496259768682124,
+            "score": 0.27496259726661104,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Race",
             "targetColumn": "tumor_of_origin",
-            "score": 0.27094169506520993,
+            "score": 0.27094169582668387,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "race",
-            "score": 0.5922509640413622,
+            "score": 0.5922509644633057,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "ethnicity",
-            "score": 0.454419970682163,
+            "score": 0.45441997047602417,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "vital_status",
-            "score": 0.3680989932189493,
+            "score": 0.36809899285816117,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "variant_origin",
-            "score": 0.3620148589868738,
+            "score": 0.36201485904632025,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "country_of_birth",
-            "score": 0.3296112626517402,
+            "score": 0.3296112619539444,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.3057692953317327,
+            "score": 0.3057692962478033,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "gender",
-            "score": 0.29374350787140957,
+            "score": 0.2937435081678351,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "occupation_type",
-            "score": 0.27565471460067864,
+            "score": 0.2756547148321591,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "population_group",
-            "score": 0.27187447436106427,
+            "score": 0.27187447362334544,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "cause_of_death",
-            "score": 0.23579059022719723,
+            "score": 0.23579059004858133,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "vascular_invasion_present",
-            "score": 0.21512546297711535,
+            "score": 0.21512546306155653,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "year_of_birth",
-            "score": 0.21444147602012184,
+            "score": 0.21444147604934538,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "histone_variant",
-            "score": 0.20147497909656553,
+            "score": 0.20147497895318403,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "tumor_of_origin",
-            "score": 0.19945104464672883,
+            "score": 0.19945104512808118,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "tissue_or_organ_of_origin",
-            "score": 0.19778239057836636,
+            "score": 0.19778239135079775,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "variant_type",
-            "score": 0.19260988382463973,
+            "score": 0.19260988365758766,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "histone_family",
-            "score": 0.18784603056029148,
+            "score": 0.18784603063370553,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "vascular_invasion_type",
-            "score": 0.18331751990919593,
+            "score": 0.18331751953873032,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "aa_change",
-            "score": 0.17841805674201072,
+            "score": 0.17841805607358763,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Ethnicity_Self_Identify",
             "targetColumn": "year_of_death",
-            "score": 0.1766619615002,
+            "score": 0.17666196143549884,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_shape",
-            "score": 0.44565865774795504,
+            "score": 0.4456586575431525,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "classification_of_tumor",
-            "score": 0.39027786657181257,
+            "score": 0.3902778665887704,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_level_prostate",
-            "score": 0.3835617620281724,
+            "score": 0.3835617624866946,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "margin_distance",
-            "score": 0.3829463287844657,
+            "score": 0.3829463284218888,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "greatest_tumor_dimension",
-            "score": 0.3720011080374992,
+            "score": 0.37200110795018837,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_depth_descriptor",
-            "score": 0.37100453056059,
+            "score": 0.37100453101032116,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_basal_diameter",
-            "score": 0.36805232326142934,
+            "score": 0.3680523230165761,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "history_of_tumor",
-            "score": 0.36691540403158196,
+            "score": 0.36691540202317,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_width_measurement",
-            "score": 0.36243467726267603,
+            "score": 0.3624346773781714,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "history_of_tumor_type",
-            "score": 0.3555449680620053,
+            "score": 0.35554496850057704,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_depth",
-            "score": 0.35540146494616287,
+            "score": 0.35540146515877613,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_grade_category",
-            "score": 0.33640041330983206,
+            "score": 0.336400412969255,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_depth_measurement",
-            "score": 0.3356218363567514,
+            "score": 0.3356218366697178,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "percent_tumor_invasion",
-            "score": 0.3279634114535462,
+            "score": 0.3279634114767716,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "zone_of_origin_prostate",
-            "score": 0.32780874629930934,
+            "score": 0.32780874673276034,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "tumor_thickness",
-            "score": 0.327669944820873,
+            "score": 0.3276699452069229,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "transglottic_extension",
-            "score": 0.32321595371275186,
+            "score": 0.323215953847633,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "supratentorial_localization",
-            "score": 0.31484801744984375,
+            "score": 0.3148480168909834,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "enneking_msts_tumor_site",
-            "score": 0.30399962672572844,
+            "score": 0.3039996270508336,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site",
             "targetColumn": "largest_extrapelvic_peritoneal_focus",
-            "score": 0.3022693553003113,
+            "score": 0.30226935454839454,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "site_of_resection_or_biopsy",
-            "score": 0.5772831560258631,
+            "score": 0.5772831561366198,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "tissue_or_organ_of_origin",
-            "score": 0.4894006835594279,
+            "score": 0.4894006841231924,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "last_known_disease_status",
-            "score": 0.3902372760215568,
+            "score": 0.390237276117507,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "ajcc_pathologic_t",
-            "score": 0.3899952127945949,
+            "score": 0.38999521311868046,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.3604992478208759,
+            "score": 0.3604992466482918,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "primary_diagnosis",
-            "score": 0.3482363767027785,
+            "score": 0.3482363773354294,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "disease_response",
-            "score": 0.3023910743776918,
+            "score": 0.30239107446896574,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "ajcc_pathologic_n",
-            "score": 0.2898935371561132,
+            "score": 0.2898935376592367,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "days_to_last_known_disease_status",
-            "score": 0.28704276344163,
+            "score": 0.2870427634558497,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "cause_of_death",
-            "score": 0.25104551845972267,
+            "score": 0.25104551808158926,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "figo_stage",
-            "score": 0.23531855522789508,
+            "score": 0.23531855400550367,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "treatment_outcome",
-            "score": 0.23158844859592864,
+            "score": 0.2315884485267204,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "non_nodal_tumor_deposits",
-            "score": 0.22858681176414836,
+            "score": 0.2285868120442769,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "tumor_largest_dimension_diameter",
-            "score": 0.22101944073529778,
+            "score": 0.22101944273084634,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "days_to_death",
-            "score": 0.19777454491681432,
+            "score": 0.19777454490847474,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "year_of_death",
-            "score": 0.18396942491823323,
+            "score": 0.1839694242017142,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "ajcc_pathologic_m",
-            "score": 0.18203909070191562,
+            "score": 0.18203909075887317,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "tumor_shape",
-            "score": 0.18145054937902075,
+            "score": 0.18145054936730143,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "tumor_of_origin",
-            "score": 0.17344578851560893,
+            "score": 0.17344578835431634,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Site_Other",
             "targetColumn": "history_of_tumor",
-            "score": 0.16745821240905182,
+            "score": 0.16745821146678072,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_largest_dimension_diameter",
-            "score": 0.831878108588641,
+            "score": 0.8318781087045952,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "height",
-            "score": 0.3986148315318074,
+            "score": 0.39861483154655275,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "gross_tumor_weight",
-            "score": 0.3769966931793279,
+            "score": 0.37699669305246203,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_grade",
-            "score": 0.32419956300710207,
+            "score": 0.3241995617766944,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "greatest_tumor_dimension",
-            "score": 0.3161114747640081,
+            "score": 0.31611147441602233,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth_descriptor",
-            "score": 0.31088214941752756,
+            "score": 0.31088214975891654,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "morphology",
-            "score": 0.3076506896156448,
+            "score": 0.30765068953569746,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "days_to_follow_up",
-            "score": 0.2960666630102668,
+            "score": 0.29606666262896125,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "lymph_nodes_positive",
-            "score": 0.29363325354849984,
+            "score": 0.2936332531583603,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_basal_diameter",
-            "score": 0.2811052475105418,
+            "score": 0.28110524791260083,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth_measurement",
-            "score": 0.26706650406815924,
+            "score": 0.26706650372504004,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_focality",
-            "score": 0.2636884341686853,
+            "score": 0.26368843371063494,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_depth",
-            "score": 0.2610193329877938,
+            "score": 0.2610193321457288,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_width_measurement",
-            "score": 0.2409748945486169,
+            "score": 0.24097489402655775,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "figo_stage",
-            "score": 0.23683902238408133,
+            "score": 0.23683902255079867,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_infiltrating_macrophages",
-            "score": 0.23528527499631924,
+            "score": 0.23528527549059997,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_shape",
-            "score": 0.23192702048261848,
+            "score": 0.23192702059759562,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.22605828037847914,
+            "score": 0.22605828059728927,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "tumor_grade_category",
-            "score": 0.22068631841477446,
+            "score": 0.22068631875624053,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Size_cm",
             "targetColumn": "measurement_type",
-            "score": 0.21030147465144772,
+            "score": 0.21030147436257005,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "classification_of_tumor",
-            "score": 0.6147091466948666,
+            "score": 0.6147091464800848,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_infiltrating_macrophages",
-            "score": 0.6095148390745233,
+            "score": 0.6095148385411925,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_shape",
-            "score": 0.5805185077696347,
+            "score": 0.5805185084757403,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_depth",
-            "score": 0.5334574078643085,
+            "score": 0.5334574084246076,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_of_origin",
-            "score": 0.5293600002472014,
+            "score": 0.529359999525026,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_burden",
-            "score": 0.528663172521893,
+            "score": 0.5286631718399821,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "residual_tumor",
-            "score": 0.5259436947648425,
+            "score": 0.5259436947474276,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "percent_tumor_invasion",
-            "score": 0.5172990515132185,
+            "score": 0.5172990511861177,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "history_of_tumor_type",
-            "score": 0.5170886672360099,
+            "score": 0.5170886679150355,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_width_measurement",
-            "score": 0.49426382260319346,
+            "score": 0.49426382170324346,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_thickness",
-            "score": 0.4888610397262283,
+            "score": 0.48886104002785613,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "history_of_tumor",
-            "score": 0.48328235390517216,
+            "score": 0.4832823535479746,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "greatest_tumor_dimension",
-            "score": 0.4727956633798083,
+            "score": 0.47279566377114235,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_depth_descriptor",
-            "score": 0.4672405982452177,
+            "score": 0.4672405989771139,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_infiltrating_lymphocytes",
-            "score": 0.46440079290213604,
+            "score": 0.46440079233764286,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "tumor_confined_to_organ_of_origin",
-            "score": 0.4576974083940938,
+            "score": 0.4576974081022832,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "residual_tumor_measurement",
-            "score": 0.45272066493544083,
+            "score": 0.4527206646618436,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "max_tumor_bulk_site",
-            "score": 0.441141098435499,
+            "score": 0.44114109823002634,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Focality",
             "targetColumn": "non_nodal_tumor_deposits",
-            "score": 0.43230533791209935,
+            "score": 0.43230533684563266,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "primary_diagnosis",
-            "score": 0.5049292915732444,
+            "score": 0.5049292917443395,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "cog_rhabdomyosarcoma_risk_group",
-            "score": 0.49320939828048804,
+            "score": 0.49320939910066475,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "cog_neuroblastoma_risk_group",
-            "score": 0.47897136883696545,
+            "score": 0.478971369670802,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "cancer_detection_method",
-            "score": 0.3909283797464302,
+            "score": 0.39092837971951605,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "sarcomatoid_present",
-            "score": 0.3897424201994104,
+            "score": 0.3897424210156266,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "cell_count",
-            "score": 0.38056261877364106,
+            "score": 0.38056261887735127,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "diagnosis_is_primary_disease",
-            "score": 0.373622813380739,
+            "score": 0.3736228135751492,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "uicc_pathologic_t",
-            "score": 0.3723341381349716,
+            "score": 0.372334137556963,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "uicc_pathologic_n",
-            "score": 0.36188049085292184,
+            "score": 0.3618804902678403,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "uicc_pathologic_stage",
-            "score": 0.3581462345180541,
+            "score": 0.3581462344045632,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "ajcc_pathologic_n",
-            "score": 0.35450634907406675,
+            "score": 0.35450634873981013,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "cd4_count",
-            "score": 0.35313234373916336,
+            "score": 0.35313234366365587,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "sarcomatoid_percent",
-            "score": 0.35280314484190656,
+            "score": 0.3528031443690594,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "cog_renal_stage",
-            "score": 0.34503818354457433,
+            "score": 0.34503818430493266,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "melanoma_known_primary",
-            "score": 0.34414712142394616,
+            "score": 0.3441471209463295,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "bone_marrow_malignant_cells",
-            "score": 0.33906051631124323,
+            "score": 0.33906051744755894,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "classification_of_tumor",
-            "score": 0.33853964411086634,
+            "score": 0.33853964489940064,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "uicc_pathologic_m",
-            "score": 0.33086237218497655,
+            "score": 0.33086237288570014,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "uicc_clinical_stage",
-            "score": 0.3288847519991349,
+            "score": 0.3288847515307395,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Histologic_Type",
             "targetColumn": "ajcc_clinical_stage",
-            "score": 0.3275218145526975,
+            "score": 0.3275218153261467,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "tumor_grade",
-            "score": 0.6823742743811976,
+            "score": 0.6823742740054344,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "gleason_grade_group",
-            "score": 0.62511510062024,
+            "score": 0.6251151011278603,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "evidence_of_progression_type",
-            "score": 0.5829209550251856,
+            "score": 0.5829209552845449,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "inpc_grade",
-            "score": 0.5753831578325045,
+            "score": 0.5753831572042729,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "histologic_progression_type",
-            "score": 0.5690717458972245,
+            "score": 0.5690717460913338,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "secondary_gleason_grade",
-            "score": 0.5456090451246454,
+            "score": 0.5456090453124991,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "who_nte_grade",
-            "score": 0.5365751155613991,
+            "score": 0.5365751157080557,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "primary_gleason_grade",
-            "score": 0.5332369844552864,
+            "score": 0.5332369846603348,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "international_prognostic_index",
-            "score": 0.5008595649727874,
+            "score": 0.5008595651921319,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "gleason_grade_tertiary",
-            "score": 0.4922577724228518,
+            "score": 0.49225777215926075,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "histologic_progression",
-            "score": 0.47133605429857917,
+            "score": 0.4713360531797678,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "adverse_event_grade",
-            "score": 0.4627575745502482,
+            "score": 0.46275757479129553,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "tumor_grade_category",
-            "score": 0.4432746961874002,
+            "score": 0.4432746969470735,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "who_cns_grade",
-            "score": 0.441885926648301,
+            "score": 0.44188592760703616,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "gleason_score",
-            "score": 0.43873997410598786,
+            "score": 0.43873997411656945,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "progression_or_recurrence_type",
-            "score": 0.4339638075882043,
+            "score": 0.433963807001058,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "inrg_stage",
-            "score": 0.430280808088379,
+            "score": 0.4302808080405962,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "days_to_progression",
-            "score": 0.4223511032584306,
+            "score": 0.42235110427817646,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "igcccg_stage",
-            "score": 0.41070640588772667,
+            "score": 0.4107064060982012,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Grade",
             "targetColumn": "gene_symbol",
-            "score": 0.4106881577758163,
+            "score": 0.4106881578030297,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "figo_stage",
-            "score": 0.7198882655379266,
+            "score": 0.7198882648237803,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ajcc_pathologic_t",
-            "score": 0.6909095513814795,
+            "score": 0.6909095512550778,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.6562426701731364,
+            "score": 0.6562426694940177,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_grade_category",
-            "score": 0.5134433717180256,
+            "score": 0.5134433722545599,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_regression_grade",
-            "score": 0.4995674389765025,
+            "score": 0.49956743883245325,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "history_of_tumor",
-            "score": 0.4945699107629147,
+            "score": 0.4945699099019555,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ensat_pathologic_stage",
-            "score": 0.4872207274803456,
+            "score": 0.48722072736737765,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_level_prostate",
-            "score": 0.46380954048487577,
+            "score": 0.46380954059579144,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_depth_descriptor",
-            "score": 0.4300513868692551,
+            "score": 0.43005138726402686,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "classification_of_tumor",
-            "score": 0.42988818181877797,
+            "score": 0.429888182112946,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "history_of_tumor_type",
-            "score": 0.42549763686858594,
+            "score": 0.42549763767692905,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "percent_tumor_invasion",
-            "score": 0.42445273935046435,
+            "score": 0.4244527388729516,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_depth",
-            "score": 0.40808970047339443,
+            "score": 0.40808970011514045,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_thickness",
-            "score": 0.39444136454444034,
+            "score": 0.3944413652544163,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_depth_measurement",
-            "score": 0.39215377743669855,
+            "score": 0.39215377657210354,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "tumor_grade",
-            "score": 0.386062780740531,
+            "score": 0.38606278148045714,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "inss_stage",
-            "score": 0.3822503531484312,
+            "score": 0.3822503530706005,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "iss_stage",
-            "score": 0.372952879688495,
+            "score": 0.372952880455487,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "ensat_pathologic_t",
-            "score": 0.36764085820594006,
+            "score": 0.36764085839993443,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Tumor_Stage_Pathological",
             "targetColumn": "greatest_tumor_dimension",
-            "score": 0.3663569337124615,
+            "score": 0.3663569346013269,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "ajcc_pathologic_t",
-            "score": 0.7509426284048459,
+            "score": 0.750942628190324,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_level_prostate",
-            "score": 0.4816379519141703,
+            "score": 0.48163795308844815,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.4644372554881876,
+            "score": 0.4644372553324281,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "ensat_pathologic_t",
-            "score": 0.45509199166721437,
+            "score": 0.4550919916535634,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_grade_category",
-            "score": 0.44794386996959057,
+            "score": 0.4479438701569395,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "classification_of_tumor",
-            "score": 0.43862586360825334,
+            "score": 0.4386258635681193,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_regression_grade",
-            "score": 0.4322894216292868,
+            "score": 0.4322894210440733,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_thickness",
-            "score": 0.40154689002300714,
+            "score": 0.40154688972758407,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "ensat_pathologic_stage",
-            "score": 0.39554838799853753,
+            "score": 0.39554838781765234,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "figo_stage",
-            "score": 0.3902781847104625,
+            "score": 0.39027818479293097,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_depth_descriptor",
-            "score": 0.37846610914719986,
+            "score": 0.37846610820739757,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "history_of_tumor",
-            "score": 0.37573552094618357,
+            "score": 0.37573551927140925,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "histologic_progression_type",
-            "score": 0.37158748154280047,
+            "score": 0.37158748148734316,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "history_of_tumor_type",
-            "score": 0.3708566901896833,
+            "score": 0.37085669059889803,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "disease_response",
-            "score": 0.366378390236007,
+            "score": 0.36637839013218626,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_grade",
-            "score": 0.3630168221339963,
+            "score": 0.3630168224978955,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_depth_measurement",
-            "score": 0.35671935448853487,
+            "score": 0.3567193543406154,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "tumor_depth",
-            "score": 0.35130602454784726,
+            "score": 0.35130602487191204,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "prior_treatment",
-            "score": 0.35037411381994765,
+            "score": 0.3503741143736473,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Primary_Tumor_pT",
             "targetColumn": "percent_tumor_invasion",
-            "score": 0.3403446489658591,
+            "score": 0.34034464863806924,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ensat_pathologic_n",
-            "score": 0.6752104645562671,
+            "score": 0.675210464738355,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ajcc_pathologic_n",
-            "score": 0.638731404642888,
+            "score": 0.6387314039082638,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ensat_pathologic_stage",
-            "score": 0.5899745711788469,
+            "score": 0.5899745709448871,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "peripancreatic_lymph_nodes_tested",
-            "score": 0.5869732845932125,
+            "score": 0.5869732844060513,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "peripancreatic_lymph_nodes_positive",
-            "score": 0.5645889973614184,
+            "score": 0.5645889979143396,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ensat_pathologic_t",
-            "score": 0.5491841083038806,
+            "score": 0.5491841076958814,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "evidence_of_progression_type",
-            "score": 0.532729517095531,
+            "score": 0.5327295166841185,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "lymph_nodes_tested",
-            "score": 0.5280021580353959,
+            "score": 0.5280021582748063,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "lymph_node_involvement",
-            "score": 0.5200236547965003,
+            "score": 0.5200236536929497,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "histologic_progression_type",
-            "score": 0.5157061679370228,
+            "score": 0.5157061679700736,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "ann_arbor_pathologic_stage",
-            "score": 0.5121268892334319,
+            "score": 0.5121268891097916,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "histologic_progression",
-            "score": 0.5069609873124896,
+            "score": 0.5069609878817767,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "progression_or_recurrence_type",
-            "score": 0.50613610444133,
+            "score": 0.506136104499744,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "inpc_grade",
-            "score": 0.5020493760018155,
+            "score": 0.5020493761616617,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "lymph_nodes_removed",
-            "score": 0.4976010023865346,
+            "score": 0.497601002575601,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "lymph_node_involved_site",
-            "score": 0.4963448550830988,
+            "score": 0.4963448544713069,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "uicc_pathologic_n",
-            "score": 0.494629831021072,
+            "score": 0.49462983126664206,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "international_prognostic_index",
-            "score": 0.489338878292372,
+            "score": 0.48933887823028477,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "lymph_node_dissection_method",
-            "score": 0.48091228938265007,
+            "score": 0.48091228968046557,
             "matcher": "ct_learning",
             "status": "idle"
         },
         {
             "sourceColumn": "Path_Stage_Reg_Lymph_Nodes_pN",
             "targetColumn": "progression_or_recurrence_anatomic_site",
-            "score": 0.4763526215081389,
+            "score": 0.47635262200997835,
             "matcher": "ct_learning",
             "status": "idle"
         },
@@ -7418,28 +7418,6 @@
                 "C3L-00581",
                 "C3L-00583"
             ],
-            "source_mapped_values": [
-                "C3L-00004",
-                "C3L-00010",
-                "C3L-00011",
-                "C3L-00026",
-                "C3L-00079",
-                "C3L-00088",
-                "C3L-00096",
-                "C3L-00097",
-                "C3L-00103",
-                "C3L-00183",
-                "C3L-00359",
-                "C3L-00360",
-                "C3L-00369",
-                "C3L-00416",
-                "C3L-00418",
-                "C3L-00447",
-                "C3L-00448",
-                "C3L-00561",
-                "C3L-00581",
-                "C3L-00583"
-            ],
             "targets": {
                 "cd4_count": [
                     "",
@@ -8460,10 +8438,6 @@
                 "T",
                 "TN"
             ],
-            "source_mapped_values": [
-                "T",
-                "TN"
-            ],
             "targets": {
                 "history_of_tumor": [
                     "",
@@ -8621,10 +8595,6 @@
         },
         "Gender": {
             "source_unique_values": [
-                "Female",
-                "Male"
-            ],
-            "source_mapped_values": [
                 "Female",
                 "Male"
             ],
@@ -8808,107 +8778,15 @@
             }
         },
         "Age": {
-            "source_unique_values": [
-                "30",
-                "33",
-                "35",
-                "44",
-                "49",
-                "50",
-                "52",
-                "55",
-                "56",
-                "57",
-                "59",
-                "61",
-                "62",
-                "63",
-                "65",
-                "66",
-                "72",
-                "73",
-                "75",
-                "89"
-            ],
-            "source_mapped_values": [
-                "30",
-                "33",
-                "35",
-                "44",
-                "49",
-                "50",
-                "52",
-                "55",
-                "56",
-                "57",
-                "59",
-                "61",
-                "62",
-                "63",
-                "65",
-                "66",
-                "72",
-                "73",
-                "75",
-                "89"
-            ],
+            "source_unique_values": [],
             "targets": {}
         },
         "BMI": {
-            "source_unique_values": [
-                "22.8",
-                "26.18",
-                "27.35",
-                "27.44",
-                "27.47",
-                "28.23",
-                "28.7",
-                "32.0",
-                "32.82",
-                "33.66",
-                "34.15",
-                "36.39",
-                "36.57",
-                "36.81",
-                "37.72",
-                "37.88",
-                "38.94",
-                "42.33",
-                "42.92",
-                "59.88"
-            ],
-            "source_mapped_values": [
-                "22.8",
-                "26.18",
-                "27.35",
-                "27.44",
-                "27.47",
-                "28.23",
-                "28.7",
-                "32.0",
-                "32.82",
-                "33.66",
-                "34.15",
-                "36.39",
-                "36.57",
-                "36.81",
-                "37.72",
-                "37.88",
-                "38.94",
-                "42.33",
-                "42.92",
-                "59.88"
-            ],
+            "source_unique_values": [],
             "targets": {}
         },
         "Race": {
             "source_unique_values": [
-                "Asian",
-                "Black or African American",
-                "Not Reported",
-                "White"
-            ],
-            "source_mapped_values": [
                 "Asian",
                 "Black or African American",
                 "Not Reported",
@@ -9231,24 +9109,6 @@
         },
         "Ethnicity_Self_Identify": {
             "source_unique_values": [
-                "American",
-                "Asian",
-                "Caucasian",
-                "Caucasion",
-                "Hispanic",
-                "Indian",
-                "Medical Record Does Not State",
-                "Medical record does not state",
-                "Medical record does not state.",
-                "Patient not interviewed",
-                "Slavonic",
-                "Vietnam",
-                "WHITE",
-                "White",
-                "Whte",
-                "white"
-            ],
-            "source_mapped_values": [
                 "American",
                 "Asian",
                 "Caucasian",
@@ -9924,12 +9784,6 @@
                 "Other",
                 "Upper pole"
             ],
-            "source_mapped_values": [
-                "Lower pole",
-                "Middle",
-                "Other",
-                "Upper pole"
-            ],
             "targets": {
                 "race": [
                     "not reported",
@@ -10157,28 +10011,6 @@
         },
         "Tumor_Site_Other": {
             "source_unique_values": [
-                "Central",
-                "HILAR",
-                "Hilum, recurrent clear cell renal cell carcinoma, original tumor had sarcomatoid features",
-                "Inferior to Mid Pole",
-                "Kidney",
-                "Kidney, not otherwise specified",
-                "Left",
-                "Left Central Anterior",
-                "Left Upper Pole, Lateral aspect",
-                "MID TO LOWER POLE",
-                "Mid to inferior aspect",
-                "Pole",
-                "Reports only indicate \"deep renal tumor\"",
-                "Right",
-                "Right Inferior",
-                "Right Lower Pole",
-                "Tumor invades the lower and middle poles",
-                "mid anterior",
-                "mid-inferior",
-                "posterior central"
-            ],
-            "source_mapped_values": [
                 "Central",
                 "HILAR",
                 "Hilum, recurrent clear cell renal cell carcinoma, original tumor had sarcomatoid features",
@@ -11216,58 +11048,11 @@
             }
         },
         "Tumor_Size_cm": {
-            "source_unique_values": [
-                "1.5",
-                "10.0",
-                "11.0",
-                "12.0",
-                "12.3",
-                "12.5",
-                "13.0",
-                "14.0",
-                "2.0",
-                "2.8",
-                "3.0",
-                "3.7",
-                "4.0",
-                "5.5",
-                "5.6",
-                "6.0",
-                "6.5",
-                "7.0",
-                "7.5",
-                "8.7"
-            ],
-            "source_mapped_values": [
-                "1.5",
-                "10.0",
-                "11.0",
-                "12.0",
-                "12.3",
-                "12.5",
-                "13.0",
-                "14.0",
-                "2.0",
-                "2.8",
-                "3.0",
-                "3.7",
-                "4.0",
-                "5.5",
-                "5.6",
-                "6.0",
-                "6.5",
-                "7.0",
-                "7.5",
-                "8.7"
-            ],
+            "source_unique_values": [],
             "targets": {}
         },
         "Tumor_Focality": {
             "source_unique_values": [
-                "Multifocal",
-                "Unifocal"
-            ],
-            "source_mapped_values": [
                 "Multifocal",
                 "Unifocal"
             ],
@@ -11408,10 +11193,6 @@
         },
         "Histologic_Type": {
             "source_unique_values": [
-                "Clear cell renal cell carcinoma",
-                "non-Clear Cell renal cell carcinoma"
-            ],
-            "source_mapped_values": [
                 "Clear cell renal cell carcinoma",
                 "non-Clear Cell renal cell carcinoma"
             ],
@@ -11612,12 +11393,6 @@
         },
         "Grade": {
             "source_unique_values": [
-                "G1",
-                "G2",
-                "G3",
-                "G4"
-            ],
-            "source_mapped_values": [
                 "G1",
                 "G2",
                 "G3",
@@ -11849,12 +11624,6 @@
                 "Stage III",
                 "Stage IV"
             ],
-            "source_mapped_values": [
-                "Stage I",
-                "Stage II",
-                "Stage III",
-                "Stage IV"
-            ],
             "targets": {
                 "figo_stage": [
                     "Stage I",
@@ -12076,16 +11845,6 @@
         },
         "Path_Stage_Primary_Tumor_pT": {
             "source_unique_values": [
-                "pT1a",
-                "pT1b",
-                "pT2a",
-                "pT2b",
-                "pT3",
-                "pT3a",
-                "pT3b",
-                "pT4"
-            ],
-            "source_mapped_values": [
                 "pT1a",
                 "pT1b",
                 "pT2a",
@@ -12520,11 +12279,6 @@
         },
         "Path_Stage_Reg_Lymph_Nodes_pN": {
             "source_unique_values": [
-                "pN0",
-                "pN1",
-                "pNX"
-            ],
-            "source_mapped_values": [
                 "pN0",
                 "pN1",
                 "pNX"

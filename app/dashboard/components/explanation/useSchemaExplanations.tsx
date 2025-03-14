@@ -7,7 +7,6 @@ const useSchemaExplanations = () => {
     const [thumbDownExplanations, setThumbDownExplanations] = useState<string[]>([]);
     const [selectedExplanations, setSelectedExplanations] = useState<Explanation[]>([]);
     const [isMatch, setIsMatch] = useState<boolean>(false);
-    const [valueMappings, setValueMappings] = useState<SuggestedValueMappings[]>([]);
     const [relevantKnowledge, setRelevantKnowledge] = useState<RelevantKnowledge[]>([]);
     const [relatedOuterSources, setRelatedOuterSources] = useState<RelatedSource[]>([]);
     
@@ -38,33 +37,12 @@ const useSchemaExplanations = () => {
         setCurrentExplanations(explanations);
     }, []);
 
-    const updateValueMappings = useCallback((newValueMapping: SuggestedValueMappings) => {
-        setValueMappings((prevValueMappings) => {
-            const exists = prevValueMappings.some(
-                (valueMapping) =>
-                    valueMapping.sourceColumn === newValueMapping.sourceColumn &&
-                    valueMapping.targetColumn === newValueMapping.targetColumn
-            );
-            if (exists) {
-                return prevValueMappings.map((valueMapping) =>
-                    valueMapping.sourceColumn === newValueMapping.sourceColumn &&
-                    valueMapping.targetColumn === newValueMapping.targetColumn
-                        ? newValueMapping
-                        : valueMapping
-                );
-            } else {
-                return [...prevValueMappings, newValueMapping];
-            }
-        });
-    }, []);
-
     return {
         isMatch,
         currentExplanations,
         selectedExplanations,
         thumbUpExplanations,
         thumbDownExplanations,
-        valueMappings,
         relevantKnowledge,
         relatedOuterSources,
         setIsMatch,
@@ -73,7 +51,6 @@ const useSchemaExplanations = () => {
         setThumbUpExplanations,
         setThumbDownExplanations,
         setRelatedOuterSources,
-        updateValueMappings,
     };
 }
 
