@@ -1,27 +1,11 @@
 // components/SchemaExplanation/CombinedView.tsx
-import { Divider, Stack, styled } from '@mui/material';
+import { Box, Divider, Stack, styled } from '@mui/material';
 import SchemaExplanation from './SchemaExplanation';
 import RelevantKnowledgeView from './RelevantKnowledgeView';
+import { SectionHeader } from '../../layout/components';
+import Split from '@uiw/react-split';
 
-const RowComp = styled("div")({
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "stretch",
-    width: "100%",
-    marginTop: "28px",
-    paddingTop: "35px",
-    paddingBottom: "45px"
-})
 
-const ColumnComp = styled("div")({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "stretch",
-    width: "100%",
-    marginTop: "0px",
-    paddingTop: "0px",
-    paddingBottom: "0px"
-})
 interface CombinedViewProps {
     isMatch: boolean;
     currentExplanations: Explanation[];
@@ -32,11 +16,11 @@ interface CombinedViewProps {
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
     onGenerateExplanation: () => void;
-    matchingValues: string[][];
     relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
     selectedCandidate?: Candidate;
     gdcAttribute?: GDCAttribute;
+    relatedOuterSources: RelatedSource[];
 }
 
 const CombinedView = ({
@@ -49,17 +33,25 @@ const CombinedView = ({
     setThumbUpExplanations,
     setThumbDownExplanations,
     onGenerateExplanation,
-    matchingValues,
     relevantKnowledge,
     isLoading,
     selectedCandidate,
     gdcAttribute,
+    relatedOuterSources,
 }: CombinedViewProps) => {
 
     return (
-        <Stack spacing={2}>
-            <ColumnComp>
-            <Stack flex={8} sx={{ maxHeight: 500 }}>
+        // <Stack spacing={2}>
+            <Split mode="vertical" 
+                renderBar={({ onMouseDown, ...props }) => {
+                    return (
+                    <div {...props} style={{ boxShadow: 'none', background: 'transparent' }}>
+                        <div onMouseDown={onMouseDown} style={{ boxShadow: '0 -2px 4px rgba(0, 0, 0, 0.2)', borderTop: '1px solid rgba(0, 0, 0, 0.2)' }} />
+                    </div>
+                    );
+                }}
+            >
+            <Box sx={{ paddingLeft: 0, height: "400px", overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
                 <SchemaExplanation
                     isMatch={isMatch}
                     currentExplanations={currentExplanations}
@@ -70,20 +62,25 @@ const CombinedView = ({
                     setThumbUpExplanations={setThumbUpExplanations}
                     setThumbDownExplanations={setThumbDownExplanations}
                     onGenerateExplanation={onGenerateExplanation}
-                    valueMatches={matchingValues}
                     selectedCandidate={selectedCandidate}
                     isLoading={isLoading}
                 />
-            </Stack>
-            <Stack flex={4}>
+            </Box>
+            <Box
+                sx={{ overflowY: 'scroll', height: "100%", scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}
+            >
+                {/* <SectionHeader>
+                    Relevant Knowledge
+                </SectionHeader> */}
                 <RelevantKnowledgeView
                     relevantKnowledge={relevantKnowledge}
                     gdcAttribute={gdcAttribute}
                     isLoading={isLoading}
+                    relatedOuterSources={relatedOuterSources}
                 />
-            </Stack>
-            </ColumnComp>
-        </Stack>
+            </Box>
+            </Split>
+        // </Stack>
     );
 }
 

@@ -15,7 +15,7 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
             timeout: 10000000, // Set timeout to unlimited
         });
         console.log("candidateExplanationRequest: ", resp.data);
-        const { is_match, explanations, matching_values, relevant_knowledge } = resp.data;
+        const { is_match, explanations, relevant_knowledge } = resp.data;
         let explanationObjects: Explanation[] = [];
         if (explanations && explanations.length > 0) {
             explanationObjects = explanations.map((e: { id: string; is_match: boolean; type: string; reason: string; reference: string; confidence: number }) => {
@@ -48,7 +48,6 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
         const candidateExplanation: CandidateExplanation = {
             isMatch: is_match,
             explanations: explanationObjects,
-            matchingValues: matching_values,
             relevantKnowledge: relevantKnowledgeObjects,
         };
 
@@ -94,6 +93,28 @@ const agentSuggestionsRequest = async (userOperation: UserOperation, explanation
 
     } catch (error) {
         console.error("Error sending agent suggestions request:", error);
+    }
+}
+
+const agentSuggestValueMappings = async (candidate: Candidate): Promise<SuggestedValueMappings | undefined> => {
+
+    try {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
+        const resp = await axios.post("/api/agent/value-mapping", candidate, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        });
+        console.log("agentSuggestValueMappings: ", resp.data);
+
+        const valueMappings = resp.data as SuggestedValueMappings;
+
+        return valueMappings;
+
+    } catch (error) {
+        console.error("Error sending agent suggest value mappings request:", error);
     }
 }
 
@@ -180,4 +201,32 @@ const agentThumbRequest = async (explanation: Explanation, userOperation: UserOp
 }
 
 
-export { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentSearchRequest, agentThumbRequest };
+const agentGetRelatedSources = async (candidate: Candidate) => {
+    try {
+        const httpAgent = new http.Agent({ keepAlive: true });
+        const httpsAgent = new https.Agent({ keepAlive: true });
+
+        const resp = await axios.post("/api/agent/outer-source", candidate, {
+            httpAgent,
+            httpsAgent,
+            timeout: 10000000, // Set timeout to unlimited
+        });
+        console.log("agentGetRelatedSources: ", resp.data);
+        const sources = resp.data.results.sources.map((s: object) => {
+            try {
+                return s as RelatedSource;
+            } catch (error) {
+                console.error("Error parsing source to Source:", error);
+                return null;
+            }
+        }).filter((s: RelatedSource | null) => s !== null);
+
+        return sources;
+
+    } catch (error) {
+        console.error("Error sending agent get related sources request:", error);
+    }
+}
+
+
+export { candidateExplanationRequest, agentSuggestionsRequest, agentSuggestValueMappings, agentActionRequest, agentSearchRequest, agentThumbRequest, agentGetRelatedSources };

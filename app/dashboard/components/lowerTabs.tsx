@@ -14,6 +14,7 @@ interface LowerTabsProps {
   selectedSourceColumn: string;
   valueMatches: ValueMatch[];
   handleValueMatches: (valueMatches: ValueMatch[]) => void;
+  suggestedValueMappings: SuggestedValueMappings[];
 }
 
 const LowerTabs: React.FC<LowerTabsProps> = ({
@@ -23,6 +24,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
   selectedSourceColumn,
   valueMatches,
   handleValueMatches,
+  suggestedValueMappings,
 }) => {
   const [value, setValue] = useState(2);
 
@@ -49,9 +51,10 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
           <TabPanel sx={{ padding: 0, maxHeight: 400, overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }} value={2}>
             <ValueComparisonTable
               valueMatches={valueMatches}
-              targetColumns={weightedAggregatedCandidates.map((agg) => agg.targetColumn)}
+              weightedAggregatedCandidates={weightedAggregatedCandidates}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
               handleValueMatches={handleValueMatches}
+              suggestedValueMappings={suggestedValueMappings}
             />
           </TabPanel>
       </TabContext>

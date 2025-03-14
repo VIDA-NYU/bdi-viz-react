@@ -5,6 +5,7 @@ import "./globals.css";
 import ToastProvider from "@/app/lib/toastify/toastify-provider";
 import SettingsGlobalProvider from "./lib/settings/settings-provider";
 import HighlightGlobalProvider from "./lib/highlight/highlight-provider";
+import PaginationGlobalProvider from "./lib/pagination/pagination-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,7 +36,9 @@ export default function RootLayout({
         <ToastProvider>
           <SettingsGlobalProvider>
             <HighlightGlobalProvider>
-              {children}
+              <PaginationGlobalProvider>
+                {children}
+              </PaginationGlobalProvider>
             </HighlightGlobalProvider>
           </SettingsGlobalProvider>
         </ToastProvider>

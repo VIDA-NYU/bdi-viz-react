@@ -8,9 +8,11 @@ import LeftPanel from "./leftpanel";
 import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
 import RightPanel from "./rightpanel";
+import Paginator from "./components/control-inputs/paginator";
 import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import SettingsGlobalContext from "@/app/lib/settings/settings-context";
+import PaginationGlobalContext from "../lib/pagination/pagination-context";
 import { getCachedResults } from '@/app/lib/heatmap/heatmap-helper';
 
 import { useSchemaExplanations } from "./components/explanation/useSchemaExplanations";
@@ -38,6 +40,12 @@ export default function Dashboard() {
         hoverMode,
         setHoverMode,
     } = useContext(SettingsGlobalContext);
+
+    const {
+        pageNumber,
+        pageSize,
+        setTotalPages,
+    } = useContext(PaginationGlobalContext);
 
     const {
         candidates,
@@ -79,13 +87,16 @@ export default function Dashboard() {
         selectedExplanations,
         thumbUpExplanations,
         thumbDownExplanations,
-        matchingValues,
         relevantKnowledge,
+        relatedOuterSources,
+        valueMappings,
         setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,
         setThumbDownExplanations,
+        setRelatedOuterSources,
+        updateValueMappings,
     } = useSchemaExplanations();
 
     const {
@@ -98,6 +109,7 @@ export default function Dashboard() {
         apply,
         // filterExactMatches,
         exportMatchingResults,
+        suggestValueMappings,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -108,12 +120,12 @@ export default function Dashboard() {
         onExplanation: generateExplanations,
         onSuggestions: handleSuggestions,
         onApply: handleApply,
-        onExactMatches: handleExactMatches,
         onUserOperationsUpdate: handleUserOperationsUpdate,
+        onRelatedOuterSources: setRelatedOuterSources,
+        onValueMappings: updateValueMappings,
     });
 
     const {
-        filteredCandidates,
         filteredSourceCluster,
         filteredCandidateCluster,
         weightedAggregatedCandidates,
@@ -129,7 +141,10 @@ export default function Dashboard() {
             similarSources,
             candidateThreshold,
             status,
-        }
+        },
+        pageNumber,
+        pageSize,
+        setTotalPages,
     });
 
     const {
@@ -157,11 +172,6 @@ export default function Dashboard() {
                 }
             });
         }
-    }
-
-    function handleExactMatches(exactMatches: Candidate[]) {
-        console.log("Exact Matches: ", exactMatches);
-        getCachedResults({ callback: handleFileUpload });
     }
 
     function setSelectedCandidateCallback(candidate: Candidate | undefined) {
@@ -202,6 +212,19 @@ export default function Dashboard() {
 
     function handleUpdateSourceColumn(column: string) {
         setSelectedCandidate(undefined);
+
+        const filteredSourceColumn = filteredSourceColumns.find((sc) => sc.name === column);
+        console.log("Filtered Source Column: ", filteredSourceColumn);
+        if (filteredSourceColumn) {
+            if (filteredSourceColumn.status !== "complete") {
+                updateStatus(["accepted", "rejected", "discarded", "idle"]);
+            }
+            
+            if (candidateThreshold > filteredSourceColumn.maxScore) {
+                updateCandidateThreshold(filteredSourceColumn.maxScore);
+            }
+        }
+        
         updateSourceColumn(column);
     }
 
@@ -280,8 +303,11 @@ export default function Dashboard() {
                         targetUniqueValues={targetUniqueValues}
                         highlightSourceColumns={highlightedSourceColumns}
                         highlightTargetColumns={highlightedTargetColumns}
+                        status={status}
                         updateStatus={updateStatus}
                     />
+
+                    <Paginator />
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
                         matchers={matchers}
@@ -289,6 +315,7 @@ export default function Dashboard() {
                         selectedSourceColumn={sourceColumn}
                         valueMatches={valueMatches}
                         handleValueMatches={handleValueMatches}
+                        suggestedValueMappings={valueMappings}
                     />
                     <Box sx={{ position: 'absolute', right: 320, display: 'flex', alignItems: 'center' }}>
                         <Typography sx={{ fontSize: "0.7rem", fontWeight: "300", marginRight: 0 }}>Expand On Hover</Typography>
@@ -311,7 +338,6 @@ export default function Dashboard() {
                     selectedExplanations={selectedExplanations}
                     thumbUpExplanations={thumbUpExplanations}
                     thumbDownExplanations={thumbDownExplanations}
-                    matchingValues={matchingValues}
                     relevantKnowledge={relevantKnowledge}
                     isLoading={isExplaining}
                     setSelectExplanations={setSelectedExplanations}
@@ -320,6 +346,7 @@ export default function Dashboard() {
                     selectedCandidate={selectedCandidate}
                     onGenerateExplanation={onGenerateExplanation}
                     gdcAttribute={gdcAttribute}
+                    relatedOuterSources={relatedOuterSources}
                 />
             </MainContent>
 

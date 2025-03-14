@@ -7,6 +7,7 @@ torch
 mmh3
 pandas
 numpy
+
 # langchain-anthropic==0.3.1
 langchain-community
 langchain_huggingface
@@ -14,6 +15,8 @@ langchain_huggingface
 langchain-openai
 # langchain-together
 langgraph
+duckduckgo-search
+
 python-dotenv
 pydantic
 rapidfuzz

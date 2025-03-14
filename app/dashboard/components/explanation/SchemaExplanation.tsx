@@ -12,6 +12,7 @@ import { BasicChip, SectionHeader } from '../../layout/components';
 import { agentThumbRequest } from '@/app/lib/langchain/agent-helper';
 import GenerateExplanationButton from './GenerateExplanationButton';
 import { handleCopy } from '../../utils/clipboard';
+import { toastify } from '@/app/lib/toastify/toastify-helper';
 
 interface SchemaExplanationProps {
     isMatch: boolean;
@@ -23,7 +24,6 @@ interface SchemaExplanationProps {
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
     onGenerateExplanation: () => void;
-    valueMatches: string[][];
     selectedCandidate?: Candidate;
     isLoading: boolean;
 }
@@ -38,7 +38,6 @@ const SchemaExplanation = ({
     setThumbUpExplanations,
     setThumbDownExplanations,
     onGenerateExplanation,
-    valueMatches,
     selectedCandidate,
     isLoading
 }: SchemaExplanationProps) => {
@@ -65,9 +64,11 @@ const SchemaExplanation = ({
             }
             if (explanation.isMatch) {
                 agentThumbRequest(explanation, userOperation);
+                toastify("success", <p>BDI-Viz has learned your feedback on why this candidate is a match. We will pay more attention to this in the future.</p>);
             } else {
                 userOperation.operation = "reject";
                 agentThumbRequest(explanation, userOperation);
+                toastify("warning", <p>BDI-Viz has noticed your feedback on why this candidate is not a match. We will pay more attention to this in the future.</p>);
             }
         }
         if (thumbUpExplanations.some(e => e === id)) {
@@ -91,9 +92,11 @@ const SchemaExplanation = ({
             }
             if (explanation.isMatch) {
                 agentThumbRequest(explanation, userOperation);
+                toastify("warning", <p>BDI-Viz has learned your feedback on this kind of explanation. We will pay more attention to this in the future.</p>);
             } else {
                 userOperation.operation = "accept";
                 agentThumbRequest(explanation, userOperation);
+                toastify("success", <p>BDI-Viz has noticed your feedback on why this candidate is a match. We will pay more attention to this in the future.</p>);
             }
         }
         if (thumbDownExplanations.some(e => e === id)) {
@@ -104,7 +107,7 @@ const SchemaExplanation = ({
     };
 
     return (
-        <Stack spacing={0} sx={{ paddingLeft: 0, maxHeight: "700px", overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+        <Stack spacing={0} >
             {isLoading ? (
                 <Box display="flex" justifyContent="center" alignItems="center" height="100%">
                     <CircularProgress />
@@ -138,7 +141,7 @@ const SchemaExplanation = ({
                     )}
 
                     {/* Value Matches */}
-                    {valueMatches.length > 0 && (
+                    {/* {valueMatches.length > 0 && (
                         <Box>
                             <SectionHeader>
                                 Value Matches
@@ -169,7 +172,7 @@ const SchemaExplanation = ({
                                 ))}
                             </List>
                         </Box>
-                    )}
+                    )} */}
 
                     {/* Generate Explanation Button */}
                     {currentExplanations.length === 0 && isMatch === true && (

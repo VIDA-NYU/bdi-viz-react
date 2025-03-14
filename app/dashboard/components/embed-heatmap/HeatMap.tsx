@@ -264,11 +264,13 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     event: React.MouseEvent,
                     data: AggregatedCandidate
                   ) => {
-                    showTooltip(event, data);
                     if (!selectedCandidate) {
                     // toggleTargetNode(data.targetColumn);
-                    setGlobalCandidateHighlight(data);
+                      setGlobalCandidateHighlight(data);
                     }
+                  }}
+                  onMouseMove={(event: React.MouseEvent) => {
+                    showTooltip(event, d);
                   }}
                   onLeave={() => {}}
                   onClick={() => {

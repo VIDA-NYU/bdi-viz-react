@@ -16,11 +16,11 @@ interface RightPanelProps {
     setThumbUpExplanations: (id: string[]) => void;
     setThumbDownExplanations: (id: string[]) => void;
     onGenerateExplanation: () => void;
-    matchingValues: string[][];
     relevantKnowledge: RelevantKnowledge[];
     isLoading: boolean;
     selectedCandidate?: Candidate;
     gdcAttribute?: GDCAttribute;
+    relatedOuterSources: RelatedSource[];
 }
 
 
@@ -35,11 +35,11 @@ const RightPanel = ({
     setThumbUpExplanations,
     setThumbDownExplanations,
     onGenerateExplanation,
-    matchingValues,
     relevantKnowledge,
     isLoading,
     selectedCandidate,
-    gdcAttribute
+    gdcAttribute,
+    relatedOuterSources,
 }: RightPanelProps) => {
     
     return (
@@ -54,11 +54,11 @@ const RightPanel = ({
                 setThumbUpExplanations={setThumbUpExplanations}
                 setThumbDownExplanations={setThumbDownExplanations}
                 onGenerateExplanation={onGenerateExplanation}
-                matchingValues={matchingValues}
                 relevantKnowledge={relevantKnowledge}
                 isLoading={isLoading}
                 selectedCandidate={selectedCandidate}
                 gdcAttribute={gdcAttribute}
+                relatedOuterSources={relatedOuterSources}
             />
         </AuxColumn>
     );

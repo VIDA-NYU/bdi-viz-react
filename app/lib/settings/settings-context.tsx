@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 
-type LoadingGlobalState = {
+type SettingsGlobalState = {
     isLoadingGlobal: boolean;
     setIsLoadingGlobal: (isLoading: boolean) => void;
     developerMode: boolean;
@@ -9,12 +9,12 @@ type LoadingGlobalState = {
     setHoverMode: (hoverMode: boolean) => void;
 }
 
-const SettingsGlobalContext = createContext<LoadingGlobalState>({
+const SettingsGlobalContext = createContext<SettingsGlobalState>({
     isLoadingGlobal: false,
     setIsLoadingGlobal: () => { },
     developerMode: false,
     setDeveloperMode: () => { },
-    hoverMode: true,
+    hoverMode: false,
     setHoverMode: () => { },
 });
 

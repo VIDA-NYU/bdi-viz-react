@@ -19,7 +19,7 @@ from .utils import (
     write_candidate_explanation_json,
 )
 
-GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_table.csv")
+GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_metadata.csv")
 
 app = Flask("bdiviz_flask")
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024
@@ -229,6 +229,31 @@ def agent_explanation():
     return response
 
 
+@app.route("/api/agent/value-mapping", methods=["POST"])
+def agent_suggest_value_mapping():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    data = request.json
+
+    source_col = data["sourceColumn"]
+    target_col = data["targetColumn"]
+    source_values = matching_task.get_source_unique_values(source_col)
+    target_values = matching_task.get_target_unique_values(target_col)
+
+    response = AGENT.suggest_value_mapping(
+        {
+            "sourceColumn": source_col,
+            "targetColumn": target_col,
+            "sourceValues": source_values,
+            "targetValues": target_values,
+        }
+    )
+    response = response.model_dump()
+
+    return response
+
+
 @app.route("/api/agent/suggest", methods=["POST"])
 def agent_suggest():
     session = extract_session_name(request)
@@ -278,6 +303,30 @@ def agent_suggest():
     response = response.model_dump()
 
     return response
+
+
+@app.route("/api/agent/outer-source", methods=["POST"])
+def agent_related_source():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    data = request.json
+    source_col = data["sourceColumn"]
+    target_col = data["targetColumn"]
+    source_values = matching_task.get_source_unique_values(source_col)
+    target_values = matching_task.get_target_unique_values(target_col)
+
+    candidate = {
+        "sourceColumn": source_col,
+        "targetColumn": target_col,
+        "sourceValues": source_values,
+        "targetValues": target_values,
+    }
+
+    response = AGENT.search_for_sources(candidate)
+    response = response.model_dump()
+
+    return {"message": "success", "results": response}
 
 
 @app.route("/api/agent/thumb", methods=["POST"])

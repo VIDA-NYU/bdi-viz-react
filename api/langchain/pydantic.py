@@ -91,7 +91,18 @@ class CandidateExplanation(BaseModel):
         description="List of explanations for the candidate."
     )
     is_match: bool = Field(description="Flag indicating if the candidate is a match")
-    matching_values: List[List[Union[str, float, int, bool, None]]] = Field(
+    relevant_knowledge: List[RelevantKnowledge] = Field(
+        description="""Relevant knowledge related to the candidate in RelevantKnowledge format.
+        """
+    )
+
+
+class SuggestedValueMappings(BaseModel):
+    """Value mappings between source and target values."""
+
+    sourceColumn: str = Field(description="The source column name")
+    targetColumn: str = Field(description="The target column name")
+    matchingValues: List[List[Union[str, float, int, bool, None]]] = Field(
         description="""Possible matching values between source and target values.
         Example:
         [
@@ -99,10 +110,6 @@ class CandidateExplanation(BaseModel):
             ["ib", "FIGO IB"],
             ["iia", "FIGO IIA"],
         ]
-        """
-    )
-    relevant_knowledge: List[RelevantKnowledge] = Field(
-        description="""Relevant knowledge related to the candidate in RelevantKnowledge format.
         """
     )
 
@@ -140,3 +147,17 @@ class TargetClusters(BaseModel):
     """Target clusters from the agent."""
 
     clusters: List[TargetClusterInfo] = Field(description="The target clusters")
+
+
+class RelatedSource(BaseModel):
+    """Related source from the agent."""
+
+    snippet: str = Field(description="The snippet of the related source")
+    title: str = Field(description="The title of the related source")
+    link: str = Field(description="The link of the related source")
+
+
+class RelatedSources(BaseModel):
+    """Related sources from the agent."""
+
+    sources: List[RelatedSource] = Field(description="The related sources")

@@ -3,7 +3,7 @@ import type { Candidate } from '../types';
 import { exportToJson, exportCsv } from '../components/utils/exportJson';
 import { toastify } from "@/app/lib/toastify/toastify-helper";
 import { applyUserOperation, undoUserOperation, redoUserOperation, getExactMatches, getCandidatesResult } from "@/app/lib/heatmap/heatmap-helper";
-import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest } from "@/app/lib/langchain/agent-helper";
+import { candidateExplanationRequest, agentSuggestionsRequest, agentActionRequest, agentGetRelatedSources, agentSuggestValueMappings } from "@/app/lib/langchain/agent-helper";
 import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 
 type DashboardOperationProps = {
@@ -15,8 +15,9 @@ type DashboardOperationProps = {
     onExplanation?: (explanation: CandidateExplanation | undefined) => void;
     onSuggestions?: (suggestions: AgentSuggestions | undefined) => void;
     onApply?: (actionResponses: ActionResponse[] | undefined) => void;
-    onExactMatches?: (exactMatches: Candidate[]) => void;
     onUserOperationsUpdate: (userOperations: UserOperation[]) => void;
+    onRelatedOuterSources?: (relatedOuterSources: RelatedSource[]) => void;
+    onValueMappings?: (valueMappings: SuggestedValueMappings) => void;
 }
 
 type DashboardOperationState = {
@@ -30,6 +31,7 @@ type DashboardOperationState = {
     apply: (reaction: UserReaction) => void;
     // filterExactMatches: () => void;
     exportMatchingResults: (format: string) => void;
+    suggestValueMappings: () => void;
 }
 
 export type { DashboardOperationState };
@@ -46,8 +48,9 @@ export const {
         onExplanation,
         onSuggestions,
         onApply,
-        onExactMatches,
         onUserOperationsUpdate,
+        onRelatedOuterSources,
+        onValueMappings,
     }: DashboardOperationProps): DashboardOperationState => {
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
         const { setIsLoadingGlobal, isLoadingGlobal } = useContext(SettingsGlobalContext);
@@ -238,6 +241,13 @@ export const {
             }
 
             setIsExplaining(false);
+
+            if (onRelatedOuterSources) {
+                const relatedOuterSources = await agentGetRelatedSources(candidateToExplain);
+                if (relatedOuterSources) {
+                    onRelatedOuterSources(relatedOuterSources);
+                }
+            }
         }, [selectedCandidate, onExplanation, isExplaining, setIsExplaining]);
 
         const apply = useCallback(async (reaction: UserReaction) => {
@@ -255,21 +265,20 @@ export const {
             setIsLoadingGlobal(false);
         }, [onApply, isLoadingGlobal, setIsLoadingGlobal]);
 
-        const filterExactMatches = useCallback(async () => {
+        const suggestValueMappings = useCallback(async () => {
+            if (!selectedCandidate) return;
             if (isLoadingGlobal) return;
 
             setIsLoadingGlobal(true);
 
-            if (onExactMatches) {
-                const exactMatches = await getExactMatches({
-                    callback: onExactMatches
-                });
-
-                console.log("Exact Matches: ", exactMatches);
+            const valueMappings = await agentSuggestValueMappings(selectedCandidate);
+            if (valueMappings && onValueMappings) {
+                onValueMappings(valueMappings);
             }
 
             setIsLoadingGlobal(false);
-        }, [onCandidateUpdate, isLoadingGlobal, setIsLoadingGlobal]);
+        }, [selectedCandidate, onValueMappings, isLoadingGlobal, setIsLoadingGlobal]);
+
 
         const exportMatchingResults = (format: string) => {
             console.log("Exporting Matching Results...");
@@ -294,6 +303,7 @@ export const {
             apply,
             // filterExactMatches,
             exportMatchingResults,
+            suggestValueMappings,
             isExplaining,
         };
     }

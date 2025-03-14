@@ -18,6 +18,7 @@ type AggregatedCandidate = {
 declare interface SourceColumn {
     name: string;
     status: string; // 'complete', 'incomplete', 'discard'
+    maxScore: number;
 }
 
 declare interface SourceCluster {
@@ -49,6 +50,7 @@ declare interface TargetUniqueValues {
 declare interface ValueMatch {
     sourceColumn: string;
     sourceValues: string[];
+    sourceMappedValues: string[];
     targets: TargetValueMatch[];
 }
 
@@ -87,8 +89,13 @@ declare interface RelevantKnowledge {
 declare interface CandidateExplanation {
     isMatch: boolean;
     explanations: Explanation[];
-    matchingValues?: string[][]; // [source value, target value]
     relevantKnowledge?: RelevantKnowledge[];
+}
+
+declare interface SuggestedValueMappings {
+    sourceColumn: string;
+    targetColumn: string;
+    matchingValues: string[][];
 }
 
 declare interface AgentAction {
@@ -132,4 +139,10 @@ declare interface GDCAttribute {
 declare interface GDCDescription {
     description: string;
     termDef?: object;
+}
+
+declare interface RelatedSource {
+    snippet: string;
+    title: string;
+    link: string;
 }

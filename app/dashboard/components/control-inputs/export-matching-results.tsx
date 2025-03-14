@@ -44,8 +44,8 @@ const ExportMatchingResultsButton: React.FC<ExportMatchingResultsButtonProps> = 
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={() => handleExport('csv')}>Export as CSV</MenuItem>
-                <MenuItem onClick={() => handleExport('json')}>Export as JSON</MenuItem>
+                <MenuItem onClick={() => handleExport('csv')}>Export curated dataset (CSV)</MenuItem>
+                <MenuItem onClick={() => handleExport('json')}>Export mappings (JSON)</MenuItem>
             </Menu>
         </>
     );

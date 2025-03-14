@@ -31,7 +31,7 @@ class RapidFuzzMatcher(BaseMatcher):
             matches = process.extract(
                 source_column,
                 target_columns,
-                scorer=lambda x, y, score_cutoff: fuzz.token_set_ratio(x, y),
+                scorer=lambda x, y, score_cutoff: fuzz.ratio(x, y),
                 processor=utils.default_process,
                 limit=top_k,
             )
