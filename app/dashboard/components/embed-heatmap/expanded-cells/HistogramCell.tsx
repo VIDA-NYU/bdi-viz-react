@@ -30,14 +30,26 @@ const HistogramCell: FC<ExpandedCellProps> = ({
 
   const margin = { top: 16, right: 0, bottom: 0, left: 0 };
   const chartWidth = width - margin.left - margin.right;
-  const chartHeight = (height - margin.top - margin.bottom) / 2;
+  const chartHeight = (height) / 2 - margin.top - margin.bottom;
 
+  const getSortValue = (val: string) => {
+    const parts = val.split('-');
+    const num = parseFloat(parts[0]);
+    return isNaN(num) ? 0 : num;
+  };
+
+  const sourceDomain = sourceUniqueValues.uniqueValues
+    .map(d => d.value.toString())
+    .sort((a, b) => getSortValue(a) - getSortValue(b));
   const sourceX = d3.scaleBand()
-    .domain(sourceUniqueValues.uniqueValues.map(d => d.value.toString()).sort())
+    .domain(sourceDomain)
     .range([0, chartWidth]);
 
+  const targetDomain = targetUniqueValues.uniqueValues
+    .map(d => d.value!.toString())
+    .sort((a, b) => getSortValue(a) - getSortValue(b));
   const targetX = d3.scaleBand()
-    .domain(targetUniqueValues.uniqueValues.map(d => d.value!.toString()).sort())
+    .domain(targetDomain)
     .range([0, chartWidth]);
 
   const sourceY = d3.scaleLinear()
@@ -55,7 +67,8 @@ const HistogramCell: FC<ExpandedCellProps> = ({
         <g transform={`translate(${margin.left},${margin.top})`}>
           {/* Source Histogram */}
           <g>
-            {sourceUniqueValues.uniqueValues.map((bin, i) => (
+          {sourceUniqueValues.uniqueValues.length > 0 ? (
+            sourceUniqueValues.uniqueValues.map((bin, i) => (
               <g key={i}>
                 <rect
                   x={sourceX(bin.value!)}
@@ -67,44 +80,69 @@ const HistogramCell: FC<ExpandedCellProps> = ({
                 />
                 <StyledText
                   x={sourceX(bin.value!)! + sourceX.bandwidth() / 2}
-                  y={sourceY(bin.count) + 12}
+                  y={sourceY(bin.count) - 2}
                   textAnchor="middle"
                   fontSize="0.6rem"
                   fontWeight={600}
                   fontStyle={'italic'}
-                  fill={theme.palette.common.white}
+                  fill={theme.palette.common.black}
                 >
                   {bin.value}
                 </StyledText>
               </g>
-            ))}
+            ))
+          ) : (
+            <StyledText
+              x={chartWidth / 2}
+              y={chartHeight / 2}
+              textAnchor="middle"
+              fontStyle="italic"
+              fontSize={`${chartWidth * 0.05}px`}
+              fill={theme.palette.grey[500]}
+            >
+              no value in this source attribute
+            </StyledText>
+          )}
           </g>
 
           {/* Target Histogram */}
           <g transform={`translate(0,${chartHeight + margin.top})`}>
-            {targetUniqueValues.uniqueValues.map((bin, i) => (
+            {targetUniqueValues.uniqueValues.length > 0 ? (
+              targetUniqueValues.uniqueValues.map((bin, i) => (
               <g key={i}>
                 <rect
-                  x={targetX(bin.value!)}
-                  y={targetY(bin.count)}
-                  width={targetX.bandwidth()}
-                  height={chartHeight - targetY(bin.count)}
-                  fill={theme.palette.secondary.dark}
-                  opacity={0.7}
+                x={targetX(bin.value!)}
+                y={targetY(bin.count)}
+                width={targetX.bandwidth()}
+                height={chartHeight - targetY(bin.count)}
+                fill={theme.palette.secondary.dark}
+                opacity={0.7}
                 />
                 <StyledText
-                  x={targetX(bin.value!)! + targetX.bandwidth() / 2}
-                  y={targetY(bin.count) + 12}
-                  textAnchor="middle"
-                  fontSize="0.6rem"
-                  fontWeight={600}
-                  fontStyle={'italic'}
-                  fill={theme.palette.common.white}
+                x={targetX(bin.value!)! + targetX.bandwidth() / 2}
+                y={targetY(bin.count) - 2}
+                textAnchor="middle"
+                fontSize="0.6rem"
+                fontWeight={600}
+                fontStyle={'italic'}
+                fill={theme.palette.common.black}
                 >
-                  {bin.value}
+                {bin.value}
                 </StyledText>
               </g>
-            ))}
+              ))
+            ) : (
+                <StyledText
+                x={chartWidth / 2}
+                y={chartHeight / 2}
+                textAnchor="middle"
+                fontStyle="italic"
+                fontSize={`${chartWidth * 0.05}px`}
+                fill={theme.palette.grey[500]}
+                >
+                no value in this target attribute
+                </StyledText>
+            )}
           </g>
 
           {/* Axes */}

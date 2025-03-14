@@ -7,9 +7,7 @@ import PaginationGlobalContext from '@/app/lib/pagination/pagination-context';
 
 
 
-interface PaginatorProps {}
-
-const Paginator: React.FC<PaginatorProps> = ({}) => {
+const Paginator: React.FC = () => {
     const {
         pageNumber,
         setPageNumber,

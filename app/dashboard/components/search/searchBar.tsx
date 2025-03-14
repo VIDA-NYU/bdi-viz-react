@@ -44,7 +44,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
             variant="outlined"
             placeholder="Search..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+                setQuery(e.target.value)
+                if (!agentActivated) {
+                    setGlobalQuery(e.target.value);
+                }
+            }}
             onKeyDown={handleKeyPress}
             color='secondary'
             InputProps={{

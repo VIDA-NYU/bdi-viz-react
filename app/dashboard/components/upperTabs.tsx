@@ -38,7 +38,7 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
   status,
   updateStatus,
 }) => {
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("3");
   const { setGlobalCandidateHighlight } = useContext(HighlightGlobalContext);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
