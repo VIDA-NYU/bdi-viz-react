@@ -18,10 +18,11 @@ const candidateExplanationRequest = async (candidate: Candidate): Promise<Candid
         const { is_match, explanations, relevant_knowledge } = resp.data;
         let explanationObjects: Explanation[] = [];
         if (explanations && explanations.length > 0) {
-            explanationObjects = explanations.map((e: { id: string; is_match: boolean; type: string; reason: string; reference: string; confidence: number }) => {
+            explanationObjects = explanations.map((e: { id: string; title: string; is_match: boolean; type: string; reason: string; reference: string; confidence: number }) => {
                 try {
                     return {
                         id: e.id,
+                        title: e.title,
                         isMatch: e.is_match,
                         type: e.type,
                         reason: e.reason,

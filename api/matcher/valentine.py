@@ -3,8 +3,13 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 from valentine import valentine_match
 from valentine.algorithms import BaseMatcher as ValentineBaseMatcher
-from valentine.algorithms import (Coma, Cupid, DistributionBased,
-                                  JaccardDistanceMatcher, SimilarityFlooding)
+from valentine.algorithms import (
+    Coma,
+    Cupid,
+    DistributionBased,
+    JaccardDistanceMatcher,
+    SimilarityFlooding,
+)
 from valentine.algorithms.jaccard_distance import StringDistanceFunction
 
 from .utils import BaseMatcher
@@ -20,30 +25,42 @@ class ValentineMatcher(BaseMatcher):
         matcher = self._get_matcher_object(self.name)
         matches = valentine_match(source, target, matcher)
 
-        matcher_candidates = self._layer_candidates_valentine(matches, self.name)
+        matcher_candidates = self._layer_candidates_valentine(matches, self.name, top_k)
         return matcher_candidates
 
     def _layer_candidates_valentine(
         self,
         matches: Dict[Tuple[Tuple[str, str], Tuple[str, str]], float],
         matcher: str,
+        top_k: int,
     ) -> List[Dict[str, Any]]:
-        layered_candidates = []
+        # group candidates by source column
+        grouped_candidates = {}
         for key, score in matches.items():
-            source_tuple = key[0]
-            target_tuple = key[1]
+            source_tuple, target_tuple = key
+            source_col = source_tuple[1]
             candidate = {
-                "sourceColumn": source_tuple[1],
+                "sourceColumn": source_col,
                 "targetColumn": target_tuple[1],
                 "score": score,
                 "matcher": matcher,
                 "status": "idle",
             }
+            grouped_candidates.setdefault(source_col, []).append(candidate)
 
-            layered_candidates.append(candidate)
+        # filter top_k matches for each source column based on score
+        layered_candidates = []
+        for source_col, candidates in grouped_candidates.items():
+            top_candidates = sorted(candidates, key=lambda x: x["score"], reverse=True)[
+                :top_k
+            ]
+            layered_candidates.extend(top_candidates)
+
         return layered_candidates
 
-    def _get_matcher_object(self, name: str) -> ValentineBaseMatcher:
+    def _get_matcher_object(
+        self, name: str, threshold_dist: float = 0
+    ) -> ValentineBaseMatcher:
         name = name.lower()
         if name == "coma":
             return Coma()
@@ -53,7 +70,7 @@ class ValentineMatcher(BaseMatcher):
             return SimilarityFlooding()
         elif name == "jaccarddistancematcher" or name == "jaccard_distance_matcher":
             return JaccardDistanceMatcher(
-                threshold_dist=0.8,
+                threshold_dist=threshold_dist,
                 distance_fun=StringDistanceFunction.Levenshtein,
             )
         elif name == "distributionbased" or name == "distribution_based":
