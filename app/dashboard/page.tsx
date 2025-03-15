@@ -89,14 +89,12 @@ export default function Dashboard() {
         thumbDownExplanations,
         relevantKnowledge,
         relatedOuterSources,
-        valueMappings,
         setIsMatch,
         generateExplanations,
         setSelectedExplanations,
         setThumbUpExplanations,
         setThumbDownExplanations,
         setRelatedOuterSources,
-        updateValueMappings,
     } = useSchemaExplanations();
 
     const {
@@ -109,7 +107,6 @@ export default function Dashboard() {
         apply,
         // filterExactMatches,
         exportMatchingResults,
-        suggestValueMappings,
         isExplaining,
     } = useDashboardOperations({
         candidates,
@@ -122,7 +119,6 @@ export default function Dashboard() {
         onApply: handleApply,
         onUserOperationsUpdate: handleUserOperationsUpdate,
         onRelatedOuterSources: setRelatedOuterSources,
-        onValueMappings: updateValueMappings,
     });
 
     const {
@@ -214,7 +210,6 @@ export default function Dashboard() {
         setSelectedCandidate(undefined);
 
         const filteredSourceColumn = filteredSourceColumns.find((sc) => sc.name === column);
-        console.log("Filtered Source Column: ", filteredSourceColumn);
         if (filteredSourceColumn) {
             if (filteredSourceColumn.status !== "complete") {
                 updateStatus(["accepted", "rejected", "discarded", "idle"]);
@@ -314,8 +309,6 @@ export default function Dashboard() {
                         selectedCandidate={selectedCandidate}
                         selectedSourceColumn={sourceColumn}
                         valueMatches={valueMatches}
-                        handleValueMatches={handleValueMatches}
-                        suggestedValueMappings={valueMappings}
                     />
                     <Box sx={{ position: 'absolute', right: 320, display: 'flex', alignItems: 'center' }}>
                         <Typography sx={{ fontSize: "0.7rem", fontWeight: "300", marginRight: 0 }}>Expand On Hover</Typography>

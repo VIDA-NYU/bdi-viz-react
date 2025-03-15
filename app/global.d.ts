@@ -70,9 +70,10 @@ declare interface UserOperation {
     references: Candidate[]; // the references to the candidate
 }
 
-declare type ExplanationType = 'name' | 'token' | 'value' | 'semantic';
+declare type ExplanationType = 'name' | 'token' | 'value' | 'semantic' | 'pattern' | 'history' | 'knowledge' | 'other';
 
 declare interface Explanation {
+    title: string;
     id: string;
     isMatch: boolean;
     type: ExplanationType | string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
 import { Box, Tab } from "@mui/material";
 import { TabList, TabContext } from "@mui/lab";
 
@@ -54,6 +54,17 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     }
   };
 
+  const sourceColumnStatus = useMemo(() => {
+    const sourceColumnStatus = sourceColumns.find(
+      (column) => column.name === sourceColumn
+    );
+    if (sourceColumnStatus) {
+      return sourceColumnStatus.status;
+    } else {
+      return "complete";
+    }
+  }, [sourceColumns, sourceColumn, selectedCandidate]);
+
   useEffect(() => {
     if (status.length === 1 && status[0] === "accepted") {
       setValue("1");
@@ -76,11 +87,11 @@ const UpperTabs: React.FC<UpperTabsProps> = ({
     >
       <TabContext value={value}>
         <Box sx={{ borderTop: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Accepted" value="1" />
+            <TabList onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Accepted" value="1" disabled={sourceColumnStatus !== "complete"} />
             <Tab label="Unmatched" value="2" />
             <Tab label="All" value="3" />
-          </TabList>
+            </TabList>
         </Box>
       </TabContext>
       <Box

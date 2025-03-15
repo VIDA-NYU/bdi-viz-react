@@ -17,7 +17,6 @@ type DashboardOperationProps = {
     onApply?: (actionResponses: ActionResponse[] | undefined) => void;
     onUserOperationsUpdate: (userOperations: UserOperation[]) => void;
     onRelatedOuterSources?: (relatedOuterSources: RelatedSource[]) => void;
-    onValueMappings?: (valueMappings: SuggestedValueMappings) => void;
 }
 
 type DashboardOperationState = {
@@ -31,7 +30,6 @@ type DashboardOperationState = {
     apply: (reaction: UserReaction) => void;
     // filterExactMatches: () => void;
     exportMatchingResults: (format: string) => void;
-    suggestValueMappings: () => void;
 }
 
 export type { DashboardOperationState };
@@ -50,7 +48,6 @@ export const {
         onApply,
         onUserOperationsUpdate,
         onRelatedOuterSources,
-        onValueMappings,
     }: DashboardOperationProps): DashboardOperationState => {
         const [isExplaining, setIsExplaining] = useState<boolean>(false);
         const { setIsLoadingGlobal, isLoadingGlobal } = useContext(SettingsGlobalContext);
@@ -265,20 +262,6 @@ export const {
             setIsLoadingGlobal(false);
         }, [onApply, isLoadingGlobal, setIsLoadingGlobal]);
 
-        const suggestValueMappings = useCallback(async () => {
-            if (!selectedCandidate) return;
-            if (isLoadingGlobal) return;
-
-            setIsLoadingGlobal(true);
-
-            const valueMappings = await agentSuggestValueMappings(selectedCandidate);
-            if (valueMappings && onValueMappings) {
-                onValueMappings(valueMappings);
-            }
-
-            setIsLoadingGlobal(false);
-        }, [selectedCandidate, onValueMappings, isLoadingGlobal, setIsLoadingGlobal]);
-
 
         const exportMatchingResults = (format: string) => {
             console.log("Exporting Matching Results...");
@@ -303,7 +286,6 @@ export const {
             apply,
             // filterExactMatches,
             exportMatchingResults,
-            suggestValueMappings,
             isExplaining,
         };
     }

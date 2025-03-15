@@ -58,23 +58,34 @@ class AgentSuggestions(BaseModel):
 
 
 class Explanation(BaseModel):
-    """Detailed explanation for a candidate match or mismatch."""
+    """A detailed explanation for a candidate's match or mismatch, intended for automated analysis."""
 
-    type: str = Field(
-        description="""Type of explanation, can be one of the following:
-                        - semantic: based on semantic relationships
-                        - name: based on column names
-                        - token: based on tokens in column names or values
-                        - value: based on values in the column"""
+    title: str = Field(
+        description="""A concise title for the explanation, e.g. '_site' or '_Code' to differentiate meanings in tumor analysis."""
     )
-    reason: str = Field(description="Detailed content of the explanation")
+    type: str = Field(
+        description="""The explanation type, chosen from:
+- semantic: based on column semantics,
+- name: based on column names,
+- token: derived from tokens in column names or values,
+- value: inferred from column values,
+- pattern: based on value patterns,
+- history: based on historical data,
+- knowledge: using external expert knowledge,
+- other: for any other rationale."""
+    )
+    reason: str = Field(
+        description="A precise description of the rationale underpinning the explanation."
+    )
     reference: Optional[str] = Field(
-        description="Reference to the explanation, if available"
+        description="Additional reference information, if available."
     )
     confidence: Optional[float] = Field(
-        description="Confidence level of the explanation, ranging from 0 to 1"
+        description="A confidence score ranging from 0 (low) to 1 (high) indicating the reliability of the explanation."
     )
-    is_match: bool = Field(description="Indicates if the explanation supports a match")
+    is_match: bool = Field(
+        description="Indicates whether the explanation supports a candidate match (True) or not (False)."
+    )
 
 
 class RelevantKnowledge(BaseModel):
