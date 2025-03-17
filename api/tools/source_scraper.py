@@ -27,7 +27,11 @@ def scraping_websource(query: str, topk: int = 5) -> List[Dict[str, str]]:
         ]
     """
 
-    search = DuckDuckGoSearchResults(output_format="list")
+    return []
+
+    search = DuckDuckGoSearchResults(
+        output_format="list",
+    ).with_retry(stop_after_attempt=1)
 
     # query = f"{query}"
 

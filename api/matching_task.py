@@ -166,7 +166,7 @@ class MatchingTask:
         self.candidate_quadrants = CandidateQuadrants(
             source=self.source_df,
             target=self.target_df,
-            top_k=40,
+            top_k=self.top_k,
         )
 
         layered_candidates = []

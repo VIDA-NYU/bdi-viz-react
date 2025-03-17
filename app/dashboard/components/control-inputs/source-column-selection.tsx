@@ -42,6 +42,8 @@ const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceCol
                     sx={{
                         '& .MuiSelect-select': {
                             fontSize: 12,
+                            whiteSpace: "normal",
+                            wordBreak: "break-all",
                         },
                     }}
                 >
@@ -50,11 +52,11 @@ const SourceColumnSelection: React.FC<SourceColumnSelectionProps> = ({ sourceCol
                         <MenuItem 
                             key={column.name} 
                             value={column.name}
-                            sx={{ 
+                            sx={{
                                 backgroundColor: column.status === 'complete' ? theme.palette.success.light : column.status === 'ignored' ? theme.palette.grey[400] : 'inherit',
                                 '&:hover': {
                                     backgroundColor: column.status === 'complete' ? "#009900 !important" : column.status === 'ignored' ? theme.palette.grey[600] : theme.palette.grey[200],
-                                }
+                                },
                             }}
                         >
                             {column.name}

@@ -5,11 +5,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
 # from langchain_together import ChatTogether
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
@@ -19,26 +19,24 @@ from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from ..tools.source_scraper import scraping_websource
 from .memory import MemoryRetriver
-from .pydantic import (
-    ActionResponse,
-    AgentSuggestions,
-    CandidateExplanation,
-    RelatedSources,
-    SearchResponse,
-    SuggestedValueMappings,
-)
+from .pydantic import (ActionResponse, AgentSuggestions, CandidateExplanation,
+                       RelatedSources, SearchResponse, SuggestedValueMappings)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
 
 class Agent:
-    def __init__(self) -> None:
+    def __init__(self, llm_model: Optional[BaseChatModel] = None) -> None:
         # OR claude-3-5-sonnet-20240620
         # self.llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
         # self.llm = ChatOllama(base_url='https://ollama-asr498.users.hsrn.nyu.edu', model='llama3.1:8b-instruct-fp16', temperature=0.2)
         # self.llm = ChatOllama(model="deepseek-r1:1.5b", temperature=0.2)
         # self.llm = ChatTogether(model="meta-llama/Llama-3.3-70B-Instruct-Turbo")
-        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+        if llm_model is not None:
+            self.llm = llm_model
+        else:
+            self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+
         self.agent_config = {"configurable": {"thread_id": "bdiviz-1"}}
 
         # self.memory = MemorySaver()

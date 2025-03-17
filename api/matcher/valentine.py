@@ -3,13 +3,8 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 from valentine import valentine_match
 from valentine.algorithms import BaseMatcher as ValentineBaseMatcher
-from valentine.algorithms import (
-    Coma,
-    Cupid,
-    DistributionBased,
-    JaccardDistanceMatcher,
-    SimilarityFlooding,
-)
+from valentine.algorithms import (Coma, Cupid, DistributionBased,
+                                  JaccardDistanceMatcher, SimilarityFlooding)
 from valentine.algorithms.jaccard_distance import StringDistanceFunction
 
 from .utils import BaseMatcher
@@ -59,7 +54,7 @@ class ValentineMatcher(BaseMatcher):
         return layered_candidates
 
     def _get_matcher_object(
-        self, name: str, threshold_dist: float = 0
+        self, name: str, threshold_dist: float = 1.0
     ) -> ValentineBaseMatcher:
         name = name.lower()
         if name == "coma":
@@ -71,7 +66,7 @@ class ValentineMatcher(BaseMatcher):
         elif name == "jaccarddistancematcher" or name == "jaccard_distance_matcher":
             return JaccardDistanceMatcher(
                 threshold_dist=threshold_dist,
-                distance_fun=StringDistanceFunction.Levenshtein,
+                distance_fun=StringDistanceFunction.JaroWinkler,
             )
         elif name == "distributionbased" or name == "distribution_based":
             return DistributionBased()

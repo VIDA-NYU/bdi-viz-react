@@ -1,111 +1,462 @@
-Case_ID,Tumor/Normal,Gender,Age,BMI,Race,Ethnicity_Self_Identify,Tumor_Site,Tumor_Site_Other,Tumor_Size_cm,Tumor_Focality,Histologic_Type,Grade,Tumor_Stage_Pathological,Path_Stage_Primary_Tumor_pT,Path_Stage_Reg_Lymph_Nodes_pN
-C3L-00004,TN,Male,72,22.8,White,White,Lower pole,,12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3,pNX
-C3L-00010,TN,Male,30,34.15,White,White,Upper pole,,6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pN0
-C3L-00011,TN,Female,63,27.47,White,White,Lower pole,,12.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
-C3L-00026,TN,Female,65,28.23,White,White,Lower pole,,2.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
-C3L-00079,TN,Male,49,37.88,White,white,Other,mid-inferior,14.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pN1
-C3L-00088,TN,Male,72,32.82,White,white,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3L-00096,TN,Male,52,27.44,White,White,Lower pole,,12.3,Multifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pN0
-C3L-00097,TN,Male,59,36.81,White,white,Upper pole,,3.7,Multifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00103,TN,Male,56,28.7,White,White,Middle,,11.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3b,pN0
-C3L-00183,TN,Female,33,36.39,White,Patient not interviewed,Middle,,6.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3L-00359,T,Female,73,42.92,White,White,Lower pole,,3.0,Unifocal,non-Clear Cell renal cell carcinoma,G1,Stage I,pT1a,pNX
-C3L-00360,TN,Male,72,38.94,White,WHITE,Other,posterior central,3.7,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
-C3L-00369,TN,Male,89,27.35,White,White,Lower pole,,12.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3L-00416,TN,Male,62,32.0,White,White,Other,HILAR,6.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3b,pNX
-C3L-00418,TN,Female,56,59.88,White,White,Other,Inferior to Mid Pole,8.7,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3L-00447,TN,Male,35,36.57,White,White,Upper pole,,5.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
-C3L-00448,TN,Male,66,26.18,White,White,Other,mid anterior,1.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00561,TN,Male,50,27.47,White,White,Middle,,10.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3b,pN0
-C3L-00581,TN,Male,52,33.66,White,White,Lower pole,,13.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2b,pNX
-C3L-00583,TN,Male,55,37.72,White,Hispanic,Other,Central,4.0,Multifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
-C3L-00606,TN,Female,75,42.33,White,White,Middle,,7.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pN0
-C3L-00607,TN,Male,66,37.96,White,Caucasion,Middle,,7.5,Multifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3L-00610,T,Female,57,40.74,White,Caucasion,Other,"Reports only indicate ""deep renal tumor""",6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
-C3L-00765,T,Female,61,21.96,White,Medical Record Does Not State,Lower pole,,5.6,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3L-00766,T,Female,57,68.59,White,Caucasion,Upper pole,,2.8,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00790,T,Male,44,38.99,White,Medical Record Does Not State,Middle,,7.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3L-00791,TN,Male,76,29.49,White,Medical record does not state.,Lower pole,,6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT1b,pN1
-C3L-00792,T,Female,90,29.6,White,Medical record does not state,Lower pole,,8.7,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
-C3L-00796,T,Male,67,30.81,White,Medical record does not state,Lower pole,,5.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3L-00799,T,Male,41,35.66,White,Caucasion,Middle,,2.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00800,T,Male,41,29.01,White,White,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00812,T,Male,74,27.04,White,White,Upper pole,,2.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00813,T,Male,61,19.49,White,Medical record does not state,Upper pole,,4.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3L-00814,TN,Male,83,30.56,Not Reported,Medical Record Does Not State,Middle,,3.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00817,T,Male,80,33.96,White,Medical record does not state,Lower pole,,1.2,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-00902,TN,Female,69,19.72,White,White,Middle,,5.0,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1b,pNX
-C3L-00907,TN,Male,55,47.25,White,WHITE,Other,Right Lower Pole,4.8,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3L-00908,TN,Female,60,27.85,White,White,Other,Left Central Anterior,10.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2b,pNX
-C3L-00910,TN,Female,75,36.36,White,White,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
-C3L-00917,TN,Male,37,45.37,White,Hispanic,Middle,,3.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
-C3L-01281,TN,Male,66,34.76,White,White,Lower pole,,11.5,Multifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
-C3L-01283,T,Male,37,30.86,White,Hispanic,Middle,,2.4,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
-C3L-01286,TN,Male,58,46.17,White,White,Other,"Hilum, recurrent clear cell renal cell carcinoma, original tumor had sarcomatoid features",6.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3L-01287,TN,Male,60,25.31,White,White,Other,Right Inferior,10.5,Unifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
-C3L-01288,T,Female,70,39.45,White,White,Middle,,2.8,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1a,pNX
-C3L-01302,TN,Female,71,36.0,White,White,Upper pole,,8.5,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3a,pN0
-C3L-01313,TN,Male,63,29.38,White,White,Other,Mid to inferior aspect,9.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3a,pNX
-C3L-01352,T,Female,76,26.95,White,Hispanic,Middle,,3.4,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-01553,T,Male,59,46.17,White,Medical record does not state,Lower pole,,1.9,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-01557,T,Male,51,48.46,Black or African American,Medical record does not state,Other,Tumor invades the lower and middle poles,9.6,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pN0
-C3L-01560,T,Female,54,38.08,White,Medical record does not state,Lower pole,,1.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
-C3L-01603,TN,Male,63,42.77,White,White,Other,"Left Upper Pole, Lateral aspect",4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3L-01607,TN,Male,83,27.52,White,White,Lower pole,,6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3L-01836,TN,Male,47,29.41,White,White,Upper pole,,4.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
-C3L-01861,TN,Male,57,28.63,White,White,Other,Left,3.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
-C3L-01882,TN,Male,48,48.79,White,White,Other,Left,2.2,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pN0
-C3L-01885,TN,Male,67,35.27,White,White,Other,Right,3.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00148,TN,Male,52,28.41,,Caucasian,Other,Kidney,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00149,TN,Female,68,27.05,,Caucasian,Other,Kidney,12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT4,pN0
-C3N-00150,TN,Female,55,18.42,,Caucasian,Other,"Kidney, not otherwise specified",12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT3,pN0
-C3N-00154,T,Male,68,28.08,,Caucasian,Other,Kidney,8.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pN0
-C3N-00168,TN,Male,47,18.78,,Asian,Other,Pole,4.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pN0
-C3N-00177,TN,Male,52,24.06,,Vietnam,Other,Pole,7.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3,pN0
-C3N-00194,TN,Female,51,26.96,White,white,Other,MID TO LOWER POLE,12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT2b,pNX
-C3N-00242,TN,Male,69,39.2,White,Whte,Other,"RIGHT, unspecified",3.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00244,TN,Male,46,44.3,White,White,Other,upper and middle pole,2.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00246,TN,Male,44,45.77,White,white,Lower pole,,3.1,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00305,T,Female,60,19.0,,Caucasian,Middle,,1.0,Multifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1a,pNX
-C3N-00310,TN,Male,84,28.0,,Caucasian,Middle,,5.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-00312,TN,Male,68,30.0,,Caucasian,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3N-00313,T,Female,31,22.0,,Caucasian,Middle,,4.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-00314,TN,Male,78,31.0,,Caucasian,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-00315,T,Male,68,28.0,,Caucasian,Upper pole,,7.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
-C3N-00317,TN,Female,74,23.0,,Caucasian,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-00320,TN,Male,67,32.0,,Caucasian,Upper pole,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-00380,T,Female,57,46.0,,Slavonic,Upper pole,,4.1,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-00390,TN,Male,58,29.05,,Slavonic,Upper pole,,14.1,Unifocal,Clear cell renal cell carcinoma,G2,Stage IV,pT3a,pNX
-C3N-00435,TN,Male,72,26.99,,Slavonic,Upper pole,,10.5,Unifocal,non-Clear Cell renal cell carcinoma,G3,Stage III,pT3,pN1
-C3N-00437,TN,Female,69,37.0,,Caucasian,Upper pole,,6.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3N-00491,TN,Male,54,30.0,,Caucasian,Upper pole,,6.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage IV,pT1b,pNX
-C3N-00492,TN,Female,49,26.0,,Caucasian,Lower pole,,11.0,Unifocal,non-Clear Cell renal cell carcinoma,G3,Stage II,pT2b,pNX
-C3N-00494,TN,Male,66,34.0,,Caucasian,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-00495,TN,Male,67,16.0,,Caucasian,Upper pole,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00573,TN,Male,61,22.04,,Asian,Other,"Left kidney, unspecified pole",11.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2b,pN0
-C3N-00577,TN,Male,72,21.83,,Asian,Other,"Left kidney, not otherwise specified",14.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT3,pN1
-C3N-00646,TN,Female,57,27.72,,Caucasian,Other,Kidney,3.2,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-00733,TN,Male,56,27.77,White,American,Other,Involves all three poles,8.6,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-00831,TN,Male,52,30.0,,Caucasian,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2a,pNX
-C3N-00832,T,Male,79,23.0,,Caucasian,Lower pole,,4.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-00834,TN,Male,65,30.0,,Caucasian,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1b,pNX
-C3N-00852,TN,Male,62,28.71,,Slavonic,Other,Entire kidney,13.6,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3N-00953,TN,Male,41,22.43,Asian,Indian,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
-C3N-01175,TN,Female,60,14.0,,Caucasian,Middle,,3.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-01176,TN,Male,71,29.0,,Caucasian,Upper pole,,6.0,Multifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-01178,TN,Female,58,25.0,,Caucasian,Upper pole,,7.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-01179,TN,Male,72,26.0,,Caucasian,Middle,,2.0,Multifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-01180,T,Male,51,24.0,,Caucasian,Upper pole,,5.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage I,pT1b,pNX
-C3N-01200,TN,Female,56,26.37,,Slavonic,Other,Complete replacement of the left kidney's parenchyma,16.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT4,pN0
-C3N-01213,T,Male,68,22.68,,Slavonic,Upper pole,,8.3,Unifocal,Clear cell renal cell carcinoma,G1,Stage III,pT3a,pNX
-C3N-01214,TN,Male,60,21.38,,Slavonic,Upper pole,,8.4,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2a,pN0
-C3N-01220,TN,Male,51,23.89,,Slavonic,Middle,,6.8,Unifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
-C3N-01261,TN,Male,67,24.02,,Slavonic,Upper pole,,5.2,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1b,pNX
-C3N-01361,TN,Male,48,39.0,,Caucasian,Middle,,2.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
-C3N-01522,TN,Male,80,30.78,,Slavonic,Upper pole,,5.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pN0
-C3N-01524,TN,Male,61,28.38,,Slavonic,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
-C3N-01646,TN,Male,69,25.0,,Caucasian,Upper pole,,10.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
-C3N-01648,TN,Male,69,28.0,,Caucasian,Upper pole,,7.0,Multifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2a,pNX
-C3N-01649,TN,Male,51,35.0,,Caucasian,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
-C3N-01651,TN,Male,58,25.0,,Caucasian,Middle,,10.0,Multifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
-C3N-01808,TN,Male,47,28.75,White,American,Upper pole,,5.8,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+Sample No.,Profiling subtypes,Phospho-subtype,TFs activity subtypes,Immune subtypes,"Lauren subtype (D, diffused type; I, intestinal type; M,mixed type)",Gender,Age,Stage,"Live status (1=dead, 0=alive)",Overall survival (days),"Progression (1=progressed, 0=not progressed)",Disease free survival (days),Tumor_location,"Adjuvant chemotherapy (1=yes, 0=no)","Adjuvant chemotherapy details (1=oxaliplation,2=leucovorin,3=fluorouracil,4=docetaxel, 5=cisplatin,6=Xeloda,7=Irinotecan ,8=tegafur )","Lymphovascular invasion (0=negative, 1=positive)","Signet Ring cells(0=negative,1=positive)",HER2 status,Ki 67(percent),Patient number,GeneSymbol,Mutation,Detail,Variant allele frequency ,Cosmic annotation
+TFGC2,2.0,1.0,1.0,3.0,D,male,80,IV,1,87,1,45,Antrum,0,0,1,1.0,,,TFGC2,ARID1A,Nonsense_Mutation,p.Tyr560*,0.3,.
+TFGC2,2.0,1.0,1.0,3.0,D,male,80,IV,1,87,1,45,Antrum,0,0,1,1.0,,,TFGC2,DNAH7,Missense_Mutation,p.Thr3521Met,0.186,.
+TFGC2,2.0,1.0,1.0,3.0,D,male,80,IV,1,87,1,45,Antrum,0,0,1,1.0,,,TFGC2,GLI3,Missense_Mutation,p.Ala879Val,0.274,GENE=GLI3;STRAND=-;GENE=GLI3;STRAND=-;CDS=c.2636C>T;AA=p.A879V;CNT=1;COSM4753643
+TFGC2,2.0,1.0,1.0,3.0,D,male,80,IV,1,87,1,45,Antrum,0,0,1,1.0,,,TFGC2,HMBOX1,Missense_Mutation,p.Gly262Arg,0.201,.
+TFGC2,2.0,1.0,1.0,3.0,D,male,80,IV,1,87,1,45,Antrum,0,0,1,1.0,,,TFGC2,TP53,Missense_Mutation,p.Arg282Trp,0.313,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.844C>T;AA=p.R282W;CNT=511;COSM10704
+TFGC8,2.0,1.0,1.0,3.0,D,male,58,IIIB,1,1106,1,1091,Cardia,1,1&6,0,0.0,,,TFGC8,DNAH7,Missense_Mutation,p.Thr584Arg,0.052,.
+TFGC8,2.0,1.0,1.0,3.0,D,male,58,IIIB,1,1106,1,1091,Cardia,1,1&6,0,0.0,,,TFGC8,RIMS2,Missense_Mutation,p.Leu1315Arg,0.06,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,BCL10,Missense_Mutation,p.Gly213Glu,0.233,GENE=BCL10;STRAND=-;SNP;GENE=BCL10;STRAND=-;CDS=c.638G>A;AA=p.G213E;CNT=5;COSM146549
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,MSH6,Missense_Mutation,p.Asn1273Lys,0.257,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,PTPN23,Missense_Mutation,p.Asn281Ser,0.245,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,APC,Missense_Mutation,p.Thr562Met,0.338,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,ATM,Splice_Site,,0.304,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,GOT2,Missense_Mutation,p.Asn61Ser,0.191,GENE=GOT2;STRAND=-;GENE=GOT2;STRAND=-;CDS=c.182A>G;AA=p.N61S;CNT=1;COSM471891
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,JAK3,Missense_Mutation,p.Ala226Thr,0.169,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,FOXC1,In_Frame_Ins,p.Gly454dup,0.692,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,AR,In_Frame_Ins,p.Gln79_Gln80dup,0.121,.
+TFGC10,2.0,2.0,1.0,1.0,D,female,48,IIIB,1,948,1,339,Body,1,1&6,0,1.0,,,TFGC10,AR,In_Frame_Ins,p.Gln77_Gln80dup,0.073,.
+TFGC12,2.0,2.0,2.0,3.0,D,female,54,IIIB,1,401,1,280,Body,0,0,1,0.0,,,TFGC12,CDH1,Missense_Mutation,p.Asn256Ser,0.198,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.767A>G;AA=p.N256S;CNT=1;COSM4766182
+TFGC12,2.0,2.0,2.0,3.0,D,female,54,IIIB,1,401,1,280,Body,0,0,1,0.0,,,TFGC12,BCL2,Missense_Mutation,p.Val35Met,0.051,GENE=BCL2;STRAND=-;GENE=BCL2;STRAND=-;CDS=c.103G>A;AA=p.V35M;CNT=1;COSM220797
+TFGC12,2.0,2.0,2.0,3.0,D,female,54,IIIB,1,401,1,280,Body,0,0,1,0.0,,,TFGC12,TP53,Frame_Shift_Del,p.Arg209fs,0.071,GENE=TP53_ENST00000269305;STRAND=-;GENE=TP53_ENST00000269305;STRAND=-;CDS=c.626_627delGA;AA=p.R209fs*6;CNT=7;COSM392316
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,PIK3CA,Missense_Mutation,p.Asp350Asn,0.167,GENE=PIK3CA_ENST00000263967;STRAND=+;GENE=PIK3CA_ENST00000263967;STRAND=+;CDS=c.1048G>A;AA=p.D350N;CNT=3;COSM582510
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,MYC,Missense_Mutation,p.Ser281Tyr,0.186,.
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,AXIN1,Missense_Mutation,p.Tyr304Cys,0.218,.
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,TP53,Missense_Mutation,p.Tyr234Cys,0.385,GENE=TP53_ENST00000420246;STRAND=-;GENE=TP53_ENST00000420246;STRAND=-;CDS=c.701A>G;AA=p.Y234C;CNT=17;COSM3388193
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,BCOR,Nonsense_Mutation,p.Gln1308*,0.07,.
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,KDM6A,Missense_Mutation,p.Asp108His,0.2,.
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,MUC6,Frame_Shift_Ins,p.Ala1593fs,0.168,.
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,AR,In_Frame_Ins,p.Gln78_Gln80dup,0.058,.
+TFGC14,3.0,2.0,2.0,2.0,D,female,73,IIIC,1,961,1,786,Antrum,0,0,0,0.0,,,TFGC14,ARID1B,In_Frame_Del,p.Gly332_Ala336del,0.368,.
+TFGC16,3.0,3.0,2.0,2.0,D,male,67,IIIA,1,867,0,70,Antrum,1,4&8,0,0.0,,,TFGC16,TGFBR2,Missense_Mutation,p.Arg562Cys,0.333,GENE=TGFBR2;STRAND=+;GENE=TGFBR2;STRAND=+;CDS=c.1609C>T;AA=p.R537C;CNT=1;COSM84787
+TFGC16,3.0,3.0,2.0,2.0,D,male,67,IIIA,1,867,0,70,Antrum,1,4&8,0,0.0,,,TFGC16,VPS13A,Missense_Mutation,p.Pro447Leu,0.106,.
+TFGC16,3.0,3.0,2.0,2.0,D,male,67,IIIA,1,867,0,70,Antrum,1,4&8,0,0.0,,,TFGC16,PTEN,Nonsense_Mutation,p.Arg130*,0.271,GENE=PTEN;STRAND=+;GENE=PTEN;STRAND=+;CDS=c.388C>T;AA=p.R130*;CNT=91;COSM5152
+TFGC16,3.0,3.0,2.0,2.0,D,male,67,IIIA,1,867,0,70,Antrum,1,4&8,0,0.0,,,TFGC16,TP53,Missense_Mutation,p.Tyr234Cys,0.442,GENE=TP53_ENST00000420246;STRAND=-;GENE=TP53_ENST00000420246;STRAND=-;CDS=c.701A>G;AA=p.Y234C;CNT=17;COSM3388193
+TFGC16,3.0,3.0,2.0,2.0,D,male,67,IIIA,1,867,0,70,Antrum,1,4&8,0,0.0,,,TFGC16,ABCA10,Missense_Mutation,p.Val829Ile,0.228,.
+TFGC16,3.0,3.0,2.0,2.0,D,male,67,IIIA,1,867,0,70,Antrum,1,4&8,0,0.0,,,TFGC16,CDH1,Frame_Shift_Del,p.Arg222fs,0.356,.
+TFGC18,2.0,2.0,1.0,3.0,D,male,52,IIIA,1,986,1,851,Body,1,8,1,0.0,,,TFGC18,NOTCH2,Missense_Mutation,p.Ser1091Tyr,0.153,.
+TFGC18,2.0,2.0,1.0,3.0,D,male,52,IIIA,1,986,1,851,Body,1,8,1,0.0,,,TFGC18,SPTA1,Missense_Mutation,p.Lys2352Thr,0.085,GENE=SPTA1;STRAND=-;GENE=SPTA1;STRAND=-;CDS=c.7055A>C;AA=p.K2352T;CNT=1;COSM1266727
+TFGC18,2.0,2.0,1.0,3.0,D,male,52,IIIA,1,986,1,851,Body,1,8,1,0.0,,,TFGC18,GLI3,Nonsense_Mutation,p.Arg667*,0.161,GENE=GLI3;STRAND=-;GENE=GLI3;STRAND=-;CDS=c.1999C>T;AA=p.R667*;CNT=2;COSM1450730
+TFGC18,2.0,2.0,1.0,3.0,D,male,52,IIIA,1,986,1,851,Body,1,8,1,0.0,,,TFGC18,ATM,Missense_Mutation,p.Tyr2036Asp,0.135,.
+TFGC18,2.0,2.0,1.0,3.0,D,male,52,IIIA,1,986,1,851,Body,1,8,1,0.0,,,TFGC18,PKHD1,Frame_Shift_Del,p.Phe3829fs,0.087,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,THSD7B,Missense_Mutation,p.Arg1178Cys,0.169,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,DNAH7,Missense_Mutation,p.Ser1775Ile,0.061,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,BAP1,Missense_Mutation,p.Ala145Asp,0.444,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,CHRD,Missense_Mutation,p.His313Arg,0.096,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,FAT4,Missense_Mutation,p.Pro3525Ser,0.091,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,HIST1H3B,Nonsense_Mutation,p.Lys24*,0.069,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,CDH1,Missense_Mutation,p.Asp400Asn,0.367,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.1198G>A;AA=p.D400N;CNT=1;COSM1159626
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,SMAD4,Nonsense_Mutation,p.Gln534*,0.483,GENE=SMAD4;STRAND=+;GENE=SMAD4;STRAND=+;CDS=c.1600C>T;AA=p.Q534*;CNT=2;COSM4754647
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,CREBBP,Frame_Shift_Ins,p.Arg1091fs,0.121,.
+TFGC20,3.0,2.0,2.0,1.0,D,male,39,IB,0,1593,0,1593,Body,1,1&6,1,1.0,,,TFGC20,PIK3R1,exon_loss,,0.051,.
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,ARID1A,Nonsense_Mutation,p.Gln1493*,0.228,GENE=ARID1A;STRAND=+;GENE=ARID1A;STRAND=+;CDS=c.4477C>T;AA=p.Q1493*;CNT=4;COSM254550
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,CTNNA2,Missense_Mutation,p.Thr395Ala,0.285,.
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,PIK3CA,Missense_Mutation,p.Glu545Lys,0.705,GENE=PIK3CA;STRAND=+;GENE=PIK3CA;STRAND=+;CDS=c.1633G>A;AA=p.E545K;CNT=1294;COSM763
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,PIK3CA,Missense_Mutation,p.Ile1058Met,0.683,.
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,PIK3CA,Missense_Mutation,p.Ala1066Val,0.674,GENE=PIK3CA;STRAND=+;GENE=PIK3CA;STRAND=+;CDS=c.3197C>T;AA=p.A1066V;CNT=6;COSM13477
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,ATM,Nonsense_Mutation,p.Arg2993*,0.285,GENE=ATM;STRAND=+;GENE=ATM;STRAND=+;CDS=c.8977C>T;AA=p.R2993*;CNT=7;COSM428365
+TFGC22,3.0,2.0,2.0,1.0,D,male,50,IIIC,1,566,1,353,Body,1,1&8,1,0.0,,,TFGC22,BCORL1,Missense_Mutation,p.Glu1052Lys,0.365,.
+TFGC24,2.0,1.0,1.0,1.0,D,male,77,IIIA,0,1353,0,1086,Cardia,1,8,1,0.0,,,TFGC24,PTPRC,Missense_Mutation,p.Val1057Gly,0.387,.
+TFGC24,2.0,1.0,1.0,1.0,D,male,77,IIIA,0,1353,0,1086,Cardia,1,8,1,0.0,,,TFGC24,CTNNA2,Missense_Mutation,p.His552Tyr,0.277,.
+TFGC24,2.0,1.0,1.0,1.0,D,male,77,IIIA,0,1353,0,1086,Cardia,1,8,1,0.0,,,TFGC24,LARP4B,Missense_Mutation,p.Thr281Arg,0.491,.
+TFGC24,2.0,1.0,1.0,1.0,D,male,77,IIIA,0,1353,0,1086,Cardia,1,8,1,0.0,,,TFGC24,TP53,Missense_Mutation,p.Glu285Val,0.845,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.854A>T;AA=p.E285V;CNT=17;COSM44227
+TFGC24,2.0,1.0,1.0,1.0,D,male,77,IIIA,0,1353,0,1086,Cardia,1,8,1,0.0,,,TFGC24,TET2,Frame_Shift_Del,p.Asp1277fs,0.403,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,CTNNB1,Missense_Mutation,p.Gly34Glu,0.114,GENE=CTNNB1;STRAND=+;GENE=CTNNB1;STRAND=+;CDS=c.101G>A;AA=p.G34E;CNT=102;COSM5671
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,PIK3CA,Missense_Mutation,p.Glu542Lys,0.16,GENE=PIK3CA_ENST00000263967;STRAND=+;GENE=PIK3CA_ENST00000263967;STRAND=+;CDS=c.1624G>A;AA=p.E542K;CNT=163;COSM125369
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,APC,Missense_Mutation,p.Leu2558Arg,0.181,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,ARID1B,Missense_Mutation,p.Leu972Arg,0.186,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,ARID1B,Missense_Mutation,p.Glu1650Lys,0.143,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,KMT2D,Missense_Mutation,p.Gly1421Val,0.225,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,TCF4,Missense_Mutation,p.Met513Val,0.193,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,GNAS,Missense_Mutation,p.Pro476Leu,0.203,.
+TFGC30,1.0,2.0,1.0,1.0,D,male,49,IIA,0,1145,0,721,Body,1,1&8,0,0.0,,,TFGC30,B2M,Frame_Shift_Del,p.Leu15fs,0.145,GENE=B2M_ENST00000544417;STRAND=+;GENE=B2M_ENST00000544417;STRAND=+;CDS=c.37_38delCT;AA=p.L15fs*41;CNT=19;COSM3686101
+TFGC32,1.0,1.0,1.0,2.0,D,female,59,IIA,0,1471,0,1374,Body,1,1&8,0,0.0,,,TFGC32,TGFBR2,Missense_Mutation,p.Arg553Cys,0.131,GENE=TGFBR2;STRAND=+;GENE=TGFBR2;STRAND=+;CDS=c.1582C>T;AA=p.R528C;CNT=4;COSM583215
+TFGC32,1.0,1.0,1.0,2.0,D,female,59,IIA,0,1471,0,1374,Body,1,1&8,0,0.0,,,TFGC32,BAP1,Splice_Site,,0.126,.
+TFGC32,1.0,1.0,1.0,2.0,D,female,59,IIA,0,1471,0,1374,Body,1,1&8,0,0.0,,,TFGC32,CDH1,Missense_Mutation,p.Leu175Pro,0.221,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.524T>C;AA=p.L175P;CNT=1;COSM4062175
+TFGC34,1.0,1.0,2.0,2.0,D,female,26,IIIC,1,507,1,374,Body,1,1&6,1,0.0,,,TFGC34,PKHD1,Missense_Mutation,p.Ser3669Leu,0.182,GENE=PKHD1;STRAND=-;GENE=PKHD1;STRAND=-;CDS=c.11006C>T;AA=p.S3669L;CNT=1;COSM3354386
+TFGC34,1.0,1.0,2.0,2.0,D,female,26,IIIC,1,507,1,374,Body,1,1&6,1,0.0,,,TFGC34,SPTB,Missense_Mutation,p.Arg521His,0.241,GENE=SPTB;STRAND=-;GENE=SPTB;STRAND=-;CDS=c.1562G>A;AA=p.R521H;CNT=2;COSM3733724
+TFGC34,1.0,1.0,2.0,2.0,D,female,26,IIIC,1,507,1,374,Body,1,1&6,1,0.0,,,TFGC34,TP53,Nonsense_Mutation,p.Ser166*,0.256,GENE=TP53_ENST00000414315;STRAND=-;GENE=TP53_ENST00000414315;STRAND=-;CDS=c.101C>G;AA=p.S34*;CNT=3;COSM369077
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,DNAH7,Missense_Mutation,p.Phe2006Leu,0.11,.
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,APC,Missense_Mutation,p.Arg141Ser,0.077,GENE=APC;STRAND=+;GENE=APC;STRAND=+;CDS=c.423G>T;AA=p.R141S;CNT=2;COSM48235
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,NOTCH1,Missense_Mutation,p.Arg1622Cys,0.303,GENE=NOTCH1;STRAND=-;GENE=NOTCH1;STRAND=-;CDS=c.4864C>T;AA=p.R1622C;CNT=1;COSM4993255
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,ARID2,Missense_Mutation,p.Arg285Gln,0.253,GENE=ARID2;STRAND=+;GENE=ARID2;STRAND=+;CDS=c.854G>A;AA=p.R285Q;CNT=5;COSM265253
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,ARID2,Nonsense_Mutation,p.Gln983*,0.188,GENE=ARID2;STRAND=+;GENE=ARID2;STRAND=+;CDS=c.2947C>T;AA=p.Q983*;CNT=1;COSM131489
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,TP53,Nonsense_Mutation,p.Arg213*,0.279,GENE=TP53_ENST00000413465;STRAND=-;GENE=TP53_ENST00000413465;STRAND=-;CDS=c.637C>T;AA=p.R213*;CNT=127;COSM99615
+TFGC36,2.0,1.0,1.0,1.0,D,female,57,IIIB,1,1294,1,157,Body,1,1&8,1,0.0,,,TFGC36,EP300,Missense_Mutation,p.Ile1457Met,0.214,.
+TFGC38,3.0,3.0,2.0,2.0,D,male,64,IIIC,1,317,1,251,Cardia,1,1&6,1,1.0,,,TFGC38,NDRG1,Missense_Mutation,p.Thr328Ala,0.071,.
+TFGC38,3.0,3.0,2.0,2.0,D,male,64,IIIC,1,317,1,251,Cardia,1,1&6,1,1.0,,,TFGC38,TP53,Missense_Mutation,p.Arg248Trp,0.191,GENE=TP53_ENST00000413465;STRAND=-;GENE=TP53_ENST00000413465;STRAND=-;CDS=c.742C>T;AA=p.R248W;CNT=143;COSM120005
+TFGC40,3.0,3.0,2.0,2.0,D,male,87,IIIC,1,235,1,165,Antrum,0,0,1,0.0,,,TFGC40,SOX9,Frame_Shift_Ins,p.Glu159fs,0.177,.
+TFGC40,3.0,3.0,2.0,2.0,D,male,87,IIIC,1,235,1,165,Antrum,0,0,1,0.0,,,TFGC40,PLEKHA6,exon_loss,,0.167,.
+TFGC40,3.0,3.0,2.0,2.0,D,male,87,IIIC,1,235,1,165,Antrum,0,0,1,0.0,,,TFGC40,AKT1,exon_loss,,0.153,.
+TFGC42,,1.0,1.0,2.0,D,female,64,IIA,0,1186,1,409,Body,0,0,1,0.0,,,TFGC42,TNPO1,Missense_Mutation,p.Asp874Tyr,0.157,.
+TFGC42,,1.0,1.0,2.0,D,female,64,IIA,0,1186,1,409,Body,0,0,1,0.0,,,TFGC42,SEC63,Missense_Mutation,p.Glu391Gln,0.198,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,MSH6,Missense_Mutation,p.Pro591Thr,0.306,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,TBL1XR1,Splice_Site,,0.285,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,CHRD,Missense_Mutation,p.Cys932Tyr,0.061,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,FAT4,Missense_Mutation,p.Ser4184Thr,0.372,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,BRAF,Missense_Mutation,p.Pro754Ser,0.125,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,FRMD4A,Missense_Mutation,p.Gly726Arg,0.303,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,ATM,Missense_Mutation,p.Arg2526Thr,0.297,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,CDH1,Missense_Mutation,p.Arg154Thr,0.099,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,AGO4,Frame_Shift_Del,p.Cys719fs,0.144,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,IWS1,Frame_Shift_Del,p.Leu788fs,0.291,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,KMT2D,Frame_Shift_Del,p.Met930fs,0.135,.
+TFGC44,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1204,0,1113,Cardia,1,1&6,1,0.0,,,TFGC44,TP53,In_Frame_Del,p.Ile254_Ile255del,0.358,.
+TFGC46,1.0,2.0,1.0,2.0,D,male,46,IIIB,0,1253,0,1168,Antrum,1,1&8,1,1.0,,,TFGC46,RHOA,Missense_Mutation,p.Gly62Glu,0.238,GENE=RHOA;STRAND=-;GENE=RHOA;STRAND=-;CDS=c.185G>A;AA=p.G62E;CNT=2;COSM4118486
+TFGC46,1.0,2.0,1.0,2.0,D,male,46,IIIB,0,1253,0,1168,Antrum,1,1&8,1,1.0,,,TFGC46,TMPO,Missense_Mutation,p.Val204Asp,0.153,.
+TFGC46,1.0,2.0,1.0,2.0,D,male,46,IIIB,0,1253,0,1168,Antrum,1,1&8,1,1.0,,,TFGC46,IDH2,Missense_Mutation,p.Arg60His,0.165,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,NOTCH2,Missense_Mutation,p.Arg705His,0.134,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,SPTA1,Missense_Mutation,p.Asn1877His,0.184,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,DNMT3A,Missense_Mutation,p.Arg181Cys,0.154,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,MSH2,Splice_Site,,0.186,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,MSH2,Missense_Mutation,p.Gly759Glu,0.091,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,SPTB,Missense_Mutation,p.Ser2213Gly,0.066,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,CDH1,Missense_Mutation,p.Ala634Val,0.1,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.1901C>T;AA=p.A634V;CNT=5;COSM19822
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,TP53,Splice_Site,,0.088,GENE=TP53_ENST00000420246;STRAND=-;GENE=TP53_ENST00000420246;STRAND=-;CDS=c.559+2T>C;AA=p.?;CNT=1;COSM5163835
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,MED12,Missense_Mutation,p.Ala534Val,0.135,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,RBMX,Missense_Mutation,p.Arg202His,0.111,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,MSH2,Frame_Shift_Ins,p.Ala230fs,0.144,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,CREBBP,Frame_Shift_Ins,p.Gln1209fs,0.147,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,RPL22,Frame_Shift_Del,p.Lys15fs,0.144,GENE=RPL22;STRAND=-;GENE=RPL22;STRAND=-;CDS=c.44delA;AA=p.K15fs*5;CNT=88;COSM179404
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,ARID1A,Frame_Shift_Del,p.Pro224fs,0.147,GENE=ARID1A;STRAND=+;GENE=ARID1A;STRAND=+;CDS=c.666delC;AA=p.P224fs*8;CNT=4;COSM1602134
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,ZBTB20,Frame_Shift_Del,p.Pro692fs,0.143,GENE=ZBTB20_ENST00000474710;STRAND=-;GENE=ZBTB20_ENST00000474710;STRAND=-;CDS=c.2075delC;AA=p.P692fs*43;CNT=30;COSM1243009
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,IKZF1,Frame_Shift_Del,p.Phe122fs,0.064,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,KMT2D,Frame_Shift_Del,p.Pro2531fs,0.12,GENE=KMT2D;STRAND=-;GENE=KMT2D;STRAND=-;CDS=c.6783delC;AA=p.S2262fs*11;CNT=2;COSM221085
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,CDH1,In_Frame_Del,p.Ser232del,0.108,.
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,TP53,Frame_Shift_Del,p.Lys382fs,0.11,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.1146delA;AA=p.K382fs*>12;CNT=7;COSM13747
+TFGC48,3.0,2.0,2.0,2.0,D,female,50,IIB,1,659,0,1086,Cardia,1,1&8,0,0.0,,,TFGC48,RBMX,start_lost,p.Met1del,0.053,.
+TFGC50,2.0,3.0,2.0,2.0,D,male,64,IIA,0,1177,1,608,Antrum,1,1&2&3,1,0.0,,,TFGC50,MSH2,Missense_Mutation,p.Ile930Met,0.069,.
+TFGC50,2.0,3.0,2.0,2.0,D,male,64,IIA,0,1177,1,608,Antrum,1,1&2&3,1,0.0,,,TFGC50,APC,Nonsense_Mutation,p.Gln1328*,0.122,GENE=APC;STRAND=+;GENE=APC;STRAND=+;CDS=c.3982C>T;AA=p.Q1328*;CNT=21;COSM18859
+TFGC50,2.0,3.0,2.0,2.0,D,male,64,IIA,0,1177,1,608,Antrum,1,1&2&3,1,0.0,,,TFGC50,RIMS2,Missense_Mutation,p.Thr741Met,0.195,GENE=RIMS2_ENST00000436393;STRAND=+;GENE=RIMS2_ENST00000436393;STRAND=+;CDS=c.1556C>T;AA=p.T519M;CNT=2;COSM88171
+TFGC50,2.0,3.0,2.0,2.0,D,male,64,IIA,0,1177,1,608,Antrum,1,1&2&3,1,0.0,,,TFGC50,FLT3,Nonsense_Mutation,p.Cys407*,0.105,.
+TFGC50,2.0,3.0,2.0,2.0,D,male,64,IIA,0,1177,1,608,Antrum,1,1&2&3,1,0.0,,,TFGC50,TP53,Nonsense_Mutation,p.Lys120*,0.301,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.358A>T;AA=p.K120*;CNT=1;COSM21593
+TFGC50,2.0,3.0,2.0,2.0,D,male,64,IIA,0,1177,1,608,Antrum,1,1&2&3,1,0.0,,,TFGC50,PKHD1,Splice_Site,p.Gly3386_Thr3408del,0.081,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,CDC73,Missense_Mutation,p.Arg441His,0.241,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,PLB1,Missense_Mutation,p.Arg1383Gln,0.261,GENE=PLB1;STRAND=+;GENE=PLB1;STRAND=+;CDS=c.4148G>A;AA=p.R1383Q;CNT=1;COSM1019919
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,HDAC4,Missense_Mutation,p.Ile90Val,0.167,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,MYD88,Missense_Mutation,p.Glu172Ala,0.163,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,CTNNB1,Missense_Mutation,p.Pro373Thr,0.282,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,CTNNB1,Missense_Mutation,p.Gly575Arg,0.251,GENE=CTNNB1;STRAND=+;GENE=CTNNB1;STRAND=+;CDS=c.1723G>A;AA=p.G575R;CNT=1;COSM4117552
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,RHOA,Missense_Mutation,p.Arg129Trp,0.148,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,HLA-B,Nonsense_Mutation,p.Trp157*,0.167,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,BCLAF1,Missense_Mutation,p.His28Arg,0.121,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,KMT2C,Missense_Mutation,p.Arg3507Gln,0.258,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,FRMD4A,Missense_Mutation,p.Arg929His,0.103,GENE=FRMD4A;STRAND=-;GENE=FRMD4A;STRAND=-;CDS=c.2786G>A;AA=p.R929H;CNT=1;COSM1297118
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,FRMD4A,Missense_Mutation,p.Phe241Ile,0.256,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,MYEOV,Missense_Mutation,p.Ile308Leu,0.242,GENE=MYEOV;STRAND=+;GENE=MYEOV;STRAND=+;CDS=c.922A>C;AA=p.I308L;CNT=1;COSM4036219
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,BRCA2,Missense_Mutation,p.Pro2329Ser,0.269,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,CYLD,Missense_Mutation,p.Val30Ile,0.05,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,NCOR1,Missense_Mutation,p.Arg310Cys,0.258,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,NF1,Missense_Mutation,p.Gly1649Trp,0.239,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,SERPINB8,Missense_Mutation,p.Gly151Trp,0.234,GENE=SERPINB8;STRAND=+;GENE=SERPINB8;STRAND=+;CDS=c.451G>T;AA=p.G151W;CNT=1;COSM3672698
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,CIC,Missense_Mutation,p.Pro42His,0.267,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,PPP2R1A,Missense_Mutation,p.Glu64Ala,0.303,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,SMC1A,Missense_Mutation,p.Lys1000Glu,0.27,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,FUBP1,Frame_Shift_Ins,p.Ser11fs,0.183,.
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,HDAC4,Frame_Shift_Del,p.Pro901fs,0.194,GENE=HDAC4;STRAND=-;GENE=HDAC4;STRAND=-;CDS=c.2703delC;AA=p.M902fs*55;CNT=11;COSM1180905
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,RNF43,Frame_Shift_Del,p.Gly659fs,0.233,GENE=RNF43;STRAND=-;GENE=RNF43;STRAND=-;CDS=c.1976delG;AA=p.G659fs*41;CNT=81;COSM270052
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,BCORL1,Frame_Shift_Del,p.Pro1681fs,0.196,GENE=BCORL1_ENST00000303743;STRAND=+;GENE=BCORL1_ENST00000303743;STRAND=+;CDS=c.5258delC;AA=p.P1755fs*20;CNT=25;COSM3730050
+TFGC60,3.0,3.0,2.0,2.0,D,female,66,IIB,0,1424,0,1152,Antrum,1,1&8,1,1.0,,,TFGC60,RBMX,start_lost,p.Met1del,0.111,.
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,ELF3,Missense_Mutation,p.Ile90Leu,0.088,.
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,RHOA,Missense_Mutation,p.Gly17Glu,0.112,GENE=RHOA;STRAND=-;GENE=RHOA;STRAND=-;CDS=c.50G>A;AA=p.G17E;CNT=3;COSM2849898
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,GLI3,Missense_Mutation,p.Asp678Ala,0.057,.
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,ERBB3,Missense_Mutation,p.Leu361Val,0.1,.
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,STAG2,Missense_Mutation,p.Arg1082Gln,0.122,.
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,KMT2D,In_Frame_Del,p.Cys5123_Met5124del,0.095,.
+TFGC62,2.0,3.0,2.0,2.0,D,male,68,IIIB,1,733,1,652,Body,0,0,1,0.0,,,TFGC62,TP53,exon_loss,,0.117,.
+TFGC64,1.0,1.0,1.0,3.0,D,female,55,IIIC,0,1371,0,1147,Body,1,1&6,0,0.0,,,TFGC64,FGFR2,Missense_Mutation,p.Met538Ile,0.059,.
+TFGC64,1.0,1.0,1.0,3.0,D,female,55,IIIC,0,1371,0,1147,Body,1,1&6,0,0.0,,,TFGC64,ERBB3,Missense_Mutation,p.Val104Met,0.294,GENE=ERBB3_ENST00000411731;STRAND=+;GENE=ERBB3_ENST00000411731;STRAND=+;CDS=c.310G>A;AA=p.V104M;CNT=24;COSM1152549
+TFGC64,1.0,1.0,1.0,3.0,D,female,55,IIIC,0,1371,0,1147,Body,1,1&6,0,0.0,,,TFGC64,TP53,Nonsense_Mutation,p.Arg306*,0.324,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.916C>T;AA=p.R306*;CNT=177;COSM10663
+TFGC64,1.0,1.0,1.0,3.0,D,female,55,IIIC,0,1371,0,1147,Body,1,1&6,0,0.0,,,TFGC64,ERBB2,Missense_Mutation,p.Val842Ile,0.118,GENE=ERBB2;STRAND=+;GENE=ERBB2;STRAND=+;CDS=c.2524G>A;AA=p.V842I;CNT=22;COSM14065
+TFGC64,1.0,1.0,1.0,3.0,D,female,55,IIIC,0,1371,0,1147,Body,1,1&6,0,0.0,,,TFGC64,SETBP1,Nonsense_Mutation,p.Glu307*,0.09,.
+TFGC64,1.0,1.0,1.0,3.0,D,female,55,IIIC,0,1371,0,1147,Body,1,1&6,0,0.0,,,TFGC64,MACF1,Frame_Shift_Del,p.Val2678fs,0.122,.
+TFGC66,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1407,0,828,Antrum,0,0,1,0.0,,,TFGC66,CARD11,Missense_Mutation,p.Arg918Trp,0.072,GENE=CARD11;STRAND=-;GENE=CARD11;STRAND=-;CDS=c.2752C>T;AA=p.R918W;CNT=1;COSM3929008
+TFGC66,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1407,0,828,Antrum,0,0,1,0.0,,,TFGC66,TP53,Missense_Mutation,p.Glu286Lys,0.327,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.856G>A;AA=p.E286K;CNT=91;COSM10726
+TFGC66,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1407,0,828,Antrum,0,0,1,0.0,,,TFGC66,NF1,Missense_Mutation,p.Gln2302Leu,0.138,.
+TFGC66,3.0,3.0,2.0,2.0,D,male,56,IIIB,0,1407,0,828,Antrum,0,0,1,0.0,,,TFGC66,TCF4,Missense_Mutation,p.Ser156Arg,0.079,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,PTPRC,Missense_Mutation,p.Ser665Arg,0.065,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,FAT4,Missense_Mutation,p.Leu894Arg,0.05,GENE=FAT4;STRAND=+;GENE=FAT4;STRAND=+;CDS=c.2681T>G;AA=p.L894R;CNT=1;COSM3428117
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,FAT4,Missense_Mutation,p.Val4948Gly,0.06,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,PGM5,Missense_Mutation,p.Gly337Trp,0.128,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,MUC6,Missense_Mutation,p.Glu1175Lys,0.095,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,NAA25,Missense_Mutation,p.Asp810Asn,0.103,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,SPTB,Missense_Mutation,p.Arg405Gln,0.254,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,TP53,Missense_Mutation,p.Arg248Trp,0.297,GENE=TP53_ENST00000413465;STRAND=-;GENE=TP53_ENST00000413465;STRAND=-;CDS=c.742C>T;AA=p.R248W;CNT=143;COSM120005
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,KIF2B,Missense_Mutation,p.Gln144Pro,0.053,.
+TFGC68,2.0,2.0,2.0,2.0,D,male,36,IIIA,0,1421,0,1330,Antrum,1,1&8,1,1.0,,,TFGC68,EP300,Missense_Mutation,p.Phe1343Leu,0.091,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,NOTCH2,Missense_Mutation,p.Ser1020Pro,0.274,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,PLEKHA6,Missense_Mutation,p.Ala674Thr,0.231,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,CEBPZ,Missense_Mutation,p.Pro627Leu,0.057,GENE=CEBPZ;STRAND=-;GENE=CEBPZ;STRAND=-;CDS=c.1880C>T;AA=p.P627L;CNT=1;COSM5190685
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,VHL,Missense_Mutation,p.Tyr156His,0.228,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,BAP1,Missense_Mutation,p.Arg722His,0.27,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,IMPG2,Nonsense_Mutation,p.Glu233*,0.312,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,FOXL2,Missense_Mutation,p.Arg148Cys,0.39,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,FAT4,Missense_Mutation,p.Ala1693Thr,0.273,GENE=FAT4;STRAND=+;GENE=FAT4;STRAND=+;CDS=c.5077G>A;AA=p.A1693T;CNT=3;COSM1050873
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,APC,Missense_Mutation,p.Ser643Thr,0.264,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,TSC1,Missense_Mutation,p.Gly38Asp,0.166,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,NOTCH1,Missense_Mutation,p.Ala2250Val,0.252,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,KMT2D,Missense_Mutation,p.Ala328Val,0.073,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,NF1,Missense_Mutation,p.Ala75Val,0.146,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,SMAD4,Missense_Mutation,p.Arg361Cys,0.797,GENE=SMAD4;STRAND=+;GENE=SMAD4;STRAND=+;CDS=c.1081C>T;AA=p.R361C;CNT=35;COSM14140
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,CIC,Missense_Mutation,p.Arg1277Cys,0.135,GENE=CIC;STRAND=+;GENE=CIC;STRAND=+;CDS=c.3829C>T;AA=p.R1277C;CNT=1;COSM4078725
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,CREBBP,Frame_Shift_Ins,p.Gly1411fs,0.229,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,SETD2,Frame_Shift_Del,p.Asp2064fs,0.065,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,BARX1,Frame_Shift_Del,p.Leu108fs,0.299,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,CREBBP,Frame_Shift_Del,p.Lys350fs,0.192,.
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,LMAN1,Splice_Site,,0.202,GENE=LMAN1;STRAND=-;GENE=LMAN1;STRAND=-;CDS=c.823-2delA;AA=p.?;CNT=1;COSM4698179
+TFGC72,1.0,3.0,1.0,2.0,D,female,41,IIIB,0,1390,0,1232,Body,1,1&8,0,1.0,,,TFGC72,STAG2,Frame_Shift_Del,p.Phe982fs,0.099,.
+TFGC74,3.0,2.0,2.0,2.0,D,female,30,IIIC,1,348,1,263,Antrum,1,1&6,1,1.0,,,TFGC74,TP53,Missense_Mutation,p.Arg175His,0.089,GENE=TP53_ENST00000455263;STRAND=-;GENE=TP53_ENST00000455263;STRAND=-;CDS=c.524G>A;AA=p.R175H;CNT=230;COSM1640851
+TFGC76,2.0,1.0,1.0,2.0,D,female,50,IIIC,1,716,0,504,Body,1,1&8,1,1.0,,,TFGC76,CTNND1,Nonsense_Mutation,p.Lys676*,0.119,.
+TFGC76,2.0,1.0,1.0,2.0,D,female,50,IIIC,1,716,0,504,Body,1,1&8,1,1.0,,,TFGC76,KMT2D,Nonsense_Mutation,p.Leu2986*,0.071,.
+TFGC76,2.0,1.0,1.0,2.0,D,female,50,IIIC,1,716,0,504,Body,1,1&8,1,1.0,,,TFGC76,KMT2D,Missense_Mutation,p.Gly1655Asp,0.141,.
+TFGC76,2.0,1.0,1.0,2.0,D,female,50,IIIC,1,716,0,504,Body,1,1&8,1,1.0,,,TFGC76,CDH1,Splice_Site,,0.129,.
+TFGC76,2.0,1.0,1.0,2.0,D,female,50,IIIC,1,716,0,504,Body,1,1&8,1,1.0,,,TFGC76,SOX9,Frame_Shift_Ins,p.Lys253fs,0.242,.
+TFGC80,3.0,2.0,2.0,2.0,D,female,72,IIIC,1,220,1,169,Antrum,0,0,1,0.0,,,TFGC80,BRAF,Missense_Mutation,p.Val600Glu,0.111,GENE=BRAF;STRAND=-;GENE=BRAF;STRAND=-;CDS=c.1799T>A;AA=p.V600E;CNT=23864;COSM476
+TFGC80,3.0,2.0,2.0,2.0,D,female,72,IIIC,1,220,1,169,Antrum,0,0,1,0.0,,,TFGC80,DCLK1,Missense_Mutation,p.Arg198Gln,0.149,.
+TFGC80,3.0,2.0,2.0,2.0,D,female,72,IIIC,1,220,1,169,Antrum,0,0,1,0.0,,,TFGC80,THBS1,Missense_Mutation,p.Arg517Cys,0.163,GENE=THBS1;STRAND=+;GENE=THBS1;STRAND=+;CDS=c.1549C>T;AA=p.R517C;CNT=1;COSM1708001
+TFGC80,3.0,2.0,2.0,2.0,D,female,72,IIIC,1,220,1,169,Antrum,0,0,1,0.0,,,TFGC80,ARID1A,Frame_Shift_Ins,p.Met1634fs,0.108,GENE=ARID1A;STRAND=+;GENE=ARID1A;STRAND=+;CDS=c.4893_4894insC;AA=p.M1634fs*14;CNT=3;COSM133022
+TFGC80,3.0,2.0,2.0,2.0,D,female,72,IIIC,1,220,1,169,Antrum,0,0,1,0.0,,,TFGC80,PIK3CA,In_Frame_Del,p.Lys111del,0.141,.
+TFGC80,3.0,2.0,2.0,2.0,D,female,72,IIIC,1,220,1,169,Antrum,0,0,1,0.0,,,TFGC80,MUC6,Frame_Shift_Del,p.Val1848fs,0.083,.
+TFGC84,1.0,1.0,1.0,2.0,D,male,61,IIIB,0,1280,0,722,Body,1,1&8,1,0.0,,,TFGC84,TP53,Missense_Mutation,p.Tyr220Cys,0.269,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.659A>G;AA=p.Y220C;CNT=292;COSM10758
+TFGC84,1.0,1.0,1.0,2.0,D,male,61,IIIB,0,1280,0,722,Body,1,1&8,1,0.0,,,TFGC84,GNAS,Missense_Mutation,p.Arg562His,0.107,.
+TFGC84,1.0,1.0,1.0,2.0,D,male,61,IIIB,0,1280,0,722,Body,1,1&8,1,0.0,,,TFGC84,MUC6,In_Frame_Del,p.Ser2266del,0.064,GENE=MUC6_ENST00000421673;STRAND=-;GENE=MUC6_ENST00000421673;STRAND=-;CDS=c.6795_6797delCTC;AA=p.S2266delS;CNT=2;COSM4746450
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,MEIS1,Missense_Mutation,p.Leu177Phe,0.134,.
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,RHOA,Missense_Mutation,p.Arg5Gln,0.269,GENE=RHOA;STRAND=-;GENE=RHOA;STRAND=-;CDS=c.14G>A;AA=p.R5Q;CNT=12;COSM190569
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,FBXW7,Nonsense_Mutation,p.Arg278*,0.196,GENE=FBXW7_ENST00000534231;STRAND=-;GENE=FBXW7_ENST00000534231;STRAND=-;CDS=c.115C>T;AA=p.R39*;CNT=10;COSM327087
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,CDH1,Splice_Site,,0.372,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.1320+1G>T;AA=p.?;CNT=3;COSM20830
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,RNF43,Missense_Mutation,p.Pro310Ser,0.151,.
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,SOX9,Missense_Mutation,p.Asn110Asp,0.052,.
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,RNF43,Frame_Shift_Ins,p.Arg392fs,0.126,.
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,MUC6,In_Frame_Del,p.Asp2390_Cys2396del,0.188,.
+TFGC88,2.0,,1.0,2.0,D,male,48,IIIA,0,1107,0,1009,Antrum,1,1&6,0,0.0,,,TFGC88,RNF43,Frame_Shift_Del,p.Glu149fs,0.079,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,TMEM63A,Missense_Mutation,p.Arg689Cys,0.182,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,VHL,Missense_Mutation,p.Arg182Gly,0.191,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,PTPN23,Missense_Mutation,p.Arg1427Cys,0.167,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,BAP1,Missense_Mutation,p.Arg150His,0.195,GENE=BAP1;STRAND=-;GENE=BAP1;STRAND=-;CDS=c.449G>A;AA=p.R150H;CNT=1;COSM4665179
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,KIT,Missense_Mutation,p.Ala621Thr,0.156,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,TET2,Missense_Mutation,p.His1382Leu,0.141,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,CARD11,Nonsense_Mutation,p.Arg1027*,0.127,GENE=CARD11;STRAND=-;GENE=CARD11;STRAND=-;CDS=c.3079C>T;AA=p.R1027*;CNT=1;COSM1199564
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,MET,Missense_Mutation,p.Gly643Val,0.125,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,KMT2C,Missense_Mutation,p.Thr408Met,0.122,GENE=KMT2C;STRAND=-;GENE=KMT2C;STRAND=-;CDS=c.1223C>T;AA=p.T408M;CNT=1;COSM600166
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,NOTCH1,Missense_Mutation,p.Gly881Ser,0.141,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,CNGA4,Missense_Mutation,p.Arg192Trp,0.126,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,CTNND1,Nonsense_Mutation,p.Arg820*,0.063,GENE=CTNND1;STRAND=+;GENE=CTNND1;STRAND=+;CDS=c.2440C>T;AA=p.R814*;CNT=6;COSM928727
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,ATM,Missense_Mutation,p.Cys1821Arg,0.145,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,KMT2D,Nonsense_Mutation,p.Arg5027*,0.18,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,NR1H4,Missense_Mutation,p.His327Arg,0.108,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,HNF1A,Missense_Mutation,p.Arg321His,0.16,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,BRCA2,Missense_Mutation,p.Ala2534Val,0.164,GENE=BRCA2_ENST00000544455;STRAND=+;GENE=BRCA2_ENST00000544455;STRAND=+;CDS=c.7601C>T;AA=p.A2534V;CNT=1;COSM4152748
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,DCLK1,Missense_Mutation,p.Arg304His,0.121,GENE=DCLK1_ENST00000379892;STRAND=-;GENE=DCLK1_ENST00000379892;STRAND=-;CDS=c.911G>A;AA=p.R304H;CNT=2;COSM3772810
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,SPTB,Missense_Mutation,p.Glu1819Lys,0.205,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,CREBBP,Missense_Mutation,p.Pro552Leu,0.072,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,ERBB2,Missense_Mutation,p.Arg678Gln,0.137,GENE=ERBB2;STRAND=+;GENE=ERBB2;STRAND=+;CDS=c.2033G>A;AA=p.R678Q;CNT=19;COSM436498
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,ERBB2,Missense_Mutation,p.Pro699Leu,0.164,GENE=ERBB2;STRAND=+;GENE=ERBB2;STRAND=+;CDS=c.2096C>T;AA=p.P699L;CNT=1;COSM4476768
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,SETBP1,Missense_Mutation,p.Thr1078Met,0.134,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,JAK3,Missense_Mutation,p.Cys1040Tyr,0.158,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,DDX3X,Missense_Mutation,p.Phe96Leu,0.266,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,KMT2D,In_Frame_Ins,p.Gln3608dup,0.068,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,RPL22,Frame_Shift_Del,p.Lys15fs,0.131,GENE=RPL22;STRAND=-;GENE=RPL22;STRAND=-;CDS=c.44delA;AA=p.K15fs*5;CNT=88;COSM179404
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,ACVR2A,Frame_Shift_Del,p.Lys437fs,0.204,GENE=ACVR2A;STRAND=+;GENE=ACVR2A;STRAND=+;CDS=c.1303delA;AA=p.K437fs*5;CNT=131;COSM252949
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,NDRG1,Frame_Shift_Del,p.Pro376fs,0.116,.
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,TP53,Frame_Shift_Del,p.Pro301fs,0.117,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.902delC;AA=p.P301fs*44;CNT=4;COSM45184
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,LMAN1,Frame_Shift_Del,p.Lys304fs,0.125,GENE=LMAN1;STRAND=-;GENE=LMAN1;STRAND=-;CDS=c.912delA;AA=p.E305fs*22;CNT=33;COSM1389372
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,LMAN1,Splice_Site,,0.156,GENE=LMAN1;STRAND=-;GENE=LMAN1;STRAND=-;CDS=c.823-2delA;AA=p.?;CNT=1;COSM4698179
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,ASXL1,Frame_Shift_Del,p.Gly645fs,0.151,GENE=ASXL1;STRAND=+;GENE=ASXL1;STRAND=+;CDS=c.1927delG;AA=p.G645fs*58;CNT=16;COSM1180918
+TFGC92,2.0,2.0,2.0,2.0,D,male,59,IIIB,1,1140,1,1019,Body,1,1&8,1,1.0,,,TFGC92,BCORL1,Frame_Shift_Del,p.Gln1001fs,0.054,GENE=BCORL1_ENST00000303743;STRAND=+;GENE=BCORL1_ENST00000303743;STRAND=+;CDS=c.2996delC;AA=p.Q1001fs*49;CNT=1;COSM4665555
+TFGC94,1.0,1.0,2.0,1.0,D,female,62,IB,0,1154,0,1117,Cardia,0,0,0,0.0,,,TFGC94,PKHD1,Missense_Mutation,p.Arg1909Gln,0.246,GENE=PKHD1_ENST00000340994;STRAND=-;GENE=PKHD1_ENST00000340994;STRAND=-;CDS=c.5726G>A;AA=p.R1909Q;CNT=2;COSM3354633
+TFGC94,1.0,1.0,2.0,1.0,D,female,62,IB,0,1154,0,1117,Cardia,0,0,0,0.0,,,TFGC94,MED12,Missense_Mutation,p.Gln2106Arg,0.324,.
+TFGC94,1.0,1.0,2.0,1.0,D,female,62,IB,0,1154,0,1117,Cardia,0,0,0,0.0,,,TFGC94,TP53,In_Frame_Ins,p.Asn239dup,0.685,.
+TFGC94,1.0,1.0,2.0,1.0,D,female,62,IB,0,1154,0,1117,Cardia,0,0,0,0.0,,,TFGC94,AR,In_Frame_Del,p.Gln73_Gln80del,0.095,.
+TFGC96,2.0,1.0,1.0,1.0,D,male,52,IV,0,1179,0,1088,Antrum,1,1&6,0,1.0,,,TFGC96,CDH1,Splice_Site,,0.225,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.1320+1G>T;AA=p.?;CNT=3;COSM20830
+TFGC96,2.0,1.0,1.0,1.0,D,male,52,IV,0,1179,0,1088,Antrum,1,1&6,0,1.0,,,TFGC96,KDM6A,Frame_Shift_Del,p.Thr1351fs,0.233,.
+TFGC98,1.0,2.0,2.0,1.0,D,male,75,IIIB,1,994,1,743,Cardia,1,1&8,1,0.0,,,TFGC98,TRIM23,Missense_Mutation,p.Asn92Lys,0.217,.
+TFGC98,1.0,2.0,2.0,1.0,D,male,75,IIIB,1,994,1,743,Cardia,1,1&8,1,0.0,,,TFGC98,ARID1A,Frame_Shift_Ins,p.Gln1327fs,0.182,GENE=ARID1A;STRAND=+;GENE=ARID1A;STRAND=+;CDS=c.3971_3972insC;AA=p.Q1327fs*11;CNT=1;COSM5207234
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,SPTA1,Missense_Mutation,p.Leu2014Gln,0.169,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,SPTA1,Missense_Mutation,p.Gln1982His,0.169,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,SPTA1,Missense_Mutation,p.Asn1268Lys,0.415,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,PIK3CA,Missense_Mutation,p.Met1043Val,0.712,GENE=PIK3CA;STRAND=+;GENE=PIK3CA;STRAND=+;CDS=c.3127A>G;AA=p.M1043V;CNT=30;COSM12591
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,FAT4,Missense_Mutation,p.Glu120Lys,0.624,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,FAT4,Missense_Mutation,p.Lys354Thr,0.537,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,FAT4,Missense_Mutation,p.Glu4554Val,0.125,GENE=FAT4_ENST00000394329;STRAND=+;GENE=FAT4_ENST00000394329;STRAND=+;CDS=c.13655A>T;AA=p.E4552V;CNT=1;COSM4683710
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,APC,Nonsense_Mutation,p.Glu601*,0.834,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,PKHD1,Missense_Mutation,p.Leu2570Arg,0.235,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,IKZF1,Missense_Mutation,p.Ser364Thr,0.444,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,KMT2C,Splice_Site,,0.167,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,RIMS2,Missense_Mutation,p.Ser627Arg,0.17,GENE=RIMS2_ENST00000406091;STRAND=+;GENE=RIMS2_ENST00000406091;STRAND=+;CDS=c.1879A>C;AA=p.S627R;CNT=3;COSM1144709
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,VIM,Missense_Mutation,p.Glu338Gly,0.464,.
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,TP53,Nonsense_Mutation,p.Ser183*,0.912,GENE=TP53_ENST00000455263;STRAND=-;GENE=TP53_ENST00000455263;STRAND=-;CDS=c.548C>A;AA=p.S183*;CNT=1;COSM2744813
+TFGC104,,1.0,1.0,1.0,D,male,62,IIB,0,1378,0,1286,Cardia,1,1&8,1,0.0,,,TFGC104,SMARCA4,Missense_Mutation,p.Arg1437Trp,0.287,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,DNMT3A,Missense_Mutation,p.Ala246Asp,0.738,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,PLB1,Missense_Mutation,p.Arg247Trp,0.158,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,KIT,Missense_Mutation,p.Lys826Glu,0.088,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,TET2,Missense_Mutation,p.Gln652His,0.234,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,FAT4,Missense_Mutation,p.Phe1161Leu,0.152,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,PDGFRB,Missense_Mutation,p.Pro588His,0.055,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,TXNRD1,Missense_Mutation,p.Arg78Cys,0.244,GENE=TXNRD1_ENST00000525566;STRAND=+;GENE=TXNRD1_ENST00000525566;STRAND=+;CDS=c.232C>T;AA=p.R78C;CNT=2;COSM288582
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,KIF2B,Missense_Mutation,p.Arg174His,0.759,GENE=KIF2B;STRAND=+;GENE=KIF2B;STRAND=+;CDS=c.521G>A;AA=p.R174H;CNT=4;COSM706819
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,ALPK2,Missense_Mutation,p.Lys880Gln,0.192,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,ERG,Nonsense_Mutation,p.Ser420*,0.154,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,BRCA2,Frame_Shift_Del,p.Thr2197fs,0.334,.
+TFGC106,2.0,2.0,1.0,1.0,D,male,73,IIB,0,1078,0,980,Body,1,1&6,1,0.0,,,TFGC106,BRCA2,Frame_Shift_Del,p.Glu2558fs,0.186,.
+TFGC108,3.0,2.0,2.0,2.0,D,male,67,IIIB,1,415,0,329,Antrum,1,1&6,1,0.0,,,TFGC108,PTPRC,Missense_Mutation,p.Cys311Phe,0.181,.
+TFGC108,3.0,2.0,2.0,2.0,D,male,67,IIIB,1,415,0,329,Antrum,1,1&6,1,0.0,,,TFGC108,BNC2,Missense_Mutation,p.Asn407Lys,0.319,.
+TFGC108,3.0,2.0,2.0,2.0,D,male,67,IIIB,1,415,0,329,Antrum,1,1&6,1,0.0,,,TFGC108,CDKN2A,Nonsense_Mutation,p.Arg58*,0.293,GENE=CDKN2A_ENST00000498124;STRAND=-;GENE=CDKN2A_ENST00000498124;STRAND=-;CDS=c.172C>T;AA=p.R58*;CNT=14;COSM1624870
+TFGC108,3.0,2.0,2.0,2.0,D,male,67,IIIB,1,415,0,329,Antrum,1,1&6,1,0.0,,,TFGC108,TP53,Frame_Shift_Del,p.Arg282fs,0.238,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.844delC;AA=p.R282fs*63;CNT=1;COSM43813
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,SPTA1,Missense_Mutation,p.Leu1520Met,0.312,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,PTPRC,Missense_Mutation,p.Phe1051Leu,0.149,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,DNAH7,Missense_Mutation,p.Thr1643Pro,0.254,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,HDAC4,Missense_Mutation,p.Tyr955Cys,0.148,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,RHOA,Missense_Mutation,p.Tyr42Cys,0.249,GENE=RHOA;STRAND=-;GENE=RHOA;STRAND=-;CDS=c.125A>G;AA=p.Y42C;CNT=18;COSM2849892
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,PIK3CA,Missense_Mutation,p.Gln546Lys,0.247,GENE=PIK3CA_ENST00000263967;STRAND=+;GENE=PIK3CA_ENST00000263967;STRAND=+;CDS=c.1636C>A;AA=p.Q546K;CNT=29;COSM255876
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,PKHD1,Missense_Mutation,p.Val3066Gly,0.179,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,RIMS2,Missense_Mutation,p.Leu448Val,0.186,GENE=RIMS2_ENST00000406091;STRAND=+;GENE=RIMS2_ENST00000406091;STRAND=+;CDS=c.1342T>G;AA=p.L448V;CNT=2;COSM3270279
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,RIMS2,Missense_Mutation,p.Ser627Arg,0.187,GENE=RIMS2_ENST00000406091;STRAND=+;GENE=RIMS2_ENST00000406091;STRAND=+;CDS=c.1879A>C;AA=p.S627R;CNT=3;COSM1144709
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,VPS13A,Missense_Mutation,p.Gln2358Lys,0.209,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,CDH1,Missense_Mutation,p.Asp400Val,0.43,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.1199A>T;AA=p.D400V;CNT=1;COSM4062183
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,RNF43,Missense_Mutation,p.Ile186Ser,0.41,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,SETBP1,Missense_Mutation,p.Gln233Leu,0.21,.
+TFGC110,1.0,2.0,1.0,2.0,D,male,60,IIIC,0,956,0,893,Cardia,0,0,1,0.0,,,TFGC110,SETBP1,Missense_Mutation,p.Asn234Tyr,0.209,.
+TFGC114,3.0,2.0,2.0,2.0,D,male,44,IIA,0,1077,0,867,Antrum,1,1&8,0,1.0,,,TFGC114,CDH1,Splice_Site,,0.321,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.1320+1G>A;AA=p.?;CNT=1;COSM2996774
+TFGC114,3.0,2.0,2.0,2.0,D,male,44,IIA,0,1077,0,867,Antrum,1,1&8,0,1.0,,,TFGC114,SMAD2,Missense_Mutation,p.Ser467Pro,0.332,GENE=SMAD2;STRAND=-;GENE=SMAD2;STRAND=-;CDS=c.1399T>C;AA=p.S467P;CNT=1;COSM5118504
+TFGC114,3.0,2.0,2.0,2.0,D,male,44,IIA,0,1077,0,867,Antrum,1,1&8,0,1.0,,,TFGC114,SMARCB1,Missense_Mutation,p.Arg374Gln,0.103,GENE=SMARCB1;STRAND=+;GENE=SMARCB1;STRAND=+;CDS=c.1121G>A;AA=p.R374Q;CNT=4;COSM998
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,SPTA1,Missense_Mutation,p.Glu2047Lys,0.164,.
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,CDKN2A,Missense_Mutation,p.Pro81Thr,0.263,GENE=CDKN2A;STRAND=-;GENE=CDKN2A;STRAND=-;CDS=c.241C>A;AA=p.P81T;CNT=1;COSM87426
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,TP53,Missense_Mutation,p.Cys238Tyr,0.33,GENE=TP53_ENST00000455263;STRAND=-;GENE=TP53_ENST00000455263;STRAND=-;CDS=c.713G>A;AA=p.C238Y;CNT=26;COSM1649400
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,PPP2R1A,Missense_Mutation,p.Arg381Gln,0.119,.
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,AR,Missense_Mutation,p.Arg608Gln,0.293,GENE=AR;STRAND=+;GENE=AR;STRAND=+;CDS=c.1823G>A;AA=p.R608Q;CNT=1;COSM4836194
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,MET,Frame_Shift_Del,p.Thr1235fs,0.164,.
+TFGC116,1.0,1.0,2.0,2.0,D,female,57,IIIC,0,1102,1,0,Cardia,1,1&8,1,1.0,,,TFGC116,ATRX,exon_loss,,0.077,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,ARID1A,Nonsense_Mutation,p.Arg1335*,0.321,GENE=ARID1A;STRAND=+;GENE=ARID1A;STRAND=+;CDS=c.4003C>T;AA=p.R1335*;CNT=16;COSM907723
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,THRAP3,Missense_Mutation,p.Gly292Arg,0.349,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,MACF1,Missense_Mutation,p.Ala3805Val,0.305,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,PLB1,Missense_Mutation,p.Arg956Cys,0.327,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,CTNNA2,Missense_Mutation,p.Ala209Thr,0.348,GENE=CTNNA2;STRAND=+;GENE=CTNNA2;STRAND=+;CDS=c.625G>A;AA=p.A209T;CNT=4;COSM271185
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,CASP8,Missense_Mutation,p.Ile481Thr,0.277,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,PBRM1,Missense_Mutation,p.Phe1252Leu,0.06,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,TNPO1,Splice_Site,,0.341,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,KMT2C,Missense_Mutation,p.Ala829Thr,0.084,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,RAD21,Missense_Mutation,p.Arg437His,0.188,GENE=RAD21;STRAND=-;GENE=RAD21;STRAND=-;CDS=c.1310G>A;AA=p.R437H;CNT=2;COSM1095328
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,NDRG1,Missense_Mutation,p.Arg361Cys,0.146,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,NDRG1,Missense_Mutation,p.Arg322Cys,0.205,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,VPS13A,Missense_Mutation,p.Thr1844Ala,0.106,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,MEN1,Missense_Mutation,p.Ala579Thr,0.392,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,KMT2D,Missense_Mutation,p.Thr5018Ala,0.06,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,KMT2D,Missense_Mutation,p.Asn2254Lys,0.343,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,KMT2D,Missense_Mutation,p.Val1205Ile,0.304,GENE=MLL2_ENST00000301067;STRAND=-;GENE=MLL2_ENST00000301067;STRAND=-;CDS=c.3613G>A;AA=p.V1205I;CNT=1;COSM940081
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,AKT1,Missense_Mutation,p.Tyr152Cys,0.3,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,AXIN1,Missense_Mutation,p.Gly528Ser,0.365,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,DNMT1,Missense_Mutation,p.Asn662Ser,0.065,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,JAK3,Missense_Mutation,p.Leu570Pro,0.318,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,BAX,stop_lost,p.Ter115Argext*?,0.391,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,DDX3X,Missense_Mutation,p.Asn662Ser,0.286,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,IL2RG,Missense_Mutation,p.Ser51Gly,0.261,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,STAG2,Missense_Mutation,p.Ser941Pro,0.057,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,SPTA1,Frame_Shift_Ins,p.Thr114fs,0.202,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,MSH6,Frame_Shift_Ins,p.Arg248fs,0.206,GENE=MSH6;STRAND=+;GENE=MSH6;STRAND=+;CDS=c.734_735insA;AA=p.R248fs*8;CNT=2;COSM4703375
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,HLA-A,Frame_Shift_Ins,p.Lys210fs,0.169,GENE=HLA-A;STRAND=+;GENE=HLA-A;STRAND=+;CDS=c.620_621insC;AA=p.K210fs*11;CNT=1;COSM4690605
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,CIC,Frame_Shift_Ins,p.His112fs,0.208,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,ASXL1,Frame_Shift_Ins,p.Gly646fs,0.134,GENE=ASXL1;STRAND=+;GENE=ASXL1;STRAND=+;CDS=c.1926_1927insG;AA=p.G646fs*12;CNT=12;COSM1411076
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,JAK1,Frame_Shift_Del,p.Lys860fs,0.078,GENE=JAK1;STRAND=-;GENE=JAK1;STRAND=-;CDS=c.2580delA;AA=p.K860fs*16;CNT=9;COSM1343905
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,MYCN,Frame_Shift_Del,p.Pro45fs,0.255,GENE=MYCN;STRAND=+;GENE=MYCN;STRAND=+;CDS=c.128delC;AA=p.P45fs*86;CNT=9;COSM1400341
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,FBXW7,Frame_Shift_Del,p.Ser195fs,0.088,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,SEC63,Frame_Shift_Del,p.Lys535fs,0.283,.
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,LARP4B,Frame_Shift_Del,p.Thr163fs,0.215,GENE=LARP4B;STRAND=-;GENE=LARP4B;STRAND=-;CDS=c.487delA;AA=p.T163fs*47;CNT=37;COSM1638669
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,PAX6,Frame_Shift_Del,p.Pro389fs,0.227,GENE=PAX6;STRAND=-;GENE=PAX6;STRAND=-;CDS=c.1166delC;AA=p.P389fs*7;CNT=26;COSM391068
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,CTNND1,Frame_Shift_Del,p.Asn449fs,0.241,GENE=CTNND1;STRAND=+;GENE=CTNND1;STRAND=+;CDS=c.1341delA;AA=p.N449fs*49;CNT=2;COSM4334164
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,TMPO,Frame_Shift_Del,p.Thr99fs,0.258,GENE=TMPO_ENST00000266732;STRAND=+;GENE=TMPO_ENST00000266732;STRAND=+;CDS=c.288delA;AA=p.T99fs*12;CNT=15;COSM1180795
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,NAA25,Frame_Shift_Del,p.Asn259fs,0.213,GENE=NAA25;STRAND=-;GENE=NAA25;STRAND=-;CDS=c.776delA;AA=p.N259fs*9;CNT=1;COSM1948136
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,LMAN1,Frame_Shift_Del,p.Lys304fs,0.36,GENE=LMAN1;STRAND=-;GENE=LMAN1;STRAND=-;CDS=c.912delA;AA=p.E305fs*22;CNT=33;COSM1389372
+TFGC120,3.0,1.0,2.0,2.0,D,male,68,IIIA,0,774,0,731,Body,0,0,1,0.0,,,TFGC120,KMT2B,Frame_Shift_Del,p.Arg217fs,0.05,.
+TFGC122,3.0,3.0,2.0,2.0,D,female,63,IIA,0,920,0,745,Body,1,1&6,0,0.0,,,TFGC122,GRHL2,Nonsense_Mutation,p.Arg290*,0.088,.
+TFGC122,3.0,3.0,2.0,2.0,D,female,63,IIA,0,920,0,745,Body,1,1&6,0,0.0,,,TFGC122,KMT2D,Nonsense_Mutation,p.Gln3271*,0.096,.
+TFGC124,3.0,2.0,2.0,2.0,D,male,75,IIIA,0,934,0,527,Antrum,1,8,0,0.0,,,TFGC124,GNAS,Missense_Mutation,p.Pro218Leu,0.06,.
+TFGC124,3.0,2.0,2.0,2.0,D,male,75,IIIA,0,934,0,527,Antrum,1,8,0,0.0,,,TFGC124,STAG2,Missense_Mutation,p.Leu1010Val,0.1,.
+TFGC124,3.0,2.0,2.0,2.0,D,male,75,IIIA,0,934,0,527,Antrum,1,8,0,0.0,,,TFGC124,TP53,Frame_Shift_Del,p.Ser20fs,0.071,.
+TFGC126,2.0,1.0,1.0,3.0,D,male,52,IIA,0,967,0,153,Cardia,0,0,0,1.0,,,TFGC126,TP53,Missense_Mutation,p.Arg175His,0.277,GENE=TP53_ENST00000455263;STRAND=-;GENE=TP53_ENST00000455263;STRAND=-;CDS=c.524G>A;AA=p.R175H;CNT=230;COSM1640851
+TFGC126,2.0,1.0,1.0,3.0,D,male,52,IIA,0,967,0,153,Cardia,0,0,0,1.0,,,TFGC126,ABCA10,Missense_Mutation,p.Lys648Thr,0.14,.
+TFGC130,1.0,2.0,1.0,2.0,D,female,65,IIIB,0,902,0,376,Antrum,1,1&8,1,1.0,,,TFGC130,DNMT3A,Missense_Mutation,p.Val14Met,0.281,.
+TFGC130,1.0,2.0,1.0,2.0,D,female,65,IIIB,0,902,0,376,Antrum,1,1&8,1,1.0,,,TFGC130,RHOA,Missense_Mutation,p.Leu57Val,0.312,GENE=RHOA;STRAND=-;GENE=RHOA;STRAND=-;CDS=c.169T>G;AA=p.L57V;CNT=8;COSM4118491
+TFGC130,1.0,2.0,1.0,2.0,D,female,65,IIIB,0,902,0,376,Antrum,1,1&8,1,1.0,,,TFGC130,CDK6,Missense_Mutation,p.Val47Met,0.251,.
+TFGC130,1.0,2.0,1.0,2.0,D,female,65,IIIB,0,902,0,376,Antrum,1,1&8,1,1.0,,,TFGC130,RBM28,Missense_Mutation,p.Asp294Asn,0.216,.
+TFGC130,1.0,2.0,1.0,2.0,D,female,65,IIIB,0,902,0,376,Antrum,1,1&8,1,1.0,,,TFGC130,TP53,Missense_Mutation,p.Arg248Gln,0.381,GENE=TP53_ENST00000455263;STRAND=-;GENE=TP53_ENST00000455263;STRAND=-;CDS=c.743G>A;AA=p.R248Q;CNT=153;COSM1640830
+TFGC131,1.0,1.0,1.0,1.0,D,female,61,IIIA,0,1113,0,671,Antrum,0,0,1,1.0,,,TFGC131,CSF1R,Missense_Mutation,p.Arg146Gln,0.116,.
+TFGC131,1.0,1.0,1.0,1.0,D,female,61,IIIA,0,1113,0,671,Antrum,0,0,1,1.0,,,TFGC131,TP53,Frame_Shift_Del,p.Ser99fs,0.139,GENE=TP53_ENST00000269305;STRAND=-;GENE=TP53_ENST00000269305;STRAND=-;CDS=c.295delT;AA=p.S99fs*24;CNT=2;COSM2745040
+TFGC134,1.0,2.0,1.0,2.0,D,male,28,IIB,0,1185,0,388,Body,1,1&8,1,1.0,,,TFGC134,RHOA,Missense_Mutation,p.Val43Ala,0.079,.
+TFGC134,1.0,2.0,1.0,2.0,D,male,28,IIB,0,1185,0,388,Body,1,1&8,1,1.0,,,TFGC134,DCLK1,Nonsense_Mutation,p.Glu378*,0.052,.
+TFGC134,1.0,2.0,1.0,2.0,D,male,28,IIB,0,1185,0,388,Body,1,1&8,1,1.0,,,TFGC134,CDH1,Missense_Mutation,p.Asp254Tyr,0.063,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.760G>T;AA=p.D254Y;CNT=6;COSM19516
+TFGC134,1.0,2.0,1.0,2.0,D,male,28,IIB,0,1185,0,388,Body,1,1&8,1,1.0,,,TFGC134,CDH1,Nonsense_Mutation,p.Tyr755*,0.062,.
+TFGC134,1.0,2.0,1.0,2.0,D,male,28,IIB,0,1185,0,388,Body,1,1&8,1,1.0,,,TFGC134,TP53,Missense_Mutation,p.Arg273His,0.081,GENE=TP53_ENST00000420246;STRAND=-;GENE=TP53_ENST00000420246;STRAND=-;CDS=c.818G>A;AA=p.R273H;CNT=172;COSM3356963
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,PRRX1,Missense_Mutation,p.Leu65Pro,0.074,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,PCBP1,Missense_Mutation,p.Ala258Thr,0.103,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,CASP8,Missense_Mutation,p.Arg292Gln,0.064,GENE=CASP8_ENST00000358485;STRAND=+;GENE=CASP8_ENST00000358485;STRAND=+;CDS=c.875G>A;AA=p.R292Q;CNT=2;COSM418910
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,RHOA,Missense_Mutation,p.Glu40Ala,0.05,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,CHRD,Missense_Mutation,p.Arg712His,0.082,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,CTNND1,Missense_Mutation,p.Pro105Leu,0.078,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,SPTB,Nonsense_Mutation,p.Gln1365*,0.065,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,SETBP1,Missense_Mutation,p.Thr1260Met,0.083,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,CIC,Frame_Shift_Ins,p.Leu510fs,0.065,GENE=CIC;STRAND=+;GENE=CIC;STRAND=+;CDS=c.1520_1521insC;AA=p.L510fs*4;CNT=1;COSM5209467
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,RPL22,Frame_Shift_Del,p.Lys15fs,0.058,GENE=RPL22;STRAND=-;GENE=RPL22;STRAND=-;CDS=c.44delA;AA=p.K15fs*5;CNT=88;COSM179404
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,HDAC4,Frame_Shift_Del,p.Pro901fs,0.068,GENE=HDAC4;STRAND=-;GENE=HDAC4;STRAND=-;CDS=c.2703delC;AA=p.M902fs*55;CNT=11;COSM1180905
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,KMT2C,Frame_Shift_Del,p.Phe4496fs,0.062,GENE=KMT2C;STRAND=-;GENE=KMT2C;STRAND=-;CDS=c.13488delT;AA=p.F4496fs*21;CNT=5;COSM1181044
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,ARID2,Frame_Shift_Del,p.Leu202fs,0.053,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,TMPO,Frame_Shift_Del,p.Thr99fs,0.059,GENE=TMPO_ENST00000266732;STRAND=+;GENE=TMPO_ENST00000266732;STRAND=+;CDS=c.288delA;AA=p.T99fs*12;CNT=15;COSM1180795
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,MAP2K4,Frame_Shift_Del,p.Leu379fs,0.053,.
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,RNF43,Frame_Shift_Del,p.Gly659fs,0.088,GENE=RNF43;STRAND=-;GENE=RNF43;STRAND=-;CDS=c.1976delG;AA=p.G659fs*41;CNT=81;COSM270052
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,LMAN1,Splice_Site,,0.106,GENE=LMAN1;STRAND=-;GENE=LMAN1;STRAND=-;CDS=c.823-2delA;AA=p.?;CNT=1;COSM4698179
+TFGC138,3.0,1.0,2.0,2.0,D,male,53,IIA,0,1044,0,909,Antrum,1,1&8,1,1.0,,,TFGC138,RBMX,Frame_Shift_Del,p.Met1fs,0.163,GENE=RBMX_ENST00000431446;STRAND=-;GENE=RBMX_ENST00000431446;STRAND=-;CDS=c.1delA;AA=p.?;CNT=25;COSM1465896
+TFGC140,3.0,2.0,2.0,2.0,D,male,57,IIIB,0,1044,1,841,Cardia,1,1&8,1,1.0,,,TFGC140,FLI1,Missense_Mutation,p.Thr424Asn,0.094,.
+TFGC140,3.0,2.0,2.0,2.0,D,male,57,IIIB,0,1044,1,841,Cardia,1,1&8,1,1.0,,,TFGC140,DCLK1,Nonsense_Mutation,p.Arg392*,0.091,GENE=DCLK1_ENST00000379893;STRAND=-;GENE=DCLK1_ENST00000379893;STRAND=-;CDS=c.1174C>T;AA=p.R392*;CNT=1;COSM1152645
+TFGC140,3.0,2.0,2.0,2.0,D,male,57,IIIB,0,1044,1,841,Cardia,1,1&8,1,1.0,,,TFGC140,TP53,Missense_Mutation,p.Ala159Val,0.13,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.476C>T;AA=p.A159V;CNT=46;COSM11148
+TFGC142,1.0,3.0,2.0,2.0,D,female,36,IIB,0,1042,0,585,Body,1,1&8,1,1.0,,,TFGC142,BAP1,Missense_Mutation,p.Val71Met,0.062,.
+TFGC142,1.0,3.0,2.0,2.0,D,female,36,IIB,0,1042,0,585,Body,1,1&8,1,1.0,,,TFGC142,KMT2D,Nonsense_Mutation,p.Gln3276*,0.075,.
+TFGC142,1.0,3.0,2.0,2.0,D,female,36,IIB,0,1042,0,585,Body,1,1&8,1,1.0,,,TFGC142,PTPN11,Missense_Mutation,p.Glu76Gly,0.058,GENE=PTPN11;STRAND=+;GENE=PTPN11;STRAND=+;CDS=c.227A>G;AA=p.E76G;CNT=35;COSM13017
+TFGC142,1.0,3.0,2.0,2.0,D,female,36,IIB,0,1042,0,585,Body,1,1&8,1,1.0,,,TFGC142,CDH1,Missense_Mutation,p.Arg154Ser,0.234,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,ARID1A,Nonsense_Mutation,p.Arg1989*,0.365,GENE=ARID1A;STRAND=+;GENE=ARID1A;STRAND=+;CDS=c.5965C>T;AA=p.R1989*;CNT=40;COSM51425
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,NRAS,Missense_Mutation,p.Gln61His,0.262,GENE=NRAS;STRAND=-;GENE=NRAS;STRAND=-;CDS=c.183A>T;AA=p.Q61H;CNT=85;COSM585
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,SPTA1,Missense_Mutation,p.Lys617Thr,0.079,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,THSD7B,Nonsense_Mutation,p.Cys1443*,0.167,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,ACVR2A,Missense_Mutation,p.Phe341Val,0.172,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,DNAH7,Missense_Mutation,p.Ile2826Met,0.052,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,PIK3CA,Missense_Mutation,p.Glu542Lys,0.175,GENE=PIK3CA_ENST00000263967;STRAND=+;GENE=PIK3CA_ENST00000263967;STRAND=+;CDS=c.1624G>A;AA=p.E542K;CNT=163;COSM125369
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,TET2,Missense_Mutation,p.Leu694Arg,0.221,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,FBXW7,Missense_Mutation,p.Tyr519Ser,0.21,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,APC,Missense_Mutation,p.Ser2143Ala,0.09,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,PKHD1,Missense_Mutation,p.Arg2930Gln,0.162,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,PKHD1,Missense_Mutation,p.Leu2513Val,0.067,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,KMT2C,Missense_Mutation,p.Lys4758Arg,0.09,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,KMT2C,Missense_Mutation,p.Gln4514His,0.105,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,MAP2K1,Missense_Mutation,p.Lys57Thr,0.205,GENE=MAP2K1;STRAND=+;GENE=MAP2K1;STRAND=+;CDS=c.170A>C;AA=p.K57T;CNT=2;COSM4756761
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,BCL2,Missense_Mutation,p.Asp34Val,0.104,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,ERG,Missense_Mutation,p.Leu202His,0.07,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,KDM6A,Missense_Mutation,p.Phe102Val,0.341,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,GRHL2,In_Frame_Ins,p.Gln182dup,0.165,.
+TFGC144,3.0,3.0,2.0,2.0,D,male,43,IIIB,0,856,0,548,Antrum,1,1&6,1,0.0,,,TFGC144,CTNNB1,Frame_Shift_Del,p.Lys335fs,0.059,.
+TFGC146,3.0,3.0,1.0,2.0,D,male,25,IIIA,0,1057,0,757,Antrum,1,1&8,1,1.0,,,TFGC146,PBX1,Missense_Mutation,p.Ser426Thr,0.082,.
+TFGC146,3.0,3.0,1.0,2.0,D,male,25,IIIA,0,1057,0,757,Antrum,1,1&8,1,1.0,,,TFGC146,THSD7B,Missense_Mutation,p.Gln381His,0.147,.
+TFGC148,1.0,2.0,2.0,1.0,D,male,54,IIA,0,1063,0,727,Body,1,1&8,0,1.0,,,TFGC148,IDH1,Missense_Mutation,p.Ser6Cys,0.333,.
+TFGC148,1.0,2.0,2.0,1.0,D,male,54,IIA,0,1063,0,727,Body,1,1&8,0,1.0,,,TFGC148,CUL3,Missense_Mutation,p.Arg614Thr,0.293,.
+TFGC148,1.0,2.0,2.0,1.0,D,male,54,IIA,0,1063,0,727,Body,1,1&8,0,1.0,,,TFGC148,PIK3CA,Missense_Mutation,p.Gln546Arg,0.477,GENE=PIK3CA_ENST00000263967;STRAND=+;GENE=PIK3CA_ENST00000263967;STRAND=+;CDS=c.1637A>G;AA=p.Q546R;CNT=24;COSM446012
+TFGC148,1.0,2.0,2.0,1.0,D,male,54,IIA,0,1063,0,727,Body,1,1&8,0,1.0,,,TFGC148,NOTCH1,Missense_Mutation,p.Met1806Ile,0.281,.
+TFGC148,1.0,2.0,2.0,1.0,D,male,54,IIA,0,1063,0,727,Body,1,1&8,0,1.0,,,TFGC148,KRAS,Missense_Mutation,p.Gly12Asp,0.303,GENE=KRAS;STRAND=-;GENE=KRAS;STRAND=-;CDS=c.35G>A;AA=p.G12D;CNT=13047;COSM521
+TFGC148,1.0,2.0,2.0,1.0,D,male,54,IIA,0,1063,0,727,Body,1,1&8,0,1.0,,,TFGC148,APC,Frame_Shift_Del,p.Thr626fs,0.397,.
+TFGC150,3.0,2.0,1.0,2.0,D,male,60,IIIB,1,279,1,188,Antrum,1,1&8,1,0.0,,,TFGC150,EYA4,Missense_Mutation,p.Tyr580Cys,0.115,.
+TFGC150,3.0,2.0,1.0,2.0,D,male,60,IIIB,1,279,1,188,Antrum,1,1&8,1,0.0,,,TFGC150,SMARCA4,Missense_Mutation,p.Leu1222Pro,0.139,.
+TFGC150,3.0,2.0,1.0,2.0,D,male,60,IIIB,1,279,1,188,Antrum,1,1&8,1,0.0,,,TFGC150,TP53,In_Frame_Ins,p.Thr256dup,0.149,.
+TFGC152,1.0,1.0,2.0,3.0,D,male,56,IIIB,0,1092,1,0,Antrum,1,1&8,1,0.0,,,TFGC152,SPTA1,Missense_Mutation,p.Val1736Ala,0.364,.
+TFGC152,1.0,1.0,2.0,3.0,D,male,56,IIIB,0,1092,1,0,Antrum,1,1&8,1,0.0,,,TFGC152,FAT4,Missense_Mutation,p.Thr3729Pro,0.131,.
+TFGC152,1.0,1.0,2.0,3.0,D,male,56,IIIB,0,1092,1,0,Antrum,1,1&8,1,0.0,,,TFGC152,TP53,Nonsense_Mutation,p.Arg213*,0.234,GENE=TP53_ENST00000413465;STRAND=-;GENE=TP53_ENST00000413465;STRAND=-;CDS=c.637C>T;AA=p.R213*;CNT=127;COSM99615
+TFGC152,1.0,1.0,2.0,3.0,D,male,56,IIIB,0,1092,1,0,Antrum,1,1&8,1,0.0,,,TFGC152,CDH1,Frame_Shift_Del,p.Tyr37fs,0.212,.
+TFGC158,3.0,3.0,2.0,2.0,D,female,51,IIA,1,916,1,730,Antrum,1,1&8,1,0.0,,,TFGC158,KMT2D,Nonsense_Mutation,p.Arg2687*,0.09,GENE=KMT2D;STRAND=-;GENE=KMT2D;STRAND=-;CDS=c.7249C>T;AA=p.R2417*;CNT=4;COSM220685
+TFGC158,3.0,3.0,2.0,2.0,D,female,51,IIA,1,916,1,730,Antrum,1,1&8,1,0.0,,,TFGC158,CDH1,Missense_Mutation,p.Asn256Ser,0.079,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.767A>G;AA=p.N256S;CNT=1;COSM4766182
+TFGC158,3.0,3.0,2.0,2.0,D,female,51,IIA,1,916,1,730,Antrum,1,1&8,1,0.0,,,TFGC158,CDH1,Missense_Mutation,p.Arg732Gln,0.058,GENE=CDH1;STRAND=+;GENE=CDH1;STRAND=+;CDS=c.2195G>A;AA=p.R732Q;CNT=7;COSM972800
+TFGC158,3.0,3.0,2.0,2.0,D,female,51,IIA,1,916,1,730,Antrum,1,1&8,1,0.0,,,TFGC158,ERBB2,Missense_Mutation,p.Val777Leu,0.058,GENE=ERBB2_ENST00000541774;STRAND=+;GENE=ERBB2_ENST00000541774;STRAND=+;CDS=c.2284G>T;AA=p.V762L;CNT=2;COSM5120702
+TFGC158,3.0,3.0,2.0,2.0,D,female,51,IIA,1,916,1,730,Antrum,1,1&8,1,0.0,,,TFGC158,ERBB2,Missense_Mutation,p.Thr862Ala,0.058,GENE=ERBB2;STRAND=+;GENE=ERBB2;STRAND=+;CDS=c.2584A>G;AA=p.T862A;CNT=5;COSM88803
+TFGC160,2.0,3.0,1.0,2.0,D,male,30,IIA,0,633,0,293,Body,1,1&8,0,1.0,,,TFGC160,CTNNB1,Missense_Mutation,p.His470Arg,0.123,.
+TFGC160,2.0,3.0,1.0,2.0,D,male,30,IIA,0,633,0,293,Body,1,1&8,0,1.0,,,TFGC160,BAP1,Missense_Mutation,p.Arg179Trp,0.095,GENE=BAP1;STRAND=-;GENE=BAP1;STRAND=-;CDS=c.535C>T;AA=p.R179W;CNT=2;COSM584258
+TFGC160,2.0,3.0,1.0,2.0,D,male,30,IIA,0,633,0,293,Body,1,1&8,0,1.0,,,TFGC160,CDH1,Missense_Mutation,p.Asp257Ala,0.255,.
+TFGC164,2.0,2.0,1.0,2.0,D,male,62,IIB,0,801,0,624,Body,1,1&8,1,0.0,,,TFGC164,CUL1,Missense_Mutation,p.Gln607Leu,0.344,.
+TFGC164,2.0,2.0,1.0,2.0,D,male,62,IIB,0,801,0,624,Body,1,1&8,1,0.0,,,TFGC164,KRAS,Missense_Mutation,p.Gly12Val,0.473,GENE=KRAS;STRAND=-;GENE=KRAS;STRAND=-;CDS=c.35G>T;AA=p.G12V;CNT=8872;COSM520
+TFGC164,2.0,2.0,1.0,2.0,D,male,62,IIB,0,801,0,624,Body,1,1&8,1,0.0,,,TFGC164,TP53,Missense_Mutation,p.Ala276Val,0.362,GENE=TP53_ENST00000269305;STRAND=-;GENE=TP53_ENST00000269305;STRAND=-;CDS=c.827C>T;AA=p.A276V;CNT=3;COSM1559474
+TFGC164,2.0,2.0,1.0,2.0,D,male,62,IIB,0,801,0,624,Body,1,1&8,1,0.0,,,TFGC164,TP53,Missense_Mutation,p.Ala276Thr,0.367,GENE=TP53;STRAND=-;GENE=TP53;STRAND=-;CDS=c.826G>A;AA=p.A276T;CNT=7;COSM44114
+TFGC164,2.0,2.0,1.0,2.0,D,male,62,IIB,0,801,0,624,Body,1,1&8,1,0.0,,,TFGC164,GNAS,Missense_Mutation,p.Asp566Asn,0.284,.
+TFGC164,2.0,2.0,1.0,2.0,D,male,62,IIB,0,801,0,624,Body,1,1&8,1,0.0,,,TFGC164,THSD7B,Frame_Shift_Ins,p.Glu1291fs,0.2,.
