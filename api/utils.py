@@ -120,6 +120,10 @@ GDC_ONTOLOGY_FLAT_PATH = os.path.join(
     os.path.dirname(__file__), "./resources/gdc_ontology_flat.json"
 )
 
+PDC_ONTOLOGY_FLAT_PATH = os.path.join(
+    os.path.dirname(__file__), "./resources/pdc_ontology_flat.json"
+)
+
 
 def load_gdc_ontology(candidates: List[Dict[str, Any]]) -> List[Dict]:
     with open(GDC_ONTOLOGY_FLAT_PATH, "r") as f:
@@ -158,6 +162,43 @@ def load_gdc_ontology(candidates: List[Dict[str, Any]]) -> List[Dict]:
     return ret
 
 
+def load_pdc_ontology(candidates: List[Dict[str, Any]]) -> List[Dict]:
+    with open(PDC_ONTOLOGY_FLAT_PATH, "r") as f:
+        pdc_ontology_flat = json.load(f)
+
+    hiarchies = {}
+    target_columns = set()
+    for candidate in candidates:
+        target_columns.add(candidate["targetColumn"])
+
+    for target_column in list(target_columns):
+        if target_column not in pdc_ontology_flat:
+            continue
+        ontology = pdc_ontology_flat[target_column]
+        category = ontology["category"]
+        node = ontology["node"]
+        if category not in hiarchies:
+            hiarchies[category] = {"level": 0, "children": {}}
+        if node not in hiarchies[category]["children"]:
+            hiarchies[category]["children"][node] = {"level": 1, "children": {}}
+        hiarchies[category]["children"][node]["children"][target_column] = {
+            "level": 2,
+            "children": [],
+        }
+
+    ret = []
+    for category, category_info in hiarchies.items():
+        for node, node_info in category_info["children"].items():
+            for target_column in node_info["children"].keys():
+                target_column_obj = {
+                    "name": target_column,
+                    "parent": node,
+                    "grandparent": category,
+                }
+                ret.append(target_column_obj)
+    return ret
+
+
 def load_gdc_property(target_column: str) -> Optional[Dict[str, Any]]:
     with open(GDC_ONTOLOGY_FLAT_PATH, "r") as f:
         gdc_ontology_flat = json.load(f)
@@ -165,5 +206,16 @@ def load_gdc_property(target_column: str) -> Optional[Dict[str, Any]]:
     property = None
     if target_column in gdc_ontology_flat:
         property = gdc_ontology_flat[target_column]
+
+    return property
+
+
+def load_pdc_property(target_column: str) -> Optional[Dict[str, Any]]:
+    with open(PDC_ONTOLOGY_FLAT_PATH, "r") as f:
+        pdc_ontology_flat = json.load(f)
+
+    property = None
+    if target_column in pdc_ontology_flat:
+        property = pdc_ontology_flat[target_column]
 
     return property

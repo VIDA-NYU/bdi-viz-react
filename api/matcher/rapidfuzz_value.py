@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 from rapidfuzz import fuzz, process, utils
 
-from ..utils import load_gdc_property
+from ..utils import load_gdc_property, load_pdc_property
 from .utils import BaseMatcher
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -109,6 +109,7 @@ class RapidFuzzValueMatcher(BaseMatcher):
 
     def _determine_dtype_gdc(self, gdc_col: str) -> str:
         gdc_property = load_gdc_property(gdc_col)
+        # gdc_property = load_pdc_property(gdc_col)
         if gdc_property:
             type = gdc_property["type"]
             if type == "string" or type == "enum":

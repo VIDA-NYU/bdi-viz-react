@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
+
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
 # from langchain_together import ChatTogether
@@ -19,8 +20,14 @@ from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from ..tools.source_scraper import scraping_websource
 from .memory import MemoryRetriver
-from .pydantic import (ActionResponse, AgentSuggestions, CandidateExplanation,
-                       RelatedSources, SearchResponse, SuggestedValueMappings)
+from .pydantic import (
+    ActionResponse,
+    AgentSuggestions,
+    CandidateExplanation,
+    RelatedSources,
+    SearchResponse,
+    SuggestedValueMappings,
+)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
