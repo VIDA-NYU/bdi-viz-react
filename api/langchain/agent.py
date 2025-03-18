@@ -1,10 +1,12 @@
 import logging
+import random
 from typing import Any, Dict, Generator, List, Optional
 
 from dotenv import load_dotenv
 
 load_dotenv()
 from langchain.output_parsers import PydanticOutputParser
+
 # from langchain_anthropic import ChatAnthropic
 # from langchain_ollama import ChatOllama
 # from langchain_together import ChatTogether
@@ -18,9 +20,16 @@ from pydantic import BaseModel
 from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from ..tools.source_scraper import scraping_websource
+from ..utils import load_gdc_property
 from .memory import MemoryRetriver
-from .pydantic import (ActionResponse, AgentSuggestions, CandidateExplanation,
-                       RelatedSources, SearchResponse, SuggestedValueMappings)
+from .pydantic import (
+    ActionResponse,
+    AgentSuggestions,
+    CandidateExplanation,
+    RelatedSources,
+    SearchResponse,
+    SuggestedValueMappings,
+)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -94,13 +103,28 @@ class Agent:
             f"{candidate['sourceColumn']}::{candidate['targetColumn']}", limit=3
         )
 
+        target_description = load_gdc_property(candidate["targetColumn"])
+        target_values = candidate["targetValues"]
+        if "enum" in target_description:
+            target_enum = target_description["enum"]
+            if target_enum is not None:
+                if len(target_enum) >= 50:
+                    # Sample random 50 values
+                    target_enum = random.sample(target_enum, 50)
+                target_values = target_enum
+        if target_description is not None:
+            target_description = target_description["description"]
+            if len(target_description) >= 1:
+                target_description = target_description[0]["description"]
+
         prompt = f"""
     Analyze the following user operation details:
 
     - Source Column: {candidate["sourceColumn"]}
     - Target Column: {candidate["targetColumn"]}
     - Source Sample Values: {candidate["sourceValues"]}
-    - Target Sample Values: {candidate["targetValues"]}
+    - Target Sample Values: {target_values}
+    - Target Description: {target_description}
 
     Historical Data:
     - Related Matches: {related_matches}
@@ -113,7 +137,7 @@ class Agent:
     3. Conclude if the current candidate is a valid match based on:
         a. Your explanations,
         b. Similarity between the column names,
-        c. Consistency of the sample values, and
+        c. Consistency of the sample values, and descriptions provide
         d. The history of false positives and negatives.
     4. Include any additional context or keywords that might support or contradict the current mapping.
         """

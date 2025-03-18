@@ -49,7 +49,7 @@ class MatchingTask:
 
         self.candidate_quadrants = None
         self.matchers = {
-            "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
+            # "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
             "ct_learning": BDIKitMatcher("ct_learning"),
             "magneto_ft": MagnetoMatcher("magneto_ft"),
             "magneto_zs": MagnetoMatcher("magneto_zs"),
