@@ -49,6 +49,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
               valueMatches={valueMatches}
               weightedAggregatedCandidates={weightedAggregatedCandidates}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
+              selectedSourceColumn={selectedSourceColumn}
             />
           </TabPanel>
       </TabContext>

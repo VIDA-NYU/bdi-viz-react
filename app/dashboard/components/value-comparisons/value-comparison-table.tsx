@@ -11,12 +11,14 @@ interface ValueComparisonTableProps {
     valueMatches: ValueMatch[];
     weightedAggregatedCandidates: AggregatedCandidate[];
     selectedCandidate?: Candidate;
+    selectedSourceColumn: string;
 }
 
 const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     valueMatches,
     weightedAggregatedCandidates,
     selectedCandidate,
+    selectedSourceColumn,
 }) => {
     const theme = useTheme();
     const { globalCandidateHighlight, globalQuery } = useContext(HighlightGlobalContext);
@@ -61,7 +63,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
             });
         }
         return [];
-    }, [valueMatches, weightedAggregatedCandidates, candidate]);
+    }, [valueMatches, weightedAggregatedCandidates, candidate, selectedSourceColumn]);
 
     const columns: MRT_ColumnDef<any>[] = useMemo(() => {
         if (!rows.length || !candidate) return [];
@@ -71,7 +73,6 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                 header: key,
             } as MRT_ColumnDef<any>))
             .filter((column) => column.accessorKey !== "id");
-
         return cols;
     }, [rows, candidate]);
 
