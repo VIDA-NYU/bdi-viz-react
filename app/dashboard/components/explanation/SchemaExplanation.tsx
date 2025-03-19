@@ -50,6 +50,8 @@ const SchemaExplanation = ({
         }
     };
 
+    console.log("SchemaExplanation.tsx: current", currentExplanations);
+
     const handleThumbUp = (id: string) => {
         const explanation = currentExplanations.find(e => e.id === id);
         if (explanation) {
