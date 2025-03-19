@@ -302,7 +302,7 @@ export default function Dashboard() {
                         updateStatus={updateStatus}
                     />
 
-                    <Paginator />
+                    <Paginator setSelectedCandidate={setSelectedCandidate} />
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
                         matchers={matchers}
