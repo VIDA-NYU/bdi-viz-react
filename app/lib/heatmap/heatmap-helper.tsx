@@ -193,7 +193,7 @@ const getTargetOntology = (prop: targetOntologyProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.post("/api/gdc/ontology", {
+        axios.post("/api/pdc/ontology", {
             httpAgent,
             httpsAgent,
             timeout: 10000000, // Set timeout to unlimited
@@ -341,7 +341,7 @@ const getGDCAttribute = (prop: getGDCAttributeProps) => {
     return new Promise<void>((resolve, reject) => {
         const httpAgent = new http.Agent({ keepAlive: true });
         const httpsAgent = new https.Agent({ keepAlive: true });
-        axios.post("/api/gdc/property", {
+        axios.post("/api/pdc/property", {
             targetColumn: prop.targetColumn,
         }, {
             httpAgent,

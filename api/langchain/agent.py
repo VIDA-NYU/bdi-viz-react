@@ -20,7 +20,7 @@ from pydantic import BaseModel
 from ..tools.candidate_butler import CandidateButler
 from ..tools.rag_researcher import retrieve_from_rag
 from ..tools.source_scraper import scraping_websource
-from ..utils import load_gdc_property
+from ..utils import load_gdc_property, load_pdc_property
 from .memory import MemoryRetriver
 from .pydantic import (
     ActionResponse,
@@ -103,7 +103,8 @@ class Agent:
             f"{candidate['sourceColumn']}::{candidate['targetColumn']}", limit=3
         )
 
-        target_description = load_gdc_property(candidate["targetColumn"])
+        # target_description = load_gdc_property(candidate["targetColumn"])
+        target_description = load_pdc_property(candidate["targetColumn"])
         target_values = candidate["targetValues"]
         if "enum" in target_description:
             target_enum = target_description["enum"]
@@ -115,7 +116,7 @@ class Agent:
         if target_description is not None:
             target_description = target_description["description"]
             if len(target_description) >= 1:
-                target_description = target_description[0]["description"]
+                target_description = target_description[0]
 
         prompt = f"""
     Analyze the following user operation details:

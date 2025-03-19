@@ -20,7 +20,7 @@ from .matcher.magneto import MagnetoMatcher
 from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
-from .utils import load_gdc_ontology, load_gdc_property
+from .utils import load_gdc_ontology, load_pdc_ontology, load_gdc_property, load_pdc_property
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -275,6 +275,10 @@ class MatchingTask:
     def _generate_gdc_ontology(self) -> List[Dict]:
         candidates = self.get_cached_candidates()
         return load_gdc_ontology(candidates)
+
+    def _generate_pdc_ontology(self) -> List[Dict]:
+        candidates = self.get_cached_candidates()
+        return load_pdc_ontology(candidates)
 
     def _initialize_value_matches(self) -> None:
         self.cached_candidates["value_matches"] = {}
@@ -596,7 +600,7 @@ class MatchingTask:
         #     return []
 
         target_values = []
-        target_description = load_gdc_property(target_col)
+        target_description = load_pdc_property(target_col)
         if target_description is None:
             logger.warning(f"Target column {target_col} not found in GDC properties.")
         else:

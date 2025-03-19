@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 from uuid import uuid4
@@ -15,11 +14,14 @@ from .utils import (
     extract_data_from_request,
     extract_session_name,
     load_gdc_property,
+    load_pdc_property,
     read_candidate_explanation_json,
     write_candidate_explanation_json,
 )
 
-GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/cptac-3.csv")
+GDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/gdc_metadata.csv")
+
+PDC_DATA_PATH = os.path.join(os.path.dirname(__file__), "./resources/pdc_metadata.csv")
 
 app = Flask("bdiviz_flask")
 app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024
@@ -31,7 +33,7 @@ def matcher():
     session = extract_session_name(request)
     matching_task = SESSION_MANAGER.get_session(session).matching_task
 
-    target = pd.read_csv(GDC_DATA_PATH)
+    target = pd.read_csv(PDC_DATA_PATH)
 
     source, _ = extract_data_from_request(request)
     source.to_csv(".source.csv", index=False)
@@ -54,7 +56,7 @@ def get_exact_matches():
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
             matching_task.update_dataframe(
-                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+                source_df=source, target_df=pd.read_csv(PDC_DATA_PATH)
             )
         _ = matching_task.get_candidates()
     results = matching_task.update_exact_matches()
@@ -71,7 +73,7 @@ def get_results():
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
             matching_task.update_dataframe(
-                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+                source_df=source, target_df=pd.read_csv(PDC_DATA_PATH)
             )
         candidates = matching_task.get_candidates()
         # AGENT.remember_candidates(candidates)
@@ -90,7 +92,7 @@ def get_unique_values():
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
             matching_task.update_dataframe(
-                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+                source_df=source, target_df=pd.read_csv(PDC_DATA_PATH)
             )
         _ = matching_task.get_candidates()
     results = matching_task.unique_values_to_frontend_json()
@@ -107,7 +109,7 @@ def get_value_matches():
         if os.path.exists(".source.csv"):
             source = pd.read_csv(".source.csv")
             matching_task.update_dataframe(
-                source_df=source, target_df=pd.read_csv(GDC_DATA_PATH)
+                source_df=source, target_df=pd.read_csv(PDC_DATA_PATH)
             )
         _ = matching_task.get_candidates()
     results = matching_task.value_matches_to_frontend_json()
@@ -132,6 +134,23 @@ def get_gdc_ontology():
     return {"message": "success", "results": results}
 
 
+@app.route("/api/pdc/ontology", methods=["POST"])
+def get_pdc_ontology():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    if matching_task.source_df is None or matching_task.target_df is None:
+        if os.path.exists(".source.csv"):
+            source = pd.read_csv(".source.csv")
+            matching_task.update_dataframe(
+                source_df=source, target_df=pd.read_csv(PDC_DATA_PATH)
+            )
+        _ = matching_task.get_candidates()
+    results = matching_task._generate_pdc_ontology()
+
+    return {"message": "success", "results": results}
+
+
 @app.route("/api/gdc/property", methods=["POST"])
 def get_gdc_property():
     session = extract_session_name(request)
@@ -140,6 +159,18 @@ def get_gdc_property():
     target_col = request.json["targetColumn"]
 
     property = load_gdc_property(target_col)
+
+    return {"message": "success", "property": property}
+
+
+@app.route("/api/pdc/property", methods=["POST"])
+def get_pdc_property():
+    session = extract_session_name(request)
+    matching_task = SESSION_MANAGER.get_session(session).matching_task
+
+    target_col = request.json["targetColumn"]
+
+    property = load_pdc_property(target_col)
 
     return {"message": "success", "property": property}
 

@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 from rapidfuzz import fuzz, process, utils
 
-from ..utils import load_gdc_property
+from ..utils import load_gdc_property, load_pdc_property
 from .utils import BaseMatcher
 
 logger = logging.getLogger("bdiviz_flask.sub")
@@ -79,8 +79,8 @@ class RapidFuzzValueMatcher(BaseMatcher):
         """
         Calculate the value matching score between two columns
         """
-        if len(target_values) >= 50:
-            target_values = random.sample(target_values, 50)
+        if len(target_values) >= 200:
+            target_values = random.sample(target_values, 200)
 
         total_score = 0
 
@@ -89,7 +89,7 @@ class RapidFuzzValueMatcher(BaseMatcher):
                 fuzz.ratio(source_v, target_v, processor=utils.default_process) / 100
                 for target_v in target_values
             ]
-            max_target_v = target_values[scores.index(max(scores))]
+            # max_target_v = target_values[scores.index(max(scores))]
             max_score = max(scores)
 
             total_score += max_score
@@ -108,7 +108,8 @@ class RapidFuzzValueMatcher(BaseMatcher):
             return "unknown"
 
     def _determine_dtype_gdc(self, gdc_col: str) -> str:
-        gdc_property = load_gdc_property(gdc_col)
+        # gdc_property = load_gdc_property(gdc_col)
+        gdc_property = load_pdc_property(gdc_col)
         if gdc_property:
             type = gdc_property["type"]
             if type == "string" or type == "enum":
