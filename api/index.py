@@ -380,6 +380,11 @@ def user_operation():
 
         matching_task.apply_operation(operation, candidate, references)
 
+        if operation == "accept":
+            AGENT.remember_fn(candidate)
+        elif operation == "reject":
+            AGENT.remember_fp(candidate)
+
     return {"message": "success"}
 
 
