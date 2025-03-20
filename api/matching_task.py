@@ -3,6 +3,7 @@ import hashlib
 import json
 import logging
 import os
+import random
 import threading
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -19,7 +20,7 @@ from .matcher.magneto import MagnetoMatcher
 from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
-from .utils import load_gdc_ontology
+from .utils import load_gdc_ontology, load_gdc_property
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
@@ -574,14 +575,29 @@ class MatchingTask:
             )
         return self._bucket_column(self.target_df, target_col)
 
-    def get_target_unique_values(self, target_col: str, n: int = 40) -> List[str]:
+    def get_target_unique_values(self, target_col: str, n: int = 300) -> List[str]:
         if self.target_df is None or target_col not in self.target_df.columns:
             raise ValueError(
                 f"Target column {target_col} not found in the target dataframe."
             )
         # if pd.api.types.is_numeric_dtype(self.target_df[target_col].dtype):
         #     return []
-        return list(self.target_df[target_col].dropna().unique().astype(str)[:n])
+
+        target_values = []
+        target_description = load_gdc_property(target_col)
+        if target_description is None:
+            logger.warning(f"Target column {target_col} not found in GDC properties.")
+        else:
+            if "enum" in target_description:
+                target_enum = target_description["enum"]
+                if target_enum is not None:
+                    # if len(target_enum) > n:
+                    #     target_values = random.sample(target_enum, n)
+                    # else:
+                    target_values = target_enum
+        return target_values or list(
+            self.target_df[target_col].dropna().unique().astype(str)[:n]
+        )
 
     def get_cached_candidates(self) -> List[Dict[str, Any]]:
         return self.cached_candidates["candidates"]
@@ -600,8 +616,6 @@ class MatchingTask:
                 and c["targetColumn"] == candidate["targetColumn"]
             ):
                 candidates[index]["status"] = candidate["status"]
-
-                break
         self.set_cached_candidates(candidates)
 
     def get_cached_source_clusters(self) -> Dict[str, List[str]]:

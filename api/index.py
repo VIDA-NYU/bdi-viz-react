@@ -323,8 +323,9 @@ def agent_related_source():
         "targetValues": target_values,
     }
 
-    response = AGENT.search_for_sources(candidate)
-    response = response.model_dump()
+    # response = AGENT.search_for_sources(candidate)
+    # response = response.model_dump()
+    response = []
 
     return {"message": "success", "results": response}
 
