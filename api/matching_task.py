@@ -20,7 +20,12 @@ from .matcher.magneto import MagnetoMatcher
 from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
-from .utils import load_gdc_ontology, load_pdc_ontology, load_gdc_property, load_pdc_property
+from .utils import (
+    load_gdc_ontology,
+    load_gdc_property,
+    load_pdc_ontology,
+    load_pdc_property,
+)
 
 logger = logging.getLogger("bdiviz_flask.sub")
 
