@@ -1,4 +1,4 @@
-import { useMemo, useContext } from "react";
+import { useMemo, useContext, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import { 
     MaterialReactTable,
@@ -123,6 +123,11 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
         enableEditing: true,
         editDisplayMode: "cell",
     });
+
+    // Refresh table columns when columns change
+    useEffect(() => {
+        table.setColumnOrder(columns.map((column) => column.accessorKey).filter((key): key is string => key !== undefined));
+    }, [columns]);
 
     useMemo(() => {
         const columnPinning = [];

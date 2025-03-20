@@ -279,10 +279,11 @@ const HeatMap: React.FC<HeatMapProps> = ({
                   isHighlighted={
                     highlightSourceColumns.length !== 0 &&
                     highlightTargetColumns.length !== 0
-                    ? highlightSourceColumns.includes(d.sourceColumn) &&
-                      highlightTargetColumns.includes(d.targetColumn)
-                    : globalQuery ?
-                      d.targetColumn.includes(globalQuery) : undefined
+                    ? highlightSourceColumns.includes(d.sourceColumn.toLowerCase()) &&
+                      highlightTargetColumns.includes(d.targetColumn.toLowerCase())
+                    : globalQuery
+                    ? d.targetColumn.includes(globalQuery.toLowerCase())
+                    : undefined
                   }
                   />
                 );

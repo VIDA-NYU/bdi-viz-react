@@ -439,14 +439,26 @@ class MatchingTask:
             col_obj = col_obj.dropna()  # Drop NaN values
             if len(col_obj) == 0:
                 return []
-            min = col_obj.min()
-            max = col_obj.max()
-            bins = np.linspace(min, max, num=10)
-            counter = np.histogram(col_obj, bins=bins)[0]
-            return [
-                {"value": f"{int(bins[i])}-{int(bins[i+1])}", "count": int(counter[i])}
-                for i in range(len(counter))
-            ]
+            unique_vals = col_obj.unique()
+            # If the integer column has few unique values, treat it as categorical
+            if col_obj.dtype == "int64" and len(unique_vals) <= 10:
+                counter = col_obj.value_counts().sort_index()
+                return [
+                    {"value": str(val), "count": int(count)}
+                    for val, count in counter.items()
+                ]
+            else:
+                min_val = col_obj.min()
+                max_val = col_obj.max()
+                bins = np.linspace(min_val, max_val, num=10)
+                counter = np.histogram(col_obj, bins=bins)[0]
+                return [
+                    {
+                        "value": f"{int(bins[i])}-{int(bins[i+1])}",
+                        "count": int(counter[i]),
+                    }
+                    for i in range(len(counter))
+                ]
         else:
             logger.warning(f"Column {col} is of type {col_obj.dtype}.")
             return []
@@ -595,7 +607,7 @@ class MatchingTask:
                     #     target_values = random.sample(target_enum, n)
                     # else:
                     target_values = target_enum
-        return target_values or list(
+        return [str(target_value) for target_value in target_values] or list(
             self.target_df[target_col].dropna().unique().astype(str)[:n]
         )
 
