@@ -80,7 +80,7 @@ const RelevantKnowledgeView = ({
                 )}
                 {gdcAttribute.description && gdcAttribute.description.map((desc, i) => (
                 <Typography key={i} variant="body2" color="textSecondary" gutterBottom sx={{ fontSize: '0.7rem' }}>
-                    <strong>Description:</strong> {desc}
+                    <strong>Description:</strong> {desc as unknown as string}
                 </Typography>
                 ))}
                 {gdcAttribute.enum && (

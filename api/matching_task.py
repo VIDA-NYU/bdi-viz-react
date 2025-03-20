@@ -9,7 +9,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
-from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
 
@@ -166,7 +165,6 @@ class MatchingTask:
         )
 
         source_clusters = self._generate_source_clusters(source_embeddings)
-        target_clusters = self._generate_target_clusters(target_embeddings)
 
         # Apply candidate quadrants
         self.candidate_quadrants = CandidateQuadrants(
@@ -236,7 +234,7 @@ class MatchingTask:
                 "target_hash": target_hash,
                 "candidates": layered_candidates,
                 "source_clusters": source_clusters,
-                "target_clusters": target_clusters,
+                "target_clusters": [],
                 "value_matches": self.cached_candidates["value_matches"],
             }
             self._export_cache_to_json(self.cached_candidates)
@@ -262,20 +260,6 @@ class MatchingTask:
             for i, cluster_idx in enumerate(clusters_idx)
         }
         return clusters
-
-    def _generate_target_clusters(self, target_embeddings: Tensor) -> List[List[str]]:
-        kmeans = KMeans(n_clusters=min(20, len(self.target_df.columns)))
-        kmeans.fit(np.array(target_embeddings))
-        clusters_idx = kmeans.labels_
-
-        clusters = {}
-        for i, target_column in enumerate(self.target_df.columns):
-            cluster_idx = clusters_idx[i]
-            if cluster_idx not in clusters:
-                clusters[cluster_idx] = []
-            clusters[cluster_idx].append(target_column)
-
-        return list(clusters.values())
 
     def _generate_gdc_ontology(self) -> List[Dict]:
         candidates = self.get_cached_candidates()
