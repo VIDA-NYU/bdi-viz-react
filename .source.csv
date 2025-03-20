@@ -1,225 +1,225 @@
-type,ploidy,normalClass,tumorClass,Original Histologic Subtype Call,consent_age,consent_sex,consent_race,consent_participant_country,stage,vital,hypertension,grade,medical_history_bmi,medical_history_weight_at_time_of_surgery_kg,medical_history_alcohol_consumption,medical_history_tobacco_smoking_history,simp_country,simp_stage
-Tumor,2.0,,AML,Angiomyolipoma,71,Male,White,Other: Medical record does not state,Stage I,Living,False,GX: Cannot be assessed,22.63,62.0,not reported,not reported,other,Stage I
-Tumor,2.0,,AML,Angiomyolipoma,39,Female,White,Other: Medical record does not state,unknown,Living,False,GX: Cannot be assessed,18.15,41.0,light drinker,past smoker unknown years,other,other
-Tumor,2.0,,BHD,Renal cell tumor of Birt-Hogg-Dube syndrome,54,Female,White,Other: Medical record does not state,Stage I,Living,False,GX: Cannot be assessed,18.48,54.0,not reported,not reported,other,Stage I
-Tumor,2.01,,ccRCC,ccRCC,56,Female,White,United States,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,United States,Stage III
-Tumor,1.901408,,ccRCC,ccRCC,71,Male,Not Reported,Poland,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Poland,Stage III
-Tumor,1.99,,ccRCC,ccRCC,67,Male,Not Reported,Ukraine,Stage I,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Ukraine,Stage I
-Tumor,1.96,,ccRCC,ccRCC,84,Male,Not Reported,Poland,Stage III,Deceased,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Poland,Stage III
-Tumor,2.03,,ccRCC,ccRCC,69,Male,Not Reported,Poland,Stage II,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Poland,Stage II
-Tumor,1.901408,,ccRCC,ccRCC,76,Male,White,Other: Medical record does not state.,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.49,88.0,not reported,not reported,other,Stage III
-Tumor,1.93,,ccRCC,ccRCC,35,Male,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,United States,Stage I
-Tumor,1.94,,ccRCC,ccRCC,66,Male,White,United States,Stage IV,Living,False,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,United States,Stage IV
-Tumor,2.014085,,ccRCC,ccRCC,63,Male,White,United States,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,United States,Stage I
-Tumor,1.964268,,ccRCC,ccRCC,58,Female,Not Reported,Poland,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Poland,Stage III
-Tumor,1.97,,ccRCC,ccRCC,57,Female,White,Other: Medical record does not state,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",68.59,167.0,not reported,not reported,other,Stage I
-Tumor,1.89,,ccRCC,ccRCC,55,Female,Not Reported,Ukraine,Stage IV,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Ukraine,Stage IV
-Tumor,1.901408,,ccRCC,ccRCC,69,Female,White,United States,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,United States,Stage I
-Tumor,2.014085,,ccRCC,ccRCC,72,Male,White,United States,Stage III,Deceased,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",32.82,104.0,non-drinker,past smoker more than 15 years,United States,Stage III
-Tumor,1.97,,ccRCC,ccRCC,48,Male,White,United States,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",48.79,141.0,not reported,current smoker,United States,Stage I
-Tumor,2.04,,ccRCC,ccRCC,48,Male,Not Reported,Poland,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",39.0,128.0,light drinker,non-smoker,Poland,Stage I
-Tumor,1.901408,,ccRCC,ccRCC,37,Male,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",45.37,156.0,non-drinker,not reported,United States,Stage I
-Tumor,1.92,,ccRCC,ccRCC,80,Male,White,Other: Medical record does not state,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",33.96,104.0,not reported,not reported,other,Stage I
-Tumor,1.98,,ccRCC,ccRCC,74,Male,White,Other: Medical record does not state,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.04,73.0,not reported,not reported,other,Stage I
-Tumor,2.02,,ccRCC,ccRCC,59,Male,White,Other: Medical record does not state,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",46.17,159.0,not reported,not reported,other,Stage I
-Tumor,1.901408,,ccRCC,ccRCC,76,Female,White,Other: TSS did not collect this information.,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",26.95,71.0,non-drinker,non-smoker,other,Stage I
-Tumor,1.93,,ccRCC,ccRCC,37,Male,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",30.86,100.0,non-drinker,non-smoker,United States,Stage I
-Tumor,1.94,,ccRCC,ccRCC,30,Male,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",34.15,107.0,not reported,current smoker,United States,Stage I
-Tumor,2.04,,ccRCC,ccRCC,60,Female,Not Reported,Poland,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.0,52.0,light drinker,current smoker,Poland,Stage I
-Tumor,1.94,,ccRCC,ccRCC,60,Female,White,United States,Stage II,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",27.85,74.0,light drinker,past smoker more than 15 years,United States,Stage II
-Tumor,1.9,,ccRCC,ccRCC,67,Male,Not Reported,Poland,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",32.0,94.0,light drinker,past smoker within 15 years,Poland,Stage III
-Tumor,1.991521,,ccRCC,ccRCC,33,Female,White,Other: Patient not interviewed,Stage III,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",36.39,90.0,light drinker,current smoker,other,Stage III
-Tumor,1.97,,ccRCC,ccRCC,47,Male,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.41,87.0,light drinker,past smoker within 15 years,United States,Stage I
-Tumor,1.88,,ccRCC,ccRCC,89,Male,White,United States,Stage III,Deceased,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.35,84.0,non-drinker,non-smoker,United States,Stage III
-Tumor,2.014085,,ccRCC,ccRCC,75,Female,White,Other: TSS does not collect this information,Stage III,Deceased,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",42.33,105.0,not reported,past smoker more than 15 years,other,Stage III
-Tumor,1.96,,ccRCC,ccRCC,62,Male,White,United States,Stage III,Living,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",32.0,98.0,past drinker,current smoker,United States,Stage III
-Tumor,1.92,,ccRCC,ccRCC,72,Male,Not Reported,Poland,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",26.0,72.0,not reported,past smoker within 15 years,Poland,Stage III
-Tumor,2.01,,ccRCC,ccRCC,52,Male,Not Reported,Poland,Stage II,Deceased,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.0,107.0,not reported,not reported,Poland,Stage II
-Tumor,2.014085,,ccRCC,ccRCC,61,Male,White,Other: Medical record does not state.,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",19.49,60.0,non-drinker,non-smoker,other,Stage III
-Tumor,1.923809,,ccRCC,ccRCC,55,Male,White,United States,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",47.25,150.0,non-drinker,past smoker within 15 years,United States,Stage I
-Tumor,1.94,,ccRCC,ccRCC,72,Male,White,United States,Stage III,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",22.8,66.0,non-drinker,past smoker within 15 years,United States,Stage III
-Tumor,2.014085,,ccRCC,ccRCC,68,Male,Not Reported,Ukraine,Stage III,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",22.68,64.0,non-drinker,non-smoker,Ukraine,Stage III
-Tumor,1.99,,ccRCC,ccRCC,83,Male,Not Reported,Other: Medical Record Does Not State,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.56,97.0,not reported,not reported,other,Stage I
-Tumor,2.01,,ccRCC,ccRCC,67,Male,White,United States,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",35.27,108.0,light drinker,past smoker more than 15 years,United States,Stage I
-Tumor,1.93,,ccRCC,ccRCC,56,Male,White,United States,Stage III,Deceased,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.7,93.0,light drinker,current smoker,United States,Stage III
-Tumor,2.014085,,ccRCC,ccRCC,59,Male,White,Other: TSS did not collect this information,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",36.81,113.0,light drinker,past smoker more than 15 years,other,Stage I
-Tumor,1.83,,ccRCC,ccRCC,68,Male,Not Reported,Poland,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",30.0,92.0,not reported,not reported,Poland,Stage III
-Tumor,1.86,,ccRCC,ccRCC,41,Male,White,Other: Medical record does not state,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",35.66,111.0,not reported,not reported,other,Stage I
-Tumor,1.94,,ccRCC,ccRCC,47,Male,Not Reported,Vietnam,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.78,53.0,light drinker,current smoker,Vietnam,Stage I
-Tumor,1.969385,,ccRCC,ccRCC,54,Female,White,Other: Medical record does not state,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",38.08,98.0,not reported,not reported,other,Stage I
-Tumor,1.901408,,ccRCC,ccRCC,61,Male,Not Reported,Vietnam,Stage II,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",22.04,60.0,non-drinker,non-smoker,Vietnam,Stage II
-Tumor,4.0,,ccRCC,ccRCC,57,Female,White,Other: Medical record does not state,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",40.74,104.0,non-drinker,non-smoker,other,Stage I
-Tumor,1.75,,ccRCC,ccRCC,56,Female,Not Reported,Ukraine,Stage IV,Deceased,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.37,78.0,non-drinker,non-smoker,Ukraine,Stage IV
-Tumor,1.901408,,ccRCC,ccRCC,51,Male,Not Reported,Poland,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",35.0,105.0,past drinker,past smoker within 15 years,Poland,Stage III
-Tumor,2.014085,,ccRCC,ccRCC,65,Female,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.23,75.0,non-drinker,non-smoker,United States,Stage I
-Tumor,1.87,,ccRCC,ccRCC,61,Female,White,Other: Medical Record Does Not State,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",21.96,56.0,not reported,past smoker within 15 years,other,Stage I
-Tumor,1.889131,,ccRCC,ccRCC,57,Female,Not Reported,Ukraine,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",46.0,138.0,non-drinker,non-smoker,Ukraine,Stage I
-Tumor,1.99,,ccRCC,ccRCC,78,Male,Not Reported,Poland,Stage I,Deceased,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",31.0,96.0,light drinker,past smoker within 15 years,Poland,Stage I
-Tumor,1.901408,,ccRCC,ccRCC,65,Male,Not Reported,Poland,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",30.0,90.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Tumor,1.93,,ccRCC,ccRCC,55,Male,White,United States,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.72,99.0,non-drinker,non-smoker,United States,Stage I
-Tumor,1.901408,,ccRCC,ccRCC,67,Male,White,Other: Medical record does not state,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.81,109.0,heavy drinker,current smoker,other,Stage I
-Tumor,2.126761,,ccRCC,ccRCC,66,Male,White,United States,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",26.18,90.0,not reported,past smoker more than 15 years,United States,Stage I
-Tumor,1.992849,,ccRCC,ccRCC,44,Male,White,United States,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",45.77,141.0,non-drinker,non-smoker,United States,Stage I
-Tumor,1.94,,ccRCC,ccRCC,83,Male,White,United States,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",27.52,87.0,light drinker,non-smoker,United States,Stage III
-Tumor,2.040966,,ccRCC,ccRCC,70,Female,White,United States,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",39.45,101.0,non-drinker,current smoker,United States,Stage I
-Tumor,1.88,,ccRCC,ccRCC,46,Male,White,United States,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",44.3,136.0,non-drinker,non-smoker,United States,Stage I
-Tumor,1.83,,ccRCC,ccRCC,>=90,Female,White,Other: Medical record does not state,Stage II,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.6,86.0,non-drinker,non-smoker,other,Stage II
-Tumor,1.901408,,ccRCC,ccRCC,69,Male,Not Reported,Poland,Stage III,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",25.0,75.0,light drinker,current smoker,Poland,Stage III
-Tumor,1.77,,ccRCC,ccRCC,51,Female,White,United States,Stage IV,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.96,73.0,non-drinker,current smoker,United States,Stage IV
-Tumor,1.92,,ccRCC,ccRCC,52,Male,White,United States,Stage II,Deceased,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",33.66,95.0,non-drinker,non-smoker,United States,Stage II
-Tumor,2.014085,,ccRCC,ccRCC,47,Male,White,United States,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.75,96.0,non-drinker,non-smoker,United States,Stage I
-Tumor,1.89,,ccRCC,ccRCC,60,Male,Not Reported,Ukraine,Stage II,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",21.38,78.0,light drinker,current smoker,Ukraine,Stage II
-Tumor,1.76,,ccRCC,ccRCC,57,Male,White,United States,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.63,86.0,light drinker,past smoker more than 15 years,United States,Stage I
-Tumor,1.901408,,ccRCC,ccRCC,41,Male,Asian,United States,Stage II,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",22.43,77.0,light drinker,non-smoker,United States,Stage II
-Tumor,2.126761,,ccRCC,ccRCC,75,Female,White,United States,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.36,84.0,non-drinker,past smoker more than 15 years,United States,Stage I
-Tumor,2.174865,,ccRCC,ccRCC,67,Male,Not Reported,Poland,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",16.0,48.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Tumor,2.0,,ccRCC,ccRCC,51,Male,Black or African American,Other: Medical record does not state,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",48.46,120.0,not reported,not reported,other,Stage III
-Tumor,2.0,,ccRCC,ccRCC,66,Male,White,Other: Medical record does not state,Stage III,Deceased,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.96,112.0,non-drinker,non-smoker,other,Stage III
-Tumor,3.816901,,ccRCC,ccRCC,61,Male,Not Reported,Ukraine,Stage II,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.38,94.0,non-drinker,non-smoker,Ukraine,Stage II
-Tumor,1.84,,ccRCC,ccRCC,51,Male,Not Reported,Ukraine,Stage IV,Deceased,False,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",23.89,80.0,non-drinker,current smoker,Ukraine,Stage IV
-Tumor,2.13,,ccRCC,ccRCC,56,Male,White,United States,Stage III,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.77,87.0,light drinker,non-smoker,United States,Stage III
-Tumor,1.738,,ccRCC,ccRCC,63,Female,White,Other: Unknown,Stage IV,Deceased,False,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",27.47,89.0,light drinker,non-smoker,other,Stage IV
-Tumor,3.503158,,ccRCC,ccRCC,80,Male,Not Reported,Ukraine,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.78,90.0,light drinker,non-smoker,Ukraine,Stage I
-Tumor,1.92,,ccRCC,ccRCC,52,Male,Not Reported,Ukraine,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.41,90.0,non-drinker,not reported,Ukraine,Stage I
-Tumor,2.077498,,ccRCC,ccRCC,60,Male,White,United States,Stage IV,Deceased,False,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",25.31,80.0,light drinker,non-smoker,United States,Stage IV
-Tumor,2.126761,,ccRCC,ccRCC,58,Male,Not Reported,Ukraine,Stage IV,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.05,90.0,non-drinker,non-smoker,Ukraine,Stage IV
-Tumor,2.42,,ccRCC,ccRCC,57,Female,Not Reported,Ukraine,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.72,82.0,non-drinker,not reported,Ukraine,Stage I
-Tumor,2.055538,,ccRCC,ccRCC,63,Male,White,United States,Stage III,Deceased,False,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",29.38,80.0,non-drinker,past smoker more than 15 years,United States,Stage III
-Tumor,3.633,,ccRCC,ccRCC,66,Male,Not Reported,Poland,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",34.0,94.0,light drinker,current smoker,Poland,Stage I
-Tumor,1.99,,ccRCC,ccRCC,74,Female,Not Reported,Poland,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",23.0,65.0,light drinker,non-smoker,Poland,Stage I
-Tumor,2.126761,,ccRCC,ccRCC,71,Female,White,United States,Stage III,Deceased,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",36.0,98.0,non-drinker,non-smoker,United States,Stage III
-Tumor,1.901408,,ccRCC,ccRCC,52,Male,Not Reported,Vietnam,Stage III,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",24.06,72.0,non-drinker,non-smoker,Vietnam,Stage III
-Tumor,3.704225,,ccRCC,ccRCC,41,Male,White,Other: Medical record does not state,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.01,94.0,light drinker,not reported,other,Stage I
-Tumor,2.239437,,ccRCC,ccRCC,54,Male,Not Reported,Poland,Stage IV,Deceased,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.0,95.0,light drinker,non-smoker,Poland,Stage IV
-Tumor,2.464789,,ccRCC,ccRCC,44,Male,White,Other: Medical Record Does Not State,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",38.99,113.0,heavy drinker,non-smoker,other,Stage I
-Tumor,1.74,,ccRCC,ccRCC,68,Male,Not Reported,Poland,Stage I,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.0,77.0,light drinker,non-smoker,Poland,Stage I
-Tumor,3.47,,ccRCC,ccRCC,68,Male,Not Reported,Ukraine,Stage II,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.08,93.0,non-drinker,not reported,Ukraine,Stage II
-Tumor,1.71,,ccRCC,ccRCC,52,Male,White,United States,Stage IV,Deceased,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",27.44,94.0,non-drinker,non-smoker,United States,Stage IV
-Tumor,2.679434,,ccRCC,ccRCC,50,Male,White,United States,Stage III,Living,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",27.47,94.0,non-drinker,non-smoker,United States,Stage III
-Tumor,3.29,,ccRCC,ccRCC,68,Female,Not Reported,Ukraine,Stage IV,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",27.05,71.0,non-drinker,not reported,Ukraine,Stage IV
-Tumor,5.27,,ccRCC,ccRCC,49,Male,White,United States,Stage III,Deceased,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.88,116.0,non-drinker,non-smoker,United States,Stage III
-Tumor,3.253521,,ccRCC,ccRCC,58,Male,Not Reported,Poland,Stage II,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",25.0,75.0,light drinker,non-smoker,Poland,Stage II
-Tumor,2.652648,,ccRCC,ccRCC,58,Male,White,United States,Stage III,Deceased,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",46.17,158.0,non-drinker,non-smoker,United States,Stage III
-Tumor,2.78,,ccRCC,ccRCC,69,Female,Not Reported,Poland,Stage III,Deceased,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.0,92.0,light drinker,past smoker within 15 years,Poland,Stage III
-Tumor,3.366197,,ccRCC,ccRCC,72,Male,White,United States,Stage II,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",38.94,122.0,light drinker,past smoker within 15 years,United States,Stage II
-Tumor,4.35,,ccRCC,ccRCC,62,Male,Not Reported,Ukraine,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.71,92.0,non-drinker,non-smoker,Ukraine,Stage III
-Tumor,3.140845,,ccRCC,ccRCC,69,Male,White,United States,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",39.2,146.0,non-drinker,past smoker more than 15 years,United States,Stage I
-Tumor,4.908909,,ccRCC,ccRCC,72,Male,Not Reported,Vietnam,Stage IV,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",21.83,58.0,non-drinker,non-smoker,Vietnam,Stage IV
-Tumor,3.245,,ChRCC,Chromophobe Renal Cell Carcinoma,59,Male,White,Other: Medical record does not state,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",38.12,131.0,not reported,not reported,other,Stage I
-Tumor,1.56338,,ChRCC,Clear Cell Renal Cell Carcinoma,49,Female,Not Reported,Poland,Stage II,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.0,76.0,light drinker,non-smoker,Poland,Stage II
-Tumor,1.52,,ChRCC,Clear Cell Renal Cell Carcinoma,60,Female,Not Reported,Poland,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",14.0,39.0,light drinker,non-smoker,Poland,Stage III
-Tumor,1.96,,ESCRCC,Clear Cell Renal Cell Carcinoma,73,Female,White,Other: TSS did not collect,Stage I,Deceased,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",42.92,117.0,light drinker,past smoker within 15 years,other,Stage I
-Tumor,2.023,,ESCRCC,"Papillary renal cell carcinoma, Type 2",71,Female,Black or African American,United States,Stage III,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",43.22,111.0,past drinker,past smoker more than 15 years,United States,Stage III
-Tumor,2.023,,MEST,Mixed epithelial and stromal lesion,66,Female,White,Other: Medical record does not state,Stage I,Living,True,GX: Cannot be assessed,31.88,82.0,not reported,not reported,other,Stage I
-Tumor,2.023,,MTOR Mutated RCC,Oncocytoma,54,Female,Not Reported,Poland,Stage I,Living,True,GX: Cannot be assessed,30.12,83.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Normal,,cortex,Normal,,83,Male,Not Reported,Other: Medical Record Does Not State,Stage I,Living,True,,30.56,97.0,not reported,not reported,other,Stage I
-Normal,,cortex,Normal,,67,Male,White,United States,Stage I,Living,True,,35.27,108.0,light drinker,past smoker more than 15 years,United States,Stage I
-Normal,,cortex,Normal,,60,Female,White,United States,Stage II,Living,False,,27.85,74.0,light drinker,past smoker more than 15 years,United States,Stage II
-Normal,,medulla,Normal,,65,Female,White,United States,Stage I,Living,False,,28.23,75.0,non-drinker,non-smoker,United States,Stage I
-Normal,,cortex,Normal,,35,Male,White,United States,Stage I,Living,False,,36.57,118.0,non-drinker,current smoker,United States,Stage I
-Normal,,corticomedullary,Normal,,62,Male,White,United States,Stage III,Living,True,,32.0,98.0,past drinker,current smoker,United States,Stage III
-Normal,,,Normal,,44,Male,White,United States,Stage I,Living,True,,45.77,141.0,non-drinker,non-smoker,United States,Stage I
-Normal,,corticomedullary,Normal,,52,Male,Not Reported,Ukraine,Stage I,Living,False,,28.41,90.0,non-drinker,not reported,Ukraine,Stage I
-Normal,,corticomedullary,Normal,,57,Female,Not Reported,Ukraine,Stage I,Living,False,,27.72,82.0,non-drinker,not reported,Ukraine,Stage I
-Normal,,medulla,Normal,,69,Female,White,United States,Stage I,Living,True,,19.72,57.0,light drinker,past smoker more than 15 years,United States,Stage I
-Normal,,medulla,Normal,,52,Male,White,United States,Stage IV,Deceased,True,,27.44,94.0,non-drinker,non-smoker,United States,Stage IV
-Normal,,cortex,Normal,,47,Male,White,United States,Stage I,Living,False,,29.41,87.0,light drinker,past smoker within 15 years,United States,Stage I
-Normal,,corticomedullary,Normal,,52,Male,Not Reported,Vietnam,Stage III,Living,False,,24.06,72.0,non-drinker,non-smoker,Vietnam,Stage III
-Normal,,corticomedullary,Normal,,56,Female,Not Reported,Ukraine,Stage IV,Deceased,True,,26.37,78.0,non-drinker,non-smoker,Ukraine,Stage IV
-Normal,,,Normal,,63,Female,White,Other: Unknown,Stage IV,Deceased,False,,27.47,89.0,light drinker,non-smoker,other,Stage IV
-Normal,,cortex,Normal,,60,Female,Not Reported,Poland,Stage III,Living,True,,14.0,39.0,light drinker,non-smoker,Poland,Stage III
-Normal,,cortex,Normal,,47,Male,White,United States,Stage I,Living,False,,28.75,96.0,non-drinker,non-smoker,United States,Stage I
-Normal,,corticomedullary,Normal,,71,Male,Not Reported,Poland,Stage III,Living,True,,29.0,91.0,light drinker,non-smoker,Poland,Stage III
-Normal,,,Normal,,56,Male,White,United States,Stage III,Deceased,True,,28.7,93.0,light drinker,current smoker,United States,Stage III
-Normal,,medulla,Normal,,51,Male,Not Reported,Poland,Stage III,Living,True,,35.0,105.0,past drinker,past smoker within 15 years,Poland,Stage III
-Normal,,corticomedullary,Normal,,68,Female,Not Reported,Ukraine,Stage IV,Living,False,,27.05,71.0,non-drinker,not reported,Ukraine,Stage IV
-Normal,,corticomedullary,Normal,,52,Male,White,United States,Stage II,Deceased,False,,33.66,95.0,non-drinker,non-smoker,United States,Stage II
-Normal,,medulla,Normal,,63,Male,White,United States,Stage III,Deceased,False,,29.38,80.0,non-drinker,past smoker more than 15 years,United States,Stage III
-Normal,,corticomedullary,Normal,,61,Male,Not Reported,Vietnam,Stage II,Living,False,,22.04,60.0,non-drinker,non-smoker,Vietnam,Stage II
-Normal,,cortex,Normal,,71,Female,White,United States,Stage III,Deceased,True,,36.0,98.0,non-drinker,non-smoker,United States,Stage III
-Normal,,cortex,Normal,,48,Male,Not Reported,Poland,Stage I,Living,True,,39.0,128.0,light drinker,non-smoker,Poland,Stage I
-Normal,,cortex,Normal,,58,Male,Not Reported,Poland,Stage II,Living,False,,25.0,75.0,light drinker,non-smoker,Poland,Stage II
-Normal,,medulla,Normal,,72,Male,White,United States,Stage II,Living,True,,38.94,122.0,light drinker,past smoker within 15 years,United States,Stage II
-Normal,,cortex,Normal,,66,Male,White,United States,Stage I,Living,True,,26.18,90.0,not reported,past smoker more than 15 years,United States,Stage I
-Normal,,corticomedullary,Normal,,55,Male,White,United States,Stage I,Living,False,,47.25,150.0,non-drinker,past smoker within 15 years,United States,Stage I
-Normal,,,Normal,,58,Male,White,United States,Stage III,Deceased,True,,46.17,158.0,non-drinker,non-smoker,United States,Stage III
-Normal,,corticomedullary,Normal,,83,Male,White,United States,Stage III,Living,False,,27.52,87.0,light drinker,non-smoker,United States,Stage III
-Normal,,cortex,Normal,,72,Male,Not Reported,Poland,Stage III,Living,True,,26.0,72.0,not reported,past smoker within 15 years,Poland,Stage III
-Normal,,medulla,Normal,,75,Female,White,Other: TSS does not collect this information,Stage III,Deceased,True,,42.33,105.0,not reported,past smoker more than 15 years,other,Stage III
-Normal,,cortex,Normal,,69,Male,Not Reported,Poland,Stage II,Living,True,,28.0,87.0,light drinker,past smoker within 15 years,Poland,Stage II
-Normal,,corticomedullary,Normal,,69,Male,White,United States,Stage I,Living,False,,39.2,146.0,non-drinker,past smoker more than 15 years,United States,Stage I
-Normal,,cortex,Normal,,56,Female,White,United States,Stage III,Living,True,,59.88,169.0,light drinker,not reported,United States,Stage III
-Normal,,medulla,Normal,,72,Male,Not Reported,Vietnam,Stage IV,Living,False,,21.83,58.0,non-drinker,non-smoker,Vietnam,Stage IV
-Normal,,cortex,Normal,,48,Male,White,United States,Stage I,Living,True,,48.79,141.0,not reported,current smoker,United States,Stage I
-Normal,,medulla,Normal,,56,Male,White,United States,Stage III,Living,False,,27.77,87.0,light drinker,non-smoker,United States,Stage III
-Normal,,medulla,Normal,,75,Female,White,United States,Stage I,Living,True,,36.36,84.0,non-drinker,past smoker more than 15 years,United States,Stage I
-Normal,,corticomedullary,Normal,,49,Male,White,United States,Stage III,Deceased,False,,37.88,116.0,non-drinker,non-smoker,United States,Stage III
-Normal,,cortex,Normal,,80,Male,Not Reported,Ukraine,Stage I,Living,False,,30.78,90.0,light drinker,non-smoker,Ukraine,Stage I
-Normal,,cortex,Normal,,51,Male,Not Reported,Ukraine,Stage IV,Deceased,False,,23.89,80.0,non-drinker,current smoker,Ukraine,Stage IV
-Normal,,medulla,Normal,,62,Male,Not Reported,Ukraine,Stage III,Living,False,,28.71,92.0,non-drinker,non-smoker,Ukraine,Stage III
-Normal,,,Normal,,67,Male,Not Reported,Poland,Stage III,Living,True,,32.0,94.0,light drinker,past smoker within 15 years,Poland,Stage III
-Normal,,,Normal,,69,Female,Not Reported,Poland,Stage III,Deceased,True,,37.0,92.0,light drinker,past smoker within 15 years,Poland,Stage III
-Normal,,,Normal,,49,Female,Not Reported,Poland,Stage II,Living,False,,26.0,76.0,light drinker,non-smoker,Poland,Stage II
-Normal,,medulla,Normal,,54,Male,Not Reported,Poland,Stage IV,Deceased,True,,30.0,95.0,light drinker,non-smoker,Poland,Stage IV
-Normal,,medulla,Normal,,72,Male,Not Reported,Ukraine,Stage III,Living,False,,26.99,78.0,non-drinker,non-smoker,Ukraine,Stage III
-Normal,,,Normal,,74,Female,Not Reported,Poland,Stage I,Living,True,,23.0,65.0,light drinker,non-smoker,Poland,Stage I
-Normal,,medulla,Normal,,84,Male,Not Reported,Poland,Stage III,Deceased,True,,28.0,84.0,light drinker,past smoker more than 15 years,Poland,Stage III
-Normal,,medulla,Normal,,58,Male,Not Reported,Ukraine,Stage IV,Living,False,,29.05,90.0,non-drinker,non-smoker,Ukraine,Stage IV
-Normal,,,Normal,,68,Male,Not Reported,Poland,Stage III,Living,False,,30.0,92.0,not reported,not reported,Poland,Stage III
-Normal,,medulla,Normal,,66,Male,Not Reported,Poland,Stage I,Living,True,,34.0,94.0,light drinker,current smoker,Poland,Stage I
-Normal,,,Normal,,66,Female,White,Other: Medical record does not state,Stage I,Living,True,,31.88,82.0,not reported,not reported,other,Stage I
-Normal,,,Normal,,67,Female,White,Other: Medical record does not state,Stage I,Living,True,,26.95,71.0,not reported,not reported,other,Stage I
-Normal,,,Normal,,70,Male,White,Other: Medical record does not state,Stage I,Living,True,,28.49,98.0,not reported,not reported,other,Stage I
-Normal,,,Normal,,68,Male,White,Other: Medical record does not state,Stage I,Living,True,,40.75,127.0,non-drinker,non-smoker,other,Stage I
-Normal,,,Normal,,71,Female,Black or African American,United States,Stage III,Living,True,,43.22,111.0,past drinker,past smoker more than 15 years,United States,Stage III
-Normal,,,Normal,,68,Male,White,United States,I,Deceased,True,,29.8,89.0,non-drinker,past smoker more than 15 years,United States,other
-Normal,,,Normal,,48,Male,Not Reported,Poland,Stage I,Living,False,,26.4,79.0,light drinker,non-smoker,Poland,Stage I
-Normal,,,Normal,,65,Female,Black or African American,United States,2,Deceased,True,,33.8,81.0,non-drinker,past smoker more than 15 years,United States,other
-Normal,,,Normal,,63,Male,White,United States,Stage III,Living,True,,38.72,119.0,non-drinker,non-smoker,United States,Stage III
-Normal,,,Normal,,67,Female,Black or African American,United States,Stage II,Living,True,,39.86,126.0,non-drinker,non-smoker,United States,Stage II
-Normal,,,Normal,,70,Male,Not Reported,Poland,Stage I,Living,True,,23.57,73.0,light drinker,past smoker within 15 years,Poland,Stage I
-Normal,,,Normal,,54,Female,Not Reported,Poland,Stage I,Living,True,,30.12,83.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Normal,,,Normal,,61,Female,Not Reported,Poland,Stage III,Living,True,,29.72,78.0,light drinker,past smoker within 15 years,Poland,Stage III
-Normal,,,Normal,,58,Male,Not Reported,Poland,Stage IV,Deceased,True,,25.66,85.0,light drinker,past smoker within 15 years,Poland,Stage IV
-Normal,,,Normal,,57,Female,Not Reported,Poland,Stage III,Living,False,,25.51,72.0,light drinker,non-smoker,Poland,Stage III
-Normal,,,Normal,,77,Female,White,United States,Stage II,Living,True,,28.34,68.0,non-drinker,non-smoker,United States,Stage II
-Normal,,,Normal,,52,Male,Not Reported,Poland,Stage I,Living,True,,31.16,89.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Tumor,2.0,,Oncocytoma type1,Oncocytoma,69,Female,White,Other: Medical record does not state.,Stage I,Living,True,GX: Cannot be assessed,28.35,70.0,not reported,not reported,other,Stage I
-Tumor,2.0,,Oncocytoma type1,Oncocytoma,66,Male,Not Reported,Poland,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",27.04,80.0,heavy drinker,non-smoker,Poland,Stage I
-Tumor,2.342,,Oncocytoma type1,Oncocytoma,61,Male,White,Other: Medical record does not state,Stage I,Living,False,GX: Cannot be assessed,28.69,91.0,not reported,past smoker unknown years,other,Stage I
-Tumor,1.853,,Oncocytoma type2,"Eosinophilic renal neoplasm, likely oncocytoma",76,Male,White,Other: Medical record does not state,Stage I,Living,True,GX: Cannot be assessed,35.12,117.0,not reported,not reported,other,Stage I
-Tumor,1.837,,Oncocytoma type2,Oncocytoma,56,Female,Not Reported,Poland,Stage I,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",23.53,68.0,light drinker,non-smoker,Poland,Stage I
-Tumor,1.856,,Oncocytoma type2,Oncocytoma,52,Male,Not Reported,Poland,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",31.16,89.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Tumor,1.869,,Oncocytoma type2,Oncocytoma,51,Male,Not Reported,Other: Medical record does not state,Stage I,Living,True,GX: Cannot be assessed,36.82,120.0,not reported,not reported,other,Stage I
-Tumor,1.922,,Oncocytoma type2,Oncocytoma,63,Male,White,Other: Medical record does not state,T0,Living,False,GX: Cannot be assessed,19.79,68.0,not reported,not reported,other,other
-Tumor,1.837,,Oncocytoma type2,Oncocytoma,68,Female,Not Reported,Poland,Stage I,Living,True,GX: Cannot be assessed,25.28,68.0,not reported,not reported,Poland,Stage I
-Tumor,1.837,,Oncocytoma type2,Oncocytoma,67,Female,Not Reported,Poland,Stage I,Living,True,GX: Cannot be assessed,31.24,78.0,light drinker,non-smoker,Poland,Stage I
-Tumor,1.843,,Oncocytoma type2,Oncocytoma,70,Male,White,Other: Medical record does not state,Stage I,Living,True,GX: Cannot be assessed,38.26,132.0,not reported,not reported,other,Stage I
-Tumor,1.839,,Oncocytoma type2,Unclassifiable renal neoplasm,60,Male,White,Other: Medical Record Does Not State,Stage I,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",25.84,79.0,not reported,not reported,other,Stage I
-Tumor,2.0,,Oncocytoma variant,Oncocytoma,67,Female,White,Other: Medical record does not state,Stage I,Living,True,GX: Cannot be assessed,26.95,71.0,not reported,not reported,other,Stage I
-Tumor,1.93,,Oncocytoma variant,Oncocytoma,59,Male,Not Reported,Poland,Stage I,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",30.45,88.0,light drinker,past smoker more than 15 years,Poland,Stage I
-Tumor,3.658,,Oncocytoma variant,Oncocytoma,64,Female,Not Reported,Poland,Stage I,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",21.63,54.0,light drinker,non-smoker,Poland,Stage I
-Tumor,2.674,,Oncocytoma variant,Oncocytoma,57,Female,Not Reported,Poland,Stage III,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",25.51,72.0,light drinker,non-smoker,Poland,Stage III
-Tumor,2.01,,PRCC,Clear cell renal cell carcinoma,79,Male,Not Reported,Poland,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",23.0,63.0,light drinker,non-smoker,Poland,Stage I
-Tumor,1.977,,PRCC,Clear cell renal cell carcinoma,50,Male,Not Reported,Poland,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",43.0,132.0,light drinker,past smoker within 15 years,Poland,Stage I
-Tumor,2.352113,,PRCC,Clear cell renal cell carcinoma,31,Female,Not Reported,Poland,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",22.0,56.0,light drinker,non-smoker,Poland,Stage I
-Tumor,2.01132,,PRCC,Clear cell renal cell carcinoma with secondary papillary pattern.,72,Male,Not Reported,Ukraine,Stage III,Living,False,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.99,78.0,non-drinker,non-smoker,Ukraine,Stage III
-Tumor,2.674,,PRCC,Tubulocystic renal cell carcinoma or PRCC type 1 with reverse polarity, ,Male,Not Reported,Poland,Stage I,Living,False,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",26.4,79.0,light drinker,non-smoker,Poland,Stage I
-Tumor,2.028,,PRCC type1,Papillary and partially clear cell carcinoma of the left kidney,70,Male,Not Reported,Poland,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",23.57,73.0,light drinker,past smoker within 15 years,Poland,Stage I
-Tumor,2.116,,PRCC type1,Papillary carcinoma,53,Male,Not Reported,Poland,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",21.55,66.0,light drinker,past smoker within 15 years,Poland,Stage I
-Tumor,2.116,,PRCC type1,papillary renal cell carcinoma,68,Male,White,United States,I,Deceased,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.8,89.0,non-drinker,past smoker more than 15 years,United States,other
-Tumor,2.116,,PRCC type1,Papillary Renal Cell Carcinoma,77,Female,White,United States,Stage II,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.34,68.0,non-drinker,non-smoker,United States,Stage II
-Tumor,4.198,,PRCC type1,Papillary Renal Cell Carcinoma,67,Female,Black or African American,United States,Stage II,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",39.86,126.0,non-drinker,non-smoker,United States,Stage II
-Tumor,2.209,,PRCC type1,Papillary type 1,68,Male,White,Other: Medical record does not state,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",40.75,127.0,non-drinker,non-smoker,other,Stage I
-Tumor,2.116,,PRCC type1,Papillary type 1,80,Male,White,Other: Medical record does not state,Stage I,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",24.81,76.0,not reported,not reported,other,Stage I
-Tumor,2.116,,PRCC type1,"Renal cell carcioma, papillary type 1",69,Male,Not Reported,Other: Medical record does not state,Stage III,Living,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",22.73,74.0,not reported,not reported,other,Stage III
-Tumor,3.897,,PUC,papillary urothelial carcinoma,70,Male,White,Other: Medical record does not state,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.49,98.0,not reported,not reported,other,Stage I
-Tumor,2.0,,TRCC,Clear cell renal cell carcinoma,51,Male,Not Reported,Poland,Stage I,Living,False,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",24.0,80.0,light drinker,past smoker within 15 years,Poland,Stage I
-Tumor,4.07,,MDTH (Molecularly Divergent to Histology),Clear cell renal cell carcinoma with sarcomatoid features,68,Female,Asian,United States,Stage I,Living,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.57,112.0,light drinker,not reported,United States,Stage I
-Tumor,2.289,,MDTH (Molecularly Divergent to Histology),collecting duct carcinoma/ RCC with Tubular Features,63,Male,White,United States,Stage III,Living,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",38.72,119.0,non-drinker,non-smoker,United States,Stage III
-Tumor,3.512,,MDTH (Molecularly Divergent to Histology),Oncocytoma,61,Female,Not Reported,Poland,Stage III,Living,True,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",29.72,78.0,light drinker,past smoker within 15 years,Poland,Stage III
-Tumor,1.401,,MDTH (Molecularly Divergent to Histology),Papillary Renal Cell Carcinoma with sarcomatoid differentiation,65,Female,Black or African American,United States,2,Deceased,True,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",33.8,81.0,non-drinker,past smoker more than 15 years,United States,other
-Tumor,3.903,,MDTH (Molecularly Divergent to Histology),Papillary renal cell carcinoma with sarcomatoid features,58,Male,Not Reported,Poland,Stage IV,Deceased,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",25.66,85.0,light drinker,past smoker within 15 years,Poland,Stage IV
-Tumor,2.209,,MDTH (Molecularly Divergent to Histology),papillary type 2,73,Male,White,Other: Medical record does not state,Stage I,Living,True,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",25.68,91.0,heavy drinker,not reported,other,Stage I
-Tumor,4.064,,MDTH (Molecularly Divergent to Histology),"Renal cell carcinoma, unclassified type",82,Male,White,Other: Medical record does not state,Stage IV,Living,True,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",23.01,75.0,not reported,not reported,other,Stage IV
-,,,,,,,,,,,,,,,,,,
+type,ploidy,normalClass,tumorClass,Original Histologic Subtype Call,consent_age,consent_sex,consent_race,consent_participant_country,stage,vital,grade,medical_history_bmi,medical_history_weight_at_time_of_surgery_kg,medical_history_alcohol_consumption,medical_history_tobacco_smoking_history,simp_country,simp_stage
+Tumor,2.0,,AML,Angiomyolipoma,71,Male,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,22.63,62.0,not reported,not reported,other,Stage I
+Tumor,2.0,,AML,Angiomyolipoma,39,Female,White,Other: Medical record does not state,unknown,Living,GX: Cannot be assessed,18.15,41.0,light drinker,past smoker unknown years,other,other
+Tumor,2.0,,BHD,Renal cell tumor of Birt-Hogg-Dube syndrome,54,Female,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,18.48,54.0,not reported,not reported,other,Stage I
+Tumor,2.01,,ccRCC,ccRCC,56,Female,White,United States,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,United States,Stage III
+Tumor,1.901408,,ccRCC,ccRCC,71,Male,Not Reported,Poland,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Poland,Stage III
+Tumor,1.99,,ccRCC,ccRCC,67,Male,Not Reported,Ukraine,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Ukraine,Stage I
+Tumor,1.96,,ccRCC,ccRCC,84,Male,Not Reported,Poland,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Poland,Stage III
+Tumor,2.03,,ccRCC,ccRCC,69,Male,Not Reported,Poland,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Poland,Stage II
+Tumor,1.901408,,ccRCC,ccRCC,76,Male,White,Other: Medical record does not state.,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.49,88.0,not reported,not reported,other,Stage III
+Tumor,1.93,,ccRCC,ccRCC,35,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,United States,Stage I
+Tumor,1.94,,ccRCC,ccRCC,66,Male,White,United States,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,United States,Stage IV
+Tumor,2.014085,,ccRCC,ccRCC,63,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,United States,Stage I
+Tumor,1.964268,,ccRCC,ccRCC,58,Female,Not Reported,Poland,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Poland,Stage III
+Tumor,1.97,,ccRCC,ccRCC,57,Female,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",68.59,167.0,not reported,not reported,other,Stage I
+Tumor,1.89,,ccRCC,ccRCC,55,Female,Not Reported,Ukraine,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Ukraine,Stage IV
+Tumor,1.901408,,ccRCC,ccRCC,69,Female,White,United States,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,United States,Stage I
+Tumor,2.014085,,ccRCC,ccRCC,72,Male,White,United States,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",32.82,104.0,non-drinker,past smoker more than 15 years,United States,Stage III
+Tumor,1.97,,ccRCC,ccRCC,48,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",48.79,141.0,not reported,current smoker,United States,Stage I
+Tumor,2.04,,ccRCC,ccRCC,48,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",39.0,128.0,light drinker,non-smoker,Poland,Stage I
+Tumor,1.901408,,ccRCC,ccRCC,37,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",45.37,156.0,non-drinker,not reported,United States,Stage I
+Tumor,1.92,,ccRCC,ccRCC,80,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",33.96,104.0,not reported,not reported,other,Stage I
+Tumor,1.98,,ccRCC,ccRCC,74,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.04,73.0,not reported,not reported,other,Stage I
+Tumor,2.02,,ccRCC,ccRCC,59,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",46.17,159.0,not reported,not reported,other,Stage I
+Tumor,1.901408,,ccRCC,ccRCC,76,Female,White,Other: TSS did not collect this information.,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",26.95,71.0,non-drinker,non-smoker,other,Stage I
+Tumor,1.93,,ccRCC,ccRCC,37,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",30.86,100.0,non-drinker,non-smoker,United States,Stage I
+Tumor,1.94,,ccRCC,ccRCC,30,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",34.15,107.0,not reported,current smoker,United States,Stage I
+Tumor,2.04,,ccRCC,ccRCC,60,Female,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.0,52.0,light drinker,current smoker,Poland,Stage I
+Tumor,1.94,,ccRCC,ccRCC,60,Female,White,United States,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",27.85,74.0,light drinker,past smoker more than 15 years,United States,Stage II
+Tumor,1.9,,ccRCC,ccRCC,67,Male,Not Reported,Poland,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",32.0,94.0,light drinker,past smoker within 15 years,Poland,Stage III
+Tumor,1.991521,,ccRCC,ccRCC,33,Female,White,Other: Patient not interviewed,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",36.39,90.0,light drinker,current smoker,other,Stage III
+Tumor,1.97,,ccRCC,ccRCC,47,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.41,87.0,light drinker,past smoker within 15 years,United States,Stage I
+Tumor,1.88,,ccRCC,ccRCC,89,Male,White,United States,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.35,84.0,non-drinker,non-smoker,United States,Stage III
+Tumor,2.014085,,ccRCC,ccRCC,75,Female,White,Other: TSS does not collect this information,Stage III,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",42.33,105.0,not reported,past smoker more than 15 years,other,Stage III
+Tumor,1.96,,ccRCC,ccRCC,62,Male,White,United States,Stage III,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",32.0,98.0,past drinker,current smoker,United States,Stage III
+Tumor,1.92,,ccRCC,ccRCC,72,Male,Not Reported,Poland,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",26.0,72.0,not reported,past smoker within 15 years,Poland,Stage III
+Tumor,2.01,,ccRCC,ccRCC,52,Male,Not Reported,Poland,Stage II,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.0,107.0,not reported,not reported,Poland,Stage II
+Tumor,2.014085,,ccRCC,ccRCC,61,Male,White,Other: Medical record does not state.,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",19.49,60.0,non-drinker,non-smoker,other,Stage III
+Tumor,1.923809,,ccRCC,ccRCC,55,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",47.25,150.0,non-drinker,past smoker within 15 years,United States,Stage I
+Tumor,1.94,,ccRCC,ccRCC,72,Male,White,United States,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",22.8,66.0,non-drinker,past smoker within 15 years,United States,Stage III
+Tumor,2.014085,,ccRCC,ccRCC,68,Male,Not Reported,Ukraine,Stage III,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",22.68,64.0,non-drinker,non-smoker,Ukraine,Stage III
+Tumor,1.99,,ccRCC,ccRCC,83,Male,Not Reported,Other: Medical Record Does Not State,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.56,97.0,not reported,not reported,other,Stage I
+Tumor,2.01,,ccRCC,ccRCC,67,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",35.27,108.0,light drinker,past smoker more than 15 years,United States,Stage I
+Tumor,1.93,,ccRCC,ccRCC,56,Male,White,United States,Stage III,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.7,93.0,light drinker,current smoker,United States,Stage III
+Tumor,2.014085,,ccRCC,ccRCC,59,Male,White,Other: TSS did not collect this information,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",36.81,113.0,light drinker,past smoker more than 15 years,other,Stage I
+Tumor,1.83,,ccRCC,ccRCC,68,Male,Not Reported,Poland,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",30.0,92.0,not reported,not reported,Poland,Stage III
+Tumor,1.86,,ccRCC,ccRCC,41,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",35.66,111.0,not reported,not reported,other,Stage I
+Tumor,1.94,,ccRCC,ccRCC,47,Male,Not Reported,Vietnam,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.78,53.0,light drinker,current smoker,Vietnam,Stage I
+Tumor,1.969385,,ccRCC,ccRCC,54,Female,White,Other: Medical record does not state,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",38.08,98.0,not reported,not reported,other,Stage I
+Tumor,1.901408,,ccRCC,ccRCC,61,Male,Not Reported,Vietnam,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",22.04,60.0,non-drinker,non-smoker,Vietnam,Stage II
+Tumor,4.0,,ccRCC,ccRCC,57,Female,White,Other: Medical record does not state,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",40.74,104.0,non-drinker,non-smoker,other,Stage I
+Tumor,1.75,,ccRCC,ccRCC,56,Female,Not Reported,Ukraine,Stage IV,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.37,78.0,non-drinker,non-smoker,Ukraine,Stage IV
+Tumor,1.901408,,ccRCC,ccRCC,51,Male,Not Reported,Poland,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",35.0,105.0,past drinker,past smoker within 15 years,Poland,Stage III
+Tumor,2.014085,,ccRCC,ccRCC,65,Female,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.23,75.0,non-drinker,non-smoker,United States,Stage I
+Tumor,1.87,,ccRCC,ccRCC,61,Female,White,Other: Medical Record Does Not State,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",21.96,56.0,not reported,past smoker within 15 years,other,Stage I
+Tumor,1.889131,,ccRCC,ccRCC,57,Female,Not Reported,Ukraine,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",46.0,138.0,non-drinker,non-smoker,Ukraine,Stage I
+Tumor,1.99,,ccRCC,ccRCC,78,Male,Not Reported,Poland,Stage I,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",31.0,96.0,light drinker,past smoker within 15 years,Poland,Stage I
+Tumor,1.901408,,ccRCC,ccRCC,65,Male,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",30.0,90.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Tumor,1.93,,ccRCC,ccRCC,55,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.72,99.0,non-drinker,non-smoker,United States,Stage I
+Tumor,1.901408,,ccRCC,ccRCC,67,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.81,109.0,heavy drinker,current smoker,other,Stage I
+Tumor,2.126761,,ccRCC,ccRCC,66,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",26.18,90.0,not reported,past smoker more than 15 years,United States,Stage I
+Tumor,1.992849,,ccRCC,ccRCC,44,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",45.77,141.0,non-drinker,non-smoker,United States,Stage I
+Tumor,1.94,,ccRCC,ccRCC,83,Male,White,United States,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",27.52,87.0,light drinker,non-smoker,United States,Stage III
+Tumor,2.040966,,ccRCC,ccRCC,70,Female,White,United States,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",39.45,101.0,non-drinker,current smoker,United States,Stage I
+Tumor,1.88,,ccRCC,ccRCC,46,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",44.3,136.0,non-drinker,non-smoker,United States,Stage I
+Tumor,1.83,,ccRCC,ccRCC,>=90,Female,White,Other: Medical record does not state,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.6,86.0,non-drinker,non-smoker,other,Stage II
+Tumor,1.901408,,ccRCC,ccRCC,69,Male,Not Reported,Poland,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",25.0,75.0,light drinker,current smoker,Poland,Stage III
+Tumor,1.77,,ccRCC,ccRCC,51,Female,White,United States,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.96,73.0,non-drinker,current smoker,United States,Stage IV
+Tumor,1.92,,ccRCC,ccRCC,52,Male,White,United States,Stage II,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",33.66,95.0,non-drinker,non-smoker,United States,Stage II
+Tumor,2.014085,,ccRCC,ccRCC,47,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.75,96.0,non-drinker,non-smoker,United States,Stage I
+Tumor,1.89,,ccRCC,ccRCC,60,Male,Not Reported,Ukraine,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",21.38,78.0,light drinker,current smoker,Ukraine,Stage II
+Tumor,1.76,,ccRCC,ccRCC,57,Male,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.63,86.0,light drinker,past smoker more than 15 years,United States,Stage I
+Tumor,1.901408,,ccRCC,ccRCC,41,Male,Asian,United States,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",22.43,77.0,light drinker,non-smoker,United States,Stage II
+Tumor,2.126761,,ccRCC,ccRCC,75,Female,White,United States,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.36,84.0,non-drinker,past smoker more than 15 years,United States,Stage I
+Tumor,2.174865,,ccRCC,ccRCC,67,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",16.0,48.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Tumor,2.0,,ccRCC,ccRCC,51,Male,Black or African American,Other: Medical record does not state,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",48.46,120.0,not reported,not reported,other,Stage III
+Tumor,2.0,,ccRCC,ccRCC,66,Male,White,Other: Medical record does not state,Stage III,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.96,112.0,non-drinker,non-smoker,other,Stage III
+Tumor,3.816901,,ccRCC,ccRCC,61,Male,Not Reported,Ukraine,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.38,94.0,non-drinker,non-smoker,Ukraine,Stage II
+Tumor,1.84,,ccRCC,ccRCC,51,Male,Not Reported,Ukraine,Stage IV,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",23.89,80.0,non-drinker,current smoker,Ukraine,Stage IV
+Tumor,2.13,,ccRCC,ccRCC,56,Male,White,United States,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.77,87.0,light drinker,non-smoker,United States,Stage III
+Tumor,1.738,,ccRCC,ccRCC,63,Female,White,Other: Unknown,Stage IV,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",27.47,89.0,light drinker,non-smoker,other,Stage IV
+Tumor,3.503158,,ccRCC,ccRCC,80,Male,Not Reported,Ukraine,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.78,90.0,light drinker,non-smoker,Ukraine,Stage I
+Tumor,1.92,,ccRCC,ccRCC,52,Male,Not Reported,Ukraine,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.41,90.0,non-drinker,not reported,Ukraine,Stage I
+Tumor,2.077498,,ccRCC,ccRCC,60,Male,White,United States,Stage IV,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",25.31,80.0,light drinker,non-smoker,United States,Stage IV
+Tumor,2.126761,,ccRCC,ccRCC,58,Male,Not Reported,Ukraine,Stage IV,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.05,90.0,non-drinker,non-smoker,Ukraine,Stage IV
+Tumor,2.42,,ccRCC,ccRCC,57,Female,Not Reported,Ukraine,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",27.72,82.0,non-drinker,not reported,Ukraine,Stage I
+Tumor,2.055538,,ccRCC,ccRCC,63,Male,White,United States,Stage III,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",29.38,80.0,non-drinker,past smoker more than 15 years,United States,Stage III
+Tumor,3.633,,ccRCC,ccRCC,66,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",34.0,94.0,light drinker,current smoker,Poland,Stage I
+Tumor,1.99,,ccRCC,ccRCC,74,Female,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",23.0,65.0,light drinker,non-smoker,Poland,Stage I
+Tumor,2.126761,,ccRCC,ccRCC,71,Female,White,United States,Stage III,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",36.0,98.0,non-drinker,non-smoker,United States,Stage III
+Tumor,1.901408,,ccRCC,ccRCC,52,Male,Not Reported,Vietnam,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",24.06,72.0,non-drinker,non-smoker,Vietnam,Stage III
+Tumor,3.704225,,ccRCC,ccRCC,41,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.01,94.0,light drinker,not reported,other,Stage I
+Tumor,2.239437,,ccRCC,ccRCC,54,Male,Not Reported,Poland,Stage IV,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",30.0,95.0,light drinker,non-smoker,Poland,Stage IV
+Tumor,2.464789,,ccRCC,ccRCC,44,Male,White,Other: Medical Record Does Not State,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",38.99,113.0,heavy drinker,non-smoker,other,Stage I
+Tumor,1.74,,ccRCC,ccRCC,68,Male,Not Reported,Poland,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.0,77.0,light drinker,non-smoker,Poland,Stage I
+Tumor,3.47,,ccRCC,ccRCC,68,Male,Not Reported,Ukraine,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.08,93.0,non-drinker,not reported,Ukraine,Stage II
+Tumor,1.71,,ccRCC,ccRCC,52,Male,White,United States,Stage IV,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",27.44,94.0,non-drinker,non-smoker,United States,Stage IV
+Tumor,2.679434,,ccRCC,ccRCC,50,Male,White,United States,Stage III,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",27.47,94.0,non-drinker,non-smoker,United States,Stage III
+Tumor,3.29,,ccRCC,ccRCC,68,Female,Not Reported,Ukraine,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",27.05,71.0,non-drinker,not reported,Ukraine,Stage IV
+Tumor,5.27,,ccRCC,ccRCC,49,Male,White,United States,Stage III,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.88,116.0,non-drinker,non-smoker,United States,Stage III
+Tumor,3.253521,,ccRCC,ccRCC,58,Male,Not Reported,Poland,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",25.0,75.0,light drinker,non-smoker,Poland,Stage II
+Tumor,2.652648,,ccRCC,ccRCC,58,Male,White,United States,Stage III,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",46.17,158.0,non-drinker,non-smoker,United States,Stage III
+Tumor,2.78,,ccRCC,ccRCC,69,Female,Not Reported,Poland,Stage III,Deceased,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",37.0,92.0,light drinker,past smoker within 15 years,Poland,Stage III
+Tumor,3.366197,,ccRCC,ccRCC,72,Male,White,United States,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",38.94,122.0,light drinker,past smoker within 15 years,United States,Stage II
+Tumor,4.35,,ccRCC,ccRCC,62,Male,Not Reported,Ukraine,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.71,92.0,non-drinker,non-smoker,Ukraine,Stage III
+Tumor,3.140845,,ccRCC,ccRCC,69,Male,White,United States,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",39.2,146.0,non-drinker,past smoker more than 15 years,United States,Stage I
+Tumor,4.908909,,ccRCC,ccRCC,72,Male,Not Reported,Vietnam,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",21.83,58.0,non-drinker,non-smoker,Vietnam,Stage IV
+Tumor,3.245,,ChRCC,Chromophobe Renal Cell Carcinoma,59,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",38.12,131.0,not reported,not reported,other,Stage I
+Tumor,1.56338,,ChRCC,Clear Cell Renal Cell Carcinoma,49,Female,Not Reported,Poland,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.0,76.0,light drinker,non-smoker,Poland,Stage II
+Tumor,1.52,,ChRCC,Clear Cell Renal Cell Carcinoma,60,Female,Not Reported,Poland,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",14.0,39.0,light drinker,non-smoker,Poland,Stage III
+Tumor,1.96,,ESCRCC,Clear Cell Renal Cell Carcinoma,73,Female,White,Other: TSS did not collect,Stage I,Deceased,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",42.92,117.0,light drinker,past smoker within 15 years,other,Stage I
+Tumor,2.023,,ESCRCC,"Papillary renal cell carcinoma, Type 2",71,Female,Black or African American,United States,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",43.22,111.0,past drinker,past smoker more than 15 years,United States,Stage III
+Tumor,2.023,,MEST,Mixed epithelial and stromal lesion,66,Female,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,31.88,82.0,not reported,not reported,other,Stage I
+Tumor,2.023,,MTOR Mutated RCC,Oncocytoma,54,Female,Not Reported,Poland,Stage I,Living,GX: Cannot be assessed,30.12,83.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Normal,,cortex,Normal,,83,Male,Not Reported,Other: Medical Record Does Not State,Stage I,Living,,30.56,97.0,not reported,not reported,other,Stage I
+Normal,,cortex,Normal,,67,Male,White,United States,Stage I,Living,,35.27,108.0,light drinker,past smoker more than 15 years,United States,Stage I
+Normal,,cortex,Normal,,60,Female,White,United States,Stage II,Living,,27.85,74.0,light drinker,past smoker more than 15 years,United States,Stage II
+Normal,,medulla,Normal,,65,Female,White,United States,Stage I,Living,,28.23,75.0,non-drinker,non-smoker,United States,Stage I
+Normal,,cortex,Normal,,35,Male,White,United States,Stage I,Living,,36.57,118.0,non-drinker,current smoker,United States,Stage I
+Normal,,corticomedullary,Normal,,62,Male,White,United States,Stage III,Living,,32.0,98.0,past drinker,current smoker,United States,Stage III
+Normal,,,Normal,,44,Male,White,United States,Stage I,Living,,45.77,141.0,non-drinker,non-smoker,United States,Stage I
+Normal,,corticomedullary,Normal,,52,Male,Not Reported,Ukraine,Stage I,Living,,28.41,90.0,non-drinker,not reported,Ukraine,Stage I
+Normal,,corticomedullary,Normal,,57,Female,Not Reported,Ukraine,Stage I,Living,,27.72,82.0,non-drinker,not reported,Ukraine,Stage I
+Normal,,medulla,Normal,,69,Female,White,United States,Stage I,Living,,19.72,57.0,light drinker,past smoker more than 15 years,United States,Stage I
+Normal,,medulla,Normal,,52,Male,White,United States,Stage IV,Deceased,,27.44,94.0,non-drinker,non-smoker,United States,Stage IV
+Normal,,cortex,Normal,,47,Male,White,United States,Stage I,Living,,29.41,87.0,light drinker,past smoker within 15 years,United States,Stage I
+Normal,,corticomedullary,Normal,,52,Male,Not Reported,Vietnam,Stage III,Living,,24.06,72.0,non-drinker,non-smoker,Vietnam,Stage III
+Normal,,corticomedullary,Normal,,56,Female,Not Reported,Ukraine,Stage IV,Deceased,,26.37,78.0,non-drinker,non-smoker,Ukraine,Stage IV
+Normal,,,Normal,,63,Female,White,Other: Unknown,Stage IV,Deceased,,27.47,89.0,light drinker,non-smoker,other,Stage IV
+Normal,,cortex,Normal,,60,Female,Not Reported,Poland,Stage III,Living,,14.0,39.0,light drinker,non-smoker,Poland,Stage III
+Normal,,cortex,Normal,,47,Male,White,United States,Stage I,Living,,28.75,96.0,non-drinker,non-smoker,United States,Stage I
+Normal,,corticomedullary,Normal,,71,Male,Not Reported,Poland,Stage III,Living,,29.0,91.0,light drinker,non-smoker,Poland,Stage III
+Normal,,,Normal,,56,Male,White,United States,Stage III,Deceased,,28.7,93.0,light drinker,current smoker,United States,Stage III
+Normal,,medulla,Normal,,51,Male,Not Reported,Poland,Stage III,Living,,35.0,105.0,past drinker,past smoker within 15 years,Poland,Stage III
+Normal,,corticomedullary,Normal,,68,Female,Not Reported,Ukraine,Stage IV,Living,,27.05,71.0,non-drinker,not reported,Ukraine,Stage IV
+Normal,,corticomedullary,Normal,,52,Male,White,United States,Stage II,Deceased,,33.66,95.0,non-drinker,non-smoker,United States,Stage II
+Normal,,medulla,Normal,,63,Male,White,United States,Stage III,Deceased,,29.38,80.0,non-drinker,past smoker more than 15 years,United States,Stage III
+Normal,,corticomedullary,Normal,,61,Male,Not Reported,Vietnam,Stage II,Living,,22.04,60.0,non-drinker,non-smoker,Vietnam,Stage II
+Normal,,cortex,Normal,,71,Female,White,United States,Stage III,Deceased,,36.0,98.0,non-drinker,non-smoker,United States,Stage III
+Normal,,cortex,Normal,,48,Male,Not Reported,Poland,Stage I,Living,,39.0,128.0,light drinker,non-smoker,Poland,Stage I
+Normal,,cortex,Normal,,58,Male,Not Reported,Poland,Stage II,Living,,25.0,75.0,light drinker,non-smoker,Poland,Stage II
+Normal,,medulla,Normal,,72,Male,White,United States,Stage II,Living,,38.94,122.0,light drinker,past smoker within 15 years,United States,Stage II
+Normal,,cortex,Normal,,66,Male,White,United States,Stage I,Living,,26.18,90.0,not reported,past smoker more than 15 years,United States,Stage I
+Normal,,corticomedullary,Normal,,55,Male,White,United States,Stage I,Living,,47.25,150.0,non-drinker,past smoker within 15 years,United States,Stage I
+Normal,,,Normal,,58,Male,White,United States,Stage III,Deceased,,46.17,158.0,non-drinker,non-smoker,United States,Stage III
+Normal,,corticomedullary,Normal,,83,Male,White,United States,Stage III,Living,,27.52,87.0,light drinker,non-smoker,United States,Stage III
+Normal,,cortex,Normal,,72,Male,Not Reported,Poland,Stage III,Living,,26.0,72.0,not reported,past smoker within 15 years,Poland,Stage III
+Normal,,medulla,Normal,,75,Female,White,Other: TSS does not collect this information,Stage III,Deceased,,42.33,105.0,not reported,past smoker more than 15 years,other,Stage III
+Normal,,cortex,Normal,,69,Male,Not Reported,Poland,Stage II,Living,,28.0,87.0,light drinker,past smoker within 15 years,Poland,Stage II
+Normal,,corticomedullary,Normal,,69,Male,White,United States,Stage I,Living,,39.2,146.0,non-drinker,past smoker more than 15 years,United States,Stage I
+Normal,,cortex,Normal,,56,Female,White,United States,Stage III,Living,,59.88,169.0,light drinker,not reported,United States,Stage III
+Normal,,medulla,Normal,,72,Male,Not Reported,Vietnam,Stage IV,Living,,21.83,58.0,non-drinker,non-smoker,Vietnam,Stage IV
+Normal,,cortex,Normal,,48,Male,White,United States,Stage I,Living,,48.79,141.0,not reported,current smoker,United States,Stage I
+Normal,,medulla,Normal,,56,Male,White,United States,Stage III,Living,,27.77,87.0,light drinker,non-smoker,United States,Stage III
+Normal,,medulla,Normal,,75,Female,White,United States,Stage I,Living,,36.36,84.0,non-drinker,past smoker more than 15 years,United States,Stage I
+Normal,,corticomedullary,Normal,,49,Male,White,United States,Stage III,Deceased,,37.88,116.0,non-drinker,non-smoker,United States,Stage III
+Normal,,cortex,Normal,,80,Male,Not Reported,Ukraine,Stage I,Living,,30.78,90.0,light drinker,non-smoker,Ukraine,Stage I
+Normal,,cortex,Normal,,51,Male,Not Reported,Ukraine,Stage IV,Deceased,,23.89,80.0,non-drinker,current smoker,Ukraine,Stage IV
+Normal,,medulla,Normal,,62,Male,Not Reported,Ukraine,Stage III,Living,,28.71,92.0,non-drinker,non-smoker,Ukraine,Stage III
+Normal,,,Normal,,67,Male,Not Reported,Poland,Stage III,Living,,32.0,94.0,light drinker,past smoker within 15 years,Poland,Stage III
+Normal,,,Normal,,69,Female,Not Reported,Poland,Stage III,Deceased,,37.0,92.0,light drinker,past smoker within 15 years,Poland,Stage III
+Normal,,,Normal,,49,Female,Not Reported,Poland,Stage II,Living,,26.0,76.0,light drinker,non-smoker,Poland,Stage II
+Normal,,medulla,Normal,,54,Male,Not Reported,Poland,Stage IV,Deceased,,30.0,95.0,light drinker,non-smoker,Poland,Stage IV
+Normal,,medulla,Normal,,72,Male,Not Reported,Ukraine,Stage III,Living,,26.99,78.0,non-drinker,non-smoker,Ukraine,Stage III
+Normal,,,Normal,,74,Female,Not Reported,Poland,Stage I,Living,,23.0,65.0,light drinker,non-smoker,Poland,Stage I
+Normal,,medulla,Normal,,84,Male,Not Reported,Poland,Stage III,Deceased,,28.0,84.0,light drinker,past smoker more than 15 years,Poland,Stage III
+Normal,,medulla,Normal,,58,Male,Not Reported,Ukraine,Stage IV,Living,,29.05,90.0,non-drinker,non-smoker,Ukraine,Stage IV
+Normal,,,Normal,,68,Male,Not Reported,Poland,Stage III,Living,,30.0,92.0,not reported,not reported,Poland,Stage III
+Normal,,medulla,Normal,,66,Male,Not Reported,Poland,Stage I,Living,,34.0,94.0,light drinker,current smoker,Poland,Stage I
+Normal,,,Normal,,66,Female,White,Other: Medical record does not state,Stage I,Living,,31.88,82.0,not reported,not reported,other,Stage I
+Normal,,,Normal,,67,Female,White,Other: Medical record does not state,Stage I,Living,,26.95,71.0,not reported,not reported,other,Stage I
+Normal,,,Normal,,70,Male,White,Other: Medical record does not state,Stage I,Living,,28.49,98.0,not reported,not reported,other,Stage I
+Normal,,,Normal,,68,Male,White,Other: Medical record does not state,Stage I,Living,,40.75,127.0,non-drinker,non-smoker,other,Stage I
+Normal,,,Normal,,71,Female,Black or African American,United States,Stage III,Living,,43.22,111.0,past drinker,past smoker more than 15 years,United States,Stage III
+Normal,,,Normal,,68,Male,White,United States,I,Deceased,,29.8,89.0,non-drinker,past smoker more than 15 years,United States,other
+Normal,,,Normal,,48,Male,Not Reported,Poland,Stage I,Living,,26.4,79.0,light drinker,non-smoker,Poland,Stage I
+Normal,,,Normal,,65,Female,Black or African American,United States,2,Deceased,,33.8,81.0,non-drinker,past smoker more than 15 years,United States,other
+Normal,,,Normal,,63,Male,White,United States,Stage III,Living,,38.72,119.0,non-drinker,non-smoker,United States,Stage III
+Normal,,,Normal,,67,Female,Black or African American,United States,Stage II,Living,,39.86,126.0,non-drinker,non-smoker,United States,Stage II
+Normal,,,Normal,,70,Male,Not Reported,Poland,Stage I,Living,,23.57,73.0,light drinker,past smoker within 15 years,Poland,Stage I
+Normal,,,Normal,,54,Female,Not Reported,Poland,Stage I,Living,,30.12,83.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Normal,,,Normal,,61,Female,Not Reported,Poland,Stage III,Living,,29.72,78.0,light drinker,past smoker within 15 years,Poland,Stage III
+Normal,,,Normal,,58,Male,Not Reported,Poland,Stage IV,Deceased,,25.66,85.0,light drinker,past smoker within 15 years,Poland,Stage IV
+Normal,,,Normal,,57,Female,Not Reported,Poland,Stage III,Living,,25.51,72.0,light drinker,non-smoker,Poland,Stage III
+Normal,,,Normal,,77,Female,White,United States,Stage II,Living,,28.34,68.0,non-drinker,non-smoker,United States,Stage II
+Normal,,,Normal,,52,Male,Not Reported,Poland,Stage I,Living,,31.16,89.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Tumor,2.0,,Oncocytoma type1,Oncocytoma,69,Female,White,Other: Medical record does not state.,Stage I,Living,GX: Cannot be assessed,28.35,70.0,not reported,not reported,other,Stage I
+Tumor,2.0,,Oncocytoma type1,Oncocytoma,66,Male,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",27.04,80.0,heavy drinker,non-smoker,Poland,Stage I
+Tumor,2.342,,Oncocytoma type1,Oncocytoma,61,Male,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,28.69,91.0,not reported,past smoker unknown years,other,Stage I
+Tumor,1.853,,Oncocytoma type2,"Eosinophilic renal neoplasm, likely oncocytoma",76,Male,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,35.12,117.0,not reported,not reported,other,Stage I
+Tumor,1.837,,Oncocytoma type2,Oncocytoma,56,Female,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",23.53,68.0,light drinker,non-smoker,Poland,Stage I
+Tumor,1.856,,Oncocytoma type2,Oncocytoma,52,Male,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",31.16,89.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Tumor,1.869,,Oncocytoma type2,Oncocytoma,51,Male,Not Reported,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,36.82,120.0,not reported,not reported,other,Stage I
+Tumor,1.922,,Oncocytoma type2,Oncocytoma,63,Male,White,Other: Medical record does not state,T0,Living,GX: Cannot be assessed,19.79,68.0,not reported,not reported,other,other
+Tumor,1.837,,Oncocytoma type2,Oncocytoma,68,Female,Not Reported,Poland,Stage I,Living,GX: Cannot be assessed,25.28,68.0,not reported,not reported,Poland,Stage I
+Tumor,1.837,,Oncocytoma type2,Oncocytoma,67,Female,Not Reported,Poland,Stage I,Living,GX: Cannot be assessed,31.24,78.0,light drinker,non-smoker,Poland,Stage I
+Tumor,1.843,,Oncocytoma type2,Oncocytoma,70,Male,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,38.26,132.0,not reported,not reported,other,Stage I
+Tumor,1.839,,Oncocytoma type2,Unclassifiable renal neoplasm,60,Male,White,Other: Medical Record Does Not State,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",25.84,79.0,not reported,not reported,other,Stage I
+Tumor,2.0,,Oncocytoma variant,Oncocytoma,67,Female,White,Other: Medical record does not state,Stage I,Living,GX: Cannot be assessed,26.95,71.0,not reported,not reported,other,Stage I
+Tumor,1.93,,Oncocytoma variant,Oncocytoma,59,Male,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",30.45,88.0,light drinker,past smoker more than 15 years,Poland,Stage I
+Tumor,3.658,,Oncocytoma variant,Oncocytoma,64,Female,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",21.63,54.0,light drinker,non-smoker,Poland,Stage I
+Tumor,2.674,,Oncocytoma variant,Oncocytoma,57,Female,Not Reported,Poland,Stage III,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",25.51,72.0,light drinker,non-smoker,Poland,Stage III
+Tumor,2.01,,PRCC,Clear cell renal cell carcinoma,79,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",23.0,63.0,light drinker,non-smoker,Poland,Stage I
+Tumor,1.977,,PRCC,Clear cell renal cell carcinoma,50,Male,Not Reported,Poland,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",43.0,132.0,light drinker,past smoker within 15 years,Poland,Stage I
+Tumor,2.352113,,PRCC,Clear cell renal cell carcinoma,31,Female,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",22.0,56.0,light drinker,non-smoker,Poland,Stage I
+Tumor,2.01132,,PRCC,Clear cell renal cell carcinoma with secondary papillary pattern.,72,Male,Not Reported,Ukraine,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",26.99,78.0,non-drinker,non-smoker,Ukraine,Stage III
+Tumor,2.674,,PRCC,Tubulocystic renal cell carcinoma or PRCC type 1 with reverse polarity, ,Male,Not Reported,Poland,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",26.4,79.0,light drinker,non-smoker,Poland,Stage I
+Tumor,2.028,,PRCC type1,Papillary and partially clear cell carcinoma of the left kidney,70,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",23.57,73.0,light drinker,past smoker within 15 years,Poland,Stage I
+Tumor,2.116,,PRCC type1,Papillary carcinoma,53,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",21.55,66.0,light drinker,past smoker within 15 years,Poland,Stage I
+Tumor,2.116,,PRCC type1,papillary renal cell carcinoma,68,Male,White,United States,I,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.8,89.0,non-drinker,past smoker more than 15 years,United States,other
+Tumor,2.116,,PRCC type1,Papillary Renal Cell Carcinoma,77,Female,White,United States,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.34,68.0,non-drinker,non-smoker,United States,Stage II
+Tumor,4.198,,PRCC type1,Papillary Renal Cell Carcinoma,67,Female,Black or African American,United States,Stage II,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",39.86,126.0,non-drinker,non-smoker,United States,Stage II
+Tumor,2.209,,PRCC type1,Papillary type 1,68,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",40.75,127.0,non-drinker,non-smoker,other,Stage I
+Tumor,2.116,,PRCC type1,Papillary type 1,80,Male,White,Other: Medical record does not state,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",24.81,76.0,not reported,not reported,other,Stage I
+Tumor,2.116,,PRCC type1,"Renal cell carcioma, papillary type 1",69,Male,Not Reported,Other: Medical record does not state,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",22.73,74.0,not reported,not reported,other,Stage III
+Tumor,3.897,,PUC,papillary urothelial carcinoma,70,Male,White,Other: Medical record does not state,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",28.49,98.0,not reported,not reported,other,Stage I
+Tumor,2.0,,TRCC,Clear cell renal cell carcinoma,51,Male,Not Reported,Poland,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",24.0,80.0,light drinker,past smoker within 15 years,Poland,Stage I
+Tumor,4.07,,MDTH (Molecularly Divergent to Histology),Clear cell renal cell carcinoma with sarcomatoid features,68,Female,Asian,United States,Stage I,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.57,112.0,light drinker,not reported,United States,Stage I
+Tumor,2.289,,MDTH (Molecularly Divergent to Histology),collecting duct carcinoma/ RCC with Tubular Features,63,Male,White,United States,Stage III,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",38.72,119.0,non-drinker,non-smoker,United States,Stage III
+Tumor,3.512,,MDTH (Molecularly Divergent to Histology),Oncocytoma,61,Female,Not Reported,Poland,Stage III,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",29.72,78.0,light drinker,past smoker within 15 years,Poland,Stage III
+Tumor,1.401,,MDTH (Molecularly Divergent to Histology),Papillary Renal Cell Carcinoma with sarcomatoid differentiation,65,Female,Black or African American,United States,2,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",33.8,81.0,non-drinker,past smoker more than 15 years,United States,other
+Tumor,3.903,,MDTH (Molecularly Divergent to Histology),Papillary renal cell carcinoma with sarcomatoid features,58,Male,Not Reported,Poland,Stage IV,Deceased,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",25.66,85.0,light drinker,past smoker within 15 years,Poland,Stage IV
+Tumor,2.209,,MDTH (Molecularly Divergent to Histology),papillary type 2,73,Male,White,Other: Medical record does not state,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",25.68,91.0,heavy drinker,not reported,other,Stage I
+Tumor,4.064,,MDTH (Molecularly Divergent to Histology),"Renal cell carcinoma, unclassified type",82,Male,White,Other: Medical record does not state,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",23.01,75.0,not reported,not reported,other,Stage IV
+,,,,,,,,,,,,,,,,,

@@ -67,7 +67,7 @@ const CombinedView = ({
                 />
             </Box>
             <Box
-                sx={{ overflowY: 'scroll', height: "100%", scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}
+                sx={{ overflowY: 'scroll', height: "100%", maxHeight: "800px", scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}
             >
                 {/* <SectionHeader>
                     Relevant Knowledge

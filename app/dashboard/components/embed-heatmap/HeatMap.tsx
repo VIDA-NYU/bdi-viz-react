@@ -282,8 +282,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
                     ? highlightSourceColumns.includes(d.sourceColumn) &&
                       highlightTargetColumns.includes(d.targetColumn)
                     : globalQuery ?
-                      (d.sourceColumn.includes(globalQuery) ||
-                      d.targetColumn.includes(globalQuery)) : undefined
+                      d.targetColumn.includes(globalQuery) : undefined
                   }
                   />
                 );

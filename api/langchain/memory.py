@@ -112,10 +112,10 @@ class MemoryRetriver:
         )
         self.user_id = "bdi_viz_user"
 
-        for fp in FP_CANDIDATES:
-            self.put_mismatch(fp)
-        for fn in FN_CANDIDATES:
-            self.put_match(fn)
+        # for fp in FP_CANDIDATES:
+        #     self.put_mismatch(fp)
+        # for fn in FN_CANDIDATES:
+        #     self.put_match(fn)
 
         self.query_candidates_tool = StructuredTool.from_function(
             func=self.query_candidates,

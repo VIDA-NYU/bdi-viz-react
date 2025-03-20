@@ -44,7 +44,7 @@ class Agent:
         if llm_model is not None:
             self.llm = llm_model
         else:
-            self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+            self.llm = ChatOpenAI(model="gpt-4o", temperature=0)
 
         self.agent_config = {"configurable": {"thread_id": "bdiviz-1"}}
 

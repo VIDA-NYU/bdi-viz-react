@@ -323,8 +323,9 @@ def agent_related_source():
         "targetValues": target_values,
     }
 
-    response = AGENT.search_for_sources(candidate)
-    response = response.model_dump()
+    # response = AGENT.search_for_sources(candidate)
+    # response = response.model_dump()
+    response = []
 
     return {"message": "success", "results": response}
 
@@ -379,6 +380,11 @@ def user_operation():
         references = operation_obj["references"]
 
         matching_task.apply_operation(operation, candidate, references)
+
+        if operation == "accept":
+            AGENT.remember_fn(candidate)
+        elif operation == "reject":
+            AGENT.remember_fp(candidate)
 
     return {"message": "success"}
 

@@ -76,6 +76,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 onSelect={props.onSimilarSourcesSelect} 
               />
               <CandidateThresholdSlide
+                sourceColumns={props.sourceColumns}
                 selectedCandidateThreshold={props.state.candidateThreshold}
                 onSelect={props.onCandidateThresholdSelect}
               />
