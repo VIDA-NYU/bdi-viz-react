@@ -25,7 +25,7 @@ const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({
   selectedCandidateThreshold,
   onSelect
 }) => {
-  const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
+  const [candidateThreshold, setCandidateThreshold] = useState<number>(0.7);
   const [histogramVisible, setHistogramVisible] = useState<boolean>(false);
 
   // Generate histogram data from sourceColumns

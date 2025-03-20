@@ -9,7 +9,7 @@ interface SimilarSourcesSlideProps {
 }
 
 const SimilarSourcesSlide: React.FC<SimilarSourcesSlideProps> = ({ onSelect }) => {
-    const [similarSources, setSimilarSources] = useState<number>(4);
+    const [similarSources, setSimilarSources] = useState<number>(1);
 
     const handleChange = (num: number) => {
         setSimilarSources(num);
