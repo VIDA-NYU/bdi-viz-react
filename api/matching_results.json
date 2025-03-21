@@ -2523,2214 +2523,2060 @@
             "status": "idle"
         },
         {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "alcohol_intensity",
-            "score": 0.9930700063705444,
+            "sourceColumn": "consent_sex",
+            "targetColumn": "gender",
+            "score": 0.95,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "tissue_type",
+            "score": 0.95,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "bmi",
+            "score": 0.9,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "race",
+            "score": 0.9,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_tobacco_smoking_history",
             "targetColumn": "tobacco_smoking_status",
-            "score": 0.986322283744812,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "bmi",
-            "score": 0.9832524657249451,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "race",
-            "score": 0.978918194770813,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "vital_status",
-            "score": 0.9323529601097107,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "gender",
-            "score": 0.928438663482666,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "country_of_birth",
-            "score": 0.9269682168960571,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.9111849665641785,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "age_at_index",
-            "score": 0.9046761989593506,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "age_at_diagnosis",
-            "score": 0.8993616700172424,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "ethnicity",
-            "score": 0.8862953782081604,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "age_at_last_exposure",
-            "score": 0.8861210346221924,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "age_at_onset",
-            "score": 0.8839560747146606,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "current_weight",
-            "score": 0.8819582462310791,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "age_is_obfuscated",
-            "score": 0.8787263631820679,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "initial_weight",
-            "score": 0.8768353462219238,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "alcohol_history",
-            "score": 0.8497492074966431,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "alcohol_frequency",
-            "score": 0.8483229279518127,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "alcohol_type",
-            "score": 0.845953106880188,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "smoking_frequency",
-            "score": 0.8375222086906433,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "weight",
-            "score": 0.7912160754203796,
+            "score": 0.85,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "stage",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.7628541588783264,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "years_smoked",
-            "score": 0.7614542245864868,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "cog_renal_stage",
-            "score": 0.7156094908714294,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "country_of_residence_at_enrollment",
-            "score": 0.6908707618713379,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "country_of_birth",
-            "score": 0.6800815463066101,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "alcohol_days_per_week",
-            "score": 0.6737767457962036,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "pediatric_kidney_staging",
-            "score": 0.6469241380691528,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "gross_tumor_weight",
-            "score": 0.640974760055542,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "pack_years_smoked",
-            "score": 0.5944429039955139,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "type_of_smoke_exposure",
-            "score": 0.593095064163208,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "primary_diagnosis",
-            "score": 0.5907297730445862,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "inrg_stage",
-            "score": 0.5829944610595703,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_descriptor",
-            "score": 0.5794649124145508,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "time_between_waking_and_first_smoke",
-            "score": 0.5579633712768555,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "undescended_testis_corrected_age",
-            "score": 0.5533907413482666,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "type_of_tobacco_used",
-            "score": 0.5443267226219177,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.5430009365081787,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "tissue_type",
-            "score": 0.5338200926780701,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "tumor_burden",
-            "score": 0.5318620800971985,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_confined_to_organ_of_origin",
-            "score": 0.5316680073738098,
+            "score": 0.85,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Original Histologic Subtype Call",
             "targetColumn": "papillary_renal_cell_type",
-            "score": 0.5305624008178711,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.5297901630401611,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_of_origin",
-            "score": 0.524088978767395,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "environmental_tobacco_smoke_exposure",
-            "score": 0.518156111240387,
+            "score": 0.85,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "grade",
-            "targetColumn": "gleason_grade_tertiary",
-            "score": 0.517340898513794,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "gleason_patterns_percent",
-            "score": 0.5114133954048157,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "secondary_gleason_grade",
-            "score": 0.5105536580085754,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_code",
-            "score": 0.5102823972702026,
+            "targetColumn": "tumor_grade",
+            "score": 0.85,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "simp_country",
-            "targetColumn": "supratentorial_localization",
-            "score": 0.5074254274368286,
+            "targetColumn": "country_of_birth",
+            "score": 0.8,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "grade",
-            "targetColumn": "primary_gleason_grade",
-            "score": 0.5071375370025635,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "sample_type_id",
-            "score": 0.5063257217407227,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "iss_stage",
-            "score": 0.5037588477134705,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "gleason_score",
-            "score": 0.5017346143722534,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "secondhand_smoke_as_child",
-            "score": 0.501146674156189,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "gleason_grade_group",
-            "score": 0.4832952320575714,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "cog_neuroblastoma_risk_group",
-            "score": 0.4819323718547821,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "morphology",
-            "score": 0.47968417406082153,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_regression_grade",
-            "score": 0.47484874725341797,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "tumor_descriptor",
-            "score": 0.4600219428539276,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "section_location",
-            "score": 0.4584825038909912,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "ajcc_pathologic_t",
-            "score": 0.4575655460357666,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.45708930492401123,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "sample_type",
-            "score": 0.45581310987472534,
+            "sourceColumn": "simp_country",
+            "targetColumn": "country_of_residence_at_enrollment",
+            "score": 0.8,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "stage",
             "targetColumn": "figo_stage",
-            "score": 0.45228952169418335,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "cigarettes_per_day",
-            "score": 0.4405660331249237,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "state",
-            "score": 0.43597152829170227,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "percent_tumor_nuclei",
-            "score": 0.4301344156265259,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "test_value",
-            "score": 0.42365363240242004,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "sample_ordinal",
-            "score": 0.42310771346092224,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "biospecimen_anatomic_site",
-            "score": 0.4174545705318451,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_shape",
-            "score": 0.41201937198638916,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "biospecimen_type",
-            "score": 0.40913450717926025,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "sample_type",
-            "score": 0.40697064995765686,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "tobacco_smoking_quit_year",
-            "score": 0.4050844609737396,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "ajcc_clinical_stage",
-            "score": 0.401740163564682,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "ajcc_serum_tumor_markers",
-            "score": 0.3995748460292816,
+            "score": 0.8,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Original Histologic Subtype Call",
             "targetColumn": "wilms_tumor_histologic_subtype",
-            "score": 0.39915093779563904,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "prcc_type",
-            "score": 0.3947782516479492,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "alcohol_drinks_per_day",
-            "score": 0.39427581429481506,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "ensat_pathologic_t",
-            "score": 0.3831402063369751,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "tumor_code_id",
-            "score": 0.3707183599472046,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "percent_tumor_cells",
-            "score": 0.37069669365882874,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "ajcc_clinical_t",
-            "score": 0.36965295672416687,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "histologic_progression_type",
-            "score": 0.36909303069114685,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "history_of_tumor_type",
-            "score": 0.3689538240432739,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "histologic_progression",
-            "score": 0.36803990602493286,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "state",
-            "score": 0.3678205907344818,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "aneuploidy",
-            "score": 0.36756765842437744,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "inpc_histologic_group",
-            "score": 0.366495281457901,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "tobacco_smoking_onset_year",
-            "score": 0.36489659547805786,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "test_value",
-            "score": 0.3597308397293091,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "occupation_type",
-            "score": 0.3526638150215149,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "max_tumor_bulk_site",
-            "score": 0.3455742597579956,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "last_known_disease_status",
-            "score": 0.3437415361404419,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "tissue_collection_type",
-            "score": 0.3435346782207489,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "last_known_disease_status",
-            "score": 0.340742826461792,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "history_of_tumor",
-            "score": 0.34029215574264526,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "international_prognostic_index",
-            "score": 0.3386062979698181,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "tumor_grade",
-            "score": 0.3211168050765991,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "supratentorial_localization",
-            "score": 0.31543582677841187,
+            "score": 0.8,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "simp_stage",
             "targetColumn": "ajcc_pathologic_stage",
-            "score": 0.3129265308380127,
+            "score": 0.75,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "greatest_tumor_dimension",
-            "score": 0.31186991930007935,
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "alcohol_history",
+            "score": 0.7,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "type",
-            "targetColumn": "is_ffpe",
-            "score": 0.3087446689605713,
+            "sourceColumn": "vital",
+            "targetColumn": "vital_status",
+            "score": 0.7,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "type",
-            "targetColumn": "figo_stage",
-            "score": 0.3060798943042755,
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "alcohol_intensity",
+            "score": 0.65,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "sample_type_id",
-            "score": 0.30353203415870667,
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "histologic_progression_type",
+            "score": 0.6,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "tumorClass",
-            "targetColumn": "cancer_detection_method",
-            "score": 0.29503947496414185,
+            "sourceColumn": "consent_participant_country",
+            "targetColumn": "country_of_residence_at_enrollment",
+            "score": 0.6,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "type",
-            "targetColumn": "primary_disease",
-            "score": 0.29387521743774414,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "method_of_diagnosis",
-            "score": 0.29074549674987793,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.2894728183746338,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "body_surface_area",
-            "score": 0.28878462314605713,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "type",
-            "targetColumn": "exposure_type",
-            "score": 0.2883892357349396,
+            "sourceColumn": "consent_participant_country",
+            "targetColumn": "country_of_birth",
+            "score": 0.55,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "bmi",
-            "score": 0.2871171832084656,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "sample_type_id",
-            "score": 0.2832336127758026,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "year_of_death",
-            "score": 0.2824099063873291,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "test_result",
-            "score": 0.27972978353500366,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "histone_variant",
-            "score": 0.2792249917984009,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "uicc_pathologic_t",
-            "score": 0.27644485235214233,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.2729553282260895,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "morphology",
-            "score": 0.27093571424484253,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "chromosome",
-            "score": 0.266627699136734,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "sample_id",
-            "score": 0.26324737071990967,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "uicc_clinical_t",
-            "score": 0.2626482844352722,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "chromosome",
-            "score": 0.2615557610988617,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "population_group",
-            "score": 0.2599851191043854,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "tumor_grade",
-            "score": 0.2556406855583191,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "test_value_range",
-            "score": 0.2540026307106018,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "locus",
-            "score": 0.2529686391353607,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "stage",
-            "targetColumn": "intermediate_dimension",
-            "score": 0.24611029028892517,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "inrg_stage",
-            "score": 0.24076397716999054,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "histone_family",
-            "score": 0.24024419486522675,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "tumor_infiltrating_macrophages",
-            "score": 0.2351856678724289,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "state",
-            "score": 0.23153725266456604,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "morphology",
-            "score": 0.23128579556941986,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "occupation_type",
-            "score": 0.22742269933223724,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "state",
-            "score": 0.2229832261800766,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "gross_tumor_weight",
-            "score": 0.22260986268520355,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "test_value",
-            "score": 0.2209158092737198,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "zygosity",
-            "score": 0.21962423622608185,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.21948161721229553,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "aneuploidy",
-            "score": 0.2155739963054657,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "exposure_type",
-            "score": 0.21515822410583496,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "morphology",
-            "score": 0.2143688052892685,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "population_group",
-            "score": 0.2134827971458435,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "is_ffpe",
-            "score": 0.2127489149570465,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "locus",
-            "score": 0.21196623146533966,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "sample_ordinal",
-            "score": 0.20947761833667755,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "intermediate_dimension",
-            "score": 0.20572429895401,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "tissue_or_organ_of_origin",
-            "score": 0.20561909675598145,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "course_number",
-            "score": 0.20316576957702637,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "international_prognostic_index",
-            "score": 0.19986672699451447,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "days_to_death",
-            "score": 0.19948813319206238,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "iss_stage",
-            "score": 0.19388476014137268,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "state",
-            "score": 0.19237880408763885,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "tumor_descriptor",
-            "score": 0.19053710997104645,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "weight",
-            "score": 0.18311643600463867,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "tissue_microarray_coordinates",
-            "score": 0.182649165391922,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "undescended_testis_corrected_age",
-            "score": 0.18216104805469513,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
             "targetColumn": "initial_weight",
-            "score": 0.18214304745197296,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "loci_abnormal_count",
-            "score": 0.18153394758701324,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "percent_tumor_nuclei",
-            "score": 0.1797053962945938,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "tumor_grade",
-            "score": 0.17843246459960938,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "marital_status",
-            "score": 0.1781039834022522,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "cytoband",
-            "score": 0.1778167486190796,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "prcc_type",
-            "score": 0.17689713835716248,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "respirable_crystalline_silica_exposure",
-            "score": 0.1768408566713333,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "fab_morphology_code",
-            "score": 0.17469438910484314,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "tumor_shape",
-            "score": 0.17237314581871033,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "biospecimen_type",
-            "score": 0.17083905637264252,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "tumor_grade",
-            "score": 0.17057231068611145,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "body_surface_area",
-            "score": 0.17046746611595154,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "mitotic_total_area",
-            "score": 0.16998857259750366,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "tissue_microarray_coordinates",
-            "score": 0.1692543476819992,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "sites_of_involvement",
-            "score": 0.16881063580513,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "cause_of_death_source",
-            "score": 0.1676339954137802,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "sample_type_id",
-            "score": 0.16715462505817413,
+            "score": 0.45,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "simp_country",
-            "targetColumn": "population_group",
-            "score": 0.16596466302871704,
+            "targetColumn": "state",
+            "score": 0.4,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "ploidy",
-            "targetColumn": "tissue_type",
-            "score": 0.1657697558403015,
+            "sourceColumn": "consent_age",
+            "targetColumn": "age_at_index",
+            "score": 0.4,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "simp_stage",
-            "targetColumn": "test_result",
-            "score": 0.1656186729669571,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "fab_morphology_code",
-            "score": 0.1647917777299881,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "therapeutic_level_achieved",
-            "score": 0.16302518546581268,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "current_weight",
-            "score": 0.1621330827474594,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "loci_count",
-            "score": 0.1620033085346222,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "intratubular_germ_cell_neoplasia_present",
-            "score": 0.16061240434646606,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "tumor_length_measurement",
-            "score": 0.16025078296661377,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "medulloblastoma_molecular_classification",
-            "score": 0.1589665412902832,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "tumor_burden",
-            "score": 0.15874192118644714,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "size_extraocular_nodule",
-            "score": 0.15844300389289856,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "gender",
-            "score": 0.15543106198310852,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "gender",
-            "score": 0.1541857272386551,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "extraocular_nodule_size",
-            "score": 0.15329419076442719,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "peritoneal_washing_results",
-            "score": 0.15163134038448334,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "discontiguous_lesion_count",
-            "score": 0.15159402787685394,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "uicc_clinical_t",
-            "score": 0.150526762008667,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "uicc_clinical_m",
-            "score": 0.14997932314872742,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "greatest_tumor_dimension",
-            "score": 0.14963297545909882,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "population_group",
-            "score": 0.14905895292758942,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
+            "sourceColumn": "consent_age",
             "targetColumn": "age_at_last_exposure",
-            "score": 0.14872895181179047,
+            "score": 0.4,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "consent_race",
-            "targetColumn": "melanoma_known_primary",
-            "score": 0.147359237074852,
+            "sourceColumn": "consent_age",
+            "targetColumn": "age_at_onset",
+            "score": 0.4,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "therapeutic_levels_achieved",
-            "score": 0.14683681726455688,
+            "sourceColumn": "consent_age",
+            "targetColumn": "undescended_testis_corrected_age",
+            "score": 0.4,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "ensat_clinical_m",
-            "score": 0.14275658130645752,
+            "sourceColumn": "tumorClass",
+            "targetColumn": "primary_diagnosis",
+            "score": 0.4,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "marital_status",
-            "score": 0.14174248278141022,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "country_of_birth",
-            "score": 0.1416412889957428,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "grade",
-            "targetColumn": "igcccg_stage",
-            "score": 0.14135590195655823,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "uicc_clinical_n",
-            "score": 0.14103204011917114,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "recist_targeted_regions_number",
-            "score": 0.1410205215215683,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "zygosity",
-            "score": 0.1396341174840927,
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "current_weight",
+            "score": 0.3,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Original Histologic Subtype Call",
             "targetColumn": "primary_diagnosis",
-            "score": 0.13906314969062805,
+            "score": 0.3,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_descriptor",
+            "score": 0.3,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "primary_gleason_grade",
+            "score": 0.3,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "secondary_gleason_grade",
+            "score": 0.3,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "normalClass",
-            "targetColumn": "sample_type_id",
-            "score": 0.13860613107681274,
+            "targetColumn": "tissue_or_organ_of_origin",
+            "score": 0.3,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "ploidy",
-            "targetColumn": "test_value",
-            "score": 0.13772869110107422,
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "histologic_progression",
+            "score": 0.25,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "ploidy",
-            "targetColumn": "slide_id",
-            "score": 0.13747502863407135,
+            "sourceColumn": "tumorClass",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.25,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "cause_of_death",
-            "score": 0.13741829991340637,
+            "sourceColumn": "grade",
+            "targetColumn": "gleason_grade_group",
+            "score": 0.25,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "ploidy",
-            "targetColumn": "variant_origin",
-            "score": 0.13733966648578644,
+            "sourceColumn": "normalClass",
+            "targetColumn": "biospecimen_anatomic_site",
+            "score": 0.25,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "is_ffpe",
-            "score": 0.13730749487876892,
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "weight",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.13703937828540802,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "international_prognostic_index",
-            "score": 0.13681910932064056,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "ploidy",
-            "targetColumn": "perineural_invasion_present",
-            "score": 0.13652798533439636,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "test_value",
-            "score": 0.13652484118938446,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "days_to_birth",
-            "score": 0.136027991771698,
+            "sourceColumn": "consent_age",
+            "targetColumn": "age_at_diagnosis",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.1351282298564911,
+            "targetColumn": "weight",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "ajcc_clinical_stage",
-            "score": 0.1346523016691208,
+            "sourceColumn": "stage",
+            "targetColumn": "inrg_stage",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "prcc_type",
-            "score": 0.1342879831790924,
+            "sourceColumn": "stage",
+            "targetColumn": "iss_stage",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "uicc_clinical_m",
-            "score": 0.1337827742099762,
+            "sourceColumn": "consent_participant_country",
+            "targetColumn": "population_group",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "pretreatment",
-            "score": 0.1330445408821106,
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_code",
+            "score": 0.2,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "uicc_clinical_n",
-            "score": 0.13262216746807098,
+            "sourceColumn": "grade",
+            "targetColumn": "gleason_score",
+            "score": 0.2,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "section_location",
+            "score": 0.2,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "initial_weight",
+            "score": 0.15,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "last_known_disease_status",
+            "score": 0.15,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "gleason_grade_tertiary",
+            "score": 0.15,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "normalClass",
             "targetColumn": "site_of_resection_or_biopsy",
-            "score": 0.1317998319864273,
+            "score": 0.15,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "vital",
-            "targetColumn": "biospecimen_type",
-            "score": 0.13056376576423645,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "tumor_length_measurement",
-            "score": 0.13007456064224243,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "tumor_width_measurement",
-            "score": 0.12962660193443298,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "education_level",
-            "score": 0.12742534279823303,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "sample_ordinal",
-            "score": 0.12655606865882874,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "tumor_length_measurement",
-            "score": 0.12623757123947144,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "tumor_descriptor",
-            "score": 0.1261800229549408,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "zone_of_origin_prostate",
-            "score": 0.12562187016010284,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "aids_risk_factors",
-            "score": 0.12478689849376678,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "measurement_type",
-            "score": 0.12469206005334854,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "primary_disease",
-            "score": 0.1241661086678505,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "vital",
-            "targetColumn": "international_prognostic_index",
-            "score": 0.12361706048250198,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "additional_pathology_findings",
-            "score": 0.12294672429561615,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "supratentorial_localization",
-            "score": 0.11998087912797928,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "supratentorial_localization",
-            "score": 0.11921846866607666,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "classification_of_tumor",
-            "score": 0.11791828274726868,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "prescribed_dose_units",
-            "score": 0.11742278933525085,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "ajcc_clinical_t",
-            "score": 0.11737384647130966,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "percent_tumor_nuclei",
-            "score": 0.11725860834121704,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "ensat_clinical_m",
-            "score": 0.11712594330310822,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "menopause_status",
-            "score": 0.1166449561715126,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "tumor_width_measurement",
-            "score": 0.11656860262155533,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "race",
-            "score": 0.1163301095366478,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "tissue_type",
-            "score": 0.11627964675426483,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "copy_number",
-            "score": 0.11594851315021515,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "who_nte_grade",
-            "score": 0.11580964922904968,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "tumor_basal_diameter",
-            "score": 0.11578589677810669,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "who_cns_grade",
-            "score": 0.11534728109836578,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "treatment_dose_units",
-            "score": 0.11476670950651169,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "sites_of_involvement_count",
-            "score": 0.11428016424179077,
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "smoking_frequency",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_bmi",
-            "targetColumn": "primary_disease",
-            "score": 0.11388830840587616,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "medulloblastoma_molecular_classification",
-            "score": 0.11348207294940948,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "treatment_or_therapy",
-            "score": 0.11328785121440887,
+            "targetColumn": "current_weight",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "consent_sex",
             "targetColumn": "hormonal_contraceptive_use",
-            "score": 0.11317843198776245,
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "undescended_testis_corrected",
-            "score": 0.11316726356744766,
+            "sourceColumn": "simp_country",
+            "targetColumn": "tissue_type",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "consent_race",
-            "targetColumn": "child_pugh_classification",
-            "score": 0.11311756074428558,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "height",
-            "score": 0.11275732517242432,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "uicc_clinical_stage",
-            "score": 0.11270997673273087,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "state",
-            "score": 0.11255918443202972,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "tumor_grade",
-            "score": 0.1125042587518692,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "days_to_birth",
-            "score": 0.112367182970047,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "prostatic_involvement_percent",
-            "score": 0.11232143640518188,
+            "sourceColumn": "consent_age",
+            "targetColumn": "age_is_obfuscated",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "uicc_clinical_t",
-            "score": 0.11228485405445099,
+            "targetColumn": "bmi",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "normalClass",
-            "targetColumn": "tumor_grade_category",
-            "score": 0.11208029836416245,
+            "sourceColumn": "stage",
+            "targetColumn": "ajcc_pathologic_t",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "age_at_onset",
-            "score": 0.11205136775970459,
+            "sourceColumn": "stage",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "normalClass",
-            "targetColumn": "who_cns_grade",
-            "score": 0.11113190650939941,
+            "sourceColumn": "stage",
+            "targetColumn": "ensat_pathologic_t",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "simp_country",
-            "targetColumn": "drug_category",
-            "score": 0.11019551008939743,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "vital_status",
-            "score": 0.11007311195135117,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "tissue_microarray_coordinates",
-            "score": 0.10975047200918198,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "comorbidities",
-            "score": 0.10934469848871231,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "uicc_clinical_m",
-            "score": 0.1091117262840271,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "tumor_shape",
-            "score": 0.10902801156044006,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
+            "sourceColumn": "stage",
             "targetColumn": "ajcc_clinical_t",
-            "score": 0.108979232609272,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "consistent_pathology_review",
-            "score": 0.1085742935538292,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "simp_country",
-            "targetColumn": "tumor_code_id",
-            "score": 0.10854876786470413,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "treatment_arm",
-            "score": 0.10853040963411331,
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "imaging_suv",
-            "score": 0.10851646214723587,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "respirable_crystalline_silica_exposure",
-            "score": 0.1080249473452568,
+            "targetColumn": "cog_renal_stage",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "peritoneal_fluid_cytological_status",
-            "score": 0.10794834792613983,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "method_of_sample_procurement",
-            "score": 0.10771380364894867,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "initial_disease_status",
-            "score": 0.10734273493289948,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "hpv_strain",
-            "score": 0.1072402149438858,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "tumor_level_prostate",
-            "score": 0.10708921402692795,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_alcohol_consumption",
-            "targetColumn": "uicc_staging_system_edition",
-            "score": 0.10693548619747162,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "exposure_type",
-            "score": 0.10689960420131683,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "zone_of_origin_prostate",
-            "score": 0.1059522032737732,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "comorbidity",
-            "score": 0.10567504912614822,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_bmi",
-            "targetColumn": "loci_abnormal_count",
-            "score": 0.1051902025938034,
+            "targetColumn": "pediatric_kidney_staging",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "consent_participant_country",
             "targetColumn": "tissue_type",
-            "score": 0.10516881942749023,
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "sample_type",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "gleason_patterns_percent",
+            "score": 0.1,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "normalClass",
-            "targetColumn": "imaging_findings",
-            "score": 0.10492237657308578,
+            "targetColumn": "tumor_grade",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "inrg_stage",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "tumor_infiltrating_macrophages",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "state",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "test_value",
+            "score": 0.1,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "alcohol_frequency",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "alcohol_type",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "alcohol_days_per_week",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "alcohol_drinks_per_day",
+            "score": 0.05,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_tobacco_smoking_history",
-            "targetColumn": "cog_liver_stage",
-            "score": 0.10468374192714691,
+            "targetColumn": "years_smoked",
+            "score": 0.05,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "undescended_testis_history",
-            "score": 0.10445091128349304,
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "pack_years_smoked",
+            "score": 0.05,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
-            "sourceColumn": "consent_race",
-            "targetColumn": "education_level",
-            "score": 0.10437920689582825,
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "type_of_smoke_exposure",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "body_surface_area",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "gross_tumor_weight",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "therapeutic_level_achieved",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "tumor_burden",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "age_at_last_exposure",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "therapeutic_levels_achieved",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "primary_disease",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "height",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "days_to_birth",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "age_at_onset",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "consistent_pathology_review",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "method_of_sample_procurement",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "comorbidity",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_bmi",
+            "targetColumn": "loci_abnormal_count",
+            "score": 0.05,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_bmi",
             "targetColumn": "extrathyroid_extension",
-            "score": 0.10423438996076584,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "environmental_tobacco_smoke_exposure",
-            "score": 0.10413143038749695,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "ajcc_clinical_t",
-            "score": 0.1030670553445816,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "normalClass",
-            "targetColumn": "ajcc_clinical_n",
-            "score": 0.10302741825580597,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "hpv_positive_type",
-            "score": 0.10288271307945251,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "percent_tumor_nuclei",
-            "score": 0.10249225795269012,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_participant_country",
-            "targetColumn": "tumor_largest_dimension_diameter",
-            "score": 0.10244801640510559,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "procedures_performed",
-            "score": 0.1023881807923317,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_sex",
-            "targetColumn": "fev1_ref_post_bronch_percent",
-            "score": 0.10237865895032883,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "Original Histologic Subtype Call",
-            "targetColumn": "drug_category",
-            "score": 0.10228001326322556,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "treatment_effect_indicator",
-            "score": 0.10197609663009644,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
-            "targetColumn": "ajcc_clinical_t",
-            "score": 0.10161425173282623,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_race",
-            "targetColumn": "treatment_emergent_adverse_event",
-            "score": 0.10159335285425186,
-            "matcher": "magneto_ft",
-            "status": "idle"
-        },
-        {
-            "sourceColumn": "consent_age",
-            "targetColumn": "treatment_intent_type",
-            "score": 0.1008862853050232,
+            "score": 0.05,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "medical_history_bmi",
             "targetColumn": "diabetes_treatment_type",
-            "score": 0.10068560391664505,
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "ethnicity",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "year_of_death",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "marital_status",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "race",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "vital_status",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "exposure_type",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "tumor_descriptor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_age",
+            "targetColumn": "education_level",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_age",
+            "targetColumn": "menopause_status",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_age",
+            "targetColumn": "treatment_intent_type",
+            "score": 0.05,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "consent_age",
             "targetColumn": "sites_of_involvement",
-            "score": 0.10048303008079529,
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "gross_tumor_weight",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "tumor_burden",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "uicc_clinical_m",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "pretreatment",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "measurement_type",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "primary_disease",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "uicc_clinical_n",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "uicc_clinical_t",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "initial_disease_status",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "procedures_performed",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_weight_at_time_of_surgery_kg",
+            "targetColumn": "ajcc_clinical_t",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "state",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "sample_type_id",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "test_result",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "uicc_pathologic_t",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "uicc_clinical_t",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "sample_id",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "tumor_grade",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "test_value_range",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "intermediate_dimension",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "inpc_histologic_group",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "histone_variant",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "histone_family",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "intratubular_germ_cell_neoplasia_present",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "peritoneal_washing_results",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "additional_pathology_findings",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "copy_number",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "imaging_suv",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "peritoneal_fluid_cytological_status",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "tumor_level_prostate",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "zone_of_origin_prostate",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "Original Histologic Subtype Call",
+            "targetColumn": "drug_category",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_confined_to_organ_of_origin",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_of_origin",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "percent_tumor_nuclei",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_shape",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "ajcc_serum_tumor_markers",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "history_of_tumor_type",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "max_tumor_bulk_site",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "history_of_tumor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "greatest_tumor_dimension",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "cancer_detection_method",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_code_id",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "percent_tumor_cells",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "tumorClass",
+            "targetColumn": "tumor_regression_grade",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "sample_type",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "tumor_descriptor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "last_known_disease_status",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "tumor_grade",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "chromosome",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "aneuploidy",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "morphology",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "locus",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "loci_abnormal_count",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "percent_tumor_nuclei",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "fab_morphology_code",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "tissue_microarray_coordinates",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "tumor_shape",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "mitotic_total_area",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "tumor_length_measurement",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "greatest_tumor_dimension",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "grade",
+            "targetColumn": "igcccg_stage",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "cog_neuroblastoma_risk_group",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "classification_of_tumor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "is_ffpe",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "sample_ordinal",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "course_number",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "iss_stage",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "tumor_descriptor",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "respirable_crystalline_silica_exposure",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "fab_morphology_code",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "biospecimen_type",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "tumor_grade",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "sites_of_involvement",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_stage",
+            "targetColumn": "test_result",
+            "score": 0.05,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "aneuploidy",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "chromosome",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "locus",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "morphology",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "zygosity",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "intermediate_dimension",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "tissue_microarray_coordinates",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "cytoband",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "prcc_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "body_surface_area",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "tissue_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "loci_count",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "medulloblastoma_molecular_classification",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "size_extraocular_nodule",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "extraocular_nodule_size",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "test_value",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "slide_id",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "variant_origin",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "ploidy",
+            "targetColumn": "perineural_invasion_present",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "international_prognostic_index",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "supratentorial_localization",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "state",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_alcohol_consumption",
+            "targetColumn": "uicc_staging_system_edition",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "time_between_waking_and_first_smoke",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "type_of_tobacco_used",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "environmental_tobacco_smoke_exposure",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "secondhand_smoke_as_child",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "cigarettes_per_day",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "tobacco_smoking_quit_year",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "tobacco_smoking_onset_year",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "exposure_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "comorbidities",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "medical_history_tobacco_smoking_history",
+            "targetColumn": "cog_liver_stage",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "population_group",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "gender",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "melanoma_known_primary",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "country_of_birth",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "supratentorial_localization",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "child_pugh_classification",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "education_level",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "treatment_effect_indicator",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_race",
+            "targetColumn": "treatment_emergent_adverse_event",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "population_group",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "state",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "occupation_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "days_to_death",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "cause_of_death_source",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "sample_type_id",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "gender",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "discontiguous_lesion_count",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "marital_status",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "cause_of_death",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "is_ffpe",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "test_value",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "days_to_birth",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "ajcc_clinical_stage",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "prcc_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "biospecimen_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "vital",
+            "targetColumn": "international_prognostic_index",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "undescended_testis_corrected_age",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "undescended_testis_corrected",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "undescended_testis_history",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "who_nte_grade",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "who_cns_grade",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "respirable_crystalline_silica_exposure",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "environmental_tobacco_smoke_exposure",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "prostatic_involvement_percent",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "fev1_ref_post_bronch_percent",
+            "score": 0.0,
             "matcher": "magneto_ft",
             "status": "idle"
         },
         {
             "sourceColumn": "consent_sex",
             "targetColumn": "diabetes_treatment_type",
-            "score": 0.10002525895833969,
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "consent_sex",
+            "targetColumn": "zone_of_origin_prostate",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "ajcc_clinical_t",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "percent_tumor_nuclei",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "tumor_width_measurement",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "tumor_shape",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "tumor_code_id",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "drug_category",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "sites_of_involvement_count",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "recist_targeted_regions_number",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "supratentorial_localization",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "international_prognostic_index",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "zygosity",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "sample_ordinal",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "simp_country",
+            "targetColumn": "population_group",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "stage",
+            "targetColumn": "sample_ordinal",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "state",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "biospecimen_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "prcc_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "test_value",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "occupation_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "tissue_collection_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "is_ffpe",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "figo_stage",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "primary_disease",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "method_of_diagnosis",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "type",
+            "targetColumn": "exposure_type",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "uicc_clinical_t",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "uicc_clinical_m",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "uicc_clinical_n",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "ensat_clinical_m",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "medulloblastoma_molecular_classification",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "treatment_or_therapy",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "uicc_clinical_stage",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "tumor_grade_category",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "who_cns_grade",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "ajcc_clinical_t",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "treatment_arm",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "imaging_findings",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "ajcc_clinical_n",
+            "score": 0.0,
+            "matcher": "magneto_ft",
+            "status": "idle"
+        },
+        {
+            "sourceColumn": "normalClass",
+            "targetColumn": "sample_type_id",
+            "score": 0.0,
             "matcher": "magneto_ft",
             "status": "idle"
         },
@@ -8071,13 +7917,13 @@
                     "Not Reported",
                     "Fusion"
                 ],
-                "sample_type_id": [
-                    "",
-                    ""
+                "last_known_disease_status": [
+                    "With tumor",
+                    "Tumor free"
                 ],
-                "morphology": [
-                    "Not Reported",
-                    "Not Reported"
+                "tumor_grade": [
+                    "Low Grade",
+                    "Low Grade"
                 ],
                 "state": [
                     "open",
@@ -8102,14 +7948,6 @@
                 "tissue_collection_type": [
                     "Prospective",
                     "Prospective"
-                ],
-                "last_known_disease_status": [
-                    "With tumor",
-                    "Tumor free"
-                ],
-                "tumor_grade": [
-                    "Low Grade",
-                    "Low Grade"
                 ],
                 "is_ffpe": [
                     "",
@@ -8272,25 +8110,35 @@
                     "",
                     ""
                 ],
-                "cog_neuroblastoma_risk_group": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Intermediate Risk"
-                ],
-                "section_location": [
-                    "Pole",
-                    "Oropharynx",
-                    "Head"
+                "tissue_or_organ_of_origin": [
+                    "Ureter",
+                    "Lacrimal gland",
+                    "Uvula"
                 ],
                 "biospecimen_anatomic_site": [
                     "Occipital Cortex",
                     "Aortic Body",
                     "Patella"
                 ],
-                "tissue_or_organ_of_origin": [
+                "section_location": [
+                    "Pole",
+                    "Oropharynx",
+                    "Head"
+                ],
+                "site_of_resection_or_biopsy": [
                     "Ureter",
                     "Lacrimal gland",
                     "Uvula"
+                ],
+                "tumor_grade": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Intermediate Grade"
+                ],
+                "cog_neuroblastoma_risk_group": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Intermediate Risk"
                 ],
                 "uicc_clinical_t": [
                     "Not Reported",
@@ -8307,16 +8155,6 @@
                     "Not Reported",
                     "N0 (mol-)"
                 ],
-                "sample_type_id": [
-                    "",
-                    "",
-                    ""
-                ],
-                "site_of_resection_or_biopsy": [
-                    "Ureter",
-                    "Lacrimal gland",
-                    "Uvula"
-                ],
                 "ensat_clinical_m": [
                     "Not Reported",
                     "Not Reported",
@@ -8331,11 +8169,6 @@
                     "Not Reported",
                     "Not Reported",
                     "Not Reported"
-                ],
-                "tumor_grade": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Intermediate Grade"
                 ],
                 "tumor_grade_category": [
                     "Not Reported",
@@ -8366,6 +8199,11 @@
                     "Not Reported",
                     "Not Reported",
                     "N0 (mol-)"
+                ],
+                "sample_type_id": [
+                    "",
+                    "",
+                    ""
                 ],
                 "sample_type": [
                     "Not Reported",
@@ -8852,23 +8690,23 @@
                     "RARS",
                     "Oncocytoma"
                 ],
-                "tumor_shape": [
-                    "Mushroom",
-                    "Dome",
-                    "Mushroom",
-                    "Not Reported",
-                    "Mushroom",
-                    "Mushroom",
-                    "Not Reported",
-                    "Dome",
-                    "Dome",
-                    "Dome",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Not Reported"
+                "last_known_disease_status": [
+                    "",
+                    "",
+                    "With tumor",
+                    "",
+                    "Loco-regional recurrence/progression",
+                    "Tumor free",
+                    "not reported",
+                    "With tumor",
+                    "not reported",
+                    "not reported",
+                    "not reported",
+                    "",
+                    "With tumor",
+                    "",
+                    "Not Allowed To Collect",
+                    "Distant met recurrence/progression"
                 ],
                 "sample_type": [
                     "RNA",
@@ -8888,6 +8726,24 @@
                     "Total RNA",
                     "Buccal Cell Normal"
                 ],
+                "tumor_shape": [
+                    "Mushroom",
+                    "Dome",
+                    "Mushroom",
+                    "Not Reported",
+                    "Mushroom",
+                    "Mushroom",
+                    "Not Reported",
+                    "Dome",
+                    "Dome",
+                    "Dome",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Not Reported"
+                ],
                 "ajcc_serum_tumor_markers": [
                     "",
                     "",
@@ -8906,42 +8762,6 @@
                     "Not Reported",
                     "Not Reported"
                 ],
-                "tumor_code_id": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "81",
-                    "62",
-                    "",
-                    "",
-                    "81",
-                    "",
-                    "",
-                    ""
-                ],
-                "percent_tumor_cells": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
                 "max_tumor_bulk_site": [
                     "Lung",
                     "Brain",
@@ -8959,24 +8779,6 @@
                     "Colon",
                     "Colon",
                     "Neck"
-                ],
-                "last_known_disease_status": [
-                    "",
-                    "",
-                    "With tumor",
-                    "",
-                    "Loco-regional recurrence/progression",
-                    "Tumor free",
-                    "not reported",
-                    "With tumor",
-                    "not reported",
-                    "not reported",
-                    "not reported",
-                    "",
-                    "With tumor",
-                    "",
-                    "Not Allowed To Collect",
-                    "Distant met recurrence/progression"
                 ],
                 "history_of_tumor": [
                     "",
@@ -9031,6 +8833,42 @@
                     "Unknown",
                     "Not Reported",
                     "Screening"
+                ],
+                "tumor_code_id": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "81",
+                    "62",
+                    "",
+                    "",
+                    "81",
+                    "",
+                    "",
+                    ""
+                ],
+                "percent_tumor_cells": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
                 ],
                 "tumor_basal_diameter": [
                     "",
@@ -9660,50 +9498,6 @@
                     "Intermediate Risk",
                     "Intermediate Risk"
                 ],
-                "cog_renal_stage": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Unknown",
-                    "Unknown",
-                    "Stage I",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported"
-                ],
-                "pediatric_kidney_staging": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Nephrectomy specimen with tumor that is present at the surgical margin of resection or within regional lymph nodes; no distant metastasis",
-                    "Nephrectomy specimen with tumor that is present at the surgical margin of resection or within regional lymph nodes; no distant metastasis",
-                    "Nephrectomy specimen with tumor that penetrates the renal capsule or involves the renal sinus with negative margins and negative lymph nodes; no distant metastasis",
-                    "Tumor biopsied only at diagnosis; no distant metastasis",
-                    "Not Reported",
-                    "Not Reported",
-                    "Tumor biopsied only at diagnosis; no distant metastasis",
-                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis",
-                    "Tumor biopsied only at diagnosis; no distant metastasis",
-                    "Tumor biopsied only at diagnosis; no distant metastasis",
-                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis",
-                    "Not Reported",
-                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis",
-                    "Nephrectomy specimen with tumor that penetrates the renal capsule or involves the renal sinus with negative margins and negative lymph nodes; no distant metastasis",
-                    "Tumor biopsied only at diagnosis; distant metastasis identified at diagnosis",
-                    "Not Reported",
-                    "Nephrectomy specimen with tumor that is present at the surgical margin of resection or within regional lymph nodes; no distant metastasis",
-                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis"
-                ],
                 "papillary_renal_cell_type": [
                     "Type 2",
                     "Type 2",
@@ -9791,6 +9585,50 @@
                     "Not Reported",
                     "Unknown",
                     "Not Reported"
+                ],
+                "cog_renal_stage": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Unknown",
+                    "Unknown",
+                    "Stage I",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported"
+                ],
+                "pediatric_kidney_staging": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Nephrectomy specimen with tumor that is present at the surgical margin of resection or within regional lymph nodes; no distant metastasis",
+                    "Nephrectomy specimen with tumor that is present at the surgical margin of resection or within regional lymph nodes; no distant metastasis",
+                    "Nephrectomy specimen with tumor that penetrates the renal capsule or involves the renal sinus with negative margins and negative lymph nodes; no distant metastasis",
+                    "Tumor biopsied only at diagnosis; no distant metastasis",
+                    "Not Reported",
+                    "Not Reported",
+                    "Tumor biopsied only at diagnosis; no distant metastasis",
+                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis",
+                    "Tumor biopsied only at diagnosis; no distant metastasis",
+                    "Tumor biopsied only at diagnosis; no distant metastasis",
+                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis",
+                    "Not Reported",
+                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis",
+                    "Nephrectomy specimen with tumor that penetrates the renal capsule or involves the renal sinus with negative margins and negative lymph nodes; no distant metastasis",
+                    "Tumor biopsied only at diagnosis; distant metastasis identified at diagnosis",
+                    "Not Reported",
+                    "Nephrectomy specimen with tumor that is present at the surgical margin of resection or within regional lymph nodes; no distant metastasis",
+                    "Nephrectomy specimen with tumor confined to the kidney; no distant metastasis"
                 ],
                 "inpc_histologic_group": [
                     "Not Reported",
@@ -11116,17 +10954,33 @@
                     "Not Reported",
                     "Progestin"
                 ],
-                "undescended_testis_corrected_age": [
-                    "",
-                    ""
-                ],
-                "zone_of_origin_prostate": [
-                    "Central zone",
-                    "Central zone"
+                "hormonal_contraceptive_use": [
+                    "Former User",
+                    "Never Used"
                 ],
                 "race": [
                     "not reported",
                     "white"
+                ],
+                "vital_status": [
+                    "alive",
+                    "alive"
+                ],
+                "exposure_type": [
+                    "Chemical",
+                    "Chemical"
+                ],
+                "undescended_testis_corrected_age": [
+                    "",
+                    ""
+                ],
+                "undescended_testis_corrected": [
+                    "Yes",
+                    "Yes"
+                ],
+                "undescended_testis_history": [
+                    "Yes",
+                    "Yes"
                 ],
                 "who_nte_grade": [
                     "Not Reported",
@@ -11136,37 +10990,17 @@
                     "Grade I",
                     "Grade I"
                 ],
-                "hormonal_contraceptive_use": [
-                    "Former User",
-                    "Never Used"
-                ],
-                "undescended_testis_corrected": [
-                    "Yes",
-                    "Yes"
-                ],
-                "prostatic_involvement_percent": [
-                    "",
-                    ""
-                ],
-                "vital_status": [
-                    "alive",
-                    "alive"
-                ],
                 "respirable_crystalline_silica_exposure": [
-                    "Yes",
-                    "Yes"
-                ],
-                "exposure_type": [
-                    "Chemical",
-                    "Chemical"
-                ],
-                "undescended_testis_history": [
                     "Yes",
                     "Yes"
                 ],
                 "environmental_tobacco_smoke_exposure": [
                     "Yes",
                     "Yes"
+                ],
+                "prostatic_involvement_percent": [
+                    "",
+                    ""
                 ],
                 "fev1_ref_post_bronch_percent": [
                     "",
@@ -11175,6 +11009,10 @@
                 "diabetes_treatment_type": [
                     "Biguanide",
                     "Biguanide"
+                ],
+                "zone_of_origin_prostate": [
+                    "Central zone",
+                    "Central zone"
                 ],
                 "ethnicity": [
                     "hispanic or latino",
@@ -11805,36 +11643,6 @@
                     "",
                     ""
                 ],
-                "supratentorial_localization": [
-                    "Cerebral Cortex",
-                    "Cerebral Cortex",
-                    "Cerebral Cortex",
-                    "White Matter",
-                    "Frontal lobe",
-                    "Not Reported",
-                    "Not Reported",
-                    "Cerebral Cortex",
-                    "Unknown",
-                    "Spinal Cord",
-                    "Frontal lobe",
-                    "White Matter",
-                    "Parietal lobe"
-                ],
-                "international_prognostic_index": [
-                    "Low-Intermediate Risk",
-                    "Low-Intermediate Risk",
-                    "Low-Intermediate Risk",
-                    "Not Reported",
-                    "Low-Intermediate Risk",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Low-Intermediate Risk",
-                    "High-Intermediate Risk"
-                ],
                 "population_group": [
                     "",
                     "",
@@ -11850,156 +11658,6 @@
                     "",
                     "Ashkenazi Jew"
                 ],
-                "ensat_clinical_m": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown"
-                ],
-                "tumor_width_measurement": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "tumor_length_measurement": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "aids_risk_factors": [
-                    "Progressive Multifocal Leukoencephalopathy",
-                    "Progressive Multifocal Leukoencephalopathy",
-                    "Progressive Multifocal Leukoencephalopathy",
-                    "Wasting Syndrome",
-                    "Herpes Simplex Virus",
-                    "Pneumocystis Pneumonia",
-                    "Pneumocystis Pneumonia",
-                    "Pneumocystis Pneumonia",
-                    "Wasting Syndrome",
-                    "Nocardiosis",
-                    "Wasting Syndrome",
-                    "Mycobacterium tuberculosis",
-                    "Histoplasmosis"
-                ],
-                "prescribed_dose_units": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Wafer",
-                    "Not Reported",
-                    "mg"
-                ],
-                "tumor_basal_diameter": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "treatment_dose_units": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Wafer",
-                    "Not Reported",
-                    "mg"
-                ],
-                "tissue_microarray_coordinates": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "uicc_clinical_m": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "M1a"
-                ],
-                "hpv_strain": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "HPV73"
-                ],
                 "tissue_type": [
                     "Peritumoral",
                     "Peritumoral",
@@ -12014,66 +11672,6 @@
                     "Normal",
                     "Not Allowed To Collect",
                     "Peritumoral"
-                ],
-                "ajcc_clinical_t": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Allowed To Collect",
-                    "Not Allowed To Collect",
-                    "Not Allowed To Collect",
-                    "Not Allowed To Collect",
-                    "Unknown",
-                    "Ta",
-                    "Unknown",
-                    "Not Allowed To Collect",
-                    "Tis (Paget's)"
-                ],
-                "hpv_positive_type": [
-                    "Not Reported",
-                    "Other",
-                    "Other",
-                    "Other",
-                    "Other",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Unknown",
-                    "Not Reported",
-                    "Other"
-                ],
-                "percent_tumor_nuclei": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "tumor_largest_dimension_diameter": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
                 ],
                 "method_of_sample_procurement": [
                     "Open Radical Prostatectomy",
@@ -12104,6 +11702,21 @@
                     "Brain",
                     "White Blood Cells",
                     "Vagina"
+                ],
+                "ensat_clinical_m": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown"
                 ],
                 "therapeutic_level_achieved": [
                     "",
@@ -12209,6 +11822,21 @@
                     "Visual Changes",
                     "Altered Mental Status",
                     "Visual Changes"
+                ],
+                "uicc_clinical_m": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "Unknown",
+                    "Not Reported",
+                    "M1a"
                 ],
                 "treatment_or_therapy": [
                     "not reported",
@@ -12524,26 +12152,6 @@
                     "",
                     "Unknown"
                 ],
-                "test_value": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "sample_ordinal": [
-                    "2.0",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "5.0",
-                    ""
-                ],
                 "ajcc_clinical_stage": [
                     "Stage IB2",
                     "Stage I",
@@ -12614,6 +12222,16 @@
                     "T0",
                     "Unknown"
                 ],
+                "uicc_clinical_t": [
+                    "T2",
+                    "Tis (LCIS)",
+                    "Tis (Paget's)",
+                    "Tis (Paget's)",
+                    "Tis (Paget's)",
+                    "Tis (Paget's)",
+                    "T0",
+                    "Unknown"
+                ],
                 "classification_of_tumor": [
                     "",
                     "",
@@ -12634,16 +12252,6 @@
                     "",
                     ""
                 ],
-                "uicc_clinical_t": [
-                    "T2",
-                    "Tis (LCIS)",
-                    "Tis (Paget's)",
-                    "Tis (Paget's)",
-                    "Tis (Paget's)",
-                    "Tis (Paget's)",
-                    "T0",
-                    "Unknown"
-                ],
                 "test_value_range": [
                     "0-25",
                     "",
@@ -12662,6 +12270,16 @@
                     "",
                     "",
                     "",
+                    ""
+                ],
+                "sample_ordinal": [
+                    "2.0",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "5.0",
                     ""
                 ],
                 "age_at_diagnosis": [
@@ -13161,6 +12779,20 @@
                     "",
                     ""
                 ],
+                "fab_morphology_code": [
+                    "Not Classified",
+                    "Not Classified",
+                    "Not Classified",
+                    "Not Classified",
+                    "Not Classified"
+                ],
+                "tissue_microarray_coordinates": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
                 "tumor_shape": [
                     "Not Reported",
                     "Mushroom",
@@ -13174,20 +12806,6 @@
                     "",
                     "",
                     ""
-                ],
-                "tissue_microarray_coordinates": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "fab_morphology_code": [
-                    "Not Classified",
-                    "Not Classified",
-                    "Not Classified",
-                    "Not Classified",
-                    "Not Classified"
                 ],
                 "tumor_length_measurement": [
                     "",
@@ -13969,33 +13587,12 @@
                     "Stage IB",
                     "Not Reported"
                 ],
-                "population_group": [
-                    "Ashkenazi Jew",
-                    "Ashkenazi Jew",
-                    "",
-                    "Ashkenazi Jew",
-                    "Ashkenazi Jew"
-                ],
-                "recist_targeted_regions_number": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "tumor_length_measurement": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "sample_ordinal": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
+                "tissue_type": [
+                    "Peritumoral",
+                    "Normal",
+                    "Not Allowed To Collect",
+                    "Peritumoral",
+                    "Not Reported"
                 ],
                 "tumor_descriptor": [
                     "Premalignant",
@@ -14032,20 +13629,6 @@
                     "",
                     ""
                 ],
-                "tissue_type": [
-                    "Peritumoral",
-                    "Normal",
-                    "Not Allowed To Collect",
-                    "Peritumoral",
-                    "Not Reported"
-                ],
-                "drug_category": [
-                    "Platinum",
-                    "Platinum",
-                    "Growth factor",
-                    "Platinum",
-                    "Not Reported"
-                ],
                 "tumor_shape": [
                     "Not Reported",
                     "Unknown",
@@ -14059,6 +13642,34 @@
                     "",
                     "",
                     ""
+                ],
+                "drug_category": [
+                    "Platinum",
+                    "Platinum",
+                    "Growth factor",
+                    "Platinum",
+                    "Not Reported"
+                ],
+                "recist_targeted_regions_number": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "sample_ordinal": [
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "population_group": [
+                    "Ashkenazi Jew",
+                    "Ashkenazi Jew",
+                    "",
+                    "Ashkenazi Jew",
+                    "Ashkenazi Jew"
                 ],
                 "morphology": [
                     "Not Reported",
@@ -14288,20 +13899,6 @@
                     "",
                     ""
                 ],
-                "sample_type_id": [
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                ],
-                "morphology": [
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported",
-                    "Not Reported"
-                ],
                 "tumor_infiltrating_macrophages": [
                     "Not Reported",
                     "Not Reported",
@@ -14391,6 +13988,13 @@
                     "Stable",
                     "Stable",
                     "Stable",
+                    "Not Reported"
+                ],
+                "morphology": [
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
+                    "Not Reported",
                     "Not Reported"
                 ],
                 "ann_arbor_clinical_stage": [
