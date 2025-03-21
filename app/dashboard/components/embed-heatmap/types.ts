@@ -1,7 +1,7 @@
 import { ExpandedCellType } from './expanded-cells/types';
 
 type CellType = 'rect' | 'bar';
-type ColorScheme = 'blues' | 'viridis' | 'rdbu' | 'yellowBlue' | 'spectral' | 'greens' | 'oranges' | 'purples' | 'reds';
+type ColorScheme = 'blues' | 'viridis' | 'rdbu' | 'yellowBlue' | 'spectral' | 'greens' | 'oranges' | 'purples' | 'reds' | 'YlGnBu';
 
 interface HeatMapConfig {
     cellType: CellType;

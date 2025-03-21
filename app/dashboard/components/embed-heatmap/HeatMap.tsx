@@ -58,7 +58,7 @@ const HeatMap: React.FC<HeatMapProps> = ({
 
   const [config, setConfig] = useState<HeatMapConfig>({
     cellType: "rect",
-    colorScheme: "blues",
+    colorScheme: "YlGnBu",
     colorScalePadding: 10,
     maxScore: 1,
     minScore: 0,

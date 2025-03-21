@@ -239,12 +239,12 @@ class MatchingTask:
         return layered_candidates
 
     def _generate_source_clusters(
-        self, source_embeddings: Tensor
+        self, source_embeddings: np.ndarray
     ) -> Dict[str, List[str]]:
         knn = NearestNeighbors(
             n_neighbors=min(10, len(self.source_df.columns)), metric="cosine"
         )
-        knn.fit(np.array(source_embeddings))
+        knn.fit(source_embeddings)
         clusters_idx = [
             knn.kneighbors([source_embedding], return_distance=False)[0]
             for source_embedding in source_embeddings

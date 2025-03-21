@@ -1,6 +1,7 @@
 import os
 from typing import List, Tuple
 
+import numpy as np
 import pandas as pd
 import torch
 from sentence_transformers import SentenceTransformer
@@ -88,7 +89,7 @@ class EmbeddingClusterer:
             embeddings.append(torch.tensor(batch_embeddings))
         return torch.cat(embeddings)
 
-    def get_embeddings(self, source_df: pd.DataFrame, target_df: pd.DataFrame) -> Tuple:
+    def get_embeddings(self, source_df: pd.DataFrame, target_df: pd.DataFrame) -> np.ndarray:
         encoder = ColumnEncoder(
             self.tokenizer,
             encoding_mode=self.params["encoding_mode"],
@@ -106,7 +107,7 @@ class EmbeddingClusterer:
         cleaned_input_col_repr = list(input_col_repr_dict.keys())
         cleaned_target_col_repr = list(target_col_repr_dict.keys())
 
-        embeddings_input = self._get_embeddings(cleaned_input_col_repr)
-        embeddings_target = self._get_embeddings(cleaned_target_col_repr)
+        embeddings_input = np.array(self._get_embeddings(cleaned_input_col_repr))
+        embeddings_target = np.array(self._get_embeddings(cleaned_target_col_repr))
 
         return embeddings_input, embeddings_target

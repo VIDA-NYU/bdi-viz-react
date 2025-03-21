@@ -99,9 +99,9 @@ const AxisLabel = ({
     >
       <rect
         x={-textWidth}
-        y={-10}
+        y={-8}
         width={textWidth}
-        height={20}
+        height={16}
         fill={theme.palette.grey[200]}
         stroke={theme.palette.grey[500]}
         strokeWidth={isSelected ? 2 : 0}
