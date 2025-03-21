@@ -6,7 +6,7 @@ transformers
 torch
 mmh3
 pandas
-numpy
+numpy==1.24.2
 
 # langchain-anthropic==0.3.1
 langchain-community
@@ -20,4 +20,4 @@ duckduckgo-search
 python-dotenv
 pydantic
 rapidfuzz
-git+https://github.com/VIDA-NYU/bdi-kit@devel
+bdi-kit
