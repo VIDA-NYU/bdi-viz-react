@@ -19,7 +19,7 @@ class MagnetoMatcher(BaseMatcher):
             "encoding_mode": "header_values_verbose",
             "embedding_model": download_model_pt(FT_MODEL_URL, "magneto-gdc-v0.1"),
             "use_bp_reranker": False,
-            "use_gpt_reranker": False,
+            "use_gpt_reranker": True,
         },
     }
 

@@ -34,7 +34,7 @@ export const {
         const [sourceColumn, setSourceColumn] = useState<string>('all');
         const [candidateType, setCandidateType] = useState<string>('all');
         const [similarSources, setSimilarSources] = useState<number>(1);
-        const [candidateThreshold, setCandidateThreshold] = useState<number>(0.7);
+        const [candidateThreshold, setCandidateThreshold] = useState<number>(0.5);
         const [searchResults, setSearchResults] = useState<Candidate[]>([]);
         const [status, setStatus] = useState<string[]>(['accepted', 'rejected', 'discarded', 'idle']); // 'accepted', 'rejected', 'discarded', 'idle'
 

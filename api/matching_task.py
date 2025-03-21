@@ -582,9 +582,10 @@ class MatchingTask:
 
     def get_target_unique_values(self, target_col: str, n: int = 300) -> List[str]:
         if self.target_df is None or target_col not in self.target_df.columns:
-            raise ValueError(
+            logger.warning(
                 f"Target column {target_col} not found in the target dataframe."
             )
+            return []
         # if pd.api.types.is_numeric_dtype(self.target_df[target_col].dtype):
         #     return []
 
