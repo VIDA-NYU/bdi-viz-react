@@ -114,8 +114,8 @@ const Timeline = ({ userOperations }: TimelineProps) => {
     return (
         <Box sx={{ maxHeight: '400px' }}>
             <SectionHeader>Timeline</SectionHeader>
-            <Box sx={{ maxHeight: '380px', overflowY: 'auto'}}>
-                <svg ref={svgRef}></svg>
+            <Box sx={{ maxHeight: '380px', overflowY: 'auto', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+            <svg ref={svgRef}></svg>
             </Box>
         </Box>
     );
