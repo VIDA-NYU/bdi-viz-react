@@ -219,3 +219,30 @@ def load_pdc_property(target_column: str) -> Optional[Dict[str, Any]]:
         property = pdc_ontology_flat[target_column]
 
     return property
+
+
+def is_candidate_for_category(
+    series: pd.Series, unique_threshold=10, ratio_threshold=0.05
+):
+    """
+    Determine if a numerical column should be regarded as categorical.
+
+    Parameters:
+        series (pd.Series): The numerical column to evaluate.
+        unique_threshold (int): Maximum number of unique values to consider the column categorical.
+        ratio_threshold (float): Maximum ratio of unique values to total entries.
+
+    Returns:
+        bool: True if the column is a candidate for categorical treatment.
+    """
+    unique_count = series.nunique()
+    total_count = series.count()
+    unique_ratio = unique_count / total_count if total_count > 0 else 0
+
+    print(
+        f"Unique count: {unique_count}, Total count: {total_count}, Unique ratio: {unique_ratio:.2f}"
+    )
+
+    if unique_count <= unique_threshold or unique_ratio < ratio_threshold:
+        return True
+    return False

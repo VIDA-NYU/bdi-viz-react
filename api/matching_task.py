@@ -20,6 +20,7 @@ from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
 from .matcher_weight.weight_updater import WeightUpdater
 from .utils import (
+    is_candidate_for_category,
     load_gdc_ontology,
     load_gdc_property,
     load_pdc_ontology,
@@ -273,7 +274,13 @@ class MatchingTask:
         self.cached_candidates["value_matches"] = {}
         for source_col in self.source_df.columns:
             source_unique_values = []
-            if not pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
+            # if the numeric type can be treated as categorical, still generate value matches
+            if pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
+                if is_candidate_for_category(self.source_df[source_col]):
+                    source_unique_values = self.get_source_unique_values(
+                        source_col, n=300
+                    )
+            else:
                 source_unique_values = self.get_source_unique_values(source_col)
 
             self.cached_candidates["value_matches"][source_col] = {
