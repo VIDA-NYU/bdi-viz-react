@@ -310,10 +310,16 @@ class MatchingTask:
         for source_v in source_values:
             match_results["From"].append(source_v)
             best_matches = difflib.get_close_matches(
-                source_v, target_values, n=1, cutoff=0.1
+                source_v.lower(),
+                [val.lower() for val in target_values],
+                n=1,
+                cutoff=0.1,
             )
             if best_matches:
-                best_norm = best_matches[0]
+                best_match_index = [val.lower() for val in target_values].index(
+                    best_matches[0]
+                )
+                best_norm = target_values[best_match_index]
                 match_results["To"].append(best_norm)
             else:
                 match_results["To"].append("")
