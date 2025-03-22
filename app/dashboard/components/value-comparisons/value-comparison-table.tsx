@@ -11,6 +11,7 @@ interface ValueComparisonTableProps {
     valueMatches: ValueMatch[];
     weightedAggregatedCandidates: AggregatedCandidate[];
     selectedCandidate?: Candidate;
+    setSelectedCandidate: (sourceColumn: string, targetColumn: string) => void;
     selectedSourceColumn: string;
 }
 
@@ -18,6 +19,7 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     valueMatches,
     weightedAggregatedCandidates,
     selectedCandidate,
+    setSelectedCandidate,
     selectedSourceColumn,
 }) => {
     const theme = useTheme();
@@ -117,6 +119,14 @@ const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
             }
 
             return {
+                onClick: () => {
+                    if (!isSourceColumn && !isTargetColumn) {
+                        setSelectedCandidate(
+                            candidate?.sourceColumn as string,
+                            cell.column.id
+                        );
+                    }
+                },
                 style: cellStyle,
             };
         },

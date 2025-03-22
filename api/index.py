@@ -325,7 +325,7 @@ def agent_related_source():
 
     # response = AGENT.search_for_sources(candidate)
     # response = response.model_dump()
-    response = []
+    response = {"sources": []}
 
     return {"message": "success", "results": response}
 

@@ -6,11 +6,13 @@ import { Box, Pagination } from '@mui/material';
 import PaginationGlobalContext from '@/app/lib/pagination/pagination-context';
 
 interface PaginatorProps {
-    setSelectedCandidate: (candidate: Candidate | undefined) => void
+    setSelectedCandidate: (candidate: Candidate | undefined) => void;
+    isShow: boolean;
 }
 
 const Paginator: React.FC<PaginatorProps> = ({
     setSelectedCandidate,
+    isShow,
 }: PaginatorProps) => {
     const {
         pageNumber,
@@ -22,6 +24,7 @@ const Paginator: React.FC<PaginatorProps> = ({
 
 
     return (
+        isShow &&
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ backgroundColor: 'grey.100', py: 2 }}>
             <Pagination
                 count={totalPages}

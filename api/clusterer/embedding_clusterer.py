@@ -89,7 +89,9 @@ class EmbeddingClusterer:
             embeddings.append(torch.tensor(batch_embeddings))
         return torch.cat(embeddings)
 
-    def get_embeddings(self, source_df: pd.DataFrame, target_df: pd.DataFrame) -> np.ndarray:
+    def get_embeddings(
+        self, source_df: pd.DataFrame, target_df: pd.DataFrame
+    ) -> np.ndarray:
         encoder = ColumnEncoder(
             self.tokenizer,
             encoding_mode=self.params["encoding_mode"],

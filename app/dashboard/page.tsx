@@ -9,7 +9,6 @@ import UpperTabs from "./components/upperTabs";
 import LowerTabs from "./components/lowerTabs";
 import RightPanel from "./rightpanel";
 import Paginator from "./components/control-inputs/paginator";
-import { DualScatter } from "./components/dual-scatter/DualScatter";
 import AgentSuggestionsPopup from "./components/langchain/suggestion";
 import SettingsGlobalContext from "@/app/lib/settings/settings-context";
 import PaginationGlobalContext from "../lib/pagination/pagination-context";
@@ -187,6 +186,14 @@ export default function Dashboard() {
         }
     }
 
+    function setSelectedCandidateByTargetColumnCallback(sourceColumn: string, targetColumn: string) {
+        console.log("Selected Candidate: ", sourceColumn, targetColumn);
+        const candidate = weightedAggregatedCandidates.find((c) => c.sourceColumn === sourceColumn && c.targetColumn === targetColumn);
+        if (candidate) {
+            setSelectedCandidateCallback(candidate);
+        }
+    }
+
     function onGenerateExplanation() {
         toastify("default", `Generating explanations for ${selectedCandidate?.sourceColumn}...`, { autoClose: 200 });
         if (selectedCandidate) {
@@ -301,12 +308,13 @@ export default function Dashboard() {
                         status={status}
                         updateStatus={updateStatus}
                     />
-
-                    <Paginator setSelectedCandidate={setSelectedCandidate} />
+                    {/* Show Paginator when sourceColumn is "all" */}
+                    <Paginator setSelectedCandidate={setSelectedCandidate}  isShow={sourceColumn === "all"} />
                     <LowerTabs
                         weightedAggregatedCandidates={weightedAggregatedCandidates}
                         matchers={matchers}
                         selectedCandidate={selectedCandidate}
+                        setSelectedCandidate={setSelectedCandidateByTargetColumnCallback}
                         selectedSourceColumn={sourceColumn}
                         valueMatches={valueMatches}
                     />

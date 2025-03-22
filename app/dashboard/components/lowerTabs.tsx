@@ -12,6 +12,7 @@ interface LowerTabsProps {
   weightedAggregatedCandidates: AggregatedCandidate[];
   matchers: Matcher[];
   selectedCandidate?: Candidate;
+  setSelectedCandidate: (sourceColumn: string, targetColumn: string) => void;
   selectedSourceColumn: string;
   valueMatches: ValueMatch[];
 }
@@ -20,6 +21,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
   weightedAggregatedCandidates,
   matchers,
   selectedCandidate,
+  setSelectedCandidate,
   selectedSourceColumn,
   valueMatches,
 }) => {
@@ -51,6 +53,7 @@ const LowerTabs: React.FC<LowerTabsProps> = ({
               valueMatches={valueMatches}
               weightedAggregatedCandidates={weightedAggregatedCandidates}
               selectedCandidate={selectedCandidate ? selectedCandidate : { sourceColumn: selectedSourceColumn, targetColumn: '' } as Candidate}
+              setSelectedCandidate={setSelectedCandidate}
               selectedSourceColumn={selectedSourceColumn}
             />
           </TabPanel>
