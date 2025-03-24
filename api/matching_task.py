@@ -464,13 +464,22 @@ class MatchingTask:
                 max_val = col_obj.max()
                 bins = np.linspace(min_val, max_val, num=10)
                 counter = np.histogram(col_obj, bins=bins)[0]
-                return [
-                    {
-                        "value": f"{int(bins[i])}-{int(bins[i+1])}",
-                        "count": int(counter[i]),
-                    }
-                    for i in range(len(counter))
-                ]
+                if col_obj.dtype == "float64":
+                    return [
+                        {
+                            "value": f"{bins[i]:.2f}-{bins[i+1]:.2f}",
+                            "count": int(counter[i]),
+                        }
+                        for i in range(len(counter))
+                    ]
+                else:
+                    return [
+                        {
+                            "value": f"{int(bins[i])}-{int(bins[i+1])}",
+                            "count": int(counter[i]),
+                        }
+                        for i in range(len(counter))
+                    ]
         else:
             logger.warning(f"Column {col} is of type {col_obj.dtype}.")
             return []

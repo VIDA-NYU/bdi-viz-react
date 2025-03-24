@@ -38,7 +38,7 @@ def extract_data_from_request(request):
     source_df = None
     target_df = None
 
-    logger.info(request)
+    logger.info(request.form["source_csv"])
 
     if request.form is None:
         return None

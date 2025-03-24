@@ -41,11 +41,11 @@ const FileUploading: React.FC<FileUploadingProps> = ({ callback }) => {
                     formData.append("source_csv", csv);
 
                     setIsLoadingGlobal(true);
-                    axios.post("/api/matching", {
-                        ...formData
-                    }, {
+                    axios.post("/api/matching", 
+                        formData, 
+                    {
                         ...customHeader,
-                        timeout: 0, // Set timeout to unlimited
+                        timeout: 300000, // 3 minutes in milliseconds
                     }).then((response) => {
                         console.log(response);
                         if (response.status === 200) {

@@ -28,10 +28,11 @@ app.logger.setLevel(logging.INFO)
 
 @app.route("/api/matching", methods=["POST"])
 def matcher():
-    session = extract_session_name(request)
-    matching_task = SESSION_MANAGER.get_session(session).matching_task
+    matching_task = SESSION_MANAGER.get_session("default").matching_task
 
     target = pd.read_csv(GDC_DATA_PATH)
+
+    app.logger.info(request)
 
     source, _ = extract_data_from_request(request)
     source.to_csv(".source.csv", index=False)

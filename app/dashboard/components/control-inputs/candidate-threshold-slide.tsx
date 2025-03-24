@@ -71,9 +71,9 @@ const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({
   const maxCount = Math.max(...histogramData.map(d => d.count || 1));
 
   return (
-    <Box sx={{ width: "100%", flexGrow: 1 }}>
+    <Box sx={{ width: "100%", flexGrow: 1, paddingTop: 1 }}>
       <FormControl fullWidth>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <SectionLabel id="candidate-threshold-select-label">
             Candidate Threshold
           </SectionLabel>
@@ -91,15 +91,14 @@ const CandidateThresholdSlide: React.FC<CandidateThresholdSlideProps> = ({
         <Box sx={{ 
           position: 'relative', 
           height: 40, 
-          mt: 1, 
-          mb: 2
+          top: -5,
         }}>
           <Slider
             value={candidateThreshold}
             onChange={(e, num) => handleChange(num as number)}
             aria-labelledby="candidate-threshold-select-label"
             valueLabelDisplay="auto"
-            step={0.1}
+            step={0.01}
             marks={[
               { value: 0.1, label: '0.1' },
               { value: 0.3, label: '0.3' },
