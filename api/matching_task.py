@@ -12,6 +12,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from torch import Tensor
+from bdikit import match_values
 
 from .candidate_quadrants import CandidateQuadrants
 from .clusterer.embedding_clusterer import EmbeddingClusterer
@@ -19,6 +20,7 @@ from .matcher.bdikit import BDIKitMatcher
 from .matcher.magneto import MagnetoMatcher
 from .matcher.rapidfuzz import RapidFuzzMatcher
 from .matcher.valentine import ValentineMatcher
+from .matcher.groundtruth import GroundtruthMatcher
 from .matcher_weight.weight_updater import WeightUpdater
 from .utils import is_candidate_for_category, load_gdc_ontology, load_gdc_property
 
@@ -51,9 +53,10 @@ class MatchingTask:
         self.candidate_quadrants = None
         self.matchers = {
             # "jaccard_distance_matcher": ValentineMatcher("jaccard_distance_matcher"),
-            "ct_learning": BDIKitMatcher("ct_learning"),
-            "magneto_ft": MagnetoMatcher("magneto_ft"),
-            "magneto_zs": MagnetoMatcher("magneto_zs"),
+            # "ct_learning": BDIKitMatcher("ct_learning"),
+            # "magneto_ft": MagnetoMatcher("magneto_ft"),
+            # "magneto_zs": MagnetoMatcher("magneto_zs"),
+            "groundtruth": GroundtruthMatcher("tmp/ground-truth/Dou.csv"),
         }
 
         self.clustering_model = clustering_model
@@ -308,28 +311,28 @@ class MatchingTask:
         if not source_values:  # Source unique values are empty
             return
 
-        target_values = self.get_target_unique_values(target_column)
-
         match_results = {
             "From": [],
             "To": [],
         }
-        for source_v in source_values:
-            match_results["From"].append(source_v)
-            best_matches = difflib.get_close_matches(
-                source_v.lower(),
-                [val.lower() for val in target_values],
-                n=1,
-                cutoff=0.1,
-            )
-            if best_matches:
-                best_match_index = [val.lower() for val in target_values].index(
-                    best_matches[0]
-                )
-                best_norm = target_values[best_match_index]
-                match_results["To"].append(best_norm)
-            else:
-                match_results["To"].append("")
+        
+        value_mappings = match_values(
+            self.source_df,
+            target=self.target_df,
+            column_mapping=(source_column, target_column),
+            method="tfidf",
+        )
+
+        for index, row in value_mappings.iterrows():
+            # reorder row["target"] based on source_values
+            target_values = row["target"]
+            source_values_mappings = row["source"]
+            target_values = [
+                target_values[source_values_mappings.index(val)] if val in source_values_mappings else val
+                for val in source_values
+            ]
+            match_results["From"].extend(source_values)
+            match_results["To"].extend(target_values)
 
         self.cached_candidates["value_matches"][source_column]["targets"][
             target_column
@@ -592,15 +595,20 @@ class MatchingTask:
             )
         return self._bucket_column(self.source_df, source_col)
 
-    def get_source_unique_values(self, source_col: str, n: int = 20) -> List[str]:
+    def get_source_unique_values(self, source_col: str, n: int = 20, dropna: bool = False) -> List[str]:
         if self.source_df is None or source_col not in self.source_df.columns:
             raise ValueError(
                 f"Source column {source_col} not found in the source dataframe."
             )
         # if pd.api.types.is_numeric_dtype(self.source_df[source_col].dtype):
         #     return []
+
+        if dropna:
+            return sorted(
+                list(self.source_df[source_col].dropna().unique().astype(str)[:n])
+            )
         return sorted(
-            list(self.source_df[source_col].dropna().unique().astype(str)[:n])
+            list(self.source_df[source_col].unique().astype(str)[:n])
         )
 
     def get_target_value_bins(self, target_col: str) -> List[Dict[str, Any]]:
